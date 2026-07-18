@@ -1241,6 +1241,26 @@ tbody tr:hover { background: var(--canvas); }
   }
 
   .home-hero { gap: 1.5rem; }
+  .start-panel { padding: .8rem 1rem; }
+  .start-panel .eyebrow { margin-bottom: .2rem; }
+  .start-panel h2 { margin-bottom: .4rem; font-size: 1.35rem; }
+  .start-choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1rem;
+  }
+  .start-choices li {
+    display: block;
+    min-width: 0;
+    padding: .5rem 0;
+  }
+  .start-choices .choice-number { display: block; margin-bottom: .1rem; }
+  .start-choices strong { display: block; font-size: .84rem; }
+  .start-choices p { display: none; }
+  .start-choices a { font-size: .78rem; line-height: 1.35; }
+  .start-note { margin-top: .35rem; padding-top: .55rem; }
+  .start-note strong { display: inline; font-size: .82rem; }
+  .start-note span { display: none; }
   .project-note { grid-column: auto; }
   .lesson-sidebar { display: none; }
   .mobile-section-nav { display: block; }
@@ -1294,26 +1314,6 @@ tbody tr:hover { background: var(--canvas); }
   .hero-mobile-break { display: inline; }
   .hero-lead { font-size: .96rem; line-height: 1.75; }
   .hero-actions { margin-top: .9rem; }
-  .start-panel { padding: .8rem 1rem; }
-  .start-panel .eyebrow { margin-bottom: .2rem; }
-  .start-panel h2 { margin-bottom: .4rem; font-size: 1.35rem; }
-  .start-choices {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 1rem;
-  }
-  .start-choices li {
-    display: block;
-    min-width: 0;
-    padding: .5rem 0;
-  }
-  .start-choices .choice-number { display: block; margin-bottom: .1rem; }
-  .start-choices strong { display: block; font-size: .84rem; }
-  .start-choices p { display: none; }
-  .start-choices a { font-size: .78rem; line-height: 1.35; }
-  .start-note { margin-top: .35rem; padding-top: .55rem; }
-  .start-note strong { display: inline; font-size: .82rem; }
-  .start-note span { display: none; }
   .learning-route { padding-top: .75rem; }
   .learning-route .section-head { margin-bottom: .25rem; }
   .learning-route .section-head > p { display: none; }
