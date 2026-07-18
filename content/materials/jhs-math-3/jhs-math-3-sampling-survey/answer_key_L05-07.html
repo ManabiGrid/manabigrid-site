@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,7 +38,7 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">解答</span><span>中学3年 数学 ／ 中3数学「標本調査」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="解答編-l05l07母集団の数量の推定調査の批評"><span class="lesson-title-main">解答編 L05〜L07（母集団の数量の推定／調査の批評）</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L05-07.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L05-07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L05-07.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L05-07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
 </header><article class="container lesson-body answer-page"><h2 id="l05-平均から全体を見積もる平均値総数型">L05 平均から全体を見積もる——平均値×総数型</h2>
 <h3 id="練習">練習</h3>
 <ol start="1"><li><p>(1) 順にたすと 58＋63＝121, ＋60＝181, ＋59＝240, ＋65＝305, ＋62＝367, ＋57＝424, ＋64＝488, ＋61＝549, ＋60＝609, ＋63＝672, ＋58＝730, ＋62＝792, ＋66＝858, ＋59＝917, ＋61＝978, ＋60＝1038, ＋64＝1102, ＋57＝1159, ＋65＝<strong>1224</strong> ✓  (2) 1224÷20＝<strong>61.2（語/ページ）</strong>、61.2×980＝<strong>59976（語）</strong>。  （検算: 61.2×980＝61.2×1000−61.2×20＝61200−1224＝59976 ✓。また 59976÷980＝61.2 に戻る ✓）  答えの書き方: 「見出し語は<strong>およそ60000語（およそ6万語）と推定される</strong>」。</p></li><li><p>8本の合計＝82＋78＋85＋80＋74＋88＋79＋86＝<strong>652（個）</strong>。標本の平均値＝652÷8＝<strong>81.5（個/本）</strong>。  500本全体では 81.5×500＝<strong>40750（個）</strong>。  答え: 「果樹園全体の収穫個数は<strong>およそ41000個（およそ4万個）と推定される</strong>」。  （検算: 40750÷500＝81.5 に戻る ✓。合計の確かめ: 82＋78＝160, ＋85＝245, ＋80＝325, ＋74＝399, ＋88＝487, ＋79＝566, ＋86＝652 ✓）</p></li><li><p>絵や図の多いページは、紙面が絵に使われるぶん<strong>見出し語数が少なくなる</strong>と考えるのが自然。そのようなページばかり選ぶと標本の平均値は実際より小さくなり、推定値（平均×980）も<strong>小さい方にかたよる</strong>と考えられる。（「にぎやかなページ＝語数が多い」と設定して「大きい方にかたよる」と論じた場合も、標本の選び方のくせが平均値を通じて推定全体をかたよらせる、という筋が通っていれば可。）</p></li><li><p>例: 標本の平均値は標本ごとにばらつく値であり（L03）、61.2はたまたま選ばれた20ページでの値にすぎない。別の20ページなら別の値になるから、母集団の平均値が「ぴったり61.2」と言うことはできない。言えるのは「およそ61語くらいと推定される」まで（L04で見たとおり、標本を大きくすればこの見積もりのばらつきは小さくなる傾向がある）。</p></li></ol>
@@ -63,14 +64,15 @@
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

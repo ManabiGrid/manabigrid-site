@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,7 +38,7 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">制作資料</span><span>中学 社会 ／ 中3公民「市場経済と価格のはたらき」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="interactive_concept需要供給シミュレータみずき市場のルポの実設計案offline-html1ページ"><span class="lesson-title-main">interactiveconcept</span><span class="lesson-title-sub">需要供給シミュレータ「みずき市場のルポの実」設計案（offline HTML・1ページ）</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-soc/jhs-soc-civics-market-price/interactive_concept.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-soc/jhs-soc-civics-market-price/interactive_concept.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-soc/jhs-soc-civics-market-price/interactive_concept.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-soc/jhs-soc-civics-market-price/interactive_concept.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
 </header><div class="container notice" role="note"><strong>制作資料です。</strong>生徒向けの学習本文ではなく、指導・設計・図版来歴の記録です。</div><article class="container lesson-body"><h2 id="ねらい曲線偏重にしない">ねらい（曲線偏重にしない）</h2>
 <p>主目的は「<strong>価格が動くと何が起きるか</strong>」の体験。生徒が変数を1つ動かす → 市場の反応（品不足／売れ残り／落ち着き先）が<strong>町の絵と数</strong>で見える、を中心に据える。グラフ（需要曲線・供給曲線＝教科書慣用語）は<strong>補助表示（初期状態では折りたたみ）</strong> とし、曲線シフトや均衡の数学的精緻化は行わない。</p>
 <h2 id="技術要件">技術要件</h2>
@@ -63,14 +64,15 @@
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

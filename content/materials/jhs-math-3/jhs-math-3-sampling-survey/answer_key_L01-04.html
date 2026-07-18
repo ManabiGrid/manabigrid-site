@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,7 +38,7 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">解答</span><span>中学3年 数学 ／ 中3数学「標本調査」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="解答編-l01l04標本調査の考え標本の大きさとばらつき"><span class="lesson-title-main">解答編 L01〜L04（標本調査の考え／標本の大きさとばらつき）</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L01-04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L01-04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L01-04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-sampling-survey/answer_key_L01-04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
 </header><article class="container lesson-body answer-page"><h2 id="l01-全部は調べられない全数調査と標本調査">L01 全部は調べられない——全数調査と標本調査</h2>
 <h3 id="準備運動前提診断">準備運動（前提診断）</h3>
 <ol start="1"><li><p>3の目が出る確率は <strong>1/6</strong>。「同様に確からしい」＝<strong>どの目が出る確率も等しい</strong>ということ（1〜6のどの目も1/6）。</p></li><li><p>データは8個（小さい順に 2, 3, 5, 6, 8, 9, 11, 12）。  中央値＝4番目と5番目の平均＝(6＋8)÷2＝<strong>7</strong>。  第1四分位数＝下位4個の中央値＝(3＋5)÷2＝4、第3四分位数＝上位4個の中央値＝(9＋11)÷2＝10。  四分位範囲＝10−4＝<strong>6</strong>（検算: 10＞4で正の値 ✓）</p></li><li><p>14÷40＝<strong>0.35</strong>（検算: 40×0.35＝14 ✓）</p></li></ol>
@@ -62,7 +63,7 @@
 <p> <strong>標本の大きさ40の記録</strong>（小さい順）:  7.0, 7.0, 7.1, 7.1, 7.1, 7.1, 7.2, 7.2, 7.2, 7.2, 7.2, 7.2, 7.2, 7.3, 7.3, 7.3, 7.3, 7.4, 7.4, 7.4</p>
 <ul><li><p>最小値 <strong>7.0</strong>・最大値 <strong>7.4</strong> → 範囲＝<strong>0.4</strong></p></li><li><p>中央値＝(7.2＋7.2)÷2＝<strong>7.2</strong></p></li><li><p>第1四分位数＝(7.1＋7.1)÷2＝7.1、第3四分位数＝(7.3＋7.3)÷2＝7.3 → 四分位範囲＝7.3−7.1＝<strong>0.2</strong></p></li></ul>
 <p> （検算: 並べかえ後の個数がどちらも20個であること、最小値≦第1四分位数≦中央値≦第3四分位数≦最大値の順になっていることを確認 ✓）  箱ひげ図は、大きさ20が「ひげ6.8〜7.6・箱7.1〜7.4・中央線7.2」、大きさ40が「ひげ7.0〜7.4・箱7.1〜7.3・中央線7.2」となる。</p></li><li><p>表の例:</p>
-<div class="table-wrap" tabindex="0" role="region" aria-label="標本の大きさ・範囲・四分位範囲の表（1）"><table><thead><tr><th scope="col">標本の大きさ</th><th scope="col">範囲</th><th scope="col">四分位範囲</th></tr></thead><tbody><tr><td>10</td><td>1.5</td><td>0.4</td></tr><tr><td>20</td><td>0.8</td><td>0.3</td></tr><tr><td>40</td><td>0.4</td><td>0.2</td></tr></tbody></table></div>
+<div class="table-wrap" data-scroll-label="標本の大きさ・範囲・四分位範囲の表（1）"><table><thead><tr><th scope="col">標本の大きさ</th><th scope="col">範囲</th><th scope="col">四分位範囲</th></tr></thead><tbody><tr><td>10</td><td>1.5</td><td>0.4</td></tr><tr><td>20</td><td>0.8</td><td>0.3</td></tr><tr><td>40</td><td>0.4</td><td>0.2</td></tr></tbody></table></div>
 <p> 記述例: 「標本の大きさを大きくすると、標本の平均値の範囲・四分位範囲は小さくなる<strong>傾向</strong>がある。」（「必ず小さくなる」と書かないこと。）</p></li><li><p>大きさ40の記録にも、たとえば <strong>7.0</strong>（または7.4）のように中央の7.2から離れた値が残っている。つまり大きさ40でも標本の平均値はゆれており、「必ずほぼ一致する」は言いすぎ。言えるのは「ばらつきが小さくなる傾向がある」まで。</p></li><li><p>例: 調べる手間・時間・費用が増える。標本を大きくするほど全数調査に近づき、「全部は調べられないから標本調査にした」というそもそもの利点が失われていく。（回答が1つの観点で書けていればよい。）</p></li></ol>
 <h3 id="stretch-3">stretch</h3>
 <p><strong>S1</strong> 大きさ10の記録で7.0以上7.4以下の値: 7.0, 7.0, 7.1, 7.1, 7.2, 7.2, 7.2, 7.3, 7.3, 7.4, 7.4, 7.4 の <strong>12個</strong>（12/20＝6割）。大きさ40の記録では<strong>20個全部</strong>（20/20）。 まとめの例: 「中央値のまわり±0.2時間に収まった割合は、標本が大きいほど高い——標本を大きくすると、推定が安定する傾向がここでも確かめられる。」</p>
@@ -81,14 +82,15 @@
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

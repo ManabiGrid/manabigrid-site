@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,8 +38,8 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「式の展開と因数分解」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="l03-乗法の公式1xaxb"><span class="lesson-title-main">L03 乗法の公式①</span><span class="lesson-title-sub">(x＋a)(x＋b)</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_03.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
-</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_03.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>03</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_03.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入3つの展開を並べてみる" href="lesson_03.html#%E5%B0%8E%E5%85%A53%E3%81%A4%E3%81%AE%E5%B1%95%E9%96%8B%E3%82%92%E4%B8%A6%E3%81%B9%E3%81%A6%E3%81%BF%E3%82%8B">導入：3つの展開を並べてみる</a></li><li><a data-section-link="主概念規則を式にする公式1" href="lesson_03.html#%E4%B8%BB%E6%A6%82%E5%BF%B5%E8%A6%8F%E5%89%87%E3%82%92%E5%BC%8F%E3%81%AB%E3%81%99%E3%82%8B%E5%85%AC%E5%BC%8F1">主概念：規則を式にする——公式①</a></li><li><a data-section-link="練習" href="lesson_03.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
 <ul><li><p>同じ形の展開を並べて観察し、<strong>結果の規則性を自分で見つける</strong>。</p></li><li><p>(x＋a)(x＋b)＝x²＋(a＋b)x＋ab を公式として使えるようになり、忘れたら分配法則に戻れることも確かめる。</p></li></ul>
 <h2 id="導入3つの展開を並べてみる">導入：3つの展開を並べてみる</h2>
 <p>L02の型（予告→もれなくかける→整理）で、次の3つを展開してみよう。まず自分の手で。</p>
@@ -90,7 +91,7 @@
 <text x="235.0" y="232.0" font-size="12" text-anchor="middle">縦(x＋a)・横(x＋b)の長方形——xの項は bx と ax の2部屋から来る</text>
 <text x="235.0" y="250.0" font-size="12" text-anchor="middle">全体の面積 (x＋a)(x＋b)＝x²＋(a＋b)x＋ab</text>
 </svg>
-</div><figcaption>(x＋a)(x＋b)の面積モデル</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-expansion-factorization/assets/L03_fig1_area_model_formula1.svg">図だけを開く</a></figure>
+</div><figcaption>(x＋a)(x＋b)の面積モデル</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-expansion-factorization/assets/L03_fig1_area_model_formula1.svg">図を大きく開く</a></figure>
 <p>このように、よく使う形の展開の結果を規則としてまとめたものを、この教材では<strong>乗法の公式</strong>と呼ぶ。この章では全部で4つの乗法の公式を使い、一覧（L04で出そろう）の並び順の番号で呼ぶ——今日の公式はその1番目、<strong>公式①</strong>だ（②〜④は次のレッスンで登場する）。公式を使えば、展開の途中式を省いて一気に結果が書ける。</p>
 <p>(x＋3)(x＋7)＝x²＋10x＋21 （和10・積21）</p>
 <p>負の数が入っても、公式のa, bに<strong>符号ごと</strong>入れればそのまま使える。</p>
@@ -107,23 +108,24 @@
 <p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
 <aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
-  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_02.html"><span>前のレッスン</span>L02 式の展開——多項式×多項式</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-expansion-factorization/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_04.html"><span>次のレッスン</span>L04 乗法の公式②③④——平方の公式・和と差の積</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>03</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_03.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入3つの展開を並べてみる" href="lesson_03.html#%E5%B0%8E%E5%85%A53%E3%81%A4%E3%81%AE%E5%B1%95%E9%96%8B%E3%82%92%E4%B8%A6%E3%81%B9%E3%81%A6%E3%81%BF%E3%82%8B">導入：3つの展開を並べてみる</a></li><li><a data-section-link="主概念規則を式にする公式1" href="lesson_03.html#%E4%B8%BB%E6%A6%82%E5%BF%B5%E8%A6%8F%E5%89%87%E3%82%92%E5%BC%8F%E3%81%AB%E3%81%99%E3%82%8B%E5%85%AC%E5%BC%8F1">主概念：規則を式にする——公式①</a></li><li><a data-section-link="練習" href="lesson_03.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_02.html"><span>前のレッスン</span>L02 式の展開——多項式×多項式</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-expansion-factorization/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_04.html"><span>次のレッスン</span>L04 乗法の公式②③④——平方の公式・和と差の積</a></nav></article></div></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

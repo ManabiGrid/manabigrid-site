@@ -16,6 +16,7 @@ import subprocess
 import sys
 import unicodedata
 import urllib.parse
+import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -24,6 +25,80 @@ from typing import Sequence
 
 SITE_ROOT = Path(__file__).resolve().parent
 CONFIG_PATH = SITE_ROOT / "site.config.json"
+
+SAFE_SVG_TAGS = {
+    "circle",
+    "defs",
+    "desc",
+    "ellipse",
+    "line",
+    "pattern",
+    "polygon",
+    "polyline",
+    "rect",
+    "svg",
+    "text",
+    "title",
+}
+ENGLISH_PASSAGE = re.compile(
+    r"(?<![A-Za-z])(?:[A-Za-z][A-Za-z'’.-]*[,:;!?]?\s+){3,}"
+    r"[A-Za-z][A-Za-z'’.-]*[,:;.!?]?"
+)
+SVG_GUARD_MALICIOUS_SAMPLES = {
+    "style-import": '<svg xmlns="http://www.w3.org/2000/svg"><rect style="fill:url(https://evil.example/x)"/></svg>',
+    "foreign-object": '<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><div/></foreignObject></svg>',
+    "external-url": '<svg xmlns="http://www.w3.org/2000/svg"><pattern href="https://evil.example/p"/></svg>',
+    "xml-stylesheet": '<?xml-stylesheet href="https://evil.example/x.css"?><svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>',
+}
+
+
+def validate_svg_source(svg: str, path: Path) -> None:
+    """Reject active or remotely loading SVG before it reaches generated HTML."""
+    if path.is_symlink():
+        raise BuildError(f"{path}: symlinkのSVGは埋め込めません")
+    if re.search(r"<!DOCTYPE\b|<!ENTITY\b", svg, re.IGNORECASE):
+        raise BuildError(f"{path}: DOCTYPE / ENTITYを含むSVGは埋め込めません")
+    if re.search(r"<\?(?!xml\s|xml\?>)", svg, re.IGNORECASE):
+        raise BuildError(f"{path}: XML処理命令を含むSVGは埋め込めません")
+    try:
+        root = ET.fromstring(svg)
+    except ET.ParseError as exc:
+        raise BuildError(f"{path}: SVGをXMLとして解析できません: {exc}") from exc
+    for element in root.iter():
+        tag = element.tag.rsplit("}", 1)[-1].lower()
+        if tag not in SAFE_SVG_TAGS:
+            raise BuildError(f"{path}: 許可されていないSVG要素 <{tag}>")
+        for raw_name, raw_value in element.attrib.items():
+            name = raw_name.rsplit("}", 1)[-1].lower()
+            value = raw_value.strip()
+            if name == "style" or name.startswith("on"):
+                raise BuildError(f"{path}: active SVG属性 {name} は使えません")
+            if name == "href" and value and not value.startswith("#"):
+                raise BuildError(f"{path}: SVGの外部参照は使えません: {value}")
+            if re.search(r"@import|url\((?!\s*#)", value, re.IGNORECASE):
+                raise BuildError(f"{path}: SVGの外部CSS参照は使えません: {name}")
+
+
+def self_test_svg_guard() -> int:
+    """Prove the SVG guard still rejects representative active content."""
+    for name, payload in SVG_GUARD_MALICIOUS_SAMPLES.items():
+        try:
+            validate_svg_source(payload, Path(f"self-test-{name}.svg"))
+        except BuildError:
+            continue
+        raise BuildError(f"SVG検疫self-testが悪性反例を拒否しません: {name}")
+    return len(SVG_GUARD_MALICIOUS_SAMPLES)
+
+
+def annotate_english_passages(rendered: str) -> str:
+    """Mark four-word English text runs without changing their text."""
+    parts = re.split(r"(<[^>]+>)", rendered)
+    for index in range(0, len(parts), 2):
+        parts[index] = ENGLISH_PASSAGE.sub(
+            lambda match: f'<span lang="en">{match.group(0)}</span>',
+            parts[index],
+        )
+    return "".join(parts)
 
 
 def load_site_config() -> dict[str, str]:
@@ -551,6 +626,7 @@ class Markdown:
             if not path or path.suffix.lower() != ".svg" or not path.exists():
                 return hold(f'<a href="{html.escape(href, quote=True)}">{html.escape(alt or "図版")}</a>')
             svg = path.read_text(encoding="utf-8")
+            validate_svg_source(svg, path)
             svg = re.sub(r"^\s*<\?xml[^>]*>\s*", "", svg)
             svg = re.sub(r"^\s*<!DOCTYPE[^>]*>\s*", "", svg)
 
@@ -679,7 +755,7 @@ class Markdown:
             return hold(
                 f'<figure class="{figure_shell_class}"><div class="figure-scroll"{scroll_attrs}>{svg}</div>'
                 f"{hint}{caption}"
-                f'<a class="figure-source screen-only" href="{href}">図だけを開く</a></figure>'
+                f'<a class="figure-source screen-only" href="{href}">図を大きく開く</a></figure>'
             )
 
         value = self.IMAGE.sub(image_repl, value)
@@ -705,6 +781,7 @@ class Markdown:
         rendered = re.sub(r"~~(.+?)~~", r"<del>\1</del>", rendered)
         rendered = re.sub(r"(?<!\*)\*([^*\n]+?)\*(?!\*)", r"<em>\1</em>", rendered)
         rendered = re.sub(r" {2,}\n", "<br>\n", rendered).replace("\n", " ")
+        rendered = annotate_english_passages(rendered)
         for index, token in enumerate(tokens):
             rendered = rendered.replace(f"@@MGTOKEN{index}@@", token)
         return rendered
@@ -880,13 +957,36 @@ class Markdown:
             and plain_headers[0] == "unitid"
             and status_index is not None
         )
+        row_header_index = 0 if plain_headers and plain_headers[0] == "" else None
+        display_indexes = list(range(len(headers)))
+        if canonical_progress_table:
+            # The source remains sorted by unit_id, but the exhibition leads
+            # with information a reader can recognise on a narrow screen.
+            preferred = ["単元名", "状態", "科目", "学校段階・学年", "レーン", "unitid"]
+            display_indexes = [
+                plain_headers.index(label)
+                for label in preferred
+                if label in plain_headers
+            ]
+            display_indexes.extend(
+                index for index in range(len(headers)) if index not in display_indexes
+            )
         self.table_serial += 1
         index += 2
         rows: list[list[str]] = []
         while index < len(lines) and "|" in lines[index] and lines[index].strip():
             rows.append(self.split_table(lines[index]))
             index += 1
-        header_html = "".join(f'<th scope="col">{self.inline(c)}</th>' for c in headers)
+        header_html = "".join(
+            '<th scope="col">'
+            + (
+                '<span class="sr-only">行</span>'
+                if index == row_header_index
+                else self.inline(headers[index])
+            )
+            + '</th>'
+            for index in display_indexes
+        )
         body: list[str] = []
         for row in rows:
             row += [""] * max(0, len(headers) - len(row))
@@ -905,12 +1005,19 @@ class Markdown:
                     )
                 if canonical_progress_table:
                     attrs += " data-progress-canonical-row"
-            cells = "".join(f"<td>{self.inline(c)}</td>" for c in row[: len(headers)])
+            cells = "".join(
+                (
+                    f'<th scope="row">{self.inline(row[index])}</th>'
+                    if index == row_header_index
+                    else f"<td>{self.inline(row[index])}</td>"
+                )
+                for index in display_indexes
+            )
             body.append(f"<tr{attrs}>{cells}</tr>")
-        table_name = plain("・".join(headers[:3])) or "データ"
+        table_name = plain("・".join(headers[index] for index in display_indexes[:3])) or "データ"
         table_label = f"{table_name}の表（{self.table_serial}）"
         table_html = (
-            '<div class="table-wrap" tabindex="0" role="region" aria-label="'
+            '<div class="table-wrap" data-scroll-label="'
             + html.escape(table_label, quote=True)
             + '">'
             f"<table><thead><tr>{header_html}</tr></thead>"
@@ -1159,12 +1266,14 @@ def footer() -> str:
     commit = BUILD_CONTEXT["commit"]
     commit_short = commit[:8] if commit != "unknown" else "不明"
     commit_url = f"{REPO_URL}/tree/{commit}" if commit != "unknown" else REPO_URL
+    notice_url = f"{REPO_URL}/blob/{commit}/NOTICE.md" if commit != "unknown" else f"{REPO_URL}/blob/main/NOTICE.md"
     return f"""
 <footer class="site-footer">
   <div class="container footer-grid">
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: {external(REPO_URL, "ManabiGrid（まなびグリッド） " + REPO_URL)} ／ 教材ライセンス: {external(CC_URL, "CC BY 4.0")}</p>
+      <p>{external(notice_url, "引用・第三者資料・名称など、ライセンスの権利除外を見る")}</p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
       <p class="snapshot-note">この展示は正本コミット {external(commit_url, commit_short)}（{html.escape(BUILD_CONTEXT['generated_date'])}生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
@@ -1172,7 +1281,7 @@ def footer() -> str:
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p>{external(ISSUE_URL, "GitHubで誤りを報告")} ／ {external(FORM_URL, "おたよりフォーム")}</p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>"""
@@ -1246,6 +1355,7 @@ def page(
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -1369,7 +1479,7 @@ def toc(current: Path, headings: list[tuple[int, str, str]]) -> str:
 
 def mobile_section_nav(current: Path, headings: list[tuple[int, str, str]]) -> str:
     sections = [item for item in headings if item[0] == 2]
-    if len(sections) < 7:
+    if len(sections) < 5:
         return ""
     links = "".join(
         f'<li><a data-section-link="{html.escape(anchor, quote=True)}" href="{rel_href(current, current, anchor)}">{html.escape(title)}</a></li>'
@@ -1398,7 +1508,7 @@ def lesson_provenance(doc: Doc) -> str:
 <aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p>{external(source_url, "正本Markdownを固定コミットで見る")}</p>
-  <p>誤りや分かりにくい所は、{external(ISSUE_URL, "GitHub Issue")}または{external(FORM_URL, "匿名のおたよりフォーム")}で知らせられます。個人情報は書かないでください。</p>
+  <p>誤りや分かりにくい所は、{external(ISSUE_URL, "GitHub Issue")}または{external(FORM_URL, "おたよりフォーム")}で知らせられます。個人情報は書かないでください。</p>
 </aside>"""
 
 
@@ -1502,6 +1612,21 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
   <h1 id="{html.escape(source_h1, quote=True)}">{lesson_title_markup(doc.title)}</h1>
   <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>{html.escape(doc.rel.as_posix())}</code></p><p>{external(github_url, "正本をGitHubで見る")}</p></details>
 </header>"""
+    diagnostic_start = ""
+    if doc.rel.name == "diagnostic.md" and doc.unit:
+        start_anchor = next(
+            (anchor for level, title, anchor in doc.headings if level == 2 and title.startswith("段1 ")),
+            "",
+        )
+        if start_anchor:
+            estimated_time = units[doc.unit].estimated_time or "30〜45分"
+            diagnostic_start = (
+                '<aside class="container diagnostic-start" aria-label="診断を始める前の準備">'
+                '<p><strong>紙と筆記具を用意。</strong>'
+                f'目安は{html.escape(estimated_time)}。下の使い方を確認し、Q1から順に進みます。</p>'
+                f'<a class="button button-secondary" href="{rel_href(doc.output, doc.output, start_anchor)}">Q1へ進む</a>'
+                '</aside>'
+            )
     answer_link = ""
     if doc.answer_target:
         answer_link = (
@@ -1519,12 +1644,13 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
         unit = units[doc.unit]
         return (
             header
+            + diagnostic_start
             + '<div class="container lesson-layout">'
-            + f'<article class="lesson-main {article_class}">{mobile_section_nav(doc.output, doc.headings)}{rendered}{answer_link}{lesson_provenance(doc)}{lessons_nav(doc.output, unit, doc)}</article>'
             + f'<aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次">{lesson_position}{toc(doc.output, doc.headings)}</aside>'
+            + f'<article class="lesson-main {article_class}">{mobile_section_nav(doc.output, doc.headings)}{rendered}{answer_link}{lesson_provenance(doc)}{lessons_nav(doc.output, unit, doc)}</article>'
             + "</div>"
         )
-    return header + notice + f'<article class="container {article_class}">{rendered}</article>'
+    return header + diagnostic_start + notice + f'<article class="container {article_class}">{rendered}</article>'
 
 
 def math3_position(slug: str) -> str | None:
@@ -1603,20 +1729,20 @@ def home_body(units: dict[str, Unit]) -> str:
     <p class="eyebrow">OPEN LEARNING / 中学3年 数学</p>
     <h1><span class="hero-line"><span class="hero-phrase">つまずいた場所は、</span></span><span class="hero-line"><span class="hero-emphasis hero-phrase">次のスタート地点</span><span class="hero-phrase">になる。</span></span></h1>
   <p class="hero-lead">わからなくなった場所まで戻り、自分のペースで学び直すオープン教材です。登録も記録もいりません。</p>
-    <div class="hero-actions"><a class="primary-action" href="{rel_href(current, diagnostic)}">はじめる場所を見つける</a><a class="text-link" href="#math3-route">{learning_count}単元から選ぶ</a></div>
+    <div class="hero-actions"><a class="primary-action" href="{rel_href(current, diagnostic)}">診断から始める</a><a class="text-link" href="#math3-route">{learning_count}単元から選ぶ</a></div>
   </div>
   <aside class="start-panel" aria-labelledby="start-panel-title">
     <p class="panel-code">START / 入口を選ぶ</p><h2 id="start-panel-title">どこからはじめる？</h2>
     <ol class="start-choices">
-      <li><span class="choice-number">01</span><div><strong>勉強しに来た</strong><p>現在地がわからなければ診断へ。単元が決まっていれば{learning_count}単元から選べます。</p><a href="{rel_href(current, diagnostic)}">診断テストを開く</a></div></li>
-      <li><span class="choice-number">02</span><div><strong>支える・くわしく知る</strong><p>教材の状態、作り方、ライセンスを確認できます。</p><a href="#project-info">保護者・先生・開発者の方へ</a></div></li>
+      <li><span class="choice-number">01</span><div><strong>勉強しに来た</strong><p>現在地がわからなければ診断へ。単元が決まっていれば{learning_count}単元から選べます。</p><a href="{rel_href(current, diagnostic)}">診断から始める</a></div></li>
+      <li><span class="choice-number">02</span><div><strong>支える・くわしく知る</strong><p>教材の状態、作り方、ライセンスを確認できます。</p><a href="#project-info">大人向けの案内を見る</a></div></li>
     </ol>
     <p class="start-note"><strong>点数は出ない。始める場所がわかる。</strong><span> 診断は、学び直す位置を探すための試行版です。</span></p>
   </aside>
 </section>
 <section id="math3-route" class="container learning-route">
   <header class="section-head"><div><p class="eyebrow">PATH 01—{learning_count:02}</p><h2>中3数学の{learning_count}単元</h2></div><p>順番に進んでも、必要な単元だけ選んでもかまいません。</p></header>
-  <nav class="route-tools" aria-label="中3数学の補助入口"><a href="{rel_href(current, diagnostic)}">現在地を診断する</a><a href="{rel_href(current, appendix)}">巻末資料を見る</a></nav>
+  <nav class="route-tools" aria-label="中3数学の補助入口"><a href="{rel_href(current, diagnostic)}">診断から始める</a><a href="{rel_href(current, appendix)}">巻末資料を見る</a></nav>
   <div class="unit-route">{cards}</div>
 </section>
 <section id="project-info" class="container project-info">
@@ -1795,6 +1921,10 @@ def about_body() -> str:
     commit = BUILD_CONTEXT["commit"]
     commit_short = commit[:8] if commit != "unknown" else "不明"
     commit_url = f"{REPO_URL}/tree/{commit}" if commit != "unknown" else REPO_URL
+    source_ref = commit if commit != "unknown" else "main"
+    notice_url = f"{REPO_URL}/blob/{source_ref}/NOTICE.md"
+    disclaimer_url = f"{REPO_URL}/blob/{source_ref}/DISCLAIMER.md"
+    methodology_url = f"{REPO_URL}/blob/{source_ref}/docs/METHODOLOGY.md"
     return f"""
 <section class="container unit-hero about-hero">
   <p class="eyebrow">ABOUT THIS EXHIBITION</p>
@@ -1803,12 +1933,13 @@ def about_body() -> str:
 </section>
 <article class="container about-body">
   <section><p class="eyebrow">01 / READ</p><h2>このサイトの仕事</h2><p>教科、単元、レッスンの順に開き、Markdownの記号を意識せずに教材を読むための場所です。登録、学習履歴の保存、アクセス解析はありません。検索語も端末の外へ送りません。</p><p><a class="button" href="../browse/index.html">教材をさがす</a></p></section>
-  <section><p class="eyebrow">02 / REPOSITORY</p><h2>リポジトリページは、この順番で見る</h2><ol class="about-steps"><li><strong>まずREADMEを読む。</strong>プロジェクトの目的、いまある教材、注意点がまとまっています。</li><li><strong>フォルダ名を選んで、下へたどる。</strong>教材本文は<code>materials/</code>、進捗と単元一覧は<code>curriculum/</code>にあります。</li><li><strong>教材ファイルを開く。</strong><code>lesson_01.md</code>のようなMarkdownが原稿、<code>assets/</code>のSVGが図版です。</li></ol><p>{external(REPO_URL, 'GitHubでリポジトリを見る')}</p></section>
+  <section><p class="eyebrow">02 / REPOSITORY</p><h2>リポジトリページは、この順番で見る</h2><ol class="about-steps"><li><span class="about-step-text"><strong>まずREADMEを読む。</strong>プロジェクトの目的、いまある教材、注意点がまとまっています。</span></li><li><span class="about-step-text"><strong>フォルダ名を選んで、下へたどる。</strong>教材本文は<code>materials/</code>、進捗と単元一覧は<code>curriculum/</code>にあります。</span></li><li><span class="about-step-text"><strong>教材ファイルを開く。</strong><code>lesson_01.md</code>のようなMarkdownが原稿、<code>assets/</code>のSVGが図版です。</span></li></ol><p>{external(REPO_URL, 'GitHubでリポジトリを見る')}</p></section>
   <section><p class="eyebrow">03 / NO ACCOUNT</p><h2>アカウントがなくても、閲覧と保存ができる</h2><p>ページを見るだけならサインイン不要です。教材一式を保存したい場合は、リポジトリ上部の<strong>Code</strong>を開き、<strong>Download ZIP</strong>を選びます。ZIPはその時点のファイル一式で、自動更新はされません。</p></section>
-  <section><p class="eyebrow">04 / ISSUE</p><h2>Issueで誤りを知らせる3ステップ</h2><ol class="about-steps"><li>{external('https://github.com/signup', 'GitHubアカウントを作る')}か、持っているアカウントでサインインします。</li><li>リポジトリの<strong>Issues</strong>を開き、<strong>New issue</strong>を選びます。</li><li><strong>誤り報告</strong>テンプレートを選び、対象ファイルと疑問点を書きます。</li></ol><p>{external('https://github.com/ManabiGrid/manabigrid/issues/new/choose', 'Issueテンプレートを選ぶ')} ／ {external(ISSUE_URL, '誤り報告を直接開く')}</p><p class="safety-note"><strong>大切:</strong> Issueはインターネット全体に公開されます。名前、学校名、住所、連絡先、顔写真などは書かないでください。アカウントを作りたくない場合は、{external(FORM_URL, '匿名のおたよりフォーム')}を使えます。</p></section>
+  <section><p class="eyebrow">04 / ISSUE</p><h2>Issueで誤りを知らせる3ステップ</h2><ol class="about-steps"><li><span class="about-step-text">{external('https://github.com/signup', 'GitHubアカウントを作る')}か、持っているアカウントでサインインします。</span></li><li><span class="about-step-text">リポジトリの<strong>Issues</strong>を開き、<strong>New issue</strong>を選びます。</span></li><li><span class="about-step-text"><strong>誤り報告</strong>テンプレートを選び、対象ファイルと疑問点を書きます。</span></li></ol><p>{external('https://github.com/ManabiGrid/manabigrid/issues/new/choose', 'Issueテンプレートを選ぶ')} ／ {external(ISSUE_URL, '誤り報告を直接開く')}</p><p class="safety-note"><strong>大切:</strong> Issueはインターネット全体に公開されます。名前、学校名、住所、連絡先、顔写真などは書かないでください。アカウントを作りたくない場合は、{external(FORM_URL, 'おたよりフォーム')}を使えます。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れますが、Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p></section>
   <section><p class="eyebrow">05 / WORDS</p><h2>GitHub用語のミニ辞典</h2><dl class="github-glossary"><div><dt>リポジトリ</dt><dd>教材や図版、説明文をひとまとめに保管する場所。</dd></div><div><dt>コミット</dt><dd>「この時点の変更」を保存した記録。展示版は特定のコミットから作られます。</dd></div><div><dt>Issue</dt><dd>誤りや提案を、公開の話題として記録する場所。</dd></div><div><dt>Markdown</dt><dd>見出しや箇条書きを記号で表す、原稿向けのテキスト形式。</dd></div></dl></section>
   <section><p class="eyebrow">06 / SOURCE</p><h2>固定版で来歴を確かめる</h2><p>各レッスン末の「この教材の来歴」から、そのページを生成したMarkdownの固定版を確認できます。現在の展示は{external(commit_url, '正本コミット ' + commit_short)}から、{html.escape(BUILD_CONTEXT['generated_date'])}に生成しました。</p></section>
   <section><p class="eyebrow">07 / UPDATE</p><h2>正本が更新されたら、検査して展示を更新する</h2><p>この展示は正本の更新を定期的に確認し、変化があったときだけ再生成する設計です。リンク、本文、図版、来歴、公開検疫のすべてに通った生成物だけを次の展示候補にします。失敗時は直前の公開版を残します。</p></section>
+  <section><p class="eyebrow">08 / RIGHTS</p><h2>制作方法と、再利用できる範囲</h2><p>教材本文の主要部分はAIが多段階で執筆し、別系統AIの批判レビューと人間の確認を組み合わせています。人間レビュー済への昇格状況は進捗一覧で区別しています。OpenAI、Anthropic、出典元の機関による公式・公認教材ではありません。</p><p>教材は原則CC BY 4.0ですが、出典を明記した引用、第三者資料、JP-COS LOD由来データ、名称・ロゴなどには別の条件があります。再利用前に{external(notice_url, '権利除外表')}、{external(disclaimer_url, '免責とAI生成の開示')}、{external(methodology_url, '制作方法')}を確認してください。</p></section>
 </article>"""
 
 
@@ -1947,6 +2078,7 @@ def copy_assets(source: Path, site_root: Path) -> tuple[dict[Path, Path], int]:
     media: dict[Path, Path] = {}
     paths = sorted((source / "materials").rglob("*.svg"))
     for path in paths:
+        validate_svg_source(path.read_text(encoding="utf-8"), path)
         output = Path("_media") / path.relative_to(source / "materials")
         target = site_root / output
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -1986,6 +2118,7 @@ def build(
         }
     )
     MATH3_ORDER = math3_order_from_source(source)
+    svg_guard_self_tests = self_test_svg_guard()
     clean(site_root)
     media, svg_count = copy_assets(source, site_root)
     docs = collect_docs(source)
@@ -2166,6 +2299,7 @@ def build(
             "inline_svg_rendered": stats.svg_inlined,
             "svg_source": svg_count,
             "svg_copied": len(media),
+            "svg_guard_self_tests": svg_guard_self_tests,
             "repaired_source_links": stats.repaired_links,
             "search_index_entries": len(search_entries),
             "mathml_static_prototypes": stats.mathml_prototypes,

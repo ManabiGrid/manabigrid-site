@@ -37,6 +37,10 @@ FORBIDDEN_STRINGS = [
 BAD_SCHEMES = {"javascript", "data", "mailto", "tel"}
 SOURCE_QUARANTINE_WORKFLOW_SHA256 = "b0dabf30bcfadcd1eff318e54361304feb64fb659d2e494a31b6651b8ca9bcb9"
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+ENGLISH_PASSAGE = re.compile(
+    r"(?<![A-Za-z])(?:[A-Za-z][A-Za-z'’.-]*[,:;!?]?\s+){3,}"
+    r"[A-Za-z][A-Za-z'’.-]*[,:;.!?]?"
+)
 
 
 @dataclass
@@ -52,6 +56,7 @@ class ParsedHtml:
     has_skip_link: bool = False
     has_internal_stylesheet: bool = False
     has_internal_icon: bool = False
+    csp_content: str = ""
     has_site_nav_container: bool = False
     ids: Set[str] = field(default_factory=set)
     duplicate_ids: Set[str] = field(default_factory=set)
@@ -79,6 +84,7 @@ class ParsedHtml:
     in_main: bool = False
     in_paragraph: bool = False
     block_in_paragraph: bool = False
+    unmarked_english_passages: List[str] = field(default_factory=list)
 
 
 class HtmlCollector(HTMLParser):
@@ -86,6 +92,9 @@ class HtmlCollector(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.data = ParsedHtml(path=path)
         self.svg_depth = 0
+        self.lang_en_depth = 0
+        self.excluded_text_depth = 0
+        self.element_stack: List[Tuple[str, bool, bool]] = []
 
     def load(self) -> ParsedHtml:
         text = self.data.path.read_text(encoding="utf-8")
@@ -99,6 +108,12 @@ class HtmlCollector(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]):
         attrs_dict = {k: (v or "") for k, v in attrs}
+        lang_en = attrs_dict.get("lang", "").lower().startswith("en")
+        excluded_text = tag in {"code", "pre", "script", "style", "svg"}
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}:
+            self.element_stack.append((tag, lang_en, excluded_text))
+            self.lang_en_depth += int(lang_en)
+            self.excluded_text_depth += int(excluded_text)
         self.data.tags.add(tag)
         if tag == "svg":
             self.svg_depth += 1
@@ -129,7 +144,7 @@ class HtmlCollector(HTMLParser):
             self.data.table_region_labels.append(attrs_dict.get("aria-label", ""))
         if tag == "th":
             self.data.table_header_count += 1
-            if attrs_dict.get("scope") == "col":
+            if attrs_dict.get("scope") in {"col", "row"}:
                 self.data.scoped_table_header_count += 1
         if "empty-state" in class_tokens and (
             attrs_dict.get("role") == "status" or attrs_dict.get("aria-live")
@@ -174,9 +189,12 @@ class HtmlCollector(HTMLParser):
                     self.data.links.append(("link", "href", href))
         elif tag == "meta":
             name = attrs_dict.get("name", "").lower()
+            http_equiv = attrs_dict.get("http-equiv", "").lower()
             property_name = attrs_dict.get("property", "").lower()
             content = attrs_dict.get("content", "").strip()
-            if name == "robots":
+            if http_equiv == "content-security-policy":
+                self.data.csp_content = content
+            elif name == "robots":
                 self.data.robots_values.append(content)
             elif property_name == "og:url":
                 self.data.og_urls.append(content)
@@ -242,6 +260,13 @@ class HtmlCollector(HTMLParser):
             self.data.in_paragraph = False
         if tag == "svg":
             self.svg_depth = max(0, self.svg_depth - 1)
+        for index in range(len(self.element_stack) - 1, -1, -1):
+            if self.element_stack[index][0] == tag:
+                removed = self.element_stack[index:]
+                del self.element_stack[index:]
+                self.lang_en_depth -= sum(int(item[1]) for item in removed)
+                self.excluded_text_depth -= sum(int(item[2]) for item in removed)
+                break
 
     def handle_data(self, data: str) -> None:
         if self.data.in_title:
@@ -250,6 +275,10 @@ class HtmlCollector(HTMLParser):
             # Keep text-node boundaries so adjacent table/SVG nodes cannot
             # accidentally merge separate numeric tokens during fidelity checks.
             self.data.main_text += " " + data
+            if self.lang_en_depth == 0 and self.excluded_text_depth == 0:
+                self.data.unmarked_english_passages.extend(
+                    match.group(0)[:120] for match in ENGLISH_PASSAGE.finditer(data)
+                )
 
 
 def read_build_report(path: Path) -> Dict:
@@ -726,6 +755,19 @@ def main() -> int:
             errors.append(f"title missing: {path.name}")
         if not parsed.has_viewport:
             errors.append(f"viewport missing: {path.name}")
+        required_csp = {
+            "default-src 'self'",
+            "script-src 'self'",
+            "connect-src 'none'",
+            "object-src 'none'",
+            "frame-src 'none'",
+            "base-uri 'none'",
+            "form-action 'none'",
+        }
+        if not required_csp.issubset(
+            {directive.strip() for directive in parsed.csp_content.split(";") if directive.strip()}
+        ):
+            errors.append(f"restrictive CSP missing or incomplete: {path.name}")
         if not parsed.has_main:
             errors.append(f"main missing: {path.name}")
         if not parsed.has_focusable_main_target:
@@ -761,6 +803,16 @@ def main() -> int:
             ):
                 if len(re.findall(rf"\s{attribute}\s*=", opening, re.IGNORECASE)) > 1:
                     errors.append(f"duplicate SVG {attribute} attribute: {path.name}")
+        for svg_fragment in re.findall(
+            r"<svg\b.*?</svg>", parsed.raw_text, re.IGNORECASE | re.DOTALL
+        ):
+            if re.search(
+                r"<script\b|<style\b|<foreignObject\b|\son[a-z]+\s*=|@import|url\((?!\s*#)",
+                svg_fragment,
+                re.IGNORECASE,
+            ):
+                errors.append(f"active or remote-loading inline SVG is not allowed: {path.name}")
+                break
         if parsed.block_in_paragraph:
             errors.append(
                 "block element nested in paragraph: "
@@ -773,12 +825,17 @@ def main() -> int:
             errors.append(f"table region labels missing or duplicated: {path.name}")
         if parsed.table_header_count != parsed.scoped_table_header_count:
             errors.append(f"table header scope missing: {path.name}")
+        if parsed.unmarked_english_passages:
+            errors.append(
+                f"English passage missing lang=en: {path.name}: "
+                + parsed.unmarked_english_passages[0]
+            )
         if parsed.empty_state_is_live:
             errors.append(f"empty state duplicates live search status: {path.name}")
         if "page-lesson" in parsed.classes:
             main_pos = parsed.raw_text.find('class="lesson-main')
             sidebar_pos = parsed.raw_text.find('class="lesson-sidebar')
-            if main_pos < 0 or sidebar_pos < 0 or main_pos > sidebar_pos:
+            if main_pos < 0 or sidebar_pos < 0 or sidebar_pos > main_pos:
                 errors.append(f"lesson DOM order invalid: {path.name}")
             if "lesson-provenance" not in parsed.classes:
                 errors.append(f"lesson page missing provenance block: {path.name}")
@@ -968,6 +1025,8 @@ def main() -> int:
             errors.append("features svg_references mismatch")
         if features.get("svg_source") != features.get("svg_copied"):
             errors.append("features svg_source mismatch")
+        if features.get("svg_guard_self_tests") != 4:
+            errors.append("features svg_guard_self_tests missing or incomplete")
         search_path = site_root / "_assets/search-index.json"
         try:
             search_entries = json.loads(search_path.read_text(encoding="utf-8"))
@@ -1046,7 +1105,11 @@ def main() -> int:
 
     for svg_path in site_root.rglob("*.svg"):
         svg_text = svg_path.read_text(encoding="utf-8", errors="replace")
-        if re.search(r"<script\b|\son[a-z]+\s*=", svg_text, re.IGNORECASE):
+        if re.search(
+            r"<!DOCTYPE\b|<!ENTITY\b|<\?(?!xml\s|xml\?>)|<script\b|<style\b|<foreignObject\b|\son[a-z]+\s*=|@import|url\((?!\s*#)",
+            svg_text,
+            re.IGNORECASE,
+        ):
             errors.append(f"active SVG content is not allowed: {svg_path.relative_to(site_root)}")
         if re.search(
             r"(?:href|xlink:href)\s*=\s*['\"](?:https?:)?//",

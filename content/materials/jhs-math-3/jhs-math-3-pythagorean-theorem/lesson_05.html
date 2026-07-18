@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,8 +38,8 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「三平方の定理」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="l05-対角線弦2点間の距離直角三角形を見つける"><span class="lesson-title-main">L05 対角線・弦・2点間の距離</span><span class="lesson-title-sub">直角三角形を見つける</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
-</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>05</strong> / 10</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_05.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入直角三角形はどこにかくれている" href="lesson_05.html#%E5%B0%8E%E5%85%A5%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AF%E3%81%A9%E3%81%93%E3%81%AB%E3%81%8B%E3%81%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B">導入：直角三角形はどこにかくれている？</a></li><li><a data-section-link="主概念1長方形の対角線" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E9%95%B7%E6%96%B9%E5%BD%A2%E3%81%AE%E5%AF%BE%E8%A7%92%E7%B7%9A">主概念1：長方形の対角線</a></li><li><a data-section-link="例題1" href="lesson_05.html#%E4%BE%8B%E9%A1%8C1">例題1</a></li><li><a data-section-link="主概念2円の弦半径を斜辺にする" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%86%86%E3%81%AE%E5%BC%A6%E5%8D%8A%E5%BE%84%E3%82%92%E6%96%9C%E8%BE%BA%E3%81%AB%E3%81%99%E3%82%8B">主概念2：円の弦——半径を斜辺にする</a></li><li><a data-section-link="例題2" href="lesson_05.html#%E4%BE%8B%E9%A1%8C2">例題2</a></li><li><a data-section-link="主概念3座標平面上の2点間の距離" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BA%A7%E6%A8%99%E5%B9%B3%E9%9D%A2%E4%B8%8A%E3%81%AE2%E7%82%B9%E9%96%93%E3%81%AE%E8%B7%9D%E9%9B%A2">主概念3：座標平面上の2点間の距離</a></li><li><a data-section-link="例題3" href="lesson_05.html#%E4%BE%8B%E9%A1%8C3">例題3</a></li><li><a data-section-link="練習" href="lesson_05.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_05.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入直角三角形はどこにかくれている" href="lesson_05.html#%E5%B0%8E%E5%85%A5%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AF%E3%81%A9%E3%81%93%E3%81%AB%E3%81%8B%E3%81%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B">導入：直角三角形はどこにかくれている？</a></li><li><a data-section-link="主概念1長方形の対角線" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E9%95%B7%E6%96%B9%E5%BD%A2%E3%81%AE%E5%AF%BE%E8%A7%92%E7%B7%9A">主概念1：長方形の対角線</a></li><li><a data-section-link="主概念2円の弦半径を斜辺にする" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%86%86%E3%81%AE%E5%BC%A6%E5%8D%8A%E5%BE%84%E3%82%92%E6%96%9C%E8%BE%BA%E3%81%AB%E3%81%99%E3%82%8B">主概念2：円の弦——半径を斜辺にする</a></li><li><a data-section-link="主概念3座標平面上の2点間の距離" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BA%A7%E6%A8%99%E5%B9%B3%E9%9D%A2%E4%B8%8A%E3%81%AE2%E7%82%B9%E9%96%93%E3%81%AE%E8%B7%9D%E9%9B%A2">主概念3：座標平面上の2点間の距離</a></li><li><a data-section-link="練習" href="lesson_05.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
 <ul><li><p>長方形の対角線・円の弦・座標上の2点間距離を、三平方の定理で求められるようになる。</p></li><li><p><strong>一見して直角三角形が見当たらない場面で、直角三角形を見つける・作り出す</strong>目を鍛える。</p></li></ul>
 <h2 id="導入直角三角形はどこにかくれている">導入：直角三角形はどこにかくれている？</h2>
 <p>L04の合言葉——直角がなければ作ればいい——を、今日は3つの場面で使い込む。三平方の定理を使いこなす力の正体は、計算力よりむしろ「<strong>この図のどこに直角三角形をひそませるか</strong>」を見抜く力だ。今日の3場面は、その代表選手たちだと思ってほしい。</p>
@@ -64,7 +65,7 @@
 <text x="200.0" y="228.0" font-size="12" text-anchor="middle">対角線ACが長方形を2つの直角三角形に分ける（∠B＝90°を使う）</text>
 <text x="200.0" y="245.0" font-size="12" text-anchor="middle">（例題1: 対角線ACの長さを求める）</text>
 </svg>
-</div><figcaption>長方形の対角線</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig1_rectangle_diagonal.svg">図だけを開く</a></figure>
+</div><figcaption>長方形の対角線</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig1_rectangle_diagonal.svg">図を大きく開く</a></figure>
 <p><strong>考え方</strong>: 対角線を1本引くと、長方形は合同な直角三角形2つに分かれる。長方形の角はすべて直角だから、対角線は「縦4cm・横6cmを直角をはさむ2辺とする直角三角形」の斜辺そのものだ。</p>
 <p>対角線²＝4²＋6²＝16＋36＝52 → 対角線＝√52＝<strong>2√13</strong>（cm）</p>
 <p>検算: (2√13)²＝52＝16＋36 ✓</p>
@@ -100,7 +101,7 @@
 <text x="200.0" y="288.0" font-size="12" text-anchor="middle">中心Oから弦ABへ垂線OH（3cm）＋半径OA（5cm）→直角三角形OAH</text>
 <text x="200.0" y="305.0" font-size="12" text-anchor="middle">垂線は弦を2等分する（AH＝HB・同ティック）</text>
 </svg>
-</div><figcaption>円の弦と中心からの距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig2_circle_chord_distance.svg">図だけを開く</a></figure>
+</div><figcaption>円の弦と中心からの距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig2_circle_chord_distance.svg">図を大きく開く</a></figure>
 <p><strong>考え方</strong>: 中心Oから弦に垂線OHを下ろす。ここで半径OAを1本引くと——直角三角形OAHの完成！ 斜辺は半径の5cm、1辺は3cm。</p>
 <p>AH²＋3²＝5² → AH²＝25−9＝16 → AH＝4（cm）</p>
 <p>垂線OHは弦ABを2等分するから（円の対称性による性質）、AB＝2×AH＝<strong>8cm</strong>。</p>
@@ -160,7 +161,7 @@
 <text x="200.0" y="292.0" font-size="12" text-anchor="middle">ABを斜辺に，横の線と縦の線で直角三角形ABCを作る（破線）</text>
 <text x="200.0" y="309.0" font-size="12" text-anchor="middle">（例題3: 2点A・B間の距離を求める）</text>
 </svg>
-</div><figcaption>座標平面上の2点間の距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig3_coordinate_distance.svg">図だけを開く</a></figure>
+</div><figcaption>座標平面上の2点間の距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig3_coordinate_distance.svg">図を大きく開く</a></figure>
 <p><strong>考え方</strong>: AとBを結ぶ線分を斜辺として、<strong>横の線と縦の線で直角三角形を作る</strong>。横方向のずれは 4−1＝3、縦方向のずれは 6−2＝4。</p>
 <p>AB²＝3²＋4²＝9＋16＝25 → AB＝<strong>5</strong></p>
 <p>座標平面は、目に見えないだけで全体が方眼だ。だから2点間の距離は、いつでも「横のずれ」「縦のずれ」を2辺とする直角三角形で求められる。グラフの章で学んだ座標と、図形の章の三平方が、ここでつながる。</p>
@@ -176,23 +177,24 @@
 <p>対応解答: answer_key_L01-05.md</p><a class="answer-link" href="answer_key_L01-05.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
 <aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
-  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 正三角形の高さと三角定規の3辺の比</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 √の長さを作図する——数直線上の平方根</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>05</strong> / 10</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_05.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入直角三角形はどこにかくれている" href="lesson_05.html#%E5%B0%8E%E5%85%A5%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AF%E3%81%A9%E3%81%93%E3%81%AB%E3%81%8B%E3%81%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B">導入：直角三角形はどこにかくれている？</a></li><li><a data-section-link="主概念1長方形の対角線" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E9%95%B7%E6%96%B9%E5%BD%A2%E3%81%AE%E5%AF%BE%E8%A7%92%E7%B7%9A">主概念1：長方形の対角線</a></li><li><a data-section-link="例題1" href="lesson_05.html#%E4%BE%8B%E9%A1%8C1">例題1</a></li><li><a data-section-link="主概念2円の弦半径を斜辺にする" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%86%86%E3%81%AE%E5%BC%A6%E5%8D%8A%E5%BE%84%E3%82%92%E6%96%9C%E8%BE%BA%E3%81%AB%E3%81%99%E3%82%8B">主概念2：円の弦——半径を斜辺にする</a></li><li><a data-section-link="例題2" href="lesson_05.html#%E4%BE%8B%E9%A1%8C2">例題2</a></li><li><a data-section-link="主概念3座標平面上の2点間の距離" href="lesson_05.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BA%A7%E6%A8%99%E5%B9%B3%E9%9D%A2%E4%B8%8A%E3%81%AE2%E7%82%B9%E9%96%93%E3%81%AE%E8%B7%9D%E9%9B%A2">主概念3：座標平面上の2点間の距離</a></li><li><a data-section-link="例題3" href="lesson_05.html#%E4%BE%8B%E9%A1%8C3">例題3</a></li><li><a data-section-link="練習" href="lesson_05.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 正三角形の高さと三角定規の3辺の比</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 √の長さを作図する——数直線上の平方根</a></nav></article></div></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

@@ -7,13 +7,16 @@
   --canvas: #f4f7fb;
   --ink: #13203a;
   --line: #cad3e0;
+  --control-border: #76869a;
   --blue: #155eef;
   --magenta: #c026d3;
   --on-accent: #ffffff;
   --figure-paper: #ffffff;
   --figure-ink: #13203a;
+  --figure-link: #155eef;
   --muted: rgba(19, 32, 58, .72);
   --faint: rgba(19, 32, 58, .66);
+  --zero-ink: #525c70;
   --font-body: "BIZ UDPGothic", "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   --font-display: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -666,9 +669,11 @@ details.resource-list > p { max-width: 44rem; color: var(--muted); font-size: .8
   padding-top: clamp(2rem, 5vw, 4rem);
 }
 
-.lesson-main { min-width: 0; }
+.lesson-main { grid-column: 1; grid-row: 1; min-width: 0; }
 
 .lesson-sidebar {
+  grid-column: 2;
+  grid-row: 1;
   position: sticky;
   top: var(--header-offset);
   min-width: 0;
@@ -865,13 +870,28 @@ details.resource-list > p { max-width: 44rem; color: var(--muted); font-size: .8
 .figure-scroll-hint {
   display: none;
   margin: -.35rem 0 .45rem;
-  color: var(--blue);
+  color: var(--figure-link);
   font-family: var(--font-mono);
   font-size: .7rem;
   font-weight: 800;
   text-align: right;
 }
-.figure-source { display: block; margin-top: .6rem; color: var(--muted); font-size: .72rem; text-align: right; }
+.figure-source {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: .35rem;
+  color: var(--figure-link);
+  font-size: .78rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.svg-figure .figure-scroll:focus-visible,
+.svg-figure .figure-source:focus-visible {
+  outline-color: var(--figure-link);
+}
 
 .math-block {
   overflow-x: auto;
@@ -986,7 +1006,7 @@ tbody tr:hover { background: var(--canvas); }
 .search-input {
   width: min(100%, 42rem);
   min-height: 3rem;
-  border: 2px solid var(--line);
+  border: 2px solid var(--control-border);
   border-radius: 3px;
   background: var(--paper);
   color: var(--ink);
@@ -1020,7 +1040,7 @@ tbody tr:hover { background: var(--canvas); }
   gap: 1.25rem 3rem;
   align-items: center;
   margin-top: 2rem;
-  padding: 1.35rem 0;
+  padding-block: 1.35rem;
   border-top: 2px solid var(--ink);
   border-bottom: 1px solid var(--line);
 }
@@ -1062,9 +1082,9 @@ tbody tr:hover { background: var(--canvas); }
 
 .stat-card.is-zero {
   background: var(--canvas);
-  opacity: .62;
 }
 
+.stat-card.is-zero span { color: var(--zero-ink); }
 .stat-card.is-zero strong { font-size: 1.15rem; }
 
 .progress-table-disclosure {
@@ -1108,6 +1128,20 @@ tbody tr:hover { background: var(--canvas); }
 }
 .content-search-results li span { color: var(--muted); font-size: .72rem; }
 
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.not-found-actions > a:not(.button) {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
 .lesson-provenance {
   margin-top: 3rem;
   border-top: 1px solid var(--ink);
@@ -1119,6 +1153,21 @@ tbody tr:hover { background: var(--canvas); }
 
 .lesson-provenance h2 { margin: 0 0 .45rem; border: 0; padding: 0; font-family: var(--font-body); font-size: .9rem; }
 .lesson-provenance p { margin: .35rem 0; }
+
+.diagnostic-start {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  margin-top: 1rem;
+  border-block: 1px solid var(--line);
+  background: var(--canvas);
+  padding-block: .8rem;
+}
+
+.diagnostic-start p { margin: 0; color: var(--muted); font-size: .9rem; }
+.diagnostic-start strong { color: var(--ink); }
+.diagnostic-start .button { flex: 0 0 auto; }
 
 .about-body {
   width: min(100%, 56rem);
@@ -1169,6 +1218,8 @@ tbody tr:hover { background: var(--canvas); }
   font-weight: 800;
   line-height: 1.9;
 }
+
+.about-step-text { min-width: 0; }
 
 .github-glossary {
   display: grid;
@@ -1351,6 +1402,7 @@ tbody tr:hover { background: var(--canvas); }
   .unit-hero h1 { color: var(--ink); font-weight: 700; }
   .lesson-header h1 { font-size: clamp(1.82rem, 7.8vw, 2.5rem); }
   .about-hero h1 { font-size: clamp(1.72rem, 7.2vw, 2.25rem); }
+  .diagnostic-start { display: grid; justify-items: start; }
   .lesson-layout { padding-top: 1.8rem; }
   .figure-scroll-hint { display: block; }
 
@@ -1383,6 +1435,7 @@ tbody tr:hover { background: var(--canvas); }
 @media (max-width: 359px) {
   .site-nav { flex-wrap: wrap; }
   .site-links { width: 100%; border-top: 1px solid var(--line); }
+  .about-hero h1 { font-size: 1.45rem; }
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -1396,6 +1449,7 @@ tbody tr:hover { background: var(--canvas); }
     --on-accent: #101827;
     --muted: rgba(243, 246, 252, .78);
     --faint: rgba(243, 246, 252, .68);
+    --zero-ink: #c4cfdd;
   }
 
   .button-secondary { background: var(--paper); }

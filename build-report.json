@@ -1,10 +1,10 @@
 {
   "status": "built",
-  "generated_at": "2026-07-18T17:20:17+09:00",
+  "generated_at": "2026-07-18T20:46:19+09:00",
   "source": {
     "repository": "https://github.com/ManabiGrid/manabigrid",
-    "commit": "7bc7571546b95bfe875a7c1300a4b6e9632b76bb",
-    "commit_date": "2026-07-18T16:51:58+09:00",
+    "commit": "263e6747d67f08e414e9c6050194f308fec06d55",
+    "commit_date": "2026-07-18T19:59:20+09:00",
     "git_status_before": "",
     "git_status_after": ""
   },
@@ -32,6 +32,7 @@
     "inline_svg_rendered": 185,
     "svg_source": 185,
     "svg_copied": 185,
+    "svg_guard_self_tests": 4,
     "repaired_source_links": [],
     "search_index_entries": 204,
     "mathml_static_prototypes": 1,
@@ -2118,7 +2119,7 @@
     {
       "source": "curriculum/PROGRESS_INDEX.md",
       "output": "progress/index.html",
-      "sha256": "c14b1ab4fb0b0449f265bf925f2595a59170ce13d73b463935d2d7a16cbb3919",
+      "sha256": "c10799fa3e22749da5377ea2e78f3b1401aa7ded8f06f7020b8d2cbde07dab9a",
       "kind": "progress",
       "answer_target": null,
       "frontmatter_stripped": false

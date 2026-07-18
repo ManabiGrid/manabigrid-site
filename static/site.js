@@ -7,6 +7,12 @@
     .replace(/\s+/g, ' ')
     .trim();
 
+  const resultPriority = {
+    'レッスン': 0,
+    '案内・設計図': 1,
+    '解答': 2,
+  };
+
   const buildContentResults = (query) => {
     const panel = document.querySelector('[data-content-search-results]');
     const list = document.querySelector('[data-content-search-list]');
@@ -16,7 +22,7 @@
     if (!panel || !list || query === '') {
       if (panel) panel.setAttribute('hidden', '');
       if (list) list.replaceChildren();
-      return 0;
+      return { total: 0, shown: 0 };
     }
 
     const matches = [];
@@ -33,25 +39,60 @@
         matches.push({ entry, heading });
       }
     });
+    matches.sort((left, right) => {
+      const leftRank = resultPriority[left.entry.kind] ?? 9;
+      const rightRank = resultPriority[right.entry.kind] ?? 9;
+      if (leftRank !== rightRank) return leftRank - rightRank;
+      return String(left.entry.title || '').localeCompare(String(right.entry.title || ''), 'ja');
+    });
 
     list.replaceChildren();
     if (matches.length === 0) {
       panel.setAttribute('hidden', '');
-      return 0;
+      return { total: 0, shown: 0 };
     }
-    matches.slice(0, 24).forEach(({ entry, heading }) => {
+    const visibleMatches = matches.slice(0, 24);
+    visibleMatches.forEach(({ entry, heading }) => {
       const item = document.createElement('li');
       const link = document.createElement('a');
       const fragment = heading ? `#${encodeURIComponent(heading.anchor)}` : '';
       link.href = `../${entry.url}${fragment}`;
-      link.textContent = heading ? heading.title : entry.title;
+      link.textContent = heading ? `${entry.title} — ${heading.title}` : entry.title;
       const meta = document.createElement('span');
-      meta.textContent = `${entry.subject} ／ ${entry.unit || entry.kind}`;
+      meta.textContent = [entry.kind, entry.subject, entry.unit].filter(Boolean).join(' ／ ');
       item.append(link, meta);
       list.append(item);
     });
     panel.removeAttribute('hidden');
-    return matches.length;
+    return { total: matches.length, shown: visibleMatches.length };
+  };
+
+  const syncScrollableTables = () => {
+    document.querySelectorAll('.table-wrap[data-scroll-label]').forEach((tableWrap) => {
+      const scrollable = tableWrap.scrollWidth > tableWrap.clientWidth + 1;
+      if (scrollable) {
+        tableWrap.setAttribute('tabindex', '0');
+        tableWrap.setAttribute('role', 'region');
+        tableWrap.setAttribute('aria-label', tableWrap.dataset.scrollLabel || '横にスクロールできる表');
+      } else {
+        tableWrap.removeAttribute('tabindex');
+        tableWrap.removeAttribute('role');
+        tableWrap.removeAttribute('aria-label');
+      }
+    });
+  };
+
+  const scheduleScrollableTableSync = () => {
+    requestAnimationFrame(syncScrollableTables);
+  };
+
+  const observeScrollableTables = () => {
+    document.querySelectorAll('details').forEach((details) => {
+      if (details.querySelector('.table-wrap[data-scroll-label]')) {
+        details.addEventListener('toggle', scheduleScrollableTableSync);
+      }
+    });
+    syncScrollableTables();
   };
 
   const createFilter = () => {
@@ -105,13 +146,20 @@
           ? canonicalDisclosure && visibleRows > 0
           : q !== '' && visibleRows > 0;
       });
+      scheduleScrollableTableSync();
 
-      const contentMatches = hasContentSearch ? buildContentResults(q) : 0;
+      const contentResult = hasContentSearch
+        ? buildContentResults(q)
+        : { total: 0, shown: 0 };
+      const contentMatches = contentResult.total;
       if (statusNode) {
         if (shown === 0 && contentMatches === 0) {
           statusNode.textContent = `0${unit}。検索語を短くするか、消してください。`;
         } else if (hasContentSearch && q !== '') {
-          statusNode.textContent = `${shown}件の教科・単元、${contentMatches}件の本文候補`;
+          const candidateStatus = contentResult.total > contentResult.shown
+            ? `${contentResult.total}件中${contentResult.shown}件を表示`
+            : `${contentResult.total}件`;
+          statusNode.textContent = `${shown}件の教科・単元、本文候補${candidateStatus}`;
         } else {
           statusNode.textContent = `${shown}${unit}を表示`;
         }
@@ -201,10 +249,13 @@
 
   const start = () => {
     createSkipLink();
+    observeScrollableTables();
     createFilter();
     createSectionObserver();
     createPrintPreparation();
   };
+
+  window.addEventListener('resize', scheduleScrollableTableSync, { passive: true });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);

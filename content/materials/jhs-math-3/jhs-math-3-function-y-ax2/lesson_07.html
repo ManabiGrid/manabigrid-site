@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,8 +38,8 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「関数y=ax²」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="l07-変域端の値だけでは決まらない"><span class="lesson-title-main">L07 変域</span><span class="lesson-title-sub">端の値だけでは決まらない</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
-</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>07</strong> / 13</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_07.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="まずうまくいく例から" href="lesson_07.html#%E3%81%BE%E3%81%9A%E3%81%86%E3%81%BE%E3%81%8F%E3%81%84%E3%81%8F%E4%BE%8B%E3%81%8B%E3%82%89">まず、うまくいく例から</a></li><li><a data-section-link="端だけ見るとまちがえる例" href="lesson_07.html#%E7%AB%AF%E3%81%A0%E3%81%91%E8%A6%8B%E3%82%8B%E3%81%A8%E3%81%BE%E3%81%A1%E3%81%8C%E3%81%88%E3%82%8B%E4%BE%8B">端だけ見ると、まちがえる例</a></li><li><a data-section-link="a0でも考え方は同じ" href="lesson_07.html#a0%E3%81%A7%E3%82%82%E8%80%83%E3%81%88%E6%96%B9%E3%81%AF%E5%90%8C%E3%81%98">a＜0でも考え方は同じ</a></li><li><a data-section-link="検算の型3点セット" href="lesson_07.html#%E6%A4%9C%E7%AE%97%E3%81%AE%E5%9E%8B3%E7%82%B9%E3%82%BB%E3%83%83%E3%83%88">検算の型——3点セット</a></li><li><a data-section-link="練習" href="lesson_07.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_07.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="まずうまくいく例から" href="lesson_07.html#%E3%81%BE%E3%81%9A%E3%81%86%E3%81%BE%E3%81%8F%E3%81%84%E3%81%8F%E4%BE%8B%E3%81%8B%E3%82%89">まず、うまくいく例から</a></li><li><a data-section-link="端だけ見るとまちがえる例" href="lesson_07.html#%E7%AB%AF%E3%81%A0%E3%81%91%E8%A6%8B%E3%82%8B%E3%81%A8%E3%81%BE%E3%81%A1%E3%81%8C%E3%81%88%E3%82%8B%E4%BE%8B">端だけ見ると、まちがえる例</a></li><li><a data-section-link="a0でも考え方は同じ" href="lesson_07.html#a0%E3%81%A7%E3%82%82%E8%80%83%E3%81%88%E6%96%B9%E3%81%AF%E5%90%8C%E3%81%98">a＜0でも考え方は同じ</a></li><li><a data-section-link="検算の型3点セット" href="lesson_07.html#%E6%A4%9C%E7%AE%97%E3%81%AE%E5%9E%8B3%E7%82%B9%E3%82%BB%E3%83%83%E3%83%88">検算の型——3点セット</a></li><li><a data-section-link="練習" href="lesson_07.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
 <ul><li><p>xの変域が与えられたとき、対応するyの変域を、<strong>グラフの増減に照らして</strong>正しく求められる。</p></li><li><p>「①端の値を代入 ②変域内にx＝0を含むか確認 ③グラフの概形で確認」という検算の型を身につける。</p></li></ul>
 <h2 id="まずうまくいく例から">まず、うまくいく例から</h2>
 <p>変域は中1で学んだ、変数の取りうる値の範囲のことだ。y＝x²で、xの変域が2≦x≦4のとき、yの変域を求めてみよう。</p>
@@ -98,7 +99,7 @@
 <line x1="140.0" y1="288.0" x2="208.0" y2="288.0" stroke="#000" stroke-width="3.2"/>
 <line x1="72.0" y1="224.0" x2="72.0" y2="32.0" stroke="#000" stroke-width="3.2"/>
 </svg>
-</div><figcaption>変域2≦x≦4のyの変域（単調な例）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L07_fig1_domain_monotone.svg">図だけを開く</a></figure>
+</div><figcaption>変域2≦x≦4のyの変域（単調な例）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L07_fig1_domain_monotone.svg">図を大きく開く</a></figure>
 <p>よって、yの変域は<strong>4≦y≦16</strong>。端の値を代入するだけで答えが出た。</p>
 <h2 id="端だけ見るとまちがえる例">端だけ見ると、まちがえる例</h2>
 <p>では同じy＝x²で、xの変域が−2≦x≦1のときはどうか。端の値を代入すると、x＝−2でy＝4、x＝1でy＝1。「1≦y≦4」としたくなるが——ここに落とし穴がある。</p>
@@ -144,7 +145,7 @@
 <circle cx="172.0" cy="138.0" r="3.2" fill="#000"/>
 <text x="152.0" y="158.0" font-size="14" text-anchor="middle" font-weight="bold">！</text>
 </svg>
-</div><figcaption>変域−2≦x≦1のyの変域（x=0をまたぐ例）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L07_fig2_domain_trap.svg">図だけを開く</a></figure>
+</div><figcaption>変域−2≦x≦1のyの変域（x=0をまたぐ例）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L07_fig2_domain_trap.svg">図を大きく開く</a></figure>
 <p>変域−2≦x≦1は、増減の境目であるx＝0をまたいでいる。xが−2から0へ増えるあいだyは4から0まで<strong>下がり</strong>、0から1へ増えるあいだに0から1まで<strong>上がる</strong>。つまりこの範囲でyがもっとも小さくなるのは、端ではなく<strong>x＝0のときのy＝0</strong>だ。もっとも大きい値は、2つの端のうち高い方、x＝−2のときの4。</p>
 <p>よって、yの変域は<strong>0≦y≦4</strong>。</p>
 <p>端の値は「範囲の両はしの点」でしかない。yの変域が問うているのは「この範囲でyはどこからどこまで動くか」——グラフ全体のいちばん低い場所といちばん高い場所だ。</p>
@@ -165,23 +166,24 @@
 <p>対応解答: answer_key_L06-09.md</p><a class="answer-link" href="answer_key_L06-09.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
 <aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
-  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_06.html"><span>前のレッスン</span>L06 グラフを読む——増減は原点を境に</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-function-y-ax2/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_08.html"><span>次のレッスン</span>L08 変化の割合は一定でない——だから曲線になる</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>07</strong> / 13</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_07.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="まずうまくいく例から" href="lesson_07.html#%E3%81%BE%E3%81%9A%E3%81%86%E3%81%BE%E3%81%8F%E3%81%84%E3%81%8F%E4%BE%8B%E3%81%8B%E3%82%89">まず、うまくいく例から</a></li><li><a data-section-link="端だけ見るとまちがえる例" href="lesson_07.html#%E7%AB%AF%E3%81%A0%E3%81%91%E8%A6%8B%E3%82%8B%E3%81%A8%E3%81%BE%E3%81%A1%E3%81%8C%E3%81%88%E3%82%8B%E4%BE%8B">端だけ見ると、まちがえる例</a></li><li><a data-section-link="a0でも考え方は同じ" href="lesson_07.html#a0%E3%81%A7%E3%82%82%E8%80%83%E3%81%88%E6%96%B9%E3%81%AF%E5%90%8C%E3%81%98">a＜0でも考え方は同じ</a></li><li><a data-section-link="検算の型3点セット" href="lesson_07.html#%E6%A4%9C%E7%AE%97%E3%81%AE%E5%9E%8B3%E7%82%B9%E3%82%BB%E3%83%83%E3%83%88">検算の型——3点セット</a></li><li><a data-section-link="練習" href="lesson_07.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_06.html"><span>前のレッスン</span>L06 グラフを読む——増減は原点を境に</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-function-y-ax2/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_08.html"><span>次のレッスン</span>L08 変化の割合は一定でない——だから曲線になる</a></nav></article></div></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

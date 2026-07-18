@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,7 +38,7 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">指導・制作資料</span><span>中学2年 理科 ／ 中2理科「湿度と飽和水蒸気量の計算」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="teacher_notes--湿度計算教材の指導ノート"><span class="lesson-title-main">teachernotes — 湿度計算教材の指導ノート</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-sci-2/jhs-sci-2-humidity-calculation/teacher_notes.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/teacher_notes.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-sci-2/jhs-sci-2-humidity-calculation/teacher_notes.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/teacher_notes.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
 </header><div class="container notice" role="note"><strong>制作資料です。</strong>生徒向けの学習本文ではなく、指導・設計・図版来歴の記録です。</div><article class="container lesson-body"><p>この教材で先取り学習・自習をする場合も、このノートは読んでかまいません。むしろ「自分がどこでつまずきやすいか」の地図として使ってください。</p>
 <h2 id="1-この教材の立て付け">1. この教材の立て付け</h2>
 <ul><li><p>対象範囲は紙上計算・表とグラフの読解・概念説明のみ。露点の測定などの観察・実験は学校の授業で行うものとし、この教材では手順を扱いません。</p></li><li><p>数表はすべて<strong>架空の練習用数表</strong>です。計算の練習には使えますが、実際の飽和水蒸気量の値は教科書で確認してください。</p></li><li><p>位置づけの目安：啓林館R7年度用評価計画資料（実測）では、湿度・露点は単元「地球の大気と天気の変化」2章［6時間］内で、露点→湿度の定義→例題・練習と進みます（本教材のL1〜L3はこの「湿度の定義→例題・練習」の紙上部分に相当。対応づけは推論）。</p></li></ul>
@@ -63,21 +64,22 @@
 <h2 id="出典ライセンス上の注記公開版変換で追加">出典・ライセンス上の注記（公開版変換で追加）</h2>
 <ul><li><p>本ファイル中の学習指導要領・同解説、公的調査報告書、研究文献等からの引用・転記部分（「 」・引用ブロックで区分した箇所、および「原文転記」「転記」と明示した記載）の著作権は各原著作者・発行者に帰属し、本教材の CC BY 4.0 ライセンスの<strong>対象外</strong>です（リポジトリ同梱の <code>NOTICE.md</code>「権利除外表」参照）。</p></li><li><p>原文転記の表記規則: 転記部分は「 」または引用ブロックで区分する。引用者による補足・省略は〔 〕（例:〔中略〕）で示す。引用中の「…」は原文の省略記号または引用者による省略のいずれかであり、その区別の確定は原典照合工程で行う（未了分は verify_required）。</p></li><li><p>政府資料の出典表記と加工の明示（文部科学省ウェブサイト利用規約 1）ア・イ）: 本ファイルが利用する文部科学省・国立教育政策研究所の資料は、同規約（https://www.mext.go.jp/b_menu/1351168.htm ・適用ドメインに <code>mext.go.jp</code>・<code>nier.go.jp</code> を明記／政府標準利用規約（第2.0版）準拠／CC BY 4.0 と互換。規約ページ確認日 2026-07-16）に従って利用している。出典は下表に示す（同1）ア）。<strong>本ファイルの記述は、これらの資料を本プロジェクトが設計の観点から選択・要約・再構成した加工情報であり、原資料そのものではない</strong>（同1）イ）。原文をそのまま用いた箇所のみ「 」または引用ブロックで区分し、引用者による補足・省略は〔 〕で示す。<strong>加工後の記述を、国・文部科学省・国立教育政策研究所が作成したものとして公表・利用してはならない</strong>（同1）イ後段）。</p></li></ul>
 <h3 id="転記数値の出典一覧資料名年度指標名url確認日頁">転記数値の出典一覧（資料名・年度・指標名・URL・確認日・頁）</h3>
-<div class="table-wrap" tabindex="0" role="region" aria-label="資料名・年度・指標名・用途の表（1）"><table><thead><tr><th scope="col">資料名</th><th scope="col">年度</th><th scope="col">指標名・用途</th><th scope="col">URL</th><th scope="col">確認日</th><th scope="col">頁・箇所</th></tr></thead><tbody><tr><td>全国学力・学習状況調査 報告書 中学校理科 令和4年度（大問2／教科結果概要）</td><td>令和4年度</td><td>正答率28.6%・誤答分類63.9%（§3——湿度計算の誤答率ではない）</td><td>https://www.nier.go.jp/22chousakekkahoukoku/report/data/22msci_idea_02.pdf ／ https://www.nier.go.jp/22chousakekkahoukoku/report/data/22msci_02.pdf</td><td>2026-07-08</td><td>〔頁未確認・原典照合工程で特定〕</td></tr><tr><td>同 平成30年度（一括版）</td><td>平成30年度</td><td>正答率19.8%（§3——湿度計算の成績ではない）</td><td>https://www.nier.go.jp/18chousakekkahoukoku/report/data/18msci.pdf（原URL・Wayback Machine経由で実PDF取得。アーカイブURLは内部調査記録参照）</td><td>2026-07-08</td><td>〔頁未確認・原典照合工程で特定〕</td></tr><tr><td>同 令和7年度（大問9）</td><td>令和7年度</td><td>湿度計算出題なしの確認（§3）</td><td>https://www.nier.go.jp/25chousakekkahoukoku/report/data/25msci_idea_09.pdf</td><td>2026-07-08</td><td>〔頁未確認・原典照合工程で特定〕</td></tr></tbody></table></div></article></main>
+<div class="table-wrap" data-scroll-label="資料名・年度・指標名・用途の表（1）"><table><thead><tr><th scope="col">資料名</th><th scope="col">年度</th><th scope="col">指標名・用途</th><th scope="col">URL</th><th scope="col">確認日</th><th scope="col">頁・箇所</th></tr></thead><tbody><tr><td>全国学力・学習状況調査 報告書 中学校理科 令和4年度（大問2／教科結果概要）</td><td>令和4年度</td><td>正答率28.6%・誤答分類63.9%（§3——湿度計算の誤答率ではない）</td><td>https://www.nier.go.jp/22chousakekkahoukoku/report/data/22msci_idea_02.pdf ／ https://www.nier.go.jp/22chousakekkahoukoku/report/data/22msci_02.pdf</td><td>2026-07-08</td><td>〔頁未確認・原典照合工程で特定〕</td></tr><tr><td>同 平成30年度（一括版）</td><td>平成30年度</td><td>正答率19.8%（§3——湿度計算の成績ではない）</td><td>https://www.nier.go.jp/18chousakekkahoukoku/report/data/18msci.pdf（原URL・Wayback Machine経由で実PDF取得。アーカイブURLは内部調査記録参照）</td><td>2026-07-08</td><td>〔頁未確認・原典照合工程で特定〕</td></tr><tr><td>同 令和7年度（大問9）</td><td>令和7年度</td><td>湿度計算出題なしの確認（§3）</td><td>https://www.nier.go.jp/25chousakekkahoukoku/report/data/25msci_idea_09.pdf</td><td>2026-07-08</td><td>〔頁未確認・原典照合工程で特定〕</td></tr></tbody></table></div></article></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>

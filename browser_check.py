@@ -26,6 +26,17 @@ MOBILE_VIEWPORT = {"width": 390, "height": 844, "deviceScaleFactor": 1, "mobile"
 DESKTOP_VIEWPORT = {"width": 1440, "height": 1000, "deviceScaleFactor": 1, "mobile": False}
 PAGES = (
     ("top", ROOT / "index.html"),
+    ("browse", ROOT / "browse/index.html"),
+    (
+        "diagnostic",
+        ROOT
+        / "content/materials/jhs-math-3/jhs-math-3-diagnostic/diagnostic.html",
+    ),
+    (
+        "english",
+        ROOT
+        / "content/materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/lesson_01.html",
+    ),
     (
         "lesson-wide-svg",
         ROOT
@@ -338,9 +349,24 @@ METRICS_SCRIPT = r"""
       return { text: (element.textContent || '').trim(), width: rect.width, top: rect.top, bottom: rect.bottom, rectCount: element.getClientRects().length };
     }),
     readableNow: inspect('.readable-now'),
+    readableNowTitle: inspect('#readable-now-title'),
     readableAction: inspect('.readable-actions .button'),
+    diagnosticStart: inspect('.diagnostic-start'),
+    diagnosticStartAction: inspect('.diagnostic-start .button'),
+    figureSource: inspect('.figure-source'),
     notFoundTitle: inspect('#not-found-title'),
+    notFoundPrimaryAction: inspect('.not-found-actions .button'),
+    notFoundSecondaryAction: inspect('.not-found-actions a:not(.button)'),
+    mobileSectionNav: inspect('.mobile-section-nav'),
+    englishBlockquote: inspect('blockquote [lang="en"], blockquote[lang="en"]'),
     aboutSteps: document.querySelectorAll('.about-steps li').length,
+    aboutStepTexts: [...document.querySelectorAll('.about-step-text')].map((element) => {
+      const rect = element.getBoundingClientRect();
+      return { width: rect.width, height: rect.height, text: (element.textContent || '').trim() };
+    }),
+    aboutStepHasAnonymousText: [...document.querySelectorAll('.about-steps li')].some((item) =>
+      [...item.childNodes].some((node) => node.nodeType === Node.TEXT_NODE && (node.textContent || '').trim())
+    ),
     aboutTitlePhrases: [...document.querySelectorAll('.about-hero .title-phrase')].map((element) => {
       const rect = element.getBoundingClientRect();
       return { text: (element.textContent || '').trim(), width: rect.width, rectCount: element.getClientRects().length };
@@ -355,6 +381,14 @@ METRICS_SCRIPT = r"""
     figureScroller: inspect('.figure-scroll'),
     progressDisclosureCount: document.querySelectorAll('[data-progress-disclosure]').length,
     progressOpenDisclosureCount: document.querySelectorAll('[data-progress-disclosure][open]').length,
+    tableWraps: [...document.querySelectorAll('.table-wrap')].map((element) => ({
+      visible: visible(element),
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+      tabindex: element.getAttribute('tabindex') || '',
+      role: element.getAttribute('role') || '',
+      label: element.getAttribute('aria-label') || '',
+    })),
     localScrollers,
   };
 })()
@@ -373,6 +407,8 @@ APPEARANCE_SCRIPT = r"""
     bodyBackground: color('body', 'backgroundColor'),
     figureBackground: color('.svg-figure', 'backgroundColor'),
     figureColor: color('.svg-figure', 'color'),
+    figureHintColor: color('.figure-scroll-hint', 'color'),
+    figureSourceColor: color('.figure-source', 'color'),
     primaryButtonBackground: color('.button, .primary-action', 'backgroundColor'),
     primaryButtonColor: color('.button, .primary-action', 'color'),
   };
@@ -475,7 +511,10 @@ def main() -> int:
     parser.add_argument("--dark", action="store_true", help="OSダーク配色をエミュレートして撮影")
     parser.add_argument(
         "--base-url",
-        help="localhostで配信中のサイトURL（例: http://127.0.0.1:8765）",
+        help=(
+            "localhostで配信中のサイトroot URL"
+            "（例: http://127.0.0.1:8765/manabigrid-site）"
+        ),
     )
     args = parser.parse_args()
     base_url = args.base_url.rstrip("/") if args.base_url else None
@@ -618,6 +657,23 @@ def main() -> int:
             first = metrics.get("firstFocusable")
             if not isinstance(first, dict) or "skip-link" not in str(first.get("class", "")).split():
                 page_errors.append("最初のフォーカス対象がskip linkではありません")
+            table_wraps = metrics.get("tableWraps", [])
+            if any(
+                isinstance(item, dict)
+                and item.get("visible")
+                and int(item.get("scrollWidth", 0)) <= int(item.get("clientWidth", 0)) + 1
+                and item.get("tabindex") == "0"
+                for item in table_wraps
+            ):
+                page_errors.append("横スクロール不要の表が余分なTab停止になっています")
+            if any(
+                isinstance(item, dict)
+                and item.get("visible")
+                and int(item.get("scrollWidth", 0)) > int(item.get("clientWidth", 0)) + 1
+                and (item.get("tabindex") != "0" or item.get("role") != "region" or not item.get("label"))
+                for item in table_wraps
+            ):
+                page_errors.append("横スクロール可能な表にフォーカスと名前がありません")
             if label == "lesson-wide-svg" and viewport["mobile"]:
                 scrollers = metrics.get("localScrollers", [])
                 wide_scroller = any(
@@ -629,6 +685,9 @@ def main() -> int:
                 )
                 if not wide_scroller:
                     page_errors.append("wide SVGが局所横スクロールになっていません")
+                figure_source = metrics.get("figureSource")
+                if not isinstance(figure_source, dict) or float(figure_source.get("height", 0)) < 44:
+                    page_errors.append("図を大きく開く導線のタップ高さが44px未満です")
             if label == "top":
                 first_unit = metrics.get("firstUnitCard")
                 if (
@@ -652,12 +711,85 @@ def main() -> int:
                     or abs(float(hero_phrases[1].get("top", 0)) - float(hero_phrases[2].get("top", 0))) > 1
                 ):
                     page_errors.append("ヒーロー見出しが意図した文節2行になっていません")
+            if label == "browse":
+                browse_result = evaluate(
+                    pipe,
+                    session,
+                    "new Promise((resolve) => { const input = document.querySelector('[data-content-search-input]'); if (!input) return resolve(null); input.value = '平方根'; input.dispatchEvent(new Event('input', {bubbles: true})); requestAnimationFrame(() => requestAnimationFrame(() => { const items = [...document.querySelectorAll('[data-content-search-list] li')]; const kinds = items.map((item) => (item.querySelector('span')?.textContent || '').split(' ／ ')[0]); resolve({count: items.length, firstKind: kinds[0] || '', firstHref: items[0]?.querySelector('a')?.getAttribute('href') || '', kinds, metas: items.map((item) => item.querySelector('span')?.textContent || '')}); })); })",
+                )
+                if not isinstance(browse_result, dict) or int(browse_result.get("count", 0)) == 0:
+                    page_errors.append("教材横断検索が平方根の候補を表示しません")
+                else:
+                    kinds = browse_result.get("kinds", [])
+                    first_answer = kinds.index("解答") if "解答" in kinds else len(kinds)
+                    last_lesson = max((index for index, kind in enumerate(kinds) if kind == "レッスン"), default=-1)
+                    if browse_result.get("firstKind") != "レッスン" or "answer" in str(browse_result.get("firstHref", "")).lower():
+                        page_errors.append("教材横断検索がレッスンより先に解答を表示しています")
+                    if first_answer < last_lesson:
+                        page_errors.append("教材横断検索の解答がレッスン群より前に混在しています")
+                    if any(" ／ " not in str(meta) for meta in browse_result.get("metas", [])):
+                        page_errors.append("教材横断検索の結果種別が表示されていません")
+                input_colors = evaluate(
+                    pipe,
+                    session,
+                    "(() => { const input = document.querySelector('.search-input'); if (!input) return null; const style = getComputedStyle(input); return {border: style.borderLeftColor, background: style.backgroundColor}; })()",
+                )
+                if isinstance(input_colors, dict):
+                    try:
+                        input_border_contrast = contrast_ratio(input_colors.get("border"), input_colors.get("background"))
+                    except ValueError as exc:
+                        page_errors.append(f"検索入力欄の境界コントラストを測定できません: {exc}")
+                    else:
+                        if input_border_contrast < 3:
+                            page_errors.append(f"検索入力欄の境界コントラスト不足: {input_border_contrast:.2f}:1")
+                capped_status = evaluate(
+                    pipe,
+                    session,
+                    "new Promise((resolve) => { const input = document.querySelector('[data-content-search-input]'); input.value = '数学'; input.dispatchEvent(new Event('input', {bubbles: true})); requestAnimationFrame(() => requestAnimationFrame(() => resolve({shown: document.querySelectorAll('[data-content-search-list] li').length, status: document.querySelector('[data-filter-status]')?.textContent || ''}))); })",
+                )
+                if (
+                    not isinstance(capped_status, dict)
+                    or int(capped_status.get("shown", 0)) != 24
+                    or "件中24件を表示" not in str(capped_status.get("status", ""))
+                ):
+                    page_errors.append("検索候補の総件数と24件表示上限が読み上げ文で区別されません")
+                heading_labels = evaluate(
+                    pipe,
+                    session,
+                    "new Promise((resolve) => { const input = document.querySelector('[data-content-search-input]'); input.value = 'ねらい'; input.dispatchEvent(new Event('input', {bubbles: true})); requestAnimationFrame(() => requestAnimationFrame(() => resolve([...document.querySelectorAll('[data-content-search-list] a')].map((link) => link.textContent || '')))); })",
+                )
+                if (
+                    not isinstance(heading_labels, list)
+                    or len(heading_labels) != 24
+                    or len(set(heading_labels)) != len(heading_labels)
+                    or any(" — " not in label for label in heading_labels)
+                ):
+                    page_errors.append("見出し検索のリンク名がレッスン名を含まず一意になっていません")
+            if label == "diagnostic":
+                diagnostic_start = metrics.get("diagnosticStart")
+                diagnostic_action = metrics.get("diagnosticStartAction")
+                if (
+                    not isinstance(diagnostic_start, dict)
+                    or not diagnostic_start.get("visible")
+                    or not isinstance(diagnostic_action, dict)
+                    or not diagnostic_action.get("visible")
+                    or "Q1" not in str(diagnostic_action.get("text", ""))
+                ):
+                    page_errors.append("診断ページの開始予告とQ1導線が可視になっていません")
+            if label == "english":
+                english_blockquote = metrics.get("englishBlockquote")
+                mobile_nav = metrics.get("mobileSectionNav")
+                if not isinstance(english_blockquote, dict) or not english_blockquote.get("present"):
+                    page_errors.append("英語4語以上の例文に部分言語lang=enがありません")
+                if not isinstance(mobile_nav, dict) or not mobile_nav.get("present"):
+                    page_errors.append("6節のレッスンにモバイル用目次が生成されていません")
             if label == "progress":
                 if metrics.get("progressDisclosureCount") != 12:
                     page_errors.append("進捗の大きな表が12区分の折りたたみになっていません")
                 if metrics.get("progressOpenDisclosureCount") != 0:
                     page_errors.append("進捗の表が初期状態で閉じていません")
                 readable_now = metrics.get("readableNow")
+                readable_now_title = metrics.get("readableNowTitle")
                 readable_action = metrics.get("readableAction")
                 if (
                     not isinstance(readable_now, dict)
@@ -666,6 +798,24 @@ def main() -> int:
                     or not readable_action.get("visible")
                 ):
                     page_errors.append("進捗ページのCTAが可視になっていません")
+                if viewport["mobile"] and isinstance(readable_now_title, dict) and (
+                    float(readable_now_title.get("left", 0)) < 15
+                    or float(readable_now_title.get("right", viewport["width"])) > viewport["width"] - 15
+                ):
+                    page_errors.append("進捗ページのREAD NOW領域からモバイル左右余白が消えています")
+                zero_colors = evaluate(
+                    pipe,
+                    session,
+                    "(() => { const text = document.querySelector('.stat-card.is-zero span'); const card = document.querySelector('.stat-card.is-zero'); if (!text || !card) return null; return {color: getComputedStyle(text).color, background: getComputedStyle(card).backgroundColor}; })()",
+                )
+                if isinstance(zero_colors, dict):
+                    try:
+                        zero_contrast = contrast_ratio(zero_colors.get("color"), zero_colors.get("background"))
+                    except ValueError as exc:
+                        page_errors.append(f"0件カードのコントラストを測定できません: {exc}")
+                    else:
+                        if zero_contrast < 4.5:
+                            page_errors.append(f"0件カードの文字コントラスト不足: {zero_contrast:.2f}:1")
                 query_url = f"{page_url}?status=%E5%A4%96%E9%83%A8%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E6%B8%88"
                 pipe.call("Page.navigate", {"url": query_url}, session)
                 wait_until_complete(pipe, session, query_url)
@@ -673,14 +823,32 @@ def main() -> int:
                 query_result = evaluate(
                     pipe,
                     session,
-                    "({value: document.querySelector('[data-filter-input]')?.value || '', open: document.querySelectorAll('[data-progress-disclosure][open]').length, visible: document.querySelectorAll('[data-search-item]:not([hidden])').length})",
+                    "({value: document.querySelector('[data-filter-input]')?.value || '', open: document.querySelectorAll('[data-progress-disclosure][open]').length, visible: document.querySelectorAll('[data-search-item]:not([hidden])').length, expected: Number([...document.querySelectorAll('.stat-card')].find((card) => card.querySelector('span')?.textContent === '外部レビュー済')?.querySelector('strong')?.textContent || 0), tables: [...document.querySelectorAll('[data-progress-disclosure][open] .table-wrap')].map((element) => ({clientWidth: element.clientWidth, scrollWidth: element.scrollWidth, tabindex: element.getAttribute('tabindex') || '', role: element.getAttribute('role') || '', label: element.getAttribute('aria-label') || ''}))})",
                 )
                 if not isinstance(query_result, dict) or query_result.get("value") != "外部レビュー済":
                     page_errors.append("状態パラメータが進捗検索欄の初期値になっていません")
                 elif int(query_result.get("open", 0)) != 1:
                     page_errors.append("状態パラメータで正本一覧1区分だけが開きません")
-                elif int(query_result.get("visible", 0)) != 20:
-                    page_errors.append("外部レビュー済の正本一覧が20行ではありません")
+                elif int(query_result.get("expected", 0)) <= 0 or int(query_result.get("visible", 0)) != int(query_result.get("expected", 0)):
+                    page_errors.append("外部レビュー済の集計値と正本一覧の表示行数が一致しません")
+                else:
+                    query_tables = query_result.get("tables", [])
+                    if not query_tables:
+                        page_errors.append("状態パラメータで開いた進捗表を測定できません")
+                    elif any(
+                        isinstance(item, dict)
+                        and int(item.get("scrollWidth", 0)) > int(item.get("clientWidth", 0)) + 1
+                        and (item.get("tabindex") != "0" or item.get("role") != "region" or not item.get("label"))
+                        for item in query_tables
+                    ):
+                        page_errors.append("検索で開いた横スクロール進捗表にフォーカスと名前がありません")
+                    elif any(
+                        isinstance(item, dict)
+                        and int(item.get("scrollWidth", 0)) <= int(item.get("clientWidth", 0)) + 1
+                        and item.get("tabindex") == "0"
+                        for item in query_tables
+                    ):
+                        page_errors.append("検索で開いた進捗表に余分なTab停止があります")
             if label == "about":
                 if metrics.get("aboutSteps", 0) < 6:
                     page_errors.append("GitHub初心者向け手順のol表示が不足しています")
@@ -694,6 +862,35 @@ def main() -> int:
                     page_errors.append("GitHub案内見出しが文節途中で折れています")
                 if metrics.get("glossaryTerms") != metrics.get("glossaryDefinitions") or metrics.get("glossaryTerms", 0) < 4:
                     page_errors.append("GitHub用語のdl表示が不足しています")
+                step_texts = metrics.get("aboutStepTexts", [])
+                if (
+                    len(step_texts) != metrics.get("aboutSteps")
+                    or any(float(item.get("width", 0)) < (220 if viewport["mobile"] else 560) for item in step_texts if isinstance(item, dict))
+                    or metrics.get("aboutStepHasAnonymousText")
+                ):
+                    page_errors.append("aboutの手順本文が番号列へ分断されています")
+                pipe.call(
+                    "Emulation.setDeviceMetricsOverride",
+                    {"width": 320, "height": 844, "deviceScaleFactor": 1, "mobile": True, "screenWidth": 320, "screenHeight": 844, "positionX": 0, "positionY": 0},
+                    session,
+                )
+                settle_first_paint(pipe, session)
+                about_reflow = evaluate(
+                    pipe,
+                    session,
+                    "({innerWidth, scrollWidth: document.documentElement.scrollWidth, phraseRight: Math.max(...[...document.querySelectorAll('.about-hero .title-phrase')].map((item) => item.getBoundingClientRect().right))})",
+                )
+                if (
+                    not isinstance(about_reflow, dict)
+                    or float(about_reflow.get("scrollWidth", 321)) > 320
+                    or float(about_reflow.get("phraseRight", 321)) > 304
+                ):
+                    page_errors.append("aboutが320px幅で横にはみ出しています")
+                pipe.call(
+                    "Emulation.setDeviceMetricsOverride",
+                    {**viewport, "screenWidth": viewport["width"], "screenHeight": viewport["height"], "positionX": 0, "positionY": 0},
+                    session,
+                )
             if label == "mathml":
                 mathml = metrics.get("mathml")
                 if not isinstance(mathml, dict) or not mathml.get("present"):
@@ -708,6 +905,21 @@ def main() -> int:
                 not_found = metrics.get("notFoundTitle")
                 if not isinstance(not_found, dict) or not not_found.get("visible"):
                     page_errors.append("404.htmlの案内見出しが表示されていません")
+                primary_action = metrics.get("notFoundPrimaryAction")
+                secondary_action = metrics.get("notFoundSecondaryAction")
+                if not isinstance(primary_action, dict) or not isinstance(secondary_action, dict):
+                    page_errors.append("404.htmlの回復導線を測定できません")
+                else:
+                    vertical_overlap = min(float(primary_action.get("bottom", 0)), float(secondary_action.get("bottom", 0))) - max(float(primary_action.get("top", 0)), float(secondary_action.get("top", 0)))
+                    action_gap = (
+                        max(0.0, float(secondary_action.get("left", 0)) - float(primary_action.get("right", 0)))
+                        if vertical_overlap > 0
+                        else max(0.0, float(secondary_action.get("top", 0)) - float(primary_action.get("bottom", 0)))
+                    )
+                    if action_gap < 12:
+                        page_errors.append(f"404.htmlの回復導線間隔が不足しています: {action_gap:.1f}px")
+                    if float(secondary_action.get("height", 0)) < 44:
+                        page_errors.append("404.htmlの副導線のタップ高さが44px未満です")
 
             if label == "top":
                 skip_result = evaluate(
@@ -746,6 +958,15 @@ def main() -> int:
                     page_errors.append("ダークモードで閲覧面がライトのままです")
                 elif not is_white(dark.get("figureBackground")):
                     page_errors.append("ダークモードで図版の用紙が白く保たれていません")
+                else:
+                    for label_text, color_key in (("横スクロールヒント", "figureHintColor"), ("図拡大リンク", "figureSourceColor")):
+                        try:
+                            figure_contrast = contrast_ratio(dark.get(color_key), dark.get("figureBackground"))
+                        except ValueError as exc:
+                            page_errors.append(f"ダークモードの{label_text}コントラストを測定できません: {exc}")
+                        else:
+                            if figure_contrast < 4.5:
+                                page_errors.append(f"ダークモードの{label_text}コントラスト不足: {figure_contrast:.2f}:1")
                 set_media(pipe, session, "print")
                 printed = evaluate(pipe, session, APPEARANCE_SCRIPT)
                 if (

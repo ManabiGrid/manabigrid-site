@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
@@ -37,12 +38,12 @@
 <header id="top" class="lesson-header container">
   <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「円周角の定理」</span><span class="status-chip">候補ドラフト</span></p>
   <h1 id="l08-章末まとめ相似と三平方のあいだで"><span class="lesson-title-main">L08 章末まとめ</span><span class="lesson-title-sub">相似と三平方のあいだで</span></h1>
-  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_08.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
-</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_08.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>08</strong> / 08</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1道具箱の最終形6つの道具と2つの型" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E6%9C%80%E7%B5%82%E5%BD%A26%E3%81%A4%E3%81%AE%E9%81%93%E5%85%B7%E3%81%A82%E3%81%A4%E3%81%AE%E5%9E%8B">主概念1：道具箱の最終形——6つの道具と2つの型</a></li><li><a data-section-link="例題1-道具を乗り継ぐ" href="lesson_08.html#%E4%BE%8B%E9%A1%8C1-%E9%81%93%E5%85%B7%E3%82%92%E4%B9%97%E3%82%8A%E7%B6%99%E3%81%90">例題1　道具を乗り継ぐ</a></li><li><a data-section-link="主概念2この章はどこへつながるのか" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E3%81%93%E3%81%AE%E7%AB%A0%E3%81%AF%E3%81%A9%E3%81%93%E3%81%B8%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8B%E3%81%AE%E3%81%8B">主概念2：この章はどこへつながるのか</a></li><li><a data-section-link="練習混合道具の指定なし" href="lesson_08.html#%E7%B7%B4%E7%BF%92%E6%B7%B7%E5%90%88%E9%81%93%E5%85%B7%E3%81%AE%E6%8C%87%E5%AE%9A%E3%81%AA%E3%81%97">練習（混合——道具の指定なし）</a></li></ol></nav></aside><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
 <ul><li><p>この章の道具を総整理し、混合問題で「いまどの道具を使うか」を自分で選べるようになる。</p></li><li><p>この章が前章「相似」・次章「三平方の定理」とどうつながるかを知り、融合問題への入り口に立つ。</p></li></ul>
 <h2 id="主概念1道具箱の最終形6つの道具と2つの型">主概念1：道具箱の最終形——6つの道具と2つの型</h2>
 <p>9〜10時間かけて学んだこの章の中身を、全部並べてみよう。驚くほど少なくないだろうか？</p>
-<div class="table-wrap" tabindex="0" role="region" aria-label="道具・中身・生まれた場所の表（1）"><table><thead><tr><th scope="col">道具</th><th scope="col">中身</th><th scope="col">生まれた場所</th></tr></thead><tbody><tr><td>定理(1)</td><td>同じ弧に対する円周角＝中心角×1/2</td><td>L02</td></tr><tr><td>定理(2)</td><td>同じ弧に対する円周角は等しい</td><td>L02</td></tr><tr><td>半円の弧</td><td>直径に対する円周角は90°（90°なら弦は直径）</td><td>L03</td></tr><tr><td>定理の逆</td><td>同じ側＋等角 → 4点は一つの円周上</td><td>L05</td></tr><tr><td>接線の作図</td><td>円外の点から円への接線をコンパスと定規で作図（理由＝半円の弧→90°）</td><td>L06</td></tr><tr><td>等しい弧</td><td>等しい弧に対する円周角は等しい（中心角経由）</td><td>L07</td></tr></tbody></table></div>
+<div class="table-wrap" data-scroll-label="道具・中身・生まれた場所の表（1）"><table><thead><tr><th scope="col">道具</th><th scope="col">中身</th><th scope="col">生まれた場所</th></tr></thead><tbody><tr><td>定理(1)</td><td>同じ弧に対する円周角＝中心角×1/2</td><td>L02</td></tr><tr><td>定理(2)</td><td>同じ弧に対する円周角は等しい</td><td>L02</td></tr><tr><td>半円の弧</td><td>直径に対する円周角は90°（90°なら弦は直径）</td><td>L03</td></tr><tr><td>定理の逆</td><td>同じ側＋等角 → 4点は一つの円周上</td><td>L05</td></tr><tr><td>接線の作図</td><td>円外の点から円への接線をコンパスと定規で作図（理由＝半円の弧→90°）</td><td>L06</td></tr><tr><td>等しい弧</td><td>等しい弧に対する円周角は等しい（中心角経由）</td><td>L07</td></tr></tbody></table></div>
 <p>そして、道具を図の中で使うための型が2つ。</p>
 <ul><li><p><strong>弧を塗る4ステップ</strong>（L02）: どの弧に対する角かを、塗って特定してから定理を使う。</p></li><li><p><strong>検算の習慣</strong>（L02）: 答えを出したら、中心角との2倍・半分の対応か、三角形の内角の和180°で確かめる。</p></li></ul>
 <p>道具はこれで全部だ。章末の演習で試されるのは、新しい知識ではなく、図を見て「どの道具が使える形になっているか」を読み取る力。読み取りの入り口は、いつもどおり塗ることから。</p>
@@ -74,7 +75,7 @@
 <text x="180.0" y="294.0" font-size="12" text-anchor="middle">ABは円Oの直径——(1)∠ADB (2)∠DAB (3)∠DCB を順に求める</text>
 <text x="180.0" y="312.0" font-size="12" text-anchor="middle">（例題1: 半円の弧→内角の和→同じ弧，と道具を乗り継ぐ）</text>
 </svg>
-</div><figcaption>例題1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig1_example_tool_relay.svg">図だけを開く</a></figure>
+</div><figcaption>例題1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig1_example_tool_relay.svg">図を大きく開く</a></figure>
 <p>ABは円Oの直径で、∠DBA＝34°。次の角を順に求めよう。 (1) ∠ADB　(2) ∠DAB　(3) ∠DCB</p>
 <p>（考え方）</p>
 <ol start="1"><li><p><strong>(1)</strong> ABは直径。半円の弧に対する円周角だから <strong>∠ADB＝90°</strong>。直径を見たら、まず90°を疑う。</p></li><li><p><strong>(2)</strong> △ABDの内角の和より、∠DAB＝180°−90°−34°＝<strong>56°</strong>。</p></li><li><p><strong>(3)</strong> ∠DCBを塗る。頂点Cを含まない側の<strong>弧DB</strong>。∠DABも同じ弧DBに対する円周角だ。定理(2)より <strong>∠DCB＝∠DAB＝56°</strong>。</p></li></ol>
@@ -151,7 +152,7 @@
 <text x="330.0" y="252.0" font-size="12" text-anchor="middle">章末の混合練習——どの道具を使うかは自分で選ぶ</text>
 <text x="330.0" y="270.0" font-size="12" text-anchor="middle">（練習2: 同じ弧／練習3: 直径／練習4: 半径の二等辺三角形から）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習2〜4の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig2_practice_2_3_4.svg">図だけを開く</a></figure><p>∠ACB＝57°のとき、∠ADB＝x を求め、どの弧に対する円周角の組かも書こう。</p></li><li><p>ABが直径で∠CAB＝37°のとき、∠ACBと∠CBAを求めよう。求めたら内角の和で検算しよう。</p></li><li><p>OA＝OBであることを使って、∠APB＝x を求めよう。求めたら中心角との対応で検算しよう。</p></li><li><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-b60e291a4f-title" aria-describedby="mg-b60e291a4f-desc">
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習2〜4の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig2_practice_2_3_4.svg">図を大きく開く</a></figure><p>∠ACB＝57°のとき、∠ADB＝x を求め、どの弧に対する円周角の組かも書こう。</p></li><li><p>ABが直径で∠CAB＝37°のとき、∠ACBと∠CBAを求めよう。求めたら内角の和で検算しよう。</p></li><li><p>OA＝OBであることを使って、∠APB＝x を求めよう。求めたら中心角との対応で検算しよう。</p></li><li><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-b60e291a4f-title" aria-describedby="mg-b60e291a4f-desc">
 <title id="mg-b60e291a4f-title">練習5・6（2パネル統合）</title>
 <desc id="mg-b60e291a4f-desc">練習5・6の図</desc>
 <!-- L08_fig3_practice_5_6.svg | 練習5・6（2パネル統合） -->
@@ -205,7 +206,7 @@
 <text x="280.0" y="288.0" font-size="12" text-anchor="middle">練習5: 円周角＋外角の合わせ技／練習6: 逆で円を出してから収穫</text>
 <text x="280.0" y="306.0" font-size="12" text-anchor="middle">（使った定理を順番に言えるかも点検する）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習5・6の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig3_practice_5_6.svg">図だけを開く</a></figure><p>∠AEB＝x を求めよう。</p></li><li><p>∠ACB＝∠ADB＝58°、∠DAC＝21°のとき、∠DBC＝x を求めよう。使った定理を2つ、順番に書くこと。</p></li><li><p>何も見ずに、この章の道具6つ（定理(1)(2)・半円の弧・定理の逆・接線の作図・等しい弧）を書き出し、それぞれに「使いどころ」を一言そえよう。書けなかった道具が、章の復習の最優先だ。</p></li></ol>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習5・6の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig3_practice_5_6.svg">図を大きく開く</a></figure><p>∠AEB＝x を求めよう。</p></li><li><p>∠ACB＝∠ADB＝58°、∠DAC＝21°のとき、∠DBC＝x を求めよう。使った定理を2つ、順番に書くこと。</p></li><li><p>何も見ずに、この章の道具6つ（定理(1)(2)・半円の弧・定理の逆・接線の作図・等しい弧）を書き出し、それぞれに「使いどころ」を一言そえよう。書けなかった道具が、章の復習の最優先だ。</p></li></ol>
 <div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1 直径×相似：融合証明に挑む</strong></p>
 <figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 318" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-441fbb22a4-title" aria-describedby="mg-441fbb22a4-desc">
 <title id="mg-441fbb22a4-title">直径×相似の融合証明図（記号のみ）</title>
@@ -234,7 +235,7 @@
 <text x="180.0" y="282.0" font-size="12" text-anchor="middle">ABは円Oの直径。弦ADとBCが円の内部の点Eで交わる</text>
 <text x="180.0" y="300.0" font-size="12" text-anchor="middle">（stretch: △EAC∽△EBDを証明する——直径が供給する角を探す）</text>
 </svg>
-</div><figcaption>stretchの図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig4_stretch_diameter_similar.svg">図だけを開く</a></figure>
+</div><figcaption>stretchの図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L08_fig4_stretch_diameter_similar.svg">図を大きく開く</a></figure>
 <p>ABは円Oの直径で、弦ADとBCが円の内部の点Eで交わっている。このとき、<strong>△EAC ∽ △EBD</strong> であることを証明しよう。</p>
 <p>ヒント: 相似条件は「2組の角がそれぞれ等しい」。①∠AECと∠BEDは対頂角。②∠ECA（＝∠BCA）と∠EDB（＝∠ADB）は、どちらも<strong>直径ABに対する円周角</strong>。半円の弧だから、ともに90°。</p>
 <p>証明できたら、もう一歩。相似から∠EAC＝∠EBD、つまり∠DAC＝∠CBDが出てくるが、この2つの角は塗ってみると同じ<strong>弧CD</strong>に対する円周角でもある。定理(2)で直接示しても同じ結論に着地する。別の道具で答え合わせができるのは、道具たちが根元でつながっている証拠だ。この「直径が90°を供給し、相似が形をつなぐ」連係は、次章で三平方の定理が加わると、長さの計算まで届くようになる。調べるフレーズ例:「円周角 直径 相似 証明 入試」</p></div>
@@ -242,23 +243,24 @@
 <p>対応解答: answer_key_L05-08.md</p><a class="answer-link" href="answer_key_L05-08.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
 <aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
-  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 総合演習——少ない道具を組み合わせる</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><span class="lesson-nav-spacer" aria-hidden="true"></span></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>08</strong> / 08</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1道具箱の最終形6つの道具と2つの型" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E6%9C%80%E7%B5%82%E5%BD%A26%E3%81%A4%E3%81%AE%E9%81%93%E5%85%B7%E3%81%A82%E3%81%A4%E3%81%AE%E5%9E%8B">主概念1：道具箱の最終形——6つの道具と2つの型</a></li><li><a data-section-link="例題1-道具を乗り継ぐ" href="lesson_08.html#%E4%BE%8B%E9%A1%8C1-%E9%81%93%E5%85%B7%E3%82%92%E4%B9%97%E3%82%8A%E7%B6%99%E3%81%90">例題1　道具を乗り継ぐ</a></li><li><a data-section-link="主概念2この章はどこへつながるのか" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E3%81%93%E3%81%AE%E7%AB%A0%E3%81%AF%E3%81%A9%E3%81%93%E3%81%B8%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8B%E3%81%AE%E3%81%8B">主概念2：この章はどこへつながるのか</a></li><li><a data-section-link="練習混合道具の指定なし" href="lesson_08.html#%E7%B7%B4%E7%BF%92%E6%B7%B7%E5%90%88%E9%81%93%E5%85%B7%E3%81%AE%E6%8C%87%E5%AE%9A%E3%81%AA%E3%81%97">練習（混合——道具の指定なし）</a></li></ol></nav></aside></div></main>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 総合演習——少ない道具を組み合わせる</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><span class="lesson-nav-spacer" aria-hidden="true"></span></nav></article></div></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <section>
       <h2>出典と利用条件</h2>
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/263e6747d67f08e414e9c6050194f308fec06d55/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/263e6747d67f08e414e9c6050194f308fec06d55" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">263e6747<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
       <h2>誤りを見つけたら教えてください</h2>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
-      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
     </section>
   </div>
 </footer>
