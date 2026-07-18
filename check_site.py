@@ -47,6 +47,7 @@ class ParsedHtml:
     title: str = ""
     has_viewport: bool = False
     has_main: bool = False
+    has_focusable_main_target: bool = False
     has_footer: bool = False
     has_skip_link: bool = False
     has_internal_stylesheet: bool = False
@@ -145,6 +146,11 @@ class HtmlCollector(HTMLParser):
         elif tag == "main":
             self.data.has_main = True
             self.data.in_main = True
+            if (
+                attrs_dict.get("id") == "main-content"
+                and attrs_dict.get("tabindex") == "-1"
+            ):
+                self.data.has_focusable_main_target = True
         elif tag == "footer":
             self.data.has_footer = True
         elif tag == "a" and (
@@ -722,6 +728,8 @@ def main() -> int:
             errors.append(f"viewport missing: {path.name}")
         if not parsed.has_main:
             errors.append(f"main missing: {path.name}")
+        if not parsed.has_focusable_main_target:
+            errors.append(f"focusable main skip target missing: {path.name}")
         if not parsed.has_footer:
             errors.append(f"footer missing: {path.name}")
         if not parsed.has_skip_link:

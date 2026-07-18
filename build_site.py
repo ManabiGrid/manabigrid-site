@@ -1275,7 +1275,7 @@ def page(
     </div>
   </header>
   {breadcrumbs(current, crumb_items)}
-  <main id="main-content" class="page-shell"{source_attrs}>{body}</main>
+  <main id="main-content" class="page-shell" tabindex="-1"{source_attrs}>{body}</main>
 {footer()}
 {search_script}  <script src="{local_href(Path("_assets/site.js"))}" defer></script>
 </body>

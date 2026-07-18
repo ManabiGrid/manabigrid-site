@@ -190,7 +190,17 @@
     });
   };
 
+  const createSkipLink = () => {
+    const link = document.querySelector('.skip-link[href="#main-content"]');
+    const target = document.getElementById('main-content');
+    if (!link || !target) return;
+    link.addEventListener('click', () => {
+      requestAnimationFrame(() => target.focus({ preventScroll: true }));
+    });
+  };
+
   const start = () => {
+    createSkipLink();
     createFilter();
     createSectionObserver();
     createPrintPreparation();

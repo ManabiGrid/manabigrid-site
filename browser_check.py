@@ -710,6 +710,17 @@ def main() -> int:
                     page_errors.append("404.htmlの案内見出しが表示されていません")
 
             if label == "top":
+                skip_result = evaluate(
+                    pipe,
+                    session,
+                    "new Promise((resolve) => { document.querySelector('.skip-link')?.click(); requestAnimationFrame(() => requestAnimationFrame(() => resolve({activeId: document.activeElement?.id || '', hash: location.hash}))); })",
+                )
+                if (
+                    not isinstance(skip_result, dict)
+                    or skip_result.get("activeId") != "main-content"
+                    or skip_result.get("hash") != "#main-content"
+                ):
+                    page_errors.append("スキップリンクが本文へ実フォーカス移動しません")
                 set_media(pipe, session, "screen", "dark")
                 dark_top = evaluate(pipe, session, APPEARANCE_SCRIPT)
                 try:
