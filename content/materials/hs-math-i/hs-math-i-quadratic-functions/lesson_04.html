@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L04 グラフ描画の総合練習">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L04 グラフ描画の総合練習｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L04 グラフ描画の総合練習">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L04 グラフ描画の総合練習｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="28d1d9a7b09abd4a30b87958cf5f434d3eca9ed47cfeff7754b72669984d13b7" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L04 グラフ描画の総合練習</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="28d1d9a7b09abd4a30b87958cf5f434d3eca9ed47cfeff7754b72669984d13b7" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>高校 数学I ／ 高校数学Ⅰ「二次関数」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l04-グラフ描画の総合練習"><span class="lesson-title-main">L04 グラフ描画の総合練習</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><ul><li><p>unit_id: hs-math-i-quadratic-functions</p></li><li><p>位置づけ: 単元第4レッスン（2時間）。L01〜L03の統合演習・定着回。<strong>新しい概念・新しい用語は立てない</strong>。</p></li><li><p>distribution_status: published_draft</p></li><li><p>license: CC-BY-4.0</p></li><li><p>verify_required: 例題数値・記述は監修者検証必須。</p></li><li><p>distribution_status: published_draft</p></li><li><p>主概念: 一般形→頂点が読める形→グラフ、という一連の流れの定着（L01〜L03の統合。新概念なし）</p></li></ul>
+<hr>
+<h2 id="1-描く前に集める4つの情報">1. 描く前に集める4つの情報</h2>
+<p>放物線のグラフを描くとき、いきなり曲線を引かない。先に次の4つを式から集める。</p>
+<ol start="1"><li><p><strong>凸の向き</strong>（aの符号。a＞0なら下に凸、a＜0なら上に凸）</p></li><li><p><strong>軸</strong>（直線 x=p）</p></li><li><p><strong>頂点</strong>（点 (p, q)）</p></li><li><p><strong>x=0 のときの y の値</strong>（式に x=0 を代入して計算する。グラフが y軸と交わる点の高さ）</p></li></ol>
+<p>1〜3は L02・L03 で学んだ「頂点が読める形」から読み取る。4は代入計算だけで求まる。この4点がそろえば、グラフの位置と向きは決まる。なお<strong>開き方の広さ・狭さ</strong>はこの4点では決まらず、a の絶対値で決まる（|a| が大きいほど狭い——L01）。手描きでは位置と向きが正しければよい。</p>
+<h2 id="2-例題1一般形から描くまでの一連の流れ">2. 例題①——一般形から描くまでの一連の流れ</h2>
+<p><strong>例題1</strong> y=x²−4x＋3 のグラフをかけ。</p>
+<p>まず L03 の変形で頂点が読める形にする。</p>
+<p>y = x²−4x＋3 = (x−2)²−4＋3 = <strong>(x−2)²−1</strong></p>
+<ul><li><p>凸の向き: a=1＞0 → 下に凸</p></li><li><p>軸: 直線 x=2 ／ 頂点: (2, −1)</p></li><li><p>x=0 のとき: y=0−0＋3=3</p></li></ul>
+<p>頂点 (2, −1) を打ち、点 (0, 3) を通るなめらかな曲線を、軸 x=2 について左右対称になるように描く（対称性から点 (4, 3) も通る）。<strong>検算</strong>: x=2 を元の式に代入すると 4−8＋3=−1 で頂点の y座標と一致する。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 255" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-10b027cf3c-title" aria-describedby="mg-10b027cf3c-desc">
+<title id="mg-10b027cf3c-title">y=x²−4x＋3のグラフ——4つの情報から描いた完成形</title>
+<desc id="mg-10b027cf3c-desc">y=x²−4x＋3のグラフ——4つの情報から描いた完成形</desc>
+<!-- L04_fig1_graph_from_four_facts.svg | y=x²−4x＋3のグラフ——4つの情報から描いた完成形 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="286" height="255" fill="#fff"/>
+<line x1="38.0" y1="169.6" x2="256.6" y2="169.6" stroke="#000" stroke-width="1.2"/>
+<polygon points="263.6,169.6 256.6,172.8 256.6,166.5" fill="#000"/>
+<line x1="79.6" y1="215.2" x2="79.6" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="79.6,8.0 82.8,15.0 76.4,15.0" fill="#000"/>
+<text x="265.6" y="174.1" font-size="13" text-anchor="start">x</text>
+<text x="86.6" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="47.6" y1="166.6" x2="47.6" y2="172.6" stroke="#000" stroke-width="1.0"/>
+<line x1="111.6" y1="166.6" x2="111.6" y2="172.6" stroke="#000" stroke-width="1.0"/>
+<line x1="143.6" y1="166.6" x2="143.6" y2="172.6" stroke="#000" stroke-width="1.0"/>
+<line x1="175.6" y1="166.6" x2="175.6" y2="172.6" stroke="#000" stroke-width="1.0"/>
+<line x1="207.6" y1="166.6" x2="207.6" y2="172.6" stroke="#000" stroke-width="1.0"/>
+<line x1="239.6" y1="166.6" x2="239.6" y2="172.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="193.6" x2="82.6" y2="193.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="145.6" x2="82.6" y2="145.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="121.6" x2="82.6" y2="121.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="97.6" x2="82.6" y2="97.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="73.6" x2="82.6" y2="73.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="49.6" x2="82.6" y2="49.6" stroke="#000" stroke-width="1.0"/>
+<line x1="76.6" y1="25.6" x2="82.6" y2="25.6" stroke="#000" stroke-width="1.0"/>
+<text x="47.6" y="183.6" font-size="11" text-anchor="middle">−1</text>
+<text x="111.6" y="183.6" font-size="11" text-anchor="middle">1</text>
+<text x="175.6" y="183.6" font-size="11" text-anchor="middle">3</text>
+<text x="207.6" y="183.6" font-size="11" text-anchor="middle">4</text>
+<text x="239.6" y="183.6" font-size="11" text-anchor="middle">5</text>
+<text x="73.6" y="197.5" font-size="11" text-anchor="end">−1</text>
+<text x="73.6" y="101.5" font-size="11" text-anchor="end">3</text>
+<text x="73.6" y="29.5" font-size="11" text-anchor="end">6</text>
+<text x="74.6" y="183.6" font-size="11" text-anchor="end">O</text>
+<polyline points="56.6,16.0 57.4,19.5 58.3,23.0 59.2,26.5 60.0,29.9 60.9,33.3 61.8,36.7 62.6,40.0 63.5,43.3 64.4,46.5 65.3,49.7 66.1,52.9 67.0,56.1 67.9,59.2 68.7,62.2 69.6,65.3 70.5,68.3 71.3,71.3 72.2,74.2 73.1,77.1 74.0,79.9 74.8,82.8 75.7,85.5 76.6,88.3 77.4,91.0 78.3,93.7 79.2,96.3 80.1,99.0 80.9,101.5 81.8,104.1 82.7,106.6 83.5,109.0 84.4,111.5 85.3,113.9 86.1,116.2 87.0,118.6 87.9,120.9 88.8,123.1 89.6,125.3 90.5,127.5 91.4,129.7 92.2,131.8 93.1,133.9 94.0,135.9 94.9,137.9 95.7,139.9 96.6,141.8 97.5,143.7 98.3,145.6 99.2,147.4 100.1,149.2 100.9,151.0 101.8,152.7 102.7,154.4 103.6,156.0 104.4,157.6 105.3,159.2 106.2,160.8 107.0,162.3 107.9,163.7 108.8,165.2 109.7,166.6 110.5,168.0 111.4,169.3 112.3,170.6 113.1,171.8 114.0,173.1 114.9,174.3 115.7,175.4 116.6,176.5 117.5,177.6 118.4,178.7 119.2,179.7 120.1,180.7 121.0,181.6 121.8,182.5 122.7,183.4 123.6,184.2 124.4,185.0 125.3,185.8 126.2,186.5 127.1,187.2 127.9,187.8 128.8,188.5 129.7,189.1 130.5,189.6 131.4,190.1 132.3,190.6 133.2,191.0 134.0,191.5 134.9,191.8 135.8,192.2 136.6,192.5 137.5,192.7 138.4,193.0 139.2,193.2 140.1,193.3 141.0,193.4 141.9,193.5 142.7,193.6 143.6,193.6 144.5,193.6 145.3,193.5 146.2,193.4 147.1,193.3 148.0,193.2 148.8,193.0 149.7,192.7 150.6,192.5 151.4,192.2 152.3,191.8 153.2,191.5 154.0,191.0 154.9,190.6 155.8,190.1 156.7,189.6 157.5,189.1 158.4,188.5 159.3,187.8 160.1,187.2 161.0,186.5 161.9,185.8 162.8,185.0 163.6,184.2 164.5,183.4 165.4,182.5 166.2,181.6 167.1,180.7 168.0,179.7 168.8,178.7 169.7,177.6 170.6,176.5 171.5,175.4 172.3,174.3 173.2,173.1 174.1,171.8 174.9,170.6 175.8,169.3 176.7,168.0 177.5,166.6 178.4,165.2 179.3,163.7 180.2,162.3 181.0,160.8 181.9,159.2 182.8,157.6 183.6,156.0 184.5,154.4 185.4,152.7 186.3,151.0 187.1,149.2 188.0,147.4 188.9,145.6 189.7,143.7 190.6,141.8 191.5,139.9 192.3,137.9 193.2,135.9 194.1,133.9 195.0,131.8 195.8,129.7 196.7,127.5 197.6,125.3 198.4,123.1 199.3,120.9 200.2,118.6 201.1,116.2 201.9,113.9 202.8,111.5 203.7,109.0 204.5,106.6 205.4,104.1 206.3,101.5 207.1,99.0 208.0,96.3 208.9,93.7 209.8,91.0 210.6,88.3 211.5,85.5 212.4,82.8 213.2,79.9 214.1,77.1 215.0,74.2 215.9,71.3 216.7,68.3 217.6,65.3 218.5,62.2 219.3,59.2 220.2,56.1 221.1,52.9 221.9,49.7 222.8,46.5 223.7,43.3 224.6,40.0 225.4,36.7 226.3,33.3 227.2,29.9 228.0,26.5 228.9,23.0 229.8,19.5 230.6,16.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="143.6" y1="193.6" x2="143.6" y2="23.2" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="79.6" y1="97.6" x2="207.6" y2="97.6" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<circle cx="143.6" cy="193.6" r="3.2" fill="#000"/>
+<circle cx="79.6" cy="97.6" r="3.2" fill="#000"/>
+<circle cx="207.6" cy="97.6" r="3.2" fill="#000"/>
+<text x="151.6" y="207.6" font-size="12" text-anchor="start" font-weight="bold">頂点(2, −1)</text>
+<text x="149.6" y="25.2" font-size="12" text-anchor="start">軸 x＝2</text>
+<text x="71.6" y="89.6" font-size="12" text-anchor="end">(0, 3)</text>
+<text x="215.6" y="89.6" font-size="12" text-anchor="start">(4, 3)</text>
+<text x="143.0" y="247.0" font-size="12" text-anchor="middle">y＝x²−4x＋3＝(x−2)²−1</text>
+</svg>
+</div><figcaption>y=x²−4x＋3のグラフ——4つの情報から描いた完成形</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L04_fig1_graph_from_four_facts.svg">図だけを開く</a></figure>
+<h2 id="3-例題2aが負係数が2以上の場合">3. 例題②——aが負・係数が2以上の場合</h2>
+<p><strong>例題2</strong> y=−2x²−4x＋1 のグラフをかけ。</p>
+<p>y = −2(x²＋2x)＋1 = −2{(x＋1)²−1}＋1 = <strong>−2(x＋1)²＋3</strong></p>
+<ul><li><p>凸の向き: a=−2＜0 → 上に凸</p></li><li><p>軸: 直線 x=−1 ／ 頂点: (−1, 3)</p></li><li><p>x=0 のとき: y=1</p></li></ul>
+<p><strong>検算</strong>: x=−1 を元の式に代入すると −2＋4＋1=3 で頂点と一致。カッコの外に出した −2 のかけ忘れ（−2(x＋1)²−1＋1 とする誤り）が起きやすいので、検算代入までを1セットの手順にする。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 245" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-eff2cb893c-title" aria-describedby="mg-eff2cb893c-desc">
+<title id="mg-eff2cb893c-title">y=−2x²−4x＋1のグラフ——上に凸の完成形</title>
+<desc id="mg-eff2cb893c-desc">y=−2x²−4x＋1のグラフ——上に凸の完成形</desc>
+<!-- L04_fig2_negative_a_graph.svg | y=−2x²−4x＋1のグラフ——上に凸の完成形 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="250" height="245" fill="#fff"/>
+<line x1="40.0" y1="108.4" x2="221.0" y2="108.4" stroke="#000" stroke-width="1.2"/>
+<polygon points="228.0,108.4 221.0,111.6 221.0,105.2" fill="#000"/>
+<line x1="166.0" y1="205.2" x2="166.0" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="166.0,8.0 169.2,15.0 162.8,15.0" fill="#000"/>
+<text x="230.0" y="112.9" font-size="13" text-anchor="start">x</text>
+<text x="173.0" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="58.0" y1="105.4" x2="58.0" y2="111.4" stroke="#000" stroke-width="1.0"/>
+<line x1="94.0" y1="105.4" x2="94.0" y2="111.4" stroke="#000" stroke-width="1.0"/>
+<line x1="130.0" y1="105.4" x2="130.0" y2="111.4" stroke="#000" stroke-width="1.0"/>
+<line x1="202.0" y1="105.4" x2="202.0" y2="111.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="196.4" x2="169.0" y2="196.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="174.4" x2="169.0" y2="174.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="152.4" x2="169.0" y2="152.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="130.4" x2="169.0" y2="130.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="86.4" x2="169.0" y2="86.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="64.4" x2="169.0" y2="64.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="42.4" x2="169.0" y2="42.4" stroke="#000" stroke-width="1.0"/>
+<line x1="163.0" y1="20.4" x2="169.0" y2="20.4" stroke="#000" stroke-width="1.0"/>
+<text x="58.0" y="122.4" font-size="11" text-anchor="middle">−3</text>
+<text x="94.0" y="122.4" font-size="11" text-anchor="middle">−2</text>
+<text x="202.0" y="122.4" font-size="11" text-anchor="middle">1</text>
+<text x="160.0" y="200.2" font-size="11" text-anchor="end">−4</text>
+<text x="160.0" y="156.2" font-size="11" text-anchor="end">−2</text>
+<text x="160.0" y="90.2" font-size="11" text-anchor="end">1</text>
+<text x="160.0" y="46.3" font-size="11" text-anchor="end">3</text>
+<text x="161.0" y="122.4" font-size="11" text-anchor="end">O</text>
+<polyline points="60.8,205.2 61.4,202.0 62.1,198.8 62.8,195.6 63.5,192.4 64.2,189.3 64.9,186.3 65.6,183.2 66.3,180.2 67.0,177.2 67.7,174.3 68.4,171.4 69.1,168.5 69.8,165.6 70.4,162.8 71.1,160.0 71.8,157.3 72.5,154.6 73.2,151.9 73.9,149.2 74.6,146.6 75.3,144.0 76.0,141.4 76.7,138.9 77.4,136.4 78.1,134.0 78.8,131.5 79.4,129.2 80.1,126.8 80.8,124.5 81.5,122.2 82.2,119.9 82.9,117.7 83.6,115.5 84.3,113.3 85.0,111.2 85.7,109.1 86.4,107.0 87.1,105.0 87.8,103.0 88.5,101.0 89.1,99.1 89.8,97.2 90.5,95.3 91.2,93.5 91.9,91.6 92.6,89.9 93.3,88.1 94.0,86.4 94.7,84.7 95.4,83.1 96.1,81.5 96.8,79.9 97.5,78.4 98.1,76.8 98.8,75.4 99.5,73.9 100.2,72.5 100.9,71.1 101.6,69.8 102.3,68.4 103.0,67.2 103.7,65.9 104.4,64.7 105.1,63.5 105.8,62.3 106.5,61.2 107.1,60.1 107.8,59.1 108.5,58.0 109.2,57.1 109.9,56.1 110.6,55.2 111.3,54.3 112.0,53.4 112.7,52.6 113.4,51.8 114.1,51.0 114.8,50.3 115.5,49.6 116.2,48.9 116.8,48.3 117.5,47.7 118.2,47.1 118.9,46.6 119.6,46.1 120.3,45.6 121.0,45.2 121.7,44.7 122.4,44.4 123.1,44.0 123.8,43.7 124.5,43.4 125.2,43.2 125.8,43.0 126.5,42.8 127.2,42.7 127.9,42.5 128.6,42.5 129.3,42.4 130.0,42.4 130.7,42.4 131.4,42.5 132.1,42.5 132.8,42.7 133.5,42.8 134.2,43.0 134.8,43.2 135.5,43.4 136.2,43.7 136.9,44.0 137.6,44.4 138.3,44.7 139.0,45.2 139.7,45.6 140.4,46.1 141.1,46.6 141.8,47.1 142.5,47.7 143.2,48.3 143.8,48.9 144.5,49.6 145.2,50.3 145.9,51.0 146.6,51.8 147.3,52.6 148.0,53.4 148.7,54.3 149.4,55.2 150.1,56.1 150.8,57.1 151.5,58.0 152.2,59.1 152.9,60.1 153.5,61.2 154.2,62.3 154.9,63.5 155.6,64.7 156.3,65.9 157.0,67.2 157.7,68.4 158.4,69.8 159.1,71.1 159.8,72.5 160.5,73.9 161.2,75.4 161.9,76.8 162.5,78.4 163.2,79.9 163.9,81.5 164.6,83.1 165.3,84.7 166.0,86.4 166.7,88.1 167.4,89.9 168.1,91.6 168.8,93.5 169.5,95.3 170.2,97.2 170.9,99.1 171.5,101.0 172.2,103.0 172.9,105.0 173.6,107.0 174.3,109.1 175.0,111.2 175.7,113.3 176.4,115.5 177.1,117.7 177.8,119.9 178.5,122.2 179.2,124.5 179.9,126.8 180.6,129.2 181.2,131.5 181.9,134.0 182.6,136.4 183.3,138.9 184.0,141.4 184.7,144.0 185.4,146.6 186.1,149.2 186.8,151.9 187.5,154.6 188.2,157.3 188.9,160.0 189.6,162.8 190.2,165.6 190.9,168.5 191.6,171.4 192.3,174.3 193.0,177.2 193.7,180.2 194.4,183.2 195.1,186.3 195.8,189.3 196.5,192.4 197.2,195.6 197.9,198.8 198.6,202.0 199.2,205.2" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="130.0" y1="42.4" x2="130.0" y2="198.6" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="166.0" y1="86.4" x2="94.0" y2="86.4" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<circle cx="130.0" cy="42.4" r="3.2" fill="#000"/>
+<circle cx="166.0" cy="86.4" r="3.2" fill="#000"/>
+<circle cx="94.0" cy="86.4" r="3.2" fill="#000"/>
+<text x="130.0" y="32.4" font-size="12" text-anchor="middle" font-weight="bold">頂点(−1, 3)</text>
+<text x="122.0" y="200.6" font-size="12" text-anchor="end">軸 x＝−1</text>
+<text x="174.0" y="90.4" font-size="12" text-anchor="start">(0, 1)</text>
+<text x="86.0" y="90.4" font-size="12" text-anchor="end">(−2, 1)</text>
+<text x="125.0" y="237.0" font-size="12" text-anchor="middle">y＝−2x²−4x＋1＝−2(x＋1)²＋3</text>
+</svg>
+</div><figcaption>y=−2x²−4x＋1のグラフ——上に凸の完成形</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L04_fig2_negative_a_graph.svg">図だけを開く</a></figure>
+<h2 id="4-変形しなくても読める形を見落とさない">4. 変形しなくても読める形を見落とさない</h2>
+<p>y=x²−1 のような式は、変形の必要がない「頂点が読める形」である（頂点などは L02 §5 で確認済み）。</p>
+<p>「まず平方完成」と機械的に手を動かす前に、<strong>式がすでに頂点の読める形になっていないか</strong>を最初に確認する。この一呼吸が、変形ミスと時間のロスを減らす。</p>
+<h2 id="5-練習">5. 練習</h2>
+<p><strong>問1</strong> 次の関数のグラフの凸の向き・軸・頂点・x=0 のときの y の値を求め、グラフをかけ。 (1) y=x²＋2x  (2) y=x²−6x＋5  (3) y=x²−1</p>
+<p><strong>問2</strong> y=2x²−8x＋9 のグラフをかけ（頂点が読める形への変形から）。</p>
+<p><strong>問3</strong> y=−x²＋4x−3 のグラフをかけ。凸の向きに注意すること。</p>
+<p><strong>問4</strong> 問2の関数について、x=2 を元の式に代入し、頂点の y座標と一致することを確かめよ。</p>
+<p><strong>問5</strong> 次の流れの空欄を埋めよ。「一般形 → （　　）が読める形に変形 → 凸の向き・軸・（　　）・x=0 のときの y の値を集める → 軸について（　　）になるように曲線を描く」</p>
+<hr>
+<h2 id="stretch本線と分けて提示余力のある生徒向け">stretch（本線と分けて提示。余力のある生徒向け）</h2>
+<p><strong>S1</strong> y=−3x²＋6x−1 のグラフをかけ。また、このグラフは y=−3x² のグラフをどのように平行移動したものか、言葉で説明せよ。</p><a class="answer-link" href="answer_key_L04-06.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 一般形から頂点を読む——平方完成という道具</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 最大値・最小値（定義域の制限なし）</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>04</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="1-描く前に集める4つの情報" href="lesson_04.html#1-%E6%8F%8F%E3%81%8F%E5%89%8D%E3%81%AB%E9%9B%86%E3%82%81%E3%82%8B4%E3%81%A4%E3%81%AE%E6%83%85%E5%A0%B1">1. 描く前に集める4つの情報</a></li><li><a data-section-link="2-例題1一般形から描くまでの一連の流れ" href="lesson_04.html#2-%E4%BE%8B%E9%A1%8C1%E4%B8%80%E8%88%AC%E5%BD%A2%E3%81%8B%E3%82%89%E6%8F%8F%E3%81%8F%E3%81%BE%E3%81%A7%E3%81%AE%E4%B8%80%E9%80%A3%E3%81%AE%E6%B5%81%E3%82%8C">2. 例題①——一般形から描くまでの一連の流れ</a></li><li><a data-section-link="3-例題2aが負係数が2以上の場合" href="lesson_04.html#3-%E4%BE%8B%E9%A1%8C2a%E3%81%8C%E8%B2%A0%E4%BF%82%E6%95%B0%E3%81%8C2%E4%BB%A5%E4%B8%8A%E3%81%AE%E5%A0%B4%E5%90%88">3. 例題②——aが負・係数が2以上の場合</a></li><li><a data-section-link="4-変形しなくても読める形を見落とさない" href="lesson_04.html#4-%E5%A4%89%E5%BD%A2%E3%81%97%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82%E8%AA%AD%E3%82%81%E3%82%8B%E5%BD%A2%E3%82%92%E8%A6%8B%E8%90%BD%E3%81%A8%E3%81%95%E3%81%AA%E3%81%84">4. 変形しなくても読める形を見落とさない</a></li><li><a data-section-link="5-練習" href="lesson_04.html#5-%E7%B7%B4%E7%BF%92">5. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_04.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

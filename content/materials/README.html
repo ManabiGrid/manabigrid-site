@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid 案内・設計図: materials/ — 教材本文">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="materials/ — 教材本文｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid 案内・設計図: materials/ — 教材本文">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/README.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>materials/ — 教材本文｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/README.html">
+  <link rel="icon" type="image/svg+xml" href="../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../_assets/site.css">
+</head>
+<body class="page-overview" data-source-sha256="8c32f399683e1352ca4e037cdd0a2825f6a1ba1b65bbc7ac9c831fd307a885e8" data-source-file="materials/README.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../browse/index.html">教材をさがす</a><a href="../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../index.html">トップ</a></li><li><a href="../../browse/index.html">教材をさがす</a></li><li aria-current="page">materials/ — 教材本文</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="8c32f399683e1352ca4e037cdd0a2825f6a1ba1b65bbc7ac9c831fd307a885e8" data-source-file="materials/README.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">案内・設計図</span><span>案内・設計図</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="materials--教材本文"><span class="lesson-title-main">materials/ — 教材本文</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/README.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/README.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><article class="container lesson-body"><p><strong>現在14単元＋診断・巻末の2モジュール（計16パッケージ・447ファイル）を同梱しています</strong>（2026-07-18時点。中3数学8単元＋科目診断・巻末資料の2モジュール、中2数学1単元、数学Ⅰ1単元、中1英語1単元、中学国語1単元、中2理科1単元、中学社会1単元。ファイル数はこのREADME自身を含む実測値）。各単元の工程の到達点（外部レビュー済・QA済・ドラフト等）は <a href="../../progress/index.html">../curriculum/PROGRESSINDEX.md</a> で確認できます。<strong>人間レビュー（実務者検収＝進捗一覧の「人間レビュー済」への正式検収）が完了するまで、すべて候補ドラフト扱いです。</strong></p>
+<p>単元パッケージの基本構成:</p>
+<pre><code class="language-text">materials/{科目・学年}/{unit_id}/
+├── lesson_map.md          # 単元の設計図
+├── lesson_01.md ...       # タグ付きcore原稿（原稿の正）
+├── answer_key_*.md        # 解答（別ファイル分離）
+├── teacher_notes.md       # 指導ノート（編集公開版）
+├── assets/                # 自作SVG図版のみ（借用画像ゼロ・現在185枚）
+└── assets_provenance/     # 図版生成スクリプト＋図版台帳（来歴）</code></pre>
+<p>一部の単元は、タグ付きcoreから生成した閲覧用ビュー（<code>teacher_guide</code> / <code>student_textbook_print</code> / <code>interactive_landing.html</code> 等）と同梱物一覧（<code>MANIFEST.md</code>）を持ちます（生成の仕組みは <a href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/docs/SPEC_tagged_core.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../docs/SPECtaggedcore.md</a>）。内部処理用ビュー（AI処理用パック等）は非同梱です。</p>
+<p><code>distribution_status</code> の意味（frontmatterのステータス語彙）:</p>
+<ul><li><p><code>published_draft</code> = 公開済み・人間レビュー前の<strong>候補ドラフト</strong>。人間レビュー（実務者検収）が完了したファイルから、レビュー済みを示すステータス値（draft を reviewed に置き換えた値）へ昇格します。</p></li><li><p>各単元の工程到達点そのものは <a href="../../progress/index.html">../curriculum/PROGRESSINDEX.md</a>（レジストリ由来）が正です。</p></li></ul>
+<p>読むときの注意:</p>
+<ul><li><p>teacher_notes / teacher_guide の設計判断には<strong>根拠区分ラベル</strong>（Established / Adapted / Derived / Experimental / Rejected の5値・〔根拠区分: X〕のタグ様式）が付いています。</p></li><li><p>科目診断（<code>jhs-math-3-diagnostic</code>）は<strong>試行版</strong>です。難度・判定閾値は実利用データによる較正前で、較正後に改訂されます。</p></li><li><p>teacher_notes 等が参照する内部調査資料（HR番号等）は非公開です。非公開の理由と照会方法は <a href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/docs/METHODOLOGY.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../docs/METHODOLOGY.md</a>（§6「内部調査資料について」）を参照してください。</p></li><li><p><code>verify_required</code> の標記がある記述は原典照合が未了です。重要な用途の前に利用者側で原典を確認してください（<a href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/DISCLAIMER.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../DISCLAIMER.md</a>）。</p></li></ul></article></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../_assets/site.js" defer></script>
+</body>
+</html>

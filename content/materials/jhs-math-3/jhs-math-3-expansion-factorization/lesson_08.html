@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L08 いろいろな因数分解——組み合わせと往復">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L08 いろいろな因数分解——組み合わせと往復｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L08 いろいろな因数分解——組み合わせと往復">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L08 いろいろな因数分解——組み合わせと往復｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="e1eb5a3ad9e16e2b6d3f570dde2bb0fd525f4be91318e719e91b7a19c44fcf4c" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-expansion-factorization/index.html">中3数学「式の展開と因数分解」</a></li><li aria-current="page">L08 いろいろな因数分解——組み合わせと往復</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="e1eb5a3ad9e16e2b6d3f570dde2bb0fd525f4be91318e719e91b7a19c44fcf4c" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「式の展開と因数分解」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l08-いろいろな因数分解組み合わせと往復"><span class="lesson-title-main">L08 いろいろな因数分解</span><span class="lesson-title-sub">組み合わせと往復</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>共通因数のくくり出しと公式を<strong>組み合わせて</strong>、2段構えの因数分解ができるようになる。</p></li><li><p>置き換えを使った因数分解と、「これ以上分解できないか」の完了判定を身につける。</p></li><li><p>展開⇄因数分解の往復練習で、2つの変形が互いに逆であることを確かめる。</p></li></ul>
+<h2 id="導入地図の順番どおりに調べる">導入：地図の順番どおりに調べる</h2>
+<p>L07の終わりに作った「因数分解の地図」を、実戦で使ってみよう。</p>
+<p><strong>(1) 共通因数 →(2) 平方−平方 →(3) 平方の形の3点点検 →(4) 2数探し</strong></p>
+<p><strong>例: 2x²＋12x＋18 を因数分解する。</strong></p>
+<p>手順(1)から。共通因数2があるので、まずくくり出す。</p>
+<p>2x²＋12x＋18＝2(x²＋6x＋9)</p>
+<p>かっこの中はまだ終わりではない。x²＋6x＋9 に地図を再適用——3点点検で平方の形（2×x×3＝6x ✓）。</p>
+<p>2(x²＋6x＋9)＝<strong>2(x＋3)²</strong></p>
+<p>検算: 2(x＋3)²＝2(x²＋6x＋9)＝2x²＋12x＋18 ✓</p>
+<p>ポイントは、<strong>くくり出したあと、かっこの中にもう一度地図を使う</strong>こと。因数分解は「1回変形して終わり」ではなく、<strong>すべての因数がそれ以上分解できなくなるまで</strong>続ける。</p>
+<h2 id="主概念12段構えと置き換え">主概念1：2段構えと置き換え</h2>
+<p><strong>くくり出し→公式</strong>の2段構えは、最初に共通因数を見落とすと公式が見えなくなる。</p>
+<p>3x²−27＝3(x²−9)＝3(x＋3)(x−3)</p>
+<p>もし最初の3を見落とすと、3x²−27 は「平方−平方」に見えず（3x²は、この単元で扱う範囲——整数の係数と文字の単項式——では「何かの平方」の形とはみなさない）、手が止まってしまう。<strong>地図の(1)を飛ばさない</strong>理由がここにある。</p>
+<p>もう1つの技は、L02・L04でも使った<strong>置き換え</strong>だ。ひとまとまりを1文字とみなすと、公式が使える形が浮かび上がる。</p>
+<p><strong>例: (x＋y)²−6(x＋y)＋9</strong></p>
+<p>x＋y＝M と置くと、M²−6M＋9＝(M−3)²。Mを戻して、</p>
+<p>(x＋y)²−6(x＋y)＋9＝ <strong>(x＋y−3)²</strong></p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「途中で止まった因数分解」を自分で見つける2つの検査</strong></p>
+<p>因数分解の誤りには、まちがった変形だけでなく「正しいが不完全」という型がある（例: 8x²＋12x＝2(4x²＋6x) で止まる——かっこの中にまだ共通因数2xが残っている）。完了判定の検査は2つ。①<strong>かっこの中それぞれに地図を再適用したか</strong>（共通因数・平方−平方・3点点検・2数探しのどれも通らないことを確認して初めて「完了」）②<strong>検算の展開でもとに戻るか</strong>（不完全でも戻ってしまうので、①の代わりにはならない——①と②は役割が違う検査だ）。「戻るからOK」だけで済ませず、①の完了チェックを口ぐせにしよう。</p></div>
+<h2 id="主概念2展開因数分解の往復">主概念2：展開⇄因数分解の往復</h2>
+<p>ここで一度、章の前半と後半をつないでみよう。次の左右は、同じ等式を逆向きに読んだものだ。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="展開（左→右）・因数分解（右→左）の表（1）"><table><thead><tr><th scope="col">展開（左→右）</th><th scope="col">因数分解（右→左）</th></tr></thead><tbody><tr><td>(x＋3)(x＋4)＝x²＋7x＋12</td><td>x²＋7x＋12＝(x＋3)(x＋4)</td></tr><tr><td>(x−5)²＝x²−10x＋25</td><td>x²−10x＋25＝(x−5)²</td></tr><tr><td>(x＋6)(x−6)＝x²−36</td><td>x²−36＝(x＋6)(x−6)</td></tr></tbody></table></div>
+<p><strong>往復練習</strong>をしよう——因数分解した答えを展開してもとに戻し、展開した答えを因数分解してもとに戻す。この往復が一瞬でできるようになると、どちらの向きの変形も「検算つき」で使えるようになる。式の形を目的に合わせて選ぶ——開いた形（和の形）と閉じた形（積の形）を自由に行き来する力が、次の節「利用」の土台になる。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「開いた形」と「閉じた形」、それぞれの得意分野</strong></p>
+<p>和の形（展開した形）は、同類項をまとめたり、式を整理して比べたりするのが得意。積の形（因数分解した形）は、値の計算を楽にしたり、「何で割り切れるか」「いつ0になるか」を読み取ったりするのが得意。つまり<strong>どちらが偉いのではなく、用途が違う</strong>。次のレッスンからの「利用」では、目的に応じて「どちらの形に持ち込むか」を最初に決めることが作戦のすべてになる。この往復の視点は、そのまま高校数学でも使い続けることになる。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>展開は「一本道」、因数分解は「宝探し」——同じ等式なのに、向きが変わるだけで難しさがまるで違うの、不思議じゃない？ 実は「かけるのは簡単、分解するのは難しい」という非対称は数の世界でも同じ——ためしに91を素因数分解してみよう。7×13＝91の検算は一瞬なのに、91から7と13を見つけ出すほうは、ちょっと探す時間がかかったはず。展開と因数分解が「互いに逆」なのに手ごたえが違う理由が、この小さな実験に詰まっている！</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>地図の順番で調べて、因数分解しよう（完了チェックまで）。  (1) 2x²−18　(2) 3a²＋18a＋27　(3) 4x²＋8x　(4) ax²−ax−12a</p></li><li><p>置き換えを使って因数分解しよう。  (1) (a＋b)²−16　(2) (x−2)²＋8(x−2)＋16</p></li><li><p>次の式を展開し、その結果をもう一度因数分解して、もとに戻ることを確かめよう（往復練習）。  (1) (x−4)(x＋9)　(2) 5(x＋2)²</p></li><li><p>次の因数分解は完了しているか。完了していなければ続きを、完了していればその根拠（地図のどれも通らないこと）を書こう。  (1) x²−5x−6＝(x−6)(x＋1)　(2) 2x²−8＝2(x²−4)</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1（発展の入り口——4乗でも置き換えは使える）</strong> x⁴−16 のような4乗の式も、x²＝M と置くと平方−平方の形になる。 x⁴−16＝M²−16＝(M＋4)(M−4)＝(x²＋4)(x²−4) 置き換え1つで、4乗の式が2次の式の積まで開けた。この先——それぞれの因数がさらに分解できるか、どこで止まるか——は、高校の数学で本格的に扱う。興味があれば「因数分解 高次式」で調べてみよう。</p>
+<p><strong>S2</strong> 1辺 x の正方形から1辺 3 の正方形を切り取った残りの面積は x²−9。この残りの部分を切って並べ替えると、縦 (x−3)・横 (x＋3) の長方形が作れる。</p><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 310" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-579dce6fc8-title" aria-describedby="mg-579dce6fc8-desc">
+<title id="mg-579dce6fc8-title">L字形の並べ替え（x²−9＝(x＋3)(x−3)の絵）</title>
+<desc id="mg-579dce6fc8-desc">L字形を長方形に並べ替える図</desc>
+<!-- L08_fig1_lshape_rearrange.svg | L字形の並べ替え（x²−9＝(x＋3)(x−3)の絵） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="500" height="310" fill="#fff"/>
+<defs><pattern id="mg-579dce6fc8-h45" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#555" stroke-width="1.1"/></pattern></defs><polygon points="40.0,138.0 92.0,138.0 92.0,60.0 40.0,60.0" fill="url(#mg-579dce6fc8-h45)" stroke="#000" stroke-width="0" stroke-linejoin="round"/>
+<polygon points="40.0,190.0 170.0,190.0 170.0,138.0 92.0,138.0 92.0,60.0 40.0,60.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="92.0,138.0 170.0,138.0 170.0,60.0 92.0,60.0" fill="none" stroke="#000" stroke-width="1.1" stroke-linejoin="round" stroke-dasharray="2 3"/>
+<line x1="40.0" y1="138.0" x2="92.0" y2="138.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="40.0" y1="203.0" x2="170.0" y2="203.0" stroke="#000" stroke-width="0.9"/>
+<line x1="40.0" y1="199.0" x2="40.0" y2="207.0" stroke="#000" stroke-width="0.9"/>
+<line x1="170.0" y1="199.0" x2="170.0" y2="207.0" stroke="#000" stroke-width="0.9"/>
+<text x="105.0" y="227.1" font-size="13" text-anchor="middle">x</text>
+<line x1="27.0" y1="190.0" x2="27.0" y2="60.0" stroke="#000" stroke-width="0.9"/>
+<line x1="23.0" y1="190.0" x2="31.0" y2="190.0" stroke="#000" stroke-width="0.9"/>
+<line x1="23.0" y1="60.0" x2="31.0" y2="60.0" stroke="#000" stroke-width="0.9"/>
+<text x="19.2" y="129.6" font-size="13" text-anchor="end">x</text>
+<line x1="92.0" y1="49.6" x2="170.0" y2="49.6" stroke="#000" stroke-width="0.9"/>
+<line x1="92.0" y1="45.6" x2="92.0" y2="53.6" stroke="#000" stroke-width="0.9"/>
+<line x1="170.0" y1="45.6" x2="170.0" y2="53.6" stroke="#000" stroke-width="0.9"/>
+<text x="131.0" y="43.1" font-size="13" text-anchor="middle">3</text>
+<text x="115.4" y="106.8" font-size="11" text-anchor="middle">切り取った</text>
+<text x="115.4" y="120.8" font-size="11" text-anchor="middle">正方形</text>
+<line x1="196.0" y1="118.0" x2="235.0" y2="118.0" stroke="#000" stroke-width="1.6"/>
+<polygon points="244.0,118.0 235.0,122.0 235.0,114.0" fill="#000"/>
+<text x="220.0" y="102.0" font-size="11" text-anchor="middle">切って回して</text>
+<text x="220.0" y="140.0" font-size="11" text-anchor="middle">並べ替える</text>
+<polygon points="384.0,190.0 462.0,190.0 462.0,138.0 384.0,138.0" fill="url(#mg-579dce6fc8-h45)" stroke="#000" stroke-width="0" stroke-linejoin="round"/>
+<polygon points="254.0,190.0 462.0,190.0 462.0,138.0 254.0,138.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="384.0" y1="190.0" x2="384.0" y2="138.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="254.0" y1="203.0" x2="462.0" y2="203.0" stroke="#000" stroke-width="0.9"/>
+<line x1="254.0" y1="199.0" x2="254.0" y2="207.0" stroke="#000" stroke-width="0.9"/>
+<line x1="462.0" y1="199.0" x2="462.0" y2="207.0" stroke="#000" stroke-width="0.9"/>
+<text x="358.0" y="227.1" font-size="13" text-anchor="middle">x＋3</text>
+<line x1="241.0" y1="190.0" x2="241.0" y2="138.0" stroke="#000" stroke-width="0.9"/>
+<line x1="237.0" y1="190.0" x2="245.0" y2="190.0" stroke="#000" stroke-width="0.9"/>
+<line x1="237.0" y1="138.0" x2="245.0" y2="138.0" stroke="#000" stroke-width="0.9"/>
+<text x="233.2" y="168.6" font-size="13" text-anchor="end">x−3</text>
+<text x="250.0" y="268.0" font-size="12" text-anchor="middle">斜線の断片を回して右へ——面積は変わらない（数値は x と 3 のみ）</text>
+<text x="250.0" y="286.0" font-size="12" text-anchor="middle">L字形（x²−9）　→　縦(x−3)・横(x＋3)の長方形</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>L字形を長方形に並べ替える図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-expansion-factorization/assets/L08_fig1_lshape_rearrange.svg">図だけを開く</a></figure><p>この図が公式 x²−9＝(x＋3)(x−3) の「絵による説明」になっている理由を、自分の言葉で書いてみよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L05-08.md</p><a class="answer-link" href="answer_key_L05-08.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 公式による因数分解②——平方の形・和と差の積</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-expansion-factorization/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_09.html"><span>次のレッスン</span>L09 数の計算の工夫——公式を計算の道具にする</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>08</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入地図の順番どおりに調べる" href="lesson_08.html#%E5%B0%8E%E5%85%A5%E5%9C%B0%E5%9B%B3%E3%81%AE%E9%A0%86%E7%95%AA%E3%81%A9%E3%81%8A%E3%82%8A%E3%81%AB%E8%AA%BF%E3%81%B9%E3%82%8B">導入：地図の順番どおりに調べる</a></li><li><a data-section-link="主概念12段構えと置き換え" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B512%E6%AE%B5%E6%A7%8B%E3%81%88%E3%81%A8%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88">主概念1：2段構えと置き換え</a></li><li><a data-section-link="主概念2展開因数分解の往復" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%B1%95%E9%96%8B%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3%E3%81%AE%E5%BE%80%E5%BE%A9">主概念2：展開⇄因数分解の往復</a></li><li><a data-section-link="練習" href="lesson_08.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

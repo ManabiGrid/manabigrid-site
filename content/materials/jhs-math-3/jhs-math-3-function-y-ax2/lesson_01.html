@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L01 関数の物語・第3幕——2乗に比例との出会い">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L01 関数の物語・第3幕——2乗に比例との出会い｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L01 関数の物語・第3幕——2乗に比例との出会い">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L01 関数の物語・第3幕——2乗に比例との出会い｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="d6ba5e588b5e51bc0f04b4996e6b3a5e3716914e8e9204c4053aec0f475da6d6" data-source-file="materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-function-y-ax2/index.html">中3数学「関数y=ax²」</a></li><li aria-current="page">L01 関数の物語・第3幕——2乗に比例との出会い</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="d6ba5e588b5e51bc0f04b4996e6b3a5e3716914e8e9204c4053aec0f475da6d6" data-source-file="materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「関数y=ax²」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l01-関数の物語第3幕2乗に比例との出会い"><span class="lesson-title-main">L01 関数の物語・第3幕</span><span class="lesson-title-sub">2乗に比例との出会い</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>中1・中2で学んだ関数の道具（関数の意味・比例・反比例・一次関数・変化の割合）を点検し、使える状態にする。</p></li><li><p>比例でも一次関数でもない、<strong>新しい増え方をする関数</strong>に出会う。「xがm倍になると、yがm²倍になる」という性質に自分で気づく。</p></li></ul>
+<h2 id="準備運動道具箱の点検前提診断">準備運動：道具箱の点検（前提診断）</h2>
+<p>この章は、中学3年間の「関数」の総仕上げだ。はじめる前に、これまでの道具がそろっているか点検してみよう。</p>
+<ol start="1"><li><p>「yはxの関数である」とはどういう意味だったか、自分の言葉で言ってみよう。</p></li><li><p>空の水そうに水を入れる。1分あたり2Lずつ入れるとき、x分後の水の量をy Lとする。yをxの式で表そう。また、xとyのどちらが「決める側」の変数だろうか。</p></li><li><p>次の関数の式を、比例・反比例・一次関数に分けてみよう。  (ア) y＝3x　(イ) y＝−2x＋5　(ウ) y＝6/x</p></li><li><p>一次関数 y＝2x＋1 について、xの値が1から4まで増えるときの変化の割合を求めよう。</p></li><li><p>【意味の確認】「変化の割合」とは何を何で割ったものだったか、言葉で言ってみよう。</p></li></ol>
+<p>1と5は、この章の主役級の考え方だ。とくに5を「yの増えた分のこと」と答えた人は、あとでつまずきやすいポイントなので、いま確認しておこう。変化の割合は（yの増加量）<strong>÷（xの増加量）</strong>——引き算の結果ではなく、割り算の結果だ。あやしかった人は中1・中2の関数の章に一度戻っておくと、この先がぐっと楽になる。</p>
+<h2 id="主概念1同じ正方形からちがう増え方が生まれる">主概念1：同じ正方形から、ちがう増え方が生まれる</h2>
+<p>1辺がx cmの正方形を考えよう。この正方形から、2つの量が決まる。</p>
+<ul><li><p>まわりの長さ y＝4x（cm）</p></li><li><p>面積 y＝x²（cm²）</p></li></ul>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 172" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-4da9ec6a00-title" aria-describedby="mg-4da9ec6a00-desc">
+<title id="mg-4da9ec6a00-title">1辺1〜4cmの正方形——まわりの長さと面積</title>
+<desc id="mg-4da9ec6a00-desc">1辺1〜4cmの正方形——まわりの長さと面積</desc>
+<!-- L01_fig1_growing_squares.svg | 1辺1〜4cmの正方形——まわりの長さと面積 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="428" height="172" fill="#fff"/>
+<rect x="24.0" y="94.0" width="26.0" height="26.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<text x="37.0" y="89.0" font-size="11" text-anchor="middle">1辺1cm</text>
+<text x="37.0" y="138.0" font-size="12" text-anchor="middle">まわり4cm</text>
+<text x="37.0" y="154.0" font-size="12" text-anchor="middle">面積1cm²</text>
+<rect x="90.0" y="68.0" width="52.0" height="52.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="116.0" y1="68.0" x2="116.0" y2="120.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="90.0" y1="94.0" x2="142.0" y2="94.0" stroke="#bbb" stroke-width="0.8"/>
+<text x="116.0" y="63.0" font-size="11" text-anchor="middle">1辺2cm</text>
+<text x="116.0" y="138.0" font-size="12" text-anchor="middle">まわり8cm</text>
+<text x="116.0" y="154.0" font-size="12" text-anchor="middle">面積4cm²</text>
+<rect x="182.0" y="42.0" width="78.0" height="78.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="208.0" y1="42.0" x2="208.0" y2="120.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="182.0" y1="68.0" x2="260.0" y2="68.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="234.0" y1="42.0" x2="234.0" y2="120.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="182.0" y1="94.0" x2="260.0" y2="94.0" stroke="#bbb" stroke-width="0.8"/>
+<text x="221.0" y="37.0" font-size="11" text-anchor="middle">1辺3cm</text>
+<text x="221.0" y="138.0" font-size="12" text-anchor="middle">まわり12cm</text>
+<text x="221.0" y="154.0" font-size="12" text-anchor="middle">面積9cm²</text>
+<rect x="300.0" y="16.0" width="104.0" height="104.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="326.0" y1="16.0" x2="326.0" y2="120.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="300.0" y1="42.0" x2="404.0" y2="42.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="352.0" y1="16.0" x2="352.0" y2="120.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="300.0" y1="68.0" x2="404.0" y2="68.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="378.0" y1="16.0" x2="378.0" y2="120.0" stroke="#bbb" stroke-width="0.8"/>
+<line x1="300.0" y1="94.0" x2="404.0" y2="94.0" stroke="#bbb" stroke-width="0.8"/>
+<text x="352.0" y="11.0" font-size="11" text-anchor="middle">1辺4cm</text>
+<text x="352.0" y="138.0" font-size="12" text-anchor="middle">まわり16cm</text>
+<text x="352.0" y="154.0" font-size="12" text-anchor="middle">面積16cm²</text>
+</svg>
+</div><figcaption>1辺1〜4cmの正方形——まわりの長さと面積</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L01_fig1_growing_squares.svg">図だけを開く</a></figure>
+<p>どちらも、xの値を決めるとyの値がただ1つ決まる。つまりどちらも<strong>yはxの関数</strong>だ。では、増え方も同じだろうか？ 表で比べてみよう。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="x（cm）・1・2の表（1）"><table><thead><tr><th scope="col">x（cm）</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr></thead><tbody><tr><td>まわりの長さ y＝4x</td><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td><td>24</td></tr><tr><td>面積 y＝x²</td><td>1</td><td>4</td><td>9</td><td>16</td><td>25</td><td>36</td></tr></tbody></table></div>
+<p>まわりの長さは、中1で学んだ比例そのものだ。xが2倍・3倍になると、yも2倍・3倍になる。</p>
+<p>面積の行をよく見てみよう。xが1から2へ<strong>2倍</strong>になると、yは1から4へ、<strong>4倍</strong>になっている。xが1から3へ<strong>3倍</strong>になると、yは1から9へ<strong>9倍</strong>。2倍なのに4倍、3倍なのに9倍。比例のルール「xが2倍ならyも2倍」が、ここでは成り立っていない。</p>
+<h2 id="主概念2新しい増え方m倍するとm2倍">主概念2：新しい増え方——m倍するとm²倍</h2>
+<p>面積の増え方には、それでもきちんとしたきまりがある。</p>
+<p><strong>xの値がm倍になると、yの値はm²倍になる。</strong></p>
+<p>2倍→2²＝4倍、3倍→3²＝9倍、4倍→4²＝16倍。表で確かめてみよう。xが2から6へ3倍になるところでは、yは4から36へ、たしかに9倍になっている。</p>
+<p>この増え方は、比例（m倍→m倍）ともちがうし、反比例（m倍→1/m倍）ともちがう。一次関数 y＝4x＋1 のような「一定の割合で増える」形ともちがう。中1・中2の道具箱のどれにも当てはまらない、<strong>新しいタイプの関数</strong>が目の前に現れた。</p>
+<p>ふり返れば、関数の学びは物語のように進んできた。中1では比例と反比例。中2では比例を仲間にふくむ一次関数へと広がった。そして中3のいま、目の前にあるのは「2乗」というひとひねりの入った関数——第3幕の主役だ。次のレッスンで、この関数に正式な名前をつけよう。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>同じ「増える」でも、増え方には個性がある。1歩ごとに同じ高さだけ上る階段が一次関数だとすると、この新顔は、進むほど1段の高さが増していく階段だ。最初はゆるやかなのに、気がつくと目もくらむ高さになっている。この「あとから効いてくる」感じが、2乗という演算の持ち味だ。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ「まわりの長さ」と「面積」を並べたのか</strong></p>
+<p>新しいものは、よく知っているものと並べたときにいちばんくっきり見える。この教材ではこの先ずっと、「一次関数（比例）ではこうだった→y=x²の仲間ではどうか」という比べ方を繰り返し使う。同じ1つの正方形から出発しても、「長さ」を測るか「面積」を測るかで関数のタイプが変わる——この対比が、章全体の見取り図になる。新しい性質に出会うたびに「一次関数のときはどうだったか」と自分に問い直すことを、この章の読み方の型にしてほしい。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「変化の割合＝yの差」と思っていた人へ</strong></p>
+<p>準備運動の5は、この章の合否を分けるくらい大事な確認だ。変化の割合は、yの増加量そのものではなく、（yの増加量）÷（xの増加量）という<strong>割り算の値</strong>である。一次関数ではこの値がいつも一定（yの増加量だけ見ても、xが1ずつ増えるなら差は一定）だったから、「差」と「割合」を区別しなくても答えが合ってしまうことが多かった。しかしこの章の関数では、差も割合も場所によって変わる。区別があいまいなままだと、L08で混乱しやすい。いまのうちに「割合は割り算」と言葉ごと整えておこう。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「決める側」と「決まる側」</strong></p>
+<p>準備運動の2で問うた「どちらが決める側か」は、関数の意味の核心だ。x（時間）を決めると、y（水の量）がただ1つ決まる——このとき「yはxの関数である」という。逆に「yを決めればxも決まるのでは？」と思った人は、よい着眼だ。ただ、関数という言葉は「どちらを決める側とみなして考えているか」という<strong>見方の宣言</strong>でもある。この章では一貫して「xを決める→yが決まる」の向きで考える。表を作るときも、決める側のxを等間隔に並べるのが定石だ。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>1辺x cmの立方体がある。次の量のうち、「xの値を決めるとただ1つに決まる量」をすべて選ぼう。  (ア) 1つの面の面積　(イ) すべての辺の長さの合計　(ウ) この立方体を作るのにかかる時間</p></li><li><p>底辺x cm・高さx cmの三角形の面積をy cm²とする。yをxの式で表そう。また、xの値が2倍になると、yの値は何倍になるか。表を作って確かめよう（x＝1, 2, 3, 4）。</p></li><li><p>次の表は、ある関数のxとyの対応を表している。xが2倍・3倍になるとyがそれぞれ何倍になるかを調べ、この関数が「比例」「m倍→m²倍の新しいタイプ」のどちらの増え方をしているか答えよう。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="x・1・2の表（2）"><table><thead><tr><th scope="col">x</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead><tbody><tr><td>y</td><td>3</td><td>12</td><td>27</td><td>48</td></tr></tbody></table></div></li><li><p>一次関数 y＝5x について、xが1から2になるときと、2から3になるときの変化の割合をそれぞれ求めよう。y＝x²（上の面積の関数）についても同じ2つの区間で変化の割合を求め、気づいたことを一言書いてみよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 1辺x cmの立方体の体積をy cm³とする。xの値が2倍・3倍になると、yの値はそれぞれ何倍になるだろうか。x＝1, 2, 3で表を作って調べ、「m倍→何倍」の形でまとめてみよう。長さ（1乗）・面積（2乗）・体積（3乗）で増え方がどう変わるか、見比べてみよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-05.md</p><a class="answer-link" href="answer_key_L01-05.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-function-y-ax2/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 「yはxの2乗に比例する」——定義と式の決定</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>01</strong> / 13</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_01.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="準備運動道具箱の点検前提診断" href="lesson_01.html#%E6%BA%96%E5%82%99%E9%81%8B%E5%8B%95%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E7%82%B9%E6%A4%9C%E5%89%8D%E6%8F%90%E8%A8%BA%E6%96%AD">準備運動：道具箱の点検（前提診断）</a></li><li><a data-section-link="主概念1同じ正方形からちがう増え方が生まれる" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%90%8C%E3%81%98%E6%AD%A3%E6%96%B9%E5%BD%A2%E3%81%8B%E3%82%89%E3%81%A1%E3%81%8C%E3%81%86%E5%A2%97%E3%81%88%E6%96%B9%E3%81%8C%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B">主概念1：同じ正方形から、ちがう増え方が生まれる</a></li><li><a data-section-link="主概念2新しい増え方m倍するとm2倍" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%96%B0%E3%81%97%E3%81%84%E5%A2%97%E3%81%88%E6%96%B9m%E5%80%8D%E3%81%99%E3%82%8B%E3%81%A8m2%E5%80%8D">主概念2：新しい増え方——m倍するとm²倍</a></li><li><a data-section-link="練習" href="lesson_01.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

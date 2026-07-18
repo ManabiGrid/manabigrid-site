@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid 制作資料: 巻末資料② この教材の図は、ぜんぶプログラムで描かれている">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="巻末資料② この教材の図は、ぜんぶプログラムで描かれている｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid 制作資料: 巻末資料② この教材の図は、ぜんぶプログラムで描かれている">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-appendix/appendix_figure_provenance.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>巻末資料② この教材の図は、ぜんぶプログラムで描かれている｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-appendix/appendix_figure_provenance.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-reference" data-source-sha256="25b41f7466289970d28b4ef04df355c5dba5d4e3cc87e99e2a4dd7c3cec70a8b" data-source-file="materials/jhs-math-3/jhs-math-3-appendix/appendix_figure_provenance.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-appendix/index.html">中3数学 巻末資料</a></li><li aria-current="page">巻末資料② この教材の図は、ぜんぶプログラムで描かれている</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="25b41f7466289970d28b4ef04df355c5dba5d4e3cc87e99e2a4dd7c3cec70a8b" data-source-file="materials/jhs-math-3/jhs-math-3-appendix/appendix_figure_provenance.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">制作資料</span><span>中学3年 数学 ／ 中3数学 巻末資料</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="巻末資料2-この教材の図はぜんぶプログラムで描かれている"><span class="lesson-title-main">巻末資料② この教材の図は、ぜんぶプログラムで描かれている</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-appendix/appendix_figure_provenance.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-appendix/appendix_figure_provenance.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container notice" role="note"><strong>制作資料です。</strong>生徒向けの学習本文ではなく、指導・設計・図版来歴の記録です。</div><article class="container lesson-body"><p>この教材の図版は、1枚残らず<strong>プログラム（Python）で描かれている</strong>。手描きの図や、どこかから借りてきた画像は1枚もない。各単元の <code>assets_provenance/generate_figures.py</code> というスクリプトが、レッスン本文と同じ数値から図を計算して描き出している。</p>
+<p>これが意味することは2つある。</p>
+<ol start="1"><li><p><strong>図の数値のうち、スクリプトが検算している条件は本文と食いちがわない。</strong> スクリプトは図を描くとき、「3²＋4²＝5²になっているか」のような検算を自分で実行し、1つでも合わなければ図を出力せずに止まる仕組みになっている。</p></li><li><p><strong>きみは図を「作り直せる」。</strong> スクリプトの数値を変えて実行し直せば、自分の練習用の図が作れる。教材の図は完成品ではなく、さわれる道具だ。</p></li></ol>
+<h2 id="単元別図版一覧2026-07-12時点の実測">単元別・図版一覧（2026-07-12時点の実測）</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="単元・図版数（SVG）・生成スクリプトの表（1）"><table><thead><tr><th scope="col">単元</th><th scope="col">図版数（SVG）</th><th scope="col">生成スクリプト</th><th scope="col">図版台帳</th></tr></thead><tbody><tr><td>式の展開と因数分解</td><td>12枚</td><td><code>materials/jhs-math-3/jhs-math-3-expansion-factorization/assets_provenance/generate_figures.py</code></td><td>同フォルダの <code>FIGURE_MANIFEST.md</code></td></tr><tr><td>平方根</td><td>8枚</td><td><code>materials/jhs-math-3/jhs-math-3-square-roots/assets_provenance/generate_figures.py</code></td><td>同上</td></tr><tr><td>二次方程式</td><td>6枚</td><td><code>materials/jhs-math-3/jhs-math-3-quadratic-equations/assets_provenance/generate_figures.py</code></td><td>同上</td></tr><tr><td>関数y=ax²</td><td>16枚</td><td><code>materials/jhs-math-3/jhs-math-3-function-y-ax2/assets_provenance/generate_figures.py</code></td><td>同上</td></tr><tr><td>相似な図形</td><td>20枚</td><td><code>materials/jhs-math-3/jhs-math-3-similar-figures/assets_provenance/generate_figures.py</code></td><td>同上</td></tr><tr><td>円周角</td><td>34枚</td><td><code>materials/jhs-math-3/jhs-math-3-inscribed-angle/assets_provenance/generate_figures.py</code></td><td>同上</td></tr><tr><td>三平方の定理</td><td>21枚</td><td><code>materials/jhs-math-3/jhs-math-3-pythagorean-theorem/assets_provenance/generate_figures.py</code></td><td>同上</td></tr><tr><td>標本調査</td><td>8枚</td><td><code>materials/jhs-math-3/jhs-math-3-sampling-survey/assets_provenance/generate_figures.py</code></td><td>同上</td></tr></tbody></table></div>
+<p>合計: <strong>125枚</strong>（8単元・実測・2026-07-12更新）。</p>
+<p>各単元の <code>FIGURE_MANIFEST.md</code> には、図1枚ごとに「どのレッスンのどの箇所の図か」「どんなパラメータで描いたか」「どんな検算に合格したか」が記録されている。図版は手で編集せず、スクリプトを直して再実行するのが決まりだ（台帳も自動で作り直される）。</p>
+<h2 id="改変の始め方自分の図を作る3ステップ">改変の始め方——自分の図を作る3ステップ</h2>
+<ol start="1"><li><p><strong>パラメータブロックを見つける。</strong> <code>generate_figures.py</code> を開くと、図1枚につき <code>fig_...</code> という関数が1つある。その<strong>関数の冒頭に「パラメータ」ブロック</strong>（辺の長さ・座標などの数値）がまとめてある。例えば三平方の定理のL01の図なら「直角をはさむ2辺=3, 4マス」といった数値がそこにある。</p></li><li><p><strong>数値を変える。</strong> 3と4を、自分の解きたい組に変えてみる。教材の正本の図を作るときは、数値を該当レッスン本文と一致させるのがルール（スクリプト冒頭の注記に明記されている）。自分の練習用なら自由でよい。</p></li><li><p><strong>実行し直す。</strong> ターミナルでそのフォルダに移動して <code>python3 generate_figures.py</code> を実行すると、<code>../assets/</code> にSVGファイルが描き直される。必要なものはPython 3の標準ライブラリだけで、追加のインストールは不要だ。なお <code>../assets/</code> は教材の正本の図の置き場なので、自分の練習用の図は、スクリプトをコピーして出力先を別のフォルダに変えて作るのがおすすめだ。正本の図を上書きしてしまったときは、数値を該当レッスン本文の値に戻して実行し直せば、元の図に復元できる。</p></li></ol>
+<p>数値の組み合わせによっては、スクリプト内の検算（もとの図の前提を確かめるassert）に引っかかって止まることがある。止まる原因は1つに決めつけないこと。多くは「その数値ではこの図の前提が成り立たない」という入力側の知らせだが、スクリプト側の不具合や、スクリプトが想定していない範囲の数値（未対応範囲）の場合もある。エラーメッセージを読むと、図が何を検算していたかが分かる。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ「図の来歴」をわざわざ巻末に書くのか</strong></p>
+<p>図がプログラム生成であることは、この教材の透明性の柱の1つだ（図の来歴を公開する設計判断）。図の出どころがコードとして残っていれば、①誰でも、図の数値のうちスクリプト内で検算している条件を検査できる、②検算している範囲では図と本文の食いちがいが構造的に起きにくい、③学習者・指導者が図を再利用・改変できる。「この図はどうやってできたのか」に完全な答えがある教材は多くない。スクリプト本体には第三者向けの改修方法の注記もあるので、プログラミングに興味があれば覗いてみてほしい。中3数学の図が、座標と検算でできていることが見てとれる。</p></div>
+<h2 id="この図をaiといっしょに使う説明は図の中に入っている">この図をAIといっしょに使う——説明は図の中に入っている</h2>
+<p>この教材のSVG図版には、1枚ずつ<strong>AI向けの説明が図のファイル自体に埋め込まれている</strong>。SVGの <code>&lt;title&gt;</code>／<code>&lt;desc&gt;</code> という正式な要素で、コメントより残りやすい。ただし、SVGの変換・圧縮や利用サービスによっては失われる場合がある。中身は3点セットだ。</p>
+<ol start="1"><li><p><strong>図の名前</strong>（<code>&lt;title&gt;</code>）</p></li><li><p><strong>図の意図と、主要な数値・設定</strong>（<code>&lt;desc&gt;</code> の前半）</p></li><li><p><strong>同じ種類の図をAIに描かせるときの説明文</strong>（<code>&lt;desc&gt;</code> の後半。そのままAIへの依頼文に使える形で書いてある）</p></li></ol>
+<p>つまり、図のSVGファイルをそのまま生成AIに渡せば（中身のテキストを貼り付ければ）、AIは「この図が何のための図で、どんな数値でできているか」を読み取れる（サービスがSVG内のテキストを読まない場合は、中身のテキストを貼り付ければよい）。きみが説明を一から書く必要は、ほとんどの場合ない。</p>
+<p><strong>プロンプト例3つ</strong>（図のSVGを渡したうえで）:</p>
+<ul><li><p>例1（数値だけ変える）: 「このSVGの<code>&lt;desc&gt;</code>を読んで、<strong>同じ設定で数値だけ変えた図</strong>を描いて。新しい数値は自分で決めて、変えた箇所を先に一覧で示して」</p></li><li><p>例2（類題を作る）: 「このSVGの<code>&lt;desc&gt;</code>にある図の意図を読んで、<strong>同じ考え方を確かめられる別の場面の問題</strong>を1問作り、その問題に合う図もいっしょに描いて」</p></li><li><p>例3（図を説明させる）: 「このSVGを読んで、<code>&lt;desc&gt;</code>の意図をふまえ、<strong>この図が何を示そうとしているのか</strong>を中学3年生に分かる言葉で説明して」</p></li></ul>
+<p>AIに描かせる方法（この節）と、<code>generate_figures.py</code> の数値を変えて作り直す方法（上の「改変の始め方——自分の図を作る3ステップ」）は使い分けられる。<strong>正確さが必要なら</strong>スクリプト。数学条件の一部を自動で検査してくれる（ただし、ラベルの重なりなど見た目の品質は別もので、自分の目で確かめる）。<strong>手早く試したい・場面ごと変えたいなら</strong>AI。自由だが、数値の正しさは自分で確かめること。AIに描かせた図が気に入ったら、その数値をスクリプトのパラメータブロックに移して実行し直せば、数学条件の検査を通した図になる（教材の正式な図にするには、見た目の確認と本文との照合という別の関門を通す）。</p>
+<h2 id="ライセンス注記">ライセンス注記</h2>
+<p>図版・生成スクリプトの利用条件（ライセンス表記）は <strong>CC-BY-4.0 で確定済み</strong>。本パッケージのライセンス表記（各ファイルのfrontmatter）に従う。</p></article></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

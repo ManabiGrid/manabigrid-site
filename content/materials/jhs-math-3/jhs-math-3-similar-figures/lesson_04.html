@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L04 相似の証明①（構想）">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L04 相似の証明①（構想）｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L04 相似の証明①（構想）">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L04 相似の証明①（構想）｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="8908ff24593d747ec4e564d73ce2a3e0c3529de0ef946b4bc801df9fe3ff6a6d" data-source-file="materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-similar-figures/index.html">中3数学「相似な図形」</a></li><li aria-current="page">L04 相似の証明①（構想）</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="8908ff24593d747ec4e564d73ce2a3e0c3529de0ef946b4bc801df9fe3ff6a6d" data-source-file="materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「相似な図形」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l04-相似の証明1構想"><span class="lesson-title-main">L04 相似の証明①（構想）</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入書く前に地図をかく" href="lesson_04.html#%E5%B0%8E%E5%85%A5%E6%9B%B8%E3%81%8F%E5%89%8D%E3%81%AB%E5%9C%B0%E5%9B%B3%E3%82%92%E3%81%8B%E3%81%8F">導入：書く前に、地図をかく</a></li><li><a data-section-link="主概念1根拠リストが2つ増えた" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E6%A0%B9%E6%8B%A0%E3%83%AA%E3%82%B9%E3%83%88%E3%81%8C2%E3%81%A4%E5%A2%97%E3%81%88%E3%81%9F">主概念1：根拠リストが2つ増えた</a></li><li><a data-section-link="主概念2構想は結論から逆向きに" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%A7%8B%E6%83%B3%E3%81%AF%E7%B5%90%E8%AB%96%E3%81%8B%E3%82%89%E9%80%86%E5%90%91%E3%81%8D%E3%81%AB">主概念2：構想は結論から逆向きに</a></li><li><a data-section-link="例題1" href="lesson_04.html#%E4%BE%8B%E9%A1%8C1">例題1</a></li><li><a data-section-link="例題2" href="lesson_04.html#%E4%BE%8B%E9%A1%8C2">例題2</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li><li><a data-section-link="雑談枠道具箱は学年とともに育つ" href="lesson_04.html#%E9%9B%91%E8%AB%87%E6%9E%A0%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AF%E5%AD%A6%E5%B9%B4%E3%81%A8%E3%81%A8%E3%82%82%E3%81%AB%E8%82%B2%E3%81%A4">雑談枠：道具箱は学年とともに育つ</a></li><li><a data-section-link="stretch発展分離枠" href="lesson_04.html#stretch%E7%99%BA%E5%B1%95%E5%88%86%E9%9B%A2%E6%9E%A0">stretch（発展・分離枠）</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>中2で使った証明の根拠リストに、相似の性質と三角形の相似条件が<strong>加わった</strong>ことを確認する。</p></li><li><p>証明を書き出す前に、結論から逆向きにたどる<strong>方針メモ（構想）</strong> を立てられるようになる。</p></li></ul>
+<h2 id="導入書く前に地図をかく">導入：書く前に、地図をかく</h2>
+<p>中2の証明で、いきなり書き始めて途中で止まってしまった経験はないだろうか？ 証明が書けない原因の多くは、書く技術ではなく「方針がないまま書き始めること」にある。今日は<strong>証明を1行も書かない</strong>。その代わり、証明の設計図＝方針メモの立て方だけを徹底的に練習する。</p>
+<h2 id="主概念1根拠リストが2つ増えた">主概念1：根拠リストが2つ増えた</h2>
+<p>中2の証明で根拠として使えたのは、対頂角の性質・平行線の性質と条件・三角形の合同条件・合同な図形の性質などだった。中3では、ここに次の2つが<strong>新しく加わる</strong>。</p>
+<ul><li><p><strong>三角形の相似条件</strong>（L03の3つ。相似であることを示すときの根拠）</p></li><li><p><strong>相似な図形の性質</strong>（対応する線分の比はすべて等しい・対応する角はそれぞれ等しい。相似が示せた<strong>あと</strong>に、辺の比や角の相等を導く根拠）</p></li></ul>
+<p>書式は中2とまったく同じ。使った根拠は〔 〕で明示する。〔仮定〕〔対頂角は等しい〕〔対応する2組の角がそれぞれ等しい〕のように。新しい道具が2つ増えただけで、証明という営みの型は変わらない。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「条件」と「性質」は役割がちがう。ここで区別しておくと後がラク</strong></p>
+<p>新しく増えた2つの根拠は、使う場面が正反対だ。<strong>相似条件は「相似であることをこれから示す」ときの根拠</strong>、<strong>相似な図形の性質は「相似が示せたあとで、辺の比や角の相等を取り出す」ときの根拠</strong>である。つまずきやすいのは、この2つの区別があいまいなまま証明に入ることだ。「まだ示していない相似」から性質を取り出してしまうと、次のレッスンで学ぶ循環論法にまっすぐ落ちる。方針メモを書くとき、「いま相似を示そうとしているのか、示せた相似を使おうとしているのか」を一言つぶやく癖をつけておこう。</p></div>
+<h2 id="主概念2構想は結論から逆向きに">主概念2：構想は結論から逆向きに</h2>
+<p>方針メモは、次の3ステップで<strong>結論から逆向きに</strong>たどって作る。</p>
+<ol start="1"><li><p><strong>結論を確認する</strong>: 何を示したい？（△○∽△○か、それとも辺の比・角の相等か）</p></li><li><p><strong>条件を選ぶ</strong>: 相似を示すなら、3つの相似条件のどれが使えそうか？ 図の情報を見て選ぶ。<strong>辺の長さが多く与えられていれば比の条件、角の印が多ければ「対応する2組の角」</strong> が第一候補。</p></li><li><p><strong>材料を集める</strong>: 選んだ条件に必要な「等しい組」を、図のどこから調達できるか探す。調達先はたとえば、仮定・対頂角・共通な角。</p></li></ol>
+<p>方針メモの書き方（矢印は「←」で逆向きに）:</p>
+<blockquote><p>△OAB∽△ODC を示したい ← 使えそうな条件: 対応する2組の辺の比とその間の角 ← 材料: OA:OD=OB:OC〔仮定の長さから〕、∠AOB=∠DOC〔対頂角〕</p></blockquote>
+<p>ここまでできれば、証明の清書（次のレッスン）は方針メモを文章に直すだけになる。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ「証明を1行も書かない」レッスンがあるのか</strong></p>
+<p>証明の学習でいちばん多い挫折は「何を書けばいいか分からず、1行も書けない」だ。その原因を分解すると、書く技術ではなく、①結論から後ろ向きに考える発想そのものに慣れていない、②どの条件を選べばよいか判断できない、③「条件」と「性質」の区別があいまい、の3つに行き着くことが多い。このレッスンはその3つに1つずつ手当てをしている。①には「←」で結論から逆向きに書く方針メモの型、②には「辺の長さが多ければ比の条件、角の印が多ければ2組の角」という選択の目安、③には主概念1の役割分離だ。「書けない」が「方針だけなら言える」に変われば、証明の半分は越えている。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>材料の調達先は、いまは3つで足りる</strong></p>
+<p>このレッスンで登場する「等しい組の調達先」は、仮定・対頂角・共通な角の3つに意図的に絞ってある。図形の問題では他にも調達先があるのでは、と思ったら鋭い——次の節（平行線と線分の比）で、平行線の同位角・錯角が新しい調達先として加わる。調達先リストは、根拠リストと同じように学習が進むほど育っていく。いまは3つの調達先を「図のどこに隠れているか」まで含めて確実に見つけられるようになることが先決だ。</p></div>
+<h2 id="例題1">例題1</h2>
+<p>線分ADと線分BCが点Oで交わっていて、OA=4cm、OB=6cm、OC=9cm、OD=6cm。△OABと△ODCが相似であることを証明するための方針メモを作ろう（証明はまだ書かない）。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 248" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-c317af145e-title" aria-describedby="mg-c317af145e-desc">
+<title id="mg-c317af145e-title">証明の構想① 交差配置（AD×BC＝O）</title>
+<desc id="mg-c317af145e-desc">点Oで交わる線分と2つの三角形</desc>
+<!-- L04_fig1_crossing_segments.svg | 証明の構想① 交差配置（AD×BC＝O） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="420" height="248" fill="#fff"/>
+<line x1="96.0" y1="65.0" x2="225.9" y2="140.0" stroke="#000" stroke-width="1.6"/>
+<line x1="216.9" y1="37.1" x2="44.6" y2="181.8" stroke="#000" stroke-width="1.6"/>
+<line x1="96.0" y1="65.0" x2="216.9" y2="37.1" stroke="#000" stroke-width="1.6"/>
+<line x1="225.9" y1="140.0" x2="44.6" y2="181.8" stroke="#000" stroke-width="1.6"/>
+<circle cx="148.0" cy="95.0" r="2.5" fill="#000"/>
+<text x="160.0" y="115.0" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<circle cx="96.0" cy="65.0" r="2.5" fill="#000"/>
+<text x="83.0" y="61.0" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="216.9" cy="37.1" r="2.5" fill="#000"/>
+<text x="229.9" y="33.1" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="44.6" cy="181.8" r="2.5" fill="#000"/>
+<text x="30.6" y="193.8" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="225.9" cy="140.0" r="2.5" fill="#000"/>
+<text x="239.9" y="152.0" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<text x="116.0" y="94.6" font-size="12" text-anchor="middle">4cm</text>
+<text x="190.2" y="79.5" font-size="12" text-anchor="middle">6cm</text>
+<text x="104.6" y="152.5" font-size="12" text-anchor="middle">9cm</text>
+<text x="180.5" y="133.0" font-size="12" text-anchor="middle">6cm</text>
+<text x="210.0" y="214.0" font-size="12" text-anchor="middle">線分ADと線分BCが点Oで交わる。OA=4cm，OB=6cm，OC=9cm，OD=6cm</text>
+<text x="210.0" y="231.0" font-size="12" text-anchor="middle">（例題1: △OAB∽△ODCの方針メモを作る——条件と材料を図から探す）</text>
+</svg>
+</div><figcaption>点Oで交わる線分と2つの三角形</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-similar-figures/assets/L04_fig1_crossing_segments.svg">図だけを開く</a></figure>
+<p><strong>考え方</strong>:</p>
+<ol start="1"><li><p>結論: △OAB∽△ODC（対応はO↔O、A↔D、B↔C）。</p></li><li><p>条件選び: 与えられているのは辺の長さ4つと、交わってできる角。角の大きさの値はないが、<strong>対頂角</strong>という角の相等が図に隠れている。→「対応する2組の辺の比とその間の角」が候補。</p></li><li><p>材料集め: OA:OD=4:6=2:3、OB:OC=6:9=2:3——2組の比がそろった！ その間の角は∠AOBと∠DOCで、これは対頂角。</p></li></ol>
+<blockquote><p>△OAB∽△ODC を示したい ← 対応する2組の辺の比とその間の角 ← OA:OD=OB:OC=2:3〔仮定の長さ〕、∠AOB=∠DOC〔対頂角は等しい〕</p></blockquote>
+<h2 id="例題2">例題2</h2>
+<p>△ABCの辺AB上に点D、辺AC上に点Eがあり、∠AED=∠ABCである。△ADEと△ACBが相似であることを証明するための方針メモを作ろう。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 235" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-f44d728a8b-title" aria-describedby="mg-f44d728a8b-desc">
+<title id="mg-f44d728a8b-title">証明の構想② 重なる配置（∠AED=∠ABC）</title>
+<desc id="mg-f44d728a8b-desc">重なる2つの三角形（∠AED=∠ABC）</desc>
+<!-- L04_fig2_overlapping_triangles.svg | 証明の構想② 重なる配置（∠AED=∠ABC） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="470" height="235" fill="#fff"/>
+<polygon points="247.7,35.4 115.0,160.0 323.0,160.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="181.9" y1="97.2" x2="306.0" y2="132.0" stroke="#000" stroke-width="1.6"/>
+<text x="251.0" y="25.3" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<text x="100.9" y="169.7" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<text x="336.7" y="170.6" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="181.9" cy="97.2" r="2.5" fill="#000"/>
+<text x="168.9" y="97.2" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<circle cx="306.0" cy="132.0" r="2.5" fill="#000"/>
+<text x="319.0" y="144.0" font-size="13" text-anchor="middle" font-weight="bold">E</text>
+<polyline points="298.8,120.0 298.4,120.3 297.9,120.6 297.5,120.9 297.1,121.2 296.7,121.6 296.3,121.9 295.9,122.3 295.6,122.7 295.2,123.1 294.9,123.5 294.6,123.9 294.3,124.4 294.0,124.8 293.8,125.3 293.5,125.7 293.3,126.2 293.1,126.7 292.9,127.2 292.7,127.7 292.6,128.2" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="125.2,150.4 125.6,150.8 125.9,151.2 126.2,151.6 126.5,152.1 126.8,152.5 127.1,152.9 127.4,153.4 127.6,153.9 127.8,154.4 128.0,154.8 128.2,155.3 128.4,155.8 128.5,156.3 128.6,156.9 128.8,157.4 128.8,157.9 128.9,158.4 129.0,158.9 129.0,159.5 129.0,160.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="235.0" y="199.0" font-size="12" text-anchor="middle">辺AB上に点D，辺AC上に点E，∠AED＝∠ABC（同じ弧＝等しい角・仮定）</text>
+<text x="235.0" y="216.0" font-size="12" text-anchor="middle">（例題2: △ADE∽△ACBの方針メモ——2組目の等しい角はどこから？）</text>
+</svg>
+</div><figcaption>重なる2つの三角形（∠AED=∠ABC）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-similar-figures/assets/L04_fig2_overlapping_triangles.svg">図だけを開く</a></figure>
+<p><strong>考え方</strong>:</p>
+<ol start="1"><li><p>結論: △ADE∽△ACB（対応はA↔A、D↔C、E↔B——∠AED=∠ABCの対応と合わせて記号の順を決める）。</p></li><li><p>条件選び: 辺の長さは1つも与えられていない。角の情報だけ。→「対応する2組の角がそれぞれ等しい」一択。</p></li><li><p>材料集め: 1組目は仮定の∠AED=∠ABC。2組目はどこから？——2つの三角形は<strong>∠Aを共有している</strong>。共通な角は、いつでも使える調達先だ。</p></li></ol>
+<blockquote><p>△ADE∽△ACB を示したい ← 対応する2組の角がそれぞれ等しい ← ∠AED=∠ABC〔仮定〕、∠Aは共通〔共通な角〕</p></blockquote>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>線分ABと線分CDが点Pで交わっていて、PA=8cm、PB=6cm、PC=12cm、PD=9cm。相似になっている三角形の組を見つけ、方針メモを作ろう。</p></li><li><p>△ABCの辺BC上に点Dがあり、∠BAD=∠BCAである。相似になっている三角形の組を見つけ、方針メモを作ろう（ヒント: 2つの三角形が共有しているものは何？）。</p></li></ol>
+<p>（解答は指導者用answer_key_S1に分離）</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><h2 id="雑談枠道具箱は学年とともに育つ">雑談枠：道具箱は学年とともに育つ</h2>
+<p>中2の合同は「移動して重なる」こと、相似の定義①は「拡大または縮小すれば合同になる」ことだった。定義が、前の学年の定義の上に積み上がっている！ 証明の根拠リストも同じで、中2の根拠一覧に今日、相似条件と相似の性質が加わった。数学の証明とは、こうして道具箱が少しずつ育っていく世界なのだ。</p></div>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><h2 id="stretch発展分離枠">stretch（発展・分離枠）</h2>
+<ul><li><p>例題2の点D・Eが、辺AB・ACの<strong>延長上</strong>にあるとしたら、同じ方針メモが通用するだろうか？ 図をかいて、材料の調達先がどう変わるか（共通な角は使える？ 対頂角は？）を考えてみよう。この「延長上でも成り立つか」という問いは、次の節（平行線と線分の比）で本格的に扱う。</p></li><li><p>方針メモの「材料の調達先」を自分の言葉でリスト化してみよう（今日登場したのは仮定・対頂角・共通な角の3つ。この先の学習で増えていく）。なお、入試でよく出る図形の配置のパターン整理は、本編とは別の入試対策レーンで扱う（予約）。</p></li></ul></div>
+<hr>
+<p>対応解答: answer_key_S1.md</p><a class="answer-link" href="answer_key_S1.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 三角形の相似条件</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-similar-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 相似の証明②（記述と検査）</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>04</strong> / 17</p><nav class="toc toc-long" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入書く前に地図をかく" href="lesson_04.html#%E5%B0%8E%E5%85%A5%E6%9B%B8%E3%81%8F%E5%89%8D%E3%81%AB%E5%9C%B0%E5%9B%B3%E3%82%92%E3%81%8B%E3%81%8F">導入：書く前に、地図をかく</a></li><li><a data-section-link="主概念1根拠リストが2つ増えた" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E6%A0%B9%E6%8B%A0%E3%83%AA%E3%82%B9%E3%83%88%E3%81%8C2%E3%81%A4%E5%A2%97%E3%81%88%E3%81%9F">主概念1：根拠リストが2つ増えた</a></li><li><a data-section-link="主概念2構想は結論から逆向きに" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%A7%8B%E6%83%B3%E3%81%AF%E7%B5%90%E8%AB%96%E3%81%8B%E3%82%89%E9%80%86%E5%90%91%E3%81%8D%E3%81%AB">主概念2：構想は結論から逆向きに</a></li><li><a data-section-link="例題1" href="lesson_04.html#%E4%BE%8B%E9%A1%8C1">例題1</a></li><li><a data-section-link="例題2" href="lesson_04.html#%E4%BE%8B%E9%A1%8C2">例題2</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li><li><a data-section-link="雑談枠道具箱は学年とともに育つ" href="lesson_04.html#%E9%9B%91%E8%AB%87%E6%9E%A0%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AF%E5%AD%A6%E5%B9%B4%E3%81%A8%E3%81%A8%E3%82%82%E3%81%AB%E8%82%B2%E3%81%A4">雑談枠：道具箱は学年とともに育つ</a></li><li><a data-section-link="stretch発展分離枠" href="lesson_04.html#stretch%E7%99%BA%E5%B1%95%E5%88%86%E9%9B%A2%E6%9E%A0">stretch（発展・分離枠）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

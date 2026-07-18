@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L01 関数を広げる——y=ax²から二次関数へ">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L01 関数を広げる——y=ax²から二次関数へ｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L01 関数を広げる——y=ax²から二次関数へ">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L01 関数を広げる——y=ax²から二次関数へ｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="38119c37d9942df46e03323ccd38ae945faa9281d2e55591c67986e4ca61b6b1" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L01 関数を広げる——y=ax²から二次関数へ</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="38119c37d9942df46e03323ccd38ae945faa9281d2e55591c67986e4ca61b6b1" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>高校 数学I ／ 高校数学Ⅰ「二次関数」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l01-関数を広げるyax2から二次関数へ"><span class="lesson-title-main">L01 関数を広げる</span><span class="lesson-title-sub">y=ax²から二次関数へ</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="1-中学で学んだことyはxの2乗に比例する" href="lesson_01.html#1-%E4%B8%AD%E5%AD%A6%E3%81%A7%E5%AD%A6%E3%82%93%E3%81%A0%E3%81%93%E3%81%A8y%E3%81%AFx%E3%81%AE2%E4%B9%97%E3%81%AB%E6%AF%94%E4%BE%8B%E3%81%99%E3%82%8B">1. 中学で学んだこと——「yはxの2乗に比例する」</a></li><li><a data-section-link="2-yax2-だけでは表せない場面" href="lesson_01.html#2-yax2-%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E8%A1%A8%E3%81%9B%E3%81%AA%E3%81%84%E5%A0%B4%E9%9D%A2">2. y=ax² だけでは表せない場面</a></li><li><a data-section-link="3-二次関数の定義高校で初めてつける名前" href="lesson_01.html#3-%E4%BA%8C%E6%AC%A1%E9%96%A2%E6%95%B0%E3%81%AE%E5%AE%9A%E7%BE%A9%E9%AB%98%E6%A0%A1%E3%81%A7%E5%88%9D%E3%82%81%E3%81%A6%E3%81%A4%E3%81%91%E3%82%8B%E5%90%8D%E5%89%8D">3. 二次関数の定義——高校で初めてつける名前</a></li><li><a data-section-link="4-yax2-のグラフの復習放物線軸頂点" href="lesson_01.html#4-yax2-%E3%81%AE%E3%82%B0%E3%83%A9%E3%83%95%E3%81%AE%E5%BE%A9%E7%BF%92%E6%94%BE%E7%89%A9%E7%B7%9A%E8%BB%B8%E9%A0%82%E7%82%B9">4. y=ax² のグラフの復習——放物線・軸・頂点</a></li><li><a data-section-link="5-aの符号と開き方" href="lesson_01.html#5-a%E3%81%AE%E7%AC%A6%E5%8F%B7%E3%81%A8%E9%96%8B%E3%81%8D%E6%96%B9">5. aの符号と開き方</a></li><li><a data-section-link="6-練習" href="lesson_01.html#6-%E7%B7%B4%E7%BF%92">6. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_01.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></details><ul><li><p>unit_id: hs-math-i-quadratic-functions</p></li><li><p>位置づけ: 単元第1レッスン（2時間）。中学既習の y=ax²・一次関数から「二次関数」への橋渡し。</p></li><li><p>distribution_status: published_draft</p></li><li><p>license: CC-BY-4.0</p></li><li><p>verify_required: 例題数値・記述は監修者検証必須。</p></li><li><p>主概念: ①二次関数の定義 ②y=ax²のグラフの復習（放物線・軸・頂点）</p></li></ul>
+<hr>
+<h2 id="1-中学で学んだことyはxの2乗に比例する">1. 中学で学んだこと——「yはxの2乗に比例する」</h2>
+<p>中学では、「yはxの2乗に比例する」関数 y=ax² を学んだ。たとえば y=2x² では、xの値を決めるとyの値がただ1つ決まる。表で確かめよう。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="x・−3・−2の表（1）"><table><thead><tr><th scope="col">x</th><th scope="col">−3</th><th scope="col">−2</th><th scope="col">−1</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th></tr></thead><tbody><tr><td>y=2x²</td><td>18</td><td>8</td><td>2</td><td>0</td><td>2</td><td>8</td><td>18</td></tr></tbody></table></div>
+<p>xを3倍にするとyは9倍（3²倍）になる。「xをm倍にするとyはm²倍」という性質も中学で確かめたとおりだ。この関数が、これから学ぶ内容の出発点になる。</p>
+<h2 id="2-yax2-だけでは表せない場面">2. y=ax² だけでは表せない場面</h2>
+<p>縦の長さが x cm、横の長さが縦より2cm長い長方形を考える。面積を y cm² とすると、</p>
+<p>y = x(x＋2) = x²＋2x</p>
+<p>となる。ここで x は長方形の縦の長さだから、<strong>x＞0</strong>（長さは正の数）でなければならない。式だけでなく、場面が x の範囲を決めていることにも注目しておこう（場面が x の範囲を決める話は、L07の文章題でくわしく再訪する）。</p>
+<p>表で見ると、x=1のとき y=3、x=2のとき y=8、x=3のとき y=15。yはxの値によってただ1つ決まるから、これも関数である。しかし y=ax² の形（xの2乗だけの式）では書けない。x² の項に加えて、x の項も混ざった式になっている。</p>
+<h2 id="3-二次関数の定義高校で初めてつける名前">3. 二次関数の定義——高校で初めてつける名前</h2>
+<p>y が x の2次式で表される関数、すなわち</p>
+<p>y = ax²＋bx＋c （a, b, c は定数、a≠0）</p>
+<p>を、x の<strong>二次関数</strong>という。「二次関数」という呼び名は高校で初めて登場するが、中身は新しいものばかりではない。中学の y=ax² は b=0, c=0 の場合であり、二次関数の仲間の1つである。先ほどの y=x²＋2x も a=1, b=2, c=0 の二次関数だ。</p>
+<p>同じように、中学で学んだ一次関数 y=ax＋b は「x の1次式で表される関数」だった。名前のつけ方がそろっていることを確認しておこう。</p>
+<p>なお、ここでしているのは <strong>「二次関数」という名前の定義だけ</strong>である。y=ax²＋bx＋c の形の式からグラフをかいたり頂点を調べたりする方法は、まだ扱わない（グラフの調べ方はL02〜L03で順に学ぶ）。このレッスンでは「どんな式を二次関数と呼ぶか」が判定できれば十分である。</p>
+<h2 id="4-yax2-のグラフの復習放物線軸頂点">4. y=ax² のグラフの復習——放物線・軸・頂点</h2>
+<p>y=x² のグラフを、1の表のような対応表からかいてみると、原点を通るなめらかな曲線になる。この形の曲線を<strong>放物線</strong>という。</p>
+<p>放物線には、次の2つの特徴がある。</p>
+<ul><li><p>グラフは y軸（直線 x=0）について左右対称である。この対称の軸となる直線を、放物線の<strong>軸</strong>という。</p></li><li><p>軸とグラフが交わる点を、放物線の<strong>頂点</strong>という。y=ax² の頂点は原点 (0, 0) である。</p></li></ul>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318 265" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-0f60322b98-title" aria-describedby="mg-0f60322b98-desc">
+<title id="mg-0f60322b98-title">y=x²の放物線と軸・頂点</title>
+<desc id="mg-0f60322b98-desc">y=x²の放物線と軸・頂点</desc>
+<!-- L01_fig1_parabola_axis_vertex.svg | y=x²の放物線と軸・頂点 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="318" height="265" fill="#fff"/>
+<line x1="38.0" y1="217.6" x2="233.4" y2="217.6" stroke="#000" stroke-width="1.2"/>
+<polygon points="240.4,217.6 233.4,220.8 233.4,214.4" fill="#000"/>
+<line x1="135.2" y1="238.6" x2="135.2" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="135.2,8.0 138.3,15.0 132.0,15.0" fill="#000"/>
+<text x="242.4" y="222.1" font-size="13" text-anchor="start">x</text>
+<text x="142.2" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="54.2" y1="214.6" x2="54.2" y2="220.6" stroke="#000" stroke-width="1.0"/>
+<line x1="81.2" y1="214.6" x2="81.2" y2="220.6" stroke="#000" stroke-width="1.0"/>
+<line x1="108.2" y1="214.6" x2="108.2" y2="220.6" stroke="#000" stroke-width="1.0"/>
+<line x1="162.2" y1="214.6" x2="162.2" y2="220.6" stroke="#000" stroke-width="1.0"/>
+<line x1="189.2" y1="214.6" x2="189.2" y2="220.6" stroke="#000" stroke-width="1.0"/>
+<line x1="216.2" y1="214.6" x2="216.2" y2="220.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="238.6" x2="138.2" y2="238.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="196.6" x2="138.2" y2="196.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="175.6" x2="138.2" y2="175.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="154.6" x2="138.2" y2="154.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="133.6" x2="138.2" y2="133.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="112.6" x2="138.2" y2="112.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="91.6" x2="138.2" y2="91.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="70.6" x2="138.2" y2="70.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="49.6" x2="138.2" y2="49.6" stroke="#000" stroke-width="1.0"/>
+<line x1="132.2" y1="28.6" x2="138.2" y2="28.6" stroke="#000" stroke-width="1.0"/>
+<text x="54.2" y="231.6" font-size="11" text-anchor="middle">−3</text>
+<text x="81.2" y="231.6" font-size="11" text-anchor="middle">−2</text>
+<text x="108.2" y="231.6" font-size="11" text-anchor="middle">−1</text>
+<text x="162.2" y="231.6" font-size="11" text-anchor="middle">1</text>
+<text x="189.2" y="231.6" font-size="11" text-anchor="middle">2</text>
+<text x="216.2" y="231.6" font-size="11" text-anchor="middle">3</text>
+<text x="129.2" y="137.4" font-size="11" text-anchor="end">4</text>
+<text x="129.2" y="32.4" font-size="11" text-anchor="end">9</text>
+<text x="130.2" y="231.6" font-size="11" text-anchor="end">O</text>
+<polyline points="51.5,16.0 52.4,20.0 53.2,24.0 54.1,27.9 54.9,31.8 55.7,35.7 56.6,39.5 57.4,43.2 58.2,47.0 59.1,50.7 59.9,54.3 60.7,57.9 61.6,61.5 62.4,65.0 63.3,68.5 64.1,71.9 64.9,75.4 65.8,78.7 66.6,82.0 67.4,85.3 68.3,88.6 69.1,91.8 69.9,94.9 70.8,98.1 71.6,101.2 72.5,104.2 73.3,107.2 74.1,110.2 75.0,113.1 75.8,116.0 76.6,118.8 77.5,121.6 78.3,124.4 79.2,127.1 80.0,129.8 80.8,132.4 81.7,135.0 82.5,137.6 83.3,140.1 84.2,142.6 85.0,145.0 85.8,147.4 86.7,149.8 87.5,152.1 88.4,154.4 89.2,156.6 90.0,158.8 90.9,161.0 91.7,163.1 92.5,165.2 93.4,167.2 94.2,169.2 95.0,171.2 95.9,173.1 96.7,174.9 97.6,176.8 98.4,178.6 99.2,180.3 100.1,182.0 100.9,183.7 101.7,185.3 102.6,186.9 103.4,188.5 104.2,190.0 105.1,191.5 105.9,192.9 106.8,194.3 107.6,195.6 108.4,197.0 109.3,198.2 110.1,199.5 110.9,200.6 111.8,201.8 112.6,202.9 113.4,204.0 114.3,205.0 115.1,206.0 116.0,206.9 116.8,207.8 117.6,208.7 118.5,209.5 119.3,210.3 120.1,211.1 121.0,211.8 121.8,212.4 122.7,213.1 123.5,213.6 124.3,214.2 125.2,214.7 126.0,215.2 126.8,215.6 127.7,216.0 128.5,216.3 129.3,216.6 130.2,216.9 131.0,217.1 131.9,217.3 132.7,217.4 133.5,217.5 134.4,217.6 135.2,217.6 136.0,217.6 136.9,217.5 137.7,217.4 138.5,217.3 139.4,217.1 140.2,216.9 141.1,216.6 141.9,216.3 142.7,216.0 143.6,215.6 144.4,215.2 145.2,214.7 146.1,214.2 146.9,213.6 147.7,213.1 148.6,212.4 149.4,211.8 150.3,211.1 151.1,210.3 151.9,209.5 152.8,208.7 153.6,207.8 154.4,206.9 155.3,206.0 156.1,205.0 157.0,204.0 157.8,202.9 158.6,201.8 159.5,200.6 160.3,199.5 161.1,198.2 162.0,197.0 162.8,195.6 163.6,194.3 164.5,192.9 165.3,191.5 166.2,190.0 167.0,188.5 167.8,186.9 168.7,185.3 169.5,183.7 170.3,182.0 171.2,180.3 172.0,178.6 172.8,176.8 173.7,174.9 174.5,173.1 175.4,171.2 176.2,169.2 177.0,167.2 177.9,165.2 178.7,163.1 179.5,161.0 180.4,158.8 181.2,156.6 182.0,154.4 182.9,152.1 183.7,149.8 184.6,147.4 185.4,145.0 186.2,142.6 187.1,140.1 187.9,137.6 188.7,135.0 189.6,132.4 190.4,129.8 191.2,127.1 192.1,124.4 192.9,121.6 193.8,118.8 194.6,116.0 195.4,113.1 196.3,110.2 197.1,107.2 197.9,104.2 198.8,101.2 199.6,98.1 200.5,94.9 201.3,91.8 202.1,88.6 203.0,85.3 203.8,82.0 204.6,78.7 205.5,75.4 206.3,71.9 207.1,68.5 208.0,65.0 208.8,61.5 209.7,57.9 210.5,54.3 211.3,50.7 212.2,47.0 213.0,43.2 213.8,39.5 214.7,35.7 215.5,31.8 216.3,27.9 217.2,24.0 218.0,20.0 218.9,16.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="81.2" y1="133.6" x2="189.2" y2="133.6" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<circle cx="81.2" cy="133.6" r="3.0" fill="#000"/>
+<circle cx="189.2" cy="133.6" r="3.0" fill="#000"/>
+<text x="179.2" y="33.0" font-size="12" text-anchor="start">軸（直線x＝0）</text>
+<line x1="177.2" y1="29.0" x2="144.6" y2="34.1" stroke="#000" stroke-width="1.1"/>
+<polygon points="139.2,35.0 144.2,31.7 145.0,36.6" fill="#000"/>
+<circle cx="135.2" cy="217.6" r="3.0" fill="#000"/>
+<text x="177.2" y="241.6" font-size="12" text-anchor="start">頂点(0, 0)</text>
+<line x1="175.2" y1="237.6" x2="145.2" y2="223.9" stroke="#000" stroke-width="1.1"/>
+<polygon points="140.2,221.6 146.2,221.6 144.2,226.1" fill="#000"/>
+<text x="213.4" y="45.4" font-size="13" text-anchor="start">y＝x²</text>
+</svg>
+</div><figcaption>y=x²の放物線と軸・頂点</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L01_fig1_parabola_axis_vertex.svg">図だけを開く</a></figure>
+<p>「軸」と「頂点」は、この単元全体でグラフの位置を言い表すための基本の言葉になる。</p>
+<h2 id="5-aの符号と開き方">5. aの符号と開き方</h2>
+<p>y=2x² と y=−2x² を比べる。x=1 のとき、y=2x² では y=2、y=−2x² では y=−2。すべての x で y の符号が逆になるから、グラフは x軸について対称になる。</p>
+<ul><li><p>a＞0 のとき: グラフは<strong>下に凸</strong>（谷の形。頂点が一番低い点）</p></li><li><p>a＜0 のとき: グラフは<strong>上に凸</strong>（山の形。頂点が一番高い点）</p></li></ul>
+<p>また、aの絶対値が大きいほどグラフの開き方は狭くなる。y=2x² は y=x² より細い放物線である。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 266" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-ac246033cb-title" aria-describedby="mg-ac246033cb-desc">
+<title id="mg-ac246033cb-title">aの符号と開き方——y=2x²・y=x²・y=−2x²</title>
+<desc id="mg-ac246033cb-desc">aの符号と開き方——y=2x²・y=x²・y=−2x²</desc>
+<!-- L01_fig2_sign_and_width.svg | aの符号と開き方——y=2x²・y=x²・y=−2x² -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="298" height="266" fill="#fff"/>
+<line x1="40.0" y1="127.8" x2="233.0" y2="127.8" stroke="#000" stroke-width="1.2"/>
+<polygon points="240.0,127.8 233.0,130.9 233.0,124.6" fill="#000"/>
+<line x1="136.0" y1="239.6" x2="136.0" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="136.0,8.0 139.2,15.0 132.8,15.0" fill="#000"/>
+<text x="242.0" y="132.3" font-size="13" text-anchor="start">x</text>
+<text x="143.0" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="46.0" y1="124.8" x2="46.0" y2="130.8" stroke="#000" stroke-width="1.0"/>
+<line x1="76.0" y1="124.8" x2="76.0" y2="130.8" stroke="#000" stroke-width="1.0"/>
+<line x1="106.0" y1="124.8" x2="106.0" y2="130.8" stroke="#000" stroke-width="1.0"/>
+<line x1="166.0" y1="124.8" x2="166.0" y2="130.8" stroke="#000" stroke-width="1.0"/>
+<line x1="196.0" y1="124.8" x2="196.0" y2="130.8" stroke="#000" stroke-width="1.0"/>
+<line x1="226.0" y1="124.8" x2="226.0" y2="130.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="231.8" x2="139.0" y2="231.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="218.8" x2="139.0" y2="218.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="205.8" x2="139.0" y2="205.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="192.8" x2="139.0" y2="192.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="179.8" x2="139.0" y2="179.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="166.8" x2="139.0" y2="166.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="153.8" x2="139.0" y2="153.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="140.8" x2="139.0" y2="140.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="114.8" x2="139.0" y2="114.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="101.8" x2="139.0" y2="101.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="88.8" x2="139.0" y2="88.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="75.8" x2="139.0" y2="75.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="62.8" x2="139.0" y2="62.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="49.8" x2="139.0" y2="49.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="36.8" x2="139.0" y2="36.8" stroke="#000" stroke-width="1.0"/>
+<line x1="133.0" y1="23.8" x2="139.0" y2="23.8" stroke="#000" stroke-width="1.0"/>
+<text x="76.0" y="141.8" font-size="11" text-anchor="middle">−2</text>
+<text x="106.0" y="141.8" font-size="11" text-anchor="middle">−1</text>
+<text x="166.0" y="141.8" font-size="11" text-anchor="middle">1</text>
+<text x="196.0" y="141.8" font-size="11" text-anchor="middle">2</text>
+<text x="130.0" y="235.7" font-size="11" text-anchor="end">−8</text>
+<text x="130.0" y="183.7" font-size="11" text-anchor="end">−4</text>
+<text x="130.0" y="105.6" font-size="11" text-anchor="end">2</text>
+<text x="130.0" y="79.6" font-size="11" text-anchor="end">4</text>
+<text x="130.0" y="27.6" font-size="11" text-anchor="end">8</text>
+<text x="131.0" y="141.8" font-size="11" text-anchor="end">O</text>
+<polyline points="73.8,16.0 74.4,18.2 75.0,20.4 75.7,22.6 76.3,24.8 76.9,26.9 77.5,29.0 78.1,31.1 78.8,33.2 79.4,35.2 80.0,37.2 80.6,39.2 81.3,41.2 81.9,43.2 82.5,45.1 83.1,47.0 83.7,48.9 84.4,50.8 85.0,52.6 85.6,54.4 86.2,56.2 86.9,58.0 87.5,59.8 88.1,61.5 88.7,63.2 89.3,64.9 90.0,66.6 90.6,68.2 91.2,69.8 91.8,71.4 92.5,73.0 93.1,74.6 93.7,76.1 94.3,77.6 94.9,79.1 95.6,80.6 96.2,82.0 96.8,83.4 97.4,84.8 98.1,86.2 98.7,87.6 99.3,88.9 99.9,90.2 100.5,91.5 101.2,92.7 101.8,94.0 102.4,95.2 103.0,96.4 103.7,97.6 104.3,98.7 104.9,99.9 105.5,101.0 106.1,102.0 106.8,103.1 107.4,104.1 108.0,105.2 108.6,106.2 109.2,107.1 109.9,108.1 110.5,109.0 111.1,109.9 111.7,110.8 112.4,111.7 113.0,112.5 113.6,113.3 114.2,114.1 114.8,114.9 115.5,115.6 116.1,116.4 116.7,117.1 117.3,117.7 118.0,118.4 118.6,119.0 119.2,119.6 119.8,120.2 120.4,120.8 121.1,121.4 121.7,121.9 122.3,122.4 122.9,122.9 123.6,123.3 124.2,123.8 124.8,124.2 125.4,124.6 126.0,124.9 126.7,125.3 127.3,125.6 127.9,125.9 128.5,126.2 129.2,126.4 129.8,126.7 130.4,126.9 131.0,127.1 131.6,127.3 132.3,127.4 132.9,127.5 133.5,127.6 134.1,127.7 134.8,127.8 135.4,127.8 136.0,127.8 136.6,127.8 137.2,127.8 137.9,127.7 138.5,127.6 139.1,127.5 139.7,127.4 140.4,127.3 141.0,127.1 141.6,126.9 142.2,126.7 142.8,126.4 143.5,126.2 144.1,125.9 144.7,125.6 145.3,125.3 146.0,124.9 146.6,124.6 147.2,124.2 147.8,123.8 148.4,123.3 149.1,122.9 149.7,122.4 150.3,121.9 150.9,121.4 151.6,120.8 152.2,120.2 152.8,119.6 153.4,119.0 154.0,118.4 154.7,117.7 155.3,117.1 155.9,116.4 156.5,115.6 157.2,114.9 157.8,114.1 158.4,113.3 159.0,112.5 159.6,111.7 160.3,110.8 160.9,109.9 161.5,109.0 162.1,108.1 162.8,107.1 163.4,106.2 164.0,105.2 164.6,104.1 165.2,103.1 165.9,102.0 166.5,101.0 167.1,99.9 167.7,98.7 168.3,97.6 169.0,96.4 169.6,95.2 170.2,94.0 170.8,92.7 171.5,91.5 172.1,90.2 172.7,88.9 173.3,87.6 173.9,86.2 174.6,84.8 175.2,83.4 175.8,82.0 176.4,80.6 177.1,79.1 177.7,77.6 178.3,76.1 178.9,74.6 179.5,73.0 180.2,71.4 180.8,69.8 181.4,68.2 182.0,66.6 182.7,64.9 183.3,63.2 183.9,61.5 184.5,59.8 185.1,58.0 185.8,56.2 186.4,54.4 187.0,52.6 187.6,50.8 188.3,48.9 188.9,47.0 189.5,45.1 190.1,43.2 190.7,41.2 191.4,39.2 192.0,37.2 192.6,35.2 193.2,33.2 193.9,31.1 194.5,29.0 195.1,26.9 195.7,24.8 196.3,22.6 197.0,20.4 197.6,18.2 198.2,16.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<polyline points="48.0,16.0 48.9,18.2 49.8,20.4 50.7,22.6 51.5,24.8 52.4,26.9 53.3,29.0 54.2,31.1 55.1,33.2 55.9,35.2 56.8,37.2 57.7,39.2 58.6,41.2 59.5,43.2 60.3,45.1 61.2,47.0 62.1,48.9 63.0,50.8 63.9,52.6 64.7,54.4 65.6,56.2 66.5,58.0 67.4,59.8 68.3,61.5 69.1,63.2 70.0,64.9 70.9,66.6 71.8,68.2 72.7,69.8 73.5,71.4 74.4,73.0 75.3,74.6 76.2,76.1 77.1,77.6 77.9,79.1 78.8,80.6 79.7,82.0 80.6,83.4 81.5,84.8 82.3,86.2 83.2,87.6 84.1,88.9 85.0,90.2 85.9,91.5 86.7,92.7 87.6,94.0 88.5,95.2 89.4,96.4 90.3,97.6 91.1,98.7 92.0,99.8 92.9,101.0 93.8,102.0 94.7,103.1 95.5,104.1 96.4,105.2 97.3,106.2 98.2,107.1 99.0,108.1 99.9,109.0 100.8,109.9 101.7,110.8 102.6,111.7 103.4,112.5 104.3,113.3 105.2,114.1 106.1,114.9 107.0,115.6 107.8,116.4 108.7,117.1 109.6,117.7 110.5,118.4 111.4,119.0 112.2,119.6 113.1,120.2 114.0,120.8 114.9,121.4 115.8,121.9 116.6,122.4 117.5,122.9 118.4,123.3 119.3,123.8 120.2,124.2 121.0,124.6 121.9,124.9 122.8,125.3 123.7,125.6 124.6,125.9 125.4,126.2 126.3,126.4 127.2,126.7 128.1,126.9 129.0,127.1 129.8,127.3 130.7,127.4 131.6,127.5 132.5,127.6 133.4,127.7 134.2,127.8 135.1,127.8 136.0,127.8 136.9,127.8 137.8,127.8 138.6,127.7 139.5,127.6 140.4,127.5 141.3,127.4 142.2,127.3 143.0,127.1 143.9,126.9 144.8,126.7 145.7,126.4 146.6,126.2 147.4,125.9 148.3,125.6 149.2,125.3 150.1,124.9 151.0,124.6 151.8,124.2 152.7,123.8 153.6,123.3 154.5,122.9 155.4,122.4 156.2,121.9 157.1,121.4 158.0,120.8 158.9,120.2 159.8,119.6 160.6,119.0 161.5,118.4 162.4,117.7 163.3,117.1 164.2,116.4 165.0,115.6 165.9,114.9 166.8,114.1 167.7,113.3 168.6,112.5 169.4,111.7 170.3,110.8 171.2,109.9 172.1,109.0 173.0,108.1 173.8,107.1 174.7,106.2 175.6,105.2 176.5,104.1 177.3,103.1 178.2,102.0 179.1,101.0 180.0,99.9 180.9,98.7 181.7,97.6 182.6,96.4 183.5,95.2 184.4,94.0 185.3,92.7 186.1,91.5 187.0,90.2 187.9,88.9 188.8,87.6 189.7,86.2 190.5,84.8 191.4,83.4 192.3,82.0 193.2,80.6 194.1,79.1 194.9,77.6 195.8,76.1 196.7,74.6 197.6,73.0 198.5,71.4 199.3,69.8 200.2,68.2 201.1,66.6 202.0,64.9 202.9,63.2 203.7,61.5 204.6,59.8 205.5,58.0 206.4,56.2 207.3,54.4 208.1,52.6 209.0,50.8 209.9,48.9 210.8,47.0 211.7,45.1 212.5,43.2 213.4,41.2 214.3,39.2 215.2,37.2 216.1,35.2 216.9,33.2 217.8,31.1 218.7,29.0 219.6,26.9 220.5,24.8 221.3,22.6 222.2,20.4 223.1,18.2 224.0,16.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<polyline points="73.8,239.6 74.4,237.4 75.0,235.2 75.7,233.0 76.3,230.8 76.9,228.7 77.5,226.6 78.1,224.5 78.8,222.4 79.4,220.4 80.0,218.4 80.6,216.4 81.3,214.4 81.9,212.4 82.5,210.5 83.1,208.6 83.7,206.7 84.4,204.8 85.0,203.0 85.6,201.2 86.2,199.4 86.9,197.6 87.5,195.8 88.1,194.1 88.7,192.4 89.3,190.7 90.0,189.0 90.6,187.4 91.2,185.8 91.8,184.2 92.5,182.6 93.1,181.0 93.7,179.5 94.3,178.0 94.9,176.5 95.6,175.0 96.2,173.6 96.8,172.2 97.4,170.8 98.1,169.4 98.7,168.0 99.3,166.7 99.9,165.4 100.5,164.1 101.2,162.9 101.8,161.6 102.4,160.4 103.0,159.2 103.7,158.0 104.3,156.9 104.9,155.8 105.5,154.6 106.1,153.6 106.8,152.5 107.4,151.5 108.0,150.4 108.6,149.4 109.2,148.5 109.9,147.5 110.5,146.6 111.1,145.7 111.7,144.8 112.4,143.9 113.0,143.1 113.6,142.3 114.2,141.5 114.8,140.7 115.5,140.0 116.1,139.2 116.7,138.5 117.3,137.9 118.0,137.2 118.6,136.6 119.2,136.0 119.8,135.4 120.4,134.8 121.1,134.2 121.7,133.7 122.3,133.2 122.9,132.7 123.6,132.3 124.2,131.8 124.8,131.4 125.4,131.0 126.0,130.7 126.7,130.3 127.3,130.0 127.9,129.7 128.5,129.4 129.2,129.2 129.8,128.9 130.4,128.7 131.0,128.5 131.6,128.3 132.3,128.2 132.9,128.1 133.5,128.0 134.1,127.9 134.8,127.8 135.4,127.8 136.0,127.8 136.6,127.8 137.2,127.8 137.9,127.9 138.5,128.0 139.1,128.1 139.7,128.2 140.4,128.3 141.0,128.5 141.6,128.7 142.2,128.9 142.8,129.2 143.5,129.4 144.1,129.7 144.7,130.0 145.3,130.3 146.0,130.7 146.6,131.0 147.2,131.4 147.8,131.8 148.4,132.3 149.1,132.7 149.7,133.2 150.3,133.7 150.9,134.2 151.6,134.8 152.2,135.4 152.8,136.0 153.4,136.6 154.0,137.2 154.7,137.9 155.3,138.5 155.9,139.2 156.5,140.0 157.2,140.7 157.8,141.5 158.4,142.3 159.0,143.1 159.6,143.9 160.3,144.8 160.9,145.7 161.5,146.6 162.1,147.5 162.8,148.5 163.4,149.4 164.0,150.4 164.6,151.5 165.2,152.5 165.9,153.6 166.5,154.6 167.1,155.7 167.7,156.9 168.3,158.0 169.0,159.2 169.6,160.4 170.2,161.6 170.8,162.9 171.5,164.1 172.1,165.4 172.7,166.7 173.3,168.0 173.9,169.4 174.6,170.8 175.2,172.2 175.8,173.6 176.4,175.0 177.1,176.5 177.7,178.0 178.3,179.5 178.9,181.0 179.5,182.6 180.2,184.2 180.8,185.8 181.4,187.4 182.0,189.0 182.7,190.7 183.3,192.4 183.9,194.1 184.5,195.8 185.1,197.6 185.8,199.4 186.4,201.2 187.0,203.0 187.6,204.8 188.3,206.7 188.9,208.6 189.5,210.5 190.1,212.4 190.7,214.4 191.4,216.4 192.0,218.4 192.6,220.4 193.2,222.4 193.9,224.5 194.5,226.6 195.1,228.7 195.7,230.8 196.3,233.0 197.0,235.2 197.6,237.4 198.2,239.6" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="166.0" y1="101.8" x2="166.0" y2="153.8" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<circle cx="166.0" cy="101.8" r="3.0" fill="#000"/>
+<circle cx="166.0" cy="153.8" r="3.0" fill="#000"/>
+<text x="67.8" y="21.2" font-size="13" text-anchor="end">y＝2x²</text>
+<text x="230.0" y="21.2" font-size="13" text-anchor="start">y＝x²</text>
+<text x="204.2" y="242.4" font-size="13" text-anchor="start">y＝−2x²</text>
+</svg>
+</div><figcaption>aの符号と開き方——y=2x²・y=x²・y=−2x²</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L01_fig2_sign_and_width.svg">図だけを開く</a></figure>
+<h2 id="6-練習">6. 練習</h2>
+<p><strong>問1</strong> 次のうち、yがxの二次関数であるものをすべて選べ。 (ア) y=3x²  (イ) y=2x＋5  (ウ) y=x²−4x＋1  (エ) y=x³</p>
+<p><strong>問2</strong> y=−x² について、x=−2, −1, 0, 1, 2 に対する y の値の表をつくれ。また、グラフの凸の向き・軸・頂点を答えよ。</p>
+<p><strong>問3</strong> 縦の長さが x cm、横の長さが縦より3cm長い長方形の面積を y cm² とする。y を x の式で表せ。また、y は x の二次関数といえるか。</p>
+<p><strong>問4</strong> y=3x² について、x の値を2倍にすると y の値は何倍になるか。また、x=2 のときの y の値を求めよ。</p>
+<hr>
+<h2 id="stretch本線と分けて提示余力のある生徒向け">stretch（本線と分けて提示。余力のある生徒向け）</h2>
+<p><strong>S1</strong> y=ax² のグラフ上で、x=t の点と x=−t の点はどんな位置関係にあるか。式を使って説明せよ（対称性を式で確かめる練習）。</p><a class="answer-link" href="answer_key_supplement.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 グラフの平行移動と頂点——y=a(x−p)²＋q</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>01</strong> / 12</p><nav class="toc toc-long" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="1-中学で学んだことyはxの2乗に比例する" href="lesson_01.html#1-%E4%B8%AD%E5%AD%A6%E3%81%A7%E5%AD%A6%E3%82%93%E3%81%A0%E3%81%93%E3%81%A8y%E3%81%AFx%E3%81%AE2%E4%B9%97%E3%81%AB%E6%AF%94%E4%BE%8B%E3%81%99%E3%82%8B">1. 中学で学んだこと——「yはxの2乗に比例する」</a></li><li><a data-section-link="2-yax2-だけでは表せない場面" href="lesson_01.html#2-yax2-%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E8%A1%A8%E3%81%9B%E3%81%AA%E3%81%84%E5%A0%B4%E9%9D%A2">2. y=ax² だけでは表せない場面</a></li><li><a data-section-link="3-二次関数の定義高校で初めてつける名前" href="lesson_01.html#3-%E4%BA%8C%E6%AC%A1%E9%96%A2%E6%95%B0%E3%81%AE%E5%AE%9A%E7%BE%A9%E9%AB%98%E6%A0%A1%E3%81%A7%E5%88%9D%E3%82%81%E3%81%A6%E3%81%A4%E3%81%91%E3%82%8B%E5%90%8D%E5%89%8D">3. 二次関数の定義——高校で初めてつける名前</a></li><li><a data-section-link="4-yax2-のグラフの復習放物線軸頂点" href="lesson_01.html#4-yax2-%E3%81%AE%E3%82%B0%E3%83%A9%E3%83%95%E3%81%AE%E5%BE%A9%E7%BF%92%E6%94%BE%E7%89%A9%E7%B7%9A%E8%BB%B8%E9%A0%82%E7%82%B9">4. y=ax² のグラフの復習——放物線・軸・頂点</a></li><li><a data-section-link="5-aの符号と開き方" href="lesson_01.html#5-a%E3%81%AE%E7%AC%A6%E5%8F%B7%E3%81%A8%E9%96%8B%E3%81%8D%E6%96%B9">5. aの符号と開き方</a></li><li><a data-section-link="6-練習" href="lesson_01.html#6-%E7%B7%B4%E7%BF%92">6. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_01.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

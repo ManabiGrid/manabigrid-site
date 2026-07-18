@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L06 公式による因数分解①——「和と積」から2つの数を探す">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L06 公式による因数分解①——「和と積」から2つの数を探す｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L06 公式による因数分解①——「和と積」から2つの数を探す">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L06 公式による因数分解①——「和と積」から2つの数を探す｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="aa441881671cac69c960de6bdc115a3ba93277d4726f68a68275e94f03efc605" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-expansion-factorization/index.html">中3数学「式の展開と因数分解」</a></li><li aria-current="page">L06 公式による因数分解①——「和と積」から2つの数を探す</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="aa441881671cac69c960de6bdc115a3ba93277d4726f68a68275e94f03efc605" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「式の展開と因数分解」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l06-公式による因数分解1和と積から2つの数を探す"><span class="lesson-title-main">L06 公式による因数分解①</span><span class="lesson-title-sub">「和と積」から2つの数を探す</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>x²＋px＋q の形の式を、乗法の公式①の<strong>逆向き</strong>で因数分解できるようになる。</p></li><li><p>2数の探し方を「積から絞る」手順として身につけ、検算（展開で戻す）までを1セットにする。</p></li></ul>
+<h2 id="導入展開の公式を逆から読む">導入：展開の公式を逆から読む</h2>
+<p>L03の公式①をもう一度見よう。</p>
+<p>(x＋a)(x＋b)＝x²＋(a＋b)x＋ab</p>
+<p>これを<strong>右から左へ</strong>読むと、そのまま因数分解の公式になる。</p>
+<p>x²＋(a＋b)x＋ab＝(x＋a)(x＋b)</p>
+<p>つまり、x²＋7x＋12 を因数分解したければ、「<strong>和が7、積が12</strong>になる2つの数」を探せばよい。見つかるだろうか？ 3と4だ（3＋4＝7、3×4＝12）。よって、</p>
+<p>x²＋7x＋12＝(x＋3)(x＋4)</p>
+<p>検算: (x＋3)(x＋4)＝x²＋7x＋12 ✓。L05で決めた型どおり、<strong>展開で戻して</strong>から次へ進む。</p>
+<h2 id="主概念2数の探し方積から絞る">主概念：2数の探し方——「積から絞る」</h2>
+<p>「和が7、積が12」の2数を、あてずっぽうで探すと時間がかかるし、見落とす。手順を決めよう。ポイントは、<strong>和からではなく積から絞る</strong>ことだ。</p>
+<p><strong>例: x²＋8x＋12 を因数分解する。</strong></p>
+<ol start="1"><li><p><strong>積になる組を書き出す</strong>: 積が12になる整数の組は (1,12)(2,6)(3,4)。</p></li><li><p><strong>和で選ぶ</strong>: このうち和が8になるのは (2,6)。</p></li><li><p><strong>書いて検算</strong>: x²＋8x＋12＝(x＋2)(x＋6)。展開して確認 ✓</p></li></ol>
+<p>積から絞る理由は、積の組は<strong>有限個しかない</strong>からだ（和が8になる2数は無限にある）。12なら3組を調べれば必ず終わる。</p>
+<p>負の数が入る場合も、手順は同じ。<strong>符号の見取り図</strong>を持っておくと速い。</p>
+<ul><li><p>積が<strong>プラス</strong>（例: x²−7x＋12）→ 2数は<strong>同符号</strong>。和がマイナスなら両方マイナス → (−3,−4) → (x−3)(x−4)</p></li><li><p>積が<strong>マイナス</strong>（例: x²＋x−12）→ 2数は<strong>異符号</strong>。和の符号は絶対値の大きいほうが決める → (4,−3) → (x＋4)(x−3)</p></li></ul>
+<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 344" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-01aca05eb6-title" aria-describedby="mg-01aca05eb6-desc">
+<title id="mg-01aca05eb6-title">符号の見取り図（積→同/異符号→和→2数の符号）</title>
+<desc id="mg-01aca05eb6-desc">符号判定の流れ図</desc>
+<!-- L06_fig1_sign_flowchart.svg | 符号の見取り図（積→同/異符号→和→2数の符号） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="560" height="344" fill="#fff"/>
+<text x="280.0" y="26.0" font-size="14" text-anchor="middle" font-weight="bold">2数の符号の見取り図——積で分け，和でしぼる</text>
+<rect x="195.0" y="45.0" width="170" height="30" rx="6" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="280.0" y="64.5" font-size="13" text-anchor="middle" font-weight="bold">積の符号は？</text>
+<line x1="236.0" y1="74.0" x2="164.6" y2="97.8" stroke="#000" stroke-width="1.3"/>
+<polygon points="158.0,100.0 163.6,94.8 165.6,100.8" fill="#000"/>
+<line x1="324.0" y1="74.0" x2="395.4" y2="97.8" stroke="#000" stroke-width="1.3"/>
+<polygon points="402.0,100.0 394.4,100.8 396.4,94.8" fill="#000"/>
+<text x="178.0" y="84.0" font-size="13" text-anchor="middle" font-weight="bold">＋</text>
+<text x="382.0" y="84.0" font-size="13" text-anchor="middle" font-weight="bold">−</text>
+<rect x="52.0" y="102.0" width="196" height="32" rx="6" fill="#e2e2e2" stroke="#000" stroke-width="1.3"/>
+<text x="150.0" y="122.2" font-size="12" text-anchor="middle" font-weight="bold">2数は同符号</text>
+<rect x="312.0" y="102.0" width="196" height="32" rx="6" fill="#e2e2e2" stroke="#000" stroke-width="1.3"/>
+<text x="410.0" y="122.2" font-size="12" text-anchor="middle" font-weight="bold">2数は異符号（＋と−）</text>
+<line x1="150.0" y1="134.0" x2="150.0" y2="149.0" stroke="#000" stroke-width="1.3"/>
+<polygon points="150.0,156.0 146.8,149.0 153.2,149.0" fill="#000"/>
+<line x1="410.0" y1="134.0" x2="410.0" y2="149.0" stroke="#000" stroke-width="1.3"/>
+<polygon points="410.0,156.0 406.9,149.0 413.1,149.0" fill="#000"/>
+<rect x="34.0" y="158.0" width="232" height="48" rx="6" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="150.0" y="178.2" font-size="12" text-anchor="middle">和の符号は？</text>
+<text x="150.0" y="194.2" font-size="12" text-anchor="middle">＋なら両方＋ ／ −なら両方−</text>
+<rect x="290.0" y="158.0" width="240" height="48" rx="6" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="410.0" y="178.2" font-size="12" text-anchor="middle">和の符号は？</text>
+<text x="410.0" y="194.2" font-size="12" text-anchor="middle">絶対値が大きいほうの符号になる</text>
+<line x1="30" y1="222" x2="530" y2="222" stroke="#000" stroke-width="0.8" stroke-dasharray="6 4"/>
+<text x="40.0" y="246.0" font-size="12" text-anchor="start" font-weight="bold">例1  x²−7x＋12：</text>
+<text x="168.0" y="246.0" font-size="12" text-anchor="start">積＋12 → 同符号　和−7 → 両方マイナス</text>
+<text x="168.0" y="264.0" font-size="12" text-anchor="start">→ −3 と −4 → (x−3)(x−4)</text>
+<text x="40.0" y="296.0" font-size="12" text-anchor="start" font-weight="bold">例2  x²＋x−12：</text>
+<text x="168.0" y="296.0" font-size="12" text-anchor="start">積−12 → 異符号　和＋1 → 絶対値が大きい4がプラス</text>
+<text x="168.0" y="314.0" font-size="12" text-anchor="start">→ ＋4 と −3 → (x＋4)(x−3)</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>符号判定の流れ図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-expansion-factorization/assets/L06_fig1_sign_flowchart.svg">図だけを開く</a></figure>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>うまくいかないときの切り分け——「組がない」のか「見落とし」なのか</strong></p>
+<p>2数がなかなか見つからないとき、原因は2つに分かれる。①積の組の書き出しに漏れがある（とくに負の数の組。積が−12なら (1,−12)(−1,12)(2,−6)(−2,6)(3,−4)(−3,4) の6組ある）②そもそも整数の組では因数分解できない式である（例: x²＋x＋1。積が1で和が1になる整数はない）。①を防ぐには、書き出しを「絶対値の組を先に全部→符号をあとで割り振る」の2段階にするとよい。②のような式に出会ったら、それは「解けない自分」のせいではなく式の性質。中学の範囲では「これ以上は分解できない」と判断してよい。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>因数分解の公式は「別の公式」ではない</strong></p>
+<p>このレッスンで使っている規則は、L03で学んだ展開の公式①、それ自体である。向きを変えて使っているだけで、新しく覚えることは実は1つもない。「因数分解の公式は、式の展開の公式の逆」——この見方を持っていると、公式の総数は増えないし、忘れたときの復元場所（分配法則→展開の公式→その逆読み）も1本につながる。次のレッスンの平方・和と差の積も、すべて同じ構図で出てくる。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>「和が10、積が21」→3と7、「積が24」→4と6、「積が25」→5と5……気づいた？ 和を10に固定して積を大きくしていくと、2つの数はどんどん<strong>近づいて</strong>、5と5（真ん中どうし）で積が最大の25になる。同じ長さのひもで長方形を作るとき、正方形がいちばん広くなる話と同じ構造だ！ 「和が一定なら積は真ん中で最大」——ちょっとした宝物みたいな法則だよ。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>次の式を因数分解しよう（積の組の書き出し→和で選ぶ→展開で検算）。  (1) x²＋9x＋20　(2) x²＋10x＋16　(3) x²−8x＋15　(4) x²−12x＋36 はどうなるか、まず公式①の手順（2数探し）でやってみよう</p></li><li><p>次の式を因数分解しよう（異符号の組に注意）。  (1) x²＋2x−15　(2) x²−3x−18　(3) x²−x−30</p></li><li><p>x²＋□x＋18 が (x＋a)(x＋b)（a, bは正の整数）の形に因数分解できるとき、□に当てはまる数をすべて求めよう。</p></li><li><p>次の因数分解のまちがいを、展開の検算で発見し、正しく直そう。  x²−5x−14＝(x＋7)(x−2) …… 検算するとどうなる？</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> x²＋px＋36 が整数の範囲で因数分解できるような正の整数 p をすべて挙げよう（ヒント: 積が36になる同符号の組を全部書き出す）。36を別の数（たとえば30や16）に変えると、pの候補の個数はどう変わるだろうか。積の数の「約数の個数」との関係を観察してみよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L05-08.md</p><a class="answer-link" href="answer_key_L05-08.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_06.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_05.html"><span>前のレッスン</span>L05 積の形のよさと因数分解——共通因数</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-expansion-factorization/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_07.html"><span>次のレッスン</span>L07 公式による因数分解②——平方の形・和と差の積</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>06</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_06.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入展開の公式を逆から読む" href="lesson_06.html#%E5%B0%8E%E5%85%A5%E5%B1%95%E9%96%8B%E3%81%AE%E5%85%AC%E5%BC%8F%E3%82%92%E9%80%86%E3%81%8B%E3%82%89%E8%AA%AD%E3%82%80">導入：展開の公式を逆から読む</a></li><li><a data-section-link="主概念2数の探し方積から絞る" href="lesson_06.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%95%B0%E3%81%AE%E6%8E%A2%E3%81%97%E6%96%B9%E7%A9%8D%E3%81%8B%E3%82%89%E7%B5%9E%E3%82%8B">主概念：2数の探し方——「積から絞る」</a></li><li><a data-section-link="練習" href="lesson_06.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

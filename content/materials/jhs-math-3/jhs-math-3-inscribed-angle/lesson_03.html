@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L03 直径と円周角——半円の弧がつくる90°">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L03 直径と円周角——半円の弧がつくる90°｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L03 直径と円周角——半円の弧がつくる90°">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L03 直径と円周角——半円の弧がつくる90°｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="65ea50c45ac2294569e23c47c767cafe172cacc7688adedf408d0bb21df18b7d" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-inscribed-angle/index.html">中3数学「円周角の定理」</a></li><li aria-current="page">L03 直径と円周角——半円の弧がつくる90°</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="65ea50c45ac2294569e23c47c767cafe172cacc7688adedf408d0bb21df18b7d" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「円周角の定理」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l03-直径と円周角半円の弧がつくる90"><span class="lesson-title-main">L03 直径と円周角</span><span class="lesson-title-sub">半円の弧がつくる90°</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>円周角の定理の特別な場合として、<strong>半円の弧に対する円周角が90°になる</strong>ことを導き、使えるようになる。</p></li><li><p>逆向きの使い方（<strong>円周角が90°なら、その弦は直径</strong>）で、円の中心を見つけられるようになる。</p></li></ul>
+<h2 id="主概念1中心角180という特別な場合">主概念1：中心角180°という特別な場合</h2>
+<p>L01のstretchで予想した人もいるだろう。円周角の定理のいちばん有名な「特別な場合」を正面から扱おう。</p>
+<p>円Oの直径をABとする。このとき、弧AB（半円の弧）に対する中心角∠AOBは、A、O、Bが一直線に並ぶから<strong>180°</strong>。円周角の定理(1)より、円周角は中心角の半分。だから、</p>
+<p><strong>半円の弧に対する円周角 ＝ 180° × 1/2 ＝ 90°</strong></p>
+<blockquote><p><strong>半円の弧に対する円周角</strong> ABが円の直径のとき、円周上の点P（A、B以外）について、<strong>∠APB＝90°</strong>である。</p></blockquote>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 314" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-de99bc1c78-title" aria-describedby="mg-de99bc1c78-desc">
+<title id="mg-de99bc1c78-title">半円の弧に対する円周角（直径ABとP・P′）</title>
+<desc id="mg-de99bc1c78-desc">半円の弧に対する円周角</desc>
+<!-- L03_fig1_diameter_semicircle.svg | 半円の弧に対する円周角（直径ABとP・P′） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="360" height="314" fill="#fff"/>
+<circle cx="180.0" cy="140.0" r="100.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="80.0" y1="140.0" x2="280.0" y2="140.0" stroke="#000" stroke-width="1.6"/>
+<line x1="137.7" y1="49.4" x2="80.0" y2="140.0" stroke="#000" stroke-width="1.6"/>
+<line x1="137.7" y1="49.4" x2="280.0" y2="140.0" stroke="#000" stroke-width="1.6"/>
+<line x1="237.4" y1="58.1" x2="80.0" y2="140.0" stroke="#000" stroke-width="1.6"/>
+<line x1="237.4" y1="58.1" x2="280.0" y2="140.0" stroke="#000" stroke-width="1.6"/>
+<circle cx="80.0" cy="140.0" r="2.5" fill="#000"/>
+<text x="65.0" y="144.6" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="280.0" cy="140.0" r="2.5" fill="#000"/>
+<text x="295.0" y="144.6" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="137.7" cy="49.4" r="2.5" fill="#000"/>
+<text x="131.4" y="40.3" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="237.4" cy="58.1" r="2.5" fill="#000"/>
+<text x="246.0" y="50.3" font-size="13" text-anchor="middle" font-weight="bold">P′</text>
+<circle cx="180.0" cy="140.0" r="2.5" fill="#000"/>
+<text x="175.6" y="156.8" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<text x="180.0" y="278.0" font-size="12" text-anchor="middle">ABは円Oの直径（A・O・Bは一直線）</text>
+<text x="180.0" y="296.0" font-size="12" text-anchor="middle">（半円の弧に対する円周角∠APB・∠AP′Bの大きさは？）</text>
+</svg>
+</div><figcaption>半円の弧に対する円周角</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L03_fig1_diameter_semicircle.svg">図だけを開く</a></figure>
+<p>新しい定理を覚えたというより、「中心角180°のときに定理(1)を使っただけ」という出どころごと覚えてほしい。出どころを覚えていれば、忘れても30秒で再現できる。</p>
+<h3 id="例題1-直径がつくる直角三角形">例題1　直径がつくる直角三角形</h3>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 300" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-d24446f92b-title" aria-describedby="mg-d24446f92b-desc">
+<title id="mg-d24446f92b-title">直径がつくる三角形（∠ABC=32°）</title>
+<desc id="mg-d24446f92b-desc">例題1の図</desc>
+<!-- L03_fig2_example_diameter_triangle.svg | 直径がつくる三角形（∠ABC=32°） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="340" height="300" fill="#fff"/>
+<circle cx="170.0" cy="134.0" r="96.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<polygon points="212.1,47.7 74.0,134.0 266.0,134.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="212.1" cy="47.7" r="2.5" fill="#000"/>
+<text x="218.7" y="38.8" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="74.0" cy="134.0" r="2.5" fill="#000"/>
+<text x="59.0" y="138.6" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="266.0" cy="134.0" r="2.5" fill="#000"/>
+<text x="281.0" y="138.6" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="170.0" cy="134.0" r="2.5" fill="#000"/>
+<text x="165.6" y="150.8" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="85.9,126.6 86.1,126.9 86.3,127.3 86.5,127.6 86.6,128.0 86.8,128.3 86.9,128.7 87.1,129.0 87.2,129.4 87.3,129.8 87.5,130.1 87.6,130.5 87.7,130.9 87.7,131.3 87.8,131.7 87.9,132.1 87.9,132.4 88.0,132.8 88.0,133.2 88.0,133.6 88.0,134.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="102.8" y="130.3" font-size="13" text-anchor="middle">32°</text>
+<text x="170.0" y="266.0" font-size="12" text-anchor="middle">BCは円Oの直径——∠BACと∠ACBを求める</text>
+<text x="170.0" y="284.0" font-size="12" text-anchor="middle">（例題1: 直径を見たら，どこかに隠れている角を疑う）</text>
+</svg>
+</div><figcaption>例題1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L03_fig2_example_diameter_triangle.svg">図だけを開く</a></figure>
+<p>BCが円Oの直径で、∠ABC＝32°のとき、∠BACと∠ACBを求めよう。</p>
+<p>（考え方）BCは直径だから、弧BC（半円）に対する円周角∠BAC＝<strong>90°</strong>。△ABCの内角の和より、 ∠ACB ＝ 180° − 90° − 32° ＝ <strong>58°</strong></p>
+<p>直径が図にあったら「どこかに90°が隠れている」と疑う。これがこのレッスンの合言葉だ。</p>
+<h2 id="主概念2逆向きに使う90を見たら直径を疑う">主概念2：逆向きに使う——90°を見たら直径を疑う</h2>
+<p>この性質は、逆向きにも使える。円周上の点Pについて∠APB＝90°ならば、対応する中心角は2倍の180°。中心角が180°ということは、A、O、Bが一直線、つまり<strong>弦ABは中心Oを通る直径</strong>だということだ。</p>
+<p><strong>円周角が90° → その角に対する弦は直径（中心を通る）</strong></p>
+<p>これが役に立つのは、「<strong>中心がどこか分からない円</strong>」を相手にするときだ。</p>
+<h3 id="例題2-円の中心を見つける">例題2　円の中心を見つける</h3>
+<p>丸い形の紙がある。折り目を付けずに、この円の中心を見つけたい。三角定規の直角だけを使って見つける方法を考えよう。</p>
+<p>（手順）</p>
+<ol start="1"><li><p>三角定規の直角の頂点を円周上の1点Pに当て、直角をはさむ2辺が円周と交わる点をA、Bとする。</p></li><li><p>AとBを結ぶ。∠APB＝90°だから、<strong>ABは直径</strong>——中心はこの線分の上にある。</p></li><li><p>Pの位置を変えてもう一度同じことをすると、直径がもう1本引ける。</p></li><li><p><strong>2本の直径の交点が中心O</strong>だ。</p></li></ol>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-585222712c-title" aria-describedby="mg-585222712c-desc">
+<title id="mg-585222712c-title">三角定規の直角で円の中心を見つける</title>
+<desc id="mg-585222712c-desc">円の中心を見つける</desc>
+<!-- L03_fig3_find_center_right_angle.svg | 三角定規の直角で円の中心を見つける -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="360" height="330" fill="#fff"/>
+<circle cx="180.0" cy="142.0" r="100.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<polygon points="115.7,65.4 115.7,129.7 159.4,65.4" fill="none" stroke="#888" stroke-width="1.1" stroke-linejoin="round"/>
+<line x1="115.7" y1="65.4" x2="115.7" y2="218.6" stroke="#000" stroke-width="1.6"/>
+<line x1="115.7" y1="65.4" x2="244.3" y2="65.4" stroke="#000" stroke-width="1.6"/>
+<line x1="115.7" y1="218.6" x2="244.3" y2="65.4" stroke="#000" stroke-width="3.2"/>
+<line x1="200.8" y1="239.8" x2="81.5" y2="124.6" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="200.8" y1="239.8" x2="278.5" y2="159.4" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="81.5" y1="124.6" x2="278.5" y2="159.4" stroke="#000" stroke-width="3.2"/>
+<polyline points="115.7,73.4 123.7,73.4 123.7,65.4" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="195.0,234.3 200.6,228.5 206.3,234.1" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="115.7" cy="218.6" r="2.5" fill="#000"/>
+<text x="106.1" y="234.6" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="244.3" cy="65.4" r="2.5" fill="#000"/>
+<text x="253.9" y="58.5" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="115.7" cy="65.4" r="2.5" fill="#000"/>
+<text x="106.1" y="58.5" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="81.5" cy="124.6" r="2.5" fill="#000"/>
+<text x="66.7" y="126.6" font-size="13" text-anchor="middle" font-weight="bold">A′</text>
+<circle cx="278.5" cy="159.4" r="2.5" fill="#000"/>
+<text x="293.3" y="166.5" font-size="13" text-anchor="middle" font-weight="bold">B′</text>
+<circle cx="200.8" cy="239.8" r="2.5" fill="#000"/>
+<text x="203.9" y="259.0" font-size="13" text-anchor="middle" font-weight="bold">P′</text>
+<circle cx="180.0" cy="142.0" r="2.5" fill="#000"/>
+<text x="200.0" y="166.0" font-size="13" text-anchor="start" font-weight="bold">中心O</text>
+<text x="180.0" y="294.0" font-size="12" text-anchor="middle">直角を円周上に当て，2辺と円周の交点を結ぶ——を2回</text>
+<text x="180.0" y="312.0" font-size="12" text-anchor="middle">（2本の線分の交点が中心O。三角定規の輪郭はグレー）</text>
+</svg>
+</div><figcaption>円の中心を見つける</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L03_fig3_find_center_right_angle.svg">図だけを開く</a></figure>
+<p>道具は三角定規1つ。定規で測った長さも、コンパスも使っていないのに、直角を2回当てるだけで中心が正確に見つかる。90°と直径の結びつきの強さが、そのまま道具になっている。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>大工さんの道具に「さしがね」という直角に曲がった金属の物差しがある。学習指導要領の解説には、中心の分からない丸い木材の直径を、このさしがねで見積もる方法が活用例として載っている。使っている性質は、いまみんなが学んだ「円周角が直角になる場合」そのもの。教室の外で、しかもプロの現場で使われている中3の数学だ。くわしい使い方はL06でもう一度出てくる。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「90°」は、この章と次章をつなぐ蝶番（ちょうつがい）</strong></p>
+<p>半円の弧に対する円周角90°は、この章の中では接線（せっせん）の作図（L06）の理由として働く。そして次の章「三平方の定理」は直角三角形の定理だから、「円の中に直角三角形を見つける」このレッスンの見方は、章をまたいで効き続ける。円と直角三角形が同じ図に現れたら、「直径はどれか」をまず探す——この習慣を今のうちに作っておくと、あとの伸びが違う。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「見た目が直角っぽい」と「90°と言い切れる」の区別</strong></p>
+<p>例題1で∠BAC＝90°と書けるのは、見た目ではなく「BCが直径だから」という根拠があるからだ。逆に、図がどんなに直角っぽく見えても、対する弦が直径だと確認できなければ90°とは書けない。答案では「BCは直径だから∠BAC＝90°」のように、<strong>直径であることを根拠として一言添える</strong>習慣をつけよう。根拠を書く習慣は、L04の証明、そしてstretchの相似の証明（L07）でそのまま生きる。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-9ea443de7e-title" aria-describedby="mg-9ea443de7e-desc">
+<title id="mg-9ea443de7e-title">練習1・2（2パネル統合・直径と三角形）</title>
+<desc id="mg-9ea443de7e-desc">練習1・2の図</desc>
+<!-- L03_fig4_practice_1_2.svg | 練習1・2（2パネル統合・直径と三角形） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="560" height="300" fill="#fff"/>
+<circle cx="140.0" cy="122.0" r="88.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<polygon points="52.0,122.0 228.0,122.0 152.2,34.9" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="52.0" cy="122.0" r="2.5" fill="#000"/>
+<text x="39.0" y="126.5" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="228.0" cy="122.0" r="2.5" fill="#000"/>
+<text x="241.0" y="126.5" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="152.2" cy="34.9" r="2.5" fill="#000"/>
+<text x="154.1" y="26.5" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="140.0" cy="122.0" r="2.5" fill="#000"/>
+<text x="135.9" y="137.8" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="61.1,114.1 61.3,114.5 61.6,114.8 61.8,115.1 62.1,115.5 62.3,115.9 62.5,116.2 62.7,116.6 62.9,117.0 63.1,117.4 63.2,117.8 63.4,118.2 63.5,118.6 63.6,119.0 63.7,119.4 63.8,119.9 63.9,120.3 63.9,120.7 64.0,121.1 64.0,121.6 64.0,122.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="77.3" y="116.7" font-size="12" text-anchor="middle">41°</text>
+<text x="150.6" y="63.0" font-size="12" text-anchor="middle">？</text>
+<text x="206.2" y="116.2" font-size="12" text-anchor="middle">？</text>
+<text x="140.0" y="240.0" font-size="12" text-anchor="middle" font-weight="bold">練習1（ABは直径）</text>
+<circle cx="415.0" cy="122.0" r="88.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="327.0" y1="122.0" x2="503.0" y2="122.0" stroke="#000" stroke-width="1.6"/>
+<line x1="445.1" y1="39.3" x2="327.0" y2="122.0" stroke="#000" stroke-width="1.6"/>
+<line x1="445.1" y1="39.3" x2="503.0" y2="122.0" stroke="#000" stroke-width="1.6"/>
+<circle cx="327.0" cy="122.0" r="2.5" fill="#000"/>
+<text x="314.0" y="126.5" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="503.0" cy="122.0" r="2.5" fill="#000"/>
+<text x="516.0" y="126.5" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="445.1" cy="39.3" r="2.5" fill="#000"/>
+<text x="449.5" y="31.6" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<circle cx="415.0" cy="122.0" r="2.5" fill="#000"/>
+<text x="410.9" y="137.8" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="336.8,115.1 337.0,115.4 337.2,115.7 337.4,116.0 337.6,116.4 337.8,116.7 337.9,117.0 338.1,117.4 338.2,117.7 338.3,118.0 338.4,118.4 338.5,118.7 338.6,119.1 338.7,119.5 338.8,119.8 338.9,120.2 338.9,120.5 338.9,120.9 339.0,121.3 339.0,121.6 339.0,122.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="352.8" y="118.1" font-size="12" text-anchor="middle">35°</text>
+<text x="440.9" y="67.1" font-size="12" text-anchor="middle">？</text>
+<text x="481.7" y="115.1" font-size="12" text-anchor="middle">？</text>
+<text x="415.0" y="240.0" font-size="12" text-anchor="middle" font-weight="bold">練習2（ABは直径）</text>
+<text x="280.0" y="270.0" font-size="12" text-anchor="middle">直径がつくる三角形——？の角を求め，内角の和で検算する</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習1・2の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L03_fig4_practice_1_2.svg">図だけを開く</a></figure><p>ABが直径で∠CAB＝41°のとき、∠ACBと∠CBAを求めよう。求めたら内角の和で検算しよう。</p></li><li><p>ABが直径で∠DAB＝35°のとき、∠ADBと∠DBAを求めよう。</p></li><li><figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 318" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-0fe11c537f-title" aria-describedby="mg-0fe11c537f-desc">
+<title id="mg-0fe11c537f-title">3本の弦——直径といえるのはどれか</title>
+<desc id="mg-0fe11c537f-desc">練習3の図</desc>
+<!-- L03_fig5_practice_which_diameter.svg | 3本の弦——直径といえるのはどれか -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="360" height="318" fill="#fff"/>
+<circle cx="180.0" cy="138.0" r="100.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="93.4" y1="188.0" x2="266.6" y2="88.0" stroke="#000" stroke-width="1.6"/>
+<line x1="93.4" y1="88.0" x2="145.8" y2="232.0" stroke="#000" stroke-width="1.6"/>
+<line x1="230.0" y1="224.6" x2="274.0" y2="103.8" stroke="#000" stroke-width="1.6"/>
+<line x1="130.0" y1="51.4" x2="93.4" y2="188.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="130.0" y1="51.4" x2="266.6" y2="88.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<polyline points="127.9,59.1 135.7,61.2 137.7,53.5" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="93.4" cy="188.0" r="2.5" fill="#000"/>
+<text x="82.1" y="199.1" font-size="13" text-anchor="middle" font-weight="bold">T</text>
+<circle cx="266.6" cy="88.0" r="2.5" fill="#000"/>
+<text x="277.9" y="86.0" font-size="13" text-anchor="middle" font-weight="bold">U</text>
+<circle cx="130.0" cy="51.4" r="2.5" fill="#000"/>
+<text x="123.5" y="44.7" font-size="13" text-anchor="middle" font-weight="bold">V</text>
+<circle cx="93.4" cy="88.0" r="2.5" fill="#000"/>
+<text x="82.1" y="86.0" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="145.8" cy="232.0" r="2.5" fill="#000"/>
+<text x="141.4" y="248.7" font-size="13" text-anchor="middle" font-weight="bold">Q</text>
+<circle cx="230.0" cy="224.6" r="2.5" fill="#000"/>
+<text x="236.5" y="240.4" font-size="13" text-anchor="middle" font-weight="bold">R</text>
+<circle cx="274.0" cy="103.8" r="2.5" fill="#000"/>
+<text x="286.2" y="103.9" font-size="13" text-anchor="middle" font-weight="bold">S</text>
+<text x="180.0" y="282.0" font-size="12" text-anchor="middle">円周上の点Vから見た∠TVUは直角（印）</text>
+<text x="180.0" y="300.0" font-size="12" text-anchor="middle">（弦TU・PQ・RSのうち，この円の直径といえるものはどれ？）</text>
+</svg>
+</div><figcaption>練習3の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L03_fig5_practice_which_diameter.svg">図だけを開く</a></figure><p>円周上の点Vから見て∠TVU＝90°のとき、弦TU・PQ・RSのうち、この円の直径といえるものはどれか。理由も書こう。</p></li><li><p>円形の板の中心を、三角定規の直角だけを使って見つける手順を、自分の言葉で2〜3行にまとめよう（例題2の再構成。ノートに図もかいてみよう）。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> ABを直径とする円の周上で点Pを動かすと、∠APBはつねに90°だった。では、点Pが円の<strong>外</strong>にあるとき、∠APBは90°と比べて大きいか小さいか。円の<strong>内部</strong>にあるときはどうか。図をかいて予想し、Pと円周の交わりに補助線を引いて説明を試みよう（ヒント: Pが外にあるとき、線分PAが円と交わる点をQとすると、∠AQBは△QPBの外角になっている）。この「円周上か・内か・外か」で角が変わる感覚は、L05「円周角の定理の逆」の伏線になる。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_02.html"><span>前のレッスン</span>L02 円周角の定理——「どの弧に対する角か」を塗って見抜く</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_04.html"><span>次のレッスン</span>L04 証明のよさ——「いつでも」と言い切るために</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>03</strong> / 08</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_03.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1中心角180という特別な場合" href="lesson_03.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E4%B8%AD%E5%BF%83%E8%A7%92180%E3%81%A8%E3%81%84%E3%81%86%E7%89%B9%E5%88%A5%E3%81%AA%E5%A0%B4%E5%90%88">主概念1：中心角180°という特別な場合</a></li><li><a data-section-link="例題1-直径がつくる直角三角形" href="lesson_03.html#%E4%BE%8B%E9%A1%8C1-%E7%9B%B4%E5%BE%84%E3%81%8C%E3%81%A4%E3%81%8F%E3%82%8B%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2">例題1　直径がつくる直角三角形</a></li><li><a data-section-link="主概念2逆向きに使う90を見たら直径を疑う" href="lesson_03.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E9%80%86%E5%90%91%E3%81%8D%E3%81%AB%E4%BD%BF%E3%81%8690%E3%82%92%E8%A6%8B%E3%81%9F%E3%82%89%E7%9B%B4%E5%BE%84%E3%82%92%E7%96%91%E3%81%86">主概念2：逆向きに使う——90°を見たら直径を疑う</a></li><li><a data-section-link="例題2-円の中心を見つける" href="lesson_03.html#%E4%BE%8B%E9%A1%8C2-%E5%86%86%E3%81%AE%E4%B8%AD%E5%BF%83%E3%82%92%E8%A6%8B%E3%81%A4%E3%81%91%E3%82%8B">例題2　円の中心を見つける</a></li><li><a data-section-link="練習" href="lesson_03.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

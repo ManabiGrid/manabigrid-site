@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L02 公平に選ぶ——母集団・標本・無作為抽出">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L02 公平に選ぶ——母集団・標本・無作為抽出｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L02 公平に選ぶ——母集団・標本・無作為抽出">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L02 公平に選ぶ——母集団・標本・無作為抽出｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="28317e41165510a2319e5188ac8c3f48ba5a9836a488d3f4e7fd1b50559bd0d8" data-source-file="materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-sampling-survey/index.html">中3数学「標本調査」</a></li><li aria-current="page">L02 公平に選ぶ——母集団・標本・無作為抽出</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="28317e41165510a2319e5188ac8c3f48ba5a9836a488d3f4e7fd1b50559bd0d8" data-source-file="materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「標本調査」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l02-公平に選ぶ母集団標本無作為抽出"><span class="lesson-title-main">L02 公平に選ぶ</span><span class="lesson-title-sub">母集団・標本・無作為抽出</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p><strong>母集団</strong>・<strong>標本</strong>・<strong>標本の大きさ</strong>の意味を知り、具体的な調査で言い分けられる。</p></li><li><p><strong>無作為に抽出する</strong>とはどういうことか（個々の要素が取り出される確率が等しい）を、中2の確率と結びつけて理解し、乱数を使った選び方を実行できる。</p></li></ul>
+<h2 id="主概念1調査の登場人物に名前をつける">主概念1：調査の登場人物に名前をつける</h2>
+<p>標本調査を正確に語るために、まず用語をそろえよう。</p>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】母集団（ぼしゅうだん）・標本（ひょうほん）</strong> 標本調査で、調べたい対象<strong>全体</strong>の集団を<strong>母集団</strong>という。 母集団から取り出された<strong>一部分</strong>を<strong>標本</strong>といい、標本にふくまれるものの個数を<strong>標本の大きさ</strong>という。母集団から標本を取り出すことを、標本を<strong>抽出（ちゅうしゅつ）する</strong>という。</p></blockquote>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 236" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-b21df9a2d6-title" aria-describedby="mg-b21df9a2d6-desc">
+<title id="mg-b21df9a2d6-title">母集団から標本を抽出する模式図</title>
+<desc id="mg-b21df9a2d6-desc">母集団から標本を抽出する模式図</desc>
+<!-- L02_fig1_population_sample.svg | 母集団から標本を抽出する模式図 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="440" height="236" fill="#fff"/>
+<ellipse cx="138.0" cy="128.0" rx="105.0" ry="76.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<text x="138.0" y="30.0" font-size="13" text-anchor="middle" font-weight="bold">母集団</text>
+<text x="138.0" y="226.0" font-size="12" text-anchor="middle">調べたい対象の全体</text>
+<circle cx="76.0" cy="94.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="118.0" cy="82.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="164.0" cy="78.0" r="2.5" fill="#000"/>
+<circle cx="200.0" cy="98.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="60.0" cy="130.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="100.0" cy="120.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="142.0" cy="114.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="182.0" cy="122.0" r="2.5" fill="#000"/>
+<circle cx="214.0" cy="138.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="80.0" cy="158.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="122.0" cy="152.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="162.0" cy="158.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="198.0" cy="166.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="98.0" cy="180.0" r="2.5" fill="#000"/>
+<circle cx="146.0" cy="180.0" r="2.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<circle cx="370.0" cy="128.0" r="40.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<text x="370.0" y="66.0" font-size="13" text-anchor="middle" font-weight="bold">標本</text>
+<text x="370.0" y="226.0" font-size="12" text-anchor="middle">取り出された一部分</text>
+<circle cx="357.0" cy="119.0" r="2.5" fill="#000"/>
+<circle cx="383.0" cy="122.0" r="2.5" fill="#000"/>
+<circle cx="370.0" cy="141.0" r="2.5" fill="#000"/>
+<line x1="164.0" y1="78.0" x2="357.0" y2="119.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<line x1="182.0" y1="122.0" x2="383.0" y2="122.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<line x1="98.0" y1="180.0" x2="370.0" y2="141.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<line x1="247.0" y1="128.0" x2="324.0" y2="128.0" stroke="#000" stroke-width="1.8"/>
+<line x1="324.0" y1="128.0" x2="317.7" y2="131.1" stroke="#000" stroke-width="1.8"/>
+<line x1="324.0" y1="128.0" x2="317.7" y2="124.9" stroke="#000" stroke-width="1.8"/>
+<text x="286.5" y="116.0" font-size="13" text-anchor="middle" font-weight="bold">抽出</text>
+</svg>
+</div><figcaption>母集団から標本を抽出する模式図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-sampling-survey/assets/L02_fig1_population_sample.svg">図だけを開く</a></figure>
+<p>たとえば、架空のみどり市の中学生12,000人の睡眠時間（すいみんじかん）を、400人を選んで調べるとしよう。このとき母集団は「みどり市の中学生12,000人」、標本は「選ばれた400人」、標本の大きさは400である。「400人の調査」と言うだけでは、12,000人について語る調査だということが伝わらない。<strong>何が母集団なのかをいつも意識する</strong>——これが標本調査の読み書きの第一歩だ。</p>
+<h2 id="主概念2選び方が悪いと標本はうそをつく">主概念2：選び方が悪いと、標本はうそをつく</h2>
+<p>標本は母集団の「代わり」を務める。では、どう選べば代わりとして信用できるだろうか。まず、まずい選び方から見てみよう。</p>
+<p><strong>例1</strong>: みどり市の中学生の睡眠時間を知りたくて、夜10時に駅前にいた中学生に聞いた。 <strong>例2</strong>: 500ページの本にどんな単語が多いか知りたくて、最初の10ページだけを調べた。</p>
+<p>例1は、夜おそくに外にいる人だけが選ばれるから、睡眠時間の短い人にかたよりそうだ。例2は、本の最初の方には前書きや導入が多く、本全体の代表とは言いにくい。どちらも共通する失敗は、<strong>標本の選ばれ方に「くせ」があって、母集団の一部の顔ぶればかりが選ばれる</strong>ことだ。かたよった標本からは、母集団のかたよった姿しか見えない。</p>
+<p>そこで、選び方から「くせ」を取り除く。</p>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】無作為（むさくい）に抽出する</strong> 母集団のどの要素も、<strong>取り出される確率が等しくなる</strong>ようにかたよりなく標本を取り出すことを、標本を<strong>無作為に抽出する</strong>という（無作為抽出）。</p></blockquote>
+<p>「確率が等しい」という言い方に注目しよう。中2で学んだ「どの目が出ることも同様に確からしい」さいころと同じ考え方だ。誰が選ばれるかは偶然に任せる——ただし、<strong>全員に等しいチャンスがある偶然</strong>に任せる。これが「くじ引きの公平さ」を調査に持ちこむということである。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「わざと選ばない」ではなく「確率が等しい」</strong></p>
+<p>無作為抽出を「適当に選ぶこと」「何も考えずに選ぶこと」と覚えると、あとで足をすくわれる。人間が「適当に」選ぶと、無意識のくせ（目立つ人を選ぶ・近くの人を選ぶ）が入りこんで、確率は等しくならないからだ。定義の核心は気分ではなく<strong>確率</strong>にある。「どの要素が取り出される確率も等しい仕組みを使って選ぶ」。だから次の節のように、さいころや乱数という「くせのない道具」の出番になる。中2の確率が、ここで調査を支える土台として再登場しているわけだ。</p></div>
+<h2 id="乱数で選ぶ無作為抽出のやり方">乱数で選ぶ——無作為抽出のやり方</h2>
+<p>確率を等しくするには、人間の判断を機械的な偶然に置きかえるのが確実だ。よく使われるのが<strong>乱数（らんすう）</strong>、つまり「どの数字も等しい確率で現れるようにでたらめに並んだ数」である。</p>
+<p>架空のみどり中学校の生徒320人から10人を無作為に抽出する手順を示そう。</p>
+<ol start="1"><li><p>全校生徒の名簿に001〜320の番号をつける。</p></li><li><p>乱数を作る。<strong>乱数さい</strong>（0〜9の数字が等しく出るさいころ）を3個使い、百の位・十の位・一の位を決める。コンピュータや電卓の乱数機能で3けたの数を作ってもよい。</p></li><li><p>出た3けたの数が 001≦番号≦320 ならその番号の生徒を選ぶ。範囲外（000や321〜999）や、すでに選んだ番号が出たら、読み飛ばして次を作る。</p></li><li><p>10人選べるまでくり返す。</p></li></ol>
+<p>この手順なら、どの生徒が選ばれる確率も等しい。選ぶ人の好みや「くせ」の入りこむすき間がない。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「学年ごとに分けて選びたい」と思った人へ</strong></p>
+<p>「320人からただ10人選ぶより、各学年からバランスよく選ぶ方がかたよらないのでは?」と考えた人は、良いところに目をつけている。「特定の顔ぶれにかたよってほしくない」という、その動機こそが無作為抽出のねらいそのものだからだ。ここで正確におさえておこう。無作為抽出で等しくなるのは、<strong>一人ひとりの生徒が選ばれる確率</strong>である。学年ごとに同じ人数が選ばれることまでは保証されない（たまたまある学年にかたよった10人になることも起こりうる）。それでも「選ぶ人の作為が入りこまない」こと——これが無作為抽出の価値だ。集団の構成をふまえたさらにくふうされた選び方もあるが、中学ではまず「等しい確率で選ぶ」という基本の型をしっかり身につけておこう。この型が、すべてのくふうの土台になる。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>全数調査の身近な例に、国が行う国勢調査（こくせいちょうさ）がある。日本に住むすべての世帯を対象にする調査だから、国勢調査に「標本」はない。全数調査と標本調査は、ライバルではなく役割分担の関係なのだ。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>架空のさくら市には中学生が9,000人いる。この中から300人を選んで、平日の家庭学習時間を調べることにした。母集団・標本・標本の大きさをそれぞれ答えよう。</p></li><li><p>みどり中学校の生徒320人の読書量を調べるのに、次の(ア)〜(ウ)の選び方を考えた。無作為抽出といえるものを1つ選ぼう。また、残りの2つはどんなかたよりが心配か、それぞれ一言で書こう。  (ア) 昼休みに図書室に来ていた生徒10人に聞く  (イ) 名簿の001〜320に番号をつけ、乱数で10人選ぶ  (ウ) 3年1組の全員（32人）に聞く</p></li><li><p>生徒320人（番号001〜320）から5人を無作為に抽出するため、乱数さいで3けたの数を作ったところ、順に次のようになった。  483, 072, 615, 129, 350, 288, 904, 017, 460, 133  選ばれる5人の番号を答えよう。</p></li><li><p>「クラスで一番くわしい友だち5人に聞く方が、乱数で選んだ5人に聞くよりよい調査になる」という意見は、母集団全体のようすを知る目的に対してどんな問題があるか、説明しよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 表計算ソフトや電卓には乱数を作る機能がある。自分の使える道具で「1〜320の整数の乱数」を作る方法を調べて、実際に10個作ってみよう（調べるフレーズ例:「表計算 乱数 整数 作り方」）。同じ操作をもう一度したとき、出てくる10個は前回と同じになるだろうか。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 全部は調べられない——全数調査と標本調査</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-sampling-survey/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 標本はそのたびに顔が違う——標本平均のばらつき</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>02</strong> / 07</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_02.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1調査の登場人物に名前をつける" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E8%AA%BF%E6%9F%BB%E3%81%AE%E7%99%BB%E5%A0%B4%E4%BA%BA%E7%89%A9%E3%81%AB%E5%90%8D%E5%89%8D%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B">主概念1：調査の登場人物に名前をつける</a></li><li><a data-section-link="主概念2選び方が悪いと標本はうそをつく" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E9%81%B8%E3%81%B3%E6%96%B9%E3%81%8C%E6%82%AA%E3%81%84%E3%81%A8%E6%A8%99%E6%9C%AC%E3%81%AF%E3%81%86%E3%81%9D%E3%82%92%E3%81%A4%E3%81%8F">主概念2：選び方が悪いと、標本はうそをつく</a></li><li><a data-section-link="乱数で選ぶ無作為抽出のやり方" href="lesson_02.html#%E4%B9%B1%E6%95%B0%E3%81%A7%E9%81%B8%E3%81%B6%E7%84%A1%E4%BD%9C%E7%82%BA%E6%8A%BD%E5%87%BA%E3%81%AE%E3%82%84%E3%82%8A%E6%96%B9">乱数で選ぶ——無作為抽出のやり方</a></li><li><a data-section-link="練習" href="lesson_02.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+# ManabiGrid 展示サイト
+
+[ManabiGrid（まなびグリッド）](https://github.com/ManabiGrid/manabigrid)の公開OSS教材を、GitHubに慣れていない人も読みやすい静的サイトへ変換します。教材の正本は別リポジトリに保ち、このリポジトリは生成器、検査器、公開用HTMLを管理します。
+
+- 公開サイト: https://manabigrid.github.io/manabigrid-site/
+- 正本: https://github.com/ManabiGrid/manabigrid
+- 教材・図版: CC BY 4.0
+- サイト生成器: MIT License
+
+## 1コマンドで再生成
+
+Python 3の標準ライブラリだけを使います。追加パッケージは不要です。
+
+```bash
+python3 build_site.py
+```
+
+既定では、`MANABIGRID_SOURCE_ROOT`環境変数、隣接する`manabigrid/`、隣接するステージングcloneの順に正本を探します。別の場所にある場合は明示できます。
+
+```bash
+python3 build_site.py --source /path/to/manabigrid
+```
+
+この1コマンドで247件を含む全対象Markdownを再変換し、内部リンク、frontmatter非表示、`:::`ブロック、SVG、来歴、公開メタデータ、検索索引、公開検疫、正本HEADとの鮮度一致を検査します。件数は正本の更新に応じて変わります。
+
+## ローカルで見る
+
+相対リンクだけで閲覧する部分は`index.html`を直接開けます。GitHub Pagesのサブパスと404を含めて確かめるときは、ローカル専用サーバーを使います。
+
+```bash
+python3 preview_server.py
+```
+
+表示先は `http://127.0.0.1:8765/manabigrid-site/` です。外部インターフェースへbindしません。
+
+## GitHubを初めて使う人へ
+
+公開サイトの「このサイトについて」には、次を文字だけで案内しています。
+
+1. READMEから読み始め、フォルダをたどる方法。
+2. `materials/`の教材本文と`curriculum/`の進捗・単元一覧の違い。
+3. アカウントなしの閲覧と、Code → Download ZIPによる保存。
+4. Issueを作る3ステップと、個人情報を書かないための注意。
+5. リポジトリ、コミット、Issue、Markdownのミニ辞典。
+
+GitHubの画面変更で古くなりやすいスクリーンショットは使っていません。
+
+## なぜ静的サイトか
+
+現在必要なのは、正本の変換、閲覧、タイトル・見出し検索、前後移動、印刷、来歴表示です。ログイン、個人別進捗、投稿、データベース、サーバーAPIは必要ありません。
+
+静的構成なら、検索語や学習履歴を外へ送らず、外部CDN、解析、トラッキング、Cookie、入力フォームを置かずに運用できます。正本との連動は動的サイト化ではなく、GitHub Actionsによる静的再ビルドで行います。サーバー側でなければ成立しない利用要件が具体化した時だけ動的化を再検討します。
+
+## 正本更新との連動
+
+`.github/workflows/pages.yml`は次の閉ループです。
+
+1. 毎日または手動実行で正本の現在HEADを取得する。
+2. 公開中の`build-report.json`と比較し、更新時だけ再生成する。
+3. `build_site.py`、`check_site.py`、正本検疫と同等の生成物検疫を実行する。
+4. 公開allowlistだけをPages artifactへまとめる。
+5. すべて通った時だけGitHub Pagesへデプロイする。失敗時はdeploy jobを起動せず、直前の正常版を残す。
+
+`workflow_dispatch`で手動再生成できます。外部リンクのライブ到達性は毎回監視せず、公開前や大きな更新時だけ明示入力で実行します。public repositoryのscheduled workflowは長期間活動がないとGitHub側で無効化される場合があるため、手動実行も残しています。
+
+このCodexタスクへ更新を依頼する場合は、次の指示で同じ検査まで再実行できます。
+
+> ManabiGrid正本の現在HEADを確認し、展示サイトを再生成してください。正本は変更せず、全Markdown変換、リンク切れ、鮮度、公開検疫、モバイル／デスクトップ／ダークモードの実描画を確認し、全ゲート通過時だけ既存GitHub Pagesを更新してください。
+
+## 公開artifact
+
+リポジトリ全体はそのまま配信しません。`public_site.py`を単一allowlistとして、次だけをPages artifactへ入れます。
+
+- ルート: `.nojekyll`、`index.html`、`404.html`、`robots.txt`、`sitemap.xml`、`build-report.json`
+- ディレクトリ: `_assets/`、`_media/`、`about/`、`browse/`、`content/`、`progress/`、`subjects/`、`units/`
+
+```bash
+python3 package_site.py --dry-run
+```
+
+`check-report.json`、外部リンク検査結果、実描画スクリーンショット、印刷PDF、ロールバックアーカイブ、ローカルキャッシュは配信しません。
+
+## 検査
+
+```bash
+python3 check_site.py . --source /path/to/manabigrid
+python3 check_workflow.py
+python3 package_site.py --dry-run
+```
+
+外部URLの一回検査は明示opt-inです。対象URLを送信せずに「到達性」を確かめる方法はないため、通常ビルドから分離しています。
+
+```bash
+python3 check_external_links.py . --run
+```
+
+HTTP 404/410はhard broken、401/403/429や一時的なネットワーク失敗はblocked/unknownとして分けて記録します。
+
+実描画は390×844pxと1440×1000pxで、トップ、wide SVGレッスン、進捗一覧、GitHub案内、404、MathML試作ページを確認します。OS追従ダークモードの代表画面と、ダーク設定中でも印刷が白地・黒文字になることも検査します。
+
+## 主なファイル
+
+- `build_site.py`: 再実行可能な静的サイト生成器
+- `check_site.py`: 全ページ、リンク、メタデータ、鮮度、SVG、MathML、公開検疫の検査器
+- `check_external_links.py`: 明示実行する外部URL到達性検査器
+- `preview_server.py`: GitHub Pagesのproject pathと404を再現するlocalhostサーバー
+- `browser_check.py`: Chrome DevTools Protocolによる実描画検査
+- `check_workflow.py`: GitHub Actionsの構造・SHA pin・権限を検査
+- `package_site.py` / `public_site.py`: 公開allowlistとartifact生成
+- `site.config.json`: 公開URL、対象リポジトリ、OG画像の単一設定
+- `DESIGN.md`: 読者、視覚方針、レビュー採否、検証記録
+- `MATH_RENDERING_ISSUE_DRAFT.md`: 正本側へ提案する数式3箇所のIssue草案（未起票）
+
+## 既知の制限
+
+- 中2数学「一次関数」は正本がL1〜L7の通しMarkdownなので1ページのままです。節ナビと現在地表示を追加しています。
+- 表示数式3箇所のうち1箇所だけ静的MathMLを試作し、残り2箇所は意味を保つUnicode表示です。場所と方式を`build-report.json`へ記録します。
+- project site配下の`robots.txt`は生成しますが、origin直下ではないため検索エンジンが必ず参照するとは限りません。canonicalとsitemapを主なURL手掛かりにします。
+- 教材には候補ドラフトが含まれます。学校・公的機関の公式教材や公認サイトではありません。

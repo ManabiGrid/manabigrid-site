@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L11 二次不等式②——共有点が特殊な場合（strict／non-strictの4パターン）">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L11 二次不等式②——共有点が特殊な場合（strict／non-strictの4パターン）｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L11 二次不等式②——共有点が特殊な場合（strict／non-strictの4パターン）">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L11 二次不等式②——共有点が特殊な場合（strict／non-strictの4パターン）｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="15faff583057e7013e67ca04123a875c99bcc00acb4c3459261941459876b9ad" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L11 二次不等式②——共有点が特殊な場合（strict／non-strictの4パターン）</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="15faff583057e7013e67ca04123a875c99bcc00acb4c3459261941459876b9ad" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>高校 数学I ／ 高校数学Ⅰ「二次関数」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l11-二次不等式2共有点が特殊な場合strictnon-strictの4パターン"><span class="lesson-title-main">L11 二次不等式②</span><span class="lesson-title-sub">共有点が特殊な場合（strict／non-strictの4パターン）</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><ul><li><p>unit_id: hs-math-i-quadratic-functions</p></li><li><p>distribution_status: published_draft</p></li><li><p>license: CC-BY-4.0</p></li><li><p>verify_required: 例題数値・記述は監修者検証必須。</p></li><li><p>distribution_status: published_draft</p></li><li><p>位置づけ: 単元第11レッスン（2.5時間）。共有点が1個・0個の場合の二次不等式に特化する。</p></li><li><p>主概念: ①不等号の種類（等号なし＝strict／等号つき＝non-strict）で解集合が変わる ②接点を「含む・除く」の判断を毎回グラフで言語化する</p></li></ul>
+<hr>
+<h2 id="1-共有点が1個のときyx12-で4パターンを全部見る">1. 共有点が1個のとき——y=(x−1)² で4パターンを全部見る</h2>
+<p>y=(x−1)² のグラフは、下に凸で、x軸と x=1 の1点だけで接する（L09）。x=1 では y=0、それ以外のすべての x では y&gt;0。この1つのグラフに対して、不等号を4通りに変えて解を読む。</p>
+<p><strong>パターン1: (x−1)²&gt;0</strong> 「x軸より上（0は含まない）」。グラフは x=1 以外のすべてで上にあり、x=1 だけは y=0 なので<strong>除く</strong>。解は <strong>x=1 以外のすべての実数（x≠1）</strong>。</p>
+<p><strong>パターン2: (x−1)²≧0</strong> 「x軸より上、または x軸上」。x=1 の接点も y=0 だから<strong>含む</strong>。解は <strong>すべての実数</strong>。</p>
+<p><strong>パターン3: (x−1)²&lt;0</strong> 「x軸より下」。グラフにx軸より下の部分は1点もない。解は <strong>なし（解なし）</strong>。</p>
+<p><strong>パターン4: (x−1)²≦0</strong> 「x軸より下、または x軸上」。下の部分はないが、x軸上の点が x=1 に1つだけある。解は <strong>x=1</strong>。</p>
+<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 654 234" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-a874867579-title" aria-describedby="mg-a874867579-desc">
+<title id="mg-a874867579-title">y=(x−1)²のstrict/non-strict 4パターン</title>
+<desc id="mg-a874867579-desc">y=(x−1)²のstrict/non-strict 4パターン</desc>
+<!-- L11_fig1_four_patterns_tangent.svg | y=(x−1)²のstrict/non-strict 4パターン -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="654" height="234" fill="#fff"/>
+<line x1="26.0" y1="133.7" x2="149.0" y2="133.7" stroke="#000" stroke-width="1.2"/>
+<polygon points="156.0,133.7 149.0,136.8 149.0,130.5" fill="#000"/>
+<line x1="61.6" y1="162.0" x2="61.6" y2="39.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="61.6,32.0 64.7,39.0 58.4,39.0" fill="#000"/>
+<text x="158.0" y="138.2" font-size="13" text-anchor="start">x</text>
+<text x="68.6" y="34.0" font-size="13" text-anchor="start">y</text>
+<line x1="36.2" y1="130.7" x2="36.2" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="87.0" y1="130.7" x2="87.0" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="112.4" y1="130.7" x2="112.4" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="137.8" y1="130.7" x2="137.8" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="58.6" y1="155.5" x2="64.6" y2="155.5" stroke="#000" stroke-width="1.0"/>
+<line x1="58.6" y1="111.9" x2="64.6" y2="111.9" stroke="#000" stroke-width="1.0"/>
+<line x1="58.6" y1="90.1" x2="64.6" y2="90.1" stroke="#000" stroke-width="1.0"/>
+<line x1="58.6" y1="68.3" x2="64.6" y2="68.3" stroke="#000" stroke-width="1.0"/>
+<line x1="58.6" y1="46.5" x2="64.6" y2="46.5" stroke="#000" stroke-width="1.0"/>
+<text x="87.0" y="145.7" font-size="9" text-anchor="middle">1</text>
+<polyline points="34.3,40.0 34.8,41.9 35.3,43.7 35.9,45.5 36.4,47.3 36.9,49.1 37.5,50.9 38.0,52.7 38.5,54.4 39.0,56.1 39.6,57.8 40.1,59.5 40.6,61.1 41.1,62.8 41.7,64.4 42.2,66.0 42.7,67.6 43.3,69.1 43.8,70.7 44.3,72.2 44.8,73.7 45.4,75.2 45.9,76.7 46.4,78.1 46.9,79.6 47.5,81.0 48.0,82.4 48.5,83.8 49.1,85.1 49.6,86.5 50.1,87.8 50.6,89.1 51.2,90.4 51.7,91.6 52.2,92.9 52.7,94.1 53.3,95.3 53.8,96.5 54.3,97.7 54.8,98.8 55.4,100.0 55.9,101.1 56.4,102.2 57.0,103.2 57.5,104.3 58.0,105.3 58.5,106.4 59.1,107.4 59.6,108.3 60.1,109.3 60.6,110.3 61.2,111.2 61.7,112.1 62.2,113.0 62.8,113.9 63.3,114.7 63.8,115.5 64.3,116.4 64.9,117.2 65.4,117.9 65.9,118.7 66.4,119.4 67.0,120.2 67.5,120.9 68.0,121.5 68.6,122.2 69.1,122.8 69.6,123.5 70.1,124.1 70.7,124.7 71.2,125.2 71.7,125.8 72.2,126.3 72.8,126.8 73.3,127.3 73.8,127.8 74.4,128.3 74.9,128.7 75.4,129.1 75.9,129.5 76.5,129.9 77.0,130.3 77.5,130.6 78.0,131.0 78.6,131.3 79.1,131.6 79.6,131.8 80.1,132.1 80.7,132.3 81.2,132.5 81.7,132.7 82.3,132.9 82.8,133.1 83.3,133.2 83.8,133.3 84.4,133.4 84.9,133.5 85.4,133.6 85.9,133.6 86.5,133.7 87.0,133.7 87.5,133.7 88.1,133.6 88.6,133.6 89.1,133.5 89.6,133.4 90.2,133.3 90.7,133.2 91.2,133.1 91.7,132.9 92.3,132.7 92.8,132.5 93.3,132.3 93.9,132.1 94.4,131.8 94.9,131.6 95.4,131.3 96.0,131.0 96.5,130.6 97.0,130.3 97.5,129.9 98.1,129.5 98.6,129.1 99.1,128.7 99.6,128.3 100.2,127.8 100.7,127.3 101.2,126.8 101.8,126.3 102.3,125.8 102.8,125.2 103.3,124.7 103.9,124.1 104.4,123.5 104.9,122.8 105.4,122.2 106.0,121.5 106.5,120.9 107.0,120.2 107.6,119.4 108.1,118.7 108.6,117.9 109.1,117.2 109.7,116.4 110.2,115.5 110.7,114.7 111.2,113.9 111.8,113.0 112.3,112.1 112.8,111.2 113.4,110.3 113.9,109.3 114.4,108.3 114.9,107.4 115.5,106.4 116.0,105.3 116.5,104.3 117.0,103.2 117.6,102.2 118.1,101.1 118.6,100.0 119.2,98.8 119.7,97.7 120.2,96.5 120.7,95.3 121.3,94.1 121.8,92.9 122.3,91.6 122.8,90.4 123.4,89.1 123.9,87.8 124.4,86.5 124.9,85.1 125.5,83.8 126.0,82.4 126.5,81.0 127.1,79.6 127.6,78.1 128.1,76.7 128.6,75.2 129.2,73.7 129.7,72.2 130.2,70.7 130.7,69.1 131.3,67.6 131.8,66.0 132.3,64.4 132.9,62.8 133.4,61.1 133.9,59.5 134.4,57.8 135.0,56.1 135.5,54.4 136.0,52.7 136.5,50.9 137.1,49.1 137.6,47.3 138.1,45.5 138.7,43.7 139.2,41.9 139.7,40.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="29.8" y1="133.7" x2="87.0" y2="133.7" stroke="#000" stroke-width="3.2"/>
+<line x1="87.0" y1="133.7" x2="144.2" y2="133.7" stroke="#000" stroke-width="3.2"/>
+<circle cx="87.0" cy="133.7" r="3.4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="87.0" y="18.0" font-size="13" text-anchor="middle" font-weight="bold">(x−1)²＞0</text>
+<text x="87.0" y="194.0" font-size="11.5" text-anchor="middle">解: x≠1（1だけ除く）</text>
+<line x1="186.0" y1="133.7" x2="309.0" y2="133.7" stroke="#000" stroke-width="1.2"/>
+<polygon points="316.0,133.7 309.0,136.8 309.0,130.5" fill="#000"/>
+<line x1="221.6" y1="162.0" x2="221.6" y2="39.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="221.6,32.0 224.7,39.0 218.4,39.0" fill="#000"/>
+<text x="318.0" y="138.2" font-size="13" text-anchor="start">x</text>
+<text x="228.6" y="34.0" font-size="13" text-anchor="start">y</text>
+<line x1="196.2" y1="130.7" x2="196.2" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="247.0" y1="130.7" x2="247.0" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="272.4" y1="130.7" x2="272.4" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="297.8" y1="130.7" x2="297.8" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="218.6" y1="155.5" x2="224.6" y2="155.5" stroke="#000" stroke-width="1.0"/>
+<line x1="218.6" y1="111.9" x2="224.6" y2="111.9" stroke="#000" stroke-width="1.0"/>
+<line x1="218.6" y1="90.1" x2="224.6" y2="90.1" stroke="#000" stroke-width="1.0"/>
+<line x1="218.6" y1="68.3" x2="224.6" y2="68.3" stroke="#000" stroke-width="1.0"/>
+<line x1="218.6" y1="46.5" x2="224.6" y2="46.5" stroke="#000" stroke-width="1.0"/>
+<text x="247.0" y="145.7" font-size="9" text-anchor="middle">1</text>
+<polyline points="194.3,40.0 194.8,41.9 195.3,43.7 195.9,45.5 196.4,47.3 196.9,49.1 197.5,50.9 198.0,52.7 198.5,54.4 199.0,56.1 199.6,57.8 200.1,59.5 200.6,61.1 201.1,62.8 201.7,64.4 202.2,66.0 202.7,67.6 203.3,69.1 203.8,70.7 204.3,72.2 204.8,73.7 205.4,75.2 205.9,76.7 206.4,78.1 206.9,79.6 207.5,81.0 208.0,82.4 208.5,83.8 209.1,85.1 209.6,86.5 210.1,87.8 210.6,89.1 211.2,90.4 211.7,91.6 212.2,92.9 212.7,94.1 213.3,95.3 213.8,96.5 214.3,97.7 214.8,98.8 215.4,100.0 215.9,101.1 216.4,102.2 217.0,103.2 217.5,104.3 218.0,105.3 218.5,106.4 219.1,107.4 219.6,108.3 220.1,109.3 220.6,110.3 221.2,111.2 221.7,112.1 222.2,113.0 222.8,113.9 223.3,114.7 223.8,115.5 224.3,116.4 224.9,117.2 225.4,117.9 225.9,118.7 226.4,119.4 227.0,120.2 227.5,120.9 228.0,121.5 228.6,122.2 229.1,122.8 229.6,123.5 230.1,124.1 230.7,124.7 231.2,125.2 231.7,125.8 232.2,126.3 232.8,126.8 233.3,127.3 233.8,127.8 234.4,128.3 234.9,128.7 235.4,129.1 235.9,129.5 236.5,129.9 237.0,130.3 237.5,130.6 238.0,131.0 238.6,131.3 239.1,131.6 239.6,131.8 240.1,132.1 240.7,132.3 241.2,132.5 241.7,132.7 242.3,132.9 242.8,133.1 243.3,133.2 243.8,133.3 244.4,133.4 244.9,133.5 245.4,133.6 245.9,133.6 246.5,133.7 247.0,133.7 247.5,133.7 248.1,133.6 248.6,133.6 249.1,133.5 249.6,133.4 250.2,133.3 250.7,133.2 251.2,133.1 251.7,132.9 252.3,132.7 252.8,132.5 253.3,132.3 253.9,132.1 254.4,131.8 254.9,131.6 255.4,131.3 256.0,131.0 256.5,130.6 257.0,130.3 257.5,129.9 258.1,129.5 258.6,129.1 259.1,128.7 259.6,128.3 260.2,127.8 260.7,127.3 261.2,126.8 261.8,126.3 262.3,125.8 262.8,125.2 263.3,124.7 263.9,124.1 264.4,123.5 264.9,122.8 265.4,122.2 266.0,121.5 266.5,120.9 267.0,120.2 267.6,119.4 268.1,118.7 268.6,117.9 269.1,117.2 269.7,116.4 270.2,115.5 270.7,114.7 271.2,113.9 271.8,113.0 272.3,112.1 272.8,111.2 273.4,110.3 273.9,109.3 274.4,108.3 274.9,107.4 275.5,106.4 276.0,105.3 276.5,104.3 277.0,103.2 277.6,102.2 278.1,101.1 278.6,100.0 279.2,98.8 279.7,97.7 280.2,96.5 280.7,95.3 281.3,94.1 281.8,92.9 282.3,91.6 282.8,90.4 283.4,89.1 283.9,87.8 284.4,86.5 284.9,85.1 285.5,83.8 286.0,82.4 286.5,81.0 287.1,79.6 287.6,78.1 288.1,76.7 288.6,75.2 289.2,73.7 289.7,72.2 290.2,70.7 290.7,69.1 291.3,67.6 291.8,66.0 292.3,64.4 292.9,62.8 293.4,61.1 293.9,59.5 294.4,57.8 295.0,56.1 295.5,54.4 296.0,52.7 296.5,50.9 297.1,49.1 297.6,47.3 298.1,45.5 298.7,43.7 299.2,41.9 299.7,40.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="189.8" y1="133.7" x2="247.0" y2="133.7" stroke="#000" stroke-width="3.2"/>
+<line x1="247.0" y1="133.7" x2="304.2" y2="133.7" stroke="#000" stroke-width="3.2"/>
+<circle cx="247.0" cy="133.7" r="3.4" fill="#000"/>
+<text x="247.0" y="18.0" font-size="13" text-anchor="middle" font-weight="bold">(x−1)²≧0</text>
+<text x="247.0" y="194.0" font-size="11.5" text-anchor="middle">解: すべての実数</text>
+<line x1="346.0" y1="133.7" x2="469.0" y2="133.7" stroke="#000" stroke-width="1.2"/>
+<polygon points="476.0,133.7 469.0,136.8 469.0,130.5" fill="#000"/>
+<line x1="381.6" y1="162.0" x2="381.6" y2="39.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="381.6,32.0 384.7,39.0 378.4,39.0" fill="#000"/>
+<text x="478.0" y="138.2" font-size="13" text-anchor="start">x</text>
+<text x="388.6" y="34.0" font-size="13" text-anchor="start">y</text>
+<line x1="356.2" y1="130.7" x2="356.2" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="407.0" y1="130.7" x2="407.0" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="432.4" y1="130.7" x2="432.4" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="457.8" y1="130.7" x2="457.8" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="378.6" y1="155.5" x2="384.6" y2="155.5" stroke="#000" stroke-width="1.0"/>
+<line x1="378.6" y1="111.9" x2="384.6" y2="111.9" stroke="#000" stroke-width="1.0"/>
+<line x1="378.6" y1="90.1" x2="384.6" y2="90.1" stroke="#000" stroke-width="1.0"/>
+<line x1="378.6" y1="68.3" x2="384.6" y2="68.3" stroke="#000" stroke-width="1.0"/>
+<line x1="378.6" y1="46.5" x2="384.6" y2="46.5" stroke="#000" stroke-width="1.0"/>
+<text x="407.0" y="145.7" font-size="9" text-anchor="middle">1</text>
+<polyline points="354.3,40.0 354.8,41.9 355.3,43.7 355.9,45.5 356.4,47.3 356.9,49.1 357.5,50.9 358.0,52.7 358.5,54.4 359.0,56.1 359.6,57.8 360.1,59.5 360.6,61.1 361.1,62.8 361.7,64.4 362.2,66.0 362.7,67.6 363.3,69.1 363.8,70.7 364.3,72.2 364.8,73.7 365.4,75.2 365.9,76.7 366.4,78.1 366.9,79.6 367.5,81.0 368.0,82.4 368.5,83.8 369.1,85.1 369.6,86.5 370.1,87.8 370.6,89.1 371.2,90.4 371.7,91.6 372.2,92.9 372.7,94.1 373.3,95.3 373.8,96.5 374.3,97.7 374.8,98.8 375.4,100.0 375.9,101.1 376.4,102.2 377.0,103.2 377.5,104.3 378.0,105.3 378.5,106.4 379.1,107.4 379.6,108.3 380.1,109.3 380.6,110.3 381.2,111.2 381.7,112.1 382.2,113.0 382.8,113.9 383.3,114.7 383.8,115.5 384.3,116.4 384.9,117.2 385.4,117.9 385.9,118.7 386.4,119.4 387.0,120.2 387.5,120.9 388.0,121.5 388.6,122.2 389.1,122.8 389.6,123.5 390.1,124.1 390.7,124.7 391.2,125.2 391.7,125.8 392.2,126.3 392.8,126.8 393.3,127.3 393.8,127.8 394.4,128.3 394.9,128.7 395.4,129.1 395.9,129.5 396.5,129.9 397.0,130.3 397.5,130.6 398.0,131.0 398.6,131.3 399.1,131.6 399.6,131.8 400.1,132.1 400.7,132.3 401.2,132.5 401.7,132.7 402.3,132.9 402.8,133.1 403.3,133.2 403.8,133.3 404.4,133.4 404.9,133.5 405.4,133.6 405.9,133.6 406.5,133.7 407.0,133.7 407.5,133.7 408.1,133.6 408.6,133.6 409.1,133.5 409.6,133.4 410.2,133.3 410.7,133.2 411.2,133.1 411.7,132.9 412.3,132.7 412.8,132.5 413.3,132.3 413.9,132.1 414.4,131.8 414.9,131.6 415.4,131.3 416.0,131.0 416.5,130.6 417.0,130.3 417.5,129.9 418.1,129.5 418.6,129.1 419.1,128.7 419.6,128.3 420.2,127.8 420.7,127.3 421.2,126.8 421.8,126.3 422.3,125.8 422.8,125.2 423.3,124.7 423.9,124.1 424.4,123.5 424.9,122.8 425.4,122.2 426.0,121.5 426.5,120.9 427.0,120.2 427.6,119.4 428.1,118.7 428.6,117.9 429.1,117.2 429.7,116.4 430.2,115.5 430.7,114.7 431.2,113.9 431.8,113.0 432.3,112.1 432.8,111.2 433.4,110.3 433.9,109.3 434.4,108.3 434.9,107.4 435.5,106.4 436.0,105.3 436.5,104.3 437.0,103.2 437.6,102.2 438.1,101.1 438.6,100.0 439.2,98.8 439.7,97.7 440.2,96.5 440.7,95.3 441.3,94.1 441.8,92.9 442.3,91.6 442.8,90.4 443.4,89.1 443.9,87.8 444.4,86.5 444.9,85.1 445.5,83.8 446.0,82.4 446.5,81.0 447.1,79.6 447.6,78.1 448.1,76.7 448.6,75.2 449.2,73.7 449.7,72.2 450.2,70.7 450.7,69.1 451.3,67.6 451.8,66.0 452.3,64.4 452.9,62.8 453.4,61.1 453.9,59.5 454.4,57.8 455.0,56.1 455.5,54.4 456.0,52.7 456.5,50.9 457.1,49.1 457.6,47.3 458.1,45.5 458.7,43.7 459.2,41.9 459.7,40.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="407.0" y="18.0" font-size="13" text-anchor="middle" font-weight="bold">(x−1)²＜0</text>
+<text x="407.0" y="194.0" font-size="11.5" text-anchor="middle">解: なし</text>
+<line x1="506.0" y1="133.7" x2="629.0" y2="133.7" stroke="#000" stroke-width="1.2"/>
+<polygon points="636.0,133.7 629.0,136.8 629.0,130.5" fill="#000"/>
+<line x1="541.6" y1="162.0" x2="541.6" y2="39.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="541.6,32.0 544.7,39.0 538.4,39.0" fill="#000"/>
+<text x="638.0" y="138.2" font-size="13" text-anchor="start">x</text>
+<text x="548.6" y="34.0" font-size="13" text-anchor="start">y</text>
+<line x1="516.2" y1="130.7" x2="516.2" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="567.0" y1="130.7" x2="567.0" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="592.4" y1="130.7" x2="592.4" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="617.8" y1="130.7" x2="617.8" y2="136.7" stroke="#000" stroke-width="1.0"/>
+<line x1="538.6" y1="155.5" x2="544.6" y2="155.5" stroke="#000" stroke-width="1.0"/>
+<line x1="538.6" y1="111.9" x2="544.6" y2="111.9" stroke="#000" stroke-width="1.0"/>
+<line x1="538.6" y1="90.1" x2="544.6" y2="90.1" stroke="#000" stroke-width="1.0"/>
+<line x1="538.6" y1="68.3" x2="544.6" y2="68.3" stroke="#000" stroke-width="1.0"/>
+<line x1="538.6" y1="46.5" x2="544.6" y2="46.5" stroke="#000" stroke-width="1.0"/>
+<text x="567.0" y="145.7" font-size="9" text-anchor="middle">1</text>
+<polyline points="514.3,40.0 514.8,41.9 515.3,43.7 515.9,45.5 516.4,47.3 516.9,49.1 517.5,50.9 518.0,52.7 518.5,54.4 519.0,56.1 519.6,57.8 520.1,59.5 520.6,61.1 521.1,62.8 521.7,64.4 522.2,66.0 522.7,67.6 523.3,69.1 523.8,70.7 524.3,72.2 524.8,73.7 525.4,75.2 525.9,76.7 526.4,78.1 526.9,79.6 527.5,81.0 528.0,82.4 528.5,83.8 529.1,85.1 529.6,86.5 530.1,87.8 530.6,89.1 531.2,90.4 531.7,91.6 532.2,92.9 532.7,94.1 533.3,95.3 533.8,96.5 534.3,97.7 534.8,98.8 535.4,100.0 535.9,101.1 536.4,102.2 537.0,103.2 537.5,104.3 538.0,105.3 538.5,106.4 539.1,107.4 539.6,108.3 540.1,109.3 540.6,110.3 541.2,111.2 541.7,112.1 542.2,113.0 542.8,113.9 543.3,114.7 543.8,115.5 544.3,116.4 544.9,117.2 545.4,117.9 545.9,118.7 546.4,119.4 547.0,120.2 547.5,120.9 548.0,121.5 548.6,122.2 549.1,122.8 549.6,123.5 550.1,124.1 550.7,124.7 551.2,125.2 551.7,125.8 552.2,126.3 552.8,126.8 553.3,127.3 553.8,127.8 554.4,128.3 554.9,128.7 555.4,129.1 555.9,129.5 556.5,129.9 557.0,130.3 557.5,130.6 558.0,131.0 558.6,131.3 559.1,131.6 559.6,131.8 560.1,132.1 560.7,132.3 561.2,132.5 561.7,132.7 562.3,132.9 562.8,133.1 563.3,133.2 563.8,133.3 564.4,133.4 564.9,133.5 565.4,133.6 565.9,133.6 566.5,133.7 567.0,133.7 567.5,133.7 568.1,133.6 568.6,133.6 569.1,133.5 569.6,133.4 570.2,133.3 570.7,133.2 571.2,133.1 571.7,132.9 572.3,132.7 572.8,132.5 573.3,132.3 573.9,132.1 574.4,131.8 574.9,131.6 575.4,131.3 576.0,131.0 576.5,130.6 577.0,130.3 577.5,129.9 578.1,129.5 578.6,129.1 579.1,128.7 579.6,128.3 580.2,127.8 580.7,127.3 581.2,126.8 581.8,126.3 582.3,125.8 582.8,125.2 583.3,124.7 583.9,124.1 584.4,123.5 584.9,122.8 585.4,122.2 586.0,121.5 586.5,120.9 587.0,120.2 587.6,119.4 588.1,118.7 588.6,117.9 589.1,117.2 589.7,116.4 590.2,115.5 590.7,114.7 591.2,113.9 591.8,113.0 592.3,112.1 592.8,111.2 593.4,110.3 593.9,109.3 594.4,108.3 594.9,107.4 595.5,106.4 596.0,105.3 596.5,104.3 597.0,103.2 597.6,102.2 598.1,101.1 598.6,100.0 599.2,98.8 599.7,97.7 600.2,96.5 600.7,95.3 601.3,94.1 601.8,92.9 602.3,91.6 602.8,90.4 603.4,89.1 603.9,87.8 604.4,86.5 604.9,85.1 605.5,83.8 606.0,82.4 606.5,81.0 607.1,79.6 607.6,78.1 608.1,76.7 608.6,75.2 609.2,73.7 609.7,72.2 610.2,70.7 610.7,69.1 611.3,67.6 611.8,66.0 612.3,64.4 612.9,62.8 613.4,61.1 613.9,59.5 614.4,57.8 615.0,56.1 615.5,54.4 616.0,52.7 616.5,50.9 617.1,49.1 617.6,47.3 618.1,45.5 618.7,43.7 619.2,41.9 619.7,40.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="567.0" cy="133.7" r="3.4" fill="#000"/>
+<text x="567.0" y="18.0" font-size="13" text-anchor="middle" font-weight="bold">(x−1)²≦0</text>
+<text x="567.0" y="194.0" font-size="11.5" text-anchor="middle">解: x＝1（1点だけ）</text>
+<text x="327.0" y="226.0" font-size="11" text-anchor="middle">グラフは4枚とも同じ y＝(x−1)²——違いは接点 x＝1 を含む（●）か除く（○）かだけ</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>y=(x−1)²のstrict/non-strict 4パターン</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L11_fig1_four_patterns_tangent.svg">図だけを開く</a></figure>
+<p>4つを並べると、違いを生んでいるのは<strong>接点の1点 x=1 を含むか除くか</strong>だけだとわかる。「すべての実数」「解なし」という答えの形に驚いて丸暗記に走らず、毎回グラフの接点を指差して「この1点は y=0。今の不等号は 0 を含む？含まない？」と<strong>声に出して判断</strong>すること。</p>
+<h2 id="2-練習の型接点の言語化">2. 練習の型——接点の言語化</h2>
+<p><strong>例題1</strong> x²−6x＋9≦0 を解け。</p>
+<p>x²−6x＋9=(x−3)²。下に凸で x=3 で接する。「≦0」は下または x軸上。下の部分はなく、x軸上は接点 x=3 の1点のみ。等号つきだから接点を<strong>含む</strong>。解は <strong>x=3</strong>。</p>
+<p>検算: x=3 で (3−3)²=0≦0 成立。x=4 で 1≦0 不成立。<strong>解が1点だけになる二次不等式がある</strong>——これがパターン4の型である。</p>
+<h2 id="3-共有点が0個のとき同じ4パターンで整理する">3. 共有点が0個のとき——同じ4パターンで整理する</h2>
+<p>y=x²＋1 のグラフは、y=x² を y軸方向に＋1 平行移動したもので、頂点 (0, 1)。頂点のy座標が正で下に凸だから、グラフ全体がx軸より上にあり、x軸との共有点は0個（L09の読み方）。</p>
+<ul><li><p><strong>x²＋1&gt;0</strong> → グラフ全体が上。解は<strong>すべての実数</strong>。</p></li><li><p><strong>x²＋1≧0</strong> → 上または x軸上。x軸上の点はないが、上の部分だけで既に全部。解は<strong>すべての実数</strong>。</p></li><li><p><strong>x²＋1&lt;0</strong> → 下の部分はない。<strong>解なし</strong>。</p></li><li><p><strong>x²＋1≦0</strong> → 下も x軸上もない。<strong>解なし</strong>。</p></li></ul>
+<p>共有点が0個のときは、<strong>接点がないので等号の有無で答えが変わらない</strong>（&gt;と≧が同じ、&lt;と≦が同じ）。共有点1個のときとの違いはここにある。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 369 254" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-6f5fbc6a17-title" aria-describedby="mg-6f5fbc6a17-desc">
+<title id="mg-6f5fbc6a17-title">y=x²＋1——x軸から浮いたグラフ</title>
+<desc id="mg-6f5fbc6a17-desc">y=x²＋1——x軸から浮いたグラフ</desc>
+<!-- L11_fig2_no_intersection_floating.svg | y=x²＋1——x軸から浮いたグラフ -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="369" height="254" fill="#fff"/>
+<line x1="40.0" y1="177.2" x2="246.2" y2="177.2" stroke="#000" stroke-width="1.2"/>
+<polygon points="253.2,177.2 246.2,180.4 246.2,174.1" fill="#000"/>
+<line x1="142.6" y1="213.6" x2="142.6" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="142.6,8.0 145.8,15.0 139.5,15.0" fill="#000"/>
+<text x="255.2" y="181.7" font-size="13" text-anchor="start">x</text>
+<text x="149.6" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="66.6" y1="174.2" x2="66.6" y2="180.2" stroke="#000" stroke-width="1.0"/>
+<line x1="104.6" y1="174.2" x2="104.6" y2="180.2" stroke="#000" stroke-width="1.0"/>
+<line x1="180.6" y1="174.2" x2="180.6" y2="180.2" stroke="#000" stroke-width="1.0"/>
+<line x1="218.6" y1="174.2" x2="218.6" y2="180.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="203.2" x2="145.6" y2="203.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="151.2" x2="145.6" y2="151.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="125.2" x2="145.6" y2="125.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="99.2" x2="145.6" y2="99.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="73.2" x2="145.6" y2="73.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="47.2" x2="145.6" y2="47.2" stroke="#000" stroke-width="1.0"/>
+<line x1="139.6" y1="21.2" x2="145.6" y2="21.2" stroke="#000" stroke-width="1.0"/>
+<text x="66.6" y="191.2" font-size="11" text-anchor="middle">−2</text>
+<text x="104.6" y="191.2" font-size="11" text-anchor="middle">−1</text>
+<text x="180.6" y="191.2" font-size="11" text-anchor="middle">1</text>
+<text x="218.6" y="191.2" font-size="11" text-anchor="middle">2</text>
+<text x="136.6" y="155.1" font-size="11" text-anchor="end">1</text>
+<text x="137.6" y="191.2" font-size="11" text-anchor="end">O</text>
+<polyline points="55.9,16.0 56.8,18.7 57.7,21.4 58.5,24.0 59.4,26.6 60.3,29.2 61.1,31.7 62.0,34.3 62.9,36.8 63.7,39.2 64.6,41.7 65.5,44.1 66.3,46.5 67.2,48.9 68.1,51.2 68.9,53.5 69.8,55.8 70.7,58.1 71.5,60.3 72.4,62.5 73.3,64.7 74.1,66.8 75.0,68.9 75.9,71.0 76.7,73.1 77.6,75.2 78.5,77.2 79.3,79.2 80.2,81.1 81.1,83.0 81.9,85.0 82.8,86.8 83.7,88.7 84.5,90.5 85.4,92.3 86.3,94.1 87.1,95.8 88.0,97.5 88.9,99.2 89.7,100.9 90.6,102.5 91.5,104.1 92.3,105.7 93.2,107.3 94.1,108.8 94.9,110.3 95.8,111.8 96.7,113.2 97.5,114.6 98.4,116.0 99.3,117.4 100.1,118.7 101.0,120.0 101.9,121.3 102.7,122.6 103.6,123.8 104.5,125.0 105.3,126.2 106.2,127.4 107.1,128.5 107.9,129.6 108.8,130.6 109.7,131.7 110.5,132.7 111.4,133.7 112.3,134.6 113.1,135.6 114.0,136.5 114.9,137.4 115.7,138.2 116.6,139.0 117.5,139.8 118.3,140.6 119.2,141.3 120.1,142.1 120.9,142.8 121.8,143.4 122.7,144.0 123.5,144.7 124.4,145.2 125.3,145.8 126.1,146.3 127.0,146.8 127.9,147.3 128.7,147.7 129.6,148.2 130.5,148.6 131.3,148.9 132.2,149.3 133.1,149.6 133.9,149.8 134.8,150.1 135.7,150.3 136.5,150.5 137.4,150.7 138.3,150.9 139.1,151.0 140.0,151.1 140.9,151.1 141.7,151.2 142.6,151.2 143.5,151.2 144.3,151.1 145.2,151.1 146.1,151.0 146.9,150.9 147.8,150.7 148.7,150.5 149.5,150.3 150.4,150.1 151.3,149.8 152.1,149.6 153.0,149.3 153.9,148.9 154.7,148.6 155.6,148.2 156.5,147.7 157.3,147.3 158.2,146.8 159.1,146.3 159.9,145.8 160.8,145.2 161.7,144.7 162.5,144.0 163.4,143.4 164.3,142.8 165.1,142.1 166.0,141.3 166.9,140.6 167.7,139.8 168.6,139.0 169.5,138.2 170.3,137.4 171.2,136.5 172.1,135.6 172.9,134.6 173.8,133.7 174.7,132.7 175.5,131.7 176.4,130.6 177.3,129.6 178.1,128.5 179.0,127.4 179.9,126.2 180.7,125.0 181.6,123.8 182.5,122.6 183.3,121.3 184.2,120.0 185.1,118.7 185.9,117.4 186.8,116.0 187.7,114.6 188.5,113.2 189.4,111.8 190.3,110.3 191.1,108.8 192.0,107.3 192.9,105.7 193.7,104.1 194.6,102.5 195.5,100.9 196.3,99.2 197.2,97.5 198.1,95.8 198.9,94.1 199.8,92.3 200.7,90.5 201.5,88.7 202.4,86.8 203.3,85.0 204.1,83.0 205.0,81.1 205.9,79.2 206.7,77.2 207.6,75.2 208.5,73.1 209.3,71.0 210.2,68.9 211.1,66.8 211.9,64.7 212.8,62.5 213.7,60.3 214.5,58.1 215.4,55.8 216.3,53.5 217.1,51.2 218.0,48.9 218.9,46.5 219.7,44.1 220.6,41.7 221.5,39.2 222.3,36.8 223.2,34.3 224.1,31.7 224.9,29.2 225.8,26.6 226.7,24.0 227.5,21.4 228.4,18.7 229.3,16.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="142.6" cy="151.2" r="3.4" fill="#000"/>
+<line x1="168.6" y1="177.2" x2="168.6" y2="151.2" stroke="#000" stroke-width="0.9"/>
+<line x1="164.6" y1="177.2" x2="172.6" y2="177.2" stroke="#000" stroke-width="0.9"/>
+<line x1="164.6" y1="151.2" x2="172.6" y2="151.2" stroke="#000" stroke-width="0.9"/>
+<text x="176.6" y="168.2" font-size="11" text-anchor="start">すき間（x軸に届かない）</text>
+<text x="132.6" y="143.2" font-size="12" text-anchor="end" font-weight="bold">頂点(0, 1)</text>
+<text x="184.5" y="248.0" font-size="11" text-anchor="middle">y＝x²＋1——全体がx軸より上（共有点0個）</text>
+</svg>
+</div><figcaption>y=x²＋1——x軸から浮いたグラフ</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L11_fig2_no_intersection_floating.svg">図だけを開く</a></figure>
+<p><strong>例題2</strong> x²−2x＋3&gt;0 を解け。</p>
+<p>因数分解できないので、頂点を読むための変形（平方完成）をする: x²−2x＋3=(x−1)²＋2。頂点 (1, 2) は x軸より上、下に凸だから共有点は0個で、グラフ全体がx軸より上。解は<strong>すべての実数</strong>。</p>
+<p>検算: どの x でも (x−1)²≧0 だから (x−1)²＋2≧2&gt;0。たとえば x=1 で 2&gt;0、x=−1 で 6&gt;0、いずれも成立。</p>
+<h2 id="4-判断の手順このレッスンの型">4. 判断の手順（このレッスンの型）</h2>
+<ol start="1"><li><p>左辺のグラフをかく（共有点の個数は、平方完成した頂点のy座標の符号と凸の向きで判断——L09）。</p></li><li><p>共有点が1個なら、接点の1点を図に打つ。</p></li><li><p>不等号を読む: 等号なし（&gt;、&lt;）なら「y=0 の点は<strong>除く</strong>」、等号つき（≧、≦）なら「y=0 の点は<strong>含む</strong>」。</p></li><li><p>答えを言葉で確かめる: 「上側全部＋接点あり／なし」→ すべての実数か、x≠か。「下側なし＋接点あり／なし」→ 解なしか、1点か。</p></li><li><p>仕上げに1点を代入して検算する——ただし、1点の代入で確かめられるのは「向きの取り違え（含む／除くや上側／下側の逆転）がないか」まで。「すべての実数」「解なし」という結論そのものの根拠は、あくまでグラフと (x−□)²≧0 の性質である（1点で全体は証明できない）。</p></li></ol>
+<h2 id="5-練習">5. 練習</h2>
+<p><strong>問1</strong> 次の4つをそれぞれ解け（グラフは1つでよい）。 (1) (x−2)²&gt;0  (2) (x−2)²≧0  (3) (x−2)²&lt;0  (4) (x−2)²≦0</p>
+<p><strong>問2</strong> x²＋4x＋4≧0 を解け。</p>
+<p><strong>問3</strong> x²−8x＋16&lt;0 を解け。</p>
+<p><strong>問4</strong> 次の4つをそれぞれ解け。 (1) x²＋5&gt;0  (2) x²＋5≧0  (3) x²＋5&lt;0  (4) x²＋5≦0</p>
+<p><strong>問5</strong> x²＋2x＋4≦0 を解け（平方完成して共有点の個数から判断）。</p>
+<p><strong>問6</strong>（言語化） (x−2)²&gt;0 と (x−2)²≧0 の解が違う理由を、「接点」という言葉を使って2〜3文で説明せよ。</p>
+<hr>
+<h2 id="stretch本線と分けて提示余力のある生徒向け">stretch（本線と分けて提示。余力のある生徒向け）</h2>
+<p><strong>S1</strong> −(x−1)²≧0 を解け（上に凸でx軸に接する場合。「≧0 なのに解が1点だけ」になる理由をグラフで説明すること）。</p>
+<p><strong>S2</strong> 不等式 (x−3)²≦k の解が「x=3 の1点だけ」になるような定数 k の値を求めよ。</p><a class="answer-link" href="answer_key_L10-12.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_11.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_10.html"><span>前のレッスン</span>L10 二次不等式①——前提の確認とグラフで解く</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_12.html"><span>次のレッスン</span>L12 文脈への活用と単元のまとめ</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>11</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="1-共有点が1個のときyx12-で4パターンを全部見る" href="lesson_11.html#1-%E5%85%B1%E6%9C%89%E7%82%B9%E3%81%8C1%E5%80%8B%E3%81%AE%E3%81%A8%E3%81%8Dyx12-%E3%81%A74%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%92%E5%85%A8%E9%83%A8%E8%A6%8B%E3%82%8B">1. 共有点が1個のとき——y=(x−1)² で4パターンを全部見る</a></li><li><a data-section-link="2-練習の型接点の言語化" href="lesson_11.html#2-%E7%B7%B4%E7%BF%92%E3%81%AE%E5%9E%8B%E6%8E%A5%E7%82%B9%E3%81%AE%E8%A8%80%E8%AA%9E%E5%8C%96">2. 練習の型——接点の言語化</a></li><li><a data-section-link="3-共有点が0個のとき同じ4パターンで整理する" href="lesson_11.html#3-%E5%85%B1%E6%9C%89%E7%82%B9%E3%81%8C0%E5%80%8B%E3%81%AE%E3%81%A8%E3%81%8D%E5%90%8C%E3%81%984%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%A7%E6%95%B4%E7%90%86%E3%81%99%E3%82%8B">3. 共有点が0個のとき——同じ4パターンで整理する</a></li><li><a data-section-link="4-判断の手順このレッスンの型" href="lesson_11.html#4-%E5%88%A4%E6%96%AD%E3%81%AE%E6%89%8B%E9%A0%86%E3%81%93%E3%81%AE%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%E3%81%AE%E5%9E%8B">4. 判断の手順（このレッスンの型）</a></li><li><a data-section-link="5-練習" href="lesson_11.html#5-%E7%B7%B4%E7%BF%92">5. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_11.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

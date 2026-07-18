@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L05 最大値・最小値（定義域の制限なし）">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L05 最大値・最小値（定義域の制限なし）｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L05 最大値・最小値（定義域の制限なし）">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L05 最大値・最小値（定義域の制限なし）｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="8758dd9cc292e2a696bc0e2d0cae158c64ed8c9f982be6c669c4b206c747c1ab" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L05 最大値・最小値（定義域の制限なし）</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="8758dd9cc292e2a696bc0e2d0cae158c64ed8c9f982be6c669c4b206c747c1ab" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>高校 数学I ／ 高校数学Ⅰ「二次関数」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l05-最大値最小値定義域の制限なし"><span class="lesson-title-main">L05 最大値・最小値（定義域の制限なし）</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><ul><li><p>unit_id: hs-math-i-quadratic-functions</p></li><li><p>位置づけ: 単元第5レッスン（2時間）。定義域に制限がない場合の最大・最小。区間つきは L06。</p></li><li><p>distribution_status: published_draft</p></li><li><p>license: CC-BY-4.0</p></li><li><p>verify_required: 例題数値・記述は監修者検証必須。</p></li><li><p>distribution_status: published_draft</p></li><li><p>主概念: ①凸の向きと最大・最小の対応（頂点で決まる） ②存在しない側（下に凸→最大値なし／上に凸→最小値なし）</p></li></ul>
+<hr>
+<h2 id="1-一番低い点はどこか下に凸の場合">1. 「一番低い点」はどこか——下に凸の場合</h2>
+<p>y=(x−2)²＋3 のグラフは下に凸で、頂点は (2, 3)。グラフを描くと、y の値が一番小さくなるのは頂点のところだと分かる。(x−2)² は 0 以上の値しかとらず、x=2 のときだけ 0 になるから、y は 3 より小さくならない。</p>
+<p>このとき「y は <strong>x=2 で最小値 3</strong> をとる」という。<strong>下に凸の放物線では、頂点の y座標が最小値</strong>である。最小値を答えるときは、「どの x のときか」を必ずセットで書く。</p>
+<h2 id="2-下に凸のとき最大値はどうなるか">2. 下に凸のとき、最大値はどうなるか</h2>
+<p>同じ y=(x−2)²＋3 で、y の値はどこまで大きくなれるだろうか。x を 10, 100, 1000, … と大きくしていくと、y はいくらでも大きくなり、上限はない。グラフの両腕が上へ開き続けているからである。</p>
+<p>ここで、x が動ける範囲のことを<strong>定義域</strong>という（中学までの「変域」にあたる高校での用語）。この例のように条件が何もなければ、x はすべての実数を動ける——「定義域に制限がない」状態である。</p>
+<p>つまり <strong>定義域に制限がないとき、下に凸の放物線に最大値は存在しない</strong>。答え方は「<strong>最大値はない</strong>」——これが正式な答えであり、書き忘れや「頂点が最大」とする誤りに注意する。最大・最小の問題では、<strong>存在しない側も含めて両方に答える</strong>のがこの単元の約束である。</p>
+<h2 id="3-上に凸の場合最大値はあり最小値はない">3. 上に凸の場合——最大値はあり、最小値はない</h2>
+<p><strong>例題1</strong> y=−x²＋6x−4 の最大値・最小値を調べよ。</p>
+<p>y = −(x²−6x)−4 = −{(x−3)²−9}−4 = <strong>−(x−3)²＋5</strong></p>
+<p>a=−1＜0 なので上に凸、頂点は (3, 5)。グラフは頂点が一番高く、両腕は下へ開き続ける。よって <strong>x=3 で最大値 5 をとり、最小値はない</strong>。</p>
+<p>まとめると: <strong>下に凸 → 頂点で最小値・最大値なし／上に凸 → 頂点で最大値・最小値なし</strong>。どちらの場合も「あるのは頂点の側だけ」である。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 261" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-47751082e9-title" aria-describedby="mg-47751082e9-desc">
+<title id="mg-47751082e9-title">下に凸と上に凸——あるのは頂点の側だけ</title>
+<desc id="mg-47751082e9-desc">下に凸と上に凸——あるのは頂点の側だけ</desc>
+<!-- L05_fig1_max_min_two_cases.svg | 下に凸と上に凸——あるのは頂点の側だけ -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="440" height="261" fill="#fff"/>
+<line x1="30.0" y1="189.8" x2="198.0" y2="189.8" stroke="#000" stroke-width="1.2"/>
+<polygon points="205.0,189.8 198.0,193.0 198.0,186.7" fill="#000"/>
+<line x1="55.9" y1="205.0" x2="55.9" y2="27.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="55.9,20.0 59.1,27.0 52.8,27.0" fill="#000"/>
+<text x="207.0" y="194.3" font-size="13" text-anchor="start">x</text>
+<text x="62.9" y="22.0" font-size="13" text-anchor="start">y</text>
+<line x1="84.7" y1="186.8" x2="84.7" y2="192.8" stroke="#000" stroke-width="1.0"/>
+<line x1="113.5" y1="186.8" x2="113.5" y2="192.8" stroke="#000" stroke-width="1.0"/>
+<line x1="142.3" y1="186.8" x2="142.3" y2="192.8" stroke="#000" stroke-width="1.0"/>
+<line x1="171.1" y1="186.8" x2="171.1" y2="192.8" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="173.0" x2="58.9" y2="173.0" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="156.1" x2="58.9" y2="156.1" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="139.3" x2="58.9" y2="139.3" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="122.4" x2="58.9" y2="122.4" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="105.5" x2="58.9" y2="105.5" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="88.7" x2="58.9" y2="88.7" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="71.8" x2="58.9" y2="71.8" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="55.0" x2="58.9" y2="55.0" stroke="#000" stroke-width="1.0"/>
+<line x1="52.9" y1="38.1" x2="58.9" y2="38.1" stroke="#000" stroke-width="1.0"/>
+<polyline points="39.5,28.0 40.3,30.2 41.0,32.4 41.7,34.6 42.5,36.7 43.2,38.8 44.0,41.0 44.7,43.0 45.4,45.1 46.2,47.1 46.9,49.1 47.7,51.1 48.4,53.1 49.1,55.0 49.9,57.0 50.6,58.9 51.4,60.8 52.1,62.6 52.8,64.4 53.6,66.3 54.3,68.1 55.1,69.8 55.8,71.6 56.5,73.3 57.3,75.0 58.0,76.7 58.8,78.3 59.5,80.0 60.2,81.6 61.0,83.2 61.7,84.7 62.5,86.3 63.2,87.8 63.9,89.3 64.7,90.8 65.4,92.3 66.2,93.7 66.9,95.1 67.6,96.5 68.4,97.9 69.1,99.2 69.9,100.5 70.6,101.8 71.3,103.1 72.1,104.4 72.8,105.6 73.6,106.8 74.3,108.0 75.0,109.2 75.8,110.3 76.5,111.4 77.3,112.5 78.0,113.6 78.7,114.7 79.5,115.7 80.2,116.7 81.0,117.7 81.7,118.7 82.4,119.6 83.2,120.6 83.9,121.5 84.7,122.3 85.4,123.2 86.1,124.0 86.9,124.8 87.6,125.6 88.3,126.4 89.1,127.1 89.8,127.9 90.6,128.6 91.3,129.2 92.0,129.9 92.8,130.5 93.5,131.1 94.3,131.7 95.0,132.3 95.7,132.8 96.5,133.4 97.2,133.9 98.0,134.4 98.7,134.8 99.4,135.2 100.2,135.7 100.9,136.0 101.7,136.4 102.4,136.8 103.1,137.1 103.9,137.4 104.6,137.7 105.4,137.9 106.1,138.1 106.8,138.4 107.6,138.5 108.3,138.7 109.1,138.9 109.8,139.0 110.5,139.1 111.3,139.2 112.0,139.2 112.8,139.2 113.5,139.3 114.2,139.2 115.0,139.2 115.7,139.2 116.5,139.1 117.2,139.0 117.9,138.9 118.7,138.7 119.4,138.5 120.2,138.4 120.9,138.1 121.6,137.9 122.4,137.7 123.1,137.4 123.9,137.1 124.6,136.8 125.3,136.4 126.1,136.0 126.8,135.7 127.6,135.2 128.3,134.8 129.0,134.4 129.8,133.9 130.5,133.4 131.3,132.8 132.0,132.3 132.7,131.7 133.5,131.1 134.2,130.5 135.0,129.9 135.7,129.2 136.4,128.6 137.2,127.9 137.9,127.1 138.7,126.4 139.4,125.6 140.1,124.8 140.9,124.0 141.6,123.2 142.3,122.3 143.1,121.5 143.8,120.6 144.6,119.6 145.3,118.7 146.0,117.7 146.8,116.7 147.5,115.7 148.3,114.7 149.0,113.6 149.7,112.5 150.5,111.4 151.2,110.3 152.0,109.2 152.7,108.0 153.4,106.8 154.2,105.6 154.9,104.4 155.7,103.1 156.4,101.8 157.1,100.5 157.9,99.2 158.6,97.9 159.4,96.5 160.1,95.1 160.8,93.7 161.6,92.3 162.3,90.8 163.1,89.3 163.8,87.8 164.5,86.3 165.3,84.7 166.0,83.2 166.8,81.6 167.5,80.0 168.2,78.3 169.0,76.7 169.7,75.0 170.5,73.3 171.2,71.6 171.9,69.8 172.7,68.1 173.4,66.3 174.2,64.4 174.9,62.6 175.6,60.8 176.4,58.9 177.1,57.0 177.9,55.0 178.6,53.1 179.3,51.1 180.1,49.1 180.8,47.1 181.6,45.1 182.3,43.0 183.0,41.0 183.8,38.8 184.5,36.7 185.3,34.6 186.0,32.4 186.7,30.2 187.5,28.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="113.5" cy="139.3" r="3.4" fill="#000"/>
+<text x="121.5" y="151.3" font-size="11" text-anchor="start" font-weight="bold">最小（頂点）</text>
+<line x1="58.7" y1="70.6" x2="46.2" y2="48.7" stroke="#000" stroke-width="1.4"/>
+<polygon points="42.7,42.6 48.9,47.1 43.5,50.2" fill="#000"/>
+<line x1="168.3" y1="70.6" x2="180.8" y2="48.7" stroke="#000" stroke-width="1.4"/>
+<polygon points="184.3,42.6 183.5,50.2 178.1,47.1" fill="#000"/>
+<text x="113.5" y="38.1" font-size="10.5" text-anchor="middle">いくらでも大きくなる</text>
+<text x="113.5" y="237.0" font-size="12" text-anchor="middle">下に凸 y＝(x−2)²＋3</text>
+<text x="113.5" y="253.0" font-size="12" text-anchor="middle" font-weight="bold">最小あり・最大なし</text>
+<line x1="243.0" y1="156.7" x2="411.0" y2="156.7" stroke="#000" stroke-width="1.2"/>
+<polygon points="418.0,156.7 411.0,159.9 411.0,153.6" fill="#000"/>
+<line x1="240.1" y1="205.0" x2="240.1" y2="27.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="240.1,20.0 243.3,27.0 237.0,27.0" fill="#000"/>
+<text x="420.0" y="161.2" font-size="13" text-anchor="start">x</text>
+<text x="247.1" y="22.0" font-size="13" text-anchor="start">y</text>
+<line x1="268.9" y1="153.7" x2="268.9" y2="159.7" stroke="#000" stroke-width="1.0"/>
+<line x1="297.7" y1="153.7" x2="297.7" y2="159.7" stroke="#000" stroke-width="1.0"/>
+<line x1="326.5" y1="153.7" x2="326.5" y2="159.7" stroke="#000" stroke-width="1.0"/>
+<line x1="355.3" y1="153.7" x2="355.3" y2="159.7" stroke="#000" stroke-width="1.0"/>
+<line x1="384.1" y1="153.7" x2="384.1" y2="159.7" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="197.0" x2="243.1" y2="197.0" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="176.8" x2="243.1" y2="176.8" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="136.6" x2="243.1" y2="136.6" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="116.5" x2="243.1" y2="116.5" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="96.4" x2="243.1" y2="96.4" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="76.3" x2="243.1" y2="76.3" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="56.2" x2="243.1" y2="56.2" stroke="#000" stroke-width="1.0"/>
+<line x1="237.1" y1="36.0" x2="243.1" y2="36.0" stroke="#000" stroke-width="1.0"/>
+<polyline points="248.2,205.0 249.0,202.0 249.7,199.1 250.5,196.2 251.3,193.3 252.1,190.5 252.9,187.7 253.7,184.9 254.4,182.1 255.2,179.4 256.0,176.7 256.8,174.1 257.6,171.4 258.4,168.8 259.1,166.2 259.9,163.7 260.7,161.2 261.5,158.7 262.3,156.2 263.1,153.8 263.8,151.4 264.6,149.1 265.4,146.7 266.2,144.4 267.0,142.1 267.8,139.9 268.5,137.7 269.3,135.5 270.1,133.3 270.9,131.2 271.7,129.1 272.5,127.0 273.2,125.0 274.0,123.0 274.8,121.0 275.6,119.0 276.4,117.1 277.2,115.2 277.9,113.4 278.7,111.5 279.5,109.7 280.3,108.0 281.1,106.2 281.9,104.5 282.6,102.8 283.4,101.2 284.2,99.6 285.0,98.0 285.8,96.4 286.6,94.9 287.3,93.4 288.1,91.9 288.9,90.5 289.7,89.0 290.5,87.7 291.3,86.3 292.0,85.0 292.8,83.7 293.6,82.4 294.4,81.2 295.2,80.0 296.0,78.8 296.7,77.7 297.5,76.5 298.3,75.4 299.1,74.4 299.9,73.4 300.7,72.4 301.4,71.4 302.2,70.5 303.0,69.6 303.8,68.7 304.6,67.8 305.4,67.0 306.1,66.2 306.9,65.5 307.7,64.7 308.5,64.0 309.3,63.4 310.1,62.7 310.8,62.1 311.6,61.5 312.4,61.0 313.2,60.5 314.0,60.0 314.8,59.5 315.5,59.1 316.3,58.7 317.1,58.3 317.9,58.0 318.7,57.6 319.5,57.4 320.2,57.1 321.0,56.9 321.8,56.7 322.6,56.5 323.4,56.4 324.2,56.3 324.9,56.2 325.7,56.2 326.5,56.2 327.3,56.2 328.1,56.2 328.8,56.3 329.6,56.4 330.4,56.5 331.2,56.7 332.0,56.9 332.8,57.1 333.5,57.4 334.3,57.6 335.1,58.0 335.9,58.3 336.7,58.7 337.5,59.1 338.2,59.5 339.0,60.0 339.8,60.5 340.6,61.0 341.4,61.5 342.2,62.1 342.9,62.7 343.7,63.4 344.5,64.0 345.3,64.7 346.1,65.5 346.9,66.2 347.6,67.0 348.4,67.8 349.2,68.7 350.0,69.6 350.8,70.5 351.6,71.4 352.3,72.4 353.1,73.4 353.9,74.4 354.7,75.4 355.5,76.5 356.3,77.7 357.0,78.8 357.8,80.0 358.6,81.2 359.4,82.4 360.2,83.7 361.0,85.0 361.7,86.3 362.5,87.7 363.3,89.0 364.1,90.5 364.9,91.9 365.7,93.4 366.4,94.9 367.2,96.4 368.0,98.0 368.8,99.6 369.6,101.2 370.4,102.8 371.1,104.5 371.9,106.2 372.7,108.0 373.5,109.7 374.3,111.5 375.1,113.4 375.8,115.2 376.6,117.1 377.4,119.0 378.2,121.0 379.0,123.0 379.8,125.0 380.5,127.0 381.3,129.1 382.1,131.2 382.9,133.3 383.7,135.5 384.5,137.7 385.2,139.9 386.0,142.1 386.8,144.4 387.6,146.7 388.4,149.1 389.2,151.4 389.9,153.8 390.7,156.2 391.5,158.7 392.3,161.2 393.1,163.7 393.9,166.2 394.6,168.8 395.4,171.4 396.2,174.1 397.0,176.7 397.8,179.4 398.6,182.1 399.3,184.9 400.1,187.7 400.9,190.5 401.7,193.3 402.5,196.2 403.3,199.1 404.0,202.0 404.8,205.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="326.5" cy="56.2" r="3.4" fill="#000"/>
+<text x="334.5" y="50.2" font-size="11" text-anchor="start" font-weight="bold">最大（頂点）</text>
+<line x1="267.4" y1="156.9" x2="254.8" y2="178.8" stroke="#000" stroke-width="1.4"/>
+<polygon points="251.4,184.9 252.1,177.3 257.6,180.4" fill="#000"/>
+<line x1="385.6" y1="156.9" x2="398.2" y2="178.8" stroke="#000" stroke-width="1.4"/>
+<polygon points="401.6,184.9 395.4,180.4 400.9,177.3" fill="#000"/>
+<text x="326.5" y="201.0" font-size="10.5" text-anchor="middle">いくらでも小さくなる</text>
+<text x="326.5" y="237.0" font-size="12" text-anchor="middle">上に凸 y＝−(x−3)²＋5</text>
+<text x="326.5" y="253.0" font-size="12" text-anchor="middle" font-weight="bold">最大あり・最小なし</text>
+</svg>
+</div><figcaption>下に凸と上に凸——あるのは頂点の側だけ</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L05_fig1_max_min_two_cases.svg">図だけを開く</a></figure>
+<h2 id="4-手順の固定グラフを描いてから答える">4. 手順の固定——グラフを描いてから答える</h2>
+<p>最大・最小の問題は、次の手順を毎回そろえる。</p>
+<ol start="1"><li><p>頂点が読める形に変形する（すでに読める形ならそのまま。L04 §4）</p></li><li><p><strong>グラフの概形を描く</strong>（凸の向きと頂点だけの簡単な図でよい）</p></li><li><p>図を見て、最大値・最小値の<strong>両方</strong>について「値と、そのときの x」または「なし」を答える</p></li></ol>
+<p>式だけで暗算せず、必ず図を経由する。凸の向きの見落としによる「最大と最小の取り違え」は、図を1つ描くだけでほぼ防げる。</p>
+<h2 id="5-練習">5. 練習</h2>
+<p><strong>問1</strong> 次の関数の最大値・最小値を求めよ（「なし」の場合はそう答えること）。 (1) y=(x＋1)²−2  (2) y=x²＋4x＋1  (3) y=−2x²＋8x−5</p>
+<p><strong>問2</strong> y=x²−1 の最大値・最小値を求めよ。</p>
+<p><strong>問3</strong> y=−(x＋1)² の最大値・最小値を求めよ。</p>
+<p><strong>問4</strong> 次の主張の誤りを説明せよ。「y=x²−6x＋10 は下に凸だから、頂点の y座標 1 が最大値である。」</p>
+<p><strong>問5</strong> y=x²−2x＋c の最小値が 4 であるとき、定数 c の値を求めよ。</p>
+<hr>
+<h2 id="stretch本線と分けて提示余力のある生徒向け">stretch（本線と分けて提示。余力のある生徒向け）</h2>
+<p><strong>S1</strong> y=x²＋bx＋7 の最小値が 3 であるとき、定数 b の値をすべて求めよ（答えが2つあることをグラフの対称性から説明してみる）。</p><a class="answer-link" href="answer_key_L04-06.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 グラフ描画の総合練習</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 区間つきの最大・最小と場合分け</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>05</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="1-一番低い点はどこか下に凸の場合" href="lesson_05.html#1-%E4%B8%80%E7%95%AA%E4%BD%8E%E3%81%84%E7%82%B9%E3%81%AF%E3%81%A9%E3%81%93%E3%81%8B%E4%B8%8B%E3%81%AB%E5%87%B8%E3%81%AE%E5%A0%B4%E5%90%88">1. 「一番低い点」はどこか——下に凸の場合</a></li><li><a data-section-link="2-下に凸のとき最大値はどうなるか" href="lesson_05.html#2-%E4%B8%8B%E3%81%AB%E5%87%B8%E3%81%AE%E3%81%A8%E3%81%8D%E6%9C%80%E5%A4%A7%E5%80%A4%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B%E3%81%8B">2. 下に凸のとき、最大値はどうなるか</a></li><li><a data-section-link="3-上に凸の場合最大値はあり最小値はない" href="lesson_05.html#3-%E4%B8%8A%E3%81%AB%E5%87%B8%E3%81%AE%E5%A0%B4%E5%90%88%E6%9C%80%E5%A4%A7%E5%80%A4%E3%81%AF%E3%81%82%E3%82%8A%E6%9C%80%E5%B0%8F%E5%80%A4%E3%81%AF%E3%81%AA%E3%81%84">3. 上に凸の場合——最大値はあり、最小値はない</a></li><li><a data-section-link="4-手順の固定グラフを描いてから答える" href="lesson_05.html#4-%E6%89%8B%E9%A0%86%E3%81%AE%E5%9B%BA%E5%AE%9A%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92%E6%8F%8F%E3%81%84%E3%81%A6%E3%81%8B%E3%82%89%E7%AD%94%E3%81%88%E3%82%8B">4. 手順の固定——グラフを描いてから答える</a></li><li><a data-section-link="5-練習" href="lesson_05.html#5-%E7%B7%B4%E7%BF%92">5. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_05.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

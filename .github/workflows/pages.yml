@@ -1,0 +1,178 @@
+name: Build and deploy ManabiGrid Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # GitHub Actions schedules are UTC: 03:17 Asia/Tokyo, deliberately not :00.
+    - cron: "17 18 * * *"
+  workflow_dispatch:
+    inputs:
+      check_external_links:
+        description: "外部リンクを一度だけライブ検査する"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  detect-source:
+    name: Detect canonical source revision
+    runs-on: ubuntu-latest
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
+      should_deploy: ${{ steps.decision.outputs.should_deploy }}
+    steps:
+      - name: Check out the site configuration
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
+
+      - name: Read the ManabiGrid main revision
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_sha="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+          test "${source_sha}" != ""
+          test "${#source_sha}" -eq 40
+          printf 'sha=%s\n' "${source_sha}" >> "${GITHUB_OUTPUT}"
+
+      - name: Deploy only for a changed source or an explicit site update
+        id: decision
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from urllib.error import HTTPError, URLError
+          from urllib.request import Request, urlopen
+
+          config = json.loads(Path("site.config.json").read_text(encoding="utf-8"))
+          report_url = config["base_url"].rstrip("/") + "/build-report.json"
+          event = os.environ["GITHUB_EVENT_NAME"]
+          should_deploy = event in {"push", "workflow_dispatch"}
+          if not should_deploy:
+              try:
+                  request = Request(
+                      report_url,
+                      headers={"User-Agent": "ManabiGrid-Pages-Freshness/1.0"},
+                  )
+                  with urlopen(request, timeout=15) as response:
+                      published = json.load(response)
+                  should_deploy = published.get("source", {}).get("commit") != os.environ["SOURCE_SHA"]
+              except (HTTPError, URLError, OSError, ValueError, json.JSONDecodeError):
+                  # First deployment, temporary read failure, or a malformed old
+                  # report: rebuild and let the complete gate decide safely.
+                  should_deploy = True
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"should_deploy={'true' if should_deploy else 'false'}\n")
+          print(f"event={event}; should_deploy={should_deploy}")
+          PY
+
+  build:
+    name: Build, inspect, and package
+    needs: detect-source
+    if: needs.detect-source.outputs.should_deploy == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Check out the site repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check out the canonical ManabiGrid source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          repository: ManabiGrid/manabigrid
+          ref: ${{ needs.detect-source.outputs.source_sha }}
+          path: source
+          persist-credentials: false
+
+      - name: Check the workflow contract
+        run: python3 check_workflow.py
+
+      - name: Build the static site from the detected source revision
+        run: python3 build_site.py --source source --output site-output --no-check
+
+      - name: Check the generated static site
+        run: python3 check_site.py site-output --source source
+
+      - name: Check external links once when manually requested
+        if: github.event_name == 'workflow_dispatch' && inputs.check_external_links == 'true'
+        run: python3 check_external_links.py site-output --run --output external-link-report.json
+
+      - name: Quarantine the generated public candidate
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from public_site import iter_public_files, missing_public_entries
+
+          root = Path("site-output")
+          missing = missing_public_entries(root)
+          if missing:
+              raise SystemExit("public allowlist is incomplete: " + ", ".join(missing))
+
+          # The site checker has already used this provenance metadata.  The
+          # public copy must not expose the runner's absolute checkout path.
+          report_path = root / "build-report.json"
+          report = json.loads(report_path.read_text(encoding="utf-8"))
+          source = report.get("source")
+          if isinstance(source, dict):
+              for key in ("root", "git_status_before", "git_status_after"):
+                  source.pop(key, None)
+          report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          forbidden = ("/Users/", "/home/runner/", "manabigrid_public_staging", "INTERNAL_ONLY")
+          text_suffixes = {".css", ".html", ".js", ".json", ".svg", ".txt", ".xml"}
+          violations = []
+          for path in iter_public_files(root):
+              if path.suffix.lower() not in text_suffixes:
+                  continue
+              text = path.read_text(encoding="utf-8", errors="replace")
+              for token in forbidden:
+                  if token in text:
+                      violations.append(f"{path.relative_to(root)} contains {token!r}")
+          if violations:
+              raise SystemExit("quarantine rejected public candidate:\n" + "\n".join(violations))
+          print(f"Quarantine passed: {len(iter_public_files(root))} allowlisted files")
+          PY
+
+      - name: Package the quarantined site
+        run: python3 package_site.py --site-root site-output --output pages-artifact
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: pages-artifact
+
+  deploy:
+    name: Deploy Pages artifact
+    needs: build
+    if: needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5

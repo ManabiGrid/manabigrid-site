@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /manabigrid-site/
+Sitemap: https://manabigrid.github.io/manabigrid-site/sitemap.xml

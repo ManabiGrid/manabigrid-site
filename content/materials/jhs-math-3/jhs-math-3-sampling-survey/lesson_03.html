@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L03 標本はそのたびに顔が違う——標本平均のばらつき">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L03 標本はそのたびに顔が違う——標本平均のばらつき｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L03 標本はそのたびに顔が違う——標本平均のばらつき">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L03 標本はそのたびに顔が違う——標本平均のばらつき｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="9af1e595b4dd5f1dceb4e162b2cfcb91eb4b22966ea4e4602a16ef4509b16137" data-source-file="materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-sampling-survey/index.html">中3数学「標本調査」</a></li><li aria-current="page">L03 標本はそのたびに顔が違う——標本平均のばらつき</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="9af1e595b4dd5f1dceb4e162b2cfcb91eb4b22966ea4e4602a16ef4509b16137" data-source-file="materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「標本調査」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l03-標本はそのたびに顔が違う標本平均のばらつき"><span class="lesson-title-main">L03 標本はそのたびに顔が違う</span><span class="lesson-title-sub">標本平均のばらつき</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>無作為抽出をくり返すと、<strong>標本の平均値が標本ごとに異なる</strong>ことを、架空データの計算で体験する。</p></li><li><p>「1回の標本調査で出た値」と「母集団の本当の値」は別ものだ、という出発点をつかむ。</p></li></ul>
+<h2 id="調査の舞台架空設定">調査の舞台（架空設定）</h2>
+<p>ここからL04まで、次の<strong>実データ風の架空設定</strong>を舞台にする。数値はすべて教材用に作ったものだ。</p>
+<blockquote><p>架空のみどり中学校には生徒が320人いる。保健委員会が、全校生徒の<strong>昨夜の睡眠時間</strong>の<strong>平均値</strong>を知りたい。ただし年度末で時間がなく、全員には聞けない。そこで名簿に001〜320の番号をつけ、乱数で10人を無作為に抽出して調べることにした。</p></blockquote>
+<p>母集団は「みどり中の生徒320人」、標本の大きさは10。L02で学んだ手順そのままの調査だ。</p>
+<h2 id="やってみよう標本を3回とってみる">やってみよう：標本を3回とってみる</h2>
+<p>保健委員会は、練習のために無作為抽出を3回くり返した。つまり、大きさ10の標本を3組とって、それぞれ昨夜の睡眠時間を聞いた。結果（架空の記録）はこうなった。</p>
+<p><strong>標本A</strong>（単位: 時間）: 6.5, 7.0, 7.0, 7.0, 7.5, 7.5, 7.0, 8.0, 6.5, 7.0</p>
+<p>標本Aの平均値を求めてみよう。合計は 71.0 時間だから、</p>
+<p>71.0 ÷ 10 ＝ <strong>7.10（時間）</strong></p>
+<p>続いて、残りの2組は自分で計算してみよう。</p>
+<p><strong>標本B</strong>: 7.5, 7.0, 8.0, 7.5, 7.0, 6.5, 7.5, 7.0, 7.5, 7.5 <strong>標本C</strong>: 6.0, 7.0, 7.0, 6.5, 7.5, 7.0, 6.5, 7.0, 7.5, 7.0</p>
+<p>（計算結果は練習1で答え合わせをする。先に自分の手で出しておこう。）</p>
+<p>計算すると、AとBとCの平均値は<strong>全部ちがう値</strong>になる。どの標本も、同じ母集団から、同じ正しい手順（無作為抽出）でとったのに、である。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 150" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-739dbc38d3-title" aria-describedby="mg-739dbc38d3-desc">
+<title id="mg-739dbc38d3-title">標本A・B・Cの平均値の散らばり（数直線）</title>
+<desc id="mg-739dbc38d3-desc">数直線上に散らばる標本A・B・Cの平均値</desc>
+<!-- L03_fig1_sample_means_scatter.svg | 標本A・B・Cの平均値の散らばり（数直線） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="440" height="150" fill="#fff"/>
+<line x1="50.0" y1="96.0" x2="410.0" y2="96.0" stroke="#000" stroke-width="1.2"/>
+<line x1="50.0" y1="90.0" x2="50.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<line x1="110.0" y1="90.0" x2="110.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<line x1="170.0" y1="90.0" x2="170.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<line x1="230.0" y1="90.0" x2="230.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<line x1="290.0" y1="90.0" x2="290.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<line x1="350.0" y1="90.0" x2="350.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<line x1="410.0" y1="90.0" x2="410.0" y2="102.0" stroke="#000" stroke-width="0.9"/>
+<text x="50.0" y="113.0" font-size="11" text-anchor="middle">6.8</text>
+<text x="170.0" y="113.0" font-size="11" text-anchor="middle">7.0</text>
+<text x="290.0" y="113.0" font-size="11" text-anchor="middle">7.2</text>
+<text x="410.0" y="113.0" font-size="11" text-anchor="middle">7.4</text>
+<circle cx="110.0" cy="78.0" r="3.2" fill="#000"/>
+<line x1="110.0" y1="78.0" x2="110.0" y2="92.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="110.0" y="66.0" font-size="12" text-anchor="middle" font-weight="bold">標本C</text>
+<circle cx="230.0" cy="78.0" r="3.2" fill="#000"/>
+<line x1="230.0" y1="78.0" x2="230.0" y2="92.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="230.0" y="66.0" font-size="12" text-anchor="middle" font-weight="bold">標本A</text>
+<circle cx="350.0" cy="78.0" r="3.2" fill="#000"/>
+<line x1="350.0" y1="78.0" x2="350.0" y2="92.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="350.0" y="66.0" font-size="12" text-anchor="middle" font-weight="bold">標本B</text>
+<text x="230.0" y="26.0" font-size="13" text-anchor="middle" font-weight="bold">3つの標本の平均値（単位: 時間）</text>
+<text x="230.0" y="138.0" font-size="12" text-anchor="middle">（同じ母集団・同じ手順なのに、平均値は1か所に重ならない）</text>
+</svg>
+</div><figcaption>数直線上に散らばる標本A・B・Cの平均値</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-sampling-survey/assets/L03_fig1_sample_means_scatter.svg">図だけを開く</a></figure>
+<h2 id="どれが正しいのか">どれが「正しい」のか</h2>
+<p>ここで、保健委員会は困ってしまった。知りたいのは「全校320人の平均値」という<strong>ただ1つの値</strong>なのに、標本調査の答えが3つも出てきた。どれが正しいのだろう?</p>
+<p>答えはこうだ——<strong>どれも「母集団の平均値そのもの」ではない</strong>。それぞれの標本の平均値は、たまたまその10人が選ばれたときの値にすぎない。選ばれる10人が変われば、値も変わる。この「値のゆれ」を、標本の平均値の<strong>ばらつき</strong>という言い方で表そう。</p>
+<p>でも、がっかりするのはまだ早い。3つの値はばらばらとはいえ、7時間前後という近い範囲に集まっていた。つまり、<strong>3つの標本の平均値は、たがいに近い値に集まっている</strong>。本当の平均値がこのあたりにありそうだ、という手がかりになる。だとすれば、この「散らばり方」をコントロールできれば、標本調査はもっと頼れる道具になるはずだ。散らばり方をにぎるカギは何か——次のL04で、<strong>標本の大きさ</strong>を変えて確かめる。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「ばらつくから使えない」ではなく「ばらつき方を知って使う」</strong></p>
+<p>このレッスンの内容を「標本調査はあてにならない」と受け取ると、方向を見失う。大事なのは、ばらつくこと自体は無作為抽出の宿命として受け入れたうえで、<strong>ばらつき方には法則性がある</strong>と見抜くことだ。この単元で学ぶ標本調査も、「標本の値はゆれる」ことを前提にした方法である。「1回の調査の値を、ゆるがない真実のように扱わない」——この感覚は、L07で調査結果を批評するときの土台になり、高校の統計の学習にもまっすぐつながっていく。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「もう1回調べたら値が変わった」は失敗ではない</strong></p>
+<p>独習でこの単元を進めるとき、いちばん誤解しやすいのがここだ。計算ドリルでは「答えが毎回変わる」のはミスの印だが、標本調査では<strong>正しくやっても値が変わる</strong>。だから、この単元の「確かめ」の作法も変わる。1つの値が合っているかではなく、「手順が無作為だったか」「値のゆれをふまえた言い方をしているか」を確かめる。答えの検算文化から、手順と言い方の点検文化へ——データの活用領域の総仕上げにふさわしい切りかえだ。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>本文の標本Bと標本Cの平均値をそれぞれ求めよう（小数第2位まで）。標本Aの平均値7.10もあわせて、3つの値を数直線上に点で表してみよう。</p></li><li><p>標本A〜Cの結果について、次の(ア)〜(ウ)から<strong>正しいものを1つ</strong>選び、残り2つのどこがまずいかを一言で書こう。  (ア) 3つの値がちがうのは、抽出の手順のどれかがまちがっていたからだ。  (イ) 標本の平均値は標本ごとにばらつくものであり、どれも母集団の平均値そのものではない。  (ウ) 最も大きい値を出した標本が、母集団の平均値に最も近いと判断できる。</p></li><li><p>別の委員が「3つの標本の平均値をさらに平均すれば、母集団の平均値が<strong>正確に</strong>求められる」と言った。この言い方のどこに問題があるか、「およそ」という言葉を使って指摘しよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 3回の抽出で同じ生徒が重複しなかったとする（もし重複した番号が出たら選び直す約束で抽出したと考える）。このとき標本A・B・Cを合わせると、大きさ30の標本が1つできたとみなせる（30人分のデータ）。この30人分の平均値を求め、A・B・C単独の平均値と比べてみよう。値の位置にどんな印象をもつだろうか。ここで感じたことが、L04のテーマの予告になっている。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-sampling-survey/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_02.html"><span>前のレッスン</span>L02 公平に選ぶ——母集団・標本・無作為抽出</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-sampling-survey/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_04.html"><span>次のレッスン</span>L04 標本を大きくすると——箱ひげ図でばらつきを見る</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>03</strong> / 07</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_03.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="調査の舞台架空設定" href="lesson_03.html#%E8%AA%BF%E6%9F%BB%E3%81%AE%E8%88%9E%E5%8F%B0%E6%9E%B6%E7%A9%BA%E8%A8%AD%E5%AE%9A">調査の舞台（架空設定）</a></li><li><a data-section-link="やってみよう標本を3回とってみる" href="lesson_03.html#%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86%E6%A8%99%E6%9C%AC%E3%82%923%E5%9B%9E%E3%81%A8%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B">やってみよう：標本を3回とってみる</a></li><li><a data-section-link="どれが正しいのか" href="lesson_03.html#%E3%81%A9%E3%82%8C%E3%81%8C%E6%AD%A3%E3%81%97%E3%81%84%E3%81%AE%E3%81%8B">どれが「正しい」のか</a></li><li><a data-section-link="練習" href="lesson_03.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

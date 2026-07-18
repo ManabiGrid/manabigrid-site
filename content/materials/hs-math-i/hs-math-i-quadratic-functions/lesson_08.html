@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L08 二次方程式とグラフ——x軸との共有点">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L08 二次方程式とグラフ——x軸との共有点｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L08 二次方程式とグラフ——x軸との共有点">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L08 二次方程式とグラフ——x軸との共有点｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="230a63b5f01b78132235bd3dbe23a8560f04ec13fa3f6726b06578fab30c05fb" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L08 二次方程式とグラフ——x軸との共有点</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="230a63b5f01b78132235bd3dbe23a8560f04ec13fa3f6726b06578fab30c05fb" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>高校 数学I ／ 高校数学Ⅰ「二次関数」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l08-二次方程式とグラフx軸との共有点"><span class="lesson-title-main">L08 二次方程式とグラフ</span><span class="lesson-title-sub">x軸との共有点</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><ul><li><p>unit_id: hs-math-i-quadratic-functions</p></li><li><p>distribution_status: published_draft</p></li><li><p>license: CC-BY-4.0</p></li><li><p>verify_required: 例題数値・記述は監修者検証必須。</p></li><li><p>distribution_status: published_draft</p></li><li><p>位置づけ: 単元第8レッスン（2時間）。中学既習の二次方程式を、グラフとx軸の共有点として捉え直す。</p></li><li><p>主概念: 二次方程式の実数の解＝グラフとx軸の共有点のx座標</p></li><li><p>注: 共有点の「個数」の議論はL09で扱う。本レッスンでは扱わない。解の公式は「解を求める道具」としてのみ使い、√の中身の符号の議論へは進まない。</p></li></ul>
+<hr>
+<h2 id="1-方程式とグラフをつなぐ">1. 方程式とグラフをつなぐ</h2>
+<p>中学で学んだ二次方程式 x²−5x＋6=0 を、この単元の目でもう一度見る。左辺を関数 y=x²−5x＋6 のyだと思うと、この方程式は「<strong>yが0になるxはどれか</strong>」という問いになる。グラフの上で y=0 が成り立つ点とは、<strong>グラフとx軸が交わる点（共有点）</strong> のことである。つまり——</p>
+<p><strong>二次方程式 ax²＋bx＋c=0 の実数の解は、放物線 y=ax²＋bx＋c とx軸の共有点のx座標</strong></p>
+<p>この単元で「解」と言うときは、<strong>実数の範囲</strong>で考える（L12でも「実数解」と呼ぶ。数の世界をさらに広げる話は数IIで学ぶ）。方程式を「計算の問題」から「グラフの読み取り」へつなぐ、この見方が本レッスンの主役である。</p>
+<h2 id="2-例題1因数分解で解いてグラフで確かめる">2. 例題1——因数分解で解いて、グラフで確かめる</h2>
+<p><strong>例題1</strong> 放物線 y=x²−5x＋6 とx軸の共有点の座標を求めよ。</p>
+<p>共有点では y=0 だから、x²−5x＋6=0 を解けばよい。因数分解して (x−2)(x−3)=0、よって x=2, 3。共有点は <strong>(2, 0) と (3, 0)</strong> である。y座標はどちらも0——「x軸上の点」なのだから当然だが、答えに書き忘れやすいので注意する。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 274" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-6fa4076e19-title" aria-describedby="mg-6fa4076e19-desc">
+<title id="mg-6fa4076e19-title">y=x²−5x＋6とx軸の共有点(2,0)・(3,0)</title>
+<desc id="mg-6fa4076e19-desc">y=x²−5x＋6とx軸の共有点(2,0)・(3,0)</desc>
+<!-- L08_fig1_roots_as_intersections.svg | y=x²−5x＋6とx軸の共有点(2,0)・(3,0) -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="340" height="274" fill="#fff"/>
+<line x1="38.0" y1="192.8" x2="311.0" y2="192.8" stroke="#000" stroke-width="1.2"/>
+<polygon points="318.0,192.8 311.0,195.9 311.0,189.6" fill="#000"/>
+<line x1="74.0" y1="234.4" x2="74.0" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="74.0,8.0 77.2,15.0 70.8,15.0" fill="#000"/>
+<text x="320.0" y="197.3" font-size="13" text-anchor="start">x</text>
+<text x="81.0" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="114.0" y1="189.8" x2="114.0" y2="195.8" stroke="#000" stroke-width="1.0"/>
+<line x1="154.0" y1="189.8" x2="154.0" y2="195.8" stroke="#000" stroke-width="1.0"/>
+<line x1="194.0" y1="189.8" x2="194.0" y2="195.8" stroke="#000" stroke-width="1.0"/>
+<line x1="234.0" y1="189.8" x2="234.0" y2="195.8" stroke="#000" stroke-width="1.0"/>
+<line x1="274.0" y1="189.8" x2="274.0" y2="195.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="218.8" x2="77.0" y2="218.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="166.8" x2="77.0" y2="166.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="140.8" x2="77.0" y2="140.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="114.8" x2="77.0" y2="114.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="88.8" x2="77.0" y2="88.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="62.8" x2="77.0" y2="62.8" stroke="#000" stroke-width="1.0"/>
+<line x1="71.0" y1="36.8" x2="77.0" y2="36.8" stroke="#000" stroke-width="1.0"/>
+<text x="114.0" y="206.8" font-size="11" text-anchor="middle">1</text>
+<text x="234.0" y="206.8" font-size="11" text-anchor="middle">4</text>
+<text x="274.0" y="206.8" font-size="11" text-anchor="middle">5</text>
+<text x="68.0" y="144.6" font-size="11" text-anchor="end">2</text>
+<text x="68.0" y="92.6" font-size="11" text-anchor="end">4</text>
+<text x="68.0" y="40.6" font-size="11" text-anchor="end">6</text>
+<text x="69.0" y="206.8" font-size="11" text-anchor="end">O</text>
+<polyline points="67.8,16.0 68.9,19.6 69.9,23.3 71.0,26.8 72.0,30.4 73.1,33.9 74.2,37.3 75.2,40.8 76.3,44.2 77.4,47.5 78.4,50.8 79.5,54.1 80.5,57.4 81.6,60.6 82.7,63.7 83.7,66.9 84.8,70.0 85.8,73.0 86.9,76.0 88.0,79.0 89.0,82.0 90.1,84.9 91.2,87.8 92.2,90.6 93.3,93.4 94.3,96.2 95.4,98.9 96.5,101.6 97.5,104.3 98.6,106.9 99.7,109.5 100.7,112.0 101.8,114.5 102.8,117.0 103.9,119.5 105.0,121.9 106.0,124.2 107.1,126.5 108.2,128.8 109.2,131.1 110.3,133.3 111.3,135.5 112.4,137.6 113.5,139.7 114.5,141.8 115.6,143.9 116.6,145.8 117.7,147.8 118.8,149.7 119.8,151.6 120.9,153.5 122.0,155.3 123.0,157.1 124.1,158.8 125.1,160.5 126.2,162.2 127.3,163.8 128.3,165.4 129.4,167.0 130.5,168.5 131.5,170.0 132.6,171.4 133.6,172.8 134.7,174.2 135.8,175.5 136.8,176.8 137.9,178.1 139.0,179.3 140.0,180.5 141.1,181.7 142.1,182.8 143.2,183.9 144.3,184.9 145.3,185.9 146.4,186.9 147.4,187.8 148.5,188.7 149.6,189.6 150.6,190.4 151.7,191.2 152.8,192.0 153.8,192.7 154.9,193.4 155.9,194.0 157.0,194.6 158.1,195.2 159.1,195.7 160.2,196.2 161.3,196.7 162.3,197.1 163.4,197.5 164.4,197.8 165.5,198.1 166.6,198.4 167.6,198.6 168.7,198.8 169.8,199.0 170.8,199.1 171.9,199.2 172.9,199.3 174.0,199.3 175.1,199.3 176.1,199.2 177.2,199.1 178.2,199.0 179.3,198.8 180.4,198.6 181.4,198.4 182.5,198.1 183.6,197.8 184.6,197.5 185.7,197.1 186.7,196.7 187.8,196.2 188.9,195.7 189.9,195.2 191.0,194.6 192.1,194.0 193.1,193.4 194.2,192.7 195.2,192.0 196.3,191.2 197.4,190.4 198.4,189.6 199.5,188.7 200.6,187.8 201.6,186.9 202.7,185.9 203.7,184.9 204.8,183.9 205.9,182.8 206.9,181.7 208.0,180.5 209.0,179.3 210.1,178.1 211.2,176.8 212.2,175.5 213.3,174.2 214.4,172.8 215.4,171.4 216.5,170.0 217.5,168.5 218.6,167.0 219.7,165.4 220.7,163.8 221.8,162.2 222.9,160.5 223.9,158.8 225.0,157.1 226.0,155.3 227.1,153.5 228.2,151.6 229.2,149.7 230.3,147.8 231.4,145.8 232.4,143.9 233.5,141.8 234.5,139.7 235.6,137.6 236.7,135.5 237.7,133.3 238.8,131.1 239.8,128.8 240.9,126.5 242.0,124.2 243.0,121.9 244.1,119.5 245.2,117.0 246.2,114.5 247.3,112.0 248.3,109.5 249.4,106.9 250.5,104.3 251.5,101.6 252.6,98.9 253.7,96.2 254.7,93.4 255.8,90.6 256.8,87.8 257.9,84.9 259.0,82.0 260.0,79.0 261.1,76.0 262.2,73.0 263.2,70.0 264.3,66.9 265.3,63.7 266.4,60.6 267.5,57.4 268.5,54.1 269.6,50.8 270.6,47.5 271.7,44.2 272.8,40.8 273.8,37.3 274.9,33.9 276.0,30.4 277.0,26.8 278.1,23.3 279.1,19.6 280.2,16.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="154.0" cy="192.8" r="3.6" fill="#000"/>
+<circle cx="194.0" cy="192.8" r="3.6" fill="#000"/>
+<text x="148.0" y="214.8" font-size="12" text-anchor="middle" font-weight="bold">(2, 0)</text>
+<text x="204.0" y="214.8" font-size="12" text-anchor="middle" font-weight="bold">(3, 0)</text>
+<text x="232.0" y="107.2" font-size="11" text-anchor="middle">共有点のx座標＝方程式の解</text>
+<line x1="200.0" y1="111.2" x2="160.7" y2="182.0" stroke="#000" stroke-width="1.1"/>
+<polygon points="158.0,186.8 158.5,180.8 162.8,183.2" fill="#000"/>
+<line x1="234.0" y1="111.2" x2="194.7" y2="182.0" stroke="#000" stroke-width="1.1"/>
+<polygon points="192.0,186.8 192.5,180.8 196.8,183.2" fill="#000"/>
+<text x="170.0" y="268.0" font-size="12" text-anchor="middle">y＝x²−5x＋6</text>
+</svg>
+</div><figcaption>y=x²−5x＋6とx軸の共有点(2,0)・(3,0)</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L08_fig1_roots_as_intersections.svg">図だけを開く</a></figure>
+<p>確かめは代入でできる。x=2 を代入すると 4−10＋6=0、x=3 では 9−15＋6=0。どちらも y=0 になるから、グラフがこの2点をたしかに通ることが式の上で保証される。共有点を求めるだけなら、頂点（平方完成）まで求める必要はない。</p>
+<h2 id="3-例題2因数分解できないときは解の公式">3. 例題2——因数分解できないときは解の公式</h2>
+<p><strong>例題2</strong> 放物線 y=x²−2x−1 とx軸の共有点のx座標を求めよ。</p>
+<p>x²−2x−1=0 は整数の範囲で因数分解できない。こういうときは中学で学んだ<strong>解の公式</strong>を使う。</p>
+<p>x = (2±√(4＋4))／2 = (2±2√2)／2 = <strong>1±√2</strong></p>
+<p>解の公式は、ここでは「<strong>解を求めるための道具</strong>」である。√2≒1.41 だから共有点のx座標はおよそ −0.41 と 2.41。共有点のx座標は、このように<strong>整数とは限らない</strong>。グラフを描くとき、x軸との交点が目盛りの上にないこともある、と知っておこう。</p>
+<h2 id="4-逆向きに読むグラフから方程式の解を読む">4. 逆向きに読む——グラフから方程式の解を読む</h2>
+<p>つながりは逆向きにも使える。y=x²−1 のグラフは頂点 (0, −1) の下に凸の放物線で、x軸と (−1, 0), (1, 0) で交わる。このグラフを見れば、方程式 x²−1=0 の解が x=±1 だと<strong>計算せずに読み取れる</strong>。「方程式を解く」と「グラフとx軸の交点を読む」は、同じことの2つの顔である。この見方は、次のL09（共有点の個数）と、L10以降の二次不等式で本格的に活躍する。</p>
+<h2 id="5-練習">5. 練習</h2>
+<p><strong>問1</strong> 放物線 y=x²−x−6 とx軸の共有点の座標を求めよ。</p>
+<p><strong>問2</strong> 放物線 y=−x²＋4x とx軸の共有点の座標を求めよ。</p>
+<p><strong>問3</strong> 放物線 y=2x²−8x＋6 とx軸の共有点のx座標を求めよ。</p>
+<p><strong>問4</strong> 放物線 y=x²−4x＋1 とx軸の共有点のx座標を求めよ（解の公式を使ってよい）。</p>
+<p><strong>問5</strong> x²の係数が1で、グラフがx軸と2点 (−1, 0), (5, 0) で交わる二次関数の式を1つ書け。</p>
+<hr>
+<h2 id="stretch本線と分けて提示余力のある生徒向け">stretch（本線と分けて提示。余力のある生徒向け）</h2>
+<p><strong>S1</strong> 放物線 y=x²−2x−2 と直線 y=2x＋3 の共有点の座標を求めよ。（ヒント: 共有点では2つの式のyが等しい。x軸との共有点で使った考え方が、x軸以外の直線でもそのまま使える。）</p><a class="answer-link" href="answer_key_L07-09.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 事象への適用——最大・最小の文章題</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_09.html"><span>次のレッスン</span>L09 x軸との共有点の個数</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>08</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="1-方程式とグラフをつなぐ" href="lesson_08.html#1-%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%A8%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92%E3%81%A4%E3%81%AA%E3%81%90">1. 方程式とグラフをつなぐ</a></li><li><a data-section-link="2-例題1因数分解で解いてグラフで確かめる" href="lesson_08.html#2-%E4%BE%8B%E9%A1%8C1%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3%E3%81%A7%E8%A7%A3%E3%81%84%E3%81%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%81%A7%E7%A2%BA%E3%81%8B%E3%82%81%E3%82%8B">2. 例題1——因数分解で解いて、グラフで確かめる</a></li><li><a data-section-link="3-例題2因数分解できないときは解の公式" href="lesson_08.html#3-%E4%BE%8B%E9%A1%8C2%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AF%E8%A7%A3%E3%81%AE%E5%85%AC%E5%BC%8F">3. 例題2——因数分解できないときは解の公式</a></li><li><a data-section-link="4-逆向きに読むグラフから方程式の解を読む" href="lesson_08.html#4-%E9%80%86%E5%90%91%E3%81%8D%E3%81%AB%E8%AA%AD%E3%82%80%E3%82%B0%E3%83%A9%E3%83%95%E3%81%8B%E3%82%89%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%AE%E8%A7%A3%E3%82%92%E8%AA%AD%E3%82%80">4. 逆向きに読む——グラフから方程式の解を読む</a></li><li><a data-section-link="5-練習" href="lesson_08.html#5-%E7%B7%B4%E7%BF%92">5. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_08.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

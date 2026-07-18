@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L09 x軸との共有点の個数">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L09 x軸との共有点の個数｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L09 x軸との共有点の個数">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L09 x軸との共有点の個数｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="a4380468c813a88ee6edb50161058437f8786133870eb6780ceddbee2ba3e06f" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L09 x軸との共有点の個数</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="a4380468c813a88ee6edb50161058437f8786133870eb6780ceddbee2ba3e06f" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>高校 数学I ／ 高校数学Ⅰ「二次関数」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l09-x軸との共有点の個数"><span class="lesson-title-main">L09 x軸との共有点の個数</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><ul><li><p>unit_id: hs-math-i-quadratic-functions</p></li><li><p>distribution_status: published_draft</p></li><li><p>license: CC-BY-4.0</p></li><li><p>verify_required: 例題数値・記述は監修者検証必須。</p></li><li><p>distribution_status: published_draft</p></li><li><p>位置づけ: 単元第9レッスン（2時間）。共有点の個数（2個・1個・0個）をグラフで判定する。</p></li><li><p>主概念: 共有点の個数は「凸の向き」と「頂点のy座標の符号」から、グラフの概形で判定できる</p></li><li><p>注: 個数の判定はグラフと頂点のy座標で行う。方程式を解いて数える確認は従。解の公式の√の中身を個数判定の道具として一般化しない（数IIで学ぶ内容には進まない）。</p></li></ul>
+<hr>
+<h2 id="1-共有点は2個とは限らない">1. 共有点は2個とは限らない</h2>
+<p>L08では共有点が2個の場合ばかりだった。しかし放物線とx軸の位置関係は3通りある。<strong>2点で交わる／1点で接する／共有点をもたない</strong>。グラフが1点だけをx軸と共有するとき、グラフはx軸に<strong>接する</strong>といい、その点を<strong>接点</strong>という。この3通りを、方程式を解かずに<strong>グラフの概形から</strong>見分けるのが本レッスンの主役である。</p>
+<h2 id="2-判定のしかた凸の向きと頂点のy座標">2. 判定のしかた——凸の向きと頂点のy座標</h2>
+<p>決め手は2つだけ。<strong>凸の向き</strong>（aの符号）と、<strong>頂点のy座標の符号</strong>である。たとえば下に凸で頂点がx軸より下にあれば、グラフは頂点から左右へ上がっていく途中で必ずx軸を2回横切る。頂点がちょうどx軸の上にあれば、x軸と触れるのはその1点だけ。頂点がx軸より上なら、グラフ全体がx軸より上にあって共有点はない。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="凸の向き・頂点のy座標・共有点の個数の表（1）"><table><thead><tr><th scope="col">凸の向き</th><th scope="col">頂点のy座標</th><th scope="col">共有点の個数</th></tr></thead><tbody><tr><td>下に凸（a＞0）</td><td>負</td><td>2個</td></tr><tr><td>下に凸（a＞0）</td><td>0</td><td>1個（接する）</td></tr><tr><td>下に凸（a＞0）</td><td>正</td><td>0個</td></tr><tr><td>上に凸（a＜0）</td><td>正</td><td>2個</td></tr><tr><td>上に凸（a＜0）</td><td>0</td><td>1個（接する）</td></tr><tr><td>上に凸（a＜0）</td><td>負</td><td>0個</td></tr></tbody></table></div>
+<p>表を丸暗記する必要はない。<strong>毎回、頂点の位置に点を打ち、凸の向きに小さく概形をかけば</strong>、個数は絵から読める。手順は3段——<strong>①平方完成して頂点を求める → ②凸の向きと頂点のy座標の符号でグラフの概形をかく → ③x軸を横切る回数を読む</strong>。</p>
+<h2 id="3-例題3つの場合を並べる">3. 例題——3つの場合を並べる</h2>
+<p><strong>例題1</strong> y=x²−6x＋5 のグラフとx軸の共有点の個数を求めよ。</p>
+<p>平方完成: y=(x−3)²−4。頂点 (3, −4)、下に凸。頂点がx軸より<strong>下</strong>にあるから、共有点は<strong>2個</strong>。確認として方程式を解くと (x−1)(x−5)=0 より x=1, 5——たしかに2個ある。</p>
+<p><strong>例題2</strong> y=x²−4x＋4 のグラフとx軸の共有点の個数を求めよ。</p>
+<p>y=(x−2)² と変形できる。頂点 (2, 0) が<strong>x軸の上にのっている</strong>から、共有点は<strong>1個</strong>。グラフは点 (2, 0) でx軸に接する。</p>
+<p><strong>例題3</strong> y=x²＋2x＋3 のグラフとx軸の共有点の個数を求めよ。</p>
+<p>y=(x＋1)²＋2。頂点 (−1, 2)、下に凸。頂点がx軸より<strong>上</strong>にあり、グラフはそこから上がる一方だから、共有点は<strong>0個</strong>。「方程式 x²＋2x＋3=0 には実数の範囲で解がないから0個」と計算で押し切るのではなく、<strong>グラフが浮いているから交わらない</strong>、と絵で言えることが大切である。</p>
+<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 547 283" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-bdb93996f1-title" aria-describedby="mg-bdb93996f1-desc">
+<title id="mg-bdb93996f1-title">グラフとx軸の共有点——2個・1個・0個の3態</title>
+<desc id="mg-bdb93996f1-desc">グラフとx軸の共有点——2個・1個・0個の3態</desc>
+<!-- L09_fig1_three_intersection_cases.svg | グラフとx軸の共有点——2個・1個・0個の3態 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="547" height="283" fill="#fff"/>
+<line x1="28.0" y1="109.4" x2="166.0" y2="109.4" stroke="#000" stroke-width="1.2"/>
+<polygon points="173.0,109.4 166.0,112.6 166.0,106.3" fill="#000"/>
+<line x1="36.1" y1="185.0" x2="36.1" y2="27.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="36.1,20.0 39.2,27.0 32.9,27.0" fill="#000"/>
+<text x="175.0" y="113.9" font-size="13" text-anchor="start">x</text>
+<text x="43.1" y="22.0" font-size="13" text-anchor="start">y</text>
+<line x1="56.2" y1="106.4" x2="56.2" y2="112.4" stroke="#000" stroke-width="1.0"/>
+<line x1="76.4" y1="106.4" x2="76.4" y2="112.4" stroke="#000" stroke-width="1.0"/>
+<line x1="96.5" y1="106.4" x2="96.5" y2="112.4" stroke="#000" stroke-width="1.0"/>
+<line x1="116.6" y1="106.4" x2="116.6" y2="112.4" stroke="#000" stroke-width="1.0"/>
+<line x1="136.8" y1="106.4" x2="136.8" y2="112.4" stroke="#000" stroke-width="1.0"/>
+<line x1="156.9" y1="106.4" x2="156.9" y2="112.4" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="182.1" x2="39.1" y2="182.1" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="167.6" x2="39.1" y2="167.6" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="153.0" x2="39.1" y2="153.0" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="138.5" x2="39.1" y2="138.5" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="123.9" x2="39.1" y2="123.9" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="94.9" x2="39.1" y2="94.9" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="80.3" x2="39.1" y2="80.3" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="65.8" x2="39.1" y2="65.8" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="51.3" x2="39.1" y2="51.3" stroke="#000" stroke-width="1.0"/>
+<line x1="33.1" y1="36.7" x2="39.1" y2="36.7" stroke="#000" stroke-width="1.0"/>
+<polyline points="34.1,28.0 34.7,30.8 35.3,33.5 35.9,36.2 36.6,38.9 37.2,41.6 37.8,44.2 38.4,46.9 39.1,49.4 39.7,52.0 40.3,54.5 40.9,57.0 41.6,59.5 42.2,61.9 42.8,64.3 43.4,66.7 44.1,69.1 44.7,71.4 45.3,73.7 45.9,76.0 46.6,78.2 47.2,80.5 47.8,82.6 48.4,84.8 49.1,86.9 49.7,89.1 50.3,91.1 50.9,93.2 51.6,95.2 52.2,97.2 52.8,99.2 53.4,101.1 54.1,103.0 54.7,104.9 55.3,106.8 55.9,108.6 56.5,110.4 57.2,112.2 57.8,113.9 58.4,115.6 59.0,117.3 59.7,119.0 60.3,120.6 60.9,122.2 61.5,123.8 62.2,125.3 62.8,126.9 63.4,128.4 64.0,129.8 64.7,131.3 65.3,132.7 65.9,134.0 66.5,135.4 67.2,136.7 67.8,138.0 68.4,139.3 69.0,140.5 69.7,141.8 70.3,142.9 70.9,144.1 71.5,145.2 72.2,146.3 72.8,147.4 73.4,148.5 74.0,149.5 74.7,150.5 75.3,151.4 75.9,152.4 76.5,153.3 77.1,154.1 77.8,155.0 78.4,155.8 79.0,156.6 79.6,157.4 80.3,158.1 80.9,158.8 81.5,159.5 82.1,160.2 82.8,160.8 83.4,161.4 84.0,162.0 84.6,162.5 85.3,163.0 85.9,163.5 86.5,164.0 87.1,164.4 87.8,164.8 88.4,165.2 89.0,165.5 89.6,165.9 90.3,166.2 90.9,166.4 91.5,166.7 92.1,166.9 92.8,167.1 93.4,167.2 94.0,167.3 94.6,167.4 95.3,167.5 95.9,167.5 96.5,167.6 97.1,167.5 97.7,167.5 98.4,167.4 99.0,167.3 99.6,167.2 100.2,167.1 100.9,166.9 101.5,166.7 102.1,166.4 102.7,166.2 103.4,165.9 104.0,165.5 104.6,165.2 105.2,164.8 105.9,164.4 106.5,164.0 107.1,163.5 107.7,163.0 108.4,162.5 109.0,162.0 109.6,161.4 110.2,160.8 110.9,160.2 111.5,159.5 112.1,158.8 112.7,158.1 113.4,157.4 114.0,156.6 114.6,155.8 115.2,155.0 115.9,154.1 116.5,153.3 117.1,152.4 117.7,151.4 118.3,150.5 119.0,149.5 119.6,148.5 120.2,147.4 120.8,146.3 121.5,145.2 122.1,144.1 122.7,142.9 123.3,141.8 124.0,140.5 124.6,139.3 125.2,138.0 125.8,136.7 126.5,135.4 127.1,134.0 127.7,132.7 128.3,131.3 129.0,129.8 129.6,128.4 130.2,126.9 130.8,125.3 131.5,123.8 132.1,122.2 132.7,120.6 133.3,119.0 134.0,117.3 134.6,115.6 135.2,113.9 135.8,112.2 136.5,110.4 137.1,108.6 137.7,106.8 138.3,104.9 138.9,103.0 139.6,101.1 140.2,99.2 140.8,97.2 141.4,95.2 142.1,93.2 142.7,91.1 143.3,89.1 143.9,86.9 144.6,84.8 145.2,82.6 145.8,80.5 146.4,78.2 147.1,76.0 147.7,73.7 148.3,71.4 148.9,69.1 149.6,66.7 150.2,64.3 150.8,61.9 151.4,59.5 152.1,57.0 152.7,54.5 153.3,52.0 153.9,49.4 154.6,46.9 155.2,44.2 155.8,41.6 156.4,38.9 157.1,36.2 157.7,33.5 158.3,30.8 158.9,28.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="96.5" cy="167.6" r="3.2" fill="#000"/>
+<line x1="96.5" y1="109.4" x2="96.5" y2="167.6" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<circle cx="56.2" cy="109.4" r="3.6" fill="#000"/>
+<circle cx="136.8" cy="109.4" r="3.6" fill="#000"/>
+<text x="96.5" y="183.6" font-size="10" text-anchor="middle">頂点</text>
+<text x="96.5" y="215.0" font-size="12" text-anchor="middle">y＝x²−6x＋5</text>
+<text x="96.5" y="232.0" font-size="11" text-anchor="middle">頂点がx軸より下</text>
+<text x="96.5" y="251.0" font-size="13" text-anchor="middle" font-weight="bold">共有点2個</text>
+<line x1="205.0" y1="144.6" x2="343.0" y2="144.6" stroke="#000" stroke-width="1.2"/>
+<polygon points="350.0,144.6 343.0,147.8 343.0,141.5" fill="#000"/>
+<line x1="220.8" y1="185.0" x2="220.8" y2="27.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="220.8,20.0 224.0,27.0 217.7,27.0" fill="#000"/>
+<text x="352.0" y="149.1" font-size="13" text-anchor="start">x</text>
+<text x="227.8" y="22.0" font-size="13" text-anchor="start">y</text>
+<line x1="247.2" y1="141.6" x2="247.2" y2="147.6" stroke="#000" stroke-width="1.0"/>
+<line x1="273.5" y1="141.6" x2="273.5" y2="147.6" stroke="#000" stroke-width="1.0"/>
+<line x1="299.8" y1="141.6" x2="299.8" y2="147.6" stroke="#000" stroke-width="1.0"/>
+<line x1="326.2" y1="141.6" x2="326.2" y2="147.6" stroke="#000" stroke-width="1.0"/>
+<line x1="217.8" y1="167.1" x2="223.8" y2="167.1" stroke="#000" stroke-width="1.0"/>
+<line x1="217.8" y1="122.2" x2="223.8" y2="122.2" stroke="#000" stroke-width="1.0"/>
+<line x1="217.8" y1="99.8" x2="223.8" y2="99.8" stroke="#000" stroke-width="1.0"/>
+<line x1="217.8" y1="77.3" x2="223.8" y2="77.3" stroke="#000" stroke-width="1.0"/>
+<line x1="217.8" y1="54.9" x2="223.8" y2="54.9" stroke="#000" stroke-width="1.0"/>
+<line x1="217.8" y1="32.5" x2="223.8" y2="32.5" stroke="#000" stroke-width="1.0"/>
+<polyline points="213.4,28.0 214.0,30.3 214.6,32.6 215.2,34.9 215.8,37.1 216.4,39.4 217.0,41.6 217.6,43.8 218.2,45.9 218.8,48.0 219.4,50.2 220.0,52.2 220.6,54.3 221.2,56.4 221.8,58.4 222.4,60.4 223.0,62.3 223.6,64.3 224.2,66.2 224.8,68.1 225.4,70.0 226.0,71.8 226.6,73.7 227.2,75.5 227.8,77.3 228.4,79.0 229.0,80.8 229.6,82.5 230.2,84.2 230.8,85.8 231.4,87.5 232.0,89.1 232.6,90.7 233.2,92.3 233.8,93.8 234.4,95.4 235.0,96.9 235.7,98.3 236.3,99.8 236.9,101.2 237.5,102.6 238.1,104.0 238.7,105.4 239.3,106.7 239.9,108.1 240.5,109.3 241.1,110.6 241.7,111.9 242.3,113.1 242.9,114.3 243.5,115.5 244.1,116.6 244.7,117.8 245.3,118.9 245.9,119.9 246.5,121.0 247.1,122.0 247.7,123.1 248.3,124.1 248.9,125.0 249.5,126.0 250.1,126.9 250.7,127.8 251.3,128.7 251.9,129.5 252.5,130.3 253.1,131.1 253.7,131.9 254.3,132.7 254.9,133.4 255.5,134.1 256.1,134.8 256.7,135.5 257.3,136.1 257.9,136.7 258.5,137.3 259.1,137.9 259.7,138.5 260.3,139.0 260.9,139.5 261.5,140.0 262.1,140.4 262.7,140.8 263.3,141.3 263.9,141.6 264.5,142.0 265.1,142.3 265.7,142.7 266.3,142.9 266.9,143.2 267.5,143.5 268.1,143.7 268.7,143.9 269.3,144.1 269.9,144.2 270.5,144.3 271.1,144.4 271.7,144.5 272.3,144.6 272.9,144.6 273.5,144.6 274.1,144.6 274.7,144.6 275.3,144.5 275.9,144.4 276.5,144.3 277.1,144.2 277.7,144.1 278.3,143.9 278.9,143.7 279.5,143.5 280.1,143.2 280.7,142.9 281.3,142.7 281.9,142.3 282.5,142.0 283.1,141.6 283.7,141.3 284.3,140.8 284.9,140.4 285.5,140.0 286.1,139.5 286.7,139.0 287.3,138.5 287.9,137.9 288.5,137.3 289.1,136.7 289.7,136.1 290.3,135.5 290.9,134.8 291.5,134.1 292.1,133.4 292.7,132.7 293.3,131.9 293.9,131.1 294.5,130.3 295.1,129.5 295.7,128.7 296.3,127.8 296.9,126.9 297.5,126.0 298.1,125.0 298.7,124.1 299.3,123.1 299.9,122.0 300.5,121.0 301.1,119.9 301.7,118.9 302.3,117.8 302.9,116.6 303.5,115.5 304.1,114.3 304.7,113.1 305.3,111.9 305.9,110.6 306.5,109.3 307.1,108.1 307.7,106.7 308.3,105.4 308.9,104.0 309.5,102.6 310.1,101.2 310.7,99.8 311.3,98.3 312.0,96.9 312.6,95.4 313.2,93.8 313.8,92.3 314.4,90.7 315.0,89.1 315.6,87.5 316.2,85.8 316.8,84.2 317.4,82.5 318.0,80.8 318.6,79.0 319.2,77.3 319.8,75.5 320.4,73.7 321.0,71.8 321.6,70.0 322.2,68.1 322.8,66.2 323.4,64.3 324.0,62.3 324.6,60.4 325.2,58.4 325.8,56.4 326.4,54.3 327.0,52.2 327.6,50.2 328.2,48.0 328.8,45.9 329.4,43.8 330.0,41.6 330.6,39.4 331.2,37.1 331.8,34.9 332.4,32.6 333.0,30.3 333.6,28.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="273.5" cy="144.6" r="3.2" fill="#000"/>
+<circle cx="273.5" cy="144.6" r="3.6" fill="#000"/>
+<text x="273.5" y="136.6" font-size="10" text-anchor="middle">頂点</text>
+<text x="273.5" y="215.0" font-size="12" text-anchor="middle">y＝x²−4x＋4</text>
+<text x="273.5" y="232.0" font-size="11" text-anchor="middle">頂点がx軸の上にのる</text>
+<text x="273.5" y="251.0" font-size="13" text-anchor="middle" font-weight="bold">1個（接する）</text>
+<line x1="382.0" y1="159.4" x2="520.0" y2="159.4" stroke="#000" stroke-width="1.2"/>
+<polygon points="527.0,159.4 520.0,162.6 520.0,156.3" fill="#000"/>
+<line x1="476.8" y1="185.0" x2="476.8" y2="27.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="476.8,20.0 480.0,27.0 473.7,27.0" fill="#000"/>
+<text x="529.0" y="163.9" font-size="13" text-anchor="start">x</text>
+<text x="483.8" y="22.0" font-size="13" text-anchor="start">y</text>
+<line x1="397.8" y1="156.4" x2="397.8" y2="162.4" stroke="#000" stroke-width="1.0"/>
+<line x1="424.2" y1="156.4" x2="424.2" y2="162.4" stroke="#000" stroke-width="1.0"/>
+<line x1="450.5" y1="156.4" x2="450.5" y2="162.4" stroke="#000" stroke-width="1.0"/>
+<line x1="503.2" y1="156.4" x2="503.2" y2="162.4" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="177.7" x2="479.8" y2="177.7" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="141.2" x2="479.8" y2="141.2" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="122.9" x2="479.8" y2="122.9" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="104.7" x2="479.8" y2="104.7" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="86.4" x2="479.8" y2="86.4" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="68.2" x2="479.8" y2="68.2" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="49.9" x2="479.8" y2="49.9" stroke="#000" stroke-width="1.0"/>
+<line x1="473.8" y1="31.7" x2="479.8" y2="31.7" stroke="#000" stroke-width="1.0"/>
+<polyline points="390.4,28.0 391.0,29.9 391.6,31.8 392.2,33.6 392.8,35.4 393.4,37.3 394.0,39.0 394.6,40.8 395.2,42.6 395.8,44.3 396.4,46.0 397.0,47.7 397.6,49.4 398.2,51.1 398.8,52.7 399.4,54.3 400.0,55.9 400.6,57.5 401.2,59.1 401.8,60.6 402.4,62.2 403.0,63.7 403.6,65.2 404.2,66.6 404.8,68.1 405.4,69.5 406.0,70.9 406.6,72.3 407.2,73.7 407.8,75.1 408.4,76.4 409.0,77.7 409.6,79.0 410.2,80.3 410.8,81.6 411.4,82.8 412.0,84.0 412.7,85.3 413.3,86.4 413.9,87.6 414.5,88.8 415.1,89.9 415.7,91.0 416.3,92.1 416.9,93.2 417.5,94.2 418.1,95.2 418.7,96.3 419.3,97.3 419.9,98.2 420.5,99.2 421.1,100.1 421.7,101.1 422.3,102.0 422.9,102.8 423.5,103.7 424.1,104.6 424.7,105.4 425.3,106.2 425.9,107.0 426.5,107.7 427.1,108.5 427.7,109.2 428.3,109.9 428.9,110.6 429.5,111.3 430.1,112.0 430.7,112.6 431.3,113.2 431.9,113.8 432.5,114.4 433.1,114.9 433.7,115.5 434.3,116.0 434.9,116.5 435.5,117.0 436.1,117.5 436.7,117.9 437.3,118.3 437.9,118.7 438.5,119.1 439.1,119.5 439.7,119.9 440.3,120.2 440.9,120.5 441.5,120.8 442.1,121.1 442.7,121.3 443.3,121.6 443.9,121.8 444.5,122.0 445.1,122.2 445.7,122.3 446.3,122.5 446.9,122.6 447.5,122.7 448.1,122.8 448.7,122.8 449.3,122.9 449.9,122.9 450.5,122.9 451.1,122.9 451.7,122.9 452.3,122.8 452.9,122.8 453.5,122.7 454.1,122.6 454.7,122.5 455.3,122.3 455.9,122.2 456.5,122.0 457.1,121.8 457.7,121.6 458.3,121.3 458.9,121.1 459.5,120.8 460.1,120.5 460.7,120.2 461.3,119.9 461.9,119.5 462.5,119.1 463.1,118.7 463.7,118.3 464.3,117.9 464.9,117.5 465.5,117.0 466.1,116.5 466.7,116.0 467.3,115.5 467.9,114.9 468.5,114.4 469.1,113.8 469.7,113.2 470.3,112.6 470.9,112.0 471.5,111.3 472.1,110.6 472.7,109.9 473.3,109.2 473.9,108.5 474.5,107.7 475.1,107.0 475.7,106.2 476.3,105.4 476.9,104.6 477.5,103.7 478.1,102.8 478.7,102.0 479.3,101.1 479.9,100.1 480.5,99.2 481.1,98.2 481.7,97.3 482.3,96.3 482.9,95.2 483.5,94.2 484.1,93.2 484.7,92.1 485.3,91.0 485.9,89.9 486.5,88.8 487.1,87.6 487.7,86.4 488.3,85.3 489.0,84.0 489.6,82.8 490.2,81.6 490.8,80.3 491.4,79.0 492.0,77.7 492.6,76.4 493.2,75.1 493.8,73.7 494.4,72.3 495.0,70.9 495.6,69.5 496.2,68.1 496.8,66.6 497.4,65.2 498.0,63.7 498.6,62.2 499.2,60.6 499.8,59.1 500.4,57.5 501.0,55.9 501.6,54.3 502.2,52.7 502.8,51.1 503.4,49.4 504.0,47.7 504.6,46.0 505.2,44.3 505.8,42.6 506.4,40.8 507.0,39.0 507.6,37.3 508.2,35.4 508.8,33.6 509.4,31.8 510.0,29.9 510.6,28.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="450.5" cy="122.9" r="3.2" fill="#000"/>
+<line x1="450.5" y1="159.4" x2="450.5" y2="122.9" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<text x="456.5" y="114.9" font-size="10" text-anchor="middle">頂点</text>
+<text x="450.5" y="215.0" font-size="12" text-anchor="middle">y＝x²＋2x＋3</text>
+<text x="450.5" y="232.0" font-size="11" text-anchor="middle">頂点がx軸より上</text>
+<text x="450.5" y="251.0" font-size="13" text-anchor="middle" font-weight="bold">0個</text>
+<text x="273.5" y="273.0" font-size="11" text-anchor="middle">（3つとも下に凸——凸の向きが変わると条件は逆になる）</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>グラフとx軸の共有点——2個・1個・0個の3態</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L09_fig1_three_intersection_cases.svg">図だけを開く</a></figure>
+<h2 id="4-上に凸の場合向きが変わると条件が逆になる">4. 上に凸の場合——向きが変わると条件が逆になる</h2>
+<p><strong>例題4</strong> y=−x²＋4x−3 のグラフとx軸の共有点の個数を求めよ。</p>
+<p>y=−(x−2)²＋1。頂点 (2, 1)、上に凸。今度は頂点がx軸より<strong>上</strong>にあることが「2個」の条件になる。グラフは頂点から左右へ下がっていき、x軸を2回横切る。共有点は<strong>2個</strong>（確認: −(x−1)(x−3)=0 より x=1, 3）。<strong>「頂点が下なら2個」と符号だけで覚えない</strong>こと。凸の向きとセットで、必ず概形をかいて判断する。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 295 242" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-3ca4cc8d06-title" aria-describedby="mg-3ca4cc8d06-desc">
+<title id="mg-3ca4cc8d06-title">上に凸で頂点がx軸より上——共有点2個</title>
+<desc id="mg-3ca4cc8d06-desc">上に凸で頂点がx軸より上——共有点2個</desc>
+<!-- L09_fig2_concave_down_two_points.svg | 上に凸で頂点がx軸より上——共有点2個 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="295" height="242" fill="#fff"/>
+<line x1="38.0" y1="86.4" x2="265.8" y2="86.4" stroke="#000" stroke-width="1.2"/>
+<polygon points="272.8,86.4 265.8,89.6 265.8,83.2" fill="#000"/>
+<line x1="67.4" y1="201.6" x2="67.4" y2="15.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="67.4,8.0 70.6,15.0 64.2,15.0" fill="#000"/>
+<text x="274.8" y="90.9" font-size="13" text-anchor="start">x</text>
+<text x="74.4" y="10.0" font-size="13" text-anchor="start">y</text>
+<line x1="109.4" y1="83.4" x2="109.4" y2="89.4" stroke="#000" stroke-width="1.0"/>
+<line x1="151.4" y1="83.4" x2="151.4" y2="89.4" stroke="#000" stroke-width="1.0"/>
+<line x1="193.4" y1="83.4" x2="193.4" y2="89.4" stroke="#000" stroke-width="1.0"/>
+<line x1="235.4" y1="83.4" x2="235.4" y2="89.4" stroke="#000" stroke-width="1.0"/>
+<line x1="64.4" y1="182.4" x2="70.4" y2="182.4" stroke="#000" stroke-width="1.0"/>
+<line x1="64.4" y1="150.4" x2="70.4" y2="150.4" stroke="#000" stroke-width="1.0"/>
+<line x1="64.4" y1="118.4" x2="70.4" y2="118.4" stroke="#000" stroke-width="1.0"/>
+<line x1="64.4" y1="54.4" x2="70.4" y2="54.4" stroke="#000" stroke-width="1.0"/>
+<line x1="64.4" y1="22.4" x2="70.4" y2="22.4" stroke="#000" stroke-width="1.0"/>
+<text x="235.4" y="100.4" font-size="11" text-anchor="middle">4</text>
+<text x="61.4" y="58.3" font-size="11" text-anchor="end">1</text>
+<text x="62.4" y="100.4" font-size="11" text-anchor="end">O</text>
+<polyline points="61.3,201.6 62.2,198.7 63.1,195.8 64.0,192.9 64.9,190.1 65.8,187.2 66.7,184.5 67.6,181.7 68.5,179.0 69.4,176.3 70.3,173.6 71.2,171.0 72.1,168.4 73.0,165.8 73.9,163.3 74.8,160.8 75.7,158.3 76.6,155.8 77.5,153.4 78.4,151.0 79.3,148.6 80.2,146.3 81.1,144.0 82.0,141.7 82.9,139.4 83.8,137.2 84.7,135.0 85.6,132.8 86.5,130.7 87.4,128.6 88.3,126.5 89.2,124.5 90.1,122.5 91.0,120.5 91.9,118.5 92.8,116.6 93.7,114.7 94.6,112.8 95.6,111.0 96.5,109.2 97.4,107.4 98.3,105.6 99.2,103.9 100.1,102.2 101.0,100.6 101.9,98.9 102.8,97.3 103.7,95.7 104.6,94.2 105.5,92.7 106.4,91.2 107.3,89.7 108.2,88.3 109.1,86.9 110.0,85.5 110.9,84.2 111.8,82.9 112.7,81.6 113.6,80.4 114.5,79.1 115.4,78.0 116.3,76.8 117.2,75.7 118.1,74.6 119.0,73.5 119.9,72.4 120.8,71.4 121.7,70.4 122.6,69.5 123.5,68.5 124.4,67.6 125.3,66.8 126.2,65.9 127.1,65.1 128.0,64.4 128.9,63.6 129.8,62.9 130.7,62.2 131.6,61.5 132.5,60.9 133.4,60.3 134.3,59.7 135.2,59.2 136.1,58.7 137.0,58.2 137.9,57.7 138.8,57.3 139.7,56.9 140.6,56.5 141.5,56.2 142.4,55.9 143.3,55.6 144.2,55.3 145.1,55.1 146.0,54.9 146.9,54.8 147.8,54.6 148.7,54.5 149.6,54.5 150.5,54.4 151.4,54.4 152.3,54.4 153.2,54.5 154.1,54.5 155.0,54.6 155.9,54.8 156.8,54.9 157.7,55.1 158.6,55.3 159.5,55.6 160.4,55.9 161.3,56.2 162.2,56.5 163.1,56.9 164.0,57.3 164.9,57.7 165.8,58.2 166.7,58.7 167.6,59.2 168.5,59.7 169.4,60.3 170.3,60.9 171.2,61.5 172.1,62.2 173.0,62.9 173.9,63.6 174.8,64.4 175.7,65.1 176.6,65.9 177.5,66.8 178.4,67.6 179.3,68.5 180.2,69.5 181.1,70.4 182.0,71.4 182.9,72.4 183.8,73.5 184.7,74.6 185.6,75.7 186.5,76.8 187.4,78.0 188.3,79.1 189.2,80.4 190.1,81.6 191.0,82.9 191.9,84.2 192.8,85.5 193.7,86.9 194.6,88.3 195.5,89.7 196.4,91.2 197.3,92.7 198.2,94.2 199.1,95.7 200.0,97.3 200.9,98.9 201.8,100.6 202.7,102.2 203.6,103.9 204.5,105.6 205.4,107.4 206.3,109.2 207.2,111.0 208.2,112.8 209.1,114.7 210.0,116.6 210.9,118.5 211.8,120.5 212.7,122.5 213.6,124.5 214.5,126.5 215.4,128.6 216.3,130.7 217.2,132.8 218.1,135.0 219.0,137.2 219.9,139.4 220.8,141.7 221.7,144.0 222.6,146.3 223.5,148.6 224.4,151.0 225.3,153.4 226.2,155.8 227.1,158.3 228.0,160.8 228.9,163.3 229.8,165.8 230.7,168.4 231.6,171.0 232.5,173.6 233.4,176.3 234.3,179.0 235.2,181.7 236.1,184.5 237.0,187.2 237.9,190.1 238.8,192.9 239.7,195.8 240.6,198.7 241.5,201.6" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="151.4" cy="54.4" r="3.2" fill="#000"/>
+<circle cx="109.4" cy="86.4" r="3.6" fill="#000"/>
+<circle cx="193.4" cy="86.4" r="3.6" fill="#000"/>
+<text x="151.4" y="44.4" font-size="12" text-anchor="middle" font-weight="bold">頂点(2, 1)——x軸より上</text>
+<text x="105.4" y="108.4" font-size="11" text-anchor="middle">(1, 0)</text>
+<text x="199.4" y="108.4" font-size="11" text-anchor="middle">(3, 0)</text>
+<text x="147.5" y="236.0" font-size="12" text-anchor="middle">y＝−x²＋4x−3（上に凸）——共有点2個</text>
+</svg>
+</div><figcaption>上に凸で頂点がx軸より上——共有点2個</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L09_fig2_concave_down_two_points.svg">図だけを開く</a></figure>
+<h2 id="5-練習">5. 練習</h2>
+<p><strong>問1</strong> y=x²−2x−3 のグラフとx軸の共有点の個数を、頂点とグラフの概形から判定せよ。そのあと方程式を解いて確かめよ。</p>
+<p><strong>問2</strong> y=x²＋6x＋9 のグラフとx軸の共有点の個数を判定せよ。共有点があればその座標も答えよ。</p>
+<p><strong>問3</strong> y=−x²＋2x−5 のグラフとx軸の共有点の個数を判定せよ。</p>
+<p><strong>問4</strong> y=−x²−4x のグラフとx軸の共有点の個数を判定し、共有点のx座標を求めよ。</p>
+<p><strong>問5</strong> 「頂点のy座標が負ならば、グラフとx軸の共有点は必ず2個ある」——この主張は正しいか。正しくない場合は、あてはまらない例を1つ挙げて説明せよ。</p>
+<hr>
+<h2 id="stretch本線と分けて提示余力のある生徒向け">stretch（本線と分けて提示。余力のある生徒向け）</h2>
+<p><strong>S1</strong> kを定数とする。y=x²−4x＋k のグラフがx軸に接するとき、kの値を求めよ。また、共有点が2個になるのはkがどんな範囲のときか。（ヒント: 平方完成して頂点のy座標をkの式で表し、その符号で考える。）</p><a class="answer-link" href="answer_key_L07-09.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 二次方程式とグラフ——x軸との共有点</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 二次不等式①——前提の確認とグラフで解く</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>09</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="1-共有点は2個とは限らない" href="lesson_09.html#1-%E5%85%B1%E6%9C%89%E7%82%B9%E3%81%AF2%E5%80%8B%E3%81%A8%E3%81%AF%E9%99%90%E3%82%89%E3%81%AA%E3%81%84">1. 共有点は2個とは限らない</a></li><li><a data-section-link="2-判定のしかた凸の向きと頂点のy座標" href="lesson_09.html#2-%E5%88%A4%E5%AE%9A%E3%81%AE%E3%81%97%E3%81%8B%E3%81%9F%E5%87%B8%E3%81%AE%E5%90%91%E3%81%8D%E3%81%A8%E9%A0%82%E7%82%B9%E3%81%AEy%E5%BA%A7%E6%A8%99">2. 判定のしかた——凸の向きと頂点のy座標</a></li><li><a data-section-link="3-例題3つの場合を並べる" href="lesson_09.html#3-%E4%BE%8B%E9%A1%8C3%E3%81%A4%E3%81%AE%E5%A0%B4%E5%90%88%E3%82%92%E4%B8%A6%E3%81%B9%E3%82%8B">3. 例題——3つの場合を並べる</a></li><li><a data-section-link="4-上に凸の場合向きが変わると条件が逆になる" href="lesson_09.html#4-%E4%B8%8A%E3%81%AB%E5%87%B8%E3%81%AE%E5%A0%B4%E5%90%88%E5%90%91%E3%81%8D%E3%81%8C%E5%A4%89%E3%82%8F%E3%82%8B%E3%81%A8%E6%9D%A1%E4%BB%B6%E3%81%8C%E9%80%86%E3%81%AB%E3%81%AA%E3%82%8B">4. 上に凸の場合——向きが変わると条件が逆になる</a></li><li><a data-section-link="5-練習" href="lesson_09.html#5-%E7%B7%B4%E7%BF%92">5. 練習</a></li><li><a data-section-link="stretch本線と分けて提示余力のある生徒向け" href="lesson_09.html#stretch%E6%9C%AC%E7%B7%9A%E3%81%A8%E5%88%86%E3%81%91%E3%81%A6%E6%8F%90%E7%A4%BA%E4%BD%99%E5%8A%9B%E3%81%AE%E3%81%82%E3%82%8B%E7%94%9F%E5%BE%92%E5%90%91%E3%81%91">stretch（本線と分けて提示。余力のある生徒向け）</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

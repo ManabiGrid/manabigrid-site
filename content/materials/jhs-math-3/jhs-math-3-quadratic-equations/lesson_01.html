@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L01 方程式の物語・第3幕——二次方程式とその解">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L01 方程式の物語・第3幕——二次方程式とその解｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L01 方程式の物語・第3幕——二次方程式とその解">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L01 方程式の物語・第3幕——二次方程式とその解｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="114f4442f17f0a23e688b20994c38e6194944600a29b205789bba958a1865446" data-source-file="materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-quadratic-equations/index.html">中3数学「二次方程式」</a></li><li aria-current="page">L01 方程式の物語・第3幕——二次方程式とその解</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="114f4442f17f0a23e688b20994c38e6194944600a29b205789bba958a1865446" data-source-file="materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「二次方程式」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l01-方程式の物語第3幕二次方程式とその解"><span class="lesson-title-main">L01 方程式の物語・第3幕</span><span class="lesson-title-sub">二次方程式とその解</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>既習の一次方程式・連立方程式では解けない問題が存在することを体感する。</p></li><li><p><strong>二次方程式</strong>の定義と、その<strong>解</strong>の意味（代入して成り立たせる値）を理解する。二次方程式には<strong>一般に解が二つ</strong>あることに気づく。</p></li></ul>
+<h2 id="準備運動道具箱の点検前提診断">準備運動：道具箱の点検（前提診断）</h2>
+<p>この章は、中学3年間の「数と式」の総決算だ。これまでの道具が全部そろっているか、5問で点検してみよう。</p>
+<ol start="1"><li><p>一次方程式 3x−7＝8 を解こう。</p></li><li><p>連立方程式 x＋y＝7、x−y＝1 を解こう。</p></li><li><p>次を因数分解しよう。 (1) x²＋7x＋12　(2) x²−9</p></li><li><p>(1) 7の平方根を答えよう。 (2) √16 の値を求めよう。</p></li><li><p>(x＋5)(x−2) を展開しよう。</p></li></ol>
+<p>3の因数分解と4の平方根は、この章の主役級の道具になる。あやしかった人は、前の2つの章の該当ページに一度戻っておこう。ここで点検しておくと、この先がぐっと楽になる。</p>
+<h2 id="主概念1一次方程式や連立方程式では解けない問題">主概念1：一次方程式や連立方程式では解けない問題</h2>
+<p>次の問題を考えてみよう。</p>
+<blockquote><p>ある正方形の一方の辺を1cm長くし、他方の辺を1cm短くして長方形を作ったら、面積が24cm²になった。もとの正方形の1辺の長さは何cmだろうか。</p></blockquote>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 262" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-f917b26399-title" aria-describedby="mg-f917b26399-desc">
+<title id="mg-f917b26399-title">正方形→長方形（縦＋1cm・横−1cm で面積24cm²）</title>
+<desc id="mg-f917b26399-desc">正方形→長方形（面積24cm²）</desc>
+<!-- L01_fig1_square_to_rectangle_24.svg | 正方形→長方形（縦＋1cm・横−1cm で面積24cm²） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="420" height="262" fill="#fff"/>
+<polygon points="52.0,196.0 137.0,196.0 137.0,111.0 52.0,111.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="52.0" y1="101.7" x2="137.0" y2="101.7" stroke="#000" stroke-width="0.9"/>
+<line x1="52.0" y1="97.7" x2="52.0" y2="105.7" stroke="#000" stroke-width="0.9"/>
+<line x1="137.0" y1="97.7" x2="137.0" y2="105.7" stroke="#000" stroke-width="0.9"/>
+<text x="94.5" y="93.2" font-size="13" text-anchor="middle">x cm</text>
+<line x1="42.6" y1="196.0" x2="42.6" y2="111.0" stroke="#000" stroke-width="0.9"/>
+<line x1="38.6" y1="196.0" x2="46.6" y2="196.0" stroke="#000" stroke-width="0.9"/>
+<line x1="38.6" y1="111.0" x2="46.6" y2="111.0" stroke="#000" stroke-width="0.9"/>
+<text x="29.6" y="158.1" font-size="13" text-anchor="end">x cm</text>
+<line x1="147.0" y1="153.5" x2="184.7" y2="153.5" stroke="#000" stroke-width="1.4"/>
+<polygon points="191.7,153.5 184.7,156.7 184.7,150.3" fill="#000"/>
+<text x="169.3" y="127.5" font-size="11" text-anchor="middle">縦＋1cm</text>
+<text x="169.3" y="141.5" font-size="11" text-anchor="middle">横−1cm</text>
+<polygon points="198.2,204.5 266.2,204.5 266.2,102.5 198.2,102.5" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="198.2" y1="93.2" x2="266.2" y2="93.2" stroke="#000" stroke-width="0.9"/>
+<line x1="198.2" y1="89.2" x2="198.2" y2="97.2" stroke="#000" stroke-width="0.9"/>
+<line x1="266.2" y1="89.2" x2="266.2" y2="97.2" stroke="#000" stroke-width="0.9"/>
+<text x="232.2" y="84.7" font-size="13" text-anchor="middle">(x−1)cm</text>
+<line x1="275.6" y1="204.5" x2="275.6" y2="102.5" stroke="#000" stroke-width="0.9"/>
+<line x1="271.6" y1="204.5" x2="279.6" y2="204.5" stroke="#000" stroke-width="0.9"/>
+<line x1="271.6" y1="102.5" x2="279.6" y2="102.5" stroke="#000" stroke-width="0.9"/>
+<text x="288.6" y="158.1" font-size="13" text-anchor="start">(x＋1)cm</text>
+<text x="232.2" y="158.1" font-size="13" text-anchor="middle" font-weight="bold">面積 24cm²</text>
+<text x="210.0" y="230.0" font-size="12" text-anchor="middle">一方の辺を1cm長く・他方の辺を1cm短くしたら、面積が24cm²になった</text>
+<text x="210.0" y="248.0" font-size="12" text-anchor="middle">（もとの正方形の1辺 x cm は？——面積の関係から方程式をつくる）</text>
+</svg>
+</div><figcaption>正方形→長方形（面積24cm²）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-quadratic-equations/assets/L01_fig1_square_to_rectangle_24.svg">図だけを開く</a></figure>
+<p>もとの正方形の1辺を x cmとすると、長方形の縦は (x＋1)cm、横は (x−1)cm。面積の関係から、</p>
+<p>(x＋1)(x−1)＝24</p>
+<p>左辺を展開すると x²−1＝24、整理すると</p>
+<p><strong>x²−25＝0</strong></p>
+<p>さて、この式をよく見てほしい。文字は x の1種類だけなのに、<strong>x²（2乗）の項</strong>が消えずに残っている。中1の一次方程式の解き方（移項して ax＝b の形へ）では、x² をどうにもできない。中2の連立方程式の道具（文字を消す）も、文字が1つしかない今回は出番がない。つまりこの問題は、<strong>既習の一次方程式や連立方程式では解けない</strong>。</p>
+<p>ふり返れば、方程式の学びは物語のように進んできた。中1では文字が1つの一次方程式。中2では<strong>文字を増やした</strong>連立方程式。そして中3のいま、目の前にあるのは<strong>次数を増やした</strong>方程式——2乗の項をもつ方程式だ。新しい相手には、新しい名前と新しい作戦がいる。</p>
+<h2 id="主概念2二次方程式とその解">主概念2：二次方程式とその「解」</h2>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】二次方程式</strong> 移項して整理すると「（xの二次式）＝0」の形になる方程式を、xについての<strong>二次方程式</strong>という。一般に、a、b、cを定数（aは0でない）として <strong>ax²＋bx＋c＝0</strong> の形で表される。</p></blockquote>
+<p>さきほどの x²−25＝0 は、a＝1、b＝0、c＝−25 の二次方程式だ。</p>
+<p>では、この方程式の「答え」とは何だろう。一次方程式のときと考え方は同じで、<strong>代入すると方程式が成り立つ値</strong>のことだ。</p>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】二次方程式の解</strong> 代入すると二次方程式を成り立たせる文字の値を、その二次方程式の<strong>解</strong>という。解をすべて求めることを、二次方程式を<strong>解く</strong>という。</p></blockquote>
+<p>試しに、x²−25＝0 に x＝5 を代入してみよう。5²−25＝25−25＝0。成り立つ。だから <strong>5はこの方程式の解</strong>だ。</p>
+<p>では x＝−5 はどうだろう。(−5)²−25＝25−25＝0。こちらも成り立つ！ つまり −5 <strong>も</strong>この方程式の解である。</p>
+<ul><li><p>一次方程式の解は（ふつう）1つだった。</p></li><li><p>二次方程式には、<strong>一般に解が二つある</strong>。</p></li></ul>
+<p>ここで最初の問題に戻ろう。x は正方形の1辺の長さだったから、x＝−5 は長さとしてありえない。<strong>方程式の解は5と−5の二つ、問題の答えは5cmだけ</strong>——「方程式の解」と「問題の答え」は、いつも同じとは限らない。この区別はこの章の後半（L08）で主役になるので、頭の片すみに置いておこう。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>方程式の3年間は、敵がだんだん強くなるゲームに似ている。中1の一次方程式が第1幕、中2で文字が2つに増えて第2幕、そして今回は文字は1つのまま「2乗」という新しい技をもった第3幕の相手だ。歴代の主人公がそうだったように、私たちも前の幕で手に入れた道具（因数分解と平方根）を全部持って挑むことになる。</p></div>
+<h2 id="作戦会議どう解くか予告">作戦会議：どう解くか（予告）</h2>
+<p>連立方程式を解くときの作戦は「文字を<strong>消して</strong>、一次方程式に持ちこむ」だった。二次方程式の作戦はこうだ。</p>
+<p><strong>次数を減らして、一元一次方程式に持ちこむ。</strong></p>
+<p>x²のままでは扱えないが、次数を1に下げてしまえば、あとは中1の技術で解ける。「どうやって次数を下げるか」——その方法がこの章の1節で学ぶ3つの解き方であり、実はどれも、この一つの作戦の変奏だ。次のL02では、前章で学んだばかりの平方根が、さっそく次数下げの主役として登場する。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「解く前に、解を確かめられる」ことの価値</strong></p>
+<p>このレッスンでは、まだ二次方程式の解き方を1つも学んでいない。それでも「x＝5が解かどうか」は代入すれば判定できる——ここが重要なポイントだ。解の定義（代入して成り立つ値）は、解き方を知らなくても使える<strong>検算の道具</strong>である。この章のすべての練習で「解いたら代入して確かめる」を締めの習慣にすると、符号ミスや計算ミスを自分で発見できるようになる。独習ではまちがいを指摘してくれる人がいないぶん、この自己検算の型がそのまま「先生の代わり」になる。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ「＝0の形」で定義するのか</strong></p>
+<p>(x＋1)(x−1)＝24 も x²＝25 も二次方程式なのに、定義では「整理するとax²＋bx＋c＝0の形」とわざわざ右辺を0にそろえている。これは、形がバラバラの方程式を<strong>同じ土俵で比べる</strong>ための共通様式だ。右辺を0にそろえておくと、「左辺が因数分解できるか」「どの解き方が使えるか」の判断が一目でできるようになる（L05・L06で効いてくる）。「まず＝0の形に整理する」は、この章の共通の第一歩として覚えておくとよい。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>次のうち、xについての二次方程式であるものをすべて選ぼう。  (ア) x²−3x＋2＝0　(イ) 2x＋1＝0　(ウ) x²＝x²＋4x−1　(エ) x(x＋2)＝3</p></li><li><p>二次方程式 x²−x−6＝0 について、−3、−2、2、3 のうち、解であるものを代入してすべて見つけよう。</p></li><li><p>x＝−3 が解である二次方程式を、次からすべて選ぼう。  (ア) x²−9＝0　(イ) x²＋3x＝0　(ウ) x²−x−6＝0</p></li><li><p>1辺x cmの正方形の面積が、1辺の長さの4倍より12大きいという関係を式に表すと x²＝4x＋12 となる。x＝6 がこの方程式の解であることを、代入して確かめよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 二次方程式 x²＝x を考える。−1、0、1、2 を代入して、解をすべて見つけてみよう。そのあとで、次の解き方のどこがまずいか考えてみよう。 「両辺をxで割って x＝1。よって解は1だけ。」 （ヒント: 割ってよいのは、割る数が0でないと分かっているときだけ。）</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-quadratic-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 平方根の考えで解く——ax²＝b と (x＋m)²＝n</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>01</strong> / 10</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_01.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="準備運動道具箱の点検前提診断" href="lesson_01.html#%E6%BA%96%E5%82%99%E9%81%8B%E5%8B%95%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E7%82%B9%E6%A4%9C%E5%89%8D%E6%8F%90%E8%A8%BA%E6%96%AD">準備運動：道具箱の点検（前提診断）</a></li><li><a data-section-link="主概念1一次方程式や連立方程式では解けない問題" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E4%B8%80%E6%AC%A1%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%84%E9%80%A3%E7%AB%8B%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%A7%E3%81%AF%E8%A7%A3%E3%81%91%E3%81%AA%E3%81%84%E5%95%8F%E9%A1%8C">主概念1：一次方程式や連立方程式では解けない問題</a></li><li><a data-section-link="主概念2二次方程式とその解" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E4%BA%8C%E6%AC%A1%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%A8%E3%81%9D%E3%81%AE%E8%A7%A3">主概念2：二次方程式とその「解」</a></li><li><a data-section-link="作戦会議どう解くか予告" href="lesson_01.html#%E4%BD%9C%E6%88%A6%E4%BC%9A%E8%AD%B0%E3%81%A9%E3%81%86%E8%A7%A3%E3%81%8F%E3%81%8B%E4%BA%88%E5%91%8A">作戦会議：どう解くか（予告）</a></li><li><a data-section-link="練習" href="lesson_01.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "base_url": "https://manabigrid.github.io/manabigrid-site/",
+  "site_repository": "ManabiGrid/manabigrid-site",
+  "source_repository_url": "https://github.com/ManabiGrid/manabigrid",
+  "og_image_source": "docs/assets/banner.png",
+  "og_image_output": "_assets/og-manabigrid.png"
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L10 式による説明①——数の性質を証明する">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L10 式による説明①——数の性質を証明する｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L10 式による説明①——数の性質を証明する">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L10 式による説明①——数の性質を証明する｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="f291f40f9ceb1469efa6d5d49d793d1676b2801c0953b7421e71e799499fd216" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-expansion-factorization/index.html">中3数学「式の展開と因数分解」</a></li><li aria-current="page">L10 式による説明①——数の性質を証明する</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="f291f40f9ceb1469efa6d5d49d793d1676b2801c0953b7421e71e799499fd216" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「式の展開と因数分解」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l10-式による説明1数の性質を証明する"><span class="lesson-title-main">L10 式による説明①</span><span class="lesson-title-sub">数の性質を証明する</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>「いつでも成り立つ」ことを、文字式の変形で説明できるようになる。</p></li><li><p><strong>3ステップ</strong>（①文字で表す ②式を計算する ③目的の形へ変形し、<strong>式の形から結論を読む</strong>）を型として身につける。</p></li></ul>
+<h2 id="導入実験から予想へ">導入：実験から予想へ</h2>
+<p>次のことを、実際の数で試してみよう。</p>
+<p><strong>連続する2つの偶数をかけて、1をたす。</strong></p>
+<ul><li><p>2×4＋1＝9</p></li><li><p>4×6＋1＝25</p></li><li><p>6×8＋1＝49</p></li></ul>
+<p>9, 25, 49……全部<strong>奇数の2乗</strong>（3², 5², 7²）だ。しかも、3は2と4の間の数、5は4と6の間、7は6と8の間。どうやら、</p>
+<p><strong>連続する2つの偶数の積に1をたすと、その2つの偶数の間の奇数の2乗になる</strong></p>
+<p>らしい。でも「らしい」で止まってよいだろうか？ 実験で確かめられるのは、試した3つの場合だけ。100と102でも、2026と2028でも成り立つと言い切るには、<strong>すべての場合を一度に扱う道具</strong>——文字式——の出番だ。</p>
+<h2 id="主概念3ステップで説明を組み立てる">主概念：3ステップで説明を組み立てる</h2>
+<p>説明は、次の3ステップで組み立てる。</p>
+<p><strong>ステップ①: 文字で表す</strong></p>
+<p>「連続する2つの偶数」を文字で表そう。偶数は2の倍数だから、整数 n を使って 2n と書ける。すると次の偶数は2大きいので 2n＋2。そして「間の奇数」は 2n＋1 だ。</p>
+<p><strong>ステップ②: 式を計算する</strong></p>
+<p>説明したいのは「2n×(2n＋2)＋1 が (2n＋1)² になる」こと。左側を展開して整理する。</p>
+<p>2n(2n＋2)＋1＝4n²＋4n＋1</p>
+<p><strong>ステップ③: 目的の形へ変形し、結論を読む</strong></p>
+<p>ゴールは「間の奇数の2乗」、つまり <strong>(2n＋1)² の形</strong>。4n²＋4n＋1 を見ると——3点点検（L07）が通る。(2n)²＋2×2n×1＋1² の平方の形だ。</p>
+<p>4n²＋4n＋1＝(2n＋1)²</p>
+<p>(2n＋1)² という<strong>式の形</strong>そのものが、「間の奇数の2乗になっている」という結論を語っている——形から結論を読み取るところまでがステップ③だ。これで、どんな整数 n でも成り立つ計算だけで、予想が<strong>証明</strong>できた。まとめて書くと次のようになる。</p>
+<blockquote><p>nを整数とすると、連続する2つの偶数は 2n, 2n＋2 と表され、間の奇数は 2n＋1 と表される。 2n(2n＋2)＋1＝4n²＋4n＋1＝(2n＋1)² よって、連続する2つの偶数の積に1をたすと、間の奇数の2乗になる。</p></blockquote>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>ステップ③が「因数分解を学んだ理由」の答え合わせ</strong></p>
+<p>3ステップのうち、①②はこれまでに学んだ文字式の説明でも使ってきた。中3で新しく加わった力はステップ③——「<strong>ゴールの形を先に見て、そこへ向かって変形する</strong>」だ。4n²＋4n＋1 のままでは「奇数の2乗」は読み取れない。(2n＋1)² と<strong>閉じた形</strong>（積の形）にして初めて、式が「これは奇数の2乗だ」と語り出す。L08で練習した「開いた形⇄閉じた形の往復」は、このステップ③のための筋トレだったわけだ。説明の問題で手が止まったら、「ゴールはどんな形か？（〜の2乗？ 〜の倍数？）」を先に書き出すこと——変形の方針は、ゴールの形から逆算して立てる。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「〜の倍数になる」の説明は、くくり出しがゴールの形</strong></p>
+<p>ゴールが「4の倍数」なら、目指す形は <strong>4×(整数)</strong>——つまり共通因数4をくくり出した形だ。たとえば「連続する2つの奇数の和は4の倍数」なら、2n＋1 と 2n＋3 の和は 4n＋4＝4(n＋1)。n＋1は整数だから、4×(整数)の形になり、4の倍数だと言える。最後の「n＋1は整数だから」のひと言を忘れないこと。かっこの中が整数であることまで言って、初めて「4の倍数」の説明は完成する。2乗の形がゴールなら平方の公式、倍数がゴールならくくり出し——ゴールの形と道具の対応表が頭にできてくると、説明問題は「作戦の立つパズル」に変わる。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>今日証明した「偶数×次の偶数＋1＝間の奇数の2乗」、逆向きに使うと変わった芸ができる。たとえば 9²−1＝80 は「9の両どなりの偶数の積」8×10、29²−1 なら 28×30＝840——2乗から1引いた数は、必ず両どなりの積に分解できるんだ（n²−1＝(n−1)(n＋1)、和と差の積）。証明した式は、読み方を変えるとまた別の顔を見せる。式は一度書いたら終わりじゃなくて、何度でも読み直せる道具なんだよ！</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>「連続する2つの奇数の積に1をたすと、間の偶数の2乗になる」ことを、3ステップで説明しよう（奇数を 2n＋1, 2n＋3 と表すところから）。</p></li><li><p>「連続する3つの整数の和は、真ん中の数の3倍になる」ことを説明しよう（3つの整数を n−1, n, n＋1 と表すと計算が軽い）。</p></li><li><p>「2つの続いた整数の2乗の差は、その2つの整数の和に等しい」ことを説明しよう（例で確認: 6²−5²＝11＝5＋6。ゴールの形はどんな形だろう？）。</p></li><li><p>次の説明には不備がある。どこが不十分かを指摘し、直そう。  「偶数と奇数の和は奇数である。なぜなら、偶数を2n、奇数を2n＋1と表すと、和は 2n＋(2n＋1)＝4n＋1 となり、奇数だから。」  （ヒント: この書き方だと、2nと2n＋1は「6と7」のような<strong>となり合う</strong>数しか表せていない。偶数と奇数が別々に動けるようにするには？）</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> カレンダーのように7ずつ増える数の並びを考える。ある数を n とすると、その「1つ右」は n＋1、「1つ下」は n＋7 と表せる。nを左上として田の字に並ぶ4つの数 n, n＋1, n＋7, n＋8 について、「対角線どうしの積の差」 (n)(n＋8)−(n＋1)(n＋7) を計算し、並びのどこで田の字を取っても結果が変わらないことを説明してみよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L09-12.md</p><a class="answer-link" href="answer_key_L09-12.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-expansion-factorization/lesson_10.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_09.html"><span>前のレッスン</span>L09 数の計算の工夫——公式を計算の道具にする</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-expansion-factorization/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_11.html"><span>次のレッスン</span>L11 式による説明②——図形の性質と、式を「読む」</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>10</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_10.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入実験から予想へ" href="lesson_10.html#%E5%B0%8E%E5%85%A5%E5%AE%9F%E9%A8%93%E3%81%8B%E3%82%89%E4%BA%88%E6%83%B3%E3%81%B8">導入：実験から予想へ</a></li><li><a data-section-link="主概念3ステップで説明を組み立てる" href="lesson_10.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%81%A7%E8%AA%AC%E6%98%8E%E3%82%92%E7%B5%84%E3%81%BF%E7%AB%8B%E3%81%A6%E3%82%8B">主概念：3ステップで説明を組み立てる</a></li><li><a data-section-link="練習" href="lesson_10.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

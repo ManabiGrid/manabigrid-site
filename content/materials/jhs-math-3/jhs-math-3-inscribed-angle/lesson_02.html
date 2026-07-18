@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L02 円周角の定理——「どの弧に対する角か」を塗って見抜く">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L02 円周角の定理——「どの弧に対する角か」を塗って見抜く｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L02 円周角の定理——「どの弧に対する角か」を塗って見抜く">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L02 円周角の定理——「どの弧に対する角か」を塗って見抜く｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="5bfc6ce5a4aaa720bca8a07e58891145820c2c33994b65dad91f81ee1ef17c2f" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-inscribed-angle/index.html">中3数学「円周角の定理」</a></li><li aria-current="page">L02 円周角の定理——「どの弧に対する角か」を塗って見抜く</li></ol></nav>
+  <main id="main-content" class="page-shell" data-source-sha256="5bfc6ce5a4aaa720bca8a07e58891145820c2c33994b65dad91f81ee1ef17c2f" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学3年 数学 ／ 中3数学「円周角の定理」</span><span class="status-chip">候補ドラフト</span></p>
+  <h1 id="l02-円周角の定理どの弧に対する角かを塗って見抜く"><span class="lesson-title-main">L02 円周角の定理</span><span class="lesson-title-sub">「どの弧に対する角か」を塗って見抜く</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p><strong>円周角の定理</strong>を、2つの命題のセットとして正しく言えるようになる。</p></li><li><p>「<strong>弧を塗る</strong>」4ステップの型を身につけ、図の中で円周角・中心角・弧を対応づけて角の大きさを求められるようになる。</p></li></ul>
+<h2 id="主概念1円周角の定理2つでワンセット">主概念1：円周角の定理——2つでワンセット</h2>
+<p>L01の実験で見つけた2つの推測に、正式な名前を付けよう。この2つは、いつでも成り立つことが証明できる（証明はL04で）。証明された事柄なので、ここからは安心して道具として使ってよい。</p>
+<blockquote class="formula-block"><span class="formula-label">定理</span><p><strong>【ことば】円周角の定理</strong> 一つの円において、 <strong>（1）同じ弧に対する円周角の大きさは、中心角の大きさの半分（1/2）である。</strong> <strong>（2）同じ弧に対する円周角の大きさは等しい。</strong> この2つをあわせて<strong>円周角の定理</strong>という。</p></blockquote>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 352" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-ca81e14df0-title" aria-describedby="mg-ca81e14df0-desc">
+<title id="mg-ca81e14df0-title">円周角の定理の全体図（弧→中心角→円周角）</title>
+<desc id="mg-ca81e14df0-desc">円周角の定理の全体図</desc>
+<!-- L02_fig1_theorem_overview.svg | 円周角の定理の全体図（弧→中心角→円周角） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="380" height="352" fill="#fff"/>
+<polyline points="111.9,207.6 116.6,212.9 121.7,217.8 127.2,222.4 133.0,226.6 139.0,230.3 145.3,233.7 151.8,236.6 158.5,239.0 165.3,241.0 172.3,242.5 179.3,243.4 186.4,243.9 193.6,243.9 200.7,243.4 207.7,242.5 214.7,241.0 221.5,239.0 228.2,236.6 234.7,233.7 241.0,230.3 247.0,226.6 252.8,222.4 258.3,217.8 263.4,212.9 268.1,207.6" fill="none" stroke="#c9c9c9" stroke-width="8" stroke-linecap="round"/>
+<circle cx="190.0" cy="142.0" r="102.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="190.0" y1="142.0" x2="111.9" y2="207.6" stroke="#000" stroke-width="1.6"/>
+<line x1="190.0" y1="142.0" x2="268.1" y2="207.6" stroke="#000" stroke-width="1.6"/>
+<line x1="181.1" y1="40.4" x2="111.9" y2="207.6" stroke="#000" stroke-width="1.6"/>
+<line x1="181.1" y1="40.4" x2="268.1" y2="207.6" stroke="#000" stroke-width="1.6"/>
+<polyline points="175.8,53.3 176.3,53.5 176.9,53.7 177.5,53.9 178.1,54.1 178.7,54.2 179.3,54.3 179.9,54.3 180.5,54.4 181.1,54.4 181.7,54.4 182.3,54.3 182.9,54.3 183.5,54.2 184.1,54.1 184.7,53.9 185.3,53.7 185.9,53.5 186.5,53.3 187.0,53.1 187.6,52.8" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="103.5" y1="87.9" x2="111.9" y2="207.6" stroke="#000" stroke-width="1.6"/>
+<line x1="103.5" y1="87.9" x2="268.1" y2="207.6" stroke="#000" stroke-width="1.6"/>
+<polyline points="104.5,101.9 105.1,101.9 105.7,101.8 106.3,101.7 106.9,101.5 107.5,101.4 108.1,101.2 108.6,101.0 109.2,100.7 109.7,100.5 110.3,100.2 110.8,99.9 111.3,99.6 111.8,99.2 112.3,98.8 112.8,98.4 113.2,98.0 113.7,97.6 114.1,97.1 114.5,96.7 114.8,96.2" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="111.9" cy="207.6" r="2.5" fill="#000"/>
+<text x="100.4" y="221.8" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="268.1" cy="207.6" r="2.5" fill="#000"/>
+<text x="279.6" y="221.8" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="181.1" cy="40.4" r="2.5" fill="#000"/>
+<text x="179.8" y="30.0" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="103.5" cy="87.9" r="2.5" fill="#000"/>
+<text x="90.8" y="84.5" font-size="13" text-anchor="middle" font-weight="bold">Q</text>
+<circle cx="190.0" cy="142.0" r="2.5" fill="#000"/>
+<text x="176.1" y="145.3" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="178.5,151.6 179.4,152.6 180.4,153.5 181.4,154.3 182.5,155.0 183.7,155.6 184.9,156.1 186.1,156.5 187.4,156.8 188.7,156.9 190.0,157.0 191.3,156.9 192.6,156.8 193.9,156.5 195.1,156.1 196.3,155.6 197.5,155.0 198.6,154.3 199.6,153.5 200.6,152.6 201.5,151.6" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="190.0" y="178.6" font-size="13" text-anchor="middle">100°</text>
+<text x="190.0" y="211.5" font-size="12" text-anchor="middle">中心角</text>
+<text x="190.0" y="270.0" font-size="13" text-anchor="middle" font-weight="bold">弧AB</text>
+<line x1="190.0" y1="258.0" x2="190.0" y2="254.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="190.0,248.0 192.7,254.0 187.3,254.0" fill="#000"/>
+<line x1="182.0" y1="116.0" x2="184.7" y2="76.4" stroke="#000" stroke-width="1.2"/>
+<polygon points="185.1,70.4 187.4,76.6 182.0,76.2" fill="#000"/>
+<line x1="176.0" y1="122.0" x2="125.4" y2="113.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="119.5,111.9 125.9,110.3 124.9,115.7" fill="#000"/>
+<text x="190.0" y="316.0" font-size="12" text-anchor="middle">弧AB→中心角∠AOB→円周角∠APB・∠AQB の順に対応づける</text>
+<text x="190.0" y="334.0" font-size="12" text-anchor="middle">（定理(1) 円周角＝中心角×1/2 ／ 定理(2) 同じ弧なら円周角は等しい）</text>
+</svg>
+</div><figcaption>円周角の定理の全体図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig1_theorem_overview.svg">図だけを開く</a></figure>
+<p>順番に注意してほしい。出発点はいつも「<strong>どの弧に対する角か</strong>」の対応づけ。それが決まって初めて、（1）の半分の関係と、（2）の等しい関係が使える。定理が2つセットなのは、使い道が2通りあるからだ。</p>
+<ul><li><p>（1）を使う場面: 中心角と円周角の<strong>どちらか一方から他方を求める</strong>。</p></li><li><p>（2）を使う場面: 同じ弧に対する<strong>円周角どうしをつなぐ</strong>（中心角が図にないときの主力）。</p></li></ul>
+<h2 id="主概念2弧を塗る4ステップ">主概念2：「弧を塗る」4ステップ</h2>
+<p>定理を覚えることと、図の中で使えることは、実は別の力だ。ごちゃごちゃした図の中で定理を使うために、次の型をおすすめする。</p>
+<blockquote><p><strong>弧を塗る4ステップ</strong> ① 角の<strong>頂点</strong>がどこにあるか確かめる（円周上→円周角、中心→中心角）。 ② 角の2辺が円周と交わる<strong>2点</strong>を見つける。 ③ その2点の間の弧のうち、<strong>頂点を含まない側</strong>を鉛筆で塗る。 ④ <strong>同じ塗り弧</strong>に対する円周角・中心角を探して、定理で結ぶ。</p></blockquote>
+<p>ポイントは③だ。塗るのは、角の頂点から見て「向こう側」の弧。頂点と同じ側の弧を塗ってしまうと、対応がすべて狂う（よくあるミス。講師の経験則として、この取り違えはとても多い）。</p>
+<h3 id="例題1-中心角から円周角へ">例題1　中心角から円周角へ</h3>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 322" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-92982838b4-title" aria-describedby="mg-92982838b4-desc">
+<title id="mg-92982838b4-title">中心角から円周角へ（80°→x）</title>
+<desc id="mg-92982838b4-desc">例題1の図</desc>
+<!-- L02_fig2_example_central_to_inscribed.svg | 中心角から円周角へ（80°→x） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="340" height="322" fill="#fff"/>
+<polyline points="108.3,205.5 113.6,209.7 119.1,213.4 124.9,216.8 131.0,219.7 137.2,222.2 143.5,224.3 150.0,225.9 156.6,227.1 163.3,227.8 170.0,228.0 176.7,227.8 183.4,227.1 190.0,225.9 196.5,224.3 202.8,222.2 209.0,219.7 215.1,216.8 220.9,213.4 226.4,209.7 231.7,205.5" fill="none" stroke="#c9c9c9" stroke-width="8" stroke-linecap="round"/>
+<circle cx="170.0" cy="132.0" r="96.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="170.0" y1="132.0" x2="108.3" y2="205.5" stroke="#000" stroke-width="1.6"/>
+<line x1="170.0" y1="132.0" x2="231.7" y2="205.5" stroke="#000" stroke-width="1.6"/>
+<line x1="161.6" y1="36.4" x2="108.3" y2="205.5" stroke="#000" stroke-width="1.6"/>
+<line x1="161.6" y1="36.4" x2="231.7" y2="205.5" stroke="#000" stroke-width="1.6"/>
+<circle cx="108.3" cy="205.5" r="2.5" fill="#000"/>
+<text x="98.7" y="221.6" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="231.7" cy="205.5" r="2.5" fill="#000"/>
+<text x="241.3" y="221.6" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="161.6" cy="36.4" r="2.5" fill="#000"/>
+<text x="160.3" y="26.0" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="170.0" cy="132.0" r="2.5" fill="#000"/>
+<text x="156.2" y="134.1" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="160.4,143.5 161.2,144.1 162.1,144.7 163.0,145.2 163.9,145.7 164.9,146.1 165.9,146.4 166.9,146.7 167.9,146.9 169.0,147.0 170.0,147.0 171.0,147.0 172.1,146.9 173.1,146.7 174.1,146.4 175.1,146.1 176.1,145.7 177.0,145.2 177.9,144.7 178.8,144.1 179.6,143.5" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="170.0" y="166.6" font-size="13" text-anchor="middle">80°</text>
+<polyline points="157.4,49.7 157.9,49.9 158.4,50.0 158.8,50.1 159.3,50.2 159.8,50.2 160.3,50.3 160.8,50.3 161.3,50.4 161.8,50.4 162.2,50.4 162.7,50.3 163.2,50.3 163.7,50.2 164.2,50.1 164.7,50.0 165.1,49.9 165.6,49.8 166.1,49.6 166.5,49.5 167.0,49.3" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="162.9" y="68.9" font-size="13" text-anchor="middle">x</text>
+<text x="170.0" y="288.0" font-size="12" text-anchor="middle">弧BC（グレー）に対する中心角80°→ 円周角∠BAC＝x</text>
+<text x="170.0" y="306.0" font-size="12" text-anchor="middle">（例題1: 頂点Aを含まない側の弧を塗ってから定理(1)）</text>
+</svg>
+</div><figcaption>例題1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig2_example_central_to_inscribed.svg">図だけを開く</a></figure>
+<p>弧BCに対する中心角が80°のとき、円周角∠BAC＝x を求めよう。</p>
+<p>（考え方）①頂点Aは円周上→xは円周角。②辺AB・ACが円周と交わるのはB・C。③Aを含まない側の弧BCを塗る。④同じ弧BCに対する中心角が80°だから、定理(1)で <strong>x ＝ 80° × 1/2 ＝ 40°</strong></p>
+<h3 id="例題2-円周角から中心角へ">例題2　円周角から中心角へ</h3>
+<p>弧ABに対する円周角が55°のとき、同じ弧に対する中心角yは？　今度は逆向きだ。円周角は中心角の半分、いいかえると<strong>中心角は円周角の2倍</strong>。 <strong>y ＝ 55° × 2 ＝ 110°</strong></p>
+<p>半分にするのか2倍にするのか迷ったら、図を見て「中心角と円周角、大きいのはどっち？」と自問しよう。<strong>同じ弧に対する</strong>中心角は、円周角のちょうど2倍だから必ず大きい。「小さいほう（円周角）を求めるなら半分、大きいほう（中心角）を求めるなら2倍」——数を操作する前に大小で検算する癖をつけると、方向ミス（よくあるミス）を防ぎやすくなる。これも講師の経験則だ。</p>
+<p>ここでひとつ注意。円周角がいつも90°以下とは限らない。頂点を含まない側の弧が半円より大きいときは、その弧に対する中心角は180°を超え、円周角も90°を超える鈍角になる。このとき中心Oのまわりには、塗った弧に対する「大回りの角」と、残りの弧に対する小さい角の2つが見えている。目についた小さいほうの角を反射的に半分にすると、別の弧の円周角を求めたことになってしまう。だから合言葉は「<strong>対応する弧を確認してから、2倍・半分</strong>」。この一呼吸が、鈍角のケースでも4ステップの型を守ってくれる（練習9で確かめよう）。</p>
+<h3 id="例題3-円周角どうしをつなぐ">例題3　円周角どうしをつなぐ</h3>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 322" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-4ea95871c6-title" aria-describedby="mg-4ea95871c6-desc">
+<title id="mg-4ea95871c6-title">円周角どうしをつなぐ（64°→x）</title>
+<desc id="mg-4ea95871c6-desc">例題3の図</desc>
+<!-- L02_fig3_example_same_arc.svg | 円周角どうしをつなぐ（64°→x） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="340" height="322" fill="#fff"/>
+<polyline points="83.7,174.1 86.9,180.0 90.4,185.7 94.4,191.1 98.7,196.2 103.3,201.1 108.3,205.5 113.6,209.7 119.1,213.4 124.9,216.8 131.0,219.7 137.2,222.2 143.5,224.3 150.0,225.9 156.6,227.1 163.3,227.8 170.0,228.0 176.7,227.8 183.4,227.1 190.0,225.9 196.5,224.3 202.8,222.2 209.0,219.7 215.1,216.8 220.9,213.4 226.4,209.7 231.7,205.5 236.7,201.1 241.3,196.2 245.6,191.1 249.6,185.7 253.1,180.0 256.3,174.1" fill="none" stroke="#c9c9c9" stroke-width="8" stroke-linecap="round"/>
+<circle cx="170.0" cy="132.0" r="96.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="137.2" y1="41.8" x2="83.7" y2="174.1" stroke="#000" stroke-width="1.6"/>
+<line x1="137.2" y1="41.8" x2="256.3" y2="174.1" stroke="#000" stroke-width="1.6"/>
+<polyline points="131.9,54.8 132.7,55.0 133.4,55.3 134.2,55.5 134.9,55.6 135.7,55.7 136.5,55.8 137.3,55.8 138.0,55.8 138.8,55.7 139.6,55.6 140.4,55.4 141.1,55.2 141.9,55.0 142.6,54.7 143.3,54.4 144.0,54.0 144.7,53.6 145.3,53.2 145.9,52.7 146.5,52.2" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="220.9" y1="50.6" x2="83.7" y2="174.1" stroke="#000" stroke-width="1.6"/>
+<line x1="220.9" y1="50.6" x2="256.3" y2="174.1" stroke="#000" stroke-width="1.6"/>
+<polyline points="210.5,60.0 211.0,60.5 211.6,61.1 212.2,61.6 212.8,62.0 213.5,62.5 214.1,62.9 214.8,63.2 215.5,63.5 216.3,63.8 217.0,64.0 217.8,64.2 218.5,64.4 219.3,64.5 220.1,64.6 220.9,64.6 221.7,64.6 222.4,64.5 223.2,64.4 224.0,64.2 224.7,64.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="83.7" cy="174.1" r="2.5" fill="#000"/>
+<text x="70.2" y="185.2" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="256.3" cy="174.1" r="2.5" fill="#000"/>
+<text x="269.8" y="185.2" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="137.2" cy="41.8" r="2.5" fill="#000"/>
+<text x="132.0" y="32.2" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="220.9" cy="50.6" r="2.5" fill="#000"/>
+<text x="228.8" y="42.4" font-size="13" text-anchor="middle" font-weight="bold">Q</text>
+<text x="142.4" y="75.9" font-size="13" text-anchor="middle">64°</text>
+<text x="212.6" y="84.0" font-size="13" text-anchor="middle">x</text>
+<text x="170.0" y="288.0" font-size="12" text-anchor="middle">∠APBと∠AQBは，どちらも弧AB（グレー）に対する円周角</text>
+<text x="170.0" y="306.0" font-size="12" text-anchor="middle">（例題3: 中心角が図になくても定理(2)で直接つなぐ）</text>
+</svg>
+</div><figcaption>例題3の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig3_example_same_arc.svg">図だけを開く</a></figure>
+<p>∠APB＝64°のとき、∠AQB＝x を求めよう。</p>
+<p>（考え方）どちらの角も、塗ってみると<strong>同じ弧AB</strong>に対する円周角。中心角が図になくても、定理(2)で直接つなげる。 <strong>x ＝ 64°</strong></p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>「塗る」というのは、ずいぶん原始的な作戦に見えるかもしれない。でも、数学が得意な人ほど、図に色や印をどんどん書き込んでいる。頭の中だけで対応を追うのは、実は上級者でも間違えやすい。手を動かして図を「自分用に改造」することは、幼稚どころか、いちばん確実な技術だ。きれいなままの図は、まだ考え始めていない図なのかもしれない。</p></div>
+<h2 id="例題4-1つの図に円周角が2組あるとき">例題4　1つの図に円周角が2組あるとき</h2>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 344" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-0ad40d57ef-title" aria-describedby="mg-0ad40d57ef-desc">
+<title id="mg-0ad40d57ef-title">1つの図に円周角が2組（30°と45°）</title>
+<desc id="mg-0ad40d57ef-desc">例題4の図</desc>
+<!-- L02_fig4_example_two_pairs.svg | 1つの図に円周角が2組（30°と45°） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="360" height="344" fill="#fff"/>
+<polyline points="87.9,171.5 90.5,177.9 93.5,184.0 96.9,189.9 100.7,195.6 104.9,201.0 109.5,206.1 114.4,210.8 119.7,215.2 125.2,219.2 131.0,222.9 137.0,226.1 143.3,228.9 149.7,231.2 156.3,233.1 163.0,234.5" fill="none" stroke="#c9c9c9" stroke-width="8" stroke-linecap="round"/>
+<polyline points="243.0,62.9 237.5,58.6 231.7,54.7 225.6,51.3 219.3,48.2 212.8,45.6 206.1,43.5 199.3,41.9 192.4,40.8 185.4,40.2 178.4,40.0 171.5,40.4 164.5,41.2 157.7,42.6 150.9,44.4 144.3,46.7 137.9,49.5 131.7,52.7 125.7,56.4 120.0,60.5 114.7,65.0 109.6,69.8 104.9,75.0" fill="none" stroke="#8f8f8f" stroke-width="4" stroke-linecap="round"/>
+<circle cx="180.0" cy="138.0" r="98.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="104.9" y1="75.0" x2="87.9" y2="171.5" stroke="#000" stroke-width="1.6"/>
+<line x1="87.9" y1="171.5" x2="163.0" y2="234.5" stroke="#000" stroke-width="1.6"/>
+<line x1="163.0" y1="234.5" x2="243.0" y2="62.9" stroke="#000" stroke-width="1.6"/>
+<line x1="243.0" y1="62.9" x2="104.9" y2="75.0" stroke="#000" stroke-width="1.6"/>
+<line x1="104.9" y1="75.0" x2="163.0" y2="234.5" stroke="#000" stroke-width="1.6"/>
+<line x1="87.9" y1="171.5" x2="243.0" y2="62.9" stroke="#000" stroke-width="1.6"/>
+<circle cx="104.9" cy="75.0" r="2.5" fill="#000"/>
+<text x="93.4" y="69.9" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="87.9" cy="171.5" r="2.5" fill="#000"/>
+<text x="73.8" y="181.2" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="163.0" cy="234.5" r="2.5" fill="#000"/>
+<text x="160.4" y="253.8" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="243.0" cy="62.9" r="2.5" fill="#000"/>
+<text x="252.6" y="56.0" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<polyline points="102.5,88.8 102.9,88.9 103.2,88.9 103.6,88.9 104.0,89.0 104.3,89.0 104.7,89.0 105.0,89.0 105.4,89.0 105.8,89.0 106.1,89.0 106.5,88.9 106.9,88.9 107.2,88.8 107.6,88.7 108.0,88.7 108.3,88.6 108.7,88.5 109.0,88.4 109.4,88.3 109.7,88.2" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="231.5,71.0 231.7,71.3 232.0,71.5 232.2,71.8 232.4,72.1 232.7,72.4 232.9,72.7 233.2,72.9 233.4,73.2 233.7,73.4 234.0,73.7 234.3,73.9 234.6,74.1 234.9,74.3 235.2,74.5 235.5,74.7 235.8,74.9 236.1,75.1 236.4,75.3 236.7,75.5 237.1,75.6" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="158.2,221.4 158.7,221.2 159.2,221.0 159.8,220.9 160.3,220.8 160.9,220.7 161.4,220.6 161.9,220.5 162.5,220.5 163.0,220.5 163.6,220.5 164.1,220.6 164.7,220.6 165.2,220.7 165.8,220.8 166.3,220.9 166.8,221.1 167.4,221.2 167.9,221.4 168.4,221.6 168.9,221.8" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="157.0,218.1 157.6,217.8 158.3,217.6 159.0,217.5 159.6,217.3 160.3,217.2 161.0,217.1 161.7,217.1 162.4,217.0 163.1,217.0 163.7,217.0 164.4,217.1 165.1,217.1 165.8,217.2 166.5,217.4 167.1,217.5 167.8,217.7 168.5,217.9 169.1,218.1 169.7,218.4 170.4,218.7" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="90.3,157.7 90.9,157.8 91.4,158.0 91.9,158.1 92.5,158.3 93.0,158.5 93.5,158.7 94.0,158.9 94.5,159.2 95.0,159.4 95.4,159.7 95.9,160.0 96.3,160.3 96.8,160.7 97.2,161.0 97.6,161.4 98.0,161.8 98.4,162.2 98.7,162.6 99.1,163.0 99.4,163.5" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="90.9,154.3 91.6,154.4 92.3,154.6 93.0,154.8 93.6,155.0 94.3,155.2 94.9,155.5 95.5,155.8 96.1,156.1 96.7,156.4 97.3,156.8 97.9,157.1 98.4,157.5 99.0,158.0 99.5,158.4 100.0,158.9 100.5,159.4 101.0,159.9 101.4,160.4 101.8,160.9 102.2,161.5" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="108.8" y="123.4" font-size="13" text-anchor="middle">30°</text>
+<text x="164.4" y="207.1" font-size="13" text-anchor="middle">45°</text>
+<text x="222.4" y="92.0" font-size="13" text-anchor="middle">？</text>
+<text x="105.1" y="149.1" font-size="13" text-anchor="middle">？</text>
+<text x="180.0" y="310.0" font-size="12" text-anchor="middle">∠BAC＝30°・∠ACD＝45°から，∠BDC・∠ABD（？）を求める</text>
+<text x="180.0" y="328.0" font-size="12" text-anchor="middle">（例題4: 1つの角につき1回塗る。同じ弧マーク＝同じ本数の角弧）</text>
+</svg>
+</div><figcaption>例題4の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig4_example_two_pairs.svg">図だけを開く</a></figure>
+<p>∠BAC＝30°、∠ACD＝45°のとき、∠BDCと∠ABDを求めよう。</p>
+<p>（考え方）角が増えても、やることは同じ。1つずつ塗る。</p>
+<ul><li><p>∠BAC（頂点A）→ Aを含まない側の<strong>弧BC</strong>を塗る → ∠BDCも弧BCに対する円周角 → <strong>∠BDC＝30°</strong></p></li><li><p>∠ACD（頂点C）→ Cを含まない側の<strong>弧AD</strong>を塗る → ∠ABDも弧ADに対する円周角 → <strong>∠ABD＝45°</strong></p></li></ul>
+<p>弧ごとに色を変えて塗ると、2組の対応が混ざらない。「1つの角につき1回塗る」を徹底しよう。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>この型は「わかっているのに解けない」への処方箋</strong></p>
+<p>定理の文はすらすら言えるのに、図の問題になると手が止まる——この段差は、この単元でいちばん大きなつまずきどころだと考えて、本教材は設計されている。原因の多くは、定理の理解不足ではなく、「どの弧に対する角か」を特定する作業が<strong>手順として身についていない</strong>ことにある、というのが本教材の優先仮説だ。だから4ステップは、①②③で「対応づけ」だけを先に完了させ、④で初めて定理を使う、という順序に分けてある。慣れてくると塗らなくても見えるようになるが、少しでも図が複雑になったら迷わず塗る、に戻ってよい。塗ることは後退ではなく、確実さの担保である。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「中心角は円周角の2倍」を第2の言い方として持っておく</strong></p>
+<p>定理(1)の文は「円周角＝中心角の1/2」だが、実際の問題では「中心角＝円周角の2倍」の向きで使う場面もかなり多い（講師の経験則）。同じ式の変形にすぎないとはいえ、テンポよく解くには両方の言い方が口をついて出る状態にしておきたい。そのうえで、答えを出したら「<strong>同じ弧に対する</strong>中心角のほうが大きくなっているか」の大小チェック。中心角が180°を超え、円周角が鈍角になるケース（本文の注意と練習9）でも、同じ弧どうしで比べるかぎりこの大小は変わらない。この2段構えが、方向ミスに対するいちばん軽い保険になる。</p></div>
+<h2 id="練習">練習</h2>
+<p><strong>A 基本の対応づけ</strong></p>
+<ol start="1"><li><p>次の弧に対する円周角を求めよう。  (1) 中心角120°の弧　(2) 中心角86°の弧</p></li><li><p>次の弧に対する中心角を求めよう。  (1) 円周角24°の弧　(2) 円周角37°の弧</p></li><li><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 300" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-a84c330fe1-title" aria-describedby="mg-a84c330fe1-desc">
+<title id="mg-a84c330fe1-title">練習3・4・5（3パネル統合）</title>
+<desc id="mg-a84c330fe1-desc">練習3〜5の図</desc>
+<!-- L02_fig5_practice_3_4_5.svg | 練習3・4・5（3パネル統合） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="660" height="300" fill="#fff"/>
+<polyline points="66.1,160.8 70.0,164.0 74.1,166.8 78.4,169.4 82.9,171.6 87.5,173.6 92.2,175.2 97.1,176.4 102.0,177.3 107.0,177.8 112.0,178.0 117.0,177.8 122.0,177.3 126.9,176.4 131.8,175.2 136.5,173.6 141.1,171.6 145.6,169.4 149.9,166.8 154.0,164.0 157.9,160.8" fill="none" stroke="#c9c9c9" stroke-width="6" stroke-linecap="round"/>
+<circle cx="112.0" cy="108.0" r="70.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="90.4" y1="41.4" x2="66.1" y2="160.8" stroke="#000" stroke-width="1.6"/>
+<line x1="90.4" y1="41.4" x2="157.9" y2="160.8" stroke="#000" stroke-width="1.6"/>
+<polyline points="88.2,52.2 88.6,52.3 89.0,52.3 89.3,52.4 89.7,52.4 90.1,52.4 90.5,52.4 90.9,52.4 91.3,52.4 91.7,52.3 92.1,52.3 92.5,52.2 92.9,52.1 93.2,52.0 93.6,51.9 94.0,51.8 94.4,51.7 94.7,51.5 95.1,51.4 95.4,51.2 95.8,51.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="152.2" y1="50.7" x2="66.1" y2="160.8" stroke="#000" stroke-width="1.6"/>
+<line x1="152.2" y1="50.7" x2="157.9" y2="160.8" stroke="#000" stroke-width="1.6"/>
+<polyline points="145.4,59.3 145.7,59.6 146.0,59.8 146.3,60.0 146.7,60.2 147.0,60.4 147.4,60.6 147.7,60.7 148.1,60.9 148.5,61.0 148.8,61.2 149.2,61.3 149.6,61.4 150.0,61.4 150.4,61.5 150.8,61.6 151.2,61.6 151.5,61.6 151.9,61.7 152.3,61.7 152.7,61.6" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="66.1" cy="160.8" r="2.5" fill="#000"/>
+<text x="57.5" y="175.2" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="157.9" cy="160.8" r="2.5" fill="#000"/>
+<text x="166.5" y="175.2" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="90.4" cy="41.4" r="2.5" fill="#000"/>
+<text x="86.4" y="33.6" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="152.2" cy="50.7" r="2.5" fill="#000"/>
+<text x="159.6" y="44.6" font-size="13" text-anchor="middle" font-weight="bold">Q</text>
+<text x="96.3" y="83.2" font-size="12" text-anchor="middle">41°</text>
+<text x="144.9" y="77.7" font-size="12" text-anchor="middle">x</text>
+<text x="112.0" y="216.0" font-size="12" text-anchor="middle" font-weight="bold">練習3</text>
+<polyline points="267.6,139.8 270.0,144.1 272.7,148.3 275.7,152.2 279.0,156.0 282.5,159.5 286.3,162.7 290.3,165.7 294.5,168.3 298.9,170.7 303.4,172.7 308.0,174.5 312.8,175.9 317.7,176.9 322.6,177.6 327.5,178.0 332.5,178.0 337.4,177.6 342.3,176.9 347.2,175.9 352.0,174.5 356.6,172.7 361.1,170.7 365.5,168.3 369.7,165.7 373.7,162.7 377.5,159.5 381.0,156.0 384.3,152.2 387.3,148.3 390.0,144.1 392.4,139.8" fill="none" stroke="#c9c9c9" stroke-width="6" stroke-linecap="round"/>
+<circle cx="330.0" cy="108.0" r="70.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="303.8" y1="43.1" x2="267.6" y2="139.8" stroke="#000" stroke-width="1.6"/>
+<line x1="303.8" y1="43.1" x2="392.4" y2="139.8" stroke="#000" stroke-width="1.6"/>
+<polyline points="299.9,53.4 300.5,53.6 301.1,53.8 301.7,53.9 302.3,54.0 302.9,54.1 303.5,54.1 304.1,54.1 304.7,54.1 305.3,54.0 305.9,53.9 306.5,53.8 307.0,53.6 307.6,53.4 308.2,53.2 308.7,52.9 309.3,52.6 309.8,52.3 310.3,52.0 310.8,51.6 311.2,51.2" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="362.9" y1="46.2" x2="267.6" y2="139.8" stroke="#000" stroke-width="1.6"/>
+<line x1="362.9" y1="46.2" x2="392.4" y2="139.8" stroke="#000" stroke-width="1.6"/>
+<polyline points="355.0,53.9 355.5,54.3 355.9,54.7 356.4,55.1 356.9,55.4 357.4,55.7 357.9,56.0 358.5,56.3 359.0,56.5 359.6,56.7 360.2,56.9 360.8,57.0 361.4,57.1 362.0,57.2 362.6,57.2 363.2,57.2 363.8,57.2 364.4,57.1 365.0,57.0 365.6,56.9 366.2,56.7" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="267.6" cy="139.8" r="2.5" fill="#000"/>
+<text x="256.0" y="150.2" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="392.4" cy="139.8" r="2.5" fill="#000"/>
+<text x="404.0" y="150.2" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="303.8" cy="43.1" r="2.5" fill="#000"/>
+<text x="298.9" y="35.6" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="362.9" cy="46.2" r="2.5" fill="#000"/>
+<text x="369.0" y="39.3" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<text x="308.4" y="70.9" font-size="12" text-anchor="middle">63°</text>
+<text x="357.1" y="73.7" font-size="12" text-anchor="middle">x</text>
+<text x="330.0" y="216.0" font-size="12" text-anchor="middle" font-weight="bold">練習4</text>
+<polyline points="484.6,137.6 486.8,142.0 489.4,146.3 492.2,150.3 495.4,154.2 498.8,157.8 502.4,161.1 506.3,164.2 510.4,167.0 514.7,169.6 519.1,171.8 523.7,173.6 528.4,175.2 533.2,176.4 538.1,177.3 543.0,177.8 548.0,178.0 553.0,177.8 557.9,177.3 562.8,176.4 567.6,175.2 572.3,173.6 576.9,171.8 581.3,169.6 585.6,167.0 589.7,164.2 593.6,161.1 597.2,157.8 600.6,154.2 603.8,150.3 606.6,146.3 609.2,142.0 611.4,137.6" fill="none" stroke="#c9c9c9" stroke-width="6" stroke-linecap="round"/>
+<circle cx="548.0" cy="108.0" r="70.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="548.0" y1="108.0" x2="484.6" y2="137.6" stroke="#000" stroke-width="1.6"/>
+<line x1="548.0" y1="108.0" x2="611.4" y2="137.6" stroke="#000" stroke-width="1.6"/>
+<line x1="548.0" y1="38.0" x2="484.6" y2="137.6" stroke="#000" stroke-width="1.6"/>
+<line x1="548.0" y1="38.0" x2="611.4" y2="137.6" stroke="#000" stroke-width="1.6"/>
+<circle cx="484.6" cy="137.6" r="2.5" fill="#000"/>
+<text x="472.8" y="147.6" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="611.4" cy="137.6" r="2.5" fill="#000"/>
+<text x="623.2" y="147.6" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="548.0" cy="38.0" r="2.5" fill="#000"/>
+<text x="548.0" y="29.6" font-size="13" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="548.0" cy="108.0" r="2.5" fill="#000"/>
+<text x="548.0" y="99.5" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="494.5,132.9 494.6,133.2 494.7,133.4 494.8,133.6 494.9,133.8 495.0,134.0 495.0,134.3 495.1,134.5 495.2,134.7 495.2,135.0 495.3,135.2 495.3,135.4 495.4,135.7 495.4,135.9 495.5,136.1 495.5,136.4 495.5,136.6 495.5,136.9 495.5,137.1 495.6,137.3 495.6,137.6" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="523.6" y="133.1" font-size="12" text-anchor="middle">25°</text>
+<polyline points="542.1,47.3 542.6,47.6 543.2,47.9 543.7,48.1 544.3,48.4 544.9,48.6 545.5,48.7 546.1,48.8 546.8,48.9 547.4,49.0 548.0,49.0 548.6,49.0 549.2,48.9 549.9,48.8 550.5,48.7 551.1,48.6 551.7,48.4 552.3,48.1 552.8,47.9 553.4,47.6 553.9,47.3" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="548.0" y="66.2" font-size="12" text-anchor="middle">x</text>
+<text x="548.0" y="216.0" font-size="12" text-anchor="middle" font-weight="bold">練習5（OA＝OB）</text>
+<text x="330.0" y="252.0" font-size="12" text-anchor="middle">練習3・4: 同じ弧（グレー）に対する円周角の組を見つけて定理(2)</text>
+<text x="330.0" y="270.0" font-size="12" text-anchor="middle">練習5: 二等辺三角形OABから中心角を先に求めて定理(1)</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習3〜5の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig5_practice_3_4_5.svg">図だけを開く</a></figure><p>∠AQB＝x を求めよう。</p></li><li><p>∠ADB＝x を求め、どの弧に対する円周角の組かも書こう。</p></li></ol>
+<p><strong>B 組み合わせて使う</strong></p>
+<ol start="5"><li><p>OA＝OBであることを使って、中心角∠AOBを先に求め、∠APB＝x を求めよう。</p></li><li><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-24a8425afb-title" aria-describedby="mg-24a8425afb-desc">
+<title id="mg-24a8425afb-title">練習6・7（2パネル統合）</title>
+<desc id="mg-24a8425afb-desc">練習6・7の図</desc>
+<!-- L02_fig6_practice_6_7.svg | 練習6・7（2パネル統合） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="560" height="330" fill="#fff"/>
+<polyline points="57.3,158.1 59.6,163.8 62.3,169.3 65.4,174.6 68.8,179.7 72.6,184.6 76.7,189.1 81.1,193.4 85.8,197.3 90.8,201.0 96.0,204.2 101.4,207.1 107.0,209.6 112.8,211.7 118.7,213.4 124.7,214.7" fill="none" stroke="#c9c9c9" stroke-width="6" stroke-linecap="round"/>
+<polyline points="149.2,40.5 143.1,40.1 136.9,40.1 130.8,40.5 124.7,41.3 118.7,42.6 112.8,44.3 107.0,46.4 101.4,48.9 96.0,51.8 90.8,55.0 85.8,58.7 81.1,62.6 76.7,66.9 72.6,71.4" fill="none" stroke="#8f8f8f" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="140.0" cy="128.0" r="88.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="72.6" y1="71.4" x2="57.3" y2="158.1" stroke="#000" stroke-width="1.6"/>
+<line x1="57.3" y1="158.1" x2="124.7" y2="214.7" stroke="#000" stroke-width="1.6"/>
+<line x1="124.7" y1="214.7" x2="149.2" y2="40.5" stroke="#000" stroke-width="1.6"/>
+<line x1="149.2" y1="40.5" x2="72.6" y2="71.4" stroke="#000" stroke-width="1.6"/>
+<line x1="72.6" y1="71.4" x2="124.7" y2="214.7" stroke="#000" stroke-width="1.6"/>
+<line x1="57.3" y1="158.1" x2="149.2" y2="40.5" stroke="#000" stroke-width="1.6"/>
+<circle cx="72.6" cy="71.4" r="2.5" fill="#000"/>
+<text x="62.6" y="67.6" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="57.3" cy="158.1" r="2.5" fill="#000"/>
+<text x="45.1" y="167.1" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="124.7" cy="214.7" r="2.5" fill="#000"/>
+<text x="122.5" y="232.0" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="149.2" cy="40.5" r="2.5" fill="#000"/>
+<text x="150.6" y="32.1" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<polyline points="70.5,83.3 70.8,83.3 71.1,83.3 71.4,83.4 71.8,83.4 72.1,83.4 72.4,83.4 72.7,83.4 73.0,83.4 73.3,83.4 73.6,83.4 73.9,83.4 74.3,83.3 74.6,83.3 74.9,83.2 75.2,83.2 75.5,83.1 75.8,83.0 76.1,82.9 76.4,82.8 76.7,82.7" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="141.8,49.9 142.1,50.1 142.3,50.3 142.6,50.5 142.8,50.7 143.1,50.8 143.4,51.0 143.7,51.1 143.9,51.3 144.2,51.4 144.5,51.5 144.8,51.6 145.1,51.8 145.4,51.9 145.7,52.0 146.0,52.0 146.3,52.1 146.6,52.2 146.9,52.3 147.2,52.3 147.5,52.4" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="120.6,203.4 120.9,203.3 121.2,203.2 121.5,203.1 121.7,203.0 122.0,203.0 122.3,202.9 122.6,202.9 122.9,202.8 123.2,202.8 123.5,202.7 123.8,202.7 124.0,202.7 124.3,202.7 124.6,202.7 124.9,202.7 125.2,202.7 125.5,202.7 125.8,202.7 126.1,202.7 126.4,202.8" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="119.4,200.1 119.8,200.0 120.1,199.9 120.5,199.7 120.9,199.7 121.2,199.6 121.6,199.5 122.0,199.4 122.3,199.3 122.7,199.3 123.1,199.2 123.5,199.2 123.9,199.2 124.2,199.2 124.6,199.2 125.0,199.2 125.4,199.2 125.7,199.2 126.1,199.2 126.5,199.3 126.9,199.3" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="59.4,146.3 59.7,146.3 60.0,146.4 60.3,146.5 60.5,146.5 60.8,146.6 61.1,146.7 61.4,146.8 61.6,146.9 61.9,147.0 62.2,147.1 62.5,147.3 62.7,147.4 63.0,147.5 63.2,147.7 63.5,147.8 63.7,148.0 64.0,148.1 64.2,148.3 64.5,148.5 64.7,148.6" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="60.0,142.8 60.4,142.9 60.7,143.0 61.1,143.1 61.5,143.2 61.8,143.3 62.2,143.4 62.6,143.5 62.9,143.6 63.3,143.8 63.6,143.9 64.0,144.1 64.3,144.3 64.6,144.4 65.0,144.6 65.3,144.8 65.6,145.0 65.9,145.2 66.2,145.4 66.5,145.7 66.8,145.9" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="76.1" y="115.5" font-size="12" text-anchor="middle">30°</text>
+<text x="121.7" y="190.0" font-size="12" text-anchor="middle">28°</text>
+<text x="138.3" y="70.5" font-size="12" text-anchor="middle">x</text>
+<text x="68.7" y="136.7" font-size="12" text-anchor="middle">y</text>
+<text x="140.0" y="258.0" font-size="12" text-anchor="middle" font-weight="bold">練習6</text>
+<circle cx="415.0" cy="128.0" r="88.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<polygon points="342.9,77.5 487.1,77.5 407.3,215.7" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="415.0" y1="128.0" x2="342.9" y2="77.5" stroke="#000" stroke-width="1.1"/>
+<line x1="415.0" y1="128.0" x2="487.1" y2="77.5" stroke="#000" stroke-width="1.1"/>
+<line x1="415.0" y1="128.0" x2="407.3" y2="215.7" stroke="#000" stroke-width="1.1"/>
+<circle cx="342.9" cy="77.5" r="2.5" fill="#000"/>
+<text x="332.3" y="74.6" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="487.1" cy="77.5" r="2.5" fill="#000"/>
+<text x="497.7" y="74.6" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="407.3" cy="215.7" r="2.5" fill="#000"/>
+<text x="406.2" y="233.2" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="415.0" cy="128.0" r="2.5" fill="#000"/>
+<text x="396.9" y="141.0" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="405.2,121.1 405.9,120.2 406.7,119.4 407.5,118.6 408.5,117.9 409.5,117.4 410.5,116.9 411.6,116.5 412.7,116.2 413.8,116.1 415.0,116.0 416.2,116.1 417.3,116.2 418.4,116.5 419.5,116.9 420.5,117.4 421.5,117.9 422.5,118.6 423.3,119.4 424.1,120.2 424.8,121.1" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="424.8,121.1 425.5,122.3 426.1,123.5 426.6,124.8 426.9,126.1 427.0,127.5 427.0,128.8 426.8,130.2 426.5,131.5 426.0,132.8 425.4,134.0 424.6,135.1 423.8,136.2 422.8,137.1 421.7,137.9 420.5,138.6 419.3,139.2 418.0,139.6 416.7,139.9 415.3,140.0 414.0,140.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="427.7,119.1 428.6,120.6 429.4,122.2 429.9,123.9 430.3,125.6 430.5,127.3 430.5,129.1 430.2,130.8 429.8,132.5 429.2,134.2 428.4,135.8 427.5,137.2 426.3,138.6 425.1,139.8 423.7,140.9 422.2,141.7 420.6,142.5 418.9,143.0 417.2,143.3 415.4,143.5 413.6,143.4" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="415.0" y="102.2" font-size="12" text-anchor="middle">110°</text>
+<text x="442.7" y="148.2" font-size="12" text-anchor="middle">130°</text>
+<text x="415.0" y="258.0" font-size="12" text-anchor="middle" font-weight="bold">練習7</text>
+<text x="280.0" y="288.0" font-size="12" text-anchor="middle">練習6: 例題4と同じ型（1つの角につき1回塗る）</text>
+<text x="280.0" y="306.0" font-size="12" text-anchor="middle">練習7: 中心角110°・130°から残りの中心角と△ABCの内角を求める</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習6・7の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig6_practice_6_7.svg">図だけを開く</a></figure><p>xとyを求めよう（例題4と同じ型）。</p></li><li><p>中心角∠AOB＝110°、∠BOC＝130°のとき、残りの中心角∠AOCと、△ABCの3つの内角をすべて求めよう。求めたら、内角の和が180°になるか検算しよう。</p></li><li><p>ある人が「中心角70°の弧に対する円周角は140°」と答えた。どこで間違えたのかを説明し、正しい答えを書こう。</p></li><li><figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-dc082206ce-title" aria-describedby="mg-dc082206ce-desc">
+<title id="mg-dc082206ce-title">円周角と2つの弧（中心角144°と216°）</title>
+<desc id="mg-dc082206ce-desc">練習9の図</desc>
+<!-- L02_fig7_practice_obtuse_inscribed.svg | 円周角と2つの弧（中心角144°と216°） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-17 (docs/SPEC_figures.md準拠（内部規約の要旨は同SPECに反映済み）・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="340" height="340" fill="#fff"/>
+<polyline points="78.7,102.3 76.9,108.8 75.5,115.3 74.5,122.0 74.1,128.6 74.1,135.4 74.5,142.0 75.5,148.7 76.9,155.2 78.7,161.7 81.0,168.0 83.7,174.1 86.9,180.0 90.4,185.7 94.4,191.1 98.7,196.2 103.3,201.1 108.3,205.5 113.6,209.7 119.1,213.4 124.9,216.8 131.0,219.7 137.2,222.2 143.5,224.3 150.0,225.9 156.6,227.1 163.3,227.8 170.0,228.0 176.7,227.8 183.4,227.1 190.0,225.9 196.5,224.3 202.8,222.2 209.0,219.7 215.1,216.8 220.9,213.4 226.4,209.7 231.7,205.5 236.7,201.1 241.3,196.2 245.6,191.1 249.6,185.7 253.1,180.0 256.3,174.1 259.0,168.0 261.3,161.7 263.1,155.2 264.5,148.7 265.5,142.0 265.9,135.4 265.9,128.6 265.5,122.0 264.5,115.3 263.1,108.8 261.3,102.3" fill="none" stroke="#c9c9c9" stroke-width="8" stroke-linecap="round"/>
+<circle cx="170.0" cy="132.0" r="96.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="170.0" y1="132.0" x2="78.7" y2="102.3" stroke="#000" stroke-width="1.6"/>
+<line x1="170.0" y1="132.0" x2="261.3" y2="102.3" stroke="#000" stroke-width="1.6"/>
+<line x1="170.0" y1="36.0" x2="78.7" y2="102.3" stroke="#000" stroke-width="1.6"/>
+<line x1="170.0" y1="36.0" x2="261.3" y2="102.3" stroke="#000" stroke-width="1.6"/>
+<circle cx="170.0" cy="36.0" r="2.5" fill="#000"/>
+<text x="170.0" y="25.6" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<circle cx="78.7" cy="102.3" r="2.5" fill="#000"/>
+<text x="64.4" y="102.2" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<circle cx="261.3" cy="102.3" r="2.5" fill="#000"/>
+<text x="275.6" y="102.2" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="170.0" cy="132.0" r="2.5" fill="#000"/>
+<text x="170.0" y="124.5" font-size="13" text-anchor="middle" font-weight="bold">O</text>
+<polyline points="153.8,126.7 153.5,127.9 153.3,129.0 153.1,130.2 153.0,131.4 153.0,132.6 153.1,133.8 153.3,135.0 153.5,136.1 153.8,137.3 154.2,138.4 154.7,139.5 155.3,140.5 155.9,141.5 156.6,142.5 157.4,143.4 158.2,144.2 159.1,145.0 160.0,145.8 161.0,146.4 162.0,147.0 163.1,147.5 164.2,148.0 165.3,148.3 166.5,148.6 167.6,148.8 168.8,149.0 170.0,149.0 171.2,149.0 172.4,148.8 173.5,148.6 174.7,148.3 175.8,148.0 176.9,147.5 178.0,147.0 179.0,146.4 180.0,145.8 180.9,145.0 181.8,144.2 182.6,143.4 183.4,142.5 184.1,141.5 184.7,140.5 185.3,139.5 185.8,138.4 186.2,137.3 186.5,136.1 186.7,135.0 186.9,133.8 187.0,132.6 187.0,131.4 186.9,130.2 186.7,129.0 186.5,127.9 186.2,126.7" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round"/>
+<text x="170.0" y="170.6" font-size="13" text-anchor="middle">216°</text>
+<polyline points="194.7,124.0 194.1,122.3 193.4,120.6 192.5,119.0 191.6,117.5 190.5,116.0 189.3,114.6 188.1,113.3 186.7,112.1 185.3,111.0 183.8,110.0 182.2,109.0 180.6,108.2 178.9,107.6 177.2,107.0 175.4,106.6 173.6,106.3 171.8,106.1 170.0,106.0 168.2,106.1 166.4,106.3 164.6,106.6 162.8,107.0 161.1,107.6 159.4,108.2 157.8,109.0 156.2,110.0 154.7,111.0 153.3,112.1 151.9,113.3 150.7,114.6 149.5,116.0 148.4,117.5 147.5,119.0 146.6,120.6 145.9,122.3 145.3,124.0" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4"/>
+<text x="170.0" y="92.5" font-size="13" text-anchor="middle">144°</text>
+<polyline points="158.7,44.2 159.5,45.3 160.4,46.2 161.4,47.1 162.5,47.8 163.6,48.5 164.8,49.0 166.1,49.4 167.4,49.8 168.7,49.9 170.0,50.0 171.3,49.9 172.6,49.8 173.9,49.4 175.2,49.0 176.4,48.5 177.5,47.8 178.6,47.1 179.6,46.2 180.5,45.3 181.3,44.2" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="170.0" y="66.5" font-size="13" text-anchor="middle">x</text>
+<text x="170.0" y="306.0" font-size="12" text-anchor="middle">弧BC（グレー・Aを含まない側）の中心角は大回りの216°</text>
+<text x="170.0" y="324.0" font-size="12" text-anchor="middle">（練習9: 144°はAを含む側の弧に対する中心角）</text>
+</svg>
+</div><figcaption>練習9の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L02_fig7_practice_obtuse_inscribed.svg">図だけを開く</a></figure><p>ある人が「∠BAC＝144°÷2＝72°」と答えた。どの弧に対する中心角を取り違えたのかを説明し、正しい∠BAC＝x を求めよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 練習7を一般化してみよう。円Oの周上に3点A・B・Cがあり（練習7の図と同じ並び）、Cを含まない側の弧ABに対する中心角を a、Aを含まない側の弧BCに対する中心角を b、<strong>Bを含まない側の弧ACに対する中心角を c</strong> とすると、a＋b＋c＝360°である。△ABCの3つの内角をa、b、cで表し、内角の和がちょうど180°になることを式で確かめよう。「円周角の定理を使うと、三角形の内角の和の180°が円の一周の360°の半分として現れる」ことを味わってほしい。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/7bc7571546b95bfe875a7c1300a4b6e9632b76bb/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">匿名のおたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 円のふしぎ——動かしても変わらない角</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 直径と円周角——半円の弧がつくる90°</a></nav></article><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>02</strong> / 08</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_02.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1円周角の定理2つでワンセット" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%86%86%E5%91%A8%E8%A7%92%E3%81%AE%E5%AE%9A%E7%90%862%E3%81%A4%E3%81%A7%E3%83%AF%E3%83%B3%E3%82%BB%E3%83%83%E3%83%88">主概念1：円周角の定理——2つでワンセット</a></li><li><a data-section-link="主概念2弧を塗る4ステップ" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%BC%A7%E3%82%92%E5%A1%97%E3%82%8B4%E3%82%B9%E3%83%86%E3%83%83%E3%83%97">主概念2：「弧を塗る」4ステップ</a></li><li><a data-section-link="例題1-中心角から円周角へ" href="lesson_02.html#%E4%BE%8B%E9%A1%8C1-%E4%B8%AD%E5%BF%83%E8%A7%92%E3%81%8B%E3%82%89%E5%86%86%E5%91%A8%E8%A7%92%E3%81%B8">例題1　中心角から円周角へ</a></li><li><a data-section-link="例題2-円周角から中心角へ" href="lesson_02.html#%E4%BE%8B%E9%A1%8C2-%E5%86%86%E5%91%A8%E8%A7%92%E3%81%8B%E3%82%89%E4%B8%AD%E5%BF%83%E8%A7%92%E3%81%B8">例題2　円周角から中心角へ</a></li><li><a data-section-link="例題3-円周角どうしをつなぐ" href="lesson_02.html#%E4%BE%8B%E9%A1%8C3-%E5%86%86%E5%91%A8%E8%A7%92%E3%81%A9%E3%81%86%E3%81%97%E3%82%92%E3%81%A4%E3%81%AA%E3%81%90">例題3　円周角どうしをつなぐ</a></li><li><a data-section-link="例題4-1つの図に円周角が2組あるとき" href="lesson_02.html#%E4%BE%8B%E9%A1%8C4-1%E3%81%A4%E3%81%AE%E5%9B%B3%E3%81%AB%E5%86%86%E5%91%A8%E8%A7%92%E3%81%8C2%E7%B5%84%E3%81%82%E3%82%8B%E3%81%A8%E3%81%8D">例題4　1つの図に円周角が2組あるとき</a></li><li><a data-section-link="練習" href="lesson_02.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/7bc7571546b95bfe875a7c1300a4b6e9632b76bb" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">7bc75715<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-18生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームは名前・アカウント不要、匿名で送れます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>
