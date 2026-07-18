@@ -1,6 +1,6 @@
 {
   "status": "built",
-  "generated_at": "2026-07-18T20:46:19+09:00",
+  "generated_at": "2026-07-18T22:22:34+09:00",
   "source": {
     "repository": "https://github.com/ManabiGrid/manabigrid",
     "commit": "263e6747d67f08e414e9c6050194f308fec06d55",
@@ -15,11 +15,12 @@
     "success_rate_percent": 100.0
   },
   "pages": {
-    "total": 274,
+    "total": 275,
     "content": 247,
     "top": 1,
     "browse": 1,
     "about": 1,
+    "updates": 1,
     "not_found": 1,
     "subjects": 7,
     "units": 16
@@ -35,13 +36,14 @@
     "svg_guard_self_tests": 4,
     "repaired_source_links": [],
     "search_index_entries": 204,
+    "update_history_entries": 9,
     "mathml_static_prototypes": 1,
     "og_image": {
       "source": "docs/assets/banner.png",
       "output": "_assets/og-manabigrid.png",
       "sha256": "2484dabd83c341a34f34184e7d71fcfd31de89dd1dfa65cecebd5a3017efec8d"
     },
-    "sitemap_entries": 273,
+    "sitemap_entries": 274,
     "progress_disclosures": 12,
     "display_math_locations": [
       {
@@ -139,6 +141,105 @@
         "title": "中3数学 巻末資料",
         "lessons": 0,
         "estimated_time": null
+      }
+    ]
+  },
+  "update_history": {
+    "source": "canonical_git_history",
+    "order": "first_parent",
+    "limit": 50,
+    "source_checkout_complete": true,
+    "scope": "public_display_sources",
+    "truncated": false,
+    "entries": [
+      {
+        "commit": "263e6747d67f08e414e9c6050194f308fec06d55",
+        "date": "2026-07-18",
+        "title": "中1数学8単元（20子単元）を外部レビュー済へ",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 2
+      },
+      {
+        "commit": "7bc7571546b95bfe875a7c1300a4b6e9632b76bb",
+        "date": "2026-07-18",
+        "title": "中1数学8単元（20子単元）をQA済へ",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 2
+      },
+      {
+        "commit": "e39e56db17f116fc7c3ffdd42c4832bd6cdfdb54",
+        "date": "2026-07-18",
+        "title": "中2数学5単元を外部レビュー済へ更新",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 2
+      },
+      {
+        "commit": "21d48a81ca70714ed32c9d608ecdecf17a1aa759",
+        "date": "2026-07-18",
+        "title": "目的文の表現を見直し・中2数学5単元をQA済へ更新",
+        "categories": [
+          "プロジェクト案内",
+          "進捗・単元情報"
+        ],
+        "public_files": 3
+      },
+      {
+        "commit": "3ec29bc06fba52f37d79e5c73afb46a32dea5f09",
+        "date": "2026-07-18",
+        "title": "参加案内に「広める」を正式な貢献の型として追加",
+        "categories": [
+          "プロジェクト案内"
+        ],
+        "public_files": 1
+      },
+      {
+        "commit": "b3b9b188186ba49ad786322b0f6c30e1fdd5626a",
+        "date": "2026-07-18",
+        "title": "公開方針と状態語彙の最終一意化",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 1
+      },
+      {
+        "commit": "a15b054dcf4f01be7fe78a97ce0d58dbe7b36ac2",
+        "date": "2026-07-18",
+        "title": "検疫にパス名走査を追加・frontmatter終端の厳密判定・文書整合の最終調整",
+        "categories": [
+          "教材"
+        ],
+        "public_files": 1
+      },
+      {
+        "commit": "eeb3a31f039236a76cbfe08403f8cf0198b3d324",
+        "date": "2026-07-18",
+        "title": "全体監査の指摘対応: 教材のYAML修正・履歴検疫CI・教科目次の新設・文書整合・配布HTMLの帰属表示",
+        "categories": [
+          "権利・利用条件",
+          "プロジェクト案内",
+          "進捗・単元情報",
+          "教材"
+        ],
+        "public_files": 16
+      },
+      {
+        "commit": "2dbe1b512267b8cf19249d95656cf1dbf235e2b1",
+        "date": "2026-07-17",
+        "title": "ManabiGrid（まなびグリッド）ベータ版 — 初回公開コミット",
+        "categories": [
+          "権利・利用条件",
+          "プロジェクト案内",
+          "進捗・単元情報",
+          "図版",
+          "教材"
+        ],
+        "public_files": 434
       }
     ]
   },

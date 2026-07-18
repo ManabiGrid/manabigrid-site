@@ -44,12 +44,25 @@ PAGES = (
     ),
     ("progress", ROOT / "progress/index.html"),
     ("about", ROOT / "about/index.html"),
+    ("updates", ROOT / "updates/index.html"),
     (
         "mathml",
         ROOT / "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html",
     ),
 )
 NOT_FOUND_ROUTE = "browser-check-not-found"
+
+
+def expected_update_entries() -> int:
+    try:
+        report = json.loads((ROOT / "build-report.json").read_text(encoding="utf-8"))
+        entries = report.get("update_history", {}).get("entries", [])
+        return len(entries) if isinstance(entries, list) else 0
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return 0
+
+
+EXPECTED_UPDATE_ENTRIES = expected_update_entries()
 
 
 def find_chrome() -> str:
@@ -344,6 +357,14 @@ METRICS_SCRIPT = r"""
     brand: inspect('.brand-link'),
     navigation: inspect('.site-links'),
     firstUnitCard: inspect('.unit-route .unit-card'),
+    homeUpdateCount: document.querySelectorAll('.home-updates [data-update-commit]').length,
+    homeUpdateListRole: document.querySelector('.home-updates .updates-list')?.getAttribute('role') || '',
+    homeUpdatesAllLink: inspect('.home-updates .updates-all-link'),
+    updatesTitle: inspect('#updates-title'),
+    updateEntryCount: document.querySelectorAll('.page-updates [data-update-commit]').length,
+    updateListRole: document.querySelector('.page-updates .updates-list')?.getAttribute('role') || '',
+    updateTimeCount: document.querySelectorAll('.page-updates [data-update-commit] time[datetime]').length,
+    updateCommitLinkCount: document.querySelectorAll('.page-updates [data-update-commit] a[href*="/commit/"]').length,
     heroPhrases: [...document.querySelectorAll('.hero-phrase')].map((element) => {
       const rect = element.getBoundingClientRect();
       return { text: (element.textContent || '').trim(), width: rect.width, top: rect.top, bottom: rect.bottom, rectCount: element.getClientRects().length };
@@ -711,6 +732,17 @@ def main() -> int:
                     or abs(float(hero_phrases[1].get("top", 0)) - float(hero_phrases[2].get("top", 0))) > 1
                 ):
                     page_errors.append("ヒーロー見出しが意図した文節2行になっていません")
+                home_updates_link = metrics.get("homeUpdatesAllLink")
+                if metrics.get("homeUpdateCount") != min(3, EXPECTED_UPDATE_ENTRIES):
+                    page_errors.append("トップの最近の更新が最新3件になっていません")
+                if metrics.get("homeUpdateListRole") != "list":
+                    page_errors.append("トップの更新時系列がリストとして公開されていません")
+                if (
+                    not isinstance(home_updates_link, dict)
+                    or not home_updates_link.get("visible")
+                    or "更新履歴をすべて見る" not in str(home_updates_link.get("text", ""))
+                ):
+                    page_errors.append("トップから更新履歴ページへの導線が見つかりません")
             if label == "browse":
                 browse_result = evaluate(
                     pipe,
@@ -891,6 +923,24 @@ def main() -> int:
                     {**viewport, "screenWidth": viewport["width"], "screenHeight": viewport["height"], "positionX": 0, "positionY": 0},
                     session,
                 )
+            if label == "updates":
+                updates_title = metrics.get("updatesTitle")
+                update_count = int(metrics.get("updateEntryCount", 0))
+                if (
+                    not isinstance(updates_title, dict)
+                    or not updates_title.get("visible")
+                    or "更新履歴" not in str(updates_title.get("text", ""))
+                ):
+                    page_errors.append("更新履歴ページの主見出しが表示されていません")
+                if update_count != EXPECTED_UPDATE_ENTRIES or update_count < 1:
+                    page_errors.append("更新履歴ページに更新がありません")
+                elif metrics.get("updateListRole") != "list":
+                    page_errors.append("更新履歴の時系列がリストとして公開されていません")
+                elif (
+                    int(metrics.get("updateTimeCount", 0)) != update_count
+                    or int(metrics.get("updateCommitLinkCount", 0)) != update_count
+                ):
+                    page_errors.append("更新履歴の日付または固定コミットリンクが不足しています")
             if label == "mathml":
                 mathml = metrics.get("mathml")
                 if not isinstance(mathml, dict) or not mathml.get("present"):

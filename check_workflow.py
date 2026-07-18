@@ -105,6 +105,16 @@ def main() -> int:
     )
     require(errors, "repository: ManabiGrid/manabigrid" in build, "canonical source checkout is missing")
     require(errors, "ref: ${{ needs.detect-source.outputs.source_sha }}" in build, "build does not use the detected source SHA")
+    require(
+        errors,
+        bool(
+            re.search(
+                r"repository: ManabiGrid/manabigrid[\s\S]{0,400}?fetch-depth: 0",
+                build,
+            )
+        ),
+        "canonical source checkout is shallow; update history would be incomplete",
+    )
     require(errors, "if: needs.detect-source.outputs.should_deploy == 'true'" in build, "unchanged scheduled source is not skipped")
     require(errors, "check_site.py site-output --source source" in build, "site check is not pinned to the checked-out source")
     require(errors, "check_external_links.py site-output --run" in build, "one-time external link checker is not wired")

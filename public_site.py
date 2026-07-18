@@ -26,6 +26,7 @@ PUBLIC_DIRECTORIES = (
     "progress",
     "subjects",
     "units",
+    "updates",
 )
 
 # Keep this equivalent to the source repository's quarantine workflow.  The

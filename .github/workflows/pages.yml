@@ -99,6 +99,8 @@ jobs:
           ref: ${{ needs.detect-source.outputs.source_sha }}
           path: source
           persist-credentials: false
+          # 更新履歴を正確に生成するため、正本の全コミットを取得する。
+          fetch-depth: 0
 
       - name: Check the workflow contract
         run: python3 check_workflow.py

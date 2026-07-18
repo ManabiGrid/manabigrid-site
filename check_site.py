@@ -41,6 +41,88 @@ ENGLISH_PASSAGE = re.compile(
     r"(?<![A-Za-z])(?:[A-Za-z][A-Za-z'’.-]*[,:;!?]?\s+){3,}"
     r"[A-Za-z][A-Za-z'’.-]*[,:;.!?]?"
 )
+UPDATE_FILE_SUFFIXES = {".gif", ".jpeg", ".jpg", ".md", ".png", ".svg", ".webp"}
+
+
+def is_public_update_source_path(value: str) -> bool:
+    if value in {"README.md", "NOTICE.md", "curriculum/PROGRESS_INDEX.md"}:
+        return True
+    if value.startswith("curriculum/registry/") and value.endswith(".md"):
+        return True
+    if value.startswith("docs/assets/") or value.startswith("materials/"):
+        return Path(value).suffix.lower() in UPDATE_FILE_SUFFIXES
+    return False
+
+
+def canonical_public_update_commits(
+    source: Path,
+    start_commit: str,
+    limit: int = 50,
+) -> Tuple[List[str], bool, bool]:
+    """Independently derive public-impact commits against each first parent."""
+    shallow = subprocess.run(
+        ["git", "-C", str(source), "rev-parse", "--is-shallow-repository"],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    rows = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(source),
+            "rev-list",
+            "--first-parent",
+            "--parents",
+            start_commit,
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.splitlines()
+    expected: List[str] = []
+    for row in rows:
+        commit_and_parents = row.split()
+        if not commit_and_parents or not re.fullmatch(r"[0-9a-f]{40}", commit_and_parents[0]):
+            raise ValueError("invalid first-parent Git row")
+        commit = commit_and_parents[0]
+        if len(commit_and_parents) > 1:
+            command = [
+                "git",
+                "-C",
+                str(source),
+                "diff",
+                "--no-renames",
+                "--name-only",
+                "-z",
+                commit_and_parents[1],
+                commit,
+            ]
+        else:
+            command = [
+                "git",
+                "-C",
+                str(source),
+                "diff-tree",
+                "--root",
+                "--no-renames",
+                "-z",
+                "--no-commit-id",
+                "--name-only",
+                "-r",
+                commit,
+            ]
+        changed = subprocess.run(
+            command,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.split("\x00")
+        if any(is_public_update_source_path(value) for value in changed):
+            expected.append(commit)
+        if len(expected) > limit:
+            return expected[:limit], True, shallow == "false"
+    return expected, False, shallow == "false"
 
 
 @dataclass
@@ -323,7 +405,15 @@ def resolve_source_root(
     """Resolve the source without baking a machine-local path into this checker."""
     candidates: List[Path] = []
     if explicit is not None:
-        candidates.append(explicit)
+        try:
+            resolved = explicit.resolve()
+        except OSError:
+            return None
+        return (
+            resolved
+            if (resolved / "materials").is_dir() and (resolved / ".git").exists()
+            else None
+        )
     environment_source = os.environ.get("MANABIGRID_SOURCE_ROOT")
     if environment_source:
         candidates.append(Path(environment_source))
@@ -338,7 +428,7 @@ def resolve_source_root(
             resolved = candidate.resolve()
         except OSError:
             continue
-        if (resolved / "materials").is_dir():
+        if (resolved / "materials").is_dir() and (resolved / ".git").exists():
             return resolved
     return None
 
@@ -888,8 +978,112 @@ def main() -> int:
         total = pages.get("total")
         if total != len(html_paths):
             errors.append(f"pages.total mismatch: report={total} html={len(html_paths)}")
+        if pages.get("updates") != 1:
+            errors.append("pages.updates must be exactly one")
     else:
         errors.append("build-report missing pages.total")
+
+    update_history = build_report.get("update_history", {})
+    update_history_ok = True
+    expected_update_commits: List[str] = []
+    if not isinstance(update_history, dict):
+        update_history_ok = False
+        errors.append("build-report missing update_history")
+    else:
+        entries = update_history.get("entries")
+        if (
+            update_history.get("source") != "canonical_git_history"
+            or update_history.get("order") != "first_parent"
+            or update_history.get("limit") != 50
+            or update_history.get("source_checkout_complete") is not True
+            or update_history.get("scope") != "public_display_sources"
+            or not isinstance(update_history.get("truncated"), bool)
+            or not isinstance(entries, list)
+            or not entries
+        ):
+            update_history_ok = False
+            errors.append("build-report update_history contract mismatch")
+        else:
+            for entry in entries:
+                if not isinstance(entry, dict):
+                    update_history_ok = False
+                    continue
+                commit = entry.get("commit")
+                date = entry.get("date")
+                title = entry.get("title")
+                if (
+                    not isinstance(commit, str)
+                    or not re.fullmatch(r"[0-9a-f]{40}", commit)
+                    or not isinstance(date, str)
+                    or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date)
+                    or not isinstance(title, str)
+                    or not title.strip()
+                ):
+                    update_history_ok = False
+                    continue
+                expected_update_commits.append(commit)
+
+    home_page = parsed_pages.get(site_root / "index.html")
+    updates_page = parsed_pages.get(site_root / "updates/index.html")
+    if not home_page or not updates_page:
+        update_history_ok = False
+        errors.append("update history page or home page is missing")
+    elif expected_update_commits:
+        home_commits = re.findall(
+            r'data-update-commit="([0-9a-f]{40})"', home_page.raw_text
+        )
+        page_commits = re.findall(
+            r'data-update-commit="([0-9a-f]{40})"', updates_page.raw_text
+        )
+        if home_commits != expected_update_commits[:3]:
+            update_history_ok = False
+            errors.append("home update entries do not match the latest three source updates")
+        if page_commits != expected_update_commits:
+            update_history_ok = False
+            errors.append("update history page order does not match build-report")
+        if 'class="page-updates"' not in updates_page.raw_text:
+            update_history_ok = False
+            errors.append("update history page class is missing")
+        if 'href="updates/index.html"' not in home_page.raw_text:
+            update_history_ok = False
+            errors.append("home page link to full update history is missing")
+        if '<ol class="updates-list updates-list-compact" role="list">' not in home_page.raw_text:
+            update_history_ok = False
+            errors.append("home update timeline list semantics are missing")
+        if '<ol class="updates-list" role="list">' not in updates_page.raw_text:
+            update_history_ok = False
+            errors.append("update history timeline list semantics are missing")
+        source_for_updates = build_report.get("source")
+        source_repository = (
+            source_for_updates.get("repository")
+            if isinstance(source_for_updates, dict)
+            else None
+        )
+        if not isinstance(source_repository, str) or not source_repository.startswith("https://"):
+            update_history_ok = False
+            errors.append("update history source repository is missing")
+        else:
+            for commit in expected_update_commits:
+                expected_link = f'{source_repository}/commit/{commit}'
+                if expected_link not in updates_page.raw_text:
+                    update_history_ok = False
+                    errors.append(f"update history fixed commit link missing: {commit}")
+                    break
+    features_for_updates = build_report.get("features")
+    if (
+        not isinstance(features_for_updates, dict)
+        or features_for_updates.get("update_history_entries") != len(expected_update_commits)
+    ):
+        update_history_ok = False
+        errors.append("features.update_history_entries mismatch")
+    checks.append(
+        {
+            "name": "content:update_history",
+            "pass": update_history_ok,
+            "entries": len(expected_update_commits),
+            "home_entries": min(3, len(expected_update_commits)),
+        }
+    )
 
     source_files = build_report.get("source_files", [])
     if not isinstance(source_files, list):
@@ -901,14 +1095,16 @@ def main() -> int:
     sha_map: Dict[Path, str] = {}
     source_info = build_report.get("source", {})
     source_root: Optional[Path] = None
+    built_commit: Optional[str] = None
     source_head_checked = False
     source_commit_matches: Optional[bool] = None
     if isinstance(source_info, dict):
         source_root = resolve_source_root(site_root, args.source, build_report)
         if source_info.get("git_status_before") != source_info.get("git_status_after"):
             errors.append("source git status changed during build")
-        built_commit = source_info.get("commit")
-        if source_root and isinstance(built_commit, str) and (source_root / ".git").exists():
+        built_commit_value = source_info.get("commit")
+        built_commit = built_commit_value if isinstance(built_commit_value, str) else None
+        if source_root and built_commit and (source_root / ".git").exists():
             try:
                 current_head = subprocess.run(
                     ["git", "-C", str(source_root), "rev-parse", "HEAD"],
@@ -926,7 +1122,7 @@ def main() -> int:
     else:
         source_root = resolve_source_root(site_root, args.source, build_report)
     if source_root is None:
-        warnings.append("正本rootを解決できないため、正本SHA・鮮度・検疫workflowの照合を省略しました")
+        errors.append("正本Git rootを解決できないため、正本SHA・鮮度・検疫・更新履歴を照合できません")
     else:
         source_workflow = source_root / ".github/workflows/quarantine.yml"
         workflow_ok = source_workflow.is_file() and sha256_file(source_workflow) == SOURCE_QUARANTINE_WORKFLOW_SHA256
@@ -941,6 +1137,42 @@ def main() -> int:
         )
         if not workflow_ok:
             errors.append("source quarantine workflow sha256 mismatch")
+
+        source_update_history_ok = False
+        expected_public_commits: List[str] = []
+        if built_commit and re.fullmatch(r"[0-9a-f]{40}", built_commit):
+            try:
+                expected_public_commits, expected_truncated, source_history_complete = (
+                    canonical_public_update_commits(source_root, built_commit)
+                )
+                reported_history = build_report.get("update_history")
+                reported_entries = (
+                    reported_history.get("entries")
+                    if isinstance(reported_history, dict)
+                    else None
+                )
+                reported_commits = (
+                    [entry.get("commit") for entry in reported_entries if isinstance(entry, dict)]
+                    if isinstance(reported_entries, list)
+                    else []
+                )
+                source_update_history_ok = (
+                    source_history_complete
+                    and reported_commits == expected_public_commits
+                    and isinstance(reported_history, dict)
+                    and reported_history.get("truncated") == expected_truncated
+                )
+            except (OSError, subprocess.CalledProcessError, ValueError):
+                source_update_history_ok = False
+        checks.append(
+            {
+                "name": "source:update_history_git_order",
+                "pass": source_update_history_ok,
+                "entries": len(expected_public_commits),
+            }
+        )
+        if not source_update_history_ok:
+            errors.append("update history does not match canonical first-parent Git history")
     for item in source_files:
         if not isinstance(item, dict):
             continue

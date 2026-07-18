@@ -236,6 +236,16 @@ class Stats:
     repaired_links: list[dict[str, str]] = field(default_factory=list)
 
 
+@dataclass(frozen=True)
+class UpdateEntry:
+    commit: str
+    date: str
+    subject: str
+    title: str
+    categories: tuple[str, ...]
+    paths: tuple[str, ...]
+
+
 def math3_order_from_source(source: Path) -> list[str]:
     """Read the public subject README instead of duplicating its unit order."""
     readme = source / "materials/jhs-math-3/README.md"
@@ -311,6 +321,122 @@ def git(source: Path, *args: str) -> str:
         capture_output=True,
         text=True,
     ).stdout.strip()
+
+
+UPDATE_FILE_SUFFIXES = {".gif", ".jpeg", ".jpg", ".md", ".png", ".svg", ".webp"}
+
+
+def is_public_update_path(value: str) -> bool:
+    """Limit the public timeline to source files that can change the exhibition."""
+    if value in {"README.md", "NOTICE.md", "curriculum/PROGRESS_INDEX.md"}:
+        return True
+    if value.startswith("curriculum/registry/") and value.endswith(".md"):
+        return True
+    if value.startswith("docs/assets/"):
+        return Path(value).suffix.lower() in UPDATE_FILE_SUFFIXES
+    if value.startswith("materials/"):
+        return Path(value).suffix.lower() in UPDATE_FILE_SUFFIXES
+    return False
+
+
+def update_categories(paths: Sequence[str]) -> tuple[str, ...]:
+    labels: list[str] = []
+
+    def add(label: str) -> None:
+        if label not in labels:
+            labels.append(label)
+
+    for value in paths:
+        suffix = Path(value).suffix.lower()
+        if value == "NOTICE.md":
+            add("権利・利用条件")
+        elif value == "README.md":
+            add("プロジェクト案内")
+        elif value == "curriculum/PROGRESS_INDEX.md" or value.startswith("curriculum/registry/"):
+            add("進捗・単元情報")
+        elif suffix == ".md" and value.startswith("materials/"):
+            add("教材")
+        elif suffix in UPDATE_FILE_SUFFIXES - {".md"}:
+            add("図版")
+    return tuple(labels or ["サイト掲載内容"])
+
+
+def update_title(subject: str, categories: Sequence[str]) -> str:
+    """Make a public commit subject scannable without changing its meaning."""
+    value = re.sub(r"[\x00-\x1f\x7f]+", " ", subject).strip()
+    value = re.sub(r"^[A-Za-z][A-Za-z0-9_-]*:\s*", "", value).strip()
+    value = value.split("——", 1)[0].strip()
+    value = re.sub(r"（[^）]{24,}）$", "", value).strip()
+    if not value:
+        value = "・".join(categories) + "を更新"
+    if len(value) > 72:
+        value = value[:71].rstrip() + "…"
+    return value
+
+
+def collect_update_history(source: Path, limit: int = 50) -> tuple[list[UpdateEntry], bool]:
+    """Read a bounded, complete Git history without making runtime API calls."""
+    if git(source, "rev-parse", "--is-shallow-repository").casefold() != "false":
+        raise BuildError("更新履歴の生成には正本Git履歴の完全checkoutが必要です")
+    entries: list[UpdateEntry] = []
+    commit_rows = git(source, "rev-list", "--first-parent", "--parents", "HEAD").splitlines()
+    for row in commit_rows:
+        commit_and_parents = row.split()
+        commit = commit_and_parents[0]
+        if len(commit_and_parents) > 1:
+            changed = git(
+                source,
+                "diff",
+                "--no-renames",
+                "--name-only",
+                "-z",
+                commit_and_parents[1],
+                commit,
+            ).split("\x00")
+        else:
+            changed = git(
+                source,
+                "diff-tree",
+                "--root",
+                "--no-renames",
+                "-z",
+                "--no-commit-id",
+                "--name-only",
+                "-r",
+                commit,
+            ).split("\x00")
+        public_paths = tuple(sorted(value for value in changed if is_public_update_path(value)))
+        if not public_paths:
+            continue
+        metadata = git(
+            source,
+            "show",
+            "-s",
+            "--format=%H%x00%cs%x00%s%x00",
+            commit,
+        ).split("\x00")
+        if (
+            len(metadata) != 4
+            or metadata[3] != ""
+            or not re.fullmatch(r"[0-9a-f]{40}", metadata[0])
+        ):
+            raise BuildError(f"正本Git履歴のメタデータを解析できません: {commit}")
+        categories = update_categories(public_paths)
+        entries.append(
+            UpdateEntry(
+                commit=metadata[0],
+                date=metadata[1],
+                subject=metadata[2],
+                title=update_title(metadata[2], categories),
+                categories=categories,
+                paths=public_paths,
+            )
+        )
+        if len(entries) > limit:
+            return entries[:limit], True
+    if not entries:
+        raise BuildError("展示に関わる正本Git更新を1件も見つけられません")
+    return entries, False
 
 
 def strip_frontmatter(raw: str) -> tuple[str, bool, dict[str, str]]:
@@ -1698,7 +1824,47 @@ def unit_card(
 </article>"""
 
 
-def home_body(units: dict[str, Unit]) -> str:
+def update_entry_html(entry: UpdateEntry, compact: bool = False) -> str:
+    categories = "".join(
+        f'<span class="update-kind">{html.escape(label)}</span>'
+        for label in entry.categories
+    )
+    technical = (
+        ""
+        if compact
+        else f'<p class="update-technical"><code>{entry.commit[:7]}</code> ・ 公開表示に関わるファイル {len(entry.paths)}件</p>'
+    )
+    return f"""
+<article class="update-entry{' is-compact' if compact else ''}" data-update-commit="{entry.commit}">
+  <div class="update-entry-meta"><time datetime="{entry.date}">{entry.date.replace('-', '.')}</time><span class="update-kinds">{categories}</span></div>
+  <h3>{html.escape(entry.title)}</h3>
+  {technical}<p class="update-link">{external(f'{REPO_URL}/commit/{entry.commit}', 'GitHubで変更内容を見る')}</p>
+</article>"""
+
+
+def updates_body(entries: Sequence[UpdateEntry]) -> str:
+    current = Path("updates/index.html")
+    items = "".join(f"<li>{update_entry_html(entry)}</li>" for entry in entries)
+    snapshot = BUILD_CONTEXT["commit"]
+    return f"""
+<section class="container unit-hero updates-hero">
+  <p class="eyebrow">CHANGELOG / FROM GITHUB</p>
+  <h1 id="updates-title">更新履歴</h1>
+  <p>この展示の内容に関わる、正本GitHubの更新を新しい順に並べています。教材、図版、進捗、案内の変更が対象です。</p>
+  <p class="updates-snapshot">いま表示しているのは {external(f'{REPO_URL}/tree/{snapshot}', f'正本コミット {snapshot[:7]}')} までのスナップショットです。</p>
+</section>
+<section class="container updates-section" aria-labelledby="updates-list-title">
+  <header class="section-head"><div><p class="eyebrow">LATEST {len(entries)}</p><h2 id="updates-list-title">正本から届いた更新</h2></div><p>技術用スクリプトだけの変更は省き、表示に影響する更新を最大50件掲載します。</p></header>
+  <ol class="updates-list" role="list">{items}</ol>
+</section>
+<aside class="container updates-method" aria-labelledby="updates-method-title">
+  <p class="eyebrow">HOW IT WORKS</p><h2 id="updates-method-title">更新は自動で届きます</h2>
+  <p>このページはサイト生成時に正本のGit履歴から作られます。正本が更新されると、GitHub Actionsが定期確認し、全検査を通った静的サイトだけを公開します。閲覧中に外部APIへ接続したり、行動を記録したりはしません。</p>
+  <a class="text-link" href="{rel_href(current, Path('about/index.html'))}">GitHubとの関係をくわしく見る</a>
+</aside>"""
+
+
+def home_body(units: dict[str, Unit], updates: Sequence[UpdateEntry]) -> str:
     current = Path("index.html")
     diagnostic_unit = units.get("jhs-math-3-diagnostic")
     diagnostic = (
@@ -1723,6 +1889,9 @@ def home_body(units: dict[str, Unit]) -> str:
         for index, slug in enumerate(learning_slugs, start=1)
         if slug in units
     )
+    latest_updates = "".join(
+        f"<li>{update_entry_html(entry, compact=True)}</li>" for entry in updates[:3]
+    )
     return f"""
 <section class="home-hero container">
   <div class="hero-copy">
@@ -1744,6 +1913,11 @@ def home_body(units: dict[str, Unit]) -> str:
   <header class="section-head"><div><p class="eyebrow">PATH 01—{learning_count:02}</p><h2>中3数学の{learning_count}単元</h2></div><p>順番に進んでも、必要な単元だけ選んでもかまいません。</p></header>
   <nav class="route-tools" aria-label="中3数学の補助入口"><a href="{rel_href(current, diagnostic)}">診断から始める</a><a href="{rel_href(current, appendix)}">巻末資料を見る</a></nav>
   <div class="unit-route">{cards}</div>
+</section>
+<section class="container home-updates" aria-labelledby="home-updates-title">
+  <header class="section-head"><div><p class="eyebrow">LATEST FROM GITHUB</p><h2 id="home-updates-title">最近の更新</h2></div><p>正本のうち、この展示に関わる変更です。</p></header>
+  <ol class="updates-list updates-list-compact" role="list">{latest_updates}</ol>
+  <a class="text-link updates-all-link" href="{rel_href(current, Path('updates/index.html'))}">更新履歴をすべて見る</a>
 </section>
 <section id="project-info" class="container project-info">
   <div><p class="eyebrow">PROJECT</p><h2>保護者・先生・開発者の方へ</h2><p>作りかけを正直に公開し、検証しながら育てているオープン教材です。単元別の正式な人間レビュー済への昇格はこれからで、公式教材ではありません。</p></div>
@@ -1938,7 +2112,7 @@ def about_body() -> str:
   <section><p class="eyebrow">04 / ISSUE</p><h2>Issueで誤りを知らせる3ステップ</h2><ol class="about-steps"><li><span class="about-step-text">{external('https://github.com/signup', 'GitHubアカウントを作る')}か、持っているアカウントでサインインします。</span></li><li><span class="about-step-text">リポジトリの<strong>Issues</strong>を開き、<strong>New issue</strong>を選びます。</span></li><li><span class="about-step-text"><strong>誤り報告</strong>テンプレートを選び、対象ファイルと疑問点を書きます。</span></li></ol><p>{external('https://github.com/ManabiGrid/manabigrid/issues/new/choose', 'Issueテンプレートを選ぶ')} ／ {external(ISSUE_URL, '誤り報告を直接開く')}</p><p class="safety-note"><strong>大切:</strong> Issueはインターネット全体に公開されます。名前、学校名、住所、連絡先、顔写真などは書かないでください。アカウントを作りたくない場合は、{external(FORM_URL, 'おたよりフォーム')}を使えます。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れますが、Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p></section>
   <section><p class="eyebrow">05 / WORDS</p><h2>GitHub用語のミニ辞典</h2><dl class="github-glossary"><div><dt>リポジトリ</dt><dd>教材や図版、説明文をひとまとめに保管する場所。</dd></div><div><dt>コミット</dt><dd>「この時点の変更」を保存した記録。展示版は特定のコミットから作られます。</dd></div><div><dt>Issue</dt><dd>誤りや提案を、公開の話題として記録する場所。</dd></div><div><dt>Markdown</dt><dd>見出しや箇条書きを記号で表す、原稿向けのテキスト形式。</dd></div></dl></section>
   <section><p class="eyebrow">06 / SOURCE</p><h2>固定版で来歴を確かめる</h2><p>各レッスン末の「この教材の来歴」から、そのページを生成したMarkdownの固定版を確認できます。現在の展示は{external(commit_url, '正本コミット ' + commit_short)}から、{html.escape(BUILD_CONTEXT['generated_date'])}に生成しました。</p></section>
-  <section><p class="eyebrow">07 / UPDATE</p><h2>正本が更新されたら、検査して展示を更新する</h2><p>この展示は正本の更新を定期的に確認し、変化があったときだけ再生成する設計です。リンク、本文、図版、来歴、公開検疫のすべてに通った生成物だけを次の展示候補にします。失敗時は直前の公開版を残します。</p></section>
+  <section><p class="eyebrow">07 / UPDATE</p><h2>正本が更新されたら、検査して展示を更新する</h2><p>この展示は正本の更新を定期的に確認し、変化があったときだけ再生成する設計です。リンク、本文、図版、来歴、公開検疫のすべてに通った生成物だけを次の展示候補にします。失敗時は直前の公開版を残します。</p><p><a class="text-link" href="../updates/index.html">この展示の更新履歴を見る</a></p></section>
   <section><p class="eyebrow">08 / RIGHTS</p><h2>制作方法と、再利用できる範囲</h2><p>教材本文の主要部分はAIが多段階で執筆し、別系統AIの批判レビューと人間の確認を組み合わせています。人間レビュー済への昇格状況は進捗一覧で区別しています。OpenAI、Anthropic、出典元の機関による公式・公認教材ではありません。</p><p>教材は原則CC BY 4.0ですが、出典を明記した引用、第三者資料、JP-COS LOD由来データ、名称・ロゴなどには別の条件があります。再利用前に{external(notice_url, '権利除外表')}、{external(disclaimer_url, '免責とAI生成の開示')}、{external(methodology_url, '制作方法')}を確認してください。</p></section>
 </article>"""
 
@@ -2038,6 +2212,7 @@ def clean(site_root: Path) -> None:
         "progress",
         "subjects",
         "units",
+        "updates",
     ):
         target = site_root / name
         if target.exists():
@@ -2118,6 +2293,7 @@ def build(
         }
     )
     MATH3_ORDER = math3_order_from_source(source)
+    updates, updates_truncated = collect_update_history(source)
     svg_guard_self_tests = self_test_svg_guard()
     clean(site_root)
     media, svg_count = copy_assets(source, site_root)
@@ -2159,7 +2335,7 @@ def build(
             Path("index.html"),
             "つまずいたところから学び直せる教材",
             "ManabiGridの教材を読みやすく並べた静的展示サイト",
-            home_body(units),
+            home_body(units, updates),
             [("トップ", None)],
             "page-home",
         ),
@@ -2184,6 +2360,17 @@ def build(
             about_body(),
             [("トップ", Path("index.html")), ("このサイトについて", None)],
             "page-about",
+        ),
+    )
+    write(
+        site_root / "updates/index.html",
+        page(
+            Path("updates/index.html"),
+            "更新履歴",
+            "ManabiGrid展示版に関わる正本GitHubの更新履歴",
+            updates_body(updates),
+            [("トップ", Path("index.html")), ("更新履歴", None)],
+            "page-updates",
         ),
     )
     write(
@@ -2287,6 +2474,7 @@ def build(
             "top": 1,
             "browse": 1,
             "about": 1,
+            "updates": 1,
             "not_found": 1,
             "subjects": len(SUBJECTS),
             "units": len(units),
@@ -2302,6 +2490,7 @@ def build(
             "svg_guard_self_tests": svg_guard_self_tests,
             "repaired_source_links": stats.repaired_links,
             "search_index_entries": len(search_entries),
+            "update_history_entries": len(updates),
             "mathml_static_prototypes": stats.mathml_prototypes,
             "og_image": {
                 "source": OG_IMAGE_SOURCE.as_posix(),
@@ -2337,6 +2526,24 @@ def build(
                 }
                 for slug in MATH3_ORDER
                 if slug in units
+            ],
+        },
+        "update_history": {
+            "source": "canonical_git_history",
+            "order": "first_parent",
+            "limit": 50,
+            "source_checkout_complete": True,
+            "scope": "public_display_sources",
+            "truncated": updates_truncated,
+            "entries": [
+                {
+                    "commit": entry.commit,
+                    "date": entry.date,
+                    "title": entry.title,
+                    "categories": list(entry.categories),
+                    "public_files": len(entry.paths),
+                }
+                for entry in updates
             ],
         },
         "publication": {

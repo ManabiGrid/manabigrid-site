@@ -499,6 +499,128 @@ summary:focus-visible,
   word-break: break-all;
 }
 
+.home-updates {
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: 2rem;
+  border-top: 2px solid var(--ink);
+}
+
+.updates-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+  list-style: none;
+}
+
+.updates-list > li {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.update-entry {
+  display: grid;
+  grid-template-columns: minmax(10rem, .38fr) minmax(0, 1.62fr);
+  gap: .35rem clamp(1.5rem, 5vw, 4rem);
+  padding: 1.25rem .2rem 1.35rem;
+}
+
+.update-entry-meta {
+  display: flex;
+  grid-row: 1 / span 3;
+  flex-direction: column;
+  gap: .55rem;
+  align-items: flex-start;
+}
+
+.update-entry time {
+  color: var(--blue);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.update-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+}
+
+.update-kind {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: .08rem .38rem;
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.update-entry h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, .98rem + .25vw, 1.24rem);
+  line-height: 1.55;
+}
+
+.update-technical,
+.update-link {
+  margin: .1rem 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.update-technical code { font-family: var(--font-mono); }
+.update-link a { font-weight: 800; }
+
+.updates-list-compact {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+
+.updates-list-compact > li {
+  min-width: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+}
+
+.updates-list-compact > li:last-child { border-right: 0; }
+
+.update-entry.is-compact {
+  display: block;
+  height: 100%;
+  padding: 1.2rem clamp(.8rem, 2vw, 1.3rem) 1.3rem;
+}
+
+.update-entry.is-compact .update-entry-meta {
+  display: flex;
+  margin-bottom: .65rem;
+}
+
+.update-entry.is-compact h3 { font-size: 1rem; }
+.update-entry.is-compact .update-link { margin-top: .6rem; }
+.updates-all-link { margin-top: .75rem; }
+
+.updates-hero .updates-snapshot { margin-top: 1rem; font-size: .86rem; }
+
+.updates-section {
+  padding-top: clamp(2.75rem, 5vw, 4.75rem);
+}
+
+.updates-method {
+  width: min(100%, 56rem);
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.updates-method h2 { font-family: var(--font-display); }
+.updates-method p:not(.eyebrow) { max-width: 48rem; color: var(--muted); }
+
 .status-chip,
 .doc-kind {
   display: inline-block;
@@ -1313,6 +1435,9 @@ tbody tr:hover { background: var(--canvas); }
   .start-note strong { display: inline; font-size: .82rem; }
   .start-note span { display: none; }
   .project-note { grid-column: auto; }
+  .updates-list-compact { grid-template-columns: minmax(0, 1fr); }
+  .updates-list-compact > li { border-right: 0; border-bottom: 1px solid var(--line); }
+  .updates-list-compact > li:last-child { border-bottom: 0; }
   .lesson-sidebar { display: none; }
   .mobile-section-nav { display: block; }
   .lesson-main { width: min(100%, var(--read-width)); margin-inline: auto; }
@@ -1384,6 +1509,18 @@ tbody tr:hover { background: var(--canvas); }
   .unit-card.featured {
     grid-template-columns: 2.8rem minmax(0, 1fr);
     gap: .65rem;
+  }
+
+  .update-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .45rem;
+  }
+
+  .update-entry-meta {
+    grid-row: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .card-grid,
@@ -1508,6 +1645,8 @@ tbody tr:hover { background: var(--canvas); }
   .progress-table-disclosure > summary { display: none !important; }
   .progress-table-disclosure > .table-wrap { display: block !important; }
   .progress-table-disclosure { border: 0; }
+
+  .update-entry { break-inside: avoid; }
 
   .table-wrap {
     overflow: visible;
