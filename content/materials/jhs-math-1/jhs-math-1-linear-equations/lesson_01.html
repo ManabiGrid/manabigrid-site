@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L01 □からxへ——方程式とその解">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L01 □からxへ——方程式とその解｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L01 □からxへ——方程式とその解">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L01 □からxへ——方程式とその解｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="221c8f6c9cf8cb4c4dc17852219c3eaa1b161d008d696d420ff97477915c2d1d" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-linear-equations/index.html">中1数学「一次方程式」</a></li><li aria-current="page">L01 □からxへ——方程式とその解</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="221c8f6c9cf8cb4c4dc17852219c3eaa1b161d008d696d420ff97477915c2d1d" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学1年 数学 ／ 中1数学「一次方程式」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l01-からxへ方程式とその解"><span class="lesson-title-main">L01 □からxへ</span><span class="lesson-title-sub">方程式とその解</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>01</strong> / 10</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_01.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1の代わりにxと書く" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E3%81%AE%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%ABx%E3%81%A8%E6%9B%B8%E3%81%8F">主概念1：□の代わりにxと書く</a></li><li><a data-section-link="主概念2解条件を満たす値" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E8%A7%A3%E6%9D%A1%E4%BB%B6%E3%82%92%E6%BA%80%E3%81%9F%E3%81%99%E5%80%A4">主概念2：解——条件を満たす値</a></li><li><a data-section-link="型の導入代入して確かめる" href="lesson_01.html#%E5%9E%8B%E3%81%AE%E5%B0%8E%E5%85%A5%E4%BB%A3%E5%85%A5%E3%81%97%E3%81%A6%E7%A2%BA%E3%81%8B%E3%82%81%E3%82%8B">型の導入：「代入して確かめる」</a></li><li><a data-section-link="練習" href="lesson_01.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_01.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1の代わりにxと書く" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E3%81%AE%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%ABx%E3%81%A8%E6%9B%B8%E3%81%8F">主概念1：□の代わりにxと書く</a></li><li><a data-section-link="主概念2解条件を満たす値" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E8%A7%A3%E6%9D%A1%E4%BB%B6%E3%82%92%E6%BA%80%E3%81%9F%E3%81%99%E5%80%A4">主概念2：解——条件を満たす値</a></li><li><a data-section-link="型の導入代入して確かめる" href="lesson_01.html#%E5%9E%8B%E3%81%AE%E5%B0%8E%E5%85%A5%E4%BB%A3%E5%85%A5%E3%81%97%E3%81%A6%E7%A2%BA%E3%81%8B%E3%82%81%E3%82%8B">型の導入：「代入して確かめる」</a></li><li><a data-section-link="練習" href="lesson_01.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>小学校の「□にあてはまる数を求める」学習と、文字xを使った等式をつなげ、<strong>未知の数を求める対象として等式を扱う</strong>見方を持つ。</p></li><li><p><strong>方程式</strong>と<strong>解</strong>の意味を理解し、「値を代入して、成り立つかどうか確かめる」ができるようになる。</p></li></ul>
+<h2 id="主概念1の代わりにxと書く">主概念1：□の代わりにxと書く</h2>
+<p>小学校で、こんな問題を解いたことがあるはずだ。</p>
+<blockquote><p>□＋3＝8　　□にあてはまる数はいくつだろう。</p></blockquote>
+<p>答えは5。「8から3を引けばいい」と逆算で求められる。中学では、この□の代わりに文字xを使う。</p>
+<blockquote><p>x＋3＝8</p></blockquote>
+<p>見た目は変わったが、やっていることは同じだ。「まだ分かっていない数」に名前を付けて、等式の中に置いている。このように、<strong>まだ値の分かっていない数（未知数（みちすう））を表す文字をふくみ、その文字がどんな値なら成り立つかという条件を表している等式</strong>を、<strong>方程式</strong>という。</p>
+<blockquote><p>【ことば】<strong>方程式（ほうていしき）</strong> 未知数を表す文字をふくむ等式で、文字の値によって、成り立ったり成り立たなかったりするもの。</p></blockquote>
+<p>「成り立ったり成り立たなかったりする」がポイントだ。x＋3＝8 は、xが5なら成り立つが、xが2なら 2＋3＝5 で、8にはならず成り立たない。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「4＋6＝10」は方程式だろうか</strong></p>
+<p>4＋6＝10 は正しい等式だが、未知数の文字がないので方程式とは呼ばない。また「2x＋1」のような式は、文字はあるが等号がないので等式ですらない。方程式と呼べるのは「文字あり・等号あり・文字の値しだいで成り立つかどうかが決まる」の3拍子がそろったときだ。この区別は、次のレッスンで等式を変形し始めると効いてくる。</p></div>
+<h2 id="主概念2解条件を満たす値">主概念2：解——条件を満たす値</h2>
+<p>方程式 x＋3＝5 を考えよう。この式は「xと3の和は5に等しい」という、xが満たすべき<strong>条件</strong>を表している。では、どんな値がこの条件を満たすのか。xの範囲を整数全体として、…、−3、−2、−1、0、1、2、3、… と順に<strong>代入</strong>して（あてはめて）、左辺の値を調べてみよう。</p>
+<div class="table-wrap" data-scroll-label="xの値・…・−3の表（1）"><table><thead><tr><th scope="col">xの値</th><th scope="col">…</th><th scope="col">−3</th><th scope="col">−2</th><th scope="col">−1</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">…</th></tr></thead><tbody><tr><td>x＋3の値</td><td>…</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>…</td></tr><tr><td>5と等しい？</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td><strong>○</strong></td><td>×</td><td>×</td></tr></tbody></table></div>
+<p>x＋3の値は、xを1増やすと1ずつ増えていく。だから表の「…」の部分（−3より小さい整数や3より大きい整数）では、x＋3の値は5からますます離れていくばかりで、5に等しくなることはない。成り立つのは <strong>x＝2 のときだけ</strong>で、2以外の数のときは成り立たない。この2のように、<strong>方程式を成り立たせる値、つまり方程式が表す条件を満たす値</strong>を、その方程式の<strong>解</strong>（かい）という。そして、解を求めることを、方程式を<strong>解く</strong>という。</p>
+<blockquote><p>【ことば】<strong>解（かい）・方程式を解く</strong> 方程式を成り立たせる文字の値を、その方程式の<strong>解</strong>という。解を求めることを、方程式を<strong>解く</strong>という。</p></blockquote>
+<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 262" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-b368f8b91b-title" aria-describedby="mg-b368f8b91b-desc">
+<title id="mg-b368f8b91b-title">代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</title>
+<desc id="mg-b368f8b91b-desc">代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</desc>
+<!-- L01_fig1_substitute_and_check_table.svg | 代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (コード来歴方式・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="560" height="262" fill="#fff"/>
+<text x="280.0" y="26.0" font-size="13" text-anchor="middle" font-weight="bold">方程式 x＋3＝5 に、xの値を順に代入してみる</text>
+<rect x="28.0" y="44.0" width="100.0" height="28.0" fill="#eee" stroke="#000" stroke-width="1.1"/>
+<text x="78.0" y="61.9" font-size="11" text-anchor="middle">① xの値</text>
+<rect x="128.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="149.0" y="62.5" font-size="13" text-anchor="middle">…</text>
+<rect x="170.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="191.0" y="62.5" font-size="13" text-anchor="middle">-3</text>
+<rect x="212.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="233.0" y="62.5" font-size="13" text-anchor="middle">-2</text>
+<rect x="254.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="275.0" y="62.5" font-size="13" text-anchor="middle">-1</text>
+<rect x="296.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="317.0" y="62.5" font-size="13" text-anchor="middle">0</text>
+<rect x="338.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="359.0" y="62.5" font-size="13" text-anchor="middle">1</text>
+<rect x="380.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="401.0" y="62.5" font-size="13" text-anchor="middle">2</text>
+<rect x="422.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="443.0" y="62.5" font-size="13" text-anchor="middle">3</text>
+<rect x="464.0" y="44.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="485.0" y="62.5" font-size="13" text-anchor="middle">…</text>
+<rect x="28.0" y="72.0" width="100.0" height="28.0" fill="#eee" stroke="#000" stroke-width="1.1"/>
+<text x="78.0" y="89.8" font-size="11" text-anchor="middle">② x＋3の値</text>
+<rect x="128.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="149.0" y="90.5" font-size="13" text-anchor="middle">…</text>
+<rect x="170.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="191.0" y="90.5" font-size="13" text-anchor="middle">0</text>
+<rect x="212.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="233.0" y="90.5" font-size="13" text-anchor="middle">1</text>
+<rect x="254.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="275.0" y="90.5" font-size="13" text-anchor="middle">2</text>
+<rect x="296.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="317.0" y="90.5" font-size="13" text-anchor="middle">3</text>
+<rect x="338.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="359.0" y="90.5" font-size="13" text-anchor="middle">4</text>
+<rect x="380.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="401.0" y="90.5" font-size="13" text-anchor="middle">5</text>
+<rect x="422.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="443.0" y="90.5" font-size="13" text-anchor="middle">6</text>
+<rect x="464.0" y="72.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="485.0" y="90.5" font-size="13" text-anchor="middle">…</text>
+<rect x="28.0" y="100.0" width="100.0" height="28.0" fill="#eee" stroke="#000" stroke-width="1.1"/>
+<text x="78.0" y="117.8" font-size="11" text-anchor="middle">③ 5と等しい？</text>
+<rect x="128.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="149.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="170.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="191.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="212.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="233.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="254.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="275.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="296.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="317.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="338.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="359.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="380.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="401.0" y="118.5" font-size="13" text-anchor="middle" font-weight="bold">○</text>
+<rect x="422.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="443.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="464.0" y="100.0" width="42.0" height="28.0" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="485.0" y="118.5" font-size="13" text-anchor="middle">×</text>
+<rect x="380.0" y="44.0" width="42.0" height="84.0" fill="none" stroke="#000" stroke-width="2.2399999999999998"/>
+<line x1="401.0" y1="162.0" x2="401.0" y2="141.0" stroke="#000" stroke-width="1.4"/>
+<polygon points="401.0,134.0 404.1,141.0 397.9,141.0" fill="#000"/>
+<text x="401.0" y="178.0" font-size="13" text-anchor="middle" font-weight="bold">条件をくぐり抜けた値＝解（x＝2）</text>
+<text x="280.0" y="214.0" font-size="12" text-anchor="middle">「…」の部分でも左辺は1ずつ増え続けるので、5に等しくなることはもうない</text>
+<text x="280.0" y="232.0" font-size="12" text-anchor="middle">①入力→②左辺の値→③判定 の3段で、1つずつ条件に照らしている</text>
+</svg>
+</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-linear-equations/assets/L01_fig1_substitute_and_check_table.svg">図を大きく開く</a></figure>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>一つずつ代入するなんて面倒？　その通り。でも</strong></p>
+<p>この「全部あてはめて探す」やり方は、たしかに能率がよくない。xの範囲を整数に限らなければ、全部試すことはそもそもできない。それでもこの活動を最初に置くのは、<strong>解とは何か</strong>を体で覚えるためだ。この章の後半でどんなに速い解き方を身につけても、「解＝代入すると成り立つ値」という意味は変わらない。速い解き方で出した答えが本当に解かどうかは、いつでも代入すれば確かめられる——この保険は最後まで使い続ける。</p></div>
+<h2 id="型の導入代入して確かめる">型の導入：「代入して確かめる」</h2>
+<p>「x＝4 は方程式 3x−2＝10 の解といえるか」と聞かれたら、解き方を知らなくても答えられる。<strong>代入して、左辺と右辺が同じ値になるか見ればいい</strong>。</p>
+<ul><li><p>左辺: 3×4−2＝10</p></li><li><p>右辺: 10</p></li></ul>
+<p>両辺とも10で等しいから、x＝4 は解である。逆に x＝3 なら左辺は 3×3−2＝7 で右辺の10と等しくないから、解ではない。この「左辺・右辺それぞれに代入して、同じ値になるか確かめる」を、この章では<strong>検算</strong>（けんざん）の型としてずっと使っていこう。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>小学校の□が、中学ではxに変わった。たったそれだけの変化に見えるけれど、□のころは「あてはまる数を探すクイズ」だったものが、文字にした瞬間「条件を表す式」として扱えるようになる。役者は同じでも、舞台が変わったんだね。この章はその新しい舞台の歩き方を学ぶ章だ。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>次のうち、方程式はどれだろう。すべて選ぼう。  ア 3x＋1　　イ 2x＝10　　ウ 4＋6＝10　　エ x−7＝2</p></li><li><p>xに−2, −1, 0, 1, 2 を順に代入して、方程式 2x＋1＝5 の解を見つけよう（表をかいて調べること）。</p></li><li><p>xに−2, −1, 0, 1, 2 を順に代入して、方程式 4−x＝6 の解を見つけよう。</p></li><li><p>x＝3 は方程式 5x−4＝2x＋5 の解といえるだろうか。左辺・右辺それぞれに代入して確かめよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 「解が4になる方程式」を自分で3つ作ってみよう。作ったら、x＝4を代入して本当に成り立つか自分で確かめること。足し算だけ・かけ算だけ・両方混ぜたもの、と作り分けられたら上出来だ。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-linear-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 天びんで考える——等式の性質</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

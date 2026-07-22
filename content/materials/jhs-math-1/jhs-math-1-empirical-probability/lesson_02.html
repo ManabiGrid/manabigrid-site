@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L02 くり返すと見えてくる——相対度数の安定と「確率」">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L02 くり返すと見えてくる——相対度数の安定と「確率」｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L02 くり返すと見えてくる——相対度数の安定と「確率」">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L02 くり返すと見えてくる——相対度数の安定と「確率」｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="8b3aa1386ad62f412b1a739f65e7356c669a66bbbfb619432abc244035bf0f4c" data-source-file="materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-empirical-probability/index.html">中1数学「不確定な事象の起こりやすさ（頻度確率）」</a></li><li aria-current="page">L02 くり返すと見えてくる——相対度数の安定と「確率」</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="8b3aa1386ad62f412b1a739f65e7356c669a66bbbfb619432abc244035bf0f4c" data-source-file="materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学1年 数学 ／ 中1数学「不確定な事象の起こりやすさ（頻度確率）」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l02-くり返すと見えてくる相対度数の安定と確率"><span class="lesson-title-main">L02 くり返すと見えてくる</span><span class="lesson-title-sub">相対度数の安定と「確率」</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>02</strong> / 03</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_02.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="まず予想しよう回数を増やすと相対度数はどうなる" href="lesson_02.html#%E3%81%BE%E3%81%9A%E4%BA%88%E6%83%B3%E3%81%97%E3%82%88%E3%81%86%E5%9B%9E%E6%95%B0%E3%82%92%E5%A2%97%E3%82%84%E3%81%99%E3%81%A8%E7%9B%B8%E5%AF%BE%E5%BA%A6%E6%95%B0%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B">まず予想しよう：回数を増やすと、相対度数はどうなる？</a></li><li><a data-section-link="主概念1多数回のデータが見せてくれるもの" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%A4%9A%E6%95%B0%E5%9B%9E%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8C%E8%A6%8B%E3%81%9B%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE">主概念1：多数回のデータが見せてくれるもの</a></li><li><a data-section-link="主概念2近づく先の値に名前をつける確率" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E8%BF%91%E3%81%A5%E3%81%8F%E5%85%88%E3%81%AE%E5%80%A4%E3%81%AB%E5%90%8D%E5%89%8D%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B%E7%A2%BA%E7%8E%87">主概念2：近づく先の値に名前をつける——「確率」</a></li><li><a data-section-link="主概念3起こりやすさを一つの数で" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E8%B5%B7%E3%81%93%E3%82%8A%E3%82%84%E3%81%99%E3%81%95%E3%82%92%E4%B8%80%E3%81%A4%E3%81%AE%E6%95%B0%E3%81%A7">主概念3：起こりやすさを一つの数で</a></li><li><a data-section-link="練習" href="lesson_02.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_02.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="まず予想しよう回数を増やすと相対度数はどうなる" href="lesson_02.html#%E3%81%BE%E3%81%9A%E4%BA%88%E6%83%B3%E3%81%97%E3%82%88%E3%81%86%E5%9B%9E%E6%95%B0%E3%82%92%E5%A2%97%E3%82%84%E3%81%99%E3%81%A8%E7%9B%B8%E5%AF%BE%E5%BA%A6%E6%95%B0%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B">まず予想しよう：回数を増やすと、相対度数はどうなる？</a></li><li><a data-section-link="主概念1多数回のデータが見せてくれるもの" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%A4%9A%E6%95%B0%E5%9B%9E%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8C%E8%A6%8B%E3%81%9B%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE">主概念1：多数回のデータが見せてくれるもの</a></li><li><a data-section-link="主概念2近づく先の値に名前をつける確率" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E8%BF%91%E3%81%A5%E3%81%8F%E5%85%88%E3%81%AE%E5%80%A4%E3%81%AB%E5%90%8D%E5%89%8D%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B%E7%A2%BA%E7%8E%87">主概念2：近づく先の値に名前をつける——「確率」</a></li><li><a data-section-link="主概念3起こりやすさを一つの数で" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E8%B5%B7%E3%81%93%E3%82%8A%E3%82%84%E3%81%99%E3%81%95%E3%82%92%E4%B8%80%E3%81%A4%E3%81%AE%E6%95%B0%E3%81%A7">主概念3：起こりやすさを一つの数で</a></li><li><a data-section-link="練習" href="lesson_02.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>ふた投げの回数をうんと増やしたとき、上向きの相対度数が<strong>ある一定の値に近づいていく</strong>ことをデータとグラフで確かめる。</p></li><li><p>相対度数 r/n が近づいていく一定の値を、そのことがらの起こる<strong>確率</strong>ということを知る（この単元の中心）。</p></li><li><p>起こりやすさを分数や小数の<strong>一つの数</strong>で表せるようになる。</p></li></ul>
+<h2 id="まず予想しよう回数を増やすと相対度数はどうなる">まず予想しよう：回数を増やすと、相対度数はどうなる？</h2>
+<p>L01では20回投げた。もし200回、2000回と投げ続けたら、上向きの相対度数はどうなっていくだろう。次の4つから、自分の予想を1つ選んでみよう。理由もメモしておこう。</p>
+<ul><li><p><strong>ア</strong> 上向きの回数がどんどん増えていくのだから、相対度数も増え続けて1に近づく。</p></li><li><p><strong>イ</strong> 相対度数は最初から決まった値のあたりで一定で、ほとんど動かない。</p></li><li><p><strong>ウ</strong> 相対度数は大きくなったり小さくなったりし続けて、どんな値にも近づかない。</p></li><li><p><strong>エ</strong> 最初はぶれるが、回数を増やすとしだいにある一定の値に近づいていく。</p></li></ul>
+<p>どれもそれなりに筋が通って聞こえるところが、この問題の面白いところだ。答えは頭の中では決められない。データで確かめよう。</p>
+<h2 id="主概念1多数回のデータが見せてくれるもの">主概念1：多数回のデータが見せてくれるもの</h2>
+<p>次は、同じ種類のふたを合計2000回投げたときの記録の例だ（L01の例と同じく、先生が教材用に用意した記録の例で、L01の20回の記録の続きではなく<strong>別の実験の記録</strong>だ。やることはL01と同じ——回数をうんと増やしただけ。自分の実験をこのまま2000回まで続けたら何が見えるか、その先の景色を見にいくつもりで読んでほしい）。</p>
+<div class="table-wrap" data-scroll-label="投げた回数 n・上向きの回数 r・上向きの相対度数 r/n（四捨五入して小数第2位まで）の表（1）"><table><thead><tr><th scope="col">投げた回数 n</th><th scope="col">上向きの回数 r</th><th scope="col">上向きの相対度数 r/n（四捨五入して小数第2位まで）</th></tr></thead><tbody><tr><td>10</td><td>4</td><td>0.40</td></tr><tr><td>20</td><td>11</td><td>0.55</td></tr><tr><td>50</td><td>31</td><td>0.62</td></tr><tr><td>100</td><td>63</td><td>0.63</td></tr><tr><td>200</td><td>131</td><td>0.66</td></tr><tr><td>500</td><td>327</td><td>0.65</td></tr><tr><td>1000</td><td>652</td><td>0.65</td></tr><tr><td>2000</td><td>1303</td><td>0.65</td></tr></tbody></table></div>
+<p>表の見方を1つだけ注意。<strong>上向きの回数 r は増え続けている</strong>（4→11→…→1303）。でも、<strong>相対度数 r/n は増え続けていない</strong>。r と r/n は別の量だ。アを選んだ人は、この2つの列を指でなぞって、動き方の違いを確かめてみよう。</p>
+<p>もう1つ、細かいけれど大事な種明かし。500回以降の相対度数はどれも0.65と書いてあるが、これは四捨五入して小数第2位までにそろえたためで、割り算の値そのものは 0.654、0.652、0.6515 と、まだわずかに動いている。ある値でぴったり止まるのではなく、<strong>せまい範囲に落ち着いていく</strong>——「近づいていく」とは、そういう意味だ。</p>
+<p>グラフにすると、動きがもっとよく見える。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 322" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-f73d802e5f-title" aria-describedby="mg-f73d802e5f-desc">
+<title id="mg-f73d802e5f-title">投げた回数と上向きの相対度数の折れ線グラフ（相対度数の安定）</title>
+<desc id="mg-f73d802e5f-desc">投げた回数と上向きの相対度数の折れ線グラフ。最初（10回・20回）は値が大きくぶれ、回数が増えると「およそ0.65」の点線に沿って落ち着いていく</desc>
+<!-- L02_fig1_relative_frequency_line.svg | 投げた回数と上向きの相対度数の折れ線グラフ（相対度数の安定） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (コード来歴方式・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="322" fill="#fff"/>
+<line x1="70.0" y1="250.0" x2="454.0" y2="250.0" stroke="#000" stroke-width="1.2"/>
+<line x1="70.0" y1="250.0" x2="70.0" y2="42.0" stroke="#000" stroke-width="1.2"/>
+<line x1="66.0" y1="250.0" x2="70.0" y2="250.0" stroke="#000" stroke-width="0.9"/>
+<text x="62.0" y="254.0" font-size="11" text-anchor="end">0</text>
+<line x1="66.0" y1="150.0" x2="70.0" y2="150.0" stroke="#000" stroke-width="0.9"/>
+<text x="62.0" y="154.0" font-size="11" text-anchor="end">0.5</text>
+<line x1="66.0" y1="50.0" x2="70.0" y2="50.0" stroke="#000" stroke-width="0.9"/>
+<text x="62.0" y="54.0" font-size="11" text-anchor="end">1</text>
+<text x="66.0" y="36.0" font-size="10.5" text-anchor="start">上向きの相対度数</text>
+<line x1="70.0" y1="120.0" x2="450.0" y2="120.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<text x="448.0" y="113.0" font-size="11" text-anchor="end" font-weight="bold">およそ0.65</text>
+<line x1="70.0" y1="250.0" x2="70.0" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="70.0" y="268.0" font-size="9.5" text-anchor="middle">10</text>
+<line x1="124.3" y1="250.0" x2="124.3" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="124.3" y="268.0" font-size="9.5" text-anchor="middle">20</text>
+<line x1="178.6" y1="250.0" x2="178.6" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="178.6" y="268.0" font-size="9.5" text-anchor="middle">50</text>
+<line x1="232.9" y1="250.0" x2="232.9" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="232.9" y="268.0" font-size="9.5" text-anchor="middle">100</text>
+<line x1="287.1" y1="250.0" x2="287.1" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="287.1" y="268.0" font-size="9.5" text-anchor="middle">200</text>
+<line x1="341.4" y1="250.0" x2="341.4" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="341.4" y="268.0" font-size="9.5" text-anchor="middle">500</text>
+<line x1="395.7" y1="250.0" x2="395.7" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="395.7" y="268.0" font-size="9.5" text-anchor="middle">1000</text>
+<line x1="450.0" y1="250.0" x2="450.0" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="450.0" y="268.0" font-size="9.5" text-anchor="middle">2000</text>
+<text x="260.0" y="284.0" font-size="9.5" text-anchor="middle">投げた回数 n（8つの回数を等間隔に並べてある——間隔は回数に比例していない）</text>
+<polyline points="70.0,170.0 124.3,140.0 178.6,126.0 232.9,124.0 287.1,119.0 341.4,119.2 395.7,119.6 450.0,119.7" fill="none" stroke="#000" stroke-width="1.6"/>
+<circle cx="70.0" cy="170.0" r="2.8" fill="#000"/>
+<circle cx="124.3" cy="140.0" r="2.8" fill="#000"/>
+<circle cx="178.6" cy="126.0" r="2.8" fill="#000"/>
+<circle cx="232.9" cy="124.0" r="2.8" fill="#000"/>
+<circle cx="287.1" cy="119.0" r="2.8" fill="#000"/>
+<circle cx="341.4" cy="119.2" r="2.8" fill="#000"/>
+<circle cx="395.7" cy="119.6" r="2.8" fill="#000"/>
+<circle cx="450.0" cy="119.7" r="2.8" fill="#000"/>
+<text x="260.0" y="26.0" font-size="13" text-anchor="middle" font-weight="bold">投げた回数と上向きの相対度数</text>
+<text x="260.0" y="308.0" font-size="10.5" text-anchor="middle">同じ種類のふたを2000回投げた記録の例（教材用）</text>
+</svg>
+</div><figcaption>投げた回数と上向きの相対度数の折れ線グラフ。最初（10回・20回）は値が大きくぶれ、回数が増えると「およそ0.65」の点線に沿って落ち着いていく</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-empirical-probability/assets/L02_fig1_relative_frequency_line.svg">図を大きく開く</a></figure>
+<p>最初の方（10回・20回）では値が大きく動いている。L01で体験したとおりだ。ところが回数を増やしていくと、ぶれはしだいに小さくなり、<strong>およそ0.65というある一定の値に近づいていく</strong>。近づき方は、なめらかな一直線ではない。200回時点の0.66のように、いったん行き過ぎてから戻ることもある。それでも大きな流れとして見れば、値は0.65のあたりに落ち着いていく。正解は<strong>エ</strong>だった。</p>
+<p>ここで、L01の記録も思い出そう。○が続いたり、×がしばらく出なかったりしても、うんと長い目で見れば割合はならされていく。<strong>途中のかたまりやぶれは消えないが、全体の割合は落ち着いていく</strong>——これが、多数回くり返したときにだけ見えてくる景色だ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>イ・ウを選んだ人へ（よくある考え方とその修正)</strong></p>
+<p>イ「最初から一定」と考えた人は、きっと最後の安定した姿を先取りしてイメージしている。でも表の最初の5行を見てほしい。0.40から0.66まで、実際にはかなり動いている。少ない回数でのぶれは、実験の失敗ではなく、不確定なことがらの正直な姿だ。 ウ「近づかない」と考えた人は、「次の1回が予言できない以上、割合も定まらないはず」と筋を通したのだと思う。予言できないのはそのとおり。それでも割合だけは落ち着いていく。この「1回は読めないのに、全体はならされる」という二重性こそ、この単元でいちばん不思議で、いちばん大事なところだ。</p></div>
+<h2 id="主概念2近づく先の値に名前をつける確率">主概念2：近づく先の値に名前をつける——「確率」</h2>
+<p>この「近づいていく一定の値」に、名前をつけよう。</p>
+<blockquote><p>【ことば】<strong>確率（かくりつ）</strong> あることがらについて、実験や観察をくり返す回数 n をどんどん大きくしていくとき、そのことがらが起こる相対度数 r/n が<strong>近づいていく一定の値</strong>を、そのことがらの起こる<strong>確率</strong>という。</p></blockquote>
+<p>2000回の記録の例のふたなら、「上向きが出る確率はおよそ0.65」と言える。3つ、だいじな注意がある。</p>
+<ol start="1"><li><p><strong>確率は「近づく先」の値</strong>であって、途中のどれか1つの相対度数そのものではない。10回時点の0.40も、2000回時点の0.65も、どちらも相対度数。そのぶれの落ち着く先として考えるのが確率だ。</p></li><li><p>だから、<strong>少ない回数の相対度数だけを見て「確率はこれだ」と決めることはできない</strong>。10回時点の0.40を見て「上向きの確率は0.4」と言ってしまうのは、着地する前に着地点を宣言するようなものだ。</p></li><li><p>この考え方が成り立つのは、<strong>同じことがらを、条件を変えずに何度もくり返せる</strong>ときだ。ふた投げなら、同じふたを同じように投げ続ける、ということ。条件が途中で変わってしまうと、相対度数の近づく先も一つに定まらなくなる。</p></li></ol>
+<p>表記の橋渡しをひとつ。この本では相対度数を r/n と1行で書くが、ノートでは分子 r を上、分母 n を下に置く分数の形で書けばよい。「n分のr」、つまり（上向きの回数）÷（投げた回数）のことだ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ「およそ0.65」としか言えないのか</strong></p>
+<p>実験から手に入るのは、あくまで有限の回数での相対度数だ。2000回での0.65も「近づく先」を高い精度で教えてくれる目安であって、確率の値そのものを言い当てた保証はない。だから実験にもとづく確率は「およそ」を付けて言うのが誠実な言い方になる。逆に言えば、大きな流れとしては、回数を増やしていくほど目安としてのたよりがいは増していく——ただし、1回増やすごとに必ず前よりよい目安になる、という約束ではない。「もっと回数を増やしたら、この値はどうなるだろう」と問い続ける姿勢そのものが、この単元で身につけたい態度だ。</p></div>
+<h2 id="主概念3起こりやすさを一つの数で">主概念3：起こりやすさを一つの数で</h2>
+<p>「上向きになりやすい気がする」が、いまや「上向きが出る確率はおよそ0.65」と言える。10回中6回なら 6/10 ＝ 3/5 ＝ 0.6 のように、<strong>割合の知識を使って一つの数に圧縮する</strong>。これで、感覚だったものが、人に伝えられて比べられる数になった。</p>
+<p>もう1つ、L01の宿題を回収しよう。「上向きか、それ以外か」は2通りだ。もし「2通りだから、どちらも半分ずつの起こりやすさ」と考えてよいなら、確率は0.5になるはず。でも2000回の記録が示した答えは、およそ0.65だった。<strong>通り数が同じでも、起こりやすさが同じとは限らない</strong>。形のかたよったものの起こりやすさは、くり返し実験してみて初めて分かる。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>ある教科書には「降水確率60％なら、かさが必要？」というコラムが載っている。天気予報のあの数字も、確率という名前がついた数だ。ニュースで見かけたら、「この数はどうやって出しているんだろう」と一度うたがってみるのも面白い。くわしくは、この単元を学び終えたあとのお楽しみにしよう。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>画びょう（がびょう）を投げると、針が上を向く形（「上向き」と呼ぶ）と、針が横をさす形がある。次は、画びょうを1000回投げたときの記録の例だ（これも教材用に用意した例だ）。空らん（あ）〜（う）の相対度数を、四捨五入して小数第2位まで求めよう。</p>
+<div class="table-wrap" data-scroll-label="投げた回数 n・上向きの回数 r・上向きの相対度数 r/nの表（2）"><table><thead><tr><th scope="col">投げた回数 n</th><th scope="col">上向きの回数 r</th><th scope="col">上向きの相対度数 r/n</th></tr></thead><tbody><tr><td>10</td><td>8</td><td>0.80</td></tr><tr><td>50</td><td>30</td><td>（あ）</td></tr><tr><td>100</td><td>58</td><td>0.58</td></tr><tr><td>500</td><td>284</td><td>（い）</td></tr><tr><td>1000</td><td>572</td><td>（う）</td></tr></tbody></table></div></li><li><p>問1の実験で、この画びょうの上向きが出る確率として最もふさわしい値を、次から1つ選ぼう。  <strong>ア</strong> 0.80　<strong>イ</strong> 0.57　<strong>ウ</strong> 0.50　<strong>エ</strong> 1</p></li><li><p>問1の表について述べた次の文が正しければ○、正しくなければ×を付け、×の場合はどこが違うかを言おう。  (1) 投げる回数を増やすと上向きの回数は増え続けるから、上向きの相対度数も増え続けて1に近づく。  (2) 上向きの相対度数は、最初からずっとおよそ0.57で一定である。  (3) 投げる回数を増やしていくと、上向きの相対度数はある一定の値に近づいていく。</p></li><li><p>10回投げた時点の記録だけを見た人が、「この画びょうの上向きの確率はおよそ0.8だ」と判断した。この判断のあやういところを、表の続きを根拠にして説明してみよう。</p></li><li><p>あることがらについて実験をくり返したら、40回中26回起こった。この時点での相対度数を、分数と小数の両方で表してみよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> ふたの2000回の表で、「上向きの回数」と「上向き以外の回数」の<strong>差</strong>を、n＝100 と n＝2000 について計算してみよう。回数の差は広がっているのに、相対度数は0.65あたりで安定している。「回数の差」と「割合」が別々の動きをすることを、自分の計算で確かめてみよう。なお、コンピュータの乱数（らんすう）機能を使うと、こうした多数回の実験を画面上で手早く再現できる。「乱数 シミュレーション 確率」で調べてみると入り口が見つかる（この本の実験は、紙と実物だけで完結するようにできている）。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-03.md</p><a class="answer-link" href="answer_key_L01-03.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 予言できないことがら——ふたはどっち向きに落ちる？</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-empirical-probability/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 確率で決める——貸し出し用の靴は何足ずつ？</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

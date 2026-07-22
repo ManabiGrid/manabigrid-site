@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L07 くじ引きは何番目でも公平か">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L07 くじ引きは何番目でも公平か｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L07 くじ引きは何番目でも公平か">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/lesson_07.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L07 くじ引きは何番目でも公平か｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/lesson_07.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="f0aba35c795fc504546e32fc752374b5267d6c001f39ca2c2605c3545767308c" data-source-file="materials/jhs-math-2/jhs-math-2-probability/lesson_07.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-probability/index.html">中2数学「確率」</a></li><li aria-current="page">L07 くじ引きは何番目でも公平か</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="f0aba35c795fc504546e32fc752374b5267d6c001f39ca2c2605c3545767308c" data-source-file="materials/jhs-math-2/jhs-math-2-probability/lesson_07.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「確率」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l07-くじ引きは何番目でも公平か"><span class="lesson-title-main">L07 くじ引きは何番目でも公平か</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-probability/lesson_07.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-probability/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>07</strong> / 09</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_07.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1先に引くのと後に引くのと" href="lesson_07.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%85%88%E3%81%AB%E5%BC%95%E3%81%8F%E3%81%AE%E3%81%A8%E5%BE%8C%E3%81%AB%E5%BC%95%E3%81%8F%E3%81%AE%E3%81%A8">主概念1：先に引くのと、後に引くのと</a></li><li><a data-section-link="主概念2樹形図でかき切るくじに名前を付けて" href="lesson_07.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%A8%B9%E5%BD%A2%E5%9B%B3%E3%81%A7%E3%81%8B%E3%81%8D%E5%88%87%E3%82%8B%E3%81%8F%E3%81%98%E3%81%AB%E5%90%8D%E5%89%8D%E3%82%92%E4%BB%98%E3%81%91%E3%81%A6">主概念2：樹形図でかき切る——くじに名前を付けて</a></li><li><a data-section-link="主概念3当たり2本ならどうか設定を変えて確かめる" href="lesson_07.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BD%93%E3%81%9F%E3%82%8A2%E6%9C%AC%E3%81%AA%E3%82%89%E3%81%A9%E3%81%86%E3%81%8B%E8%A8%AD%E5%AE%9A%E3%82%92%E5%A4%89%E3%81%88%E3%81%A6%E7%A2%BA%E3%81%8B%E3%82%81%E3%82%8B">主概念3：当たり2本ならどうか——設定を変えて確かめる</a></li><li><a data-section-link="練習" href="lesson_07.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_07.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1先に引くのと後に引くのと" href="lesson_07.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%85%88%E3%81%AB%E5%BC%95%E3%81%8F%E3%81%AE%E3%81%A8%E5%BE%8C%E3%81%AB%E5%BC%95%E3%81%8F%E3%81%AE%E3%81%A8">主概念1：先に引くのと、後に引くのと</a></li><li><a data-section-link="主概念2樹形図でかき切るくじに名前を付けて" href="lesson_07.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%A8%B9%E5%BD%A2%E5%9B%B3%E3%81%A7%E3%81%8B%E3%81%8D%E5%88%87%E3%82%8B%E3%81%8F%E3%81%98%E3%81%AB%E5%90%8D%E5%89%8D%E3%82%92%E4%BB%98%E3%81%91%E3%81%A6">主概念2：樹形図でかき切る——くじに名前を付けて</a></li><li><a data-section-link="主概念3当たり2本ならどうか設定を変えて確かめる" href="lesson_07.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BD%93%E3%81%9F%E3%82%8A2%E6%9C%AC%E3%81%AA%E3%82%89%E3%81%A9%E3%81%86%E3%81%8B%E8%A8%AD%E5%AE%9A%E3%82%92%E5%A4%89%E3%81%88%E3%81%A6%E7%A2%BA%E3%81%8B%E3%82%81%E3%82%8B">主概念3：当たり2本ならどうか——設定を変えて確かめる</a></li><li><a data-section-link="練習" href="lesson_07.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>引いたくじを<strong>戻さない</strong>くじ引きを樹形図で数え上げ、先に引く人と後に引く人の当たる確率を求められるようになる。</p></li><li><p>「<strong>確率が等しいから公平である</strong>」という、確率を根拠にした説明を書けるようになる。</p></li></ul>
+<h2 id="主概念1先に引くのと後に引くのと">主概念1：先に引くのと、後に引くのと</h2>
+<p>3本のうち当たりが1本入っているくじがある。Aさんが先に1本引き、引いたくじは<strong>戻さずに</strong>、続いてBさんが1本引く。<strong>先に引くAさんと後に引くBさんでは、どちらが当たりやすいだろうか</strong>。</p>
+<p>読み進める前に、自分の予想と理由を書いておこう。「先に引く方が、当たりくじがまだ残っているから有利」「後に引く方は、前の人の結果次第だから不利」——いろいろな直観があるはずだ。この章の作法どおり、<strong>予想→数え上げ→比較</strong>で決着をつける。</p>
+<h2 id="主概念2樹形図でかき切るくじに名前を付けて">主概念2：樹形図でかき切る——くじに名前を付けて</h2>
+<p>まず名前を付ける（L03のルール）。当たりくじを「当」、2本のはずれくじを「は1」「は2」と<strong>区別</strong>する。Aの引くくじ→Bの引くくじの順に樹形図をかく。Aが引いたくじは戻さないから、<strong>Bの枝にはAが引いたくじが現れない</strong>——枝の本数が途中で変わる、樹形図の出番だ（L05主概念3）。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-b0793a14d0-title" aria-describedby="mg-b0793a14d0-desc">
+<title id="mg-b0793a14d0-title">戻さないくじ引きの樹形図（6通り・A当たり2通り/B当たり2通り）</title>
+<desc id="mg-b0793a14d0-desc">くじ引きの樹形図。Aの引くくじは当・は1・は2の3枝で、Bの枝にはAが引いたくじが現れず2本ずつ。結果は全部で6通りで、Aが当たる（当,は1）（当,は2）とBが当たる（は1,当）（は2,当）に★印がある</desc>
+<!-- L07_fig1_lottery_no_return_tree.svg | 戻さないくじ引きの樹形図（6通り・A当たり2通り/B当たり2通り） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="300" fill="#fff"/>
+<text x="110.0" y="50.0" font-size="12" text-anchor="middle" font-weight="bold">A</text>
+<text x="210.0" y="50.0" font-size="12" text-anchor="middle" font-weight="bold">B</text>
+<text x="274.0" y="50.0" font-size="12" text-anchor="middle" font-weight="bold">結果</text>
+<text x="110.0" y="97.0" font-size="14" text-anchor="middle">当</text>
+<text x="210.0" y="81.0" font-size="14" text-anchor="middle">は1</text>
+<line x1="128.0" y1="92.0" x2="192.0" y2="76.0" stroke="#000" stroke-width="1.1"/>
+<text x="210.0" y="113.0" font-size="14" text-anchor="middle">は2</text>
+<line x1="128.0" y1="92.0" x2="192.0" y2="108.0" stroke="#000" stroke-width="1.1"/>
+<text x="110.0" y="161.0" font-size="14" text-anchor="middle">は1</text>
+<text x="210.0" y="145.0" font-size="14" text-anchor="middle">当</text>
+<line x1="128.0" y1="156.0" x2="192.0" y2="140.0" stroke="#000" stroke-width="1.1"/>
+<text x="210.0" y="177.0" font-size="14" text-anchor="middle">は2</text>
+<line x1="128.0" y1="156.0" x2="192.0" y2="172.0" stroke="#000" stroke-width="1.1"/>
+<text x="110.0" y="225.0" font-size="14" text-anchor="middle">は2</text>
+<text x="210.0" y="209.0" font-size="14" text-anchor="middle">当</text>
+<line x1="128.0" y1="220.0" x2="192.0" y2="204.0" stroke="#000" stroke-width="1.1"/>
+<text x="210.0" y="241.0" font-size="14" text-anchor="middle">は1</text>
+<line x1="128.0" y1="220.0" x2="192.0" y2="236.0" stroke="#000" stroke-width="1.1"/>
+<text x="274.0" y="81.0" font-size="12" text-anchor="start">（当, は1）Aが当たり</text>
+<polygon points="260.0,70.0 261.5,74.0 265.7,74.1 262.4,76.8 263.5,80.9 260.0,78.5 256.5,80.9 257.6,76.8 254.3,74.1 258.5,74.0" fill="#000" stroke="none"/>
+<text x="274.0" y="113.0" font-size="12" text-anchor="start">（当, は2）Aが当たり</text>
+<polygon points="260.0,102.0 261.5,106.0 265.7,106.1 262.4,108.8 263.5,112.9 260.0,110.5 256.5,112.9 257.6,108.8 254.3,106.1 258.5,106.0" fill="#000" stroke="none"/>
+<text x="274.0" y="145.0" font-size="12" text-anchor="start">（は1, 当）Bが当たり</text>
+<polygon points="260.0,134.0 261.5,138.0 265.7,138.1 262.4,140.8 263.5,144.9 260.0,142.5 256.5,144.9 257.6,140.8 254.3,138.1 258.5,138.0" fill="#000" stroke="none"/>
+<text x="274.0" y="177.0" font-size="12" text-anchor="start">（は1, は2）</text>
+<text x="274.0" y="209.0" font-size="12" text-anchor="start">（は2, 当）Bが当たり</text>
+<polygon points="260.0,198.0 261.5,202.0 265.7,202.1 262.4,204.8 263.5,208.9 260.0,206.5 256.5,208.9 257.6,204.8 254.3,202.1 258.5,202.0" fill="#000" stroke="none"/>
+<text x="274.0" y="241.0" font-size="12" text-anchor="start">（は2, は1）</text>
+<text x="240.0" y="34.0" font-size="14" text-anchor="middle" font-weight="bold">くじ引き（3本中当たり1本・戻さない）——全部で6通り</text>
+<text x="240.0" y="280.0" font-size="12" text-anchor="middle">（★＝当たりが出る場合。Aの当たりもBの当たりも2通りずつ）</text>
+</svg>
+</div><figcaption>くじ引きの樹形図。Aの引くくじは当・は1・は2の3枝で、Bの枝にはAが引いたくじが現れず2本ずつ。結果は全部で6通りで、Aが当たる（当,は1）（当,は2）とBが当たる（は1,当）（は2,当）に★印がある</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-probability/assets/L07_fig1_lottery_no_return_tree.svg">図を大きく開く</a></figure>
+<p>全部で<strong>6通り</strong>。3本のくじはよく混ぜてあり、どのくじの引かれ方も同様に確からしいから、6通りはどれも同じ程度に起こる。</p>
+<ul><li><p>Aさんが当たるのは（当,は1）（当,は2）の<strong>2通り</strong> → 確率 2/6＝<strong>1/3</strong></p></li><li><p>Bさんが当たるのは（は1,当）（は2,当）の<strong>2通り</strong> → 確率 2/6＝<strong>1/3</strong></p></li></ul>
+<p><strong>同じ</strong>だった。そこで、結論をこう書く。</p>
+<blockquote><p>Aさんの当たる確率は1/3、Bさんの当たる確率も1/3で<strong>等しい</strong>。したがって、<strong>このくじ引きは先に引いても後に引いても公平である</strong>。</p></blockquote>
+<p>これが「<strong>確率が◯だから、…である</strong>」という説明の形だ。確率を求めて終わりにせず、求めた確率を<strong>根拠</strong>にして、聞かれたこと（公平かどうか）に<strong>結論</strong>で答え切る。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「Bは前の人次第なのに、なぜ確率が決まるのか」</strong></p>
+<p>「Bの当たりやすさはAの結果で変わるのでは？」という違和感は自然だ。たしかにAが当たりを引いた<strong>後なら</strong>Bは絶対に当たらない。しかしいま求めているのは、くじ引きが始まる<strong>前</strong>に見たBの当たりやすさ——樹形図の6通りには「Aが当たりを引いてしまう未来」も「Aがはずれる未来」も全部ふくまれていて、そのうえでBの当たりは2通りある。<strong>どの時点から見た確率か</strong>を意識すると、この違和感は解消する（引いた後の話まで数に入れたいなら、それはずっと先の学習になる）。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>席替えのくじ、掃除当番のくじ、賞品の抽選——くじ引きが「もめない道具」になれるのは、何番目に引いても当たる確率が同じだと<strong>数え上げで示せる</strong>から。「オレ後だからズルい！」に「いや、確率は同じ」と答えられる。だれかの気分や声の大きさではなく、全部の場合をかき切った数で決める——くじ引きは、教室の中のささやかな数学的公正なんだ。</p></div>
+<h2 id="主概念3当たり2本ならどうか設定を変えて確かめる">主概念3：当たり2本ならどうか——設定を変えて確かめる</h2>
+<p>公平は偶然だったのか？ 設定を変えて確かめよう。<strong>4本のうち当たりが2本</strong>のくじを、A→Bの順に（戻さずに）引く。当たりを当1・当2、はずれをは1・は2と名前を付けて樹形図をかくと、Aの枝4本×Bの枝3本＝<strong>12通り</strong>。数えると（answer_keyに全12通りを載せた）、</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-69b98c1b1a-title" aria-describedby="mg-69b98c1b1a-desc">
+<title id="mg-69b98c1b1a-title">4本中当たり2本のくじの二次元表（12通り・×は同じくじ）</title>
+<desc id="mg-69b98c1b1a-desc">縦にAの引くくじ、横にBの引くくじをとった4×4の表。同じくじの対角4マスは×で引けず、残り12マスに当たる人（A・B・A・B・どちらでもない）が記され、Aの当たりが6マス・Bの当たりが6マスある</desc>
+<!-- L07_fig2_lottery_two_winners_table.svg | 4本中当たり2本のくじの二次元表（12通り・×は同じくじ） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="400" fill="#fff"/>
+<text x="94.0" y="60.0" font-size="12" text-anchor="middle" font-weight="bold">A＼B</text>
+<text x="162.0" y="86.0" font-size="12" text-anchor="middle" font-weight="bold">当1</text>
+<text x="226.0" y="86.0" font-size="12" text-anchor="middle" font-weight="bold">当2</text>
+<text x="290.0" y="86.0" font-size="12" text-anchor="middle" font-weight="bold">は1</text>
+<text x="354.0" y="86.0" font-size="12" text-anchor="middle" font-weight="bold">は2</text>
+<text x="108.0" y="136.0" font-size="12" text-anchor="middle" font-weight="bold">当1</text>
+<text x="108.0" y="200.0" font-size="12" text-anchor="middle" font-weight="bold">当2</text>
+<text x="108.0" y="264.0" font-size="12" text-anchor="middle" font-weight="bold">は1</text>
+<text x="108.0" y="328.0" font-size="12" text-anchor="middle" font-weight="bold">は2</text>
+<rect x="130.0" y="100.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<line x1="153.0" y1="123.0" x2="171.0" y2="141.0" stroke="#888" stroke-width="1.4"/>
+<line x1="153.0" y1="141.0" x2="171.0" y2="123.0" stroke="#888" stroke-width="1.4"/>
+<rect x="194.0" y="100.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="226.0" y="137.0" font-size="12" text-anchor="middle" font-weight="bold">A・B</text>
+<rect x="258.0" y="100.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="290.0" y="137.0" font-size="12" text-anchor="middle" font-weight="bold">A</text>
+<rect x="322.0" y="100.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="354.0" y="137.0" font-size="12" text-anchor="middle" font-weight="bold">A</text>
+<rect x="130.0" y="164.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="162.0" y="201.0" font-size="12" text-anchor="middle" font-weight="bold">A・B</text>
+<rect x="194.0" y="164.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<line x1="217.0" y1="187.0" x2="235.0" y2="205.0" stroke="#888" stroke-width="1.4"/>
+<line x1="217.0" y1="205.0" x2="235.0" y2="187.0" stroke="#888" stroke-width="1.4"/>
+<rect x="258.0" y="164.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="290.0" y="201.0" font-size="12" text-anchor="middle" font-weight="bold">A</text>
+<rect x="322.0" y="164.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="354.0" y="201.0" font-size="12" text-anchor="middle" font-weight="bold">A</text>
+<rect x="130.0" y="228.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="162.0" y="265.0" font-size="12" text-anchor="middle" font-weight="bold">B</text>
+<rect x="194.0" y="228.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="226.0" y="265.0" font-size="12" text-anchor="middle" font-weight="bold">B</text>
+<rect x="258.0" y="228.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<line x1="281.0" y1="251.0" x2="299.0" y2="269.0" stroke="#888" stroke-width="1.4"/>
+<line x1="281.0" y1="269.0" x2="299.0" y2="251.0" stroke="#888" stroke-width="1.4"/>
+<rect x="322.0" y="228.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="354.0" y="265.0" font-size="12" text-anchor="middle">—</text>
+<rect x="130.0" y="292.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="162.0" y="329.0" font-size="12" text-anchor="middle" font-weight="bold">B</text>
+<rect x="194.0" y="292.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="226.0" y="329.0" font-size="12" text-anchor="middle" font-weight="bold">B</text>
+<rect x="258.0" y="292.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="290.0" y="329.0" font-size="12" text-anchor="middle">—</text>
+<rect x="322.0" y="292.0" width="64.0" height="64.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<line x1="345.0" y1="315.0" x2="363.0" y2="333.0" stroke="#888" stroke-width="1.4"/>
+<line x1="345.0" y1="333.0" x2="363.0" y2="315.0" stroke="#888" stroke-width="1.4"/>
+<text x="240.0" y="34.0" font-size="14" text-anchor="middle" font-weight="bold">4本中当たり2本のくじ（戻さない）——12通り</text>
+<text x="240.0" y="384.0" font-size="10.5" text-anchor="middle">（×＝同じくじは2回引けない。マスの記号＝当たる人。Aの当たり6マス・Bの当たり6マス）</text>
+</svg>
+</div><figcaption>縦にAの引くくじ、横にBの引くくじをとった4×4の表。同じくじの対角4マスは×で引けず、残り12マスに当たる人（A・B・A・B・どちらでもない）が記され、Aの当たりが6マス・Bの当たりが6マスある</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-probability/assets/L07_fig2_lottery_two_winners_table.svg">図を大きく開く</a></figure>
+<ul><li><p>Aさんが当たり: 6通り → 6/12＝<strong>1/2</strong></p></li><li><p>Bさんが当たり: 6通り → 6/12＝<strong>1/2</strong></p></li></ul>
+<p>やはり等しい。当たりの本数を変えても、<strong>何番目に引くかで有利・不利は生まれない</strong>——くじ引きの公平性は、設定を取り替えても成り立つ頑丈な事実らしい、と確かめられた。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>説明の答案は3行で書く</strong></p>
+<p>公平かどうかを問う記述問題の答案は、次の3行型で書けばまず崩れない。 ①（数え上げ）「起こり得る場合は全部で◯通りで、どれも同様に確からしい」 ②（根拠）「Aの当たる確率は◯、Bの当たる確率は◯」 ③（結論）「確率が等しい（等しくない）から、公平である（〜の方が有利である）」 ①を省くと「なぜその確率と言えるのか」が宙に浮く。<strong>樹形図・表そのものが説明の一部</strong>——答案に図ごと書く。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>主概念2のくじ（3本中当たり1本）で、「AもBも当たらない」確率を樹形図から求めよう。</p></li><li><p>主概念2のくじ引きを、「Aが引いたくじを<strong>戻してから</strong>Bが引く」ルールに変える。このときBさんが当たる確率を求め、戻さない場合と比べよう。</p></li><li><p>2本のうち当たりが1本のくじを、Aさん→Bさんの順に（戻さずに）引く。AさんとBさんの当たる確率をそれぞれ求め、公平かどうかを主概念3のguideの3行型で説明しよう。</p></li><li><p>「くじは残り物に福があるから、最後に引く人が有利だ」という主張に対して、主概念2の樹形図を根拠に反論を書こう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 3本中当たり1本のくじをA→B→Cの3人が順に（戻さずに）引くとき、Cさん（最後）の当たる確率を樹形図で求めよう。（全部で6通り。A・Bと比べてどうなるだろうか。）</p></div>
+<hr>
+<p>対応解答: answer_key_L06-09.md</p><a class="answer-link" href="answer_key_L06-09.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-probability/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_06.html"><span>前のレッスン</span>L06 「〜でない」確率——1から引くという近道</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-probability/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_08.html"><span>次のレッスン</span>L08 「確率が◯だから」——判断を説明する型</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

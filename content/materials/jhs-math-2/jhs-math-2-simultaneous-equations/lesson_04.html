@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L04 代入法と解法の選択">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L04 代入法と解法の選択｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L04 代入法と解法の選択">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L04 代入法と解法の選択｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="b37e34555fe9796d30240452e46868b84a6df7916ca6785dc069a340b410ae66" data-source-file="materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-simultaneous-equations/index.html">中2数学「連立方程式」</a></li><li aria-current="page">L04 代入法と解法の選択</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="b37e34555fe9796d30240452e46868b84a6df7916ca6785dc069a340b410ae66" data-source-file="materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「連立方程式」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l04-代入法と解法の選択"><span class="lesson-title-main">L04 代入法と解法の選択</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>04</strong> / 08</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1代入法yの正体が分かっているなら置きかえてしまう" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E4%BB%A3%E5%85%A5%E6%B3%95y%E3%81%AE%E6%AD%A3%E4%BD%93%E3%81%8C%E5%88%86%E3%81%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%AA%E3%82%89%E7%BD%AE%E3%81%8D%E3%81%8B%E3%81%88%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86">主概念1：代入法——「yの正体」が分かっているなら、置きかえてしまう</a></li><li><a data-section-link="主概念2y形どうしなら右辺を直結できる" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52y%E5%BD%A2%E3%81%A9%E3%81%86%E3%81%97%E3%81%AA%E3%82%89%E5%8F%B3%E8%BE%BA%E3%82%92%E7%9B%B4%E7%B5%90%E3%81%A7%E3%81%8D%E3%82%8B">主概念2：y＝形どうしなら、右辺を直結できる</a></li><li><a data-section-link="主概念3式の形で解法を選ぶ" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BC%8F%E3%81%AE%E5%BD%A2%E3%81%A7%E8%A7%A3%E6%B3%95%E3%82%92%E9%81%B8%E3%81%B6">主概念3：式の形で解法を選ぶ</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1代入法yの正体が分かっているなら置きかえてしまう" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E4%BB%A3%E5%85%A5%E6%B3%95y%E3%81%AE%E6%AD%A3%E4%BD%93%E3%81%8C%E5%88%86%E3%81%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%AA%E3%82%89%E7%BD%AE%E3%81%8D%E3%81%8B%E3%81%88%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86">主概念1：代入法——「yの正体」が分かっているなら、置きかえてしまう</a></li><li><a data-section-link="主概念2y形どうしなら右辺を直結できる" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52y%E5%BD%A2%E3%81%A9%E3%81%86%E3%81%97%E3%81%AA%E3%82%89%E5%8F%B3%E8%BE%BA%E3%82%92%E7%9B%B4%E7%B5%90%E3%81%A7%E3%81%8D%E3%82%8B">主概念2：y＝形どうしなら、右辺を直結できる</a></li><li><a data-section-link="主概念3式の形で解法を選ぶ" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%BC%8F%E3%81%AE%E5%BD%A2%E3%81%A7%E8%A7%A3%E6%B3%95%E3%82%92%E9%81%B8%E3%81%B6">主概念3：式の形で解法を選ぶ</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p><strong>代入法</strong>（一方の式を他方に代入して文字を消去する）で連立方程式を解けるようになる。</p></li><li><p>式の形を見て<strong>加減法と代入法を選べる</strong>ようになる（どちらでも解ける・答えは同じ、と知っていることを含めて）。</p></li></ul>
+<h2 id="主概念1代入法yの正体が分かっているなら置きかえてしまう">主概念1：代入法——「yの正体」が分かっているなら、置きかえてしまう</h2>
+<blockquote><p>① y＝x＋3 ② x＋2y＝12</p></blockquote>
+<p>①をよく見ると、「<strong>yはx＋3と同じもの</strong>」と教えてくれている。同じものなら、②のyを<strong>まるごとx＋3に置きかえて</strong>よいはずだ。</p>
+<p>②のyに①を代入:　x＋2(<strong>x＋3</strong>)＝12</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 240" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-bffa804bcb-title" aria-describedby="mg-bffa804bcb-desc">
+<title id="mg-bffa804bcb-title">代入法の置きかえ図（②のyをx＋3にまるごと置きかえ）</title>
+<desc id="mg-bffa804bcb-desc">代入法の置きかえ図（②のyをx＋3にまるごと置きかえ）</desc>
+<!-- L04_fig1_substitution_replace_with_parentheses.svg | 代入法の置きかえ図（②のyをx＋3にまるごと置きかえ） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="450" height="240" fill="#fff"/>
+<text x="60.0" y="52.0" font-size="13" text-anchor="start">①</text>
+<text x="96.0" y="52.0" font-size="17" text-anchor="start" font-weight="bold">y＝x＋3</text>
+<polyline points="165.0,47.0 164.9,48.4 164.6,49.8 164.1,51.1 163.5,52.5 162.7,53.8 161.7,55.0 160.5,56.2 159.2,57.3 157.7,58.3 156.1,59.3 154.3,60.1 152.5,60.9 150.6,61.5 148.6,62.0 146.5,62.5 144.3,62.8 142.2,62.9 140.0,63.0 137.8,62.9 135.7,62.8 133.5,62.5 131.4,62.0 129.4,61.5 127.5,60.9 125.7,60.1 123.9,59.3 122.3,58.3 120.8,57.3 119.5,56.2 118.3,55.0 117.3,53.8 116.5,52.5 115.9,51.1 115.4,49.8 115.1,48.4 115.0,47.0 115.1,45.6 115.4,44.2 115.9,42.9 116.5,41.5 117.3,40.2 118.3,39.0 119.5,37.8 120.8,36.7 122.3,35.7 123.9,34.7 125.7,33.9 127.5,33.1 129.4,32.5 131.4,32.0 133.5,31.5 135.7,31.2 137.8,31.1 140.0,31.0 142.2,31.1 144.3,31.2 146.5,31.5 148.6,32.0 150.6,32.5 152.5,33.1 154.3,33.9 156.1,34.7 157.7,35.7 159.2,36.7 160.5,37.8 161.7,39.0 162.7,40.2 163.5,41.5 164.1,42.9 164.6,44.2 164.9,45.6 165.0,47.0" fill="none" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<text x="226.0" y="47.0" font-size="11" text-anchor="start">「yはx＋3と同じもの」</text>
+<text x="60.0" y="110.0" font-size="13" text-anchor="start">②</text>
+<text x="96.0" y="110.0" font-size="17" text-anchor="start">x＋2</text>
+<rect x="140.0" y="94.0" width="26.0" height="24.0" rx="3" fill="#eee" stroke="#000" stroke-width="1.6"/>
+<text x="153.0" y="111.0" font-size="17" text-anchor="middle" font-weight="bold">y</text>
+<text x="170.0" y="110.0" font-size="17" text-anchor="start">＝12</text>
+<line x1="142.0" y1="64.0" x2="149.1" y2="82.5" stroke="#000" stroke-width="1.6"/>
+<polygon points="152.0,90.0 145.8,83.8 152.5,81.2" fill="#000"/>
+<text x="196.0" y="80.0" font-size="11" text-anchor="start">まるごと置きかえ</text>
+<line x1="130.0" y1="128.0" x2="130.0" y2="145.0" stroke="#000" stroke-width="1.4"/>
+<polygon points="130.0,152.0 126.8,145.0 133.2,145.0" fill="#000"/>
+<text x="96.0" y="174.0" font-size="17" text-anchor="start" font-weight="bold">x＋2(x＋3)＝12</text>
+<polyline points="184.0,169.0 183.9,170.4 183.6,171.8 183.0,173.1 182.3,174.5 181.3,175.8 180.1,177.0 178.8,178.2 177.2,179.3 175.5,180.3 173.6,181.3 171.6,182.1 169.5,182.9 167.3,183.5 164.9,184.0 162.5,184.5 160.0,184.8 157.5,184.9 155.0,185.0 152.5,184.9 150.0,184.8 147.5,184.5 145.1,184.0 142.7,183.5 140.5,182.9 138.4,182.1 136.4,181.3 134.5,180.3 132.8,179.3 131.2,178.2 129.9,177.0 128.7,175.8 127.7,174.5 127.0,173.1 126.4,171.8 126.1,170.4 126.0,169.0 126.1,167.6 126.4,166.2 127.0,164.9 127.7,163.5 128.7,162.2 129.9,161.0 131.2,159.8 132.8,158.7 134.5,157.7 136.4,156.7 138.4,155.9 140.5,155.1 142.7,154.5 145.1,154.0 147.5,153.5 150.0,153.2 152.5,153.1 155.0,153.0 157.5,153.1 160.0,153.2 162.5,153.5 164.9,154.0 167.3,154.5 169.5,155.1 171.6,155.9 173.6,156.7 175.5,157.7 177.2,158.7 178.8,159.8 180.1,161.0 181.3,162.2 182.3,163.5 183.0,164.9 183.6,166.2 183.9,167.6 184.0,169.0" fill="none" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<text x="250.0" y="160.0" font-size="11" text-anchor="start">急所: 必ずかっこ付きで。</text>
+<text x="250.0" y="174.0" font-size="11" text-anchor="start">2×x＋3 と書くと「全体の2倍」が</text>
+<text x="250.0" y="188.0" font-size="11" text-anchor="start">「xだけ2倍」に化けてしまう</text>
+<text x="225.0" y="218.0" font-size="12" text-anchor="middle">文字が1つ消えて一元一次方程式に帰着——ちがうのは消し方だけ</text>
+</svg>
+</div><figcaption>代入法の置きかえ図（②のyをx＋3にまるごと置きかえ）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-simultaneous-equations/assets/L04_fig1_substitution_replace_with_parentheses.svg">図を大きく開く</a></figure>
+<p>かっこを外して x＋2x＋6＝12 → 3x＝6 → <strong>x＝2</strong>。①に代入して y＝2＋3＝5。解は <strong>(2, 5)</strong>。</p>
+<p>検算: ① 5＝2＋3 成り立つ／② 2＋10＝12 成り立つ。</p>
+<p>このように、一方の式を他方に<strong>代入することで文字を消去して</strong>解く方法を<strong>代入法</strong>という。加減法とゴールは同じ——<strong>文字を1つ消して、一元一次方程式に帰着</strong>だ。ちがうのは消し方だけ。加減法は「打ち消して消す」、代入法は「置きかえて消す」。</p>
+<p><strong>急所はかっこ</strong>。2yのyをx＋3に置きかえるとき、かっこを付けずに 2×x＋3 と書くと「x＋3の全体を2倍する」が「xだけ2倍する」に化けてしまう。<strong>代入は必ずかっこ付きで</strong>。</p>
+<h2 id="主概念2y形どうしなら右辺を直結できる">主概念2：y＝形どうしなら、右辺を直結できる</h2>
+<blockquote><p>① y＝2x−1 ② y＝x＋3</p></blockquote>
+<p>どちらも「y＝…」の形。yは同じ値なのだから、<strong>右辺どうしを等号で結べる</strong>。</p>
+<p>2x−1＝x＋3　→　x＝4　→　①に代入して y＝2×4−1＝7。解は <strong>(4, 7)</strong>（検算: ① 7＝8−1、② 7＝4＋3、両方成り立つ）。</p>
+<p>これも代入法の一種だ（①のyに②を代入した、と見てもよい）。この形は次章の一次関数で主役級の出番がある。</p>
+<h2 id="主概念3式の形で解法を選ぶ">主概念3：式の形で解法を選ぶ</h2>
+<p><strong>この章で「解こう」と問われる</strong>連立方程式は、どれも加減法でも代入法でも解ける。答えも必ず同じになる。そのうえで、<strong>手数が少ない方を選ぶ</strong>のが上級者だ。目安はシンプルにこれだけ——</p>
+<ul><li><p><strong>「y＝…」「x＝…」の形の式が（作りやすい形が）あるか</strong> → あるなら<strong>代入法</strong>が速い。</p></li><li><p><strong>係数がそろっている・そろえやすいか</strong> → そうなら<strong>加減法</strong>が速い。</p></li></ul>
+<p>たとえば { y＝3x, x＋y＝8 } は代入法（一瞬でx＋3x＝8）。{ 3x＋2y＝8, 2x＋5y＝−2 } は加減法（y＝…の形に直すと分数が出て損）。選んだ理由を一言言えれば、この章の解き方は完成だ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「求めたxを、どの式のどこに代入するか」で迷ったら</strong></p>
+<p>xの値が出たあと、yを求める代入は<strong>どの式に入れてもよい</strong>（元の①でも②でも、変形途中の式でも、<strong>yの残っている</strong>正しい式なら必ず同じyになる）。おすすめは<strong>いちばん形が簡単な式</strong>（y＝…の形があればそこ）。そして最後の検算だけは、<strong>変形前の元の2式</strong>に入れること。変形途中で写しまちがいがあった場合、変形後の式では検算をすり抜けてしまうからだ。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>代入法の符号事故</strong></p>
+<p>x＝3y−5 を 2x−y＝5 に代入するときは 2(<strong>3y−5</strong>)−y＝5。かっこを外すと 6y−<strong>10</strong>−y＝5——「−5の2倍は−10」の符号まで含めて全体が2倍される。かっこを書かずに暗算すると、ここが＋10に化けやすい。<strong>書いてから外す</strong>。1行の手間が符号事故を防ぐ。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>加減法と代入法、教わる順はあっても、偉さの順はない。どちらも「文字を1つ消して、解ける形に帰る」という同じ作戦の2つの道具だ。料理で「切ってから焼く」か「焼いてから切る」かを素材で選ぶように、式の形を見て道具を選ぶ——選べるようになると、計算はぐっと速く、まちがいはぐっと減る。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>次の連立方程式を代入法で解こう。解は両方の式に代入して確かめること。  (1) { y＝3x, x＋y＝8 }  (2) { x＝2y−1, 2x＋3y＝12 }  (3) { y＝x−2, y＝−2x＋7 }</p></li><li><p>連立方程式 { 2x＋y＝10, y＝x＋1 } を、(ア) 代入法、(イ) 加減法（yの係数をそろえて）の両方で解き、解が一致することを確かめよう。</p></li><li><p>次の各連立方程式について、加減法と代入法のどちらで解くか、理由を一言つけて宣言してから解こう。  (1) { y＝4x−3, 3x＋y＝11 }  (2) { 3x＋2y＝1, 5x−2y＝7 }</p></li><li><p>x＝3y−5 を 2x−y＝5 に代入して解こう（かっこを忘れずに）。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> { 2x＋3y＝16, 3x−y＝2 } を、(ア) 加減法、(イ) ②を y＝3x−2 に変形してから代入法、の両方で解いて、解と手数（何行かかったか）を比べよう。どちらが自分に合っていたか、理由も一言。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 係数をそろえる——加減法の完成</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-simultaneous-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 いろいろな連立方程式</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

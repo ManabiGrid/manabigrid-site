@@ -1,4 +1,5 @@
 name: Build and deploy ManabiGrid Pages
+run-name: "Pages / ${{ github.event_name }} / ${{ inputs.request_id || github.sha }}"
 
 on:
   push:
@@ -8,6 +9,14 @@ on:
     - cron: "17 18 * * *"
   workflow_dispatch:
     inputs:
+      source_sha:
+        description: "公開を承認した正本mainの40桁commit SHA"
+        required: true
+        type: string
+      request_id:
+        description: "呼出元が生成した一意のUUID（run追跡用）"
+        required: true
+        type: string
       check_external_links:
         description: "外部リンクを一度だけライブ検査する"
         required: false
@@ -36,12 +45,26 @@ jobs:
 
       - name: Read the ManabiGrid main revision
         id: source
+        env:
+          APPROVED_SOURCE_SHA: ${{ inputs.source_sha }}
         shell: bash
         run: |
           set -euo pipefail
-          source_sha="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
-          test "${source_sha}" != ""
-          test "${#source_sha}" -eq 40
+          remote_sha="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+          test "${remote_sha}" != ""
+          test "${#remote_sha}" -eq 40
+          source_sha="${remote_sha}"
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            if [[ ! "${APPROVED_SOURCE_SHA}" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "source_sha must be a lowercase 40-character commit SHA" >&2
+              exit 1
+            fi
+            if [[ "${APPROVED_SOURCE_SHA}" != "${remote_sha}" ]]; then
+              echo "approved source drifted: approved=${APPROVED_SOURCE_SHA}; remote=${remote_sha}" >&2
+              exit 1
+            fi
+            source_sha="${APPROVED_SOURCE_SHA}"
+          fi
           printf 'sha=%s\n' "${source_sha}" >> "${GITHUB_OUTPUT}"
 
       - name: Deploy only for a changed source or an explicit site update
@@ -165,7 +188,7 @@ jobs:
 
   deploy:
     name: Deploy Pages artifact
-    needs: build
+    needs: [detect-source, build]
     if: needs.build.result == 'success'
     runs-on: ubuntu-latest
     permissions:
@@ -178,3 +201,58 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
+
+      - name: Verify the published revision
+        env:
+          EXPECTED_SOURCE_SHA: ${{ needs.detect-source.outputs.source_sha }}
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import time
+          import urllib.parse
+          from urllib.error import HTTPError, URLError
+          from urllib.request import Request, urlopen
+
+          base = os.environ["PAGE_URL"].rstrip("/") + "/"
+          expected = os.environ["EXPECTED_SOURCE_SHA"]
+          report_url = urllib.parse.urljoin(base, "build-report.json")
+          last_error = "公開レポートをまだ取得できません"
+          for attempt in range(36):
+              try:
+                  request = Request(
+                      report_url + f"?verify={attempt}-{time.time_ns()}",
+                      headers={"User-Agent": "ManabiGrid-Pages-Verify/1.0"},
+                  )
+                  with urlopen(request, timeout=20) as response:
+                      report = json.load(response)
+                  published = report.get("source", {}).get("commit")
+                  if published == expected:
+                      print(f"Published source verified: {published}")
+                      break
+                  last_error = f"published={published}; expected={expected}"
+              except (HTTPError, URLError, OSError, ValueError, json.JSONDecodeError) as exc:
+                  last_error = str(exc)
+              time.sleep(10)
+          else:
+              raise SystemExit("published revision verification timed out: " + last_error)
+
+          with urlopen(Request(base, headers={"User-Agent": "ManabiGrid-Pages-Verify/1.0"}), timeout=20) as response:
+              if response.status != 200:
+                  raise SystemExit(f"top page returned HTTP {response.status}")
+          try:
+              urlopen(
+                  Request(
+                      urllib.parse.urljoin(base, "__manabigrid_missing_page__"),
+                      headers={"User-Agent": "ManabiGrid-Pages-Verify/1.0"},
+                  ),
+                  timeout=20,
+              )
+          except HTTPError as exc:
+              if exc.code != 404:
+                  raise SystemExit(f"missing page returned HTTP {exc.code}") from exc
+          else:
+              raise SystemExit("missing page did not return HTTP 404")
+          print("Published HTTP contract verified: top=200; missing=404")
+          PY

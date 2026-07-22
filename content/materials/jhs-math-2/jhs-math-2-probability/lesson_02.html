@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L02 投げる前に分かる確率——場合の数を基にして求める">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L02 投げる前に分かる確率——場合の数を基にして求める｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L02 投げる前に分かる確率——場合の数を基にして求める">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/lesson_02.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L02 投げる前に分かる確率——場合の数を基にして求める｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/lesson_02.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="ff9bb9e86e1773e0f02f0ba6590d1193826f83c514a5cb6ea42d9a9ff4162290" data-source-file="materials/jhs-math-2/jhs-math-2-probability/lesson_02.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-probability/index.html">中2数学「確率」</a></li><li aria-current="page">L02 投げる前に分かる確率——場合の数を基にして求める</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="ff9bb9e86e1773e0f02f0ba6590d1193826f83c514a5cb6ea42d9a9ff4162290" data-source-file="materials/jhs-math-2/jhs-math-2-probability/lesson_02.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「確率」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l02-投げる前に分かる確率場合の数を基にして求める"><span class="lesson-title-main">L02 投げる前に分かる確率</span><span class="lesson-title-sub">場合の数を基にして求める</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-probability/lesson_02.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-probability/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>02</strong> / 09</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_02.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1実験なしで16と言えるのはなぜか" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%AE%9F%E9%A8%93%E3%81%AA%E3%81%97%E3%81%A716%E3%81%A8%E8%A8%80%E3%81%88%E3%82%8B%E3%81%AE%E3%81%AF%E3%81%AA%E3%81%9C%E3%81%8B">主概念1：実験なしで「1/6」と言えるのはなぜか</a></li><li><a data-section-link="主概念2場合の数を基にして得られる確率" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%A0%B4%E5%90%88%E3%81%AE%E6%95%B0%E3%82%92%E5%9F%BA%E3%81%AB%E3%81%97%E3%81%A6%E5%BE%97%E3%82%89%E3%82%8C%E3%82%8B%E7%A2%BA%E7%8E%87">主概念2：場合の数を基にして得られる確率</a></li><li><a data-section-link="主概念32つの確率は同じものを指している" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B532%E3%81%A4%E3%81%AE%E7%A2%BA%E7%8E%87%E3%81%AF%E5%90%8C%E3%81%98%E3%82%82%E3%81%AE%E3%82%92%E6%8C%87%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B">主概念3：2つの確率は同じものを指している</a></li><li><a data-section-link="練習" href="lesson_02.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_02.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1実験なしで16と言えるのはなぜか" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%AE%9F%E9%A8%93%E3%81%AA%E3%81%97%E3%81%A716%E3%81%A8%E8%A8%80%E3%81%88%E3%82%8B%E3%81%AE%E3%81%AF%E3%81%AA%E3%81%9C%E3%81%8B">主概念1：実験なしで「1/6」と言えるのはなぜか</a></li><li><a data-section-link="主概念2場合の数を基にして得られる確率" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%A0%B4%E5%90%88%E3%81%AE%E6%95%B0%E3%82%92%E5%9F%BA%E3%81%AB%E3%81%97%E3%81%A6%E5%BE%97%E3%82%89%E3%82%8C%E3%82%8B%E7%A2%BA%E7%8E%87">主概念2：場合の数を基にして得られる確率</a></li><li><a data-section-link="主概念32つの確率は同じものを指している" href="lesson_02.html#%E4%B8%BB%E6%A6%82%E5%BF%B532%E3%81%A4%E3%81%AE%E7%A2%BA%E7%8E%87%E3%81%AF%E5%90%8C%E3%81%98%E3%82%82%E3%81%AE%E3%82%92%E6%8C%87%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B">主概念3：2つの確率は同じものを指している</a></li><li><a data-section-link="練習" href="lesson_02.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>「<strong>同様に確からしい</strong>」の意味を理解し、それが成り立つときに限って、実験しなくても<strong>場合の数を基にして</strong>確率が求められることを理解する。</p></li><li><p>場合の数を基にして得られる確率と、多数回の試行によって得られる確率とを<strong>関連付けて</strong>、確率の意味を実感を伴って理解する。</p></li></ul>
+<h2 id="主概念1実験なしで16と言えるのはなぜか">主概念1：実験なしで「1/6」と言えるのはなぜか</h2>
+<p>L01の紙コップは、投げてみないと確率が分からなかった。ところがさいころは、投げる前から「1の目が出る確率は1/6」と言える。この差はどこから来るのだろう。</p>
+<p>さいころの出る目は1・2・3・4・5・6の<strong>6通り</strong>。そしてさいころは、どの面も同じ大きさ・同じ形で、かたよりのない材質で作られている。だから、<strong>どの目が出ることも同じ程度に期待できる</strong>とみなせる。このとき、どの結果が起こることも<strong>同様に確からしい</strong>という。</p>
+<p>紙コップはどうか。「上向き・下向き・横向き」の3通りに分かれはするが、形がいびつだから、この3つが同じ程度に起こるとはとても言えない。<strong>3通りだからといって、それぞれ1/3ではない</strong>。——「何通りに分かれるか」と「それぞれが同じ程度に起こるか」は、別の問題なのだ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>確率計算の前の合言葉:「その分け方、同様に確からしい？」</strong></p>
+<p>場合の数から確率を求めてよいのは、分けた1つ1つの場合が<strong>同様に確からしい</strong>ときだけ。この確認を飛ばすと、紙コップに1/3を割り当てるような誤りが生まれる（次のL03で、もっと巧妙な例に出会う）。確率を計算する前に、「この分け方の1つ1つは、同じ程度に起こると言えるか？」と一度声に出して疑う——これをこの章の合言葉にしよう。</p></div>
+<h2 id="主概念2場合の数を基にして得られる確率">主概念2：場合の数を基にして得られる確率</h2>
+<p>どの場合が起こることも同様に確からしいとき、確率は数え上げで求められる。</p>
+<blockquote><p>起こり得る場合が全部で <strong>n通り</strong> あり、どの場合が起こることも<strong>同様に確からしい</strong>とする。そのうち、ことがらAの起こる場合が <strong>a通り</strong> あるとき、Aの起こる確率pは</p>
+<p><strong>p ＝ a/n （そのことがらの起こる場合の数 ÷ 起こり得る全部の場合の数）</strong></p></blockquote>
+<p>さいころで偶数の目が出る確率なら、全部の場合はn＝6通り、偶数の目（2・4・6）はa＝3通りだから、p＝3/6＝1/2。実験を1回もしなくても求められる——これが<strong>場合の数を基にして得られる確率</strong>だ。</p>
+<p>分子aは分母nの一部だから、この定義からも 0≦p≦1 が確かめられる（a＝0なら決して起こらない＝確率0、a＝nなら必ず起こる＝確率1。L01の範囲の話とぴったり一致する）。</p>
+<h2 id="主概念32つの確率は同じものを指している">主概念3：2つの確率は同じものを指している</h2>
+<p>「実験で求める確率」（L01）と「数え上げで求める確率」（この時間）は、別ものではない。さいころを多数回投げて1の目の相対度数を記録していくと、その値は1/6＝0.166…に<strong>近づいていく</strong>。たとえば1200回投げて1の目が205回出たとすれば、相対度数は205÷1200＝0.170…で、すでに1/6のすぐ近くにいる（この数値は説明用の例——ぜひ自分の実験やシミュレーションで確かめてほしい）。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-9dcac7dd53-title" aria-describedby="mg-9dcac7dd53-desc">
+<title id="mg-9dcac7dd53-title">さいころの1の目の相対度数が1/6に近づく折れ線（例）</title>
+<desc id="mg-9dcac7dd53-desc">さいころを投げた回数を横軸、1の目の相対度数を縦軸にとった折れ線グラフ（見本・例）。折れ線が、高さ1/6の水平な破線に近づいていく</desc>
+<!-- L02_fig1_dice_relfreq_to_one_sixth.svg | さいころの1の目の相対度数が1/6に近づく折れ線（例） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="300" fill="#fff"/>
+<line x1="64.0" y1="236.0" x2="454.0" y2="236.0" stroke="#000" stroke-width="1.2"/>
+<line x1="454.0" y1="236.0" x2="447.7" y2="239.1" stroke="#000" stroke-width="1.2"/>
+<line x1="454.0" y1="236.0" x2="447.7" y2="232.9" stroke="#000" stroke-width="1.2"/>
+<line x1="64.0" y1="236.0" x2="64.0" y2="46.0" stroke="#000" stroke-width="1.2"/>
+<line x1="64.0" y1="46.0" x2="67.1" y2="52.3" stroke="#000" stroke-width="1.2"/>
+<line x1="64.0" y1="46.0" x2="60.9" y2="52.3" stroke="#000" stroke-width="1.2"/>
+<line x1="64.0" y1="236.0" x2="64.0" y2="240.0" stroke="#000" stroke-width="1.0"/>
+<text x="64.0" y="254.0" font-size="11" text-anchor="middle">0</text>
+<line x1="153.5" y1="236.0" x2="153.5" y2="240.0" stroke="#000" stroke-width="1.0"/>
+<text x="153.5" y="254.0" font-size="11" text-anchor="middle">300</text>
+<line x1="243.0" y1="236.0" x2="243.0" y2="240.0" stroke="#000" stroke-width="1.0"/>
+<text x="243.0" y="254.0" font-size="11" text-anchor="middle">600</text>
+<line x1="332.6" y1="236.0" x2="332.6" y2="240.0" stroke="#000" stroke-width="1.0"/>
+<text x="332.6" y="254.0" font-size="11" text-anchor="middle">900</text>
+<line x1="422.1" y1="236.0" x2="422.1" y2="240.0" stroke="#000" stroke-width="1.0"/>
+<text x="422.1" y="254.0" font-size="11" text-anchor="middle">1200</text>
+<line x1="60.0" y1="236.0" x2="64.0" y2="236.0" stroke="#000" stroke-width="1.0"/>
+<text x="56.0" y="240.0" font-size="11" text-anchor="end">0</text>
+<line x1="60.0" y1="76.0" x2="64.0" y2="76.0" stroke="#000" stroke-width="1.0"/>
+<text x="56.0" y="80.0" font-size="11" text-anchor="end">0.5</text>
+<text x="252.0" y="272.0" font-size="12" text-anchor="middle">投げた回数（回）</text>
+<text x="56.0" y="38.0" font-size="12" text-anchor="start">1の目の相対度数</text>
+<line x1="64.0" y1="182.7" x2="431.0" y2="182.7" stroke="#888" stroke-width="1.1" stroke-dasharray="6 4"/>
+<text x="429.6" y="174.7" font-size="12" text-anchor="end" font-weight="bold">1/6</text>
+<polyline points="73.0,214.7 81.9,193.3 90.9,189.8 99.8,188.0 108.8,189.1 117.7,191.6 126.7,188.8 135.6,192.0 144.6,189.8 153.5,191.2 162.5,188.5 171.4,191.6 180.4,189.2 189.3,189.5 198.3,188.4 207.2,186.7 216.2,182.7 225.1,183.3 234.1,182.7 243.0,183.7 252.0,185.7 261.0,186.1 269.9,185.4 278.9,184.9 287.8,184.4 296.8,184.3 305.7,184.6 314.7,185.0 323.6,184.9 332.6,183.7 341.5,183.7 350.5,183.7 359.4,183.6 368.4,184.2 377.3,182.4 386.3,182.1 395.2,183.0 404.2,182.9 413.1,182.9 422.1,182.7" fill="none" stroke="#000" stroke-width="1.6"/>
+<text x="252.0" y="30.0" font-size="14" text-anchor="middle" font-weight="bold">さいころの1の目の相対度数（見本・例）</text>
+<text x="252.0" y="290.0" font-size="12" text-anchor="middle">（数え上げの1/6を、多数回の実験がなぞっていく）</text>
+</svg>
+</div><figcaption>さいころを投げた回数を横軸、1の目の相対度数を縦軸にとった折れ線グラフ（見本・例）。折れ線が、高さ1/6の水平な破線に近づいていく</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-probability/assets/L02_fig1_dice_relfreq_to_one_sixth.svg">図を大きく開く</a></figure>
+<p>つまり、<strong>場合の数を基にして求めた確率は、多数回の試行によって得られる確率の「近づく先」を、実験なしで言い当てている</strong>。だからこそ数え上げの確率には意味がある。逆に、紙コップのように同様に確からしい分け方が見つからないものは、実験で求めるしかない。2つの求め方は、こうして1つの「確率」につながっている。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>多数回投げると相対度数が一定の値に近づいていく——この現象には「<strong>大数の法則</strong>」というかっこいい名前が付いていることが知られている。「たいすう」と読む。回数（数）が大きくなるほど、でたらめさの中から安定した割合が顔を出す。1回1回はまったく予測できないのに、たくさん集めると驚くほど行儀よくなる。不確定な事象のこの二面性こそ、確率という数が成り立つ土台なんだ。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「同様に確からしい」は、みなしてよいかの判断でもある</strong></p>
+<p>厳密に言えば、現実のさいころや硬貨に完全なかたよりゼロはない。それでも私たちは、形の対称性から「どの目が出ることも同様に確からしい<strong>とみなして</strong>」計算を進める。このみなしが適切かどうかは、多数回の試行の結果とつき合わせて確かめられる（実験値が1/6から大きくずれ続けるさいころは、みなしを疑う）。数学の確率は、現実へのこの「みなし→検証」のセットで使うものだと覚えておこう。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>1個のさいころを1回投げるとき、次の確率を求めよう。  (1) 3の倍数の目が出る確率　(2) 5以上の目が出る確率　(3) 7の約数の目が出る確率</p></li><li><p>赤玉3個、白玉2個が入った袋から玉を1個取り出す。どの玉が取り出されることも同様に確からしいとき、赤玉が出る確率を求めよう。</p></li><li><p>1から10までの数字を1つずつ書いた10枚のカードをよくきって1枚引く。  (1) 偶数のカードを引く確率　(2) 4の倍数のカードを引く確率</p></li><li><p>次の㋐〜㋒のうち、「同様に確からしい」と言えないため<strong>場合の数を基にして確率を求めてはいけない</strong>ものを選び、理由を書こう。  ㋐ 正しく作られたさいころの1〜6の目  ㋑ 画びょうを投げたときの「針が上向き・針が横向き」の2通り  ㋒ よくきった10枚のカード（練習3）の各カード</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 「1個のさいころを投げて、出た目を『1の目・1以外の目』の2通りに分ける。2通りだから、1の目が出る確率は1/2である」——この主張のまちがいを、この時間のことばを使って説明しよう。さらに、正しい確率と「1以外の目」の正しい確率も求めよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-05.md</p><a class="answer-link" href="answer_key_L01-05.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-probability/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 起こりやすさを数で表す——中1の確率をたしかめ直す</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-probability/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 「3通り」か「4通り」か——同様に確からしいかを疑う</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

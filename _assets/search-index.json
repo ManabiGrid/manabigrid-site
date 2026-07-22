@@ -1621,12 +1621,5288 @@
     ]
   },
   {
+    "title": "中1数学 — このフォルダの目次",
+    "url": "content/materials/jhs-math-1/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "",
+    "headings": [
+      {
+        "title": "おすすめの学習順（教科書の標準的な順番）",
+        "anchor": "おすすめの学習順教科書の標準的な順番"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「データの活用（度数分布・ヒストグラム）」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（代表値と範囲・度数分布表とヒストグラム）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "L01 3つの代表値、おかえり——値と度数を区別する",
+        "anchor": "l01-3つの代表値おかえり値と度数を区別する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 平均値は真ん中じゃない？——代表値の限界と範囲",
+        "anchor": "l02-平均値は真ん中じゃない代表値の限界と範囲"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 データを棚に整理する——度数分布表とヒストグラム",
+        "anchor": "l03-データを棚に整理する度数分布表とヒストグラム"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 山の形が語ること——分布の形と階級値としての最頻値",
+        "anchor": "l04-山の形が語ること分布の形と階級値としての最頻値"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08（階級の幅・相対度数・累積度数・批判的考察）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "L05 階級の幅を変えてみたら——複数のヒストグラムで検討する",
+        "anchor": "l05-階級の幅を変えてみたら複数のヒストグラムで検討する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 人数がちがうと比べられない——相対度数",
+        "anchor": "l06-人数がちがうと比べられない相対度数"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 積み上げてわかる自分の位置——累積度数・累積相対度数",
+        "anchor": "l07-積み上げてわかる自分の位置累積度数累積相対度数"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 データを疑い、データで語る——批判的考察",
+        "anchor": "l08-データを疑いデータで語る批判的考察"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "L01 3つの代表値、おかえり——値と度数を区別する",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：小6の記憶を呼び出す",
+        "anchor": "準備運動小6の記憶を呼び出す"
+      },
+      {
+        "title": "主概念1：10人の小テストで3つとも求めてみる",
+        "anchor": "主概念110人の小テストで3つとも求めてみる"
+      },
+      {
+        "title": "主概念2：「値」と「度数」——この区別が章全体の背骨",
+        "anchor": "主概念2値と度数この区別が章全体の背骨"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 平均値は真ん中じゃない？——代表値の限界と範囲",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：たった1人で平均値が動く——外れ値の実験",
+        "anchor": "主概念1たった1人で平均値が動く外れ値の実験"
+      },
+      {
+        "title": "主概念2：平均値を超えているのに、下位半分？",
+        "anchor": "主概念2平均値を超えているのに下位半分"
+      },
+      {
+        "title": "主概念3：散らばりを1つの数で——範囲",
+        "anchor": "主概念3散らばりを1つの数で範囲"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 データを棚に整理する——度数分布表とヒストグラム",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：30個の値は、そのままでは眺めきれない",
+        "anchor": "主概念130個の値はそのままでは眺めきれない"
+      },
+      {
+        "title": "主概念2：ヒストグラム——度数を柱の高さで見る",
+        "anchor": "主概念2ヒストグラム度数を柱の高さで見る"
+      },
+      {
+        "title": "主概念3：ヒストグラムの「山」を読む",
+        "anchor": "主概念3ヒストグラムの山を読む"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 山の形が語ること——分布の形と階級値としての最頻値",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：最頻値が迷子になるとき——階級値で救出する",
+        "anchor": "主概念1最頻値が迷子になるとき階級値で救出する"
+      },
+      {
+        "title": "主概念2：柱の頂上を結ぶ——度数折れ線",
+        "anchor": "主概念2柱の頂上を結ぶ度数折れ線"
+      },
+      {
+        "title": "主概念3：山の形と代表値の並び——「平均値=真ん中」を検証する",
+        "anchor": "主概念3山の形と代表値の並び平均値真ん中を検証する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 階級の幅を変えてみたら——複数のヒストグラムで検討する",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：同じデータ、ちがう顔",
+        "anchor": "主概念1同じデータちがう顔"
+      },
+      {
+        "title": "主概念2：何枚も作るなら、コンピュータの出番",
+        "anchor": "主概念2何枚も作るならコンピュータの出番"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 人数がちがうと比べられない——相対度数",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：40人の学年と25人の学年、どっちが「けん玉上手」？",
+        "anchor": "主概念140人の学年と25人の学年どっちがけん玉上手"
+      },
+      {
+        "title": "主概念2：度数と割合で、結論が入れかわる",
+        "anchor": "主概念2度数と割合で結論が入れかわる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 積み上げてわかる自分の位置——累積度数・累積相対度数",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：下から積み上げる——累積度数",
+        "anchor": "主概念1下から積み上げる累積度数"
+      },
+      {
+        "title": "主概念2：割合で積む——累積相対度数と「自分の位置」",
+        "anchor": "主概念2割合で積む累積相対度数と自分の位置"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 データを疑い、データで語る——批判的考察",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：「批判的」は「否定的」ではない",
+        "anchor": "主概念1批判的は否定的ではない"
+      },
+      {
+        "title": "主概念2：目盛りのトリック——誇張グラフを見抜く",
+        "anchor": "主概念2目盛りのトリック誇張グラフを見抜く"
+      },
+      {
+        "title": "主概念3：一連の活動を、一人でやり切る——ミニレポート",
+        "anchor": "主概念3一連の活動を一人でやり切るミニレポート"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「データの分布」（全8時間・7時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「データの活用（度数分布・ヒストグラム）」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきの3層と紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきの3層と紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "レッスン構成（全8時間）",
+        "anchor": "レッスン構成全8時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「それは『値』？『度数』？」（L01で導入・L03・L06で再打点）",
+        "anchor": "それは値度数l01で導入l03l06で再打点"
+      },
+      {
+        "title": "「割合は『部分÷全体』」（L06で導入・L07・L08で再使用)",
+        "anchor": "割合は部分全体l06で導入l07l08で再使用"
+      },
+      {
+        "title": "印象語→指標語の置き換え（L04で導入・L05・L08で練習）",
+        "anchor": "印象語指標語の置き換えl04で導入l05l08で練習"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「不確定な事象の起こりやすさ（頻度確率）」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「不確定な事象の起こりやすさ（頻度確率）」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L03（不確定な事象の起こりやすさ）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「不確定な事象の起こりやすさ（頻度確率）」",
+    "headings": [
+      {
+        "title": "L01 予言できないことがら——ふたはどっち向きに落ちる？",
+        "anchor": "l01-予言できないことがらふたはどっち向きに落ちる"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 くり返すと見えてくる——相対度数の安定と「確率」",
+        "anchor": "l02-くり返すと見えてくる相対度数の安定と確率"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 確率で決める——貸し出し用の靴は何足ずつ？",
+        "anchor": "l03-確率で決める貸し出し用の靴は何足ずつ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      }
+    ]
+  },
+  {
+    "title": "L01 予言できないことがら——ふたはどっち向きに落ちる？",
+    "url": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「不確定な事象の起こりやすさ（頻度確率）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：割合の道具箱を点検しよう",
+        "anchor": "準備運動割合の道具箱を点検しよう"
+      },
+      {
+        "title": "主概念1：予言できないことがら",
+        "anchor": "主概念1予言できないことがら"
+      },
+      {
+        "title": "主概念2：やってみないと分からない——一人でできる実験",
+        "anchor": "主概念2やってみないと分からない一人でできる実験"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 くり返すと見えてくる——相対度数の安定と「確率」",
+    "url": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「不確定な事象の起こりやすさ（頻度確率）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "まず予想しよう：回数を増やすと、相対度数はどうなる？",
+        "anchor": "まず予想しよう回数を増やすと相対度数はどうなる"
+      },
+      {
+        "title": "主概念1：多数回のデータが見せてくれるもの",
+        "anchor": "主概念1多数回のデータが見せてくれるもの"
+      },
+      {
+        "title": "主概念2：近づく先の値に名前をつける——「確率」",
+        "anchor": "主概念2近づく先の値に名前をつける確率"
+      },
+      {
+        "title": "主概念3：起こりやすさを一つの数で",
+        "anchor": "主概念3起こりやすさを一つの数で"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 確率で決める——貸し出し用の靴は何足ずつ？",
+    "url": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「不確定な事象の起こりやすさ（頻度確率）」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：過去のデータを未来にまわす——「みなす」という技",
+        "anchor": "主概念1過去のデータを未来にまわすみなすという技"
+      },
+      {
+        "title": "主概念2：判断を「型」で書く",
+        "anchor": "主概念2判断を型で書く"
+      },
+      {
+        "title": "主概念3：確率が語れること・語れないこと",
+        "anchor": "主概念3確率が語れること語れないこと"
+      },
+      {
+        "title": "単元の締めくくり——そして、次の問いへ",
+        "anchor": "単元の締めくくりそして次の問いへ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「不確定な事象の起こりやすさ」（全3時間・2時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「不確定な事象の起こりやすさ（頻度確率）」",
+    "headings": [
+      {
+        "title": "設計判断（レッスン数・時間配当の根拠）",
+        "anchor": "設計判断レッスン数時間配当の根拠"
+      },
+      {
+        "title": "背骨（summary執筆契約2の5段をレッスンに配置）",
+        "anchor": "背骨summary執筆契約2の5段をレッスンに配置"
+      },
+      {
+        "title": "レッスン構成（全3時間）",
+        "anchor": "レッスン構成全3時間"
+      },
+      {
+        "title": "中心例・データの方針",
+        "anchor": "中心例データの方針"
+      },
+      {
+        "title": "3方向誤答の手当て（設計の中心・数値根拠はteachernotes側）",
+        "anchor": "3方向誤答の手当て設計の中心数値根拠はteacher_notes側"
+      },
+      {
+        "title": "前提の学び直し（summary執筆契約6）",
+        "anchor": "前提の学び直しsummary執筆契約6"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "評価の型（summary教材設計の要点を反映）",
+        "anchor": "評価の型summary教材設計の要点を反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「文字と式」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（文字と式・1節前半）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "L01 文字は「どんな数でも」の代理人",
+        "anchor": "l01-文字はどんな数でもの代理人"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 積と商の表し方——×と÷を省く約束",
+        "anchor": "l02-積と商の表し方とを省く約束"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 累乗の表し方と表記の総仕上げ",
+        "anchor": "l03-累乗の表し方と表記の総仕上げ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 数量を文字式で表す①——言葉の式を橋にする",
+        "anchor": "l04-数量を文字式で表す1言葉の式を橋にする"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08（文字と式・1節後半）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "L05 数量を文字式で表す②——割合・速さ・残り",
+        "anchor": "l05-数量を文字式で表す2割合速さ残り"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 式の値——文字に数を入れて調べる",
+        "anchor": "l06-式の値文字に数を入れて調べる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 式を読む——3a＋2はこれで答え",
+        "anchor": "l07-式を読む3a2はこれで答え"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 等式——「等しい」を宣言する記号",
+        "anchor": "l08-等式等しいを宣言する記号"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L09〜L12（文字と式・1節末＋2節）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "L09 不等式——大小関係を式にする",
+        "anchor": "l09-不等式大小関係を式にする"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L10 項と係数——式を部品に分ける",
+        "anchor": "l10-項と係数式を部品に分ける"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L11 一次式の加法と減法",
+        "anchor": "l11-一次式の加法と減法"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L12 数×一次式と章のまとめ",
+        "anchor": "l12-数一次式と章のまとめ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "L01 文字は「どんな数でも」の代理人",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：小学校の文字を呼び出す",
+        "anchor": "準備運動小学校の文字を呼び出す"
+      },
+      {
+        "title": "主概念1：1本の式が、すべての場合を引き受ける",
+        "anchor": "主概念11本の式がすべての場合を引き受ける"
+      },
+      {
+        "title": "主概念2：文字の文法は「同じ文字は同じ数」",
+        "anchor": "主概念2文字の文法は同じ文字は同じ数"
+      },
+      {
+        "title": "文字を使うよさ",
+        "anchor": "文字を使うよさ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 積と商の表し方——×と÷を省く約束",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：×を省く（積の表し方）",
+        "anchor": "主概念1を省く積の表し方"
+      },
+      {
+        "title": "主概念2：÷は分数の形で（商の表し方）",
+        "anchor": "主概念2は分数の形で商の表し方"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 累乗の表し方と表記の総仕上げ",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：同じ文字の積は、指数で数える",
+        "anchor": "主概念同じ文字の積は指数で数える"
+      },
+      {
+        "title": "表記の総仕上げ：3つの約束を1本の式で",
+        "anchor": "表記の総仕上げ3つの約束を1本の式で"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 数量を文字式で表す①——言葉の式を橋にする",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：いきなり文字にせず、言葉の式を橋にする",
+        "anchor": "主概念1いきなり文字にせず言葉の式を橋にする"
+      },
+      {
+        "title": "主概念2：つくった式は、具体的な数でテストする",
+        "anchor": "主概念2つくった式は具体的な数でテストする"
+      },
+      {
+        "title": "単位のつけ方：和の式はかっこでくくる",
+        "anchor": "単位のつけ方和の式はかっこでくくる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 数量を文字式で表す②——割合・速さ・残り",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：割合の式は「どちらが基準量？」から",
+        "anchor": "主概念1割合の式はどちらが基準量から"
+      },
+      {
+        "title": "主概念2：速さの式は、上下の並びを検算で守る",
+        "anchor": "主概念2速さの式は上下の並びを検算で守る"
+      },
+      {
+        "title": "主概念3：「配って残る」は構造を分解してから式にする",
+        "anchor": "主概念3配って残るは構造を分解してから式にする"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 式の値——文字に数を入れて調べる",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：代入と式の値",
+        "anchor": "主概念1代入と式の値"
+      },
+      {
+        "title": "主概念2：負の数は「かっこ付きで席に着く」",
+        "anchor": "主概念2負の数はかっこ付きで席に着く"
+      },
+      {
+        "title": "式の値を、場面の言葉で読む",
+        "anchor": "式の値を場面の言葉で読む"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 式を読む——3a＋2はこれで答え",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：3a＋2 は「計算の途中」ではない",
+        "anchor": "主概念13a2-は計算の途中ではない"
+      },
+      {
+        "title": "主概念2：式を読む（逆向きの翻訳）",
+        "anchor": "主概念2式を読む逆向きの翻訳"
+      },
+      {
+        "title": "数え方が違えば、式も違う",
+        "anchor": "数え方が違えば式も違う"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 等式——「等しい」を宣言する記号",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：＝を「答えは」から「等しい」へ読み替える",
+        "anchor": "主概念1を答えはから等しいへ読み替える"
+      },
+      {
+        "title": "主概念2：数量の関係を等式で表す",
+        "anchor": "主概念2数量の関係を等式で表す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 不等式——大小関係を式にする",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：≦・≧は境界の数を含む不等号",
+        "anchor": "主概念1は境界の数を含む不等号"
+      },
+      {
+        "title": "主概念2：数量の関係を不等式で「書く」",
+        "anchor": "主概念2数量の関係を不等式で書く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 項と係数——式を部品に分ける",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：式は「項」という部品でできている",
+        "anchor": "主概念1式は項という部品でできている"
+      },
+      {
+        "title": "主概念2：係数は文字の項の「数の部分」",
+        "anchor": "主概念2係数は文字の項の数の部分"
+      },
+      {
+        "title": "文字の項と数の項は、種類の違う部品",
+        "anchor": "文字の項と数の項は種類の違う部品"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L11 一次式の加法と減法",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_11.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：まとめられるのは、同じ種類の項どうし",
+        "anchor": "主概念1まとめられるのは同じ種類の項どうし"
+      },
+      {
+        "title": "主概念2：かっこを外す——−のかっこは全員の符号を反転",
+        "anchor": "主概念2かっこを外すのかっこは全員の符号を反転"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L12 数×一次式と章のまとめ",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_12.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：数×一次式は、かっこの中の全員に配る",
+        "anchor": "主概念1数一次式はかっこの中の全員に配る"
+      },
+      {
+        "title": "主概念2：かっこ2つの式（この章の計算の到達点）",
+        "anchor": "主概念2かっこ2つの式この章の計算の到達点"
+      },
+      {
+        "title": "章のまとめ——文字と式の地図",
+        "anchor": "章のまとめ文字と式の地図"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「文字と式」（全17時間・18時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「文字と式」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきへの設計対応（数値・出典の正確な転記はteachernotes参照。生徒向け本文に調査数値は書かない）",
+        "anchor": "つまずきへの設計対応数値出典の正確な転記はteacher_notes参照生徒向け本文に調査数値は書かない"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "1節 文字を用いた式の表し方と数量関係（--representation・12時間）",
+        "anchor": "1節-文字を用いた式の表し方と数量関係--representation12時間"
+      },
+      {
+        "title": "2節 一次式の計算（--calculation・5時間）",
+        "anchor": "2節-一次式の計算--calculation5時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「具体数で検算」（L04で導入・L05・L06・L09・L11・L12に適用）",
+        "anchor": "具体数で検算l04で導入l05l06l09l11l12に適用"
+      },
+      {
+        "title": "「言葉の式⇄具体数⇄文字式」の双方向変換（L04で導入・L05・L07・L08で適用）",
+        "anchor": "言葉の式具体数文字式の双方向変換l04で導入l05l07l08で適用"
+      },
+      {
+        "title": "「どちらが基準量？」（L05で導入・L08・L12で再訪）",
+        "anchor": "どちらが基準量l05で導入l08l12で再訪"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「一次方程式」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（方程式の意味・等式の性質・移項・基本手順）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "L01 □からxへ——方程式とその解",
+        "anchor": "l01-からxへ方程式とその解"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 天びんで考える——等式の性質",
+        "anchor": "l02-天びんで考える等式の性質"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 移項——等式の性質のショートカット",
+        "anchor": "l03-移項等式の性質のショートカット"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 解き方の基本手順——Ａx＝Ｂへ",
+        "anchor": "l04-解き方の基本手順axbへ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08（かっこ・小数・分数／比例式／個数と代金／過不足と速さ）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "L05 かっこ・小数・分数の方程式",
+        "anchor": "l05-かっこ小数分数の方程式"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 比例式——比の値で方程式に帰着",
+        "anchor": "l06-比例式比の値で方程式に帰着"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 等しい2つの数量を見つける——個数と代金",
+        "anchor": "l07-等しい2つの数量を見つける個数と代金"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 過不足と速さ——1つの数量を二通りに表す",
+        "anchor": "l08-過不足と速さ1つの数量を二通りに表す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L09〜L10（解の吟味・章末まとめ）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L09-10.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "L09 その解、場面に合ってる？——解の吟味",
+        "anchor": "l09-その解場面に合ってる解の吟味"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L10 章末まとめ——「形を変えても解は変わらない」",
+        "anchor": "l10-章末まとめ形を変えても解は変わらない"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      }
+    ]
+  },
+  {
+    "title": "L01 □からxへ——方程式とその解",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：□の代わりにxと書く",
+        "anchor": "主概念1の代わりにxと書く"
+      },
+      {
+        "title": "主概念2：解——条件を満たす値",
+        "anchor": "主概念2解条件を満たす値"
+      },
+      {
+        "title": "型の導入：「代入して確かめる」",
+        "anchor": "型の導入代入して確かめる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 天びんで考える——等式の性質",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：「＝」の見方をアップデートする",
+        "anchor": "主概念1の見方をアップデートする"
+      },
+      {
+        "title": "主概念2：天びんと等式の性質",
+        "anchor": "主概念2天びんと等式の性質"
+      },
+      {
+        "title": "性質を使って方程式を解く",
+        "anchor": "性質を使って方程式を解く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 移項——等式の性質のショートカット",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "発見：2つの解き方を並べてみる",
+        "anchor": "発見2つの解き方を並べてみる"
+      },
+      {
+        "title": "文字の項も移項できる",
+        "anchor": "文字の項も移項できる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 解き方の基本手順——Ａx＝Ｂへ",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：一元一次方程式と基本手順",
+        "anchor": "主概念1一元一次方程式と基本手順"
+      },
+      {
+        "title": "主概念2：方程式の変形は「式の計算」と別の営み",
+        "anchor": "主概念2方程式の変形は式の計算と別の営み"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 かっこ・小数・分数の方程式",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "前処理1：かっこは分配法則で外す",
+        "anchor": "前処理1かっこは分配法則で外す"
+      },
+      {
+        "title": "前処理2：小数は両辺を10倍・100倍する",
+        "anchor": "前処理2小数は両辺を10倍100倍する"
+      },
+      {
+        "title": "前処理3：分数は両辺に分母の公倍数をかける",
+        "anchor": "前処理3分数は両辺に分母の公倍数をかける"
+      },
+      {
+        "title": "転びやすい場所：「全部の項にかける」",
+        "anchor": "転びやすい場所全部の項にかける"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 比例式——比の値で方程式に帰着",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "比の復習と比例式",
+        "anchor": "比の復習と比例式"
+      },
+      {
+        "title": "場面で使う：混ぜる・配る",
+        "anchor": "場面で使う混ぜる配る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 等しい2つの数量を見つける——個数と代金",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "立式の型：5つのステップ",
+        "anchor": "立式の型5つのステップ"
+      },
+      {
+        "title": "段階1：等しい関係が問題文に書いてある場合",
+        "anchor": "段階1等しい関係が問題文に書いてある場合"
+      },
+      {
+        "title": "段階2：等しい数量の式を自分で組み立てる場合",
+        "anchor": "段階2等しい数量の式を自分で組み立てる場合"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 過不足と速さ——1つの数量を二通りに表す",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "型1：過不足の問題（「総数」を二通りに表す）",
+        "anchor": "型1過不足の問題総数を二通りに表す"
+      },
+      {
+        "title": "型2：速さの問題（「道のり」を二通りに表す）",
+        "anchor": "型2速さの問題道のりを二通りに表す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 その解、場面に合ってる？——解の吟味",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "事件：正しく解いたのに、答えられない",
+        "anchor": "事件正しく解いたのに答えられない"
+      },
+      {
+        "title": "なぜこんなことが起きるのか",
+        "anchor": "なぜこんなことが起きるのか"
+      },
+      {
+        "title": "吟味は「はねる」だけでなく「読み直す」ためにも使う",
+        "anchor": "吟味ははねるだけでなく読み直すためにも使う"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 章末まとめ——「形を変えても解は変わらない」",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "3部屋の自己チェック",
+        "anchor": "3部屋の自己チェック"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「一次方程式」（全15時間・14時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「一次方程式」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "1節 方程式と等式の性質（4時間）〔子単元: meaning-equivalence〕",
+        "anchor": "1節-方程式と等式の性質4時間子単元-meaning-equivalence"
+      },
+      {
+        "title": "2節 一次方程式の解き方（5時間）〔子単元: solving〕",
+        "anchor": "2節-一次方程式の解き方5時間子単元-solving"
+      },
+      {
+        "title": "3節 一次方程式の利用（5時間）〔子単元: applications〕",
+        "anchor": "3節-一次方程式の利用5時間子単元-applications"
+      },
+      {
+        "title": "章末（1時間）",
+        "anchor": "章末1時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「代入して確かめる」（L01で導入・全レッスンに適用）",
+        "anchor": "代入して確かめるl01で導入全レッスンに適用"
+      },
+      {
+        "title": "「使った性質・根拠を言う」（L02で導入・L03・L04・L10で反復）",
+        "anchor": "使った性質根拠を言うl02で導入l03l04l10で反復"
+      },
+      {
+        "title": "「左辺・右辺は何を表しているか」（L07で導入・L08・L09で反復）",
+        "anchor": "左辺右辺は何を表しているかl07で導入l08l09で反復"
+      },
+      {
+        "title": "「検算と吟味の2段チェック」（L09で導入・L10に適用）",
+        "anchor": "検算と吟味の2段チェックl09で導入l10に適用"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「平面図形」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "L01 図形のことばと記号〜対称性の学び直し",
+        "anchor": "l01-図形のことばと記号対称性の学び直し"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 図形を動かす〜3つの移動",
+        "anchor": "l02-図形を動かす3つの移動"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 移動を言葉で決める〜決定要素と説明の型",
+        "anchor": "l03-移動を言葉で決める決定要素と説明の型"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 定規とコンパスの約束〜垂直二等分線",
+        "anchor": "l04-定規とコンパスの約束垂直二等分線"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "L05 角の二等分線と垂線",
+        "anchor": "l05-角の二等分線と垂線"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 3つの作図はひとつだった〜統合と活用",
+        "anchor": "l06-3つの作図はひとつだった統合と活用"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 円のことば〜弧と弦、円の対称性",
+        "anchor": "l07-円のことば弧と弦円の対称性"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 πで円をはかる",
+        "anchor": "l08-πで円をはかる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L09〜L12",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "L09 おうぎ形〜中心角に比例する",
+        "anchor": "l09-おうぎ形中心角に比例する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L10 おうぎ形の弧の長さと面積",
+        "anchor": "l10-おうぎ形の弧の長さと面積"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L11 円の接線",
+        "anchor": "l11-円の接線"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L12 単元まとめ〜作図と円の総合",
+        "anchor": "l12-単元まとめ作図と円の総合"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      }
+    ]
+  },
+  {
+    "title": "L01 図形のことばと記号〜対称性の学び直し",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：小学校の道具箱の点検",
+        "anchor": "準備運動小学校の道具箱の点検"
+      },
+      {
+        "title": "主概念1：図形を「ことば」で正確に指す",
+        "anchor": "主概念1図形をことばで正確に指す"
+      },
+      {
+        "title": "主概念2：対称性で図形を見る（線対称と点対称）",
+        "anchor": "主概念2対称性で図形を見る線対称と点対称"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 図形を動かす〜3つの移動",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：敷き詰め模様をながめる",
+        "anchor": "導入敷き詰め模様をながめる"
+      },
+      {
+        "title": "主概念1：3つの移動",
+        "anchor": "主概念13つの移動"
+      },
+      {
+        "title": "主概念2：対応を正しく読み取る",
+        "anchor": "主概念2対応を正しく読み取る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 移動を言葉で決める〜決定要素と説明の型",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：「回転移動です」だけでは足りない",
+        "anchor": "導入回転移動ですだけでは足りない"
+      },
+      {
+        "title": "主概念1：移動の決定要素",
+        "anchor": "主概念1移動の決定要素"
+      },
+      {
+        "title": "主概念2：説明の型と自己点検チェックリスト",
+        "anchor": "主概念2説明の型と自己点検チェックリスト"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 定規とコンパスの約束〜垂直二等分線",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：作図の道具規約（定規は長さを測らない）",
+        "anchor": "主概念1作図の道具規約定規は長さを測らない"
+      },
+      {
+        "title": "主概念2：線分の垂直二等分線",
+        "anchor": "主概念2線分の垂直二等分線"
+      },
+      {
+        "title": "【根拠】一言ルール（今日から全作図で）",
+        "anchor": "根拠一言ルール今日から全作図で"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 角の二等分線と垂線",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：角の二等分線",
+        "anchor": "主概念1角の二等分線"
+      },
+      {
+        "title": "主概念2：垂線（2つの場合）",
+        "anchor": "主概念2垂線2つの場合"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 3つの作図はひとつだった〜統合と活用",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：統合（どの作図も「2つの円の線対称」だった）",
+        "anchor": "主概念1統合どの作図も2つの円の線対称だった"
+      },
+      {
+        "title": "主概念2：活用（基本作図を組み合わせる）",
+        "anchor": "主概念2活用基本作図を組み合わせる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 円のことば〜弧と弦、円の対称性",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：円を定義し直す",
+        "anchor": "主概念1円を定義し直す"
+      },
+      {
+        "title": "主概念2：円の対称性（弦の垂直二等分線は中心を通る）",
+        "anchor": "主概念2円の対称性弦の垂直二等分線は中心を通る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 πで円をはかる",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：円周率に文字を与える",
+        "anchor": "主概念1円周率に文字を与える"
+      },
+      {
+        "title": "主概念2：πのまま答える流儀",
+        "anchor": "主概念2πのまま答える流儀"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 おうぎ形〜中心角に比例する",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：おうぎ形とは何か",
+        "anchor": "主概念1おうぎ形とは何か"
+      },
+      {
+        "title": "主概念2：弧の長さも面積も中心角に比例する",
+        "anchor": "主概念2弧の長さも面積も中心角に比例する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 おうぎ形の弧の長さと面積",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：公式は「比例の見方」の清書",
+        "anchor": "主概念1公式は比例の見方の清書"
+      },
+      {
+        "title": "主概念2：逆向きに使う（中心角を求める）",
+        "anchor": "主概念2逆向きに使う中心角を求める"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L11 円の接線",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_11.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：接線とは（1点だけで触れる直線）",
+        "anchor": "主概念1接線とは1点だけで触れる直線"
+      },
+      {
+        "title": "主概念2：円周上の点における接線の作図",
+        "anchor": "主概念2円周上の点における接線の作図"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L12 単元まとめ〜作図と円の総合",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_12.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "道具箱の棚卸し",
+        "anchor": "道具箱の棚卸し"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "次の学びへ（この単元はどこへつながるか）",
+        "anchor": "次の学びへこの単元はどこへつながるか"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「平面図形」（全18時間・2子単元・17/19時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「平面図形」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "子単元1 基本の作図と図形の移動（10時間）——「動かして見る目」から「根拠を言って かく手」へ",
+        "anchor": "子単元1-基本の作図と図形の移動10時間動かして見る目から根拠を言って-かく手へ"
+      },
+      {
+        "title": "子単元2 円・おうぎ形と接線（8時間）——円を「ことば」で切り分け、「比例」ではかる",
+        "anchor": "子単元2-円おうぎ形と接線8時間円をことばで切り分け比例ではかる"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "【根拠】一言ルール（L04で導入・作図と説明の全課題で運用）",
+        "anchor": "根拠一言ルールl04で導入作図と説明の全課題で運用"
+      },
+      {
+        "title": "決定要素チェックリスト（L03で導入・移動の全説明で運用）",
+        "anchor": "決定要素チェックリストl03で導入移動の全説明で運用"
+      },
+      {
+        "title": "「円全体の何分の何か」先読みの型（L09で導入・おうぎ形の全計算で運用）",
+        "anchor": "円全体の何分の何か先読みの型l09で導入おうぎ形の全計算で運用"
+      },
+      {
+        "title": "かく・確かめる・理由を言うの3段設問（作図レッスン共通）",
+        "anchor": "かく確かめる理由を言うの3段設問作図レッスン共通"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「正負の数」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答集 L01〜L04（正の数・負の数／数直線／絶対値と整数／素数と素因数分解）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "L01 0より小さい数——符号のついた数",
+        "anchor": "l01-0より小さい数符号のついた数"
+      },
+      {
+        "title": "L02 数直線——数の並びを目で見る",
+        "anchor": "l02-数直線数の並びを目で見る"
+      },
+      {
+        "title": "L03 絶対値と「整数」の広がり",
+        "anchor": "l03-絶対値と整数の広がり"
+      },
+      {
+        "title": "L04 素数——数を積の部品に分ける",
+        "anchor": "l04-素数数を積の部品に分ける"
+      }
+    ]
+  },
+  {
+    "title": "解答集 L05〜L08（加法／減法／正の項・負の項／乗法）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "L05 負の数のたし算——符号と絶対値で考える",
+        "anchor": "l05-負の数のたし算符号と絶対値で考える"
+      },
+      {
+        "title": "L06 負の数のひき算——「ひく」は「たす」に化ける",
+        "anchor": "l06-負の数のひき算ひくはたすに化ける"
+      },
+      {
+        "title": "L07 加法と減法をひとつにする——正の項・負の項",
+        "anchor": "l07-加法と減法をひとつにする正の項負の項"
+      },
+      {
+        "title": "L08 負の数のかけ算——パターンから見つける符号のきまり",
+        "anchor": "l08-負の数のかけ算パターンから見つける符号のきまり"
+      }
+    ]
+  },
+  {
+    "title": "解答集 L09〜L12（除法・逆数・累乗／四則混合／数の集合／活用と章末）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "L09 わり算・逆数・累乗",
+        "anchor": "l09-わり算逆数累乗"
+      },
+      {
+        "title": "L10 四則の混じった計算",
+        "anchor": "l10-四則の混じった計算"
+      },
+      {
+        "title": "L11 数の集合と四則——どこまで自由に計算できる？",
+        "anchor": "l11-数の集合と四則どこまで自由に計算できる"
+      },
+      {
+        "title": "L12 基準を決めると見えてくる——正負の数の活用と章のまとめ",
+        "anchor": "l12-基準を決めると見えてくる正負の数の活用と章のまとめ"
+      }
+    ]
+  },
+  {
+    "title": "L01 0より小さい数——符号のついた数",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：0より小さい数の世界",
+        "anchor": "主概念10より小さい数の世界"
+      },
+      {
+        "title": "主概念2：反対の性質を一組で表す",
+        "anchor": "主概念2反対の性質を一組で表す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 数直線——数の並びを目で見る",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：数直線を左へ延ばす",
+        "anchor": "主概念1数直線を左へ延ばす"
+      },
+      {
+        "title": "主概念2：右にあるほど大きい",
+        "anchor": "主概念2右にあるほど大きい"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 絶対値と「整数」の広がり",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：絶対値——0からどれだけ離れているか",
+        "anchor": "主概念1絶対値0からどれだけ離れているか"
+      },
+      {
+        "title": "主概念2：「整数」が広がる",
+        "anchor": "主概念2整数が広がる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 素数——数を積の部品に分ける",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：それ以上分けられない数",
+        "anchor": "主概念1それ以上分けられない数"
+      },
+      {
+        "title": "主概念2：素因数分解は「積の形で表す」",
+        "anchor": "主概念2素因数分解は積の形で表す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 負の数のたし算——符号と絶対値で考える",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：たし算は数直線の移動",
+        "anchor": "主概念1たし算は数直線の移動"
+      },
+      {
+        "title": "主概念2：「符号と絶対値」でまとめる",
+        "anchor": "主概念2符号と絶対値でまとめる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 負の数のひき算——「ひく」は「たす」に化ける",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：「−」の2つの顔と、減法の正体",
+        "anchor": "主概念1の2つの顔と減法の正体"
+      },
+      {
+        "title": "主概念2：「差」はどちらからどちらをひく？",
+        "anchor": "主概念2差はどちらからどちらをひく"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 加法と減法をひとつにする——正の項・負の項",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：式の着ぶくれを脱がせる",
+        "anchor": "主概念1式の着ぶくれを脱がせる"
+      },
+      {
+        "title": "主概念2：正の項の和と、負の項の和",
+        "anchor": "主概念2正の項の和と負の項の和"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 負の数のかけ算——パターンから見つける符号のきまり",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：表のパターンが教えてくれる",
+        "anchor": "主概念1表のパターンが教えてくれる"
+      },
+      {
+        "title": "主概念2：3つ以上の積は、負の数を数える",
+        "anchor": "主概念23つ以上の積は負の数を数える"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 わり算・逆数・累乗",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：わり算は、かけ算の逆",
+        "anchor": "主概念1わり算はかけ算の逆"
+      },
+      {
+        "title": "主概念2：逆数——わり算をかけ算に化けさせる",
+        "anchor": "主概念2逆数わり算をかけ算に化けさせる"
+      },
+      {
+        "title": "主概念3：累乗——同じ数の積を短く書く",
+        "anchor": "主概念3累乗同じ数の積を短く書く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 四則の混じった計算",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：計算の順序は小学校と同じ",
+        "anchor": "主概念1計算の順序は小学校と同じ"
+      },
+      {
+        "title": "主概念2：分配法則も保存されている",
+        "anchor": "主概念2分配法則も保存されている"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L11 数の集合と四則——どこまで自由に計算できる？",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_11.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：計算の自由度は、数の範囲で決まる",
+        "anchor": "主概念計算の自由度は数の範囲で決まる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L12 基準を決めると見えてくる——正負の数の活用と章のまとめ",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_12.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：基準を0とみる",
+        "anchor": "主概念1基準を0とみる"
+      },
+      {
+        "title": "主概念2：仮平均は平均計算の近道",
+        "anchor": "主概念2仮平均は平均計算の近道"
+      },
+      {
+        "title": "章のまとめ：3部屋の自己チェック",
+        "anchor": "章のまとめ3部屋の自己チェック"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「正負の数」（全12レッスン・合計27時間＝本体25＋素因数分解2）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「正負の数」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・年度・設問の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値年度設問の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "1節 正の数・負の数（子①・6時間）",
+        "anchor": "1節-正の数負の数子16時間"
+      },
+      {
+        "title": "2節 素数と素因数分解（子①・2時間）",
+        "anchor": "2節-素数と素因数分解子12時間"
+      },
+      {
+        "title": "3節 加法と減法（子②・8時間）",
+        "anchor": "3節-加法と減法子28時間"
+      },
+      {
+        "title": "4節 乗法と除法（子③・8時間）",
+        "anchor": "4節-乗法と除法子38時間"
+      },
+      {
+        "title": "5節 活用と章末（子④＋章末・3時間）",
+        "anchor": "5節-活用と章末子4章末3時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「迷ったら数直線に戻る」（L02で導入・全編に適用）",
+        "anchor": "迷ったら数直線に戻るl02で導入全編に適用"
+      },
+      {
+        "title": "「符号と絶対値に分けて考える」（L05で導入・L06〜L10に適用）",
+        "anchor": "符号と絶対値に分けて考えるl05で導入l06l10に適用"
+      },
+      {
+        "title": "「逆算で確かめる」（L06で導入・L09・L12に適用）",
+        "anchor": "逆算で確かめるl06で導入l09l12に適用"
+      },
+      {
+        "title": "「何が2乗されているかを丸で囲む」（L09で導入・L10で再使用）",
+        "anchor": "何が2乗されているかを丸で囲むl09で導入l10で再使用"
+      },
+      {
+        "title": "「図や数直線に表してから立式する」（L06で導入・L12で反復）",
+        "anchor": "図や数直線に表してから立式するl06で導入l12で反復"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「比例と反比例」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（関数・変域・比例の捉え直し・座標）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "L01 決めると、決まる——関数",
+        "anchor": "l01-決めると決まる関数"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 変数の動く範囲——変域",
+        "anchor": "l02-変数の動く範囲変域"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 比例を捉え直す——負の数の世界へ",
+        "anchor": "l03-比例を捉え直す負の数の世界へ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 平面の住所——座標",
+        "anchor": "l04-平面の住所座標"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08（比例のグラフ・式を求める・反比例・反比例のグラフ）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "L05 比例のグラフ——原点を通る直線",
+        "anchor": "l05-比例のグラフ原点を通る直線"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 式を求める——表・式・グラフの往復",
+        "anchor": "l06-式を求める表式グラフの往復"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 反比例を捉え直す——積が一定",
+        "anchor": "l07-反比例を捉え直す積が一定"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 曲線をかく初めて——反比例のグラフ",
+        "anchor": "l08-曲線をかく初めて反比例のグラフ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L09〜L12（比例と反比例の対比・活用・章末まとめ）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "L09 比例か反比例か——商一定・積一定の対比",
+        "anchor": "l09-比例か反比例か商一定積一定の対比"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L10 式とグラフで問題を解く",
+        "anchor": "l10-式とグラフで問題を解く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L11 「比例とみなす」——予測とその限界",
+        "anchor": "l11-比例とみなす予測とその限界"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L12 章末まとめ——三つの部屋をふり返る",
+        "anchor": "l12-章末まとめ三つの部屋をふり返る"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      }
+    ]
+  },
+  {
+    "title": "L01 決めると、決まる——関数",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：「ただ一つ決まる」に名前を付ける",
+        "anchor": "主概念1ただ一つ決まるに名前を付ける"
+      },
+      {
+        "title": "主概念2：向きを逆にすると、成り立つとは限らない",
+        "anchor": "主概念2向きを逆にすると成り立つとは限らない"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 変数の動く範囲——変域",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：変数には「動ける範囲」がある",
+        "anchor": "主概念変数には動ける範囲がある"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 比例を捉え直す——負の数の世界へ",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：比例をy＝axで捉え直す",
+        "anchor": "主概念1比例をyaxで捉え直す"
+      },
+      {
+        "title": "主概念2：負の数の世界へ——2方向の拡張",
+        "anchor": "主概念2負の数の世界へ2方向の拡張"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 平面の住所——座標",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：2本の数直線で、平面のどの点にも「住所」がつく",
+        "anchor": "主概念2本の数直線で平面のどの点にも住所がつく"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 比例のグラフ——原点を通る直線",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：式を満たす点をぜんぶ集めると、直線になる",
+        "anchor": "主概念1式を満たす点をぜんぶ集めると直線になる"
+      },
+      {
+        "title": "主概念2：符号だけ変えると、グラフはどうなる？",
+        "anchor": "主概念2符号だけ変えるとグラフはどうなる"
+      },
+      {
+        "title": "かき方の型：原点と、もう1点",
+        "anchor": "かき方の型原点ともう1点"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 式を求める——表・式・グラフの往復",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：1組の値が、式を丸ごと決める",
+        "anchor": "主概念11組の値が式を丸ごと決める"
+      },
+      {
+        "title": "主概念2：グラフから式・表から式",
+        "anchor": "主概念2グラフから式表から式"
+      },
+      {
+        "title": "三つの表現の使い分け",
+        "anchor": "三つの表現の使い分け"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 反比例を捉え直す——積が一定",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：積がいつも同じ数——反比例をy＝a/xで捉え直す",
+        "anchor": "主概念1積がいつも同じ数反比例をyaxで捉え直す"
+      },
+      {
+        "title": "主概念2：「12から減っていく」のではない",
+        "anchor": "主概念212から減っていくのではない"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 曲線をかく初めて——反比例のグラフ",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：直線ではない——点を多くとって、ようすを見る",
+        "anchor": "主概念1直線ではない点を多くとってようすを見る"
+      },
+      {
+        "title": "主概念2：座標軸とは決して交わらない",
+        "anchor": "主概念2座標軸とは決して交わらない"
+      },
+      {
+        "title": "電卓・AIで点を増やす",
+        "anchor": "電卓aiで点を増やす"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 比例か反比例か——商一定・積一定の対比",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "対比表——2つの関係を並べて見る",
+        "anchor": "対比表2つの関係を並べて見る"
+      },
+      {
+        "title": "判定の実戦——3つの可能性を全部調べる",
+        "anchor": "判定の実戦3つの可能性を全部調べる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 式とグラフで問題を解く",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：同じ答えへ、3つのルート",
+        "anchor": "主概念1同じ答えへ3つのルート"
+      },
+      {
+        "title": "主概念2：説明は「用いるもの＋用い方」の2部品で",
+        "anchor": "主概念2説明は用いるもの用い方の2部品で"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L11 「比例とみなす」——予測とその限界",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_11.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：「みなす」は強力、ただし但し書きつき",
+        "anchor": "主概念みなすは強力ただし但し書きつき"
+      },
+      {
+        "title": "但し書き：みなしには「使える範囲」がある",
+        "anchor": "但し書きみなしには使える範囲がある"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L12 章末まとめ——三つの部屋をふり返る",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_12.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "三つの部屋の自己チェック",
+        "anchor": "三つの部屋の自己チェック"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「比例と反比例」（全20時間・18時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「比例と反比例」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成と子単元対応",
+        "anchor": "節レッスン構成と子単元対応"
+      },
+      {
+        "title": "1節 関数（3時間）——子単元 --proportion",
+        "anchor": "1節-関数3時間子単元---proportion"
+      },
+      {
+        "title": "2節 比例（7時間）——子単元 --proportion",
+        "anchor": "2節-比例7時間子単元---proportion"
+      },
+      {
+        "title": "3節 反比例（6時間）——子単元 --inverse-proportion",
+        "anchor": "3節-反比例6時間子単元---inverse-proportion"
+      },
+      {
+        "title": "4節 活用（3時間）——子単元 --applications",
+        "anchor": "4節-活用3時間子単元---applications"
+      },
+      {
+        "title": "章末（1時間）——単元共通",
+        "anchor": "章末1時間単元共通"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「商一定か、積一定か」（L03・L07で導入・L09で対比・L10〜L12で適用）",
+        "anchor": "商一定か積一定かl03l07で導入l09で対比l10l12で適用"
+      },
+      {
+        "title": "「表・式・グラフの三点セット」（L05〜L06で導入・L07〜L09で反比例にも適用)",
+        "anchor": "表式グラフの三点セットl05l06で導入l07l09で反比例にも適用"
+      },
+      {
+        "title": "「代入して確かめる」（L03で導入・全レッスンに適用）",
+        "anchor": "代入して確かめるl03で導入全レッスンに適用"
+      },
+      {
+        "title": "説明の2部品「用いるもの＋用い方」（L10で導入・L11・L12で反復）",
+        "anchor": "説明の2部品用いるもの用い方l10で導入l11l12で反復"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中1数学「空間図形」 — 単元の目次",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（立体と位置関係）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "L01 いろいろな立体〜名前と特徴",
+        "anchor": "l01-いろいろな立体名前と特徴"
+      },
+      {
+        "title": "準備運動（前提診断）",
+        "anchor": "準備運動前提診断"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 平面はいつ決まるか",
+        "anchor": "l02-平面はいつ決まるか"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 空間の2直線〜ねじれの位置",
+        "anchor": "l03-空間の2直線ねじれの位置"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動"
+      },
+      {
+        "title": "練習（直方体ABCD-EFGH: 上面ABCD・下面EFGH・AはEの真上）",
+        "anchor": "練習直方体abcd-efgh-上面abcd下面efghaはeの真上"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 直線と平面・2つの平面",
+        "anchor": "l04-直線と平面2つの平面"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動-1"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "L05 動かしてできる立体〜回転体",
+        "anchor": "l05-動かしてできる立体回転体"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 平面の上に写し取る〜見取図・展開図・投影図",
+        "anchor": "l06-平面の上に写し取る見取図展開図投影図"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 円をもう一度〜πと扇形",
+        "anchor": "l07-円をもう一度πと扇形"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動"
+      },
+      {
+        "title": "練習（すべてπの検算 ①π ②次数 ③単位 を通過済み）",
+        "anchor": "練習すべてπの検算-1π-2次数-3単位-を通過済み"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 表面積〜展開図で平面にもどす",
+        "anchor": "l08-表面積展開図で平面にもどす"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動-1"
+      },
+      {
+        "title": "練習（すべてπの検算を通過済み。円錐は展開図→逆向き手順で解く）",
+        "anchor": "練習すべてπの検算を通過済み円錐は展開図逆向き手順で解く"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L09〜L11",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L09-11.html",
+    "kind": "解答",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "L09 体積〜柱体と錐体",
+        "anchor": "l09-体積柱体と錐体"
+      },
+      {
+        "title": "準備運動",
+        "anchor": "準備運動"
+      },
+      {
+        "title": "練習（πの検算通過済み）",
+        "anchor": "練習πの検算通過済み"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L10 球の表面積と体積",
+        "anchor": "l10-球の表面積と体積"
+      },
+      {
+        "title": "練習（πの検算・r²/r³の見分け検算通過済み）",
+        "anchor": "練習πの検算r2r3の見分け検算通過済み"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L11 単元まとめ〜見る道具と測る道具の棚卸し",
+        "anchor": "l11-単元まとめ見る道具と測る道具の棚卸し"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      }
+    ]
+  },
+  {
+    "title": "L01 いろいろな立体〜名前と特徴",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：小学校の道具箱の点検（前提診断）",
+        "anchor": "準備運動小学校の道具箱の点検前提診断"
+      },
+      {
+        "title": "主概念1：立体の名前は「底の形＋立ち方」でできている",
+        "anchor": "主概念1立体の名前は底の形立ち方でできている"
+      },
+      {
+        "title": "主概念2：相手はだれ？チェック",
+        "anchor": "主概念2相手はだれチェック"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 平面はいつ決まるか",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：直線はいつ決まる？",
+        "anchor": "準備運動直線はいつ決まる"
+      },
+      {
+        "title": "主概念1：2点では、平面は決まらない",
+        "anchor": "主概念12点では平面は決まらない"
+      },
+      {
+        "title": "主概念2：「一直線上にない」を落とすと、話が崩れる",
+        "anchor": "主概念2一直線上にないを落とすと話が崩れる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 空間の2直線〜ねじれの位置",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：平面の上ではどうだった？",
+        "anchor": "準備運動平面の上ではどうだった"
+      },
+      {
+        "title": "主概念1：交わらないのに、平行でもない",
+        "anchor": "主概念1交わらないのに平行でもない"
+      },
+      {
+        "title": "主概念2：2条件チェック〜片方の確認だけで答えない",
+        "anchor": "主概念22条件チェック片方の確認だけで答えない"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 直線と平面・2つの平面",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：前回の道具の確認",
+        "anchor": "準備運動前回の道具の確認"
+      },
+      {
+        "title": "主概念1：直線と平面〜含まれる・交わる・平行",
+        "anchor": "主概念1直線と平面含まれる交わる平行"
+      },
+      {
+        "title": "主概念2：2つの平面〜交わるか、平行か",
+        "anchor": "主概念22つの平面交わるか平行か"
+      },
+      {
+        "title": "主概念3：空間では「とは限らない」が増える",
+        "anchor": "主概念3空間ではとは限らないが増える"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 動かしてできる立体〜回転体",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：動かした跡",
+        "anchor": "準備運動動かした跡"
+      },
+      {
+        "title": "主概念1：面をまっすぐ動かすと、柱体ができる",
+        "anchor": "主概念1面をまっすぐ動かすと柱体ができる"
+      },
+      {
+        "title": "主概念2：回すと、回転体ができる",
+        "anchor": "主概念2回すと回転体ができる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 平面の上に写し取る〜見取図・展開図・投影図",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：小学校からの2つの道具",
+        "anchor": "準備運動小学校からの2つの道具"
+      },
+      {
+        "title": "主概念1：見取図は便利で、そして正直ではない",
+        "anchor": "主概念1見取図は便利でそして正直ではない"
+      },
+      {
+        "title": "主概念2：展開図〜面の「ほんとうの形」を運ぶ",
+        "anchor": "主概念2展開図面のほんとうの形を運ぶ"
+      },
+      {
+        "title": "主概念3：投影図〜真正面と真上から",
+        "anchor": "主概念3投影図真正面と真上から"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 円をもう一度〜πと扇形",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：円の求積の学び直し",
+        "anchor": "準備運動円の求積の学び直し"
+      },
+      {
+        "title": "主概念1：円周率をπとよぶ",
+        "anchor": "主概念1円周率をπとよぶ"
+      },
+      {
+        "title": "主概念2：πの検算",
+        "anchor": "主概念2πの検算"
+      },
+      {
+        "title": "主概念3：扇形は「円の一部」〜中心角に比例",
+        "anchor": "主概念3扇形は円の一部中心角に比例"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 表面積〜展開図で平面にもどす",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：部品の確認",
+        "anchor": "準備運動部品の確認"
+      },
+      {
+        "title": "主概念1：表面積は、面積の問題",
+        "anchor": "主概念1表面積は面積の問題"
+      },
+      {
+        "title": "主概念2：角錐の表面積〜三角形の高さは「側面の上」で測る",
+        "anchor": "主概念2角錐の表面積三角形の高さは側面の上で測る"
+      },
+      {
+        "title": "主概念3：円錐の側面〜中心角を逆向きに求める",
+        "anchor": "主概念3円錐の側面中心角を逆向きに求める"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 体積〜柱体と錐体",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：小学校の体積",
+        "anchor": "準備運動小学校の体積"
+      },
+      {
+        "title": "主概念1：柱体の体積は、底面積×高さ",
+        "anchor": "主概念1柱体の体積は底面積高さ"
+      },
+      {
+        "title": "主概念2：錐体は、同じ柱体のちょうど1/3",
+        "anchor": "主概念2錐体は同じ柱体のちょうど13"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 球の表面積と体積",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：比較の相手をつくる",
+        "anchor": "準備運動比較の相手をつくる"
+      },
+      {
+        "title": "主概念1：球の体積は、ぴったり入る円柱の2/3",
+        "anchor": "主概念1球の体積はぴったり入る円柱の23"
+      },
+      {
+        "title": "主概念2：球の表面積は4πr²",
+        "anchor": "主概念2球の表面積は4πr2"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L11 単元まとめ〜見る道具と測る道具の棚卸し",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_11.html",
+    "kind": "レッスン",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "棚卸し表〜この章の道具一覧",
+        "anchor": "棚卸し表この章の道具一覧"
+      },
+      {
+        "title": "総合演習〜道具を連結する",
+        "anchor": "総合演習道具を連結する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中1数学「空間図形」（全18時間・2子単元・19時間版調整可）",
+    "url": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学1年 数学",
+    "unit": "中1数学「空間図形」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "子単元対応と時間配当（算術一致）",
+        "anchor": "子単元対応と時間配当算術一致"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "子単元1 views-sections（11時間）——空間を「見る」道具をそろえる",
+        "anchor": "子単元1-views-sections11時間空間を見る道具をそろえる"
+      },
+      {
+        "title": "子単元2 surface-area-volume（6時間）＋まとめ（1時間）——空間を「測る」",
+        "anchor": "子単元2-surface-area-volume6時間まとめ1時間空間を測る"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "相手はだれ？チェック（L01で導入・全編で運用）",
+        "anchor": "相手はだれチェックl01で導入全編で運用"
+      },
+      {
+        "title": "2条件チェック（L03で導入・位置関係の全設問で運用）",
+        "anchor": "2条件チェックl03で導入位置関係の全設問で運用"
+      },
+      {
+        "title": "πの検算（L07で導入・計量の全設問で運用）",
+        "anchor": "πの検算l07で導入計量の全設問で運用"
+      },
+      {
+        "title": "予想→確かめる（L09・L10）",
+        "anchor": "予想確かめるl09l10"
+      },
+      {
+        "title": "紙上の操作代替（全編）",
+        "anchor": "紙上の操作代替全編"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
     "title": "中2数学 — このフォルダの目次",
     "url": "content/materials/jhs-math-2/README.html",
     "kind": "案内・設計図",
     "subject": "中学2年 数学",
     "unit": "",
-    "headings": []
+    "headings": [
+      {
+        "title": "おすすめの学習順（教科書の標準的な順番）",
+        "anchor": "おすすめの学習順教科書の標準的な順番"
+      }
+    ]
+  },
+  {
+    "title": "中2数学「図形の合同と証明」 — 単元の目次",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（平行線と角）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "L01 根拠を言葉にする——対頂角",
+        "anchor": "l01-根拠を言葉にする対頂角"
+      },
+      {
+        "title": "準備運動（前提診断）",
+        "anchor": "準備運動前提診断"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 平行線と角——同位角・錯角",
+        "anchor": "l02-平行線と角同位角錯角"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 三角形の角——「角を集める」だけでは足りない",
+        "anchor": "l03-三角形の角角を集めるだけでは足りない"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 多角形の角",
+        "anchor": "l04-多角形の角"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08（合同と証明入門・二等辺三角形）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "L05 合同な図形——ぴったり重なるとは",
+        "anchor": "l05-合同な図形ぴったり重なるとは"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 三角形の合同条件",
+        "anchor": "l06-三角形の合同条件"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 証明のしくみ——仮定・結論・根拠",
+        "anchor": "l07-証明のしくみ仮定結論根拠"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 二等辺三角形の性質",
+        "anchor": "l08-二等辺三角形の性質"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L09〜L12（三角形の条件・直角三角形・平行四辺形）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "L09 二等辺三角形になるための条件・正三角形",
+        "anchor": "l09-二等辺三角形になるための条件正三角形"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L10 直角三角形の合同条件",
+        "anchor": "l10-直角三角形の合同条件"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L11 平行四辺形の性質",
+        "anchor": "l11-平行四辺形の性質"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L12 平行四辺形になるための条件",
+        "anchor": "l12-平行四辺形になるための条件"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L13〜L16（特別な平行四辺形・逆と反例・証明を読む・章末まとめ）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "L13 特別な平行四辺形——長方形・ひし形・正方形",
+        "anchor": "l13-特別な平行四辺形長方形ひし形正方形"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L14 逆と反例",
+        "anchor": "l14-逆と反例"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L15 証明を読む——新しい発見・誤りの指摘",
+        "anchor": "l15-証明を読む新しい発見誤りの指摘"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L16 章末まとめ——根拠のリストを棚卸しする",
+        "anchor": "l16-章末まとめ根拠のリストを棚卸しする"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "L01 根拠を言葉にする〜対頂角",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：道具箱の点検（前提診断）",
+        "anchor": "準備運動道具箱の点検前提診断"
+      },
+      {
+        "title": "主概念1：2直線が交わると、角が4つ生まれる",
+        "anchor": "主概念12直線が交わると角が4つ生まれる"
+      },
+      {
+        "title": "主概念2：測らずに「いつでも等しい」と言い切る",
+        "anchor": "主概念2測らずにいつでも等しいと言い切る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 平行線と角〜同位角・錯角",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：同じ「位置取り」の角〜同位角と錯角",
+        "anchor": "主概念1同じ位置取りの角同位角と錯角"
+      },
+      {
+        "title": "主概念2：平行線の性質〜この章の「認める土台」",
+        "anchor": "主概念2平行線の性質この章の認める土台"
+      },
+      {
+        "title": "主概念3：逆向きに使う〜平行線になるための条件",
+        "anchor": "主概念3逆向きに使う平行線になるための条件"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 三角形の角〜「角を集める」だけでは足りない",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "活動：まず、手で確かめてみる",
+        "anchor": "活動まず手で確かめてみる"
+      },
+      {
+        "title": "主概念1：平行線を1本引くと、実験が「証明の卵」に変わる",
+        "anchor": "主概念1平行線を1本引くと実験が証明の卵に変わる"
+      },
+      {
+        "title": "主概念2：外角〜内角の「外側のとなり」",
+        "anchor": "主概念2外角内角の外側のとなり"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 多角形の角",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：多角形は三角形の集まり〜内角の和",
+        "anchor": "主概念1多角形は三角形の集まり内角の和"
+      },
+      {
+        "title": "主概念2：外角の和は、いつでも360°",
+        "anchor": "主概念2外角の和はいつでも360"
+      },
+      {
+        "title": "検出訓練：外角の「360°から引く」事故",
+        "anchor": "検出訓練外角の360から引く事故"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 合同な図形〜ぴったり重なるとは",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：合同の定義その1〜動かして、ぴったり重ねる",
+        "anchor": "主概念1合同の定義その1動かしてぴったり重ねる"
+      },
+      {
+        "title": "主概念2：合同の定義その2〜動かさずに、測って言う",
+        "anchor": "主概念2合同の定義その2動かさずに測って言う"
+      },
+      {
+        "title": "記号≡〜対応の順にそろえて書く",
+        "anchor": "記号対応の順にそろえて書く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 三角形の合同条件",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：全部調べなくても、決まる？",
+        "anchor": "導入全部調べなくても決まる"
+      },
+      {
+        "title": "主概念1：三角形の合同条件〜3つの言い回しを正確に",
+        "anchor": "主概念1三角形の合同条件3つの言い回しを正確に"
+      },
+      {
+        "title": "主概念2：位置指定を外すと壊れる〜「間ではない角」の実験",
+        "anchor": "主概念2位置指定を外すと壊れる間ではない角の実験"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 証明のしくみ〜仮定・結論・根拠",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：なぜ証明するのか〜図は「すべての代表」",
+        "anchor": "主概念1なぜ証明するのか図はすべての代表"
+      },
+      {
+        "title": "主概念2：命題・仮定・結論〜「ならば」で切り分ける",
+        "anchor": "主概念2命題仮定結論ならばで切り分ける"
+      },
+      {
+        "title": "主概念3：証明〜根拠で仮定と結論をつなぐ",
+        "anchor": "主概念3証明根拠で仮定と結論をつなぐ"
+      },
+      {
+        "title": "見直し3点チェック〜書いたら必ず通す",
+        "anchor": "見直し3点チェック書いたら必ず通す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 二等辺三角形の性質",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：昔なじみの三角形に、調べ方を変えて再会する",
+        "anchor": "導入昔なじみの三角形に調べ方を変えて再会する"
+      },
+      {
+        "title": "主概念1：出発点は定義〜それ以外は、まだ何も知らないふりをする",
+        "anchor": "主概念1出発点は定義それ以外はまだ何も知らないふりをする"
+      },
+      {
+        "title": "主概念2：底角の定理〜はじめての「定義から性質を掘り出す」証明",
+        "anchor": "主概念2底角の定理はじめての定義から性質を掘り出す証明"
+      },
+      {
+        "title": "主概念3：同じ合同から、もうひと掘り〜頂角の二等分線の定理",
+        "anchor": "主概念3同じ合同からもうひと掘り頂角の二等分線の定理"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 二等辺三角形になるための条件・正三角形",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：矢印の向きを入れかえる",
+        "anchor": "主概念1矢印の向きを入れかえる"
+      },
+      {
+        "title": "主概念2：正三角形〜二等辺三角形の「特別な場合」",
+        "anchor": "主概念2正三角形二等辺三角形の特別な場合"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 直角三角形の合同条件",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：情報が「足りないように見えて、足りている」三角形",
+        "anchor": "導入情報が足りないように見えて足りている三角形"
+      },
+      {
+        "title": "主概念1：斜辺と1鋭角〜「残りの角」を掘り出す",
+        "anchor": "主概念1斜辺と1鋭角残りの角を掘り出す"
+      },
+      {
+        "title": "主概念2：斜辺と他の1辺〜背中合わせにくっつけて、二等辺を作る",
+        "anchor": "主概念2斜辺と他の1辺背中合わせにくっつけて二等辺を作る"
+      },
+      {
+        "title": "立ち止まる価値のある違い〜「認めた条件」と「導いた条件」",
+        "anchor": "立ち止まる価値のある違い認めた条件と導いた条件"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L11 平行四辺形の性質",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_11.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：また会ったね、平行四辺形",
+        "anchor": "導入また会ったね平行四辺形"
+      },
+      {
+        "title": "主概念1：対辺相等〜対角線1本で、三角形の世界に持ち込む",
+        "anchor": "主概念1対辺相等対角線1本で三角形の世界に持ち込む"
+      },
+      {
+        "title": "主概念2：対角相等〜同じ合同から、もうひと掘り",
+        "anchor": "主概念2対角相等同じ合同からもうひと掘り"
+      },
+      {
+        "title": "主概念3：対角線〜証明した性質が、さっそく根拠になる",
+        "anchor": "主概念3対角線証明した性質がさっそく根拠になる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L12 平行四辺形になるための条件",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_12.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：逆向きの橋〜「平行四辺形ならば」から「ならば平行四辺形」へ",
+        "anchor": "主概念1逆向きの橋平行四辺形ならばからならば平行四辺形へ"
+      },
+      {
+        "title": "主概念2：条件2の証明〜ゴールは「平行」。合同はまだ途中",
+        "anchor": "主概念2条件2の証明ゴールは平行合同はまだ途中"
+      },
+      {
+        "title": "主概念3：条件5の証明〜平行1組を最大限に使う",
+        "anchor": "主概念3条件5の証明平行1組を最大限に使う"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L13 特別な平行四辺形〜長方形・ひし形・正方形",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_13.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：定義の系図〜「特別な場合」は性質を全部相続する",
+        "anchor": "主概念1定義の系図特別な場合は性質を全部相続する"
+      },
+      {
+        "title": "主概念2：対角線の性質〜特別な分だけ、対角線も特別になる",
+        "anchor": "主概念2対角線の性質特別な分だけ対角線も特別になる"
+      },
+      {
+        "title": "主概念3：包含関係〜「仲間はずれ」ではなく「入れ子」",
+        "anchor": "主概念3包含関係仲間はずれではなく入れ子"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L14 逆と反例",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_14.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：逆〜この章でずっとやってきた「入れかえ」に、名前が付く",
+        "anchor": "主概念1逆この章でずっとやってきた入れかえに名前が付く"
+      },
+      {
+        "title": "主概念2：反例〜たった1つの例で「正しくない」を言い切る",
+        "anchor": "主概念2反例たった1つの例で正しくないを言い切る"
+      },
+      {
+        "title": "活動：等脚台形〜「惜しい四角形」を自分の手で作る",
+        "anchor": "活動等脚台形惜しい四角形を自分の手で作る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L15 証明を読む〜新しい発見・誤りの指摘",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_15.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：あの図に戻る〜証明は掘り返すと、まだ出てくる",
+        "anchor": "主概念1あの図に戻る証明は掘り返すとまだ出てくる"
+      },
+      {
+        "title": "主概念2：誤りの指摘〜3つの型を、名指しで見抜く",
+        "anchor": "主概念2誤りの指摘3つの型を名指しで見抜く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L16 章末まとめ〜根拠のリストを棚卸しする",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_16.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：根拠のリスト〜この章であなたが手に入れたもの",
+        "anchor": "主概念根拠のリストこの章であなたが手に入れたもの"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中2数学「図形の合同と証明」（全35時間・2フェーズ・34/36時間版調整可）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「図形の合同と証明」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "フェーズ1 平行と合同（15時間）——「根拠を言う」から「根拠をつなぐ」へ",
+        "anchor": "フェーズ1-平行と合同15時間根拠を言うから根拠をつなぐへ"
+      },
+      {
+        "title": "フェーズ2 三角形と四角形（20時間）——根拠のリストを増やしながら使う",
+        "anchor": "フェーズ2-三角形と四角形20時間根拠のリストを増やしながら使う"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「仮定と結論の抜き出し」を設問1に固定（L07で導入・以後の証明課題。終盤の総合演習・stretchは設問指示を外して自力運用へ移行）",
+        "anchor": "仮定と結論の抜き出しを設問1に固定l07で導入以後の証明課題終盤の総合演習stretchは設問指示を外して自力運用へ移行"
+      },
+      {
+        "title": "見直し3点チェック（L07で導入・全証明で運用）",
+        "anchor": "見直し3点チェックl07で導入全証明で運用"
+      },
+      {
+        "title": "読解2型（L07で導入・各レッスンに1問以上・L15で集中）",
+        "anchor": "読解2型l07で導入各レッスンに1問以上l15で集中"
+      },
+      {
+        "title": "反例づくり演習（L09・L12・L14）",
+        "anchor": "反例づくり演習l09l12l14"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中2数学「式の計算」 — 単元の目次",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（式の計算）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "L01 中1の道具箱を開け直す——項の意味",
+        "anchor": "l01-中1の道具箱を開け直す項の意味"
+      },
+      {
+        "title": "準備運動（前提診断）",
+        "anchor": "準備運動前提診断"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 単項式・多項式・同類項——文字が2種類になると",
+        "anchor": "l02-単項式多項式同類項文字が2種類になると"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 多項式の加法と減法",
+        "anchor": "l03-多項式の加法と減法"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 単項式の乗法と除法",
+        "anchor": "l04-単項式の乗法と除法"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L07（文字式の利用・前半）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L05-07.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "L05 事象を文字式で表す——代入で確かめる",
+        "anchor": "l05-事象を文字式で表す代入で確かめる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 式による説明①——4ステップの足場",
+        "anchor": "l06-式による説明14ステップの足場"
+      },
+      {
+        "title": "足場つきの練習",
+        "anchor": "足場つきの練習"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 式による説明②——自力記述へ",
+        "anchor": "l07-式による説明2自力記述へ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L08〜L10（等式の変形・式を読む・章末）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L08-10.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "L08 等式の変形——目的に合わせて式をつくり直す",
+        "anchor": "l08-等式の変形目的に合わせて式をつくり直す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L09 式を読む——変形済みの式が教えてくれること",
+        "anchor": "l09-式を読む変形済みの式が教えてくれること"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L10 章末まとめ——文字の力の総点検",
+        "anchor": "l10-章末まとめ文字の力の総点検"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      }
+    ]
+  },
+  {
+    "title": "L01 中1の道具箱を開け直す——項の意味",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：道具箱の点検（前提診断）",
+        "anchor": "準備運動道具箱の点検前提診断"
+      },
+      {
+        "title": "主概念1：式は「項」という部品でできている",
+        "anchor": "主概念1式は項という部品でできている"
+      },
+      {
+        "title": "主概念2：まとめられない項——ある答案の解剖",
+        "anchor": "主概念2まとめられない項ある答案の解剖"
+      },
+      {
+        "title": "判定の型：「文字の部分は同じ？」",
+        "anchor": "判定の型文字の部分は同じ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 単項式・多項式・同類項——文字が2種類になると",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：式の分類——単項式と多項式",
+        "anchor": "主概念1式の分類単項式と多項式"
+      },
+      {
+        "title": "主概念2：次数——文字が何個かけ合わされているか",
+        "anchor": "主概念2次数文字が何個かけ合わされているか"
+      },
+      {
+        "title": "主概念3：同類項——「x と y はまとめられない」",
+        "anchor": "主概念3同類項x-と-y-はまとめられない"
+      },
+      {
+        "title": "まとめ方の手順（型）",
+        "anchor": "まとめ方の手順型"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 多項式の加法と減法",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：たすときはそのまま、ひくときは符号を反転",
+        "anchor": "主概念1たすときはそのままひくときは符号を反転"
+      },
+      {
+        "title": "主概念2：数×多項式——分配してから、まとめる",
+        "anchor": "主概念2数多項式分配してからまとめる"
+      },
+      {
+        "title": "手順の型（全計算共通）",
+        "anchor": "手順の型全計算共通"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 単項式の乗法と除法——「どうし」まで",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：乗法——係数どうし、文字どうし",
+        "anchor": "主概念1乗法係数どうし文字どうし"
+      },
+      {
+        "title": "主概念2：除法——分数の形にする、または逆数をかける",
+        "anchor": "主概念2除法分数の形にするまたは逆数をかける"
+      },
+      {
+        "title": "主概念3：乗除混合——まとめて1つの分数に",
+        "anchor": "主概念3乗除混合まとめて1つの分数に"
+      },
+      {
+        "title": "範囲の道しるべ",
+        "anchor": "範囲の道しるべ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 事象を文字式で表す——代入で確かめる",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：「すべての偶数」を1本の式で",
+        "anchor": "主概念1すべての偶数を1本の式で"
+      },
+      {
+        "title": "主概念2：つくった式は、代入でテストする",
+        "anchor": "主概念2つくった式は代入でテストする"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 式による説明①——4ステップの足場",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：3つ試して、それで「いつでも」と言える？",
+        "anchor": "導入3つ試してそれでいつでもと言える"
+      },
+      {
+        "title": "主概念1：4ステップの説明",
+        "anchor": "主概念14ステップの説明"
+      },
+      {
+        "title": "主概念2：ステップ2の変形は「読みたい形」から逆算する",
+        "anchor": "主概念2ステップ2の変形は読みたい形から逆算する"
+      },
+      {
+        "title": "足場つきの練習（穴埋め→選択→記述）",
+        "anchor": "足場つきの練習穴埋め選択記述"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 式による説明②——自力記述へ",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：入れかえマジック",
+        "anchor": "導入入れかえマジック"
+      },
+      {
+        "title": "主概念1：けたの数の説明——10a＋b が主役",
+        "anchor": "主概念1けたの数の説明10ab-が主役"
+      },
+      {
+        "title": "主概念2：「結論だけ」を防ぐ3点セット",
+        "anchor": "主概念2結論だけを防ぐ3点セット"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 等式の変形——目的に合わせて式をつくり直す",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：底辺を100回求める人",
+        "anchor": "導入底辺を100回求める人"
+      },
+      {
+        "title": "主概念1：「a について解く」——道具は中1の等式の性質だけ",
+        "anchor": "主概念1a-について解く道具は中1の等式の性質だけ"
+      },
+      {
+        "title": "主概念2：どこが誤り？——「一部だけ」わってしまう事故",
+        "anchor": "主概念2どこが誤り一部だけわってしまう事故"
+      },
+      {
+        "title": "手順の型",
+        "anchor": "手順の型"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 式を読む——変形済みの式が教えてくれること",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "導入：外側レーンは、どれだけ損？",
+        "anchor": "導入外側レーンはどれだけ損"
+      },
+      {
+        "title": "主概念1：計算する——そして読む",
+        "anchor": "主概念1計算するそして読む"
+      },
+      {
+        "title": "主概念2：式の形から数の正体を読む",
+        "anchor": "主概念2式の形から数の正体を読む"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L10 章末まとめ——文字の力の総点検",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_10.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "この章の地図",
+        "anchor": "この章の地図"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "次の章への接続",
+        "anchor": "次の章への接続"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中2数学「式の計算」（全14時間・12〜13時間版調整可）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「式の計算」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "1節 式の計算（6時間）",
+        "anchor": "1節-式の計算6時間"
+      },
+      {
+        "title": "2節 文字式の利用（7時間）",
+        "anchor": "2節-文字式の利用7時間"
+      },
+      {
+        "title": "章末（1時間）",
+        "anchor": "章末1時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「代入で確かめる」（L01で導入・L05・L06・L08に適用）",
+        "anchor": "代入で確かめるl01で導入l05l06l08に適用"
+      },
+      {
+        "title": "「表す→計算・変形→読む→結論」の4ステップ（L06で導入・L07・L09・L10に適用）",
+        "anchor": "表す計算変形読む結論の4ステップl06で導入l07l09l10に適用"
+      },
+      {
+        "title": "「まとめられるか判定」（L01〜L02で導入・全編適用）",
+        "anchor": "まとめられるか判定l01l02で導入全編適用"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
   },
   {
     "title": "中2数学「一次関数」 — 単元の目次",
@@ -1940,6 +7216,1281 @@
       {
         "title": "解答について",
         "anchor": "解答について"
+      }
+    ]
+  },
+  {
+    "title": "中2数学「確率」 — 単元の目次",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L05（確率の意味・樹形図・二次元の表）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "L01 起こりやすさを数で表す——中1の確率をたしかめ直す",
+        "anchor": "l01-起こりやすさを数で表す中1の確率をたしかめ直す"
+      },
+      {
+        "title": "準備運動（前提診断）",
+        "anchor": "準備運動前提診断"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 投げる前に分かる確率——場合の数を基にして求める",
+        "anchor": "l02-投げる前に分かる確率場合の数を基にして求める"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 「3通り」か「4通り」か——同様に確からしいかを疑う",
+        "anchor": "l03-3通りか4通りか同様に確からしいかを疑う"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 樹形図——枝分かれで全部の場合をかき切る",
+        "anchor": "l04-樹形図枝分かれで全部の場合をかき切る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      },
+      {
+        "title": "L05 二次元の表——2つのさいころを一望する",
+        "anchor": "l05-二次元の表2つのさいころを一望する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-4"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-4"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L06〜L09（1から引く・くじ引きの公平・説明の型・章末）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "L06 「〜でない」確率——1から引くという近道",
+        "anchor": "l06-でない確率1から引くという近道"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L07 くじ引きは何番目でも公平か",
+        "anchor": "l07-くじ引きは何番目でも公平か"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L08 「確率が◯だから」——判断を説明する型",
+        "anchor": "l08-確率がだから判断を説明する型"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L09 章末まとめ——意味・求め方・説明の総点検",
+        "anchor": "l09-章末まとめ意味求め方説明の総点検"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "L01 起こりやすさを数で表す——中1の確率をたしかめ直す",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：道具箱の点検（前提診断）",
+        "anchor": "準備運動道具箱の点検前提診断"
+      },
+      {
+        "title": "主概念1：多数回投げると、割合は落ち着いてくる",
+        "anchor": "主概念1多数回投げると割合は落ち着いてくる"
+      },
+      {
+        "title": "主概念2：確率は「保証」ではない",
+        "anchor": "主概念2確率は保証ではない"
+      },
+      {
+        "title": "主概念3：確率の値の範囲——0から1まで",
+        "anchor": "主概念3確率の値の範囲0から1まで"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 投げる前に分かる確率——場合の数を基にして求める",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：実験なしで「1/6」と言えるのはなぜか",
+        "anchor": "主概念1実験なしで16と言えるのはなぜか"
+      },
+      {
+        "title": "主概念2：場合の数を基にして得られる確率",
+        "anchor": "主概念2場合の数を基にして得られる確率"
+      },
+      {
+        "title": "主概念3：2つの確率は同じものを指している",
+        "anchor": "主概念32つの確率は同じものを指している"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 「3通り」か「4通り」か——同様に確からしいかを疑う",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：もっともらしい2つの答え",
+        "anchor": "主概念1もっともらしい2つの答え"
+      },
+      {
+        "title": "主概念2：実験は3通り説に味方しない",
+        "anchor": "主概念2実験は3通り説に味方しない"
+      },
+      {
+        "title": "主概念3：同じ100円玉2枚でも、答えは変わらない",
+        "anchor": "主概念3同じ100円玉2枚でも答えは変わらない"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 樹形図——枝分かれで全部の場合をかき切る",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：3枚になっても、枝を増やすだけ",
+        "anchor": "主概念13枚になっても枝を増やすだけ"
+      },
+      {
+        "title": "主概念2：順番を決める場合も樹形図で",
+        "anchor": "主概念2順番を決める場合も樹形図で"
+      },
+      {
+        "title": "主概念3：じゃんけんも「全部かき切る」",
+        "anchor": "主概念3じゃんけんも全部かき切る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 二次元の表——2つのさいころを一望する",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：36マスの地図をつくる",
+        "anchor": "主概念136マスの地図をつくる"
+      },
+      {
+        "title": "主概念2：和だけでなく、積も・差も",
+        "anchor": "主概念2和だけでなく積も差も"
+      },
+      {
+        "title": "主概念3：樹形図と表、どちらを使うか",
+        "anchor": "主概念3樹形図と表どちらを使うか"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 「〜でない」確率——1から引くという近道",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：外れの確率は、当たりから分かる",
+        "anchor": "主概念1外れの確率は当たりから分かる"
+      },
+      {
+        "title": "主概念2：「少なくとも1枚は表」は、裏側から数える",
+        "anchor": "主概念2少なくとも1枚は表は裏側から数える"
+      },
+      {
+        "title": "主概念3：使いどころの見きわめ",
+        "anchor": "主概念3使いどころの見きわめ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 くじ引きは何番目でも公平か",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：先に引くのと、後に引くのと",
+        "anchor": "主概念1先に引くのと後に引くのと"
+      },
+      {
+        "title": "主概念2：樹形図でかき切る——くじに名前を付けて",
+        "anchor": "主概念2樹形図でかき切るくじに名前を付けて"
+      },
+      {
+        "title": "主概念3：当たり2本ならどうか——設定を変えて確かめる",
+        "anchor": "主概念3当たり2本ならどうか設定を変えて確かめる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 「確率が◯だから」——判断を説明する型",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：「多い方が出やすい」は本当か",
+        "anchor": "主概念1多い方が出やすいは本当か"
+      },
+      {
+        "title": "主概念2：このゲーム、乗ってよいか",
+        "anchor": "主概念2このゲーム乗ってよいか"
+      },
+      {
+        "title": "主概念3：不公平なら、直せばいい",
+        "anchor": "主概念3不公平なら直せばいい"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L09 章末まとめ——意味・求め方・説明の総点検",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_09.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "3部屋の自己チェック",
+        "anchor": "3部屋の自己チェック"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "この先の景色",
+        "anchor": "この先の景色"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中2数学「確率」（全9時間・8時間版調整可）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「確率」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "1節 確率の意味（3時間）",
+        "anchor": "1節-確率の意味3時間"
+      },
+      {
+        "title": "2節 確率の求め方（3時間）",
+        "anchor": "2節-確率の求め方3時間"
+      },
+      {
+        "title": "3節 確率を用いて説明する（2時間）",
+        "anchor": "3節-確率を用いて説明する2時間"
+      },
+      {
+        "title": "章末（1時間）",
+        "anchor": "章末1時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「かき切ってから数える」（L03で導入・L04〜L09に適用）",
+        "anchor": "かき切ってから数えるl03で導入l04l09に適用"
+      },
+      {
+        "title": "「同様に確からしいか、まず疑う」（L02で導入・L03で本格化・以後全レッスン）",
+        "anchor": "同様に確からしいかまず疑うl02で導入l03で本格化以後全レッスン"
+      },
+      {
+        "title": "「予想→確かめ→比較」（L01で導入・L03・L07・L08で反復）",
+        "anchor": "予想確かめ比較l01で導入l03l07l08で反復"
+      },
+      {
+        "title": "「根拠＋結論」の説明の型（L07で導入・L08で一般化・L09で総点検）",
+        "anchor": "根拠結論の説明の型l07で導入l08で一般化l09で総点検"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中2数学「四分位範囲と箱ひげ図」 — 単元の目次",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L03（箱ひげ図の読み方・四分位数の求め方）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L01-03.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "L01 グラフが多すぎて比べられない——箱ひげ図との出会い",
+        "anchor": "l01-グラフが多すぎて比べられない箱ひげ図との出会い"
+      },
+      {
+        "title": "準備運動（前提診断）",
+        "anchor": "準備運動前提診断"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 箱の中には「約半数」——箱ひげ図の読み方",
+        "anchor": "l02-箱の中には約半数箱ひげ図の読み方"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 四分位数の求め方——データを4等分する3つの区切り",
+        "anchor": "l03-四分位数の求め方データを4等分する3つの区切り"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L04〜L06（四分位範囲・比較と記述・統計的活動）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L04-06.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し",
+        "anchor": "l04-四分位範囲かけ離れた値に強い散らばりの物差し"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L05 くらべて、根拠を書く——箱の位置で語る",
+        "anchor": "l05-くらべて根拠を書く箱の位置で語る"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L06 データでたしかめる——一連の統計的活動と箱ひげ図の限界",
+        "anchor": "l06-データでたしかめる一連の統計的活動と箱ひげ図の限界"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      }
+    ]
+  },
+  {
+    "title": "L01 グラフが多すぎて比べられない——箱ひげ図との出会い",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：道具箱の点検（前提診断）",
+        "anchor": "準備運動道具箱の点検前提診断"
+      },
+      {
+        "title": "主概念1：ヒストグラム3枚は、いっぺんに比べられない",
+        "anchor": "主概念1ヒストグラム3枚はいっぺんに比べられない"
+      },
+      {
+        "title": "主概念2：箱ひげ図——5つの値だけでデータを語る",
+        "anchor": "主概念2箱ひげ図5つの値だけでデータを語る"
+      },
+      {
+        "title": "主概念3：箱の意味——真ん中に集まる「約半数」がそこにいる",
+        "anchor": "主概念3箱の意味真ん中に集まる約半数がそこにいる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 箱の中には「約半数」——箱ひげ図の読み方",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：数えてみよう——箱の中には何人いる？",
+        "anchor": "主概念1数えてみよう箱の中には何人いる"
+      },
+      {
+        "title": "主概念2：箱が短い＝人数が少ない？——同じ16人で実験",
+        "anchor": "主概念2箱が短い人数が少ない同じ16人で実験"
+      },
+      {
+        "title": "主概念3：ヒストグラムの形と箱ひげ図の形",
+        "anchor": "主概念3ヒストグラムの形と箱ひげ図の形"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 四分位数の求め方——データを4等分する3つの区切り",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：3つの区切りでデータを「四つに等しく分ける」",
+        "anchor": "主概念13つの区切りでデータを四つに等しく分ける"
+      },
+      {
+        "title": "主概念2：場合分けチャート——迷ったら「まず個数」",
+        "anchor": "主概念2場合分けチャート迷ったらまず個数"
+      },
+      {
+        "title": "検算の型：「求めたら、数えて確かめる」",
+        "anchor": "検算の型求めたら数えて確かめる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：範囲のよわみ——たった1人で数字が跳ね上がる",
+        "anchor": "主概念1範囲のよわみたった1人で数字が跳ね上がる"
+      },
+      {
+        "title": "主概念2：四分位範囲——真ん中の約半数の幅を測る",
+        "anchor": "主概念2四分位範囲真ん中の約半数の幅を測る"
+      },
+      {
+        "title": "主概念3：データから箱ひげ図をかく",
+        "anchor": "主概念3データから箱ひげ図をかく"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 くらべて、根拠を書く——箱の位置で語る",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：どちらのクラスが「よく読んでいる」か",
+        "anchor": "主概念1どちらのクラスがよく読んでいるか"
+      },
+      {
+        "title": "主概念2：記述の型——①どの指標を ②どちらがどうで ③だから",
+        "anchor": "主概念2記述の型1どの指標を-2どちらがどうで-3だから"
+      },
+      {
+        "title": "主概念3：誤答を直す——「長さ」で「位置」を語らない",
+        "anchor": "主概念3誤答を直す長さで位置を語らない"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 データでたしかめる——一連の統計的活動と箱ひげ図の限界",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：問いから始める——「計算は速くなったか？」",
+        "anchor": "主概念1問いから始める計算は速くなったか"
+      },
+      {
+        "title": "主概念2：コンピュータに手伝わせる",
+        "anchor": "主概念2コンピュータに手伝わせる"
+      },
+      {
+        "title": "主概念3：箱ひげ図の限界——消えた「二つの山」",
+        "anchor": "主概念3箱ひげ図の限界消えた二つの山"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中2数学「四分位範囲と箱ひげ図」（全6時間・5時間版調整可）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「四分位範囲と箱ひげ図」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "レッスン構成（全6時間）",
+        "anchor": "レッスン構成全6時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「箱には真ん中の約半数」（L01で導入・L02で実測・L03・L05で再打点）",
+        "anchor": "箱には真ん中の約半数l01で導入l02で実測l03l05で再打点"
+      },
+      {
+        "title": "「求めたら、数えて確かめる」（L03で導入・全レッスンに適用）",
+        "anchor": "求めたら数えて確かめるl03で導入全レッスンに適用"
+      },
+      {
+        "title": "記述の型「①どの指標を見て ②どちらがどうで ③だから結論」（L05で導入・L06で再使用）",
+        "anchor": "記述の型1どの指標を見て-2どちらがどうで-3だから結論l05で導入l06で再使用"
+      },
+      {
+        "title": "発展への導線（任意スロット）",
+        "anchor": "発展への導線任意スロット"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
+      }
+    ]
+  },
+  {
+    "title": "中2数学「連立方程式」 — 単元の目次",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/README.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "このパッケージの読み方",
+        "anchor": "このパッケージの読み方"
+      },
+      {
+        "title": "レッスン一覧",
+        "anchor": "レッスン一覧"
+      },
+      {
+        "title": "解答",
+        "anchor": "解答"
+      },
+      {
+        "title": "その他の資料",
+        "anchor": "その他の資料"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L01〜L04（解の意味・加減法・代入法）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "L01 条件が2つあるとき——二元一次方程式と連立方程式",
+        "anchor": "l01-条件が2つあるとき二元一次方程式と連立方程式"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L02 文字を消すという作戦——等式の性質と加減法",
+        "anchor": "l02-文字を消すという作戦等式の性質と加減法"
+      },
+      {
+        "title": "準備運動（前提診断）",
+        "anchor": "準備運動前提診断"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L03 係数をそろえる——加減法の完成",
+        "anchor": "l03-係数をそろえる加減法の完成"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L04 代入法と解法の選択",
+        "anchor": "l04-代入法と解法の選択"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-3"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "解答編 L05〜L08（いろいろな連立方程式・利用・章末）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.html",
+    "kind": "解答",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "L05 いろいろな連立方程式",
+        "anchor": "l05-いろいろな連立方程式"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch"
+      },
+      {
+        "title": "L06 二つの文字で場面を表す——個数と代金",
+        "anchor": "l06-二つの文字で場面を表す個数と代金"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-1"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-1"
+      },
+      {
+        "title": "L07 速さ・割合の場面",
+        "anchor": "l07-速さ割合の場面"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習-2"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-2"
+      },
+      {
+        "title": "L08 章末まとめ",
+        "anchor": "l08-章末まとめ"
+      },
+      {
+        "title": "3部屋の自己チェック（答えの例）",
+        "anchor": "3部屋の自己チェック答えの例"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "stretch",
+        "anchor": "stretch-3"
+      }
+    ]
+  },
+  {
+    "title": "L01 条件が2つあるとき——二元一次方程式と連立方程式",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_01.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：文字が2つだと、答えは「組」になる",
+        "anchor": "主概念1文字が2つだと答えは組になる"
+      },
+      {
+        "title": "主概念2：条件が2つそろうと、組が1つに絞られる",
+        "anchor": "主概念2条件が2つそろうと組が1つに絞られる"
+      },
+      {
+        "title": "型の導入：「代入して確かめる」",
+        "anchor": "型の導入代入して確かめる"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L02 文字を消すという作戦——等式の性質と加減法",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "準備運動：道具箱の点検（前提診断）",
+        "anchor": "準備運動道具箱の点検前提診断"
+      },
+      {
+        "title": "主概念1：等式は「天びん」——辺々を足してもつり合いは崩れない",
+        "anchor": "主概念1等式は天びん辺々を足してもつり合いは崩れない"
+      },
+      {
+        "title": "主概念2：加減法——文字を消して、知っている形に戻す",
+        "anchor": "主概念2加減法文字を消して知っている形に戻す"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L03 係数をそろえる——加減法の完成",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_03.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：そろっていないなら、そろえればいい",
+        "anchor": "主概念1そろっていないならそろえればいい"
+      },
+      {
+        "title": "主概念2：両方の式を何倍かする型",
+        "anchor": "主概念2両方の式を何倍かする型"
+      },
+      {
+        "title": "型の導入：「消す文字を先に宣言」",
+        "anchor": "型の導入消す文字を先に宣言"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L04 代入法と解法の選択",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：代入法——「yの正体」が分かっているなら、置きかえてしまう",
+        "anchor": "主概念1代入法yの正体が分かっているなら置きかえてしまう"
+      },
+      {
+        "title": "主概念2：y＝形どうしなら、右辺を直結できる",
+        "anchor": "主概念2y形どうしなら右辺を直結できる"
+      },
+      {
+        "title": "主概念3：式の形で解法を選ぶ",
+        "anchor": "主概念3式の形で解法を選ぶ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L05 いろいろな連立方程式",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_05.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念：見た目がちがっても、作戦はひとつ——「整理して、基本の形へ」",
+        "anchor": "主概念見た目がちがっても作戦はひとつ整理して基本の形へ"
+      },
+      {
+        "title": "型1：かっこがある → まず展開して整理",
+        "anchor": "型1かっこがある--まず展開して整理"
+      },
+      {
+        "title": "型2：小数がある → 両辺を10倍・100倍して整数に",
+        "anchor": "型2小数がある--両辺を10倍100倍して整数に"
+      },
+      {
+        "title": "型3：分数がある → 両辺に分母の最小公倍数をかける",
+        "anchor": "型3分数がある--両辺に分母の最小公倍数をかける"
+      },
+      {
+        "title": "型4：A＝B＝C の形 → 2本の等式に分解する",
+        "anchor": "型4abc-の形--2本の等式に分解する"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L06 二つの文字で場面を表す——個数と代金",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_06.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：利用の手順は4ステップ",
+        "anchor": "主概念1利用の手順は4ステップ"
+      },
+      {
+        "title": "主概念2：説明の3点セット——「連立にすればよい」で止まらない",
+        "anchor": "主概念2説明の3点セット連立にすればよいで止まらない"
+      },
+      {
+        "title": "主概念3：二つの文字で表す「よさ」",
+        "anchor": "主概念3二つの文字で表すよさ"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L07 速さ・割合の場面",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_07.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "主概念1：速さの場面——表の3行（道のり・速さ・時間）",
+        "anchor": "主概念1速さの場面表の3行道のり速さ時間"
+      },
+      {
+        "title": "主概念2：割合の場面——「もとにする量」を文字に置く",
+        "anchor": "主概念2割合の場面もとにする量を文字に置く"
+      },
+      {
+        "title": "練習",
+        "anchor": "練習"
+      }
+    ]
+  },
+  {
+    "title": "L08 章末まとめ——「消して戻す」作戦をふり返る",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_08.html",
+    "kind": "レッスン",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "ねらい",
+        "anchor": "ねらい"
+      },
+      {
+        "title": "3部屋の自己チェック",
+        "anchor": "3部屋の自己チェック"
+      },
+      {
+        "title": "総合演習",
+        "anchor": "総合演習"
+      },
+      {
+        "title": "次の章へ——予告編",
+        "anchor": "次の章へ予告編"
+      }
+    ]
+  },
+  {
+    "title": "レッスンマップ — 中2数学「連立方程式」（全13時間・12時間版調整可）",
+    "url": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_map.html",
+    "kind": "案内・設計図",
+    "subject": "中学2年 数学",
+    "unit": "中2数学「連立方程式」",
+    "headings": [
+      {
+        "title": "設計根拠（要約）",
+        "anchor": "設計根拠要約"
+      },
+      {
+        "title": "つまずきデータに基づく紙面配分（数値・出典の正確な転記はteachernotes参照）",
+        "anchor": "つまずきデータに基づく紙面配分数値出典の正確な転記はteacher_notes参照"
+      },
+      {
+        "title": "節・レッスン構成",
+        "anchor": "節レッスン構成"
+      },
+      {
+        "title": "1節 連立方程式とその解の意味（2時間）",
+        "anchor": "1節-連立方程式とその解の意味2時間"
+      },
+      {
+        "title": "2節 連立方程式の解き方（6時間）",
+        "anchor": "2節-連立方程式の解き方6時間"
+      },
+      {
+        "title": "3節 連立方程式の利用（4時間）",
+        "anchor": "3節-連立方程式の利用4時間"
+      },
+      {
+        "title": "章末（1時間）",
+        "anchor": "章末1時間"
+      },
+      {
+        "title": "型として全体に組み込むもの",
+        "anchor": "型として全体に組み込むもの"
+      },
+      {
+        "title": "「代入して確かめる」（L01で導入・全レッスンに適用）",
+        "anchor": "代入して確かめるl01で導入全レッスンに適用"
+      },
+      {
+        "title": "「右辺も忘れず」（L02で導入・L03〜L05・L08に適用）",
+        "anchor": "右辺も忘れずl02で導入l03l05l08に適用"
+      },
+      {
+        "title": "「消す文字を先に宣言」（L03で導入・L04・L05で再使用）",
+        "anchor": "消す文字を先に宣言l03で導入l04l05で再使用"
+      },
+      {
+        "title": "説明の3点セット（L06で導入・L07・L08で反復）",
+        "anchor": "説明の3点セットl06で導入l07l08で反復"
+      },
+      {
+        "title": "レーン分離・donotcover（禁止事項の反映）",
+        "anchor": "レーン分離do_not_cover禁止事項の反映"
+      },
+      {
+        "title": "ファイル構成と解答分離",
+        "anchor": "ファイル構成と解答分離"
       }
     ]
   },

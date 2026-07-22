@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L08 「確率が◯だから」——判断を説明する型">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L08 「確率が◯だから」——判断を説明する型｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L08 「確率が◯だから」——判断を説明する型">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/lesson_08.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L08 「確率が◯だから」——判断を説明する型｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/lesson_08.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="fb54af29442e23efb47c01a831766e49adc093b4181396f1d90224cb5de6eaa1" data-source-file="materials/jhs-math-2/jhs-math-2-probability/lesson_08.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-probability/index.html">中2数学「確率」</a></li><li aria-current="page">L08 「確率が◯だから」——判断を説明する型</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="fb54af29442e23efb47c01a831766e49adc093b4181396f1d90224cb5de6eaa1" data-source-file="materials/jhs-math-2/jhs-math-2-probability/lesson_08.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「確率」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l08-確率がだから判断を説明する型"><span class="lesson-title-main">L08 「確率が◯だから」</span><span class="lesson-title-sub">判断を説明する型</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-probability/lesson_08.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-probability/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>08</strong> / 09</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1多い方が出やすいは本当か" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%A4%9A%E3%81%84%E6%96%B9%E3%81%8C%E5%87%BA%E3%82%84%E3%81%99%E3%81%84%E3%81%AF%E6%9C%AC%E5%BD%93%E3%81%8B">主概念1：「多い方が出やすい」は本当か</a></li><li><a data-section-link="主概念2このゲーム乗ってよいか" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E3%81%93%E3%81%AE%E3%82%B2%E3%83%BC%E3%83%A0%E4%B9%97%E3%81%A3%E3%81%A6%E3%82%88%E3%81%84%E3%81%8B">主概念2：このゲーム、乗ってよいか</a></li><li><a data-section-link="主概念3不公平なら直せばいい" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E4%B8%8D%E5%85%AC%E5%B9%B3%E3%81%AA%E3%82%89%E7%9B%B4%E3%81%9B%E3%81%B0%E3%81%84%E3%81%84">主概念3：不公平なら、直せばいい</a></li><li><a data-section-link="練習" href="lesson_08.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1多い方が出やすいは本当か" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%A4%9A%E3%81%84%E6%96%B9%E3%81%8C%E5%87%BA%E3%82%84%E3%81%99%E3%81%84%E3%81%AF%E6%9C%AC%E5%BD%93%E3%81%8B">主概念1：「多い方が出やすい」は本当か</a></li><li><a data-section-link="主概念2このゲーム乗ってよいか" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E3%81%93%E3%81%AE%E3%82%B2%E3%83%BC%E3%83%A0%E4%B9%97%E3%81%A3%E3%81%A6%E3%82%88%E3%81%84%E3%81%8B">主概念2：このゲーム、乗ってよいか</a></li><li><a data-section-link="主概念3不公平なら直せばいい" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E4%B8%8D%E5%85%AC%E5%B9%B3%E3%81%AA%E3%82%89%E7%9B%B4%E3%81%9B%E3%81%B0%E3%81%84%E3%81%84">主概念3：不公平なら、直せばいい</a></li><li><a data-section-link="練習" href="lesson_08.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>直観で判断しそうな場面（どちらが出やすいか・ゲームは公平か）で、確率を<strong>比較できる形にそろえて</strong>求め、それを根拠に判断を<strong>説明</strong>できるようになる。</p></li><li><p>「根拠（確率の値）＋結論（判断）」の記述の型を、くじ引き以外の場面にも使えるようになる。</p></li></ul>
+<h2 id="主概念1多い方が出やすいは本当か">主概念1：「多い方が出やすい」は本当か</h2>
+<p>2つの袋がある。<strong>袋A</strong>には赤玉2個と白玉1個、<strong>袋B</strong>には赤玉3個と白玉2個が入っている。どちらかの袋をよく混ぜて玉を1個取り出す（どの玉が取り出されることも同様に確からしいとする）。赤玉なら成功だ。<strong>どちらの袋を選ぶべきだろうか</strong>。</p>
+<p>「袋Bは赤玉が3個もあるんだから、Bでしょ」——赤玉の<strong>個数</strong>は確かにBが多い。しかし出やすさを決めるのは個数そのものではなく、<strong>全体に対する割合</strong>、つまり確率だ。予想を書いたら、計算で確かめよう。</p>
+<ul><li><p>袋A: 全部で3個、赤玉2個 → 赤玉の確率 <strong>2/3</strong></p></li><li><p>袋B: 全部で5個、赤玉3個 → 赤玉の確率 <strong>3/5</strong></p></li></ul>
+<p>さて、2/3と3/5はどちらが大きいか。分母がちがう分数の比較だから<strong>通分</strong>する。2/3＝10/15、3/5＝9/15。</p>
+<blockquote><p>袋Aの赤玉の確率は10/15、袋Bは9/15で、<strong>袋Aの方が大きい</strong>。したがって、<strong>袋Aを選ぶ方が赤玉が出やすい</strong>。</p></blockquote>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 262" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-db21ce6600-title" aria-describedby="mg-db21ce6600-desc">
+<title id="mg-db21ce6600-title">袋Aと袋Bの赤玉の確率の通分比較（10/15と9/15）</title>
+<desc id="mg-db21ce6600-desc">同じ長さの帯2本をどちらも15等分し、袋Aは赤の確率2/3=10/15の10目盛、袋Bは3/5=9/15の9目盛が斜線で示される。端の位置を破線で比べると、1目盛だけ袋Aが長い</desc>
+<!-- L08_fig1_bag_probability_compare.svg | 袋Aと袋Bの赤玉の確率の通分比較（10/15と9/15） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="262" fill="#fff"/>
+<defs><pattern id="mg-db21ce6600-h45" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#555" stroke-width="1.1"/></pattern></defs><rect x="110.0" y="66.0" width="220.0" height="40.0" fill="url(#mg-db21ce6600-h45)" stroke="#000" stroke-width="0"/>
+<rect x="110.0" y="66.0" width="330.0" height="40.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="132.0" y1="66.0" x2="132.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="154.0" y1="66.0" x2="154.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="176.0" y1="66.0" x2="176.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="198.0" y1="66.0" x2="198.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="220.0" y1="66.0" x2="220.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="242.0" y1="66.0" x2="242.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="264.0" y1="66.0" x2="264.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="286.0" y1="66.0" x2="286.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="308.0" y1="66.0" x2="308.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="330.0" y1="66.0" x2="330.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="352.0" y1="66.0" x2="352.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="374.0" y1="66.0" x2="374.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="396.0" y1="66.0" x2="396.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="418.0" y1="66.0" x2="418.0" y2="106.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="330.0" y1="66.0" x2="330.0" y2="106.0" stroke="#000" stroke-width="1.6"/>
+<text x="64.0" y="91.0" font-size="14" text-anchor="middle" font-weight="bold">袋A</text>
+<text x="220.0" y="58.0" font-size="12" text-anchor="middle" font-weight="bold">赤 2/3 ＝ 10/15</text>
+<text x="440.0" y="122.0" font-size="10.5" text-anchor="end">全体を15とみる</text>
+<rect x="110.0" y="166.0" width="198.0" height="40.0" fill="url(#mg-db21ce6600-h45)" stroke="#000" stroke-width="0"/>
+<rect x="110.0" y="166.0" width="330.0" height="40.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="132.0" y1="166.0" x2="132.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="154.0" y1="166.0" x2="154.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="176.0" y1="166.0" x2="176.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="198.0" y1="166.0" x2="198.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="220.0" y1="166.0" x2="220.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="242.0" y1="166.0" x2="242.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="264.0" y1="166.0" x2="264.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="286.0" y1="166.0" x2="286.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="308.0" y1="166.0" x2="308.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="330.0" y1="166.0" x2="330.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="352.0" y1="166.0" x2="352.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="374.0" y1="166.0" x2="374.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="396.0" y1="166.0" x2="396.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="418.0" y1="166.0" x2="418.0" y2="206.0" stroke="#bbb" stroke-width="0.5"/>
+<line x1="308.0" y1="166.0" x2="308.0" y2="206.0" stroke="#000" stroke-width="1.6"/>
+<text x="64.0" y="191.0" font-size="14" text-anchor="middle" font-weight="bold">袋B</text>
+<text x="209.0" y="158.0" font-size="12" text-anchor="middle" font-weight="bold">赤 3/5 ＝ 9/15</text>
+<text x="440.0" y="222.0" font-size="10.5" text-anchor="end">全体を15とみる</text>
+<line x1="330.0" y1="106.0" x2="330.0" y2="166.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="308.0" y1="106.0" x2="308.0" y2="166.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="240.0" y="246.0" font-size="12" text-anchor="middle">（同じものさし（分母15）にそろえると、1目盛だけ袋Aが長い）</text>
+</svg>
+</div><figcaption>同じ長さの帯2本をどちらも15等分し、袋Aは赤の確率2/3=10/15の10目盛、袋Bは3/5=9/15の9目盛が斜線で示される。端の位置を破線で比べると、1目盛だけ袋Aが長い</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-probability/assets/L08_fig1_bag_probability_compare.svg">図を大きく開く</a></figure>
+<p>赤玉の個数が多い袋Bが負けた。個数のような目立つ数字に引っぱられず、<strong>同じものさし（通分した確率）にそろえてから比べる</strong>。これが確率で判断するということだ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>比較の場面では「そろえてから比べる」を型にする</strong></p>
+<p>確率どうしの大小比較で分母がちがうときは、通分（または小数に直す: 2/3＝0.66…、3/5＝0.6）でものさしをそろえてから比べる。答案では「10/15＞9/15だから」のように、<strong>そろえた後の形を書いてから</strong>大小を言うこと。「2/3の方がなんとなく大きい」では根拠にならない。そろえる作業そのものが説明の一部だ。</p></div>
+<h2 id="主概念2このゲーム乗ってよいか">主概念2：このゲーム、乗ってよいか</h2>
+<p>こんなゲームに誘われたとしよう。「<strong>3枚の硬貨を投げて、3枚とも同じ面ならきみの勝ち、それ以外ならわたしの勝ち</strong>。勝ち負けの種類は『そろう』か『そろわない』かの2通りだから、五分五分だよ」。</p>
+<p>——この章をここまで学んだ目には、あやしさが2つ見えるはずだ。①「2通りだから五分五分」は、<strong>同様に確からしいかの確認を飛ばしている</strong>（L03の3通り説と同じ穴）。②確かめる道具は自分が持っている。L04の樹形図（8通り）で数えると、3枚とも同じ面は（表表表）（裏裏裏）の<strong>2通り</strong>。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-db8611e562-title" aria-describedby="mg-db8611e562-desc">
+<title id="mg-db8611e562-title">「そろえば勝ち」ゲームの8通り仕分け図（2通り対6通り）</title>
+<desc id="mg-db8611e562-desc">3枚の硬貨の8通りを箱の列でかき切り、3枚とも同じ面の（表表表）（裏裏裏）の2通り（斜線）と、そろわない6通りをかっこで仕分けた図。「2通りだから五分五分」がふくまれる場合の数2対6で崩れる</desc>
+<!-- L08_fig2_all_same_game_partition.svg | 「そろえば勝ち」ゲームの8通り仕分け図（2通り対6通り） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="250" fill="#fff"/>
+<defs><pattern id="mg-db8611e562-h45" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#555" stroke-width="1.1"/></pattern></defs><rect x="32.0" y="92.0" width="52.0" height="56.0" fill="url(#mg-db8611e562-h45)" stroke="#000" stroke-width="0"/>
+<rect x="32.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="58.0" y="108.0" font-size="11" text-anchor="middle">表</text>
+<text x="58.0" y="123.0" font-size="11" text-anchor="middle">表</text>
+<text x="58.0" y="138.0" font-size="11" text-anchor="middle">表</text>
+<rect x="84.0" y="92.0" width="52.0" height="56.0" fill="url(#mg-db8611e562-h45)" stroke="#000" stroke-width="0"/>
+<rect x="84.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="110.0" y="108.0" font-size="11" text-anchor="middle">裏</text>
+<text x="110.0" y="123.0" font-size="11" text-anchor="middle">裏</text>
+<text x="110.0" y="138.0" font-size="11" text-anchor="middle">裏</text>
+<rect x="136.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="162.0" y="108.0" font-size="11" text-anchor="middle">表</text>
+<text x="162.0" y="123.0" font-size="11" text-anchor="middle">表</text>
+<text x="162.0" y="138.0" font-size="11" text-anchor="middle">裏</text>
+<rect x="188.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="214.0" y="108.0" font-size="11" text-anchor="middle">表</text>
+<text x="214.0" y="123.0" font-size="11" text-anchor="middle">裏</text>
+<text x="214.0" y="138.0" font-size="11" text-anchor="middle">表</text>
+<rect x="240.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="266.0" y="108.0" font-size="11" text-anchor="middle">表</text>
+<text x="266.0" y="123.0" font-size="11" text-anchor="middle">裏</text>
+<text x="266.0" y="138.0" font-size="11" text-anchor="middle">裏</text>
+<rect x="292.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="318.0" y="108.0" font-size="11" text-anchor="middle">裏</text>
+<text x="318.0" y="123.0" font-size="11" text-anchor="middle">表</text>
+<text x="318.0" y="138.0" font-size="11" text-anchor="middle">表</text>
+<rect x="344.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="370.0" y="108.0" font-size="11" text-anchor="middle">裏</text>
+<text x="370.0" y="123.0" font-size="11" text-anchor="middle">表</text>
+<text x="370.0" y="138.0" font-size="11" text-anchor="middle">裏</text>
+<rect x="396.0" y="92.0" width="52.0" height="56.0" fill="none" stroke="#000" stroke-width="1.0"/>
+<text x="422.0" y="108.0" font-size="11" text-anchor="middle">裏</text>
+<text x="422.0" y="123.0" font-size="11" text-anchor="middle">裏</text>
+<text x="422.0" y="138.0" font-size="11" text-anchor="middle">表</text>
+<line x1="32.0" y1="78.0" x2="132.0" y2="78.0" stroke="#000" stroke-width="1.3"/>
+<line x1="32.0" y1="78.0" x2="32.0" y2="86.0" stroke="#000" stroke-width="1.3"/>
+<line x1="132.0" y1="78.0" x2="132.0" y2="86.0" stroke="#000" stroke-width="1.3"/>
+<text x="84.0" y="54.0" font-size="10.5" text-anchor="middle" font-weight="bold">そろう</text>
+<text x="84.0" y="68.0" font-size="10.5" text-anchor="middle">（2通り）</text>
+<line x1="140.0" y1="78.0" x2="448.0" y2="78.0" stroke="#000" stroke-width="1.3"/>
+<line x1="140.0" y1="78.0" x2="140.0" y2="86.0" stroke="#000" stroke-width="1.3"/>
+<line x1="448.0" y1="78.0" x2="448.0" y2="86.0" stroke="#000" stroke-width="1.3"/>
+<text x="292.0" y="68.0" font-size="12" text-anchor="middle" font-weight="bold">そろわない（6通り）</text>
+<text x="240.0" y="34.0" font-size="14" text-anchor="middle" font-weight="bold">「3枚とも同じ面なら勝ち」を8通りで仕分ける</text>
+<text x="240.0" y="176.0" font-size="12" text-anchor="middle">（「2通りだから五分五分」ではない——ふくまれる場合の数は2対6）</text>
+</svg>
+</div><figcaption>3枚の硬貨の8通りを箱の列でかき切り、3枚とも同じ面の（表表表）（裏裏裏）の2通り（斜線）と、そろわない6通りをかっこで仕分けた図。「2通りだから五分五分」がふくまれる場合の数2対6で崩れる</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-probability/assets/L08_fig2_all_same_game_partition.svg">図を大きく開く</a></figure>
+<blockquote><p>きみが勝つ確率は 2/8＝<strong>1/4</strong>、相手が勝つ確率は 6/8＝<strong>3/4</strong>。確率が等しくないから、<strong>このゲームは公平ではなく、相手が有利である</strong>。</p></blockquote>
+<p>「五分五分だよ」ということばに、数え上げで反論できた。確率は、うのみにしない力でもある。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>「不確定な事象」。さいころの目も、くじの結果も、次の1回はだれにも分からない。それでも「どちらが起こりやすいか」なら、樹形図と表で<strong>きちんと比べられる</strong>。未来を言い当てる魔法ではないけれど、「分からないなりに、賢く選ぶ」ための数、それが確率。次の1回が分からないことと、選び方に良し悪しがあることは、両立するんだ。</p></div>
+<h2 id="主概念3不公平なら直せばいい">主概念3：不公平なら、直せばいい</h2>
+<p>主概念2のゲームは1/4対3/4で不公平だった。では、<strong>ルールをどう変えれば公平になる</strong>だろうか。</p>
+<p>たとえば「<strong>ちょうど2枚が表</strong>ならきみの勝ち、<strong>ちょうど2枚が裏</strong>ならわたしの勝ち、それ以外は引き分けにしてやり直し」としてみる。樹形図で数えると、ちょうど2枚表は3通り（3/8）、ちょうど2枚裏も3通り（3/8）で<strong>等しい</strong>。これなら公平だ。</p>
+<p>判定（公平か否か）で終わらず、<strong>確率をそろえるようにことがらを選び直す</strong>ところまでできれば、確率は「使える」道具になったと言える。ルールの直し方は1通りではない。自分の案が公平かどうかは、必ず樹形図・表で確かめること。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>説明問題の自己チェックリスト</strong></p>
+<p>書いた答案を出す前に、この4つを確認しよう。 ①場合の数の根拠（樹形図・表・「全部で◯通り、どれも同様に確からしい」）を書いたか ②確率を<strong>比較できる形</strong>（通分・同じ分母）で示したか ③聞かれたこと（どちらが有利か・公平か）に<strong>結論で答え切った</strong>か ④確率の値だけ書いて文を終えていないか（「確率は1/4」で終わるのは、根拠だけ書いて判断を書いていない答案） この章の記述問題は、計算力よりこのチェックの丁寧さで差がつく。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>袋Xには赤玉3個と白玉3個、袋Yには赤玉4個と白玉5個が入っている。どちらの袋もよく混ぜて玉を1個取り出すとき、赤玉が出やすいのはどちらの袋か。確率を比較できる形にそろえて説明しよう。</p></li><li><p>大小2つのさいころを投げて、「目の和が6以下ならAさんの勝ち、7以上ならBさんの勝ち」というゲームは公平か。36マスの表で数えて、3行型で説明しよう。</p></li><li><p>練習2のゲームを公平に直したい。「和が7のときは引き分けにしてやり直し、6以下ならA、8以上ならB」という案は公平になっているか、確かめよう。</p></li><li><p>「2枚の硬貨を投げて、2枚とも表ならあなたの勝ち、2枚とも裏ならわたしの勝ち、1枚ずつなら引き分け」。このゲームは公平と言えるか。樹形図を根拠に説明しよう。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 自分で「一見公平そうに見えて、実は不公平なゲーム」を1つ設計してみよう（硬貨・さいころ・くじ・玉のどれを使ってもよい）。そのゲームが不公平であることの説明（3行型）と、公平に直すルール案までをセットで書けたら完成。</p></div>
+<hr>
+<p>対応解答: answer_key_L06-09.md</p><a class="answer-link" href="answer_key_L06-09.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-probability/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 くじ引きは何番目でも公平か</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-probability/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_09.html"><span>次のレッスン</span>L09 章末まとめ——意味・求め方・説明の総点検</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

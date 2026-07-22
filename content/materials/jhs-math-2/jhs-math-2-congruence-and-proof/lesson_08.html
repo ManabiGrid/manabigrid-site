@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L08 二等辺三角形の性質">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L08 二等辺三角形の性質｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L08 二等辺三角形の性質">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L08 二等辺三角形の性質｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="4ddbf3be32c13562e07294524f1812f501a183390caf316dd88f993214305a82" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-congruence-and-proof/index.html">中2数学「図形の合同と証明」</a></li><li aria-current="page">L08 二等辺三角形の性質</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="4ddbf3be32c13562e07294524f1812f501a183390caf316dd88f993214305a82" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「図形の合同と証明」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l08-二等辺三角形の性質"><span class="lesson-title-main">L08 二等辺三角形の性質</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>08</strong> / 16</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入昔なじみの三角形に調べ方を変えて再会する" href="lesson_08.html#%E5%B0%8E%E5%85%A5%E6%98%94%E3%81%AA%E3%81%98%E3%81%BF%E3%81%AE%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AB%E8%AA%BF%E3%81%B9%E6%96%B9%E3%82%92%E5%A4%89%E3%81%88%E3%81%A6%E5%86%8D%E4%BC%9A%E3%81%99%E3%82%8B">導入：昔なじみの三角形に、調べ方を変えて再会する</a></li><li><a data-section-link="主概念1出発点は定義それ以外はまだ何も知らないふりをする" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%87%BA%E7%99%BA%E7%82%B9%E3%81%AF%E5%AE%9A%E7%BE%A9%E3%81%9D%E3%82%8C%E4%BB%A5%E5%A4%96%E3%81%AF%E3%81%BE%E3%81%A0%E4%BD%95%E3%82%82%E7%9F%A5%E3%82%89%E3%81%AA%E3%81%84%E3%81%B5%E3%82%8A%E3%82%92%E3%81%99%E3%82%8B">主概念1：出発点は定義〜それ以外は、まだ何も知らないふりをする</a></li><li><a data-section-link="主概念2底角の定理はじめての定義から性質を掘り出す証明" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%BA%95%E8%A7%92%E3%81%AE%E5%AE%9A%E7%90%86%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E5%AE%9A%E7%BE%A9%E3%81%8B%E3%82%89%E6%80%A7%E8%B3%AA%E3%82%92%E6%8E%98%E3%82%8A%E5%87%BA%E3%81%99%E8%A8%BC%E6%98%8E">主概念2：底角の定理〜はじめての「定義から性質を掘り出す」証明</a></li><li><a data-section-link="主概念3同じ合同からもうひと掘り頂角の二等分線の定理" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%90%8C%E3%81%98%E5%90%88%E5%90%8C%E3%81%8B%E3%82%89%E3%82%82%E3%81%86%E3%81%B2%E3%81%A8%E6%8E%98%E3%82%8A%E9%A0%82%E8%A7%92%E3%81%AE%E4%BA%8C%E7%AD%89%E5%88%86%E7%B7%9A%E3%81%AE%E5%AE%9A%E7%90%86">主概念3：同じ合同から、もうひと掘り〜頂角の二等分線の定理</a></li><li><a data-section-link="練習" href="lesson_08.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_08.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入昔なじみの三角形に調べ方を変えて再会する" href="lesson_08.html#%E5%B0%8E%E5%85%A5%E6%98%94%E3%81%AA%E3%81%98%E3%81%BF%E3%81%AE%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AB%E8%AA%BF%E3%81%B9%E6%96%B9%E3%82%92%E5%A4%89%E3%81%88%E3%81%A6%E5%86%8D%E4%BC%9A%E3%81%99%E3%82%8B">導入：昔なじみの三角形に、調べ方を変えて再会する</a></li><li><a data-section-link="主概念1出発点は定義それ以外はまだ何も知らないふりをする" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E5%87%BA%E7%99%BA%E7%82%B9%E3%81%AF%E5%AE%9A%E7%BE%A9%E3%81%9D%E3%82%8C%E4%BB%A5%E5%A4%96%E3%81%AF%E3%81%BE%E3%81%A0%E4%BD%95%E3%82%82%E7%9F%A5%E3%82%89%E3%81%AA%E3%81%84%E3%81%B5%E3%82%8A%E3%82%92%E3%81%99%E3%82%8B">主概念1：出発点は定義〜それ以外は、まだ何も知らないふりをする</a></li><li><a data-section-link="主概念2底角の定理はじめての定義から性質を掘り出す証明" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%BA%95%E8%A7%92%E3%81%AE%E5%AE%9A%E7%90%86%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E5%AE%9A%E7%BE%A9%E3%81%8B%E3%82%89%E6%80%A7%E8%B3%AA%E3%82%92%E6%8E%98%E3%82%8A%E5%87%BA%E3%81%99%E8%A8%BC%E6%98%8E">主概念2：底角の定理〜はじめての「定義から性質を掘り出す」証明</a></li><li><a data-section-link="主概念3同じ合同からもうひと掘り頂角の二等分線の定理" href="lesson_08.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E5%90%8C%E3%81%98%E5%90%88%E5%90%8C%E3%81%8B%E3%82%89%E3%82%82%E3%81%86%E3%81%B2%E3%81%A8%E6%8E%98%E3%82%8A%E9%A0%82%E8%A7%92%E3%81%AE%E4%BA%8C%E7%AD%89%E5%88%86%E7%B7%9A%E3%81%AE%E5%AE%9A%E7%90%86">主概念3：同じ合同から、もうひと掘り〜頂角の二等分線の定理</a></li><li><a data-section-link="練習" href="lesson_08.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p><strong>定義</strong>（2辺が等しい三角形）だけを出発点に、二等辺三角形の性質（<strong>底角は等しい</strong>／<strong>頂角の二等分線は底辺を垂直に2等分する</strong>）を証明できるようになる。</p></li><li><p>「知っていること」と「証明でつないだこと」を区別し、<strong>循環論法を自分で検出</strong>できるようになる。</p></li></ul>
+<h2 id="導入昔なじみの三角形に調べ方を変えて再会する">導入：昔なじみの三角形に、調べ方を変えて再会する</h2>
+<p>二等辺三角形とは、はじめまして、ではないはずだ。小学校で紙を折って調べた記憶がある人も多いだろう。半分に折るとぴったり重なって、2つの角が等しかった、あの三角形だ。</p>
+<p>では、なぜもう一度扱うのか。<strong>図形が新しいのではなく、調べ方が新しい</strong>からだ。あのときは折って・測って確かめた。いまのあなたは、実験が「常に成り立つことを示しているとはいえない」こと（L03）と、代わりに証明という方法があること（L07）を知っている。昔なじみの三角形は、新しい武器の最初の練習相手にちょうどいい。</p>
+<h2 id="主概念1出発点は定義それ以外はまだ何も知らないふりをする">主概念1：出発点は定義〜それ以外は、まだ何も知らないふりをする</h2>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】定義: 2つの辺が等しい三角形を、二等辺三角形という。</strong></p></blockquote>
+<p>用語の整理: 等しい2辺の間の角を<strong>頂角</strong>、頂角に向かい合う辺を<strong>底辺</strong>、底辺の両端の角を<strong>底角</strong>という。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 250" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-60b9f633f6-title" aria-describedby="mg-60b9f633f6-desc">
+<title id="mg-60b9f633f6-title">二等辺三角形と頂角・底辺・底角の名称</title>
+<desc id="mg-60b9f633f6-desc">二等辺三角形と頂角・底辺・底角の名称</desc>
+<!-- L08_fig1_isosceles_terms.svg | 二等辺三角形と頂角・底辺・底角の名称 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="420" height="250" fill="#fff"/>
+<polygon points="210.0,43.4 128.8,200.0 291.2,200.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="210.0" y="32.9" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<text x="116.2" y="212.7" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<text x="303.8" y="212.7" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<line x1="173.4" y1="123.8" x2="165.4" y2="119.6" stroke="#000" stroke-width="1.4"/>
+<line x1="254.6" y1="119.6" x2="246.6" y2="123.8" stroke="#000" stroke-width="1.4"/>
+<polyline points="203.6,55.8 204.2,56.1 204.8,56.4 205.4,56.6 206.0,56.8 206.7,57.0 207.3,57.1 208.0,57.3 208.7,57.3 209.3,57.4 210.0,57.4 210.7,57.4 211.3,57.3 212.0,57.3 212.7,57.1 213.3,57.0 214.0,56.8 214.6,56.6 215.2,56.4 215.8,56.1 216.4,55.8" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="210.0" y="91.6" font-size="12" text-anchor="middle">頂角</text>
+<text x="210.0" y="220.4" font-size="12" text-anchor="middle">底辺</text>
+<text x="163.0" y="183.4" font-size="12" text-anchor="middle">底角</text>
+<text x="257.0" y="183.4" font-size="12" text-anchor="middle">底角</text>
+<text x="210.0" y="238.0" font-size="12" text-anchor="middle">等しい2辺の間の角＝頂角、向かい合う辺＝底辺、底辺の両端＝底角</text>
+</svg>
+</div><figcaption>二等辺三角形と頂角・底辺・底角の名称</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-congruence-and-proof/assets/L08_fig1_isosceles_terms.svg">図を大きく開く</a></figure>
+<p>ここで、この章らしい約束をする。<strong>証明の間は、定義（AB＝AC）以外の「知っていること」を、いったん全部棚に上げる。</strong>「底角が等しいのは知ってる」——その通り。でもそれは<strong>これから示す結論</strong>だ。結論を根拠に使ったら循環論法（見直しチェック①）になる。知っているからこそ、使わない我慢が要る。</p>
+<h2 id="主概念2底角の定理はじめての定義から性質を掘り出す証明">主概念2：底角の定理〜はじめての「定義から性質を掘り出す」証明</h2>
+<p><strong>【定理】二等辺三角形の2つの底角は等しい。</strong></p>
+<p><strong>Step 1</strong> 仮定: AB＝AC　結論: ∠B＝∠C</p>
+<p><strong>Step 2（方針メモ）</strong> ∠Bと∠Cが対応する角になる合同な三角形を作りたい→△ABCの中に三角形は1つしかない→<strong>補助線で2つに割る</strong>。どう割る？ 左右対称っぽく割りたい→頂角∠Aの二等分線を引いてみる（角の二等分線は中1で作図できた。存在は保証されている）。</p>
+<p><strong>Step 3（記述）</strong> 頂角∠Aの二等分線と辺BCとの交点をDとする。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 250" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-360dd85cc8-title" aria-describedby="mg-360dd85cc8-desc">
+<title id="mg-360dd85cc8-title">頂角の二等分線ADで二等辺三角形を2つに割った図</title>
+<desc id="mg-360dd85cc8-desc">頂角の二等分線ADで二等辺三角形を2つに割った図</desc>
+<!-- L08_fig2_bisector_split.svg | 頂角の二等分線ADで二等辺三角形を2つに割った図 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="420" height="250" fill="#fff"/>
+<polygon points="210.0,43.4 128.8,200.0 291.2,200.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="210.0" y1="43.4" x2="210.0" y2="200.0" stroke="#000" stroke-width="1.6"/>
+<text x="210.0" y="32.9" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<text x="116.2" y="212.7" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<text x="303.8" y="212.7" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<circle cx="210.0" cy="200.0" r="2.5" fill="#000"/>
+<text x="210.0" y="216.0" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<line x1="173.4" y1="123.8" x2="165.4" y2="119.6" stroke="#000" stroke-width="1.4"/>
+<line x1="254.6" y1="119.6" x2="246.6" y2="123.8" stroke="#000" stroke-width="1.4"/>
+<polyline points="199.9,62.9 200.3,63.2 200.8,63.4 201.3,63.6 201.8,63.8 202.3,64.0 202.8,64.2 203.3,64.3 203.8,64.5 204.3,64.6 204.8,64.8 205.3,64.9 205.8,65.0 206.3,65.1 206.9,65.2 207.4,65.2 207.9,65.3 208.4,65.3 208.9,65.4 209.5,65.4 210.0,65.4" fill="none" stroke="#000" stroke-width="1.2"/>
+<polyline points="210.0,65.4 210.5,65.4 211.1,65.4 211.6,65.3 212.1,65.3 212.6,65.2 213.1,65.2 213.7,65.1 214.2,65.0 214.7,64.9 215.2,64.8 215.7,64.6 216.2,64.5 216.7,64.3 217.2,64.2 217.7,64.0 218.2,63.8 218.7,63.6 219.2,63.4 219.7,63.2 220.1,62.9" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="210.0" y="238.0" font-size="12" text-anchor="middle">頂角∠Aの二等分線ADと底辺BCの交点をDとする（同じ弧＝等しい角）</text>
+</svg>
+</div><figcaption>頂角の二等分線ADで二等辺三角形を2つに割った図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-congruence-and-proof/assets/L08_fig2_bisector_split.svg">図を大きく開く</a></figure>
+<blockquote><p><strong>【証明】</strong> △ABDと△ACDで、 AB＝AC …①　【根拠: 仮定】 ∠BAD＝∠CAD …②　【根拠: ADは∠Aの二等分線（そう引いた）】 AD＝AD …③　【根拠: 共通な辺】 ①②③より、<strong>対応する2組の辺がそれぞれ等しく、その間の角が等しい</strong>から、 △ABD≡△ACD 合同な図形では対応する角は等しいから、<strong>∠B＝∠C</strong> ■</p></blockquote>
+<p>見直し3点チェックを通す。①結論∠B＝∠Cを途中で使っていない ✓　②合同条件は正確な文言 ✓（∠BADは辺ABとADの間の角、∠CADは辺ACとADの間の角。ちゃんと「間の角」だ）　③最終行は結論そのもの ✓。</p>
+<p><strong>性質は、定義の中に折りたたまれていた。</strong> 証明とは、定義に隠れていたものを根拠の力で掘り出す作業でもある。</p>
+<h2 id="主概念3同じ合同からもうひと掘り頂角の二等分線の定理">主概念3：同じ合同から、もうひと掘り〜頂角の二等分線の定理</h2>
+<p>いまの証明で△ABD≡△ACDまで出した。取り出したのは∠B＝∠Cだけ——でも合同からは<strong>対応する辺・角の等しさが全部</strong>取り出せる。残りも見てみよう。</p>
+<ul><li><p>BD＝CD　【根拠: 対応する辺】→ <strong>ADは底辺BCを2等分する</strong></p></li><li><p>∠ADB＝∠ADC　【根拠: 対応する角】。さらに∠ADB＋∠ADC＝180°【根拠: 一直線の角は180°】だから、∠ADB＝∠ADC＝90° → <strong>ADは底辺BCと垂直</strong></p></li></ul>
+<blockquote class="formula-block"><span class="formula-label">定理</span><p><strong>【定理】二等辺三角形の頂角の二等分線は、底辺を垂直に2等分する。</strong></p></blockquote>
+<p>1回の合同証明が、定理を2つ生んだ。小学校で「半分に折るとぴったり重なる」と感じたことの正体（<strong>折り目こそが頂角の二等分線</strong>であり、それが対称の軸になっている）が、根拠の言葉で言えるようになった。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>補助線を引いたら、その線の「身分」を書く</strong></p>
+<p>Step 3の冒頭で「∠Aの二等分線と辺BCとの交点をD」と宣言した。この一文がないと、②の根拠が宙に浮く。補助線は引いた瞬間に「これは何の線か」を宣言する。ADを「なんとなく真ん中へ引いた線」のままにすると、∠BAD＝∠CADもBD＝CDも<strong>どれも仮定できない</strong>。なお、引くときに宣言できる身分は1つだけ。「二等分線であり、かつBCの中点を通る線」と<strong>両方</strong>宣言してしまうと、まだ証明していない性質まで仮定に紛れこませたことになり、循環論法になる（あとから<strong>証明できた</strong>性質を追加の道具として使うのはかまわない）。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「知ってるのに使えない」がつらいとき</strong></p>
+<p>底角が等しいことは小学校から知っている。それを使わずに証明しろと言われるのは、階段を1段ずつ上れと言われているようでもどかしい。でもこの我慢には見返りがある。定義だけから掘り出せた事実は、<strong>この先どんな二等辺三角形に対しても、根拠のリストの正式メンバーとして使える</strong>（実際、次のL10でさっそく主役級の働きをする）。「知ってる」は自分の中の確信で終わるが、「証明した」は誰に対しても通用する資格になる。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>小3のころの自分に「二等辺三角形の2つの角が等しいのはなぜ？」と聞かれたら、当時は「折ったら重なるから！」と答えただろう。今日のあなたは「頂角の二等分線で2つの三角形に分けると合同になるから」と答えられる。同じ図形に、違う学年の自分が違う答え方をする。学びが進むって、新しいものを知ることだけじゃなく、<strong>同じものへの答え方が深くなること</strong>でもあるんだね。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>二等辺三角形ABC（AB＝AC）で、∠A＝40°のとき、底角∠B・∠Cの大きさを求めよう。【根拠: 底角の定理と内角の和】</p></li><li><p>二等辺三角形ABC（AB＝AC）で、底角∠B＝70°のとき、頂角∠Aの大きさを求めよう。</p></li><li><p>【穴埋め＋一言】主概念2の証明を、補助線を「辺BCの中点Mと頂点Aを結ぶ線分」に変えて書き直そう。  「△ABMと△ACMで、AB＝AC【根拠: (あ)】、BM＝CM【根拠: (い)】、AM＝AM【根拠: (う)】。よって（　え　）から△ABM≡△ACM。したがって∠B＝∠C ■」  この証明で使った合同条件は、主概念2と同じか違うか。また、(い)を「ADは∠Aの二等分線だから」と書いてはいけない理由を一言で説明しよう。</p></li><li><p>【読む】次の答案のまちがいを、見直し3点チェックのどれに引っかかるかを添えて指摘しよう。  「△ABDと△ACDで、AB＝AC（仮定）、∠B＝∠C（二等辺三角形の底角は等しいから）、∠BAD＝∠CAD（ADは∠Aの二等分線だから）。よって△ABD≡△ACD。合同な図形の対応する角は等しいから∠B＝∠C ■」</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 主概念3で「頂角の二等分線は底辺を垂直に2等分する」を示した。では立場を入れかえて、「<strong>底辺BCの垂直二等分線は、頂点Aを通る</strong>」は成り立つだろうか。ヒント: BCの垂直二等分線とは「BCの中点を通り、BCに垂直な直線」で、そういう直線は1本しかない。主概念3で示した事実は、直線ADがまさにどんな直線であることを言っていただろうか。</p></div>
+<hr>
+<p>対応解答: answer_key_L05-08.md</p><a class="answer-link" href="answer_key_L05-08.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 証明のしくみ〜仮定・結論・根拠</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-congruence-and-proof/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_09.html"><span>次のレッスン</span>L09 二等辺三角形になるための条件・正三角形</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

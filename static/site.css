@@ -186,17 +186,6 @@ summary:focus-visible,
 .brand-mark i:nth-child(8) { opacity: .72; }
 .brand-mark i:nth-child(5) { background: var(--magenta); opacity: 1; }
 
-.beta-badge {
-  border: 1px solid var(--line);
-  padding: .12rem .42rem;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: .6rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  line-height: 1.4;
-}
-
 .site-links {
   display: flex;
   align-items: center;
@@ -1474,7 +1463,6 @@ tbody tr:hover { background: var(--canvas); }
   .brand-mark { width: 24px; height: 24px; }
   .brand-link { gap: .45rem; font-size: .9rem; white-space: nowrap; }
   .brand-link small { display: none; }
-  .beta-badge { display: inline-block; padding-inline: .3rem; font-size: .52rem; white-space: nowrap; }
   .site-links { width: auto; gap: .65rem; border-top: 0; }
   .site-links a { min-height: 2.75rem; font-size: .76rem; white-space: nowrap; }
 
@@ -1625,7 +1613,6 @@ tbody tr:hover { background: var(--canvas); }
   .search-panel,
   .hero-actions,
   .route-tools,
-  .beta-badge,
   .skip-link {
     display: none !important;
   }

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L09 二等辺三角形になるための条件・正三角形">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L09 二等辺三角形になるための条件・正三角形｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L09 二等辺三角形になるための条件・正三角形">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L09 二等辺三角形になるための条件・正三角形｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="2ff332400c24d3d051aedc3c7054f0b6ac33eb0c9eed751099cd6272254c56bb" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-congruence-and-proof/index.html">中2数学「図形の合同と証明」</a></li><li aria-current="page">L09 二等辺三角形になるための条件・正三角形</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="2ff332400c24d3d051aedc3c7054f0b6ac33eb0c9eed751099cd6272254c56bb" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「図形の合同と証明」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l09-二等辺三角形になるための条件正三角形"><span class="lesson-title-main">L09 二等辺三角形になるための条件・正三角形</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>09</strong> / 16</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_09.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1矢印の向きを入れかえる" href="lesson_09.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E7%9F%A2%E5%8D%B0%E3%81%AE%E5%90%91%E3%81%8D%E3%82%92%E5%85%A5%E3%82%8C%E3%81%8B%E3%81%88%E3%82%8B">主概念1：矢印の向きを入れかえる</a></li><li><a data-section-link="主概念2正三角形二等辺三角形の特別な場合" href="lesson_09.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%AD%A3%E4%B8%89%E8%A7%92%E5%BD%A2%E4%BA%8C%E7%AD%89%E8%BE%BA%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AE%E7%89%B9%E5%88%A5%E3%81%AA%E5%A0%B4%E5%90%88">主概念2：正三角形〜二等辺三角形の「特別な場合」</a></li><li><a data-section-link="練習" href="lesson_09.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p>「2つの角が等しい三角形は二等辺三角形である」を証明し、二等辺三角形に<strong>なるための条件</strong>として使えるようになる。</p></li><li><p>性質（二等辺→底角相等）と条件（2角相等→二等辺）が<strong>仮定と結論の入れかわった関係</strong>にあることに気づく。</p></li><li><p><strong>正三角形</strong>の定義・性質・なるための条件を整理する。</p></li></ul>
+<h2 id="主概念1矢印の向きを入れかえる">主概念1：矢印の向きを入れかえる</h2>
+<p>L08で証明したのは「AB＝AC <strong>ならば</strong> ∠B＝∠C」。辺の情報から角の情報を導いた。今度は入れかえたい。「∠B＝∠C <strong>ならば</strong> AB＝AC」。角の情報から辺の情報へ、逆向きの橋だ。</p>
+<p>入れかえた主張が自動的に正しい保証は、どこにもない（L05のstretchで「面積が等しいならば合同」が壊れたのを思い出そう）。<strong>入れかえたら、証明も新規にやり直し</strong>——これがルールだ。</p>
+<p><strong>【定理】2つの角が等しい三角形は、二等辺三角形である。</strong></p>
+<p><strong>Step 1</strong> 仮定: ∠B＝∠C　結論: AB＝AC</p>
+<p><strong>Step 2（方針メモ）</strong> ABとACが対応する辺になる合同な三角形を作る→L08と同じく∠Aの二等分線ADで割ってみる→△ABDと△ACDの材料: ∠BAD＝∠CAD（そう引いた）、∠B＝∠C（仮定）、AD共通。……「2組の角と共通の辺」。辺ADの<strong>両端の角</strong>がそろっているか？ ∠BADと∠ADB、∠CADと∠ADC。∠ADBと∠ADCはまだ等しいと言えていない。<strong>でも、三角形の残りの角は自動で等しくなる</strong>（内角の和180°）。それを一行書けば条件3だ。</p>
+<p><strong>Step 3（記述）</strong> ∠Aの二等分線と辺BCとの交点をDとする。</p>
+<blockquote><p><strong>【証明】</strong> △ABDと△ACDで、 ∠BAD＝∠CAD …①　【根拠: ADは∠Aの二等分線】 ∠B＝∠C …②　【根拠: 仮定】 三角形の内角の和は180°だから、∠ADB＝180°−∠BAD−∠B、∠ADC＝180°−∠CAD−∠C。 ①②より右辺どうしが等しいから、∠ADB＝∠ADC …③ AD＝AD …④　【根拠: 共通な辺】 ①③④より、<strong>対応する1組の辺が等しく、その両端の角がそれぞれ等しい</strong>から、 △ABD≡△ACD 合同な図形では対応する辺は等しいから、<strong>AB＝AC</strong> ■</p></blockquote>
+<p>（④の辺ADの両端の角は、Aの側が①、Dの側が③で、「両端」がそろっていることを確認してから条件3を使った。この「残りの角も等しい」の一行を飛ばすと、根拠が実在しない条件になってしまう（見直しチェック②）。）</p>
+<p>これで橋は<strong>両方向</strong>に架かった。</p>
+<ul><li><p><strong>性質</strong>として: 二等辺三角形と分かっている → 底角が等しいと言える</p></li><li><p><strong>条件</strong>として: 2角が等しいと分かった → 二等辺三角形だと言える（辺の等しさが手に入る）</p></li></ul>
+<p>仮定と結論を入れかえた2つの命題がどちらも正しい、幸運なペアだ。入れかえの関係には章の終盤（L14）で正式な名前を付ける。そこでは<strong>入れかえると壊れる例</strong>もたくさん見る。</p>
+<h2 id="主概念2正三角形二等辺三角形の特別な場合">主概念2：正三角形〜二等辺三角形の「特別な場合」</h2>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】定義: 3つの辺がすべて等しい三角形を、正三角形という。</strong></p></blockquote>
+<p>正三角形は、AB＝ACでもあるから<strong>二等辺三角形の特別な場合</strong>だ。だから、二等辺三角形について証明したことは、正三角形が全部ただで相続する。</p>
+<ul><li><p><strong>性質</strong>: 正三角形の3つの角はすべて等しい（したがって、内角の和180°より各60°）。</p>
+<ul><li><p>導き方: AB＝ACより∠B＝∠C【底角の定理】。BA＝BCより∠A＝∠C【底角の定理。今度はBを頂角とみる】。よって∠A＝∠B＝∠C。</p></li></ul></li><li><p><strong>条件</strong>: 3つの角がすべて等しい三角形は正三角形である。</p>
+<ul><li><p>導き方: ∠B＝∠CよりAB＝AC【主概念1の条件】。∠A＝∠CよりBA＝BC【同】。よって3辺相等。</p></li></ul></li></ul>
+<p>どちらの導き方も、<strong>同じ三角形を「見る向きを変えて」二等辺三角形として2回使う</strong>のがコツ。新しい道具は1つも要らなかった——根拠のリストが強くなると、新しい定理が安く手に入る。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「二等辺三角形になるための条件」の使いどころ</strong></p>
+<p>この条件が輝くのは、<strong>角度の情報しか手元にないのに、辺の等しさが欲しい</strong>場面だ。たとえば「∠B＝∠Cを示せたので、実はAB＝ACも言える」という乗り換えができる。この先の証明で「等しい辺が1組足りない…」と詰まったら、「角の等しさから辺を作れないか？」と自問してみよう。性質と条件の両方向が使えると、打ち手が倍になる。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>反例づくり・その1〜「成り立たない」を1つの例で示す</strong></p>
+<p>正しくない主張は、<strong>成り立たない例を1つ</strong>あげれば「正しくない」と言い切れる。全部調べる必要はない。「いつでも成り立つ」の主張は、たった1つの例外で崩れるからだ。練習4で最初の一撃を体験しよう。この方法にも、L14で正式な名前が付く。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>「二等辺」って名前は辺の話（2辺が等しい）なのに、今日の条件のおかげで、<strong>2つの角が等しいことさえ根拠つきで言えれば</strong>、辺には一切ふれずに二等辺だと言えるようになった（測って「だいたい等しい」は予想止まり——L01からの約束どおり、等しいことの根拠は証明でつくる）。辺の情報が手に入りにくい場面でも、角の側から同じ結論へ渡れる。定義とは別の入り口から同じ図形にたどり着けるって、性質と条件の両方向が架かったことのごほうびみたいなものだね。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>△ABCで∠B＝∠C＝65°、辺BC＝5cmのとき、この三角形はどんな三角形か。また、等しい辺の組を答えよう。【根拠も一言】</p></li><li><p>△ABCで、∠A＝50°、∠B＝80°のとき、この三角形は二等辺三角形と言えるか。言えるなら、どの2辺が等しいか（ヒント: まず∠Cを求める。等しい<strong>角</strong>の向かいにある<strong>辺</strong>はどれか、図をかいて確かめる）。</p></li><li><p>二等辺三角形ABC（AB＝AC）の底角∠B・∠Cの二等分線が点Pで交わっている。△PBCが二等辺三角形になることを証明しよう（Step 1の仮定・結論の抜き出しから）。</p></li><li><p>【反例づくり】次の主張は正しくない。成り立たない例を1つ、図または言葉で作ろう。  「2つの角の和が90°より大きい三角形は、二等辺三角形である。」</p></li><li><p>【読む】次の答案から<strong>新たに分かったこと</strong>として正しいものを選ぼう。  「△ABCで∠B＝∠C。よって二等辺三角形になるための条件から、AB＝AC ■」  (あ) ∠B＝∠Cである　(い) AB＝ACである　(う) ∠A＝∠Bである</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 「1つの角が60°の<strong>二等辺</strong>三角形は、正三角形である」は正しいだろうか。60°の角が①頂角の場合と②底角の場合に分けて調べ、正しければ理由を、正しくなければ反例を示そう（実は場合分けの両方で……？）。</p></div>
+<hr>
+<p>対応解答: answer_key_L09-12.md</p><a class="answer-link" href="answer_key_L09-12.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 二等辺三角形の性質</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-congruence-and-proof/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 直角三角形の合同条件</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

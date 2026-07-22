@@ -60,6 +60,29 @@ def main() -> int:
     require(errors, bool(re.search(r"^    branches: \[main\]\s*$", text, re.MULTILINE)), "push is not limited to main")
     require(errors, bool(re.search(r"^  workflow_dispatch:\s*$", text, re.MULTILINE)), "missing workflow_dispatch trigger")
     require(errors, "check_external_links:" in text and "type: boolean" in text, "manual external-link input is missing")
+    require(
+        errors,
+        bool(
+            re.search(
+                r"^      source_sha:\n(?:        .*\n)*?        required: true\n(?:        .*\n)*?        type: string\s*$",
+                text,
+                re.MULTILINE,
+            )
+        )
+        and bool(
+            re.search(
+                r"^      request_id:\n(?:        .*\n)*?        required: true\n(?:        .*\n)*?        type: string\s*$",
+                text,
+                re.MULTILINE,
+            )
+        ),
+        "manual source pin or request correlation input is missing",
+    )
+    require(
+        errors,
+        'run-name: "Pages / ${{ github.event_name }} / ${{ inputs.request_id || github.sha }}"' in text,
+        "run name does not exactly match the request correlation contract",
+    )
 
     cron_match = re.search(r"^\s*- cron: [\"']([^\"']+)[\"']", text, re.MULTILINE)
     require(errors, cron_match is not None, "missing scheduled trigger")
@@ -93,6 +116,13 @@ def main() -> int:
     require(errors, "ManabiGrid/manabigrid.git refs/heads/main" in source, "canonical source update detection is missing")
     require(
         errors,
+        "APPROVED_SOURCE_SHA" in source
+        and "approved source drifted" in source
+        and "workflow_dispatch" in source,
+        "manual run does not reject drift from the approved source SHA",
+    )
+    require(
+        errors,
         "should_deploy:" in source
         and 'Path("site.config.json")' in source
         and 'config["base_url"].rstrip("/") + "/build-report.json"' in source,
@@ -118,9 +148,21 @@ def main() -> int:
     require(errors, "if: needs.detect-source.outputs.should_deploy == 'true'" in build, "unchanged scheduled source is not skipped")
     require(errors, "check_site.py site-output --source source" in build, "site check is not pinned to the checked-out source")
     require(errors, "check_external_links.py site-output --run" in build, "one-time external link checker is not wired")
-    require(errors, "needs: build" in deploy, "deploy does not depend on build")
+    require(
+        errors,
+        "needs: build" in deploy or "needs: [detect-source, build]" in deploy,
+        "deploy does not depend on build",
+    )
     require(errors, "if: needs.build.result == 'success'" in deploy, "deploy may run after a failed build")
     require(errors, "pages: write" in deploy and "id-token: write" in deploy, "deploy permissions are incomplete")
+    require(
+        errors,
+        "Verify the published revision" in deploy
+        and "EXPECTED_SOURCE_SHA" in deploy
+        and "build-report.json" in deploy
+        and "missing page did not return HTTP 404" in deploy,
+        "post-deploy published SHA / HTTP verification is incomplete",
+    )
 
     sequence = ["build_site.py", "check_site.py", "Quarantine the generated public candidate", "package_site.py", "upload-pages-artifact"]
     offsets = [text.find(marker) for marker in sequence]

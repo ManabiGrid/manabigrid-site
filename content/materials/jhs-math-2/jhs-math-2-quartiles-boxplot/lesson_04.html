@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="ad1021f54e60c10e56b6eaf0a5eb3520839f03a7d03dc19863fa715dd9b056ed" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">中2数学「四分位範囲と箱ひげ図」</a></li><li aria-current="page">L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="ad1021f54e60c10e56b6eaf0a5eb3520839f03a7d03dc19863fa715dd9b056ed" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「四分位範囲と箱ひげ図」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l04-四分位範囲かけ離れた値に強い散らばりの物差し"><span class="lesson-title-main">L04 四分位範囲</span><span class="lesson-title-sub">「かけ離れた値」に強い散らばりの物差し</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>04</strong> / 06</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1範囲のよわみたった1人で数字が跳ね上がる" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E7%AF%84%E5%9B%B2%E3%81%AE%E3%82%88%E3%82%8F%E3%81%BF%E3%81%9F%E3%81%A3%E3%81%9F1%E4%BA%BA%E3%81%A7%E6%95%B0%E5%AD%97%E3%81%8C%E8%B7%B3%E3%81%AD%E4%B8%8A%E3%81%8C%E3%82%8B">主概念1：範囲のよわみ——たった1人で数字が跳ね上がる</a></li><li><a data-section-link="主概念2四分位範囲真ん中の約半数の幅を測る" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%9B%9B%E5%88%86%E4%BD%8D%E7%AF%84%E5%9B%B2%E7%9C%9F%E3%82%93%E4%B8%AD%E3%81%AE%E7%B4%84%E5%8D%8A%E6%95%B0%E3%81%AE%E5%B9%85%E3%82%92%E6%B8%AC%E3%82%8B">主概念2：四分位範囲——真ん中の約半数の幅を測る</a></li><li><a data-section-link="主概念3データから箱ひげ図をかく" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8B%E3%82%89%E7%AE%B1%E3%81%B2%E3%81%92%E5%9B%B3%E3%82%92%E3%81%8B%E3%81%8F">主概念3：データから箱ひげ図をかく</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1範囲のよわみたった1人で数字が跳ね上がる" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E7%AF%84%E5%9B%B2%E3%81%AE%E3%82%88%E3%82%8F%E3%81%BF%E3%81%9F%E3%81%A3%E3%81%9F1%E4%BA%BA%E3%81%A7%E6%95%B0%E5%AD%97%E3%81%8C%E8%B7%B3%E3%81%AD%E4%B8%8A%E3%81%8C%E3%82%8B">主概念1：範囲のよわみ——たった1人で数字が跳ね上がる</a></li><li><a data-section-link="主概念2四分位範囲真ん中の約半数の幅を測る" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E5%9B%9B%E5%88%86%E4%BD%8D%E7%AF%84%E5%9B%B2%E7%9C%9F%E3%82%93%E4%B8%AD%E3%81%AE%E7%B4%84%E5%8D%8A%E6%95%B0%E3%81%AE%E5%B9%85%E3%82%92%E6%B8%AC%E3%82%8B">主概念2：四分位範囲——真ん中の約半数の幅を測る</a></li><li><a data-section-link="主概念3データから箱ひげ図をかく" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8B%E3%82%89%E7%AE%B1%E3%81%B2%E3%81%92%E5%9B%B3%E3%82%92%E3%81%8B%E3%81%8F">主概念3：データから箱ひげ図をかく</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p><strong>四分位範囲</strong>（第3四分位数−第1四分位数）を求められるようになる。</p></li><li><p>中1で学んだ<strong>範囲</strong>との違い——<strong>極端にかけ離れた値</strong>の影響の受け方——を、実験で確かめる。</p></li><li><p>5つの値から<strong>箱ひげ図をかく</strong>手順を身につける。</p></li></ul>
+<h2 id="主概念1範囲のよわみたった1人で数字が跳ね上がる">主概念1：範囲のよわみ——たった1人で数字が跳ね上がる</h2>
+<p>11人の生徒が冬休みに借りた本の冊数を調べたら、こうなった（小さい順）。</p>
+<p><strong>A：</strong> 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, <strong>35</strong></p>
+<p>1人だけ、35冊の読書家がいる。まず中1の<strong>範囲</strong>を求めると、35−0＝<strong>35冊</strong>。……でも、ちょっと待ってほしい。「このデータの散らばりは35冊分」と言われて、実感と合うだろうか。11人中10人は0〜10冊の中に収まっている。範囲の35という数字は、<strong>ほとんど1人の生徒だけで作られている</strong>。</p>
+<p>範囲は「最大値−最小値」——両端の2つの値<strong>だけ</strong>で決まる。だから、<strong>極端にかけ離れた値</strong>が1つあると、その影響をまともに受けてしまう。</p>
+<p><strong>実験してみよう。</strong> もし35冊の生徒が12冊だったら（<strong>B：</strong> 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12）、各値はどう変わるか。</p>
+<div class="table-wrap" data-scroll-label="・A（35冊あり）・B（12冊に差し替え）の表（1）"><table><thead><tr><th scope="col"><span class="sr-only">行</span></th><th scope="col">A（35冊あり）</th><th scope="col">B（12冊に差し替え）</th></tr></thead><tbody><tr><th scope="row">範囲</th><td>35−0＝<strong>35</strong></td><td>12−0＝<strong>12</strong></td></tr><tr><th scope="row">中央値</th><td>6</td><td>6</td></tr><tr><th scope="row">第1四分位数</th><td>3</td><td>3</td></tr><tr><th scope="row">第3四分位数</th><td>9</td><td>9</td></tr></tbody></table></div>
+<p>範囲は35→12へ<strong>激変</strong>した。ところが、中央値も第1・第3四分位数も<strong>1ミリも動いていない</strong>（Aの四分位数: 中央値＝6番目の6、前半 0,2,3,4,5 の中央値＝3、後半 7,8,9,10,35 の中央値＝9。Bでも後半は 7,8,9,10,12 で中央値は9のまま）。区切りの値は「<strong>何番目か</strong>」で決まるから、端の1個がどんなに大きくても、順位が変わらなければ区切りは動かないのだ。</p>
+<h2 id="主概念2四分位範囲真ん中の約半数の幅を測る">主概念2：四分位範囲——真ん中の約半数の幅を測る</h2>
+<p>そこで、両端の代わりに<strong>箱の両端</strong>で散らばりを測る物差し——<strong>四分位範囲</strong>（しぶんいはんい）を導入する。</p>
+<blockquote class="formula-block"><span class="formula-label">式</span><p><strong>四分位範囲＝第3四分位数−第1四分位数</strong></p></blockquote>
+<p>つまり<strong>箱ひげ図の箱の長さ</strong>であり、意味は「<strong>真ん中に集まる約半数のデータが、どれくらいの幅に散らばっているか</strong>」。上の実験なら、A・Bどちらも四分位範囲は 9−3＝<strong>6冊</strong>。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-7ee6071465-title" aria-describedby="mg-7ee6071465-desc">
+<title id="mg-7ee6071465-title">差し替え実験の箱ひげ図比較（35冊→12冊で箱は動かない）</title>
+<desc id="mg-7ee6071465-desc">AとBの箱ひげ図を上下に並べた比較図。箱（3〜9）と中央値の位置は2本で完全に同じで、右のひげの長さだけが35から12へ縮んでいる</desc>
+<!-- L04_fig2_outlier_swap_experiment.svg | 差し替え実験の箱ひげ図比較（35冊→12冊で箱は動かない） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="330" fill="#fff"/>
+<line x1="50.0" y1="265.0" x2="450.0" y2="265.0" stroke="#000" stroke-width="1.2"/>
+<line x1="50.0" y1="259.0" x2="50.0" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="61.1" y1="261.5" x2="61.1" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="72.2" y1="261.5" x2="72.2" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="83.3" y1="261.5" x2="83.3" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="94.4" y1="261.5" x2="94.4" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="105.6" y1="259.0" x2="105.6" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="116.7" y1="261.5" x2="116.7" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="127.8" y1="261.5" x2="127.8" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="138.9" y1="261.5" x2="138.9" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="150.0" y1="261.5" x2="150.0" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="161.1" y1="259.0" x2="161.1" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="172.2" y1="261.5" x2="172.2" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="183.3" y1="261.5" x2="183.3" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="194.4" y1="261.5" x2="194.4" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="205.6" y1="261.5" x2="205.6" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="216.7" y1="259.0" x2="216.7" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="227.8" y1="261.5" x2="227.8" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="238.9" y1="261.5" x2="238.9" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="250.0" y1="261.5" x2="250.0" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="261.1" y1="261.5" x2="261.1" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="272.2" y1="259.0" x2="272.2" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="283.3" y1="261.5" x2="283.3" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="294.4" y1="261.5" x2="294.4" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="305.6" y1="261.5" x2="305.6" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="316.7" y1="261.5" x2="316.7" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="327.8" y1="259.0" x2="327.8" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="338.9" y1="261.5" x2="338.9" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="350.0" y1="261.5" x2="350.0" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="361.1" y1="261.5" x2="361.1" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="372.2" y1="261.5" x2="372.2" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="383.3" y1="259.0" x2="383.3" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="394.4" y1="261.5" x2="394.4" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="405.6" y1="261.5" x2="405.6" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="416.7" y1="261.5" x2="416.7" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="427.8" y1="261.5" x2="427.8" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<line x1="438.9" y1="259.0" x2="438.9" y2="271.0" stroke="#000" stroke-width="0.9"/>
+<line x1="450.0" y1="261.5" x2="450.0" y2="268.5" stroke="#000" stroke-width="0.9"/>
+<text x="50.0" y="283.0" font-size="11" text-anchor="middle">0</text>
+<text x="105.6" y="283.0" font-size="11" text-anchor="middle">5</text>
+<text x="161.1" y="283.0" font-size="11" text-anchor="middle">10</text>
+<text x="216.7" y="283.0" font-size="11" text-anchor="middle">15</text>
+<text x="272.2" y="283.0" font-size="11" text-anchor="middle">20</text>
+<text x="327.8" y="283.0" font-size="11" text-anchor="middle">25</text>
+<text x="383.3" y="283.0" font-size="11" text-anchor="middle">30</text>
+<text x="438.9" y="283.0" font-size="11" text-anchor="middle">35</text>
+<line x1="50.0" y1="95.0" x2="83.3" y2="95.0" stroke="#000" stroke-width="1.6"/>
+<line x1="150.0" y1="95.0" x2="438.9" y2="95.0" stroke="#000" stroke-width="1.6"/>
+<line x1="50.0" y1="86.7" x2="50.0" y2="103.3" stroke="#000" stroke-width="1.6"/>
+<line x1="438.9" y1="86.7" x2="438.9" y2="103.3" stroke="#000" stroke-width="1.6"/>
+<rect x="83.3" y="82.0" width="66.7" height="26.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="116.7" y1="82.0" x2="116.7" y2="108.0" stroke="#000" stroke-width="1.6"/>
+<line x1="50.0" y1="205.0" x2="83.3" y2="205.0" stroke="#000" stroke-width="1.6"/>
+<line x1="150.0" y1="205.0" x2="183.3" y2="205.0" stroke="#000" stroke-width="1.6"/>
+<line x1="50.0" y1="196.7" x2="50.0" y2="213.3" stroke="#000" stroke-width="1.6"/>
+<line x1="183.3" y1="196.7" x2="183.3" y2="213.3" stroke="#000" stroke-width="1.6"/>
+<rect x="83.3" y="192.0" width="66.7" height="26.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="116.7" y1="192.0" x2="116.7" y2="218.0" stroke="#000" stroke-width="1.6"/>
+<text x="56.0" y="69.0" font-size="12" text-anchor="start" font-weight="bold">A（35冊の生徒あり）</text>
+<text x="56.0" y="179.0" font-size="12" text-anchor="start" font-weight="bold">B（35冊→12冊に差し替え）</text>
+<line x1="83.3" y1="111.0" x2="83.3" y2="165.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="150.0" y1="111.0" x2="150.0" y2="165.0" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<text x="116.7" y="144.0" font-size="11" text-anchor="middle">箱は</text>
+<text x="116.7" y="158.0" font-size="11" text-anchor="middle">動かない</text>
+<line x1="427.8" y1="150.0" x2="200.0" y2="150.0" stroke="#000" stroke-width="1.2" stroke-dasharray="6 4"/>
+<line x1="200.0" y1="150.0" x2="206.3" y2="146.9" stroke="#000" stroke-width="1.2"/>
+<line x1="200.0" y1="150.0" x2="206.3" y2="153.1" stroke="#000" stroke-width="1.2"/>
+<text x="316.7" y="140.0" font-size="11" text-anchor="middle">右のひげだけが縮む</text>
+<text x="250.0" y="28.0" font-size="13" text-anchor="middle" font-weight="bold">差し替え実験——範囲は激変・四分位数は不変</text>
+<text x="250.0" y="318.0" font-size="11" text-anchor="middle">横軸: 借りた本の冊数（冊）・各11人（架空の練習用データ）</text>
+</svg>
+</div><figcaption>AとBの箱ひげ図を上下に並べた比較図。箱（3〜9）と中央値の位置は2本で完全に同じで、右のひげの長さだけが35から12へ縮んでいる</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L04_fig2_outlier_swap_experiment.svg">図を大きく開く</a></figure>
+<p>範囲と四分位範囲は、こう使い分ける。</p>
+<ul><li><p><strong>範囲</strong>: データ<strong>全体</strong>の幅。極端にかけ離れた値の影響を<strong>受けやすい</strong>。</p></li><li><p><strong>四分位範囲</strong>: 真ん中の<strong>約半数</strong>の幅。極端にかけ離れた値の影響を<strong>ほとんど受けない</strong>。</p></li></ul>
+<p>名前が似ているので、定義を丸暗記するより「<strong>35冊の実験でどちらが動いたか</strong>」で覚えるのがおすすめだ。テストで「四分位範囲を求めよ」と聞かれて範囲（最大値−最小値）を答えてしまう混同は起こりやすい。求める前に「箱の長さの方だっけ、全体の幅の方だっけ」と一呼吸おこう。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「外れ値」という言葉について</strong></p>
+<p>35冊のように、他から極端にかけ離れた値のことを、「<strong>外れ値</strong>」と呼ぶことがある。ただし学習指導要領の解説がこの場面で使う言い方は「<strong>極端にかけ離れた値</strong>」で、「外れ値」は中2で正式に指定された用語ではない（どこからを外れ値とするかの決まった線引きも、中学では扱わない）。また、かけ離れた値を見つけたら機械的に無視してよいわけではない——記録ミスなのか、本当にそういう人がいるのか、<strong>理由を考える</strong>のがデータとの正しい付き合い方だ（この姿勢はL06でもう一度出てくる）。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>「範囲はかけ離れた値の影響を受けやすいが、四分位範囲はほとんど受けない」——これ、学習指導要領の解説にわざわざ書いてある、四分位範囲のいちばんの売り文句なんだ。世の中のデータには、入力ミスや特別な事情による極端な値がしょっちゅうまぎれこむ。それでも壊れにくい物差しを持っておく——四分位範囲は、それくらい実戦向きの道具なんだ。高校から中2に降りてきて、この道具を早くから使えるようになったんだね。</p></div>
+<h2 id="主概念3データから箱ひげ図をかく">主概念3：データから箱ひげ図をかく</h2>
+<p>読む→求める、ときたので、最後は<strong>かく</strong>。手順は4ステップ。</p>
+<ol start="1"><li><p><strong>5つの値を求める</strong>: 最小値・第1四分位数・中央値・第3四分位数・最大値（L03の手順＋4ブロック検算）。</p></li><li><p><strong>数直線をかく</strong>: データ全体が収まる目盛りをとる。</p></li><li><p><strong>箱をかく</strong>: 第1四分位数から第3四分位数までの長方形をかき、<strong>中央値の位置に縦線</strong>を入れる。</p></li><li><p><strong>ひげをかく</strong>: 箱の左端から<strong>最小値</strong>まで、右端から<strong>最大値</strong>まで線を引く。</p></li></ol>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-aa4c60078b-title" aria-describedby="mg-aa4c60078b-desc">
+<title id="mg-aa4c60078b-title">箱ひげ図をかく手順の見本（Aデータ・手順①〜④つき）</title>
+<desc id="mg-aa4c60078b-desc">冊数0から35の数直線上の箱ひげ図。箱は3から9で中に中央値の縦線。左のひげは0まで短く、右のひげは35まで非常に長い。手順番号①〜④が各部品に振られている</desc>
+<!-- L04_fig1_boxplot_draw_steps.svg | 箱ひげ図をかく手順の見本（Aデータ・手順①〜④つき） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="250" fill="#fff"/>
+<line x1="50.0" y1="185.0" x2="450.0" y2="185.0" stroke="#000" stroke-width="1.2"/>
+<line x1="50.0" y1="179.0" x2="50.0" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="61.1" y1="181.5" x2="61.1" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="72.2" y1="181.5" x2="72.2" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="83.3" y1="181.5" x2="83.3" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="94.4" y1="181.5" x2="94.4" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="105.6" y1="179.0" x2="105.6" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="116.7" y1="181.5" x2="116.7" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="127.8" y1="181.5" x2="127.8" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="138.9" y1="181.5" x2="138.9" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="150.0" y1="181.5" x2="150.0" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="161.1" y1="179.0" x2="161.1" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="172.2" y1="181.5" x2="172.2" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="183.3" y1="181.5" x2="183.3" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="194.4" y1="181.5" x2="194.4" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="205.6" y1="181.5" x2="205.6" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="216.7" y1="179.0" x2="216.7" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="227.8" y1="181.5" x2="227.8" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="238.9" y1="181.5" x2="238.9" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="250.0" y1="181.5" x2="250.0" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="261.1" y1="181.5" x2="261.1" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="272.2" y1="179.0" x2="272.2" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="283.3" y1="181.5" x2="283.3" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="294.4" y1="181.5" x2="294.4" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="305.6" y1="181.5" x2="305.6" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="316.7" y1="181.5" x2="316.7" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="327.8" y1="179.0" x2="327.8" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="338.9" y1="181.5" x2="338.9" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="350.0" y1="181.5" x2="350.0" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="361.1" y1="181.5" x2="361.1" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="372.2" y1="181.5" x2="372.2" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="383.3" y1="179.0" x2="383.3" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="394.4" y1="181.5" x2="394.4" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="405.6" y1="181.5" x2="405.6" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="416.7" y1="181.5" x2="416.7" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="427.8" y1="181.5" x2="427.8" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<line x1="438.9" y1="179.0" x2="438.9" y2="191.0" stroke="#000" stroke-width="0.9"/>
+<line x1="450.0" y1="181.5" x2="450.0" y2="188.5" stroke="#000" stroke-width="0.9"/>
+<text x="50.0" y="203.0" font-size="11" text-anchor="middle">0</text>
+<text x="105.6" y="203.0" font-size="11" text-anchor="middle">5</text>
+<text x="161.1" y="203.0" font-size="11" text-anchor="middle">10</text>
+<text x="216.7" y="203.0" font-size="11" text-anchor="middle">15</text>
+<text x="272.2" y="203.0" font-size="11" text-anchor="middle">20</text>
+<text x="327.8" y="203.0" font-size="11" text-anchor="middle">25</text>
+<text x="383.3" y="203.0" font-size="11" text-anchor="middle">30</text>
+<text x="438.9" y="203.0" font-size="11" text-anchor="middle">35</text>
+<line x1="50.0" y1="120.0" x2="83.3" y2="120.0" stroke="#000" stroke-width="1.6"/>
+<line x1="150.0" y1="120.0" x2="438.9" y2="120.0" stroke="#000" stroke-width="1.6"/>
+<line x1="50.0" y1="111.0" x2="50.0" y2="129.0" stroke="#000" stroke-width="1.6"/>
+<line x1="438.9" y1="111.0" x2="438.9" y2="129.0" stroke="#000" stroke-width="1.6"/>
+<rect x="83.3" y="106.0" width="66.7" height="28.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="116.7" y1="106.0" x2="116.7" y2="134.0" stroke="#000" stroke-width="1.6"/>
+<text x="438.9" y="210.0" font-size="1" text-anchor="middle"></text>
+<line x1="87.3" y1="74.0" x2="97.3" y2="103.0" stroke="#888" stroke-width="0.9"/>
+<text x="81.3" y="68.0" font-size="11" text-anchor="start">③ 箱（第1四分位数〜第3四分位数）と中央値の縦線</text>
+<line x1="66.7" y1="142.0" x2="66.7" y2="126.0" stroke="#888" stroke-width="0.9"/>
+<text x="66.7" y="156.0" font-size="11" text-anchor="start">④ 左のひげは最小値まで</text>
+<line x1="316.7" y1="98.0" x2="316.7" y2="114.0" stroke="#888" stroke-width="0.9"/>
+<text x="316.7" y="92.0" font-size="11" text-anchor="middle">④ 右のひげは最大値まで</text>
+<text x="56.0" y="218.0" font-size="11" text-anchor="start">② 数直線（データ全体が収まる目盛り）</text>
+<text x="250.0" y="28.0" font-size="13" text-anchor="middle" font-weight="bold">① 5つの値を求めてから——箱ひげ図をかく手順</text>
+<text x="250.0" y="242.0" font-size="11" text-anchor="middle">横軸: 借りた本の冊数（冊）・11人（架空の練習用データ）</text>
+</svg>
+</div><figcaption>冊数0から35の数直線上の箱ひげ図。箱は3から9で中に中央値の縦線。左のひげは0まで短く、右のひげは35まで非常に長い。手順番号①〜④が各部品に振られている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L04_fig1_boxplot_draw_steps.svg">図を大きく開く</a></figure>
+<p>かき上がったら<strong>検算を2つ</strong>: ①5つの値が図の左から小さい順に並んでいるか。②箱の区間に全体の<strong>約半数</strong>が入っているか（元のデータで数える）。Aなら箱（3〜9）の中は 4, 5, 6, 7, 8 と、区切り上の3, 9——区切りの上の値（3と9）を箱の中に入れて数えるかどうかで個数は多少ゆれる。だからこその「<strong>約</strong>半数」だ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>かくときの定番ミス2つ</strong></p>
+<p>①<strong>箱を最小値〜最大値でかいてしまう</strong>（それはひげも含めた全体）。箱はあくまで第1〜第3四分位数の間。②<strong>ひげのかき忘れ・ひげを四分位範囲と同じ長さにしてしまう</strong>。ひげの先は最小値・最大値——データによって左右の長さはふつう違う。完成したら「箱＝約半数」「ひげの先＝両端の値」と声に出して点検しよう。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>9日間の最高気温（℃）: 22, 23, 24, 25, 26, 27, 28, 29, 31  範囲と四分位範囲をそれぞれ求めよう。</p></li><li><p>あるバス停での、10日間のバスの待ち時間（分）: 4, 5, 6, 7, 8, 9, 10, 11, 12, 40  (1) 範囲と四分位範囲を求めよう。  (2) 40分（ダイヤの乱れた日）を14分に差し替えると、範囲と四分位範囲はそれぞれどうなるか計算し、影響の受け方の違いを一言で説明しよう。</p></li><li><p>L03練習4で求めたけん玉データの5つの値（答え合わせを済ませてから使おう）から、箱ひげ図をかこう。かいたら検算2つ（値の並び順・箱＝約半数）を行おう。</p></li><li><p>次の文が正しければ○を、正しくなければ×を付けて理由を言おう。  (1) 四分位範囲は、真ん中に集まる約半数のデータの散らばりの幅を表す。  (2) 範囲と四分位範囲は、どちらも極端にかけ離れた値の影響を同じように受ける。  (3) 四分位範囲が大きい箱ひげ図ほど、データの個数が多い。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> Aのデータ（0〜10と35）で、<strong>最大値の35をどれだけ大きくしても</strong>四分位範囲が変わらない理由を、「区切りは何番目かで決まる」という言葉を使って説明しよう。逆に、<strong>どの値を変えれば</strong>四分位範囲が変わるだろうか。実際に1つ値を変えて試し、自分の予想を確かめてみよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L04-06.md</p><a class="answer-link" href="answer_key_L04-06.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 四分位数の求め方——データを4等分する3つの区切り</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 くらべて、根拠を書く——箱の位置で語る</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

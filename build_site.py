@@ -22,6 +22,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Sequence
 
+from public_site import iter_public_files
+
 
 SITE_ROOT = Path(__file__).resolve().parent
 CONFIG_PATH = SITE_ROOT / "site.config.json"
@@ -31,7 +33,9 @@ SAFE_SVG_TAGS = {
     "defs",
     "desc",
     "ellipse",
+    "g",
     "line",
+    "path",
     "pattern",
     "polygon",
     "polyline",
@@ -49,7 +53,48 @@ SVG_GUARD_MALICIOUS_SAMPLES = {
     "foreign-object": '<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><div/></foreignObject></svg>',
     "external-url": '<svg xmlns="http://www.w3.org/2000/svg"><pattern href="https://evil.example/p"/></svg>',
     "xml-stylesheet": '<?xml-stylesheet href="https://evil.example/x.css"?><svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>',
+    "path-event": '<svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0" onload="alert(1)"/></svg>',
+    "path-css-escape": r'<svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0" fill="u\72l(https://evil.example/p.svg#p)"/></svg>',
 }
+
+
+def decode_css_escapes(value: str) -> str:
+    """Decode CSS escapes before deciding whether an SVG value is local-only."""
+    output: list[str] = []
+    index = 0
+    while index < len(value):
+        if value[index] != "\\":
+            output.append(value[index])
+            index += 1
+            continue
+        index += 1
+        if index >= len(value):
+            output.append("�")
+            break
+        if value[index] in "\r\n\f":
+            if value[index] == "\r" and index + 1 < len(value) and value[index + 1] == "\n":
+                index += 1
+            index += 1
+            continue
+        match = re.match(r"[0-9a-fA-F]{1,6}", value[index:])
+        if match:
+            codepoint = int(match.group(0), 16)
+            output.append(chr(codepoint) if 0 < codepoint <= 0x10FFFF else "�")
+            index += len(match.group(0))
+            if index < len(value) and value[index] in " \t\r\n\f":
+                if value[index] == "\r" and index + 1 < len(value) and value[index + 1] == "\n":
+                    index += 1
+                index += 1
+            continue
+        output.append(value[index])
+        index += 1
+    return "".join(output)
+
+
+def normalized_css_value(value: str) -> str:
+    """Remove CSS lexical disguises that can hide external URL loads."""
+    decoded = decode_css_escapes(value)
+    return re.sub(r"/\*.*?\*/", "", decoded, flags=re.DOTALL)
 
 
 def validate_svg_source(svg: str, path: Path) -> None:
@@ -75,7 +120,8 @@ def validate_svg_source(svg: str, path: Path) -> None:
                 raise BuildError(f"{path}: active SVG属性 {name} は使えません")
             if name == "href" and value and not value.startswith("#"):
                 raise BuildError(f"{path}: SVGの外部参照は使えません: {value}")
-            if re.search(r"@import|url\((?!\s*#)", value, re.IGNORECASE):
+            normalized_value = normalized_css_value(value)
+            if re.search(r"@import|url\s*\((?!\s*#)", normalized_value, re.IGNORECASE):
                 raise BuildError(f"{path}: SVGの外部CSS参照は使えません: {name}")
 
 
@@ -160,13 +206,15 @@ TAG_LABEL = {
 SUBJECTS = {
     "jhs-math-3": ("中学3年 数学", 0),
     "jhs-math-2": ("中学2年 数学", 1),
-    "jhs-sci-2": ("中学2年 理科", 2),
-    "jhs-eng-1": ("中学1年 英語", 3),
-    "jhs-jpn": ("中学 国語", 4),
-    "jhs-soc": ("中学 社会", 5),
-    "hs-math-i": ("高校 数学I", 6),
+    "jhs-math-1": ("中学1年 数学", 2),
+    "jhs-sci-2": ("中学2年 理科", 3),
+    "jhs-eng-1": ("中学1年 英語", 4),
+    "jhs-jpn": ("中学 国語", 5),
+    "jhs-soc": ("中学 社会", 6),
+    "hs-math-i": ("高校 数学I", 7),
 }
 MATH3_ORDER: list[str] = []
+SUBJECT_UNIT_ORDER: dict[str, list[str]] = {}
 BUILD_CONTEXT: dict[str, str] = {
     "commit": "unknown",
     "commit_date": "unknown",
@@ -246,27 +294,47 @@ class UpdateEntry:
     paths: tuple[str, ...]
 
 
-def math3_order_from_source(source: Path) -> list[str]:
-    """Read the public subject README instead of duplicating its unit order."""
-    readme = source / "materials/jhs-math-3/README.md"
-    raw = readme.read_text(encoding="utf-8")
-    linked = re.findall(r"\]\((jhs-math-3-[^/]+)/README\.md\)", raw)
-    unique: list[str] = []
-    for slug in linked:
-        if slug not in unique:
-            unique.append(slug)
-    learning = [
-        slug
-        for slug in unique
-        if slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}
-    ]
-    if not learning:
-        raise BuildError("materials/jhs-math-3/README.md から学習順を取得できません")
-    order: list[str] = []
-    for slug in ("jhs-math-3-diagnostic", *learning, "jhs-math-3-appendix"):
-        if (source / "materials/jhs-math-3" / slug).is_dir():
-            order.append(slug)
-    return order
+def subject_unit_orders_from_source(source: Path) -> dict[str, list[str]]:
+    """Read each public subject README instead of guessing an order from slugs."""
+    result: dict[str, list[str]] = {}
+    materials = source / "materials"
+    for subject_dir in sorted(path for path in materials.iterdir() if path.is_dir()):
+        readme = subject_dir / "README.md"
+        if not readme.exists():
+            continue
+        raw = readme.read_text(encoding="utf-8")
+        linked = re.findall(r"\]\(([^/()]+)/README\.md\)", raw)
+        unique: list[str] = []
+        for slug in linked:
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
+                continue
+            if not slug.startswith(subject_dir.name + "-"):
+                continue
+            if slug not in unique and (subject_dir / slug).is_dir():
+                unique.append(slug)
+        if not unique:
+            continue
+        if subject_dir.name == "jhs-math-3":
+            learning = [
+                slug
+                for slug in unique
+                if slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}
+            ]
+            if not learning:
+                raise BuildError(
+                    "materials/jhs-math-3/README.md から学習順を取得できません"
+                )
+            unique = [
+                slug
+                for slug in (
+                    "jhs-math-3-diagnostic",
+                    *learning,
+                    "jhs-math-3-appendix",
+                )
+                if (subject_dir / slug).is_dir()
+            ]
+        result[subject_dir.name] = unique
+    return result
 
 
 def unit_estimated_time(unit_dir: Path, slug: str) -> str | None:
@@ -588,6 +656,44 @@ def progress_statuses(source: Path) -> dict[str, str]:
     return found
 
 
+def package_status(slug: str, statuses: dict[str, str]) -> str:
+    """Use the exact registry state, or conservatively aggregate child units."""
+    if slug in statuses:
+        return statuses[slug]
+    children = {
+        status for unit_id, status in statuses.items() if unit_id.startswith(slug + "--")
+    }
+    if len(children) == 1:
+        return children.pop()
+    if children:
+        order = {
+            label: index
+            for index, label in enumerate(
+                (
+                    "未着手",
+                    "調査済",
+                    "ドラフト",
+                    "QA済",
+                    "外部レビュー済",
+                    "人間レビュー済",
+                    "公開済",
+                )
+            )
+        }
+        return min(children, key=lambda label: order.get(label, -1))
+    return "候補ドラフト"
+
+
+def has_review_state_conflict(text: str, status: str) -> bool:
+    """Flag stale in-document draft labels without changing canonical prose."""
+    if status not in {"人間レビュー済", "公開済"}:
+        return False
+    return any(
+        marker in text
+        for marker in ("候補ドラフト", "人間レビュー前", "最終レビューはこれから")
+    )
+
+
 def collect_units(source: Path, docs: list[Doc]) -> dict[str, Unit]:
     grouped: dict[str, list[Doc]] = defaultdict(list)
     for doc in docs:
@@ -606,7 +712,7 @@ def collect_units(source: Path, docs: list[Doc]) -> dict[str, Unit]:
             subject,
             unit_title,
             items,
-            statuses.get(slug, "候補ドラフト"),
+            package_status(slug, statuses),
             unit_estimated_time(readme.parent, slug),
         )
     return result
@@ -896,8 +1002,9 @@ class Markdown:
                 if external
                 else ""
             )
+            rendered_label = annotate_english_passages(html.escape(label))
             return hold(
-                f'<a href="{html.escape(href, quote=True)}"{attrs}>{html.escape(label)}</a>'
+                f'<a href="{html.escape(href, quote=True)}"{attrs}>{rendered_label}</a>'
             )
 
         value = self.LINK.sub(link_repl, value)
@@ -1506,7 +1613,7 @@ def page(
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
-      <div class="brand"><a class="brand-link" href="{local_href(Path("index.html"))}"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a><span class="beta-badge">BETA</span></div>
+      <div class="brand"><a class="brand-link" href="{local_href(Path("index.html"))}"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="{local_href(Path("browse/index.html"))}">教材をさがす</a><a href="{local_href(Path("progress/index.html"))}">進捗一覧</a></nav>
     </div>
   </header>
@@ -1558,8 +1665,9 @@ def assign_answers(units: dict[str, Unit]) -> None:
 
 
 def unit_sort(unit: Unit) -> tuple[object, ...]:
-    if unit.subject == "jhs-math-3" and unit.slug in MATH3_ORDER:
-        return (0, MATH3_ORDER.index(unit.slug))
+    order = SUBJECT_UNIT_ORDER.get(unit.subject, [])
+    if unit.slug in order:
+        return (0, order.index(unit.slug))
     return (1, natural_key(unit.slug))
 
 
@@ -1711,10 +1819,12 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
     github_url = f"{REPO_URL}/blob/{BUILD_CONTEXT['commit']}/{urllib.parse.quote(doc.rel.as_posix())}"
     source_h1 = doc.headings[0][2] if doc.headings and doc.headings[0][0] == 1 else "document-title"
     context = kind_label(doc.kind)
+    status = ""
     lesson_position = ""
     if doc.unit:
         unit = units[doc.unit]
         context = f"{SUBJECTS[unit.subject][0]} ／ {unit.title}"
+        status = f'<span class="status-chip">{html.escape(unit.status)}</span>'
         if doc.kind == "lesson":
             lesson_number = unit.lessons.index(doc) + 1
             long_sections = [
@@ -1734,7 +1844,7 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
                 )
     header = f"""
 <header id="top" class="lesson-header container">
-  <p class="lesson-kicker"><span class="doc-kind">{kind_label(doc.kind)}</span><span>{html.escape(context)}</span><span class="status-chip">候補ドラフト</span></p>
+  <p class="lesson-kicker"><span class="doc-kind">{kind_label(doc.kind)}</span><span>{html.escape(context)}</span>{status}</p>
   <h1 id="{html.escape(source_h1, quote=True)}">{lesson_title_markup(doc.title)}</h1>
   <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>{html.escape(doc.rel.as_posix())}</code></p><p>{external(github_url, "正本をGitHubで見る")}</p></details>
 </header>"""
@@ -1751,6 +1861,19 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
                 '<p><strong>紙と筆記具を用意。</strong>'
                 f'目安は{html.escape(estimated_time)}。下の使い方を確認し、Q1から順に進みます。</p>'
                 f'<a class="button button-secondary" href="{rel_href(doc.output, doc.output, start_anchor)}">Q1へ進む</a>'
+                '</aside>'
+            )
+    review_state_notice = ""
+    if doc.unit:
+        registry_status = units[doc.unit].status
+        source_text = doc.path.read_text(encoding="utf-8")
+        if has_review_state_conflict(source_text, registry_status):
+            review_state_notice = (
+                '<aside class="container notice review-state-conflict" role="note">'
+                '<strong>教材状態の表記に差があります。</strong>'
+                f'正本の進捗レジストリは「{html.escape(registry_status)}」ですが、'
+                'この本文には作成時の「候補ドラフト」注記が残っています。'
+                '本文は変更せず掲載しています。利用時は候補ドラフトとして扱ってください。'
                 '</aside>'
             )
     answer_link = ""
@@ -1771,12 +1894,13 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
         return (
             header
             + diagnostic_start
+            + review_state_notice
             + '<div class="container lesson-layout">'
             + f'<aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次">{lesson_position}{toc(doc.output, doc.headings)}</aside>'
             + f'<article class="lesson-main {article_class}">{mobile_section_nav(doc.output, doc.headings)}{rendered}{answer_link}{lesson_provenance(doc)}{lessons_nav(doc.output, unit, doc)}</article>'
             + "</div>"
         )
-    return header + diagnostic_start + notice + f'<article class="container {article_class}">{rendered}</article>'
+    return header + diagnostic_start + review_state_notice + notice + f'<article class="container {article_class}">{rendered}</article>'
 
 
 def math3_position(slug: str) -> str | None:
@@ -1920,7 +2044,7 @@ def home_body(units: dict[str, Unit], updates: Sequence[UpdateEntry]) -> str:
   <a class="text-link updates-all-link" href="{rel_href(current, Path('updates/index.html'))}">更新履歴をすべて見る</a>
 </section>
 <section id="project-info" class="container project-info">
-  <div><p class="eyebrow">PROJECT</p><h2>保護者・先生・開発者の方へ</h2><p>作りかけを正直に公開し、検証しながら育てているオープン教材です。単元別の正式な人間レビュー済への昇格はこれからで、公式教材ではありません。</p></div>
+  <div><p class="eyebrow">PROJECT</p><h2>保護者・先生・開発者の方へ</h2><p>正本のレビュー状態を進捗一覧にそのまま示し、更新のたびに検査しているオープン教材です。学校・公的機関の公式教材や公認サイトではありません。</p></div>
   <div class="project-actions"><a class="button button-secondary" href="{rel_href(current, Path("progress/index.html"))}">制作の進捗を見る</a><a class="text-link" href="{rel_href(current, Path("about/index.html"))}">このサイトとGitHubの関係</a>{external(REPO_URL, "GitHubでプロジェクトを見る")}</div>
   <p class="project-note">正本はGitHub上のMarkdownとSVGです。この展示版はfrontmatterを隠し、区切り記法を読みやすい枠へ変え、SVGをページ内に表示します。外部CDN、アクセス解析、入力フォーム、個人情報を集める機能はありません。</p>
 </section>"""
@@ -2072,10 +2196,12 @@ def progress_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
     source_h1 = doc.headings[0][2] if doc.headings and doc.headings[0][0] == 1 else "progress-title"
     row_count = rendered.count("data-search-item")
     included_count = len(units)
-    included_external_reviewed = sum(
-        unit.status == "外部レビュー済" for unit in units.values()
-    )
+    included_statuses = Counter(unit.status for unit in units.values())
+    included_human_reviewed = included_statuses.get("人間レビュー済", 0)
+    included_external_reviewed = included_statuses.get("外部レビュー済", 0)
+    registry_human_reviewed = counts.get("人間レビュー済", 0)
     registry_external_reviewed = counts.get("外部レビュー済", 0)
+    human_query = urllib.parse.urlencode({"status": "人間レビュー済"})
     external_query = urllib.parse.urlencode({"status": "外部レビュー済"})
     canonical_progress_anchor = urllib.parse.quote("全単元一覧unit_id-順")
     return f"""
@@ -2083,7 +2209,7 @@ def progress_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
   <p class="eyebrow">制作状況 / 大人向け</p><h1 id="{html.escape(source_h1, quote=True)}">{html.escape(doc.title)}</h1>
   <p>レジストリから自動生成された、全単元と科目モジュールの現在地です。教材の同梱と、正式な人間レビュー済・公開済の状態は別です。</p>
 </header>
-<section class="container readable-now" aria-labelledby="readable-now-title"><div><p class="eyebrow">READ NOW</p><h2 id="readable-now-title">いま、このサイトで読める教材</h2><p><strong>{included_count}パッケージを掲載中。</strong>うち{included_external_reviewed}パッケージが外部レビュー済です。正式な人間レビュー済とは別の状態です。</p></div><div class="readable-actions"><a class="button" href="{rel_href(Path('progress/index.html'), Path('browse/index.html'))}">掲載教材を見る</a><a href="?{external_query}#{canonical_progress_anchor}">外部レビュー済{registry_external_reviewed}件の進捗を見る</a></div></section>
+<section class="container readable-now" aria-labelledby="readable-now-title"><div><p class="eyebrow">READ NOW</p><h2 id="readable-now-title">いま、このサイトで読める教材</h2><p><strong>{included_count}パッケージを掲載中。</strong>うち{included_human_reviewed}パッケージが人間レビュー済、{included_external_reviewed}パッケージが外部レビュー済です。</p></div><div class="readable-actions"><a class="button" href="{rel_href(Path('progress/index.html'), Path('browse/index.html'))}">掲載教材を見る</a><a href="?{human_query}#{canonical_progress_anchor}">人間レビュー済{registry_human_reviewed}件の進捗を見る</a><a href="?{external_query}#{canonical_progress_anchor}">外部レビュー済{registry_external_reviewed}件を見る</a></div></section>
 <section class="container progress-summary" aria-labelledby="progress-summary-title"><h2 id="progress-summary-title">全体の状態別件数</h2><div class="stat-grid">{cards}</div></section>
 <section class="container search-panel"><h2>表の行をしぼりこむ</h2><label for="progress-search">教科・学年・単元名・unit_id・状態</label><input id="progress-search" class="search-input" type="search" data-filter-input autocomplete="off" placeholder="例: 中3 平方根、外部レビュー済"><output class="filter-status" data-filter-status data-filter-unit="行" role="status" aria-live="polite">{row_count}行を表示</output></section>
 <p class="container empty-state" data-empty-state hidden>一致する行がありません。検索語を短くして、もう一度ためしてください。</p>
@@ -2267,7 +2393,7 @@ def build(
     site_root: Path,
     base_url: str = DEFAULT_BASE_URL,
 ) -> dict[str, object]:
-    global MATH3_ORDER
+    global MATH3_ORDER, SUBJECT_UNIT_ORDER
     source = source.resolve()
     site_root = site_root.resolve()
     if not (source / "materials").is_dir():
@@ -2292,7 +2418,8 @@ def build(
             "og_image_url": urllib.parse.urljoin(base_url, OG_IMAGE_OUTPUT.as_posix()),
         }
     )
-    MATH3_ORDER = math3_order_from_source(source)
+    SUBJECT_UNIT_ORDER = subject_unit_orders_from_source(source)
+    MATH3_ORDER = SUBJECT_UNIT_ORDER.get("jhs-math-3", [])
     updates, updates_truncated = collect_update_history(source)
     svg_guard_self_tests = self_test_svg_guard()
     clean(site_root)
@@ -2434,7 +2561,11 @@ def build(
     )
 
     write(site_root / ".nojekyll", "")
-    html_paths = sorted(p.relative_to(site_root).as_posix() for p in site_root.rglob("*.html"))
+    html_paths = sorted(
+        path.relative_to(site_root).as_posix()
+        for path in iter_public_files(site_root)
+        if path.suffix.lower() == ".html"
+    )
     write(site_root / "robots.txt", robots_text())
     write(site_root / "sitemap.xml", sitemap_xml(html_paths))
 
@@ -2488,6 +2619,17 @@ def build(
             "svg_source": svg_count,
             "svg_copied": len(media),
             "svg_guard_self_tests": svg_guard_self_tests,
+            "review_state_conflicts": [
+                {
+                    "source": doc.rel.as_posix(),
+                    "registry_status": units[doc.unit].status,
+                }
+                for doc in docs
+                if doc.unit
+                and has_review_state_conflict(
+                    doc.path.read_text(encoding="utf-8"), units[doc.unit].status
+                )
+            ],
             "repaired_source_links": stats.repaired_links,
             "search_index_entries": len(search_entries),
             "update_history_entries": len(updates),
@@ -2514,7 +2656,8 @@ def build(
                 [
                     slug
                     for slug in MATH3_ORDER
-                    if slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}
+                    if slug in units
+                    and slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}
                 ]
             ),
             "units": [

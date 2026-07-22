@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L04 素数——数を積の部品に分ける">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L04 素数——数を積の部品に分ける｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L04 素数——数を積の部品に分ける">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L04 素数——数を積の部品に分ける｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="2999eb49f1ba50ce9f7f363fc527064d53f01eecf0778a12ef25c91dfc388c93" data-source-file="materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-positive-negative-numbers/index.html">中1数学「正負の数」</a></li><li aria-current="page">L04 素数——数を積の部品に分ける</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="2999eb49f1ba50ce9f7f363fc527064d53f01eecf0778a12ef25c91dfc388c93" data-source-file="materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学1年 数学 ／ 中1数学「正負の数」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l04-素数数を積の部品に分ける"><span class="lesson-title-main">L04 素数</span><span class="lesson-title-sub">数を積の部品に分ける</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>04</strong> / 12</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_04.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="主概念1それ以上分けられない数" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E3%81%9D%E3%82%8C%E4%BB%A5%E4%B8%8A%E5%88%86%E3%81%91%E3%82%89%E3%82%8C%E3%81%AA%E3%81%84%E6%95%B0">主概念1：それ以上分けられない数</a></li><li><a data-section-link="主概念2素因数分解は積の形で表す" href="lesson_04.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E7%B4%A0%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3%E3%81%AF%E7%A9%8D%E3%81%AE%E5%BD%A2%E3%81%A7%E8%A1%A8%E3%81%99">主概念2：素因数分解は「積の形で表す」</a></li><li><a data-section-link="練習" href="lesson_04.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><h2 id="ねらい">ねらい</h2>
+<ul><li><p><strong>素数</strong>の定義（「1より大きい自然数」という条件つき）を理解し、1が素数に入らない理由を説明できるようになる。</p></li><li><p>自然数を<strong>素因数分解</strong>する。約数を並べることとのちがいを分かったうえで、「積の形で表す」ことができるようになる。</p></li></ul>
+<h2 id="主概念1それ以上分けられない数">主概念1：それ以上分けられない数</h2>
+<p>12は 12＝3×4 のように、より小さい自然数の積に分けられる。4はさらに 2×2 に分けられるから、12＝2×2×3。では2や3は？　これ以上、1より大きい数の積には分けられない。この「積の部品」にあたる数に名前がある。</p>
+<blockquote><p>【ことば】<strong>素数</strong> <strong>1より大きい自然数</strong>のうち、約数が1とその数自身の2個しかない数を<strong>素数</strong>（そすう）という。2、3、5、7、11、…が素数である。</p></blockquote>
+<p>定義の頭に「1より大きい自然数」という条件がついていることに注目してみよう。この条件のおかげで、<strong>1は最初から素数の候補に入らない</strong>。「1の約数は1だけ（1個）だから素数ではない」と説明することもできるが、どちらにしても結論は同じで、1は素数ではない。</p>
+<p>では、なぜわざわざ1を仲間はずれにするのだろう？　その理由は、次の主概念2ではっきりする。</p>
+<p>素数かどうかは、約数を調べれば判定できる。たとえば9の約数は1、3、9の3個だから素数ではない（9＝3×3と分けられる）。13の約数は1と13の2個だけだから素数だ。2は素数の中でただ1つの偶数、というのも覚えておくと役に立つ。</p>
+<h2 id="主概念2素因数分解は積の形で表す">主概念2：素因数分解は「積の形で表す」</h2>
+<p>1より大きい自然数は、素数だけの積の形に分けられる。</p>
+<blockquote><p>【ことば】<strong>素因数分解</strong> <strong>1より大きい自然数</strong>を素数だけの積の形に表すことを<strong>素因数分解</strong>（そいんすうぶんかい）という。例: 60＝2×2×3×5</p></blockquote>
+<p>分け方の手順は「小さい素数から順に割っていく」。60なら、2で割って30、もう一度2で割って15、2では割れないので3で割って5、5は素数なのでおしまい。割った数と最後に残った素数をかけ集めて、60＝2×2×3×5となる。同じ素数の積は、L09で学ぶ累乗（るいじょう）の書き方で 2²×3×5 とまとめて書けるようになる。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 232" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-657d3c08b8-title" aria-describedby="mg-657d3c08b8-desc">
+<title id="mg-657d3c08b8-title">はしご割り（60＝2×2×3×5）</title>
+<desc id="mg-657d3c08b8-desc">はしご割り（60＝2×2×3×5）</desc>
+<!-- L04_fig1_ladder_division.svg | はしご割り（60＝2×2×3×5） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-20 (SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="440" height="232" fill="#fff"/>
+<text x="106.0" y="46.0" font-size="16" text-anchor="middle" font-weight="bold">2</text>
+<text x="150.0" y="46.0" font-size="16" text-anchor="middle">60</text>
+<line x1="122" y1="30" x2="122" y2="54" stroke="#000" stroke-width="1.6"/>
+<line x1="122" y1="54" x2="184" y2="54" stroke="#000" stroke-width="1.6"/>
+<text x="106.0" y="90.0" font-size="16" text-anchor="middle" font-weight="bold">2</text>
+<text x="150.0" y="90.0" font-size="16" text-anchor="middle">30</text>
+<line x1="122" y1="74" x2="122" y2="98" stroke="#000" stroke-width="1.6"/>
+<line x1="122" y1="98" x2="184" y2="98" stroke="#000" stroke-width="1.6"/>
+<text x="106.0" y="134.0" font-size="16" text-anchor="middle" font-weight="bold">3</text>
+<text x="150.0" y="134.0" font-size="16" text-anchor="middle">15</text>
+<line x1="122" y1="118" x2="122" y2="142" stroke="#000" stroke-width="1.6"/>
+<line x1="122" y1="142" x2="184" y2="142" stroke="#000" stroke-width="1.6"/>
+<text x="150.0" y="178.0" font-size="16" text-anchor="middle" font-weight="bold">5</text>
+<text x="196.0" y="178.0" font-size="11" text-anchor="start">←素数になったらおしまい</text>
+<polyline points="126.0,90.0 125.9,95.9 125.7,101.8 125.3,107.7 124.8,113.3 124.1,118.8 123.3,124.1 122.4,129.1 121.3,133.8 120.1,138.2 118.9,142.2 117.5,145.9 116.0,149.1 114.5,151.8 112.8,154.1 111.2,155.9 109.5,157.2 107.7,157.9 106.0,158.2 104.3,157.9 102.5,157.2 100.8,155.9 99.2,154.1 97.5,151.8 96.0,149.1 94.5,145.9 93.1,142.2 91.9,138.2 90.7,133.8 89.6,129.1 88.7,124.1 87.9,118.8 87.2,113.3 86.7,107.7 86.3,101.8 86.1,95.9 86.0,90.0 86.1,84.1 86.3,78.2 86.7,72.3 87.2,66.7 87.9,61.2 88.7,55.9 89.6,50.9 90.7,46.2 91.9,41.8 93.1,37.8 94.5,34.1 96.0,30.9 97.5,28.2 99.2,25.9 100.8,24.1 102.5,22.8 104.3,22.1 106.0,21.8 107.7,22.1 109.5,22.8 111.2,24.1 112.8,25.9 114.5,28.2 116.0,30.9 117.5,34.1 118.9,37.8 120.1,41.8 121.3,46.2 122.4,50.9 123.3,55.9 124.1,61.2 124.8,66.7 125.3,72.3 125.7,78.2 125.9,84.1 126.0,90.0" fill="none" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<polyline points="168.0,173.0 167.9,174.2 167.7,175.4 167.4,176.6 166.9,177.8 166.3,178.9 165.6,180.0 164.7,181.0 163.8,182.0 162.7,182.9 161.6,183.7 160.3,184.5 159.0,185.1 157.6,185.7 156.2,186.2 154.7,186.5 153.1,186.8 151.6,186.9 150.0,187.0 148.4,186.9 146.9,186.8 145.3,186.5 143.8,186.2 142.4,185.7 141.0,185.1 139.7,184.5 138.4,183.7 137.3,182.9 136.2,182.0 135.3,181.0 134.4,180.0 133.7,178.9 133.1,177.8 132.6,176.6 132.3,175.4 132.1,174.2 132.0,173.0 132.1,171.8 132.3,170.6 132.6,169.4 133.1,168.2 133.7,167.1 134.4,166.0 135.3,165.0 136.2,164.0 137.3,163.1 138.4,162.3 139.7,161.5 141.0,160.9 142.4,160.3 143.8,159.8 145.3,159.5 146.9,159.2 148.4,159.1 150.0,159.0 151.6,159.1 153.1,159.2 154.7,159.5 156.2,159.8 157.6,160.3 159.0,160.9 160.3,161.5 161.6,162.3 162.7,163.1 163.8,164.0 164.7,165.0 165.6,166.0 166.3,167.1 166.9,168.2 167.4,169.4 167.7,170.6 167.9,171.8 168.0,173.0" fill="none" stroke="#000" stroke-width="1.1" stroke-dasharray="6 4"/>
+<line x1="210.0" y1="120.0" x2="259.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<polygon points="266.0,120.0 259.0,123.2 259.0,116.8" fill="#000"/>
+<rect x="272.0" y="86.0" width="150.0" height="64.0" rx="4" fill="#fff" stroke="#000" stroke-width="1.6"/>
+<text x="347.0" y="106.0" font-size="12" text-anchor="middle" font-weight="bold">60＝2×2×3×5</text>
+<text x="347.0" y="122.2" font-size="12" text-anchor="middle">割った左の列＋最後の</text>
+<text x="347.0" y="138.4" font-size="12" text-anchor="middle">1個を全部かける</text>
+<text x="220.0" y="214.0" font-size="12" text-anchor="middle">小さい素数から順に割る。「、」ではなく×だけで書けているかを最後に確かめる</text>
+</svg>
+</div><figcaption>はしご割り（60＝2×2×3×5）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-positive-negative-numbers/assets/L04_fig1_ladder_division.svg">図を大きく開く</a></figure>
+<p>ここで大事なのは、素因数分解は「<strong>積で表す</strong>」ことであって、約数を並べることではない、という点だ。比べてみよう。</p>
+<div class="table-wrap" data-scroll-label="問い・60についての答え・答えの形の表（1）"><table><thead><tr><th scope="col">問い</th><th scope="col">60についての答え</th><th scope="col">答えの形</th></tr></thead><tbody><tr><td>約数をすべて書く</td><td>1、2、3、4、5、6、10、12、15、20、30、60</td><td>数の<strong>リスト</strong></td></tr><tr><td>素因数分解する</td><td>60＝2×2×3×5</td><td>×でつながれた<strong>1本の式</strong></td></tr></tbody></table></div>
+<p>素因数分解の答えに「、」は出てこない。<strong>×だけで書けているか</strong>を、答えを書いたあとに確かめる癖をつけよう。なお、素数そのものはそれ以上分けられないから、素因数分解してもその数自身のまま（13なら13のまま）で、×が出てこないこともある。1を掛け足す必要はない。</p>
+<p>そして、素因数分解には、きわだった性質がある。順序のちがいを除けば、<strong>分け方はただ一通りに決まる</strong>のだ。60をどの順で割っていっても、部品はかならず2が2個、3が1個、5が1個になる。もし1を素数の仲間に入れると、60＝1×2×2×3×5＝1×1×2×2×3×5＝…と、いくらでも別の書き方ができてしまい、「ただ一通り」がこわれてしまう。1が素数から除外されているのは、この便利な性質を守るためでもある。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「素因数分解しなさい」で手が止まったら</strong></p>
+<p>問いの意味が取れずに、約数を全部書いたり、たし算の式（60＝50＋10など）を書いたりするすれちがいが起こることがある。「分解」という言葉から「ばらばらにする」イメージだけが先行するのが原因になっていることがある。素因数分解の合言葉は「<strong>素数だけの、かけ算の式</strong>」。答えの形が「＝」と「×」でできた1本の式になっていなければ、問いを読み直そう。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>素数の判定を速くするコツ</strong></p>
+<p>たとえば91が素数かどうか。小さい素数で順に割ってみる。2でだめ（奇数）、3でだめ（9＋1＝10は3の倍数でない）、5でだめ（一の位が1）、7で割ると91＝7×13。素数ではなかった。このように「小さい素数から順に試す」だけで判定できる。どこまで試せば打ち切ってよいかの目安は「<strong>試している数どうしの積が、もとの数を超えたら終わり</strong>」。もし91が2つの数の積に分けられるなら、小さいほうは10より小さい（10×10＝100が91を超えるから）。だから10より小さい素数の2、3、5、7まで試せば十分だ。試し割りの途中経過をメモに残すと、見落としも防げる。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>素因数分解が「ただ一通りに決まる」というのは、考えてみればすごいことだ。60を誰がどの順番で分解しても、部品の顔ぶれは世界中で同じになる。いわば素数は自然数の世界の原子で、素因数分解は原子の成分表。成分表が一通りに決まるからこそ、安心して数の性質を調べる道具に使えるんだね。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>次の数の中から、素数をすべて選ぼう。  1、2、9、13、21、31、51、57</p></li><li><p>次の数を素因数分解しよう（同じ素数の積はそのまま×で並べて書いてよい）。  (1) 30　(2) 84　(3) 90</p></li><li><p>「60の約数をすべて書くこと」と「60を素因数分解すること」のちがいを、答えの形に注目して1〜2文で説明しよう。</p></li><li><p>次の文が正しければ○、正しくなければ×をつけて、×は正しく直そう。  (1) 1は素数である。  (2) 素数の約数は2個である。  (3) 51は素数である。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 2けたの自然数のうち、いちばん大きい素数を見つけよう。99から順に下りながら、小さい素数で試し割りをして判定してみよう。</p></div>
+<hr>
+<p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 絶対値と「整数」の広がり</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-positive-negative-numbers/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 負の数のたし算——符号と絶対値で考える</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

@@ -1,49 +1,59 @@
 {
   "status": "built",
-  "generated_at": "2026-07-18T22:22:34+09:00",
+  "generated_at": "2026-07-22T11:14:31+09:00",
   "source": {
     "repository": "https://github.com/ManabiGrid/manabigrid",
-    "commit": "263e6747d67f08e414e9c6050194f308fec06d55",
-    "commit_date": "2026-07-18T19:59:20+09:00",
+    "commit": "5700768bec42db1b2e59883c04e9e902fd0d06fa",
+    "commit_date": "2026-07-21T08:01:52+09:00",
     "git_status_before": "",
     "git_status_after": ""
   },
   "markdown": {
-    "expected": 247,
-    "converted": 247,
+    "expected": 463,
+    "converted": 463,
     "failed": [],
     "success_rate_percent": 100.0
   },
   "pages": {
-    "total": 275,
-    "content": 247,
+    "total": 505,
+    "content": 463,
     "top": 1,
     "browse": 1,
     "about": 1,
     "updates": 1,
     "not_found": 1,
-    "subjects": 7,
-    "units": 16
+    "subjects": 8,
+    "units": 29
   },
   "features": {
-    "frontmatter_stripped": 246,
-    "tagged_blocks_source": 365,
-    "tagged_blocks_rendered": 365,
-    "svg_references": 185,
-    "inline_svg_rendered": 185,
-    "svg_source": 185,
-    "svg_copied": 185,
-    "svg_guard_self_tests": 4,
+    "frontmatter_stripped": 462,
+    "tagged_blocks_source": 876,
+    "tagged_blocks_rendered": 876,
+    "svg_references": 361,
+    "inline_svg_rendered": 361,
+    "svg_source": 361,
+    "svg_copied": 361,
+    "svg_guard_self_tests": 6,
+    "review_state_conflicts": [
+      {
+        "source": "materials/jhs-math-2/jhs-math-2-linear-function/student_textbook_print.md",
+        "registry_status": "人間レビュー済"
+      },
+      {
+        "source": "materials/jhs-math-2/jhs-math-2-linear-function/teacher_guide.md",
+        "registry_status": "人間レビュー済"
+      }
+    ],
     "repaired_source_links": [],
-    "search_index_entries": 204,
-    "update_history_entries": 9,
+    "search_index_entries": 394,
+    "update_history_entries": 20,
     "mathml_static_prototypes": 1,
     "og_image": {
       "source": "docs/assets/banner.png",
       "output": "_assets/og-manabigrid.png",
       "sha256": "2484dabd83c341a34f34184e7d71fcfd31de89dd1dfa65cecebd5a3017efec8d"
     },
-    "sitemap_entries": 274,
+    "sitemap_entries": 504,
     "progress_disclosures": 12,
     "display_math_locations": [
       {
@@ -153,6 +163,109 @@
     "truncated": false,
     "entries": [
       {
+        "commit": "db6499205ce5319e386f674c38c5ea030ceea03f",
+        "date": "2026-07-21",
+        "title": "三平方: 縄張り師逸話の出典の格を精密化",
+        "categories": [
+          "教材"
+        ],
+        "public_files": 1
+      },
+      {
+        "commit": "5cd1b188ceb6cff0c03bc5206435fb93f5fe6ffe",
+        "date": "2026-07-21",
+        "title": "source_id方式の基盤導入",
+        "categories": [
+          "教材"
+        ],
+        "public_files": 22
+      },
+      {
+        "commit": "bbfad6cbb57aca2576d92ffe0d475fd309be2edd",
+        "date": "2026-07-21",
+        "title": "三平方の定理: 逸話のfact_checkを実施し保留フラグを畳む（教育内容は不変）",
+        "categories": [
+          "教材"
+        ],
+        "public_files": 1
+      },
+      {
+        "commit": "86bf004549cd7e00cd0c4891bda9fdc3fb180af0",
+        "date": "2026-07-21",
+        "title": "品質装置: 強調崩れ検査のCI化・正本識別の明示・レジストリ実体照合・数字集約",
+        "categories": [
+          "権利・利用条件",
+          "プロジェクト案内"
+        ],
+        "public_files": 2
+      },
+      {
+        "commit": "d42e29d6f868670152e8cd2f61ea401850dcf67a",
+        "date": "2026-07-20",
+        "title": "英語の入口ユニット「英語のとびら」を新設（jhs-eng-entry-gate・調査済）",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 2
+      },
+      {
+        "commit": "05bc303bedb277e5fc340e98241980680de7e0ac",
+        "date": "2026-07-20",
+        "title": "表示品質: Markdown強調がCJK約物隣接で崩れて記号が露出する問題を全量修正（109ファイル172箇所）＋内部作業語の露出1行を公開語…",
+        "categories": [
+          "教材"
+        ],
+        "public_files": 110
+      },
+      {
+        "commit": "b6d75a2d66000fb8fcce68cfec5be23077606073",
+        "date": "2026-07-20",
+        "title": "ベータ版卒業: 目安基準（中学数学全単元の人間レビュー済）達成につき名称から「ベータ版」を除去",
+        "categories": [
+          "プロジェクト案内"
+        ],
+        "public_files": 1
+      },
+      {
+        "commit": "03efe173653e888582852467ce31c312a4f61b3a",
+        "date": "2026-07-20",
+        "title": "同梱波: 中1数学8単元＋中2数学5単元の教材本体をmaterialsへ同梱（29パッケージ・852ファイル）",
+        "categories": [
+          "プロジェクト案内",
+          "教材",
+          "図版"
+        ],
+        "public_files": 395
+      },
+      {
+        "commit": "9c20d34b6a3ee6bd727b83244bca25386164f0c6",
+        "date": "2026-07-20",
+        "title": "一次関数と中3数学8単元を人間レビュー済へ",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 2
+      },
+      {
+        "commit": "bf78814d3c8ca84300c6689c0b3865a306f6bf83",
+        "date": "2026-07-19",
+        "title": "一次関数（初期制作単元）を外部レビュー済へ",
+        "categories": [
+          "進捗・単元情報",
+          "教材"
+        ],
+        "public_files": 5
+      },
+      {
+        "commit": "9a3047addb9228134989816f7040263b1c35d3e7",
+        "date": "2026-07-19",
+        "title": "中1数学8単元(20子単元)・中2数学5単元(8子単元)を人間レビュー済へ",
+        "categories": [
+          "進捗・単元情報"
+        ],
+        "public_files": 2
+      },
+      {
         "commit": "263e6747d67f08e414e9c6050194f308fec06d55",
         "date": "2026-07-18",
         "title": "中1数学8単元（20子単元）を外部レビュー済へ",
@@ -252,7 +365,7 @@
     {
       "source": "materials/README.md",
       "output": "content/materials/README.html",
-      "sha256": "8c32f399683e1352ca4e037cdd0a2825f6a1ba1b65bbc7ac9c831fd307a885e8",
+      "sha256": "3f631e0e44c4e888156f95a00da7df09e49d44267495297e9392d4fa2930a31e",
       "kind": "overview",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -324,7 +437,7 @@
     {
       "source": "materials/hs-math-i/hs-math-i-quadratic-functions/lesson_02.md",
       "output": "content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_02.html",
-      "sha256": "2c9246817a757a03312261edcda053e7ecb31d0278f25fb5d35b559b23a82ce4",
+      "sha256": "ba032c6de9e244fc0284587cfe892d436531e34a0fbf7545833564576f95c250",
       "kind": "lesson",
       "answer_target": "content/materials/hs-math-i/hs-math-i-quadratic-functions/answer_key_supplement.html",
       "frontmatter_stripped": true
@@ -420,7 +533,7 @@
     {
       "source": "materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes.md",
       "output": "content/materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes.html",
-      "sha256": "2fc68972de4058b045098217d23c865be61c5d1ba22afbb711e2488764f61b63",
+      "sha256": "ad3517745745c2e12be9e885ecb9b5178555eae977393661b665df7176aca873",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -428,7 +541,7 @@
     {
       "source": "materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes_L04-06.md",
       "output": "content/materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes_L04-06.html",
-      "sha256": "f5e8e2dfe7c2da22048602aecbc21e56744aa1fa86eac6c842dceb88c9c4fad3",
+      "sha256": "62fd77609602ff700339e2989f46de6615adbb594920644b5b802a861697462c",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -436,7 +549,7 @@
     {
       "source": "materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes_L07-09.md",
       "output": "content/materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes_L07-09.html",
-      "sha256": "a5157c86fe55af8b94548aa2cdc3bfe45edfa1fc79b942521a499e1698dfd65c",
+      "sha256": "6ff18a45a59654b5d50c18fb9f9f793674906e5b4ba5078b0b0397e652499eb7",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -444,7 +557,7 @@
     {
       "source": "materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes_L10-12.md",
       "output": "content/materials/hs-math-i/hs-math-i-quadratic-functions/teacher_notes_L10-12.html",
-      "sha256": "189b2f03ad3f89b6bfa4ac7222fb90a168297642893d2b3366514652e51c5747",
+      "sha256": "a61891cd8720c228fa00c60ace29f28d744228d39bca83f0a0104ba7b436be9e",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -564,7 +677,7 @@
     {
       "source": "materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/teacher_notes.md",
       "output": "content/materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/teacher_notes.html",
-      "sha256": "6ed042a474c8cc0fdf82871d243ad476e8081982f26227f00b9e0e917ebca5bf",
+      "sha256": "a53657ff65619bc1a53321054d7fceee443d41c585ff40a2f5bb788882af12cb",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -572,7 +685,7 @@
     {
       "source": "materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/teacher_notes_L04-08.md",
       "output": "content/materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/teacher_notes_L04-08.html",
-      "sha256": "289fc604ec568c2424537a36d00d894f30fe927ad0c5deb9c5fe46c75ea6f535",
+      "sha256": "6da27de3cd53fa4901d2ffa3ffb36797988931216dff52fcc5b19aca4c65a2d1",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -684,7 +797,7 @@
     {
       "source": "materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/teacher_notes.md",
       "output": "content/materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/teacher_notes.html",
-      "sha256": "81109f731b9324442d3c85bec1a9c25f1224803ebb5e33493aaf344d64b61630",
+      "sha256": "541fdcd60c7a85dcd06c6a608485e919f4f48c9279adb5fdc58747cef26bf15f",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -692,7 +805,1079 @@
     {
       "source": "materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/teacher_notes_L04以降.md",
       "output": "content/materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/teacher_notes_L04以降.html",
-      "sha256": "5986fac66cd7a9f3ac0631de7e213072eceb0c81f26de181b0b1c12ab9c138e2",
+      "sha256": "5c5204d2c043de4adfc6582b6468001cdd8f4dd07c1dd8c0c0fba6ab80d298b5",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/README.md",
+      "output": "content/materials/jhs-math-1/README.html",
+      "sha256": "a037583c6e144dc651238cef0192be81fc3ac3f04a031bce38c10cfeed954e9c",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/README.html",
+      "sha256": "9b897fc38dd3d7aa29ef5933d4570c8011952157d35b16b3a16091226cbb5b3c",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html",
+      "sha256": "dbcb382b5ace81cb3f66346e375cdbd80388ed72f1a2da921b0c9219878d1c7d",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.html",
+      "sha256": "d01a662aa97fd2d1472431253d0645d8dcacdfb6b142de07663f100a1d41843d",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "e4a157d76fe88b2c9d1a7ebfe0d05cd17e83e18966fccd056a60ed7b6a5a139f",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_01.html",
+      "sha256": "0392f14ea90c7e4426a9b05d87f838e2d4a01085ec50d6beea99b1849520e80e",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_02.html",
+      "sha256": "73cb25be589ba64093f8170e67cb4f4aca8672673b553205fb8ef8d8f9cc091e",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.html",
+      "sha256": "edf1b9f1f80b991f755240c92e3c25f538a217b7b68f596b4985c77cbe36f70b",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_04.html",
+      "sha256": "1d7e1234a156485bd902d75d776cc3cca7c3688a55b8a7c6a2e6dec893c1bbee",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_05.html",
+      "sha256": "d72ec8bdaa96b087766e82a84c7b88722d6b1cef576b436992fb9cea01148ce6",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_06.html",
+      "sha256": "ce94021c85d1126c801e9920415e0b559609326c8a6b54b7279d83fbeba91d3e",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_07.html",
+      "sha256": "249e3fc1fafa40c215708a887af2a3bda2f38992fe18576de52f5c01c5cc3d66",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_08.html",
+      "sha256": "0dae604dff0ea141f4a28753e6cb5fb59083b16babbc16f3a88ae32e68f397ba",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_map.html",
+      "sha256": "a6a88525b52f79f9029d10f3e7c7a11fa708474a48d588b5df9fa39e104f4685",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-data-distribution/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-data-distribution/teacher_notes.html",
+      "sha256": "196336b9338c7002e84c29ba9ab404f580eea1de59414c9d37e2494545aaa0ec",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/README.html",
+      "sha256": "35e113c126edbe7dea8b68b9aadf4a429d2d060bbe0bb1d3e3ffffec45960ee1",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.html",
+      "sha256": "83e1ff410cb5170957bf225d4e4ab4b77c758b739497eb12b38c06e2445529e0",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "e9f11525710c4eb7b450daf730c4281a5e3a47cdb66c7891c6691adcd3fb9c90",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_01.html",
+      "sha256": "9edd7e6ed4c9186ef1cbad4fc54274a0ea8de726ec81b5001f3a5d7e7cd972c6",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_02.html",
+      "sha256": "8b3aa1386ad62f412b1a739f65e7356c669a66bbbfb619432abc244035bf0f4c",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_03.html",
+      "sha256": "43600f8ba8af66b7133a05b1bb547fefc4ec2abc43e7c85cbc57cc324da9728f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_map.html",
+      "sha256": "d904d9f5b7b9904f821b63920adcbf685f5f04d85972763a01c2ed3a5010913a",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-empirical-probability/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-empirical-probability/teacher_notes.html",
+      "sha256": "bd35e963c8bee8af1346f0cd19d0406e824ae3f5b91534c9ffabcd520120de88",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/README.html",
+      "sha256": "8f21fc4e20b493a8a50829d866f29eadc40dfcbf03bffb5fccbf9dc2aef7c434",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.html",
+      "sha256": "e0895d6eec36ce0c85e114493d1ab15a79770d3f910d1bc7ec0298adb18bc337",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.html",
+      "sha256": "7ecba716d52570288952da1a6ddb5cc8cf78d5859db5f29cc2c8fc4ef98fbc48",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.html",
+      "sha256": "8a5d9453fd7461ec6dee932c0f52f8b340f3e8e91a25fe2d26173ea520d8f441",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "5ca1e5beadbc6f978e944dae3010abd7fffea0a335def64bce8819889d7ab3a1",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_01.html",
+      "sha256": "49b4c15495851ca51cf7873c46fa63cade32c00765002e125c4187feb6429c16",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.html",
+      "sha256": "86d1e949f5c9fb3dfe8d907bcae267d0356277b3057becaff6a106957a477dde",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_03.html",
+      "sha256": "8947fd388c702842374095fb67f885d59648482be2f014c413ba38e652471ac1",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_04.html",
+      "sha256": "4c83cff8cd2180072599ceb4efdbc54804dcffc50752f836537ec2c8e49721ff",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_05.html",
+      "sha256": "6e557c77fa5565c2faa5198ae57e10cf59d1aeb59ffed1eff8db68b591b33517",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_06.html",
+      "sha256": "199902714d630127194b4b3fed3367092e9bcf754c29d3522644cfbc75f50287",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_07.html",
+      "sha256": "3bc3871b4387a754ce9a7b621f952985ab3dc1ad4e8ebd31551d4b05d02e8c6c",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_08.html",
+      "sha256": "ed458c7515a965573871bc9e89dedc656a77b8ed94c9c770923e95e84bb94556",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_09.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_09.html",
+      "sha256": "e42951a0bf6314e187d47cdc088defaad0e6069f19a5c1bd3162ee7568c32ad2",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_10.html",
+      "sha256": "2c0653e97267477982cb866bb7afada04abcc574c7f271017a1b4c45aaa8c956",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_11.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_11.html",
+      "sha256": "6dbac0778dfcc84b298859c63cb2a700a898924bda0ebaefd9ec95d2fa9feaaf",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_12.html",
+      "sha256": "47bd9aebc719e34196458e2d336f22926927febbf10ed19afe7def2d8c359f0f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_map.html",
+      "sha256": "815c94721029f59c3586681fdcb62dfd88202ddbe344196ae8869d7339afd528",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-letters-and-expressions/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/teacher_notes.html",
+      "sha256": "8b54ff3296d6fb37f7e28e26f491749ab6f4a6be3258af79b423ff5debfab690",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/README.html",
+      "sha256": "c949df4b6cc84e60bd8827e0ef6b706c25db093a9d2aed0ebf61346f3d3c0378",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html",
+      "sha256": "0bc6d6e669c34975efcfa9921f23eb541f5391250c2202ab818155a53c658aae",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.html",
+      "sha256": "f091f681e63b867c6047493dff3b1cf3bafa4f69a6f822c626b87760707213eb",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L09-10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L09-10.html",
+      "sha256": "941e6882f6c1c25bbc43e7a107099a81b2af71cf1111e086aa6655a6068e1f8b",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "09507a6b701f0e494afa34ed06b968f2f8cdbcc3b634bb031276705583dc3040",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.html",
+      "sha256": "221c8f6c9cf8cb4c4dc17852219c3eaa1b161d008d696d420ff97477915c2d1d",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_02.html",
+      "sha256": "439fd8d360aa7503cac83c3f2e7165b6362b43b3a0e6a0c1857efd647df76355",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_03.html",
+      "sha256": "fd4cbeb7392726dd33e7ff228c6eb85666935e30b6bc8e6d5d3011979ae39d16",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_04.html",
+      "sha256": "e597cb4895ab7ed7489c4b2c1ddfb5a2eed7e6f3a0a9de0b4eee4d681afc7045",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_05.html",
+      "sha256": "d0bb483674a276f4e15ef88b12345400cae109754043ca1906ac19b59ad6d280",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_06.html",
+      "sha256": "8b5bf53ad8c3be8dfcf252727cdd7320d87e31029608ac9382ec4039d0463485",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_07.html",
+      "sha256": "0dca9673bbc53b29d605978de61cb09084f82d85d0d7422d1824c9a7a1cb488c",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_08.html",
+      "sha256": "b055c58d9dc495a95b7d230233e10b0b40a566ca932514c6bdf955be9a15ed43",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_09.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_09.html",
+      "sha256": "b044b00ba608e7a4961e5ec6843dd70868e72cab1630da8adc25be007a1d3afb",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L09-10.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.html",
+      "sha256": "eaf525e17d66ee3e3560218029a796a55576e733796a9ae8ec86065d788c18c5",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L09-10.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_map.html",
+      "sha256": "759acb78e9fe91172caaf8e819de4d02adacb872353fa8f7803496a5b90e40e6",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-linear-equations/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-linear-equations/teacher_notes.html",
+      "sha256": "e3015a68e47e79964cfba82f08ec7fd6f943c5d7f7395bf6f6d72ebb6eab8038",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/README.html",
+      "sha256": "fb2afef2ff462499d39cd6e95ec35610daf246bb66a7410ba3f0f57099d75968",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.html",
+      "sha256": "3248f47d55b43840edd3a589373cc70b824aa6167b2b9891f49775e00a9f27df",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.html",
+      "sha256": "b8a3f685951195e46c86f1f26f45cad7acc4006508e8383157825f24d6424eb5",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.html",
+      "sha256": "48edbea605af267eb5680fcb9b54f3805046009de6f8e061cf1d28503239beb7",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "62ec3b25fad41e44fd9706b968e9cb3cc3e9133c376fd1edcce70b6edad2d562",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.html",
+      "sha256": "24c4fa808cc1b1f6887d2f4e2c6cf01988edaeba807cc8c98eece8640fee946f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_02.html",
+      "sha256": "1f2c54209fc507de710888fe17c73f2ef3a89cfe88603dd9bf129251128d95a1",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_03.html",
+      "sha256": "45307ec6ca1fa8eebcc6abe9be22d231d42bd4e78b421454121ddaf6390ad84d",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.html",
+      "sha256": "7d182fee67d3e82eadd0ab7fdd60528d7c210dd5da30189022193c383928e76f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_05.html",
+      "sha256": "35b9d13c3ae643dd4caea76579f51617c5566a8c99e3ccfc26eb859bb777b9d0",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_06.html",
+      "sha256": "b6b7efa8335efd54b129b45bc42fdaca09fae1e400d573a4b4dc748ad7a9df3e",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_07.html",
+      "sha256": "5cfd13dc8630b82d6d9c81284e052aefa5c011729a310289f2b3f712d6a9c885",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_08.html",
+      "sha256": "f6bbdf06d239e16ba898c656ab3a616c1929b9e4a9a5d702e981e80476d6245e",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.html",
+      "sha256": "be5c6d023b64a83caf24a9c2be5a05dabcfc4f71498ee3a27dfc7d1059e89655",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_10.html",
+      "sha256": "576ac277005ffa3255d667ca9181722ffd0ae7f42e70b9cb37294c2b4416cf22",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_11.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_11.html",
+      "sha256": "2378e386519c9bb410323cc40d03bbe07dca59c67ae5ca935b0b79f5efb7fddf",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_12.html",
+      "sha256": "d5636762ea8166bd52656267277f9ef14c22e0a3c5781838640f3564b2e56b15",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-plane-figures/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_map.html",
+      "sha256": "ed7c5fde9775634990b1a6d222dc11c43618f260d5d2a77a996f2714ee042d01",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-plane-figures/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-plane-figures/teacher_notes.html",
+      "sha256": "0cb641cd67eb80a14792114794994215fdc048a2df4b20083b3c013ee1f4c67f",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/README.html",
+      "sha256": "50c9381aeb75cfb7bda65cacaa7f688fa916a792eb9cd4a9902849b9d8447591",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.html",
+      "sha256": "94ae0f35377a40238314caba7d42293f27ad9f510739512118e1076b7a33c58c",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.html",
+      "sha256": "c6d38faa3da94f4c67f13723afb852ce3d58c60f16071a6da32340ed579b637d",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.html",
+      "sha256": "34c25a4dcce273887ec798e4c7a53ff679e4d0e8aa0bd54a7748c54c6b0ad0fe",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "1932eba2199f43e78d0f785d8a2c2eeb74041b345d927c889ff4ce2537c776fc",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_01.html",
+      "sha256": "7ea4f5ceda396dbe0341bc890fa6c92017ffbae52be1f6616c8e65ecc2cbf88c",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_02.html",
+      "sha256": "11522c24459d70595ac27c4b0d4c83ee257467dd2f65303ed1769754ddefb13f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_03.html",
+      "sha256": "aa2183f39f2408c64060083982c6bf67271b00642e8babd7965b65370256e6b0",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_04.html",
+      "sha256": "2999eb49f1ba50ce9f7f363fc527064d53f01eecf0778a12ef25c91dfc388c93",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+      "sha256": "a8bb75598be5cc9905cda23701a2c8fb5b2895c0abcc043f137de4593ebf43c8",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_06.html",
+      "sha256": "2eea47e8d6ff0b465444f80c2f340e064da8e8334702c38e0c4e3b1cb1ad1ba7",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_07.html",
+      "sha256": "3a48f351fe8c5f7c4ec0329fbae17e46efaa8ce77e03201d9fbbeb277912166b",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_08.html",
+      "sha256": "2be800b9e131059673ea26ffdc50b3be5095da7f46614762fe6c10bedc5dcd3d",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_09.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_09.html",
+      "sha256": "b64dfbc327deb8ed75bb7672784d44c9e9f4dc82ad03be91a453629e81c30d27",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_10.html",
+      "sha256": "cb65258f1e559e95e59bb7a6e91cff9d942807a9267f5a442de2373a4d3c8281",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_11.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_11.html",
+      "sha256": "8a960d2ce0221ffb5845ab6e0c597ebaf5f24b39aec7f59dd96edb1cff6ed7c6",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_12.html",
+      "sha256": "eaf135054aa8f0eb8a43889d5a451aad8fcc1b1eb35260e31b476d584397a667",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_map.html",
+      "sha256": "6c9409b4a737aac0433280865b56f1634c7d780a57ff7383ea9db0ed3f26c8a6",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/teacher_notes.html",
+      "sha256": "41df8713cef592dc3b3750395f87978f2a283531cf9c8b3badf65b34035694ef",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/README.html",
+      "sha256": "12a2b797793cdf8f0fce2da03e5f7a49deb6528a4fa8ddadb9199a27d59dbf79",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.html",
+      "sha256": "1097534d77ff62de6c9639ba2950c4cdb4e5dbfa7e379cc0728fb3e1feffa7a4",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.html",
+      "sha256": "c23311cc8a999c708e3d4a6eef3aa12860b5d6362d93486689eb67f821d3bc41",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.html",
+      "sha256": "b2ca3674496bf3e5fcab80dc8522ee592a20ba3250c6cc25aa21799c25a12e6b",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "58e1dec5913c3d12a64c5fe3ab3489011e7ad6de59a79be3dc4736306369ca13",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.html",
+      "sha256": "b3c06034dc407c1b5847a8e863f18f995524cb5d3312e882928f855c9d4eba08",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.html",
+      "sha256": "405a4e0a12168e25a7b48e84bba6bf977492da867e5bc0241293a9f9220ab097",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_03.html",
+      "sha256": "bea0153517de9e3ee30a048f2faad7154a33cc47d699efab766a45deb0ba2cf8",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.html",
+      "sha256": "440386338793693ffbcf796abf1f1ac2bd02e42d616576ce3ae1f563befbd557",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_05.html",
+      "sha256": "e2acc0a2819ec171ef52de35e77b4bf4cd944ca455a9b8aa23af6b1dedf95425",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.html",
+      "sha256": "7e1ad396a89203facbb53c9389456a6d2996f848d832fc851b9859a79f4f9993",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_07.html",
+      "sha256": "ee2e3ec897e50d84bbbeaf5312d07e0773b5171d20c05d8805799b976f1b0aae",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_08.html",
+      "sha256": "70d61c3813523058d5f34a9a7cca8b8631284e2cbb603ac466e8c4771bff763e",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_09.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_09.html",
+      "sha256": "a9fa1ab031c28bd29c4a3c83fe579c297b0a9ef400a78327304627727e301240",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_10.html",
+      "sha256": "12a989be5496ab1d44f8aa42dc9a958dba6c6bc99f48a99d5caa4fdcc4d5de51",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_11.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_11.html",
+      "sha256": "e25d618a37e100707173c0fd5f43e36834e00deabf097afcf2d6050217a2d449",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_12.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_12.html",
+      "sha256": "9a3310e889d7395543e76f5e13f13936da3d459b931dc052422d5f3faa9d4ddb",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_map.html",
+      "sha256": "799e73cae922043f6f86da526de1f01ba267b04f29819175af6e67b8f0940a12",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/teacher_notes.html",
+      "sha256": "f198c9e7c10a260c077a3ebc43ebaf5df2f4f5fd76354675d8d1ec4376477699",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/README.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/README.html",
+      "sha256": "aca7104673db11a49c0af20b3fb6b698309be40684a42bd8015da74ea27e73cc",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.html",
+      "sha256": "0091e4988aec8b665772cfb89e95a3247f2266ee969454e176d59bd327856df3",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.html",
+      "sha256": "04bd1129e1fc00f49d1be9702d51423c4c06513e79633ec0f6c5bebdcb7eb879",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L09-11.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L09-11.html",
+      "sha256": "1b35694a12312c84272b4575e421136e43252194a799e4a8ee36b21efd2a53be",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "9908b72ede6f8f4708a3addbafb0c6bab86c1d9f3559174a6e41833f5d2a63bf",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_01.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_01.html",
+      "sha256": "e4ce165cd2ace88c6dfa5cd449af760b1148e0aa2ea7ce092241d33104e9fb72",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_02.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_02.html",
+      "sha256": "880db766c6562867ac302ec11f1d65a0ebb34800ca36892282461a053aa1c002",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_03.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_03.html",
+      "sha256": "e86afee2671d5f33d807da0529489bafb39b76a7a0282cfe21a2360188db2f12",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_04.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_04.html",
+      "sha256": "e1e1f0b3753cbd4e7a24b45e2a28a69fb34845bf25ded87f5e1483c87f96bda2",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_05.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_05.html",
+      "sha256": "a982339cb689db38a327d14b55153411ec345fbc6cccbe632565328c4d2c8efd",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.html",
+      "sha256": "1755cfd8add6cc223dafd700a5800d9f85cfc59a0457b4e28d1971902742302a",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_07.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_07.html",
+      "sha256": "66e3643fe94d83f01f90ed7f66934b11382ede8c2b75a6348754ea2d4bb85adc",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.html",
+      "sha256": "01ba6e74a8ebdac4adc1a6384bb004765ea767543d767e7f9affd8318eafe99f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.html",
+      "sha256": "748fc0e68d76866c6fad9ec3be6e4ae9b2ddf90b85912edbdf19e216dbbce227",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L09-11.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_10.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_10.html",
+      "sha256": "ded9ce27d38def67d5d775e12fa24c7dd1f1e68f01dc2dc026097f0e734f2979",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L09-11.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_11.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_11.html",
+      "sha256": "7c4e980fce1f373c8c737714b5dfc607ec99f5f6039afa41f79e16d783ad9ec0",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-1/jhs-math-1-solid-figures/answer_key_L09-11.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/lesson_map.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_map.html",
+      "sha256": "e110acc658a7afde4ab363196c88d00a34a7cd7641e33065a23f210ec208c03f",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-1/jhs-math-1-solid-figures/teacher_notes.md",
+      "output": "content/materials/jhs-math-1/jhs-math-1-solid-figures/teacher_notes.html",
+      "sha256": "a8bcabb7e447a2f77e0bfdf0ddeba6f3e655dfbed5ea81dbaf54825c7b4c7b7b",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -700,8 +1885,336 @@
     {
       "source": "materials/jhs-math-2/README.md",
       "output": "content/materials/jhs-math-2/README.html",
-      "sha256": "2ee48c8f61017f697ec1f3653248ab63681575a9b15d00b566b62cfabcd73fa2",
+      "sha256": "c84b1a5d0037049f64f888629c23fc7ca455294f1b86542b02b1452679908172",
       "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/README.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/README.html",
+      "sha256": "caca841019d1526e43357cf4892da4e5d5eef59bd3054cb298547870c5fc40f0",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.html",
+      "sha256": "c1b4c6c4a9bb8aa66b5fe6088ad9ab24a60aa613443a199b26c26891dd3c87c0",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html",
+      "sha256": "7a328a2d7cc5c463bea111a30b5835288d2c8fea12b44455865bbf2954ae943c",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.html",
+      "sha256": "aac51691109aa4064fe5617f8354cd5814051a206156d5edfaf028ca512f195a",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.html",
+      "sha256": "a46de878000e5a41792d640ba9e45813ceac968e0a6033d65e9833c34bd2cd63",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "1d5509cc617027d5f2b3d0ad17f3c055dcd52a2d5942de4c87618b2cb4ee9518",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_01.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_01.html",
+      "sha256": "32c09215ed256115b87b71f5bb1a9114dd791ce74372b50c761c4921e1a077c2",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_02.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_02.html",
+      "sha256": "6c09a0a75fcbf86c8c81a48a83a9e3d1e630ff12a7db17727e8d1e216f54921f",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_03.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_03.html",
+      "sha256": "ae3d73cc89f6f12a444b928a8e07044ea3db5a7fd8dc68e2d2e5d2cd9015fa78",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_04.html",
+      "sha256": "8ae3444b3d6caef19ed59d604ff1a61022c1f4f2ef830d0653c96018bae64d89",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_05.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_05.html",
+      "sha256": "6f028cc0377eeb454ee790aebc25d2f0a58cc9fda7e80a2c6830a9839be388cc",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_06.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_06.html",
+      "sha256": "8bf34a7729bf0406e3cea3ca0fec298479f5396b70451f4610cf8bfe7c6f5a03",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_07.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_07.html",
+      "sha256": "7af6396283fc6a17f0b859d354e8a0eb0d0764a1d2a7be638260b19c28b01fdc",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_08.html",
+      "sha256": "4ddbf3be32c13562e07294524f1812f501a183390caf316dd88f993214305a82",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_09.html",
+      "sha256": "2ff332400c24d3d051aedc3c7054f0b6ac33eb0c9eed751099cd6272254c56bb",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.html",
+      "sha256": "8b7ce3c96ae42c7d887aaf4b320e621eefbd2911b873010a6aad788e9189f687",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_11.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_11.html",
+      "sha256": "57ee3da0f74d63fd33b1791dcdafb49eb75d69a7059bc051a4cca94cf3423923",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_12.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_12.html",
+      "sha256": "b9ebf6a71e9bd987b4a90ed6a93f692b6d30988df90673f3dda2955db5b2a453",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L09-12.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_13.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_13.html",
+      "sha256": "0c0206165164059dfae35d724be356dc67c4dfda17570ed992c559823dfe6cbc",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_14.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_14.html",
+      "sha256": "486c60ada93e5891d0649382c84c3bdc107cea5a1284a09d594d33fe44274452",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_15.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_15.html",
+      "sha256": "76a276480b42018eb05af006e66c345eccf34155d27a71177e352524325c9dcb",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_16.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_16.html",
+      "sha256": "6c58e553c26aabd0ed13d548eb11e79c8486851a1856f846925f33ff67cbef30",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L13-16.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_map.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_map.html",
+      "sha256": "ebecdd1de5d9edc34a7c8ff99010e58488a80d3759e74beeb6c2ad2ed6b968d2",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-congruence-and-proof/teacher_notes.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/teacher_notes.html",
+      "sha256": "96c4e43da27c0ecadc1bb61fb70b060dbeea487cb224850524a91a65e7dec28d",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/README.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/README.html",
+      "sha256": "64094064b53bcd2801fbf9873fbbc0d6f36c1ff453f207fe11a06136f684c868",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.html",
+      "sha256": "a37213fd27ca07fd0dc99b8fbbaf491cd4e30cd5aa3a90c3547602e42aa059a9",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L05-07.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L05-07.html",
+      "sha256": "8fd08336087703f4a54948f0f1c3b2e30cf1dc917a7940f1ee8dd6be44a21bc1",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L08-10.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L08-10.html",
+      "sha256": "b9e802b1bc918e81050959ed1c1adb807c723b4c4e9c7e6a2683eed5c52c94cc",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "45704fa818bc183f938f713adeb53b9fc9602be2af223e7b38d89935eb407406",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html",
+      "sha256": "b1fa34b4d8ebf00590586bdf420a86a086222d4962028fd2c26d40f46e8190a1",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_02.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_02.html",
+      "sha256": "4ce898cd3dca498acd08c1126d134ad90ccf33ea123c06e36d738f5e53ed612a",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_03.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_03.html",
+      "sha256": "24aead90dfecf5b6014e6b0cc6e87f5fa5fbb6b1de594be322f48e64dba1b04b",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html",
+      "sha256": "94c483b4e335c6a54ca5bf036c1e7c9efc87ae01f8abedee826ea9f0ef7f4033",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_05.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_05.html",
+      "sha256": "a49c9e87b3dd5029c007ac33f6c895a6b76f6be0d41e5131ca4a511a1ef7e079",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L05-07.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_06.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_06.html",
+      "sha256": "6bd0b9a84e0fddc84c328876fa0bf26fe65fad035da81a5bdd6e9fe542f7b794",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L05-07.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.html",
+      "sha256": "b85e949f9973c27a8d3258104d7bc8cf8af0b877464ac95f6227e52078f95ce3",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L05-07.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_08.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_08.html",
+      "sha256": "99f67546bcd1f217e7c57ea2d62199ddaa7affd069174b13e65b66e5b7da72ca",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L08-10.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_09.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_09.html",
+      "sha256": "b11aeb8f07b701fac3160beb4877800efb810915f7f6f026d14c514cbade3c7b",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L08-10.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_10.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_10.html",
+      "sha256": "0a3b4777183423331c67ab2fcc49766c545de23673188c862bb4c1dda7f71642",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/answer_key_L08-10.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_map.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_map.html",
+      "sha256": "01f54afc253b9755c2fc36e77dcdfd44f46892e7195a526ba02d71031ef235ba",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/teacher_notes.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/teacher_notes.html",
+      "sha256": "bf7de58f8c533204143115e261ee8882bf94dd26558b30684b1de2a8b32856e3",
+      "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
     },
@@ -724,7 +2237,7 @@
     {
       "source": "materials/jhs-math-2/jhs-math-2-linear-function/answer_key_supplement.md",
       "output": "content/materials/jhs-math-2/jhs-math-2-linear-function/answer_key_supplement.html",
-      "sha256": "fd854a9da68c81634c49b4aa9cef82d6f7e58b0db375ba6e62d2a9a8edbdac64",
+      "sha256": "ee416ac8d15ad653ea1e701c8130fde4ab8b36d85413207794586dc6c17aab1f",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -732,7 +2245,7 @@
     {
       "source": "materials/jhs-math-2/jhs-math-2-linear-function/student_textbook_print.md",
       "output": "content/materials/jhs-math-2/jhs-math-2-linear-function/student_textbook_print.html",
-      "sha256": "7fabd369112998b1ce9b9eab33657b69baf8fac3b7db61fa216ab01951f764ae",
+      "sha256": "5a59c5c502832c0d9ee08cff3ece7e96cf2a004be57eba62e220c59df1606d05",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-2/jhs-math-2-linear-function/answer_key_supplement.html",
       "frontmatter_stripped": true
@@ -740,7 +2253,335 @@
     {
       "source": "materials/jhs-math-2/jhs-math-2-linear-function/teacher_guide.md",
       "output": "content/materials/jhs-math-2/jhs-math-2-linear-function/teacher_guide.html",
-      "sha256": "d103a0f9fee6430e3321a855f8c253582ac1ff33af22e52b3f910faee5efd4ac",
+      "sha256": "9a4cd85928ee4038b23c3cf48fb8d0663f78639506cdceca1004589bf4d5aab9",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/README.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/README.html",
+      "sha256": "28b61aada5e8966fdc1f5f24e60712b7990319c1fe8a3197ea82bc8e4d5b7706",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+      "sha256": "621617c6926c280ec29b48db427c7ffb8cec69988ae3df34b8c17b09a87466da",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html",
+      "sha256": "82a0d41e03650d5bc4525d1a71f626f5213ade73b9f5b3139dbdfd8895661985",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "16d40846b163a37fe4a2cef6444ec9deb15b5a19111964ed6dadde908e2eec2d",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_01.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_01.html",
+      "sha256": "63bb26190b6ed57a7aa7a04110b009cc160b236a5d4d150d9e0fe53f015e9e12",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_02.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_02.html",
+      "sha256": "ff9bb9e86e1773e0f02f0ba6590d1193826f83c514a5cb6ea42d9a9ff4162290",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_03.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_03.html",
+      "sha256": "5aaa246311ab5dc3041e5073feed202e0a1431e3ddd963c37414383c306fbfa5",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_04.html",
+      "sha256": "2bcb10eb5722dfc707ef4c7d40e1f22d39757e82a6ecd52b0cedfb9f82b991d1",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_05.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_05.html",
+      "sha256": "e0bd33fbd0354db7f719d98f74ca4b25049f7e7420c89e5a1167c2ece4706269",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_06.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_06.html",
+      "sha256": "b4677241b2f4b604abfc4b04b50e3ff3f1df885433033fd535dbc3daa726c045",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_07.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_07.html",
+      "sha256": "f0aba35c795fc504546e32fc752374b5267d6c001f39ca2c2605c3545767308c",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_08.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_08.html",
+      "sha256": "fb54af29442e23efb47c01a831766e49adc093b4181396f1d90224cb5de6eaa1",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_09.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_09.html",
+      "sha256": "47c1ae3d84c702bd418a81b1288f4729c55c7ab20b2b35cf8b55f2bad994d463",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/lesson_map.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/lesson_map.html",
+      "sha256": "a4378ff323ee515bc966212dbdd795c1b88a056db8d236504d0fd57c8dd0bf7f",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-probability/teacher_notes.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-probability/teacher_notes.html",
+      "sha256": "5924bdc2750602c5cca6e96ba66b64d5c0a22cdb79c1c1cbac9e25d94cc385f3",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/README.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/README.html",
+      "sha256": "35f77bf192be7b1fb8f58fb170fe97f935bdab7a39a5af373075928d60285bc6",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L01-03.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L01-03.html",
+      "sha256": "9f6763eae27ce1fe64ce53e9ce3620c3cd996878d7c64a17b977d4bdc181aa96",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L04-06.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L04-06.html",
+      "sha256": "9993b9735f32c15043a150dd4fbb442ea65f08cba8edf4c8aecdbf801718c829",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "667548cd0efadd0596637599392cc5158256fec1af4067304e1c9344d7138ac6",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.html",
+      "sha256": "7b206859c0f1546b50c27e3b589b2b1faed51ad9662a6a81faf60f24f89c8b98",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L01-03.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_02.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_02.html",
+      "sha256": "bcc090f2a19eadc27207d71dc20eb063cdca6f7a36b8560a851d2299fd52cb4d",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L01-03.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_03.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_03.html",
+      "sha256": "bfa9b49589bb105bab2e0d124e98eef55cc5282836bcb8ef284207f226251560",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L01-03.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.html",
+      "sha256": "ad1021f54e60c10e56b6eaf0a5eb3520839f03a7d03dc19863fa715dd9b056ed",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L04-06.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_05.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_05.html",
+      "sha256": "0eaf7fee6101d085031cf32733012916bc1d68f5b481334bae259a3c5d9a78c7",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L04-06.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_06.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_06.html",
+      "sha256": "dd14d643b971c7191b87519ab65332bc9852b08d7c7747329f717ac209759bcb",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/answer_key_L04-06.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_map.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_map.html",
+      "sha256": "574c67003691296b011ea9146e2cbb203b99aeef304111d7c512cf56fea1b571",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-quartiles-boxplot/teacher_notes.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/teacher_notes.html",
+      "sha256": "cf91db2f0d3baf1c0495c1aac1ccd00e489ca579e2cdede0b0101371a8ae42a4",
+      "kind": "teacher",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/README.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/README.html",
+      "sha256": "722ad8d9df84e06e91721c38d93867ef01a136068193c448ea371564951465e8",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.html",
+      "sha256": "1304de42a6ab1b76406c6750480c06122873cc3a8961b505c7d5ac369c7dbe19",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.html",
+      "sha256": "52895298218e206fb29fa9797146991503860108658430301a6db1a7febbd3be",
+      "kind": "answer",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/assets_provenance/FIGURE_MANIFEST.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/assets_provenance/FIGURE_MANIFEST.html",
+      "sha256": "1f430a52c984f75f1a259d320bef6504c96b4327089d5ae6d212847fddc564a0",
+      "kind": "reference",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_01.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_01.html",
+      "sha256": "544dacea5c65d1fdffd8447beffca7f5547ffd224a0fc4e88fff364194cb9fdf",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.html",
+      "sha256": "3ea9c607d717017fbb537b2b0e1fbfbc91909e5718ede07ba8206034edf6ea6d",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_03.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_03.html",
+      "sha256": "d710e9c87ba8649a8c6bd4c492a7510ebfe8ea219d7edf9eac396f2eba9f8443",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_04.html",
+      "sha256": "b37e34555fe9796d30240452e46868b84a6df7916ca6785dc069a340b410ae66",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L01-04.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_05.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_05.html",
+      "sha256": "01e3c989a08f1198e5e686a85d643d1eba87c4209eaf1f67fdf1a1fd8112c897",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_06.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_06.html",
+      "sha256": "705cd0ad2f5c05b375ac02e43ff2df80b44b819f75b539322df816fe659cbde1",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_07.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_07.html",
+      "sha256": "af61a21bc8bb84311c1856831d0b5c2d1b080aca6eb12ac03569d42b939f63f3",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_08.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_08.html",
+      "sha256": "996b80680a793c04e1c8e0ac2818641bc89b6e81add3f85ae3faf82694151922",
+      "kind": "lesson",
+      "answer_target": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/answer_key_L05-08.html",
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_map.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_map.html",
+      "sha256": "8a9752a9f2e6d71b0dffbcc11111443e6e885d65db4f85699e1096a33a045654",
+      "kind": "overview",
+      "answer_target": null,
+      "frontmatter_stripped": true
+    },
+    {
+      "source": "materials/jhs-math-2/jhs-math-2-simultaneous-equations/teacher_notes.md",
+      "output": "content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/teacher_notes.html",
+      "sha256": "8b38b06d9c3af095e65512cce016bdcbde0f79d215c4270d98d84297a8951cb0",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -964,7 +2805,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-expansion-factorization/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-expansion-factorization/teacher_notes.html",
-      "sha256": "6cdf91360fb66a2e6bb810dfc4e69d4b006fd62ed0a51b3289b22c8668a2c3ec",
+      "sha256": "ba196b2b7e4b1d6df2aefc36db291bd2dfa31b52cb9a50c5eccacee0d2caf5eb",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1060,7 +2901,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_07.html",
-      "sha256": "6d52e566d38b89eb776d218c2aae5d5b19c1503fc5e3ef28f6c0a49b84a8e48d",
+      "sha256": "a43d39b7730a027fceaa47f66e7fdf45e5e1823c2feb905c89c7190e32a94a2d",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-function-y-ax2/answer_key_L06-09.html",
       "frontmatter_stripped": true
@@ -1100,7 +2941,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_12.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_12.html",
-      "sha256": "1bfcc1236fc8ae25a8391d2a030965555a89cf424fe9fc44419cec7d96ddbc6f",
+      "sha256": "384e55744aeab3becb1f2740c4c46b3af1de3106c8364ad7561667dd23ec0387",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-function-y-ax2/answer_key_L10-13.html",
       "frontmatter_stripped": true
@@ -1124,7 +2965,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-function-y-ax2/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-function-y-ax2/teacher_notes.html",
-      "sha256": "ce0f2a46b7045d513b7c1b0c3239919d267f3ab5edbc28fe385740b65b578a90",
+      "sha256": "006a573ec373804f8f6ecb5f07fb84a6ffc10ae36b9e7942d68aae23b8c932b5",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1140,7 +2981,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-inscribed-angle/answer_key_L01-04.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/answer_key_L01-04.html",
-      "sha256": "618ffedbb9021721848ccf3c0cd809486f0236d073fe5c03c1bef4df26ee8569",
+      "sha256": "032f54a48d1d5d577e1c7dfbbe72db8e6d7c7bdcd382fd3bf1887f2b12fd1945",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1148,7 +2989,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-inscribed-angle/answer_key_L05-08.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/answer_key_L05-08.html",
-      "sha256": "2f7b3d16d4659f42e5973158bf38cee0809ffe326cac7c54e0c7dcf5dbf9f25a",
+      "sha256": "13edca027199b50b6376f96bc18594b796e9aded3fe9831ceb795284d3a9c4df",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1180,7 +3021,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_03.html",
-      "sha256": "65ea50c45ac2294569e23c47c767cafe172cacc7688adedf408d0bb21df18b7d",
+      "sha256": "ef5584f8784a9bfd44c74b7e486aeb68033bd51e39cbd30b3758233f7657d0ff",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/answer_key_L01-04.html",
       "frontmatter_stripped": true
@@ -1204,7 +3045,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_06.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_06.html",
-      "sha256": "cb2e8ca1b24ad84761e55ce81bfc72e4e381eb82b2a945fb88cc92d79007efb6",
+      "sha256": "c3de7997a15d9247f28a04ca1ce911d09c11cbbe6ed81dce4b5e38dcba903467",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/answer_key_L05-08.html",
       "frontmatter_stripped": true
@@ -1236,7 +3077,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-inscribed-angle/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-inscribed-angle/teacher_notes.html",
-      "sha256": "501f86f85bb09cae8a6f9c70e87a9ad3e010a3d9a5c187f337924b4035850be4",
+      "sha256": "b36ea29e1a29eb5a363ba787fba3475abdcc20f413c5ebeb7a0710bd8f5556ca",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1252,7 +3093,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-pythagorean-theorem/answer_key_L01-05.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/answer_key_L01-05.html",
-      "sha256": "0b9a100d5a3d1386b5050899ae4b81d190c7090788b7751d81f1f10c018fc3b7",
+      "sha256": "84b3ef24575e3c2f2ded9869675d38a69eca27c1b65d31f174a843c8c11f30d6",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1284,7 +3125,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_02.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_02.html",
-      "sha256": "7e9010f88b6a9cf46bd59032cfd15ac5fdc37b478733ebbaea77b8ec9fdb242c",
+      "sha256": "a2e2fdbc6bf69630fd67c45f70221cdc499181d3d6b0313f9e7f32cfafe00abc",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/answer_key_L01-05.html",
       "frontmatter_stripped": true
@@ -1364,7 +3205,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-pythagorean-theorem/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/teacher_notes.html",
-      "sha256": "9fdfe23bc91b8ac5ed7c9d8a3e3b04f6bbc9798a9f50ab4b3aea9b732a393e1a",
+      "sha256": "5616424f9ea5b30097db0ac4bedeec0ae522e0400826e9b5f837183169568e76",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1436,7 +3277,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_04.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_04.html",
-      "sha256": "2bdb4c92b100dfb67f248720ca5471c93ae470e1a9a3e12d5a7a155aed3d8563",
+      "sha256": "50af0d1f305dcb4b38904863904d06f4842112e08815f6b76e7b92e35210c866",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-quadratic-equations/answer_key_L01-04.html",
       "frontmatter_stripped": true
@@ -1468,7 +3309,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_08.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-quadratic-equations/lesson_08.html",
-      "sha256": "8f3d3327d20ab17c2db33b271f90922b459db4659014589100d0b81e32e0e8d3",
+      "sha256": "2534be7ead7696bc121253585b32fb81937d85c41a1428a9f007e3713db0ed23",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-quadratic-equations/answer_key_L08-10.html",
       "frontmatter_stripped": true
@@ -1500,7 +3341,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-quadratic-equations/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-quadratic-equations/teacher_notes.html",
-      "sha256": "68d86954d07210bda2a347ce2a7691154293ad4398598bc373596c1279fa9271",
+      "sha256": "57e8d821606dfe065efcb415307c4663e72c18cf86f0086fec57bebb8b876335",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1604,7 +3445,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-sampling-survey/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-sampling-survey/teacher_notes.html",
-      "sha256": "7ff3a3d58a47981368966891581752b052b2c4ed56d302ab35ed9056aa5d847a",
+      "sha256": "18b37e26f566b082814bc7ea1626aba3a7fdb186c50ba1f26aef767532599dfe",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1652,7 +3493,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/answer_key_supplement.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/answer_key_supplement.html",
-      "sha256": "33adcfcdd7fc7d5338c963197a577f220084d832da23b2f85677343e829d01e2",
+      "sha256": "8e9e58fadb16294e63e8ef55d400a93e5df686a9850df96706e7fa936be1c647",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1668,7 +3509,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/lesson_01.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_01.html",
-      "sha256": "11a95fcce1679b0fc307b72440790f3b803cb5871b4f6743472851510f4113fd",
+      "sha256": "5220c5f18c58bf1974536a392d6ebc68de1c803044f557de4d419a180cfaf291",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-similar-figures/answer_key_supplement.html",
       "frontmatter_stripped": true
@@ -1676,7 +3517,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/lesson_02.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_02.html",
-      "sha256": "db9ca8575eacad418c5964891753ecb7541d3940251288ad6dcbb8226581c6d0",
+      "sha256": "35621a8baaba010644f8a5ef598a6ac51fe09677b71ff10ca239c026b40f1dbe",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-similar-figures/answer_key_supplement.html",
       "frontmatter_stripped": true
@@ -1692,7 +3533,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_04.html",
-      "sha256": "8908ff24593d747ec4e564d73ce2a3e0c3529de0ef946b4bc801df9fe3ff6a6d",
+      "sha256": "8b5f652ce5e7fc9c1a8d4e207df31d5f9eed04021794fb6b66d113d73152e121",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-similar-figures/answer_key_S1.html",
       "frontmatter_stripped": true
@@ -1812,7 +3653,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes.html",
-      "sha256": "355b7845e5569739cc791770d72123232866d244adef57b0ae9d24fbc28423ed",
+      "sha256": "c9f196ac4e200680459cae98c622386fb6527c3bd1532f599921439e1c826693",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1820,7 +3661,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_L17.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_L17.html",
-      "sha256": "9f84cefce533a9d6bae8caf49faf6e1a8326479cee6321db7c464da99379ebea",
+      "sha256": "635f09e019b8478907821f9f6edc4e0485b2ac0e245d988364413e9e4bd85c17",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1828,7 +3669,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_S1.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_S1.html",
-      "sha256": "6bfe8eba57f32c82b2939e7a846dfec5fbc37eac553e977697188fb88b4b17df",
+      "sha256": "7c6184fce413b93b71dd984f7ddea16f435b5402052c4c506efd3a95a1116594",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1836,7 +3677,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_S2.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_S2.html",
-      "sha256": "279ad81d5b88cbe0317f0358557401cb22a1a7825a4a45589a7f38ef88b211dd",
+      "sha256": "e972b9e792bd8ee68fbdc7d7bc86063530986816effb3655262a2bdba1a02aab",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1844,7 +3685,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_S3S4.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-similar-figures/teacher_notes_S3S4.html",
-      "sha256": "2b40b18ad6595020ae77abda897b6ec19339fc8a34a34c0361490e76c517aef1",
+      "sha256": "1ae9450cfe855102524d6f071c42d842eae212f6416a7e07a5bb2e8eb0ee52c1",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1860,7 +3701,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L01-04.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L01-04.html",
-      "sha256": "9f82875b70093cd91ce50573a46ae6d0bedc6bff40a1a5e2bc7efc48c8ef982a",
+      "sha256": "6b01ab9b97e8495132788fa72ee21d471f1d5560d3db8e727955c3e43f9ed1ea",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1868,7 +3709,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L05-08.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L05-08.html",
-      "sha256": "3a1840a84809e1d9b2c00c581af4c59c97f546b6e798df18ff7b1746115ef194",
+      "sha256": "10f9ce2ab0079513fcd2cda6bf4172e545ac9801e6baa8b68309ea1cb006c356",
       "kind": "answer",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -1892,7 +3733,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-square-roots/lesson_01.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-square-roots/lesson_01.html",
-      "sha256": "f30e2ae086c1a0f987898bbc2ccd736f1157c81a7b780b988331b8e09902ec8f",
+      "sha256": "3dbc89a721cc962078083c13f1105962b6d296396e077a022a383a6b548294f2",
       "kind": "lesson",
       "answer_target": "content/materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L01-04.html",
       "frontmatter_stripped": true
@@ -1988,7 +3829,7 @@
     {
       "source": "materials/jhs-math-3/jhs-math-3-square-roots/teacher_notes.md",
       "output": "content/materials/jhs-math-3/jhs-math-3-square-roots/teacher_notes.html",
-      "sha256": "c28554f6567327832672f963e01eff1d75a310e901583dc63ee030f736c1db06",
+      "sha256": "65f21487cfa079ae34ea2fadb8993b4e5e2b63b6d11ef141f93f856cc8faf5b4",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -2196,7 +4037,7 @@
     {
       "source": "materials/jhs-soc/jhs-soc-civics-market-price/lesson_map.md",
       "output": "content/materials/jhs-soc/jhs-soc-civics-market-price/lesson_map.html",
-      "sha256": "ccf283d3e3974e716e719d481080f0607e5675c2bd192c35dc690c0ee44604be",
+      "sha256": "d9f6ebf8b1ccdda821e69873d8e9572fe0bb0f9f5879adc1fad7de39d7347368",
       "kind": "overview",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -2204,7 +4045,7 @@
     {
       "source": "materials/jhs-soc/jhs-soc-civics-market-price/teacher_notes.md",
       "output": "content/materials/jhs-soc/jhs-soc-civics-market-price/teacher_notes.html",
-      "sha256": "80c019deb613480808fea04cfccae9e091fddfcc62d29cd441285e348e99763f",
+      "sha256": "03c864989e4542fcfd88ca431ca4ba864a73997418d066022924b2b3afbe544f",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -2212,7 +4053,7 @@
     {
       "source": "materials/jhs-soc/jhs-soc-civics-market-price/teacher_notes_L04-06.md",
       "output": "content/materials/jhs-soc/jhs-soc-civics-market-price/teacher_notes_L04-06.html",
-      "sha256": "dcd7ddd81010c25644db7eb6e2c3c632d3af7a39c5fd76af092d786b04f123d9",
+      "sha256": "5bd643ff26652b3cc3cb6ee1f7b61c9c22a45a742665a2423ec3f2d2f30034cc",
       "kind": "teacher",
       "answer_target": null,
       "frontmatter_stripped": true
@@ -2220,7 +4061,7 @@
     {
       "source": "curriculum/PROGRESS_INDEX.md",
       "output": "progress/index.html",
-      "sha256": "c10799fa3e22749da5377ea2e78f3b1401aa7ded8f06f7020b8d2cbde07dab9a",
+      "sha256": "f7d77b6c4906875553796f62c4799a5cd30c775848c4035acf8e7351e7447c56",
       "kind": "progress",
       "answer_target": null,
       "frontmatter_stripped": false

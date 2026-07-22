@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L10 直角三角形の合同条件">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L10 直角三角形の合同条件｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L10 直角三角形の合同条件">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L10 直角三角形の合同条件｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="8b7ce3c96ae42c7d887aaf4b320e621eefbd2911b873010a6aad788e9189f687" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-congruence-and-proof/index.html">中2数学「図形の合同と証明」</a></li><li aria-current="page">L10 直角三角形の合同条件</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="8b7ce3c96ae42c7d887aaf4b320e621eefbd2911b873010a6aad788e9189f687" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「図形の合同と証明」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l10-直角三角形の合同条件"><span class="lesson-title-main">L10 直角三角形の合同条件</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>10</strong> / 16</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_10.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入情報が足りないように見えて足りている三角形" href="lesson_10.html#%E5%B0%8E%E5%85%A5%E6%83%85%E5%A0%B1%E3%81%8C%E8%B6%B3%E3%82%8A%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E8%A6%8B%E3%81%88%E3%81%A6%E8%B6%B3%E3%82%8A%E3%81%A6%E3%81%84%E3%82%8B%E4%B8%89%E8%A7%92%E5%BD%A2">導入：情報が「足りないように見えて、足りている」三角形</a></li><li><a data-section-link="主概念1斜辺と1鋭角残りの角を掘り出す" href="lesson_10.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E6%96%9C%E8%BE%BA%E3%81%A81%E9%8B%AD%E8%A7%92%E6%AE%8B%E3%82%8A%E3%81%AE%E8%A7%92%E3%82%92%E6%8E%98%E3%82%8A%E5%87%BA%E3%81%99">主概念1：斜辺と1鋭角〜「残りの角」を掘り出す</a></li><li><a data-section-link="主概念2斜辺と他の1辺背中合わせにくっつけて二等辺を作る" href="lesson_10.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%96%9C%E8%BE%BA%E3%81%A8%E4%BB%96%E3%81%AE1%E8%BE%BA%E8%83%8C%E4%B8%AD%E5%90%88%E3%82%8F%E3%81%9B%E3%81%AB%E3%81%8F%E3%81%A3%E3%81%A4%E3%81%91%E3%81%A6%E4%BA%8C%E7%AD%89%E8%BE%BA%E3%82%92%E4%BD%9C%E3%82%8B">主概念2：斜辺と他の1辺〜背中合わせにくっつけて、二等辺を作る</a></li><li><a data-section-link="立ち止まる価値のある違い認めた条件と導いた条件" href="lesson_10.html#%E7%AB%8B%E3%81%A1%E6%AD%A2%E3%81%BE%E3%82%8B%E4%BE%A1%E5%80%A4%E3%81%AE%E3%81%82%E3%82%8B%E9%81%95%E3%81%84%E8%AA%8D%E3%82%81%E3%81%9F%E6%9D%A1%E4%BB%B6%E3%81%A8%E5%B0%8E%E3%81%84%E3%81%9F%E6%9D%A1%E4%BB%B6">立ち止まる価値のある違い〜「認めた条件」と「導いた条件」</a></li><li><a data-section-link="練習" href="lesson_10.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_10.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="導入情報が足りないように見えて足りている三角形" href="lesson_10.html#%E5%B0%8E%E5%85%A5%E6%83%85%E5%A0%B1%E3%81%8C%E8%B6%B3%E3%82%8A%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E8%A6%8B%E3%81%88%E3%81%A6%E8%B6%B3%E3%82%8A%E3%81%A6%E3%81%84%E3%82%8B%E4%B8%89%E8%A7%92%E5%BD%A2">導入：情報が「足りないように見えて、足りている」三角形</a></li><li><a data-section-link="主概念1斜辺と1鋭角残りの角を掘り出す" href="lesson_10.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E6%96%9C%E8%BE%BA%E3%81%A81%E9%8B%AD%E8%A7%92%E6%AE%8B%E3%82%8A%E3%81%AE%E8%A7%92%E3%82%92%E6%8E%98%E3%82%8A%E5%87%BA%E3%81%99">主概念1：斜辺と1鋭角〜「残りの角」を掘り出す</a></li><li><a data-section-link="主概念2斜辺と他の1辺背中合わせにくっつけて二等辺を作る" href="lesson_10.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E6%96%9C%E8%BE%BA%E3%81%A8%E4%BB%96%E3%81%AE1%E8%BE%BA%E8%83%8C%E4%B8%AD%E5%90%88%E3%82%8F%E3%81%9B%E3%81%AB%E3%81%8F%E3%81%A3%E3%81%A4%E3%81%91%E3%81%A6%E4%BA%8C%E7%AD%89%E8%BE%BA%E3%82%92%E4%BD%9C%E3%82%8B">主概念2：斜辺と他の1辺〜背中合わせにくっつけて、二等辺を作る</a></li><li><a data-section-link="立ち止まる価値のある違い認めた条件と導いた条件" href="lesson_10.html#%E7%AB%8B%E3%81%A1%E6%AD%A2%E3%81%BE%E3%82%8B%E4%BE%A1%E5%80%A4%E3%81%AE%E3%81%82%E3%82%8B%E9%81%95%E3%81%84%E8%AA%8D%E3%82%81%E3%81%9F%E6%9D%A1%E4%BB%B6%E3%81%A8%E5%B0%8E%E3%81%84%E3%81%9F%E6%9D%A1%E4%BB%B6">立ち止まる価値のある違い〜「認めた条件」と「導いた条件」</a></li><li><a data-section-link="練習" href="lesson_10.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>直角三角形の合同条件（<strong>斜辺と1つの鋭角（えいかく）がそれぞれ等しい／斜辺と他の1辺がそれぞれ等しい</strong>）を使えるようになる。</p></li><li><p>この2つが、L06の3条件と違って<strong>証明で導ける</strong>ことを、実際に導いて確かめる。</p></li></ul>
+<h2 id="導入情報が足りないように見えて足りている三角形">導入：情報が「足りないように見えて、足りている」三角形</h2>
+<p>直角三角形（1つの内角が直角の三角形）では、直角に向かい合う辺（いちばん長い辺）を<strong>斜辺</strong>（しゃへん）という。</p>
+<p>2つの直角三角形があって、分かっているのは「斜辺が等しい」と「1つの鋭角が等しい」だけだとしよう。L06の3条件と照合すると……辺は1組、角は直角と鋭角の2組。「1組の辺とその両端の角」に見えるが、等しい角が斜辺の<strong>両端</strong>にあるとは限らない。条件に、ぴったりはまらない。</p>
+<p>でも、直角三角形には隠し財産がある。<strong>「直角である」という仮定そのものが、強力な角の情報</strong>なのだ。掘り出してみよう。</p>
+<h2 id="主概念1斜辺と1鋭角残りの角を掘り出す">主概念1：斜辺と1鋭角〜「残りの角」を掘り出す</h2>
+<p><strong>【定理】2つの直角三角形は、斜辺と1つの鋭角がそれぞれ等しければ合同である。</strong></p>
+<p>△ABCと△DEFで、∠C＝∠F＝90°、AB＝DE（斜辺）、∠B＝∠E（鋭角）とする。</p>
+<p><strong>方針メモ</strong>: 斜辺ABの両端の角は∠Aと∠B。∠B＝∠Eは仮定にある。∠Aと∠Dは？　内角の和から出せるはず。</p>
+<blockquote><p><strong>【証明】</strong> 三角形の内角の和は180°だから、 ∠A＝180°−90°−∠B、∠D＝180°−90°−∠E ∠B＝∠E【根拠: 仮定】だから、右辺どうしが等しく、∠A＝∠D となる …① また、AB＝DE …②【根拠: 仮定】、∠B＝∠E …③【根拠: 仮定】 ①②③より、<strong>対応する1組の辺（斜辺AB・DE）が等しく、その両端の角がそれぞれ等しい</strong>から、 △ABC≡△DEF ■</p></blockquote>
+<p>種明かしをすれば、L06の条件3に<strong>内角の和で一行だけ橋を架けた</strong>ものだ。新しく「認める」必要はどこにもなかった。</p>
+<h2 id="主概念2斜辺と他の1辺背中合わせにくっつけて二等辺を作る">主概念2：斜辺と他の1辺〜背中合わせにくっつけて、二等辺を作る</h2>
+<p><strong>【定理】2つの直角三角形は、斜辺と他の1辺がそれぞれ等しければ合同である。</strong></p>
+<p>△ABCと△DEFで、∠C＝∠F＝90°、AB＝DE（斜辺）、AC＝DF とする。今度は「2組の辺と……直角」。直角は等しい2辺の<strong>間の角ではない</strong>（間の角は∠Aと∠D。等しいかまだ不明）。L06主概念2で見たとおり、「2組の辺と間ではない角」は一般には危険な組み合わせだった。ところが直角のときだけは助かる。その理由を見よう。</p>
+<p><strong>方針メモ</strong>: 図形は動かして考えてよい（合同の動的定義）。等しい辺ACとDFを<strong>ぴったり重ねて</strong>、2つの三角形を背中合わせに貼ると、大きな三角形が1つできる。それが二等辺三角形になっていれば、L08の底角の定理が使えて、鋭角の等しさが手に入る→主概念1に持ち込める。</p>
+<blockquote><p><strong>【証明】</strong> △DEFを裏返して移動し、DFをACに重ねる（AとD、CとFを一致させ、EはBと反対側に置く）。移動した後のEをGとする。 ∠ACB＝90°、∠ACG＝90°【根拠: 仮定（∠F＝90°を移した）】だから、 ∠BCG＝∠ACB＋∠ACG＝180°。よって<strong>B、C、Gは一直線上</strong>にある。 すると△ABGができて、AB＝AG【根拠: 仮定AB＝DEと、AG＝DE（移動は長さを変えない）】。 2辺が等しいから△ABGは二等辺三角形で、∠B＝∠G【根拠: 底角の定理（L08）】。 ここで△ABCと△AGC（＝移動した△DEF）は、斜辺AB＝AG、鋭角∠B＝∠Gだから、 <strong>斜辺と1つの鋭角がそれぞれ等しい</strong>（主概念1）より、△ABC≡△AGC。 △AGCは△DEFを移動したものだから、△ABC≡△DEF ■</p></blockquote>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 240" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-01fb513d0b-title" aria-describedby="mg-01fb513d0b-desc">
+<title id="mg-01fb513d0b-title">2つの直角三角形を背中合わせに貼って二等辺三角形を作る図</title>
+<desc id="mg-01fb513d0b-desc">2つの直角三角形を背中合わせに貼って二等辺三角形を作る図</desc>
+<!-- L10_fig1_back_to_back.svg | 2つの直角三角形を背中合わせに貼って二等辺三角形を作る図 -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="470" height="240" fill="#fff"/>
+<polygon points="80.0,105.0 15.4,190.0 80.0,190.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="85.3" y="95.5" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<text x="2.9" y="202.8" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<text x="89.1" y="206.5" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<polyline points="71.0,190.0 71.0,181.0 80.0,181.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="51.3" y1="150.2" x2="44.1" y2="144.8" stroke="#000" stroke-width="1.4"/>
+<line x1="84.5" y1="145.8" x2="75.5" y2="145.8" stroke="#000" stroke-width="1.4"/>
+<line x1="84.5" y1="149.2" x2="75.5" y2="149.2" stroke="#000" stroke-width="1.4"/>
+<polygon points="175.0,105.0 239.6,190.0 175.0,190.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="169.7" y="95.5" font-size="13" text-anchor="middle" font-weight="bold">D</text>
+<text x="252.1" y="202.8" font-size="13" text-anchor="middle" font-weight="bold">E</text>
+<text x="165.9" y="206.5" font-size="13" text-anchor="middle" font-weight="bold">F</text>
+<polyline points="184.0,190.0 184.0,181.0 175.0,181.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="210.9" y1="144.8" x2="203.7" y2="150.2" stroke="#000" stroke-width="1.4"/>
+<line x1="179.5" y1="145.8" x2="170.5" y2="145.8" stroke="#000" stroke-width="1.4"/>
+<line x1="179.5" y1="149.2" x2="170.5" y2="149.2" stroke="#000" stroke-width="1.4"/>
+<polygon points="350.0,105.0 285.4,190.0 414.6,190.0" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="350.0" y1="105.0" x2="350.0" y2="190.0" stroke="#000" stroke-width="1.6"/>
+<text x="350.0" y="94.5" font-size="13" text-anchor="middle" font-weight="bold">A</text>
+<text x="271.7" y="200.6" font-size="13" text-anchor="middle" font-weight="bold">B</text>
+<text x="428.3" y="200.6" font-size="13" text-anchor="middle" font-weight="bold">G</text>
+<circle cx="350.0" cy="190.0" r="2.5" fill="#000"/>
+<text x="350.0" y="206.0" font-size="13" text-anchor="middle" font-weight="bold">C</text>
+<polyline points="341.0,190.0 341.0,181.0 350.0,181.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<line x1="321.3" y1="150.2" x2="314.1" y2="144.8" stroke="#000" stroke-width="1.4"/>
+<line x1="385.9" y1="144.8" x2="378.7" y2="150.2" stroke="#000" stroke-width="1.4"/>
+<text x="128.0" y="224.0" font-size="12" text-anchor="middle">△ABCと△DEF（斜辺と他の1辺が等しい）</text>
+<text x="360.0" y="224.0" font-size="12" text-anchor="middle">DFをACに重ねて貼るとB・C・Gは一直線</text>
+</svg>
+</div><figcaption>2つの直角三角形を背中合わせに貼って二等辺三角形を作る図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-congruence-and-proof/assets/L10_fig1_back_to_back.svg">図を大きく開く</a></figure>
+<blockquote class="formula-block"><span class="formula-label">定義</span><p><strong>【ことば】直角三角形の合同条件</strong> 2つの直角三角形は、次のどちらかが成り立つとき合同である。</p>
+<ol start="1"><li><p><strong>斜辺と1つの鋭角がそれぞれ等しい</strong></p></li><li><p><strong>斜辺と他の1辺がそれぞれ等しい</strong></p></li></ol></blockquote>
+<h2 id="立ち止まる価値のある違い認めた条件と導いた条件">立ち止まる価値のある違い〜「認めた条件」と「導いた条件」</h2>
+<p>L06の3条件は、作図の実験を通して<strong>直観的・実験的に認めた</strong>出発点だった。今日の2条件は、その出発点＋内角の和＋底角の定理から<strong>証明で導いた</strong>。使うときの手触りは同じ「条件」でも、<strong>根拠のリストに入った経緯が違う</strong>。</p>
+<p>導いた条件の強みは、「なぜ成り立つの？」に最後まで答えられることだ。今日の証明は、この章で積み上げてきた部品（内角の和・二等辺・合同条件・移動）が総動員される、いわば<strong>中間決算</strong>でもある。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>直角三角形の条件を使うときの答案の書き方</strong></p>
+<p>答案では、①直角であること（∠C＝∠F＝90°）②斜辺が等しいこと③もう1つ（鋭角または他の1辺）の3点を明示してから、条件名「斜辺と1つの鋭角がそれぞれ等しい」または「斜辺と他の1辺がそれぞれ等しい」を正確に書く。<strong>「直角三角形だから」だけで条件名を省くのは不可</strong>。また、この条件は直角三角形専用——直角の確認を落とすと根拠が壊れる（見直しチェック②）。</p></div>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>どこで使う条件なのか〜垂線が出てきたら思い出す</strong></p>
+<p>この条件の主戦場は、<strong>垂線</strong>が登場する場面だ。「頂点から辺に垂線を下ろす」「角の二等分線上の点から2辺に垂線を引く」。垂線があれば直角三角形が生まれ、斜辺（もとの線分）と組み合わせて合同が言えることが多い。練習3がその典型例だ。</p></div>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>直角三角形だけ専用の合同条件をもらえるのは、ちょっと特別扱いに見えるよね。からくりは「直角」という情報の濃さにある。角が1つ直角と決まると、内角の和180°から残り2つの角の和も90°と縛られて、三角形の自由度がぐっと減る。情報の濃い仮定は、少ない追加材料で形を決めてしまう——「1つ分かると、芋づる式に決まる」の気持ちよさが、直角三角形には最初から仕込まれているんだ。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>次の各組の直角三角形（∠C＝∠F＝90°）は合同と言えるか。言える場合は条件を正確に書こう。  (1) AB＝DE＝8cm、∠A＝∠D＝35°  (2) AB＝DE＝8cm、BC＝EF＝5cm  (3) AC＝DF＝6cm、BC＝EF＝5cm（斜辺の情報なし）</p></li><li><p>(1)で「言える」とした場合、対応する頂点の順に注意して≡の式を書こう。</p></li><li><p>∠XOYの二等分線上の、Oとは異なる点Pから、辺OX・OYに垂線PH・PKを下ろす。PH＝PKであることを証明しよう（Step 1: 仮定と結論の抜き出しから。方針メモ: どの2つの三角形に注目する？ 斜辺はどれ？）。</p></li><li><p>【読む】次の答案のあやしい箇所を指摘しよう。  「△ABCと△DEFで、AB＝DE、BC＝EF、∠A＝∠D。2組の辺と1組の角がそれぞれ等しいから△ABC≡△DEF ■」</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 練習3の図で、さらに「OH＝OK」も成り立つ。証明してみよう（すでに示した△の合同から取り出せるか？ それとも別の直角三角形の組に、もう一度条件を使うか？　2通りの道がある。両方試して、短い方を答案にしよう）。</p></div>
+<hr>
+<p>対応解答: answer_key_L09-12.md</p><a class="answer-link" href="answer_key_L09-12.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-congruence-and-proof/lesson_10.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_09.html"><span>前のレッスン</span>L09 二等辺三角形になるための条件・正三角形</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-congruence-and-proof/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_11.html"><span>次のレッスン</span>L11 平行四辺形の性質</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>

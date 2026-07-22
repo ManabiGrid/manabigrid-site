@@ -24,7 +24,13 @@ from public_site import (
 )
 
 
-ALLOWED_EXTERNAL_HOSTS = {"github.com", "docs.google.com", "creativecommons.org"}
+ALLOWED_EXTERNAL_HOSTS = {
+    "creativecommons.org",
+    "docs.google.com",
+    "en.wikipedia.org",
+    "github.com",
+    "www.ndl.go.jp",
+}
 FORBIDDEN_STRINGS = [
     "fetch(",
     "xmlhttprequest",
@@ -42,6 +48,123 @@ ENGLISH_PASSAGE = re.compile(
     r"[A-Za-z][A-Za-z'’.-]*[,:;.!?]?"
 )
 UPDATE_FILE_SUFFIXES = {".gif", ".jpeg", ".jpg", ".md", ".png", ".svg", ".webp"}
+SAFE_SVG_TAGS = {
+    "circle",
+    "defs",
+    "desc",
+    "ellipse",
+    "g",
+    "line",
+    "path",
+    "pattern",
+    "polygon",
+    "polyline",
+    "rect",
+    "svg",
+    "text",
+    "title",
+}
+
+
+def decode_css_escapes(value: str) -> str:
+    """Independently normalize CSS escapes in generated SVG attributes."""
+    output: List[str] = []
+    index = 0
+    while index < len(value):
+        if value[index] != "\\":
+            output.append(value[index])
+            index += 1
+            continue
+        index += 1
+        if index >= len(value):
+            output.append("�")
+            break
+        if value[index] in "\r\n\f":
+            if value[index] == "\r" and index + 1 < len(value) and value[index + 1] == "\n":
+                index += 1
+            index += 1
+            continue
+        match = re.match(r"[0-9a-fA-F]{1,6}", value[index:])
+        if match:
+            codepoint = int(match.group(0), 16)
+            output.append(chr(codepoint) if 0 < codepoint <= 0x10FFFF else "�")
+            index += len(match.group(0))
+            if index < len(value) and value[index] in " \t\r\n\f":
+                if value[index] == "\r" and index + 1 < len(value) and value[index + 1] == "\n":
+                    index += 1
+                index += 1
+            continue
+        output.append(value[index])
+        index += 1
+    return "".join(output)
+
+
+def normalized_css_value(value: str) -> str:
+    return re.sub(r"/\*.*?\*/", "", decode_css_escapes(value), flags=re.DOTALL)
+
+
+def source_progress_statuses(source: Path) -> Dict[str, str]:
+    """Independently read canonical package states for review-conflict checks."""
+    progress = source / "curriculum/PROGRESS_INDEX.md"
+    found: Dict[str, str] = {}
+    for line in progress.read_text(encoding="utf-8").splitlines():
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) >= 4 and cells[2].startswith("`") and cells[2].endswith("`"):
+            found[cells[2].strip("`")] = re.sub(r"[*_`]", "", cells[3]).strip()
+    return found
+
+
+def source_package_status(slug: str, statuses: Dict[str, str]) -> str:
+    if slug in statuses:
+        return statuses[slug]
+    children = {
+        status for unit_id, status in statuses.items() if unit_id.startswith(slug + "--")
+    }
+    if len(children) == 1:
+        return children.pop()
+    if children:
+        order = {
+            label: index
+            for index, label in enumerate(
+                ("未着手", "調査済", "ドラフト", "QA済", "外部レビュー済", "人間レビュー済", "公開済")
+            )
+        }
+        return min(children, key=lambda label: order.get(label, -1))
+    return "候補ドラフト"
+
+
+def expected_review_state_conflicts(source: Path) -> Dict[str, str]:
+    """Derive stale draft labels from source, not from the generated report."""
+    statuses = source_progress_statuses(source)
+    expected: Dict[str, str] = {}
+    for markdown in sorted((source / "materials").rglob("*.md")):
+        rel = markdown.relative_to(source)
+        if len(rel.parts) < 4:
+            continue
+        status = source_package_status(rel.parts[2], statuses)
+        if status not in {"人間レビュー済", "公開済"}:
+            continue
+        text = markdown.read_text(encoding="utf-8")
+        if any(marker in text for marker in ("候補ドラフト", "人間レビュー前", "最終レビューはこれから")):
+            expected[rel.as_posix()] = status
+    return expected
+
+
+def review_state_contract_matches(
+    expected: Dict[str, str], reported: object, notice_sources: Set[str]
+) -> bool:
+    if not isinstance(reported, list):
+        return False
+    report_map: Dict[str, str] = {}
+    for item in reported:
+        if not isinstance(item, dict):
+            return False
+        source = item.get("source")
+        status = item.get("registry_status")
+        if not isinstance(source, str) or not isinstance(status, str) or source in report_map:
+            return False
+        report_map[source] = status
+    return report_map == expected and notice_sources == set(expected)
 
 
 def is_public_update_source_path(value: str) -> bool:
@@ -703,13 +826,14 @@ def source_visible_text(raw: str) -> str:
     raw = re.sub(r"<!--.*?-->", "", raw, flags=re.DOTALL)
     raw = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", raw)
     raw = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", raw)
+    raw = re.sub(r"^\s*(?:>\s*)+", "", raw, flags=re.MULTILINE)
     raw = re.sub(r"^\s*\d+[.)]\s+", "", raw, flags=re.MULTILINE)
     raw = re.sub(r"^\s*[-+*]\s+", "", raw, flags=re.MULTILINE)
     return raw.replace("<u>", "").replace("</u>", "")
 
 
 def check_css_rules(site_root: Path, errors: List[str], checks: List[Dict[str, object]]) -> None:
-    css_files = list(site_root.rglob("*.css"))
+    css_files = [path for path in iter_public_files(site_root) if path.suffix.lower() == ".css"]
     if not css_files:
         errors.append("no css files found")
         return
@@ -803,7 +927,8 @@ def main() -> int:
         build_report = {}
         errors.append(str(exc))
 
-    html_paths = sorted(site_root.rglob("*.html"))
+    public_files = iter_public_files(site_root)
+    html_paths = sorted(path for path in public_files if path.suffix.lower() == ".html")
     parsed_pages: Dict[Path, ParsedHtml] = {}
     for html in html_paths:
         try:
@@ -1093,6 +1218,7 @@ def main() -> int:
     lesson_map: Dict[Path, bool] = {}
     answer_map: Set[Path] = set()
     sha_map: Dict[Path, str] = {}
+    source_output_map: Dict[str, Path] = {}
     source_info = build_report.get("source", {})
     source_root: Optional[Path] = None
     built_commit: Optional[str] = None
@@ -1189,6 +1315,8 @@ def main() -> int:
         if sha:
             sha_map[content_out_path] = sha
         source_value = item.get("source")
+        if isinstance(source_value, str):
+            source_output_map[source_value] = content_out_path
         if source_root and isinstance(source_value, str) and sha:
             source_path = (source_root / source_value).resolve()
             try:
@@ -1257,8 +1385,37 @@ def main() -> int:
             errors.append("features svg_references mismatch")
         if features.get("svg_source") != features.get("svg_copied"):
             errors.append("features svg_source mismatch")
-        if features.get("svg_guard_self_tests") != 4:
+        if features.get("svg_guard_self_tests") != 6:
             errors.append("features svg_guard_self_tests missing or incomplete")
+        review_conflicts = features.get("review_state_conflicts")
+        expected_conflicts: Dict[str, str] = {}
+        if source_root:
+            try:
+                expected_conflicts = expected_review_state_conflicts(source_root)
+            except (OSError, UnicodeDecodeError):
+                errors.append("canonical review state conflicts could not be derived")
+        else:
+            errors.append("canonical source is required for review state conflict checks")
+        notice_sources = {
+            source_value
+            for source_value, output_path in source_output_map.items()
+            if (parsed_output := parsed_pages.get(output_path))
+            and "review-state-conflict" in parsed_output.classes
+        }
+        conflict_notices_ok = review_state_contract_matches(
+            expected_conflicts, review_conflicts, notice_sources
+        )
+        if not conflict_notices_ok:
+            errors.append(
+                "review state conflicts do not match canonical source, build-report, and HTML notices"
+            )
+        checks.append(
+            {
+                "name": "content:review_state_conflicts",
+                "pass": conflict_notices_ok,
+                "count": len(expected_conflicts),
+            }
+        )
         search_path = site_root / "_assets/search-index.json"
         try:
             search_entries = json.loads(search_path.read_text(encoding="utf-8"))
@@ -1285,6 +1442,36 @@ def main() -> int:
             checks.append({"name": "search_index", "pass": True, "entries": len(search_entries)})
         except Exception as exc:
             errors.append(f"search index invalid: {exc}")
+
+    math3_route = build_report.get("math3_route")
+    if isinstance(math3_route, dict):
+        route_order = math3_route.get("order")
+        route_units = math3_route.get("units")
+        route_slugs = (
+            [item.get("slug") for item in route_units if isinstance(item, dict)]
+            if isinstance(route_units, list)
+            else []
+        )
+        route_ok = (
+            isinstance(route_order, list)
+            and all(
+                isinstance(slug, str)
+                and re.fullmatch(r"jhs-math-3-[a-z0-9][a-z0-9-]*", slug)
+                for slug in route_order
+            )
+            and route_order == route_slugs
+        )
+        learning_slugs = [
+            slug
+            for slug in route_slugs
+            if slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}
+        ]
+        route_ok = route_ok and math3_route.get("learning_unit_count") == len(learning_slugs)
+        checks.append({"name": "route:math3_canonical_slugs", "pass": route_ok})
+        if not route_ok:
+            errors.append("math3 route contains a non-unit slug or inconsistent count")
+    else:
+        errors.append("math3 route report is missing")
 
     # link checks
     for source_path, parsed in parsed_pages.items():
@@ -1313,7 +1500,7 @@ def main() -> int:
                 errors.append(f"forbidden string in html: {keyword} ({parsed.path.name})")
                 break
 
-    for js_path in site_root.rglob("*.js"):
+    for js_path in (path for path in public_files if path.suffix.lower() == ".js"):
         lowered = js_path.read_text(encoding="utf-8").lower()
         for keyword in FORBIDDEN_STRINGS:
             if keyword in lowered:
@@ -1331,11 +1518,13 @@ def main() -> int:
     if not print_details_ok:
         errors.append("progress disclosures are not prepared for print")
 
-    for asset_path in [*site_root.rglob("*.html"), *site_root.rglob("*.css"), *site_root.rglob("*.js")]:
+    for asset_path in (
+        path for path in public_files if path.suffix.lower() in {".html", ".css", ".js"}
+    ):
         if "/Users/" in asset_path.read_text(encoding="utf-8", errors="replace"):
             errors.append(f"local absolute path leaked into public asset: {asset_path.relative_to(site_root)}")
 
-    for svg_path in site_root.rglob("*.svg"):
+    for svg_path in (path for path in public_files if path.suffix.lower() == ".svg"):
         svg_text = svg_path.read_text(encoding="utf-8", errors="replace")
         if re.search(
             r"<!DOCTYPE\b|<!ENTITY\b|<\?(?!xml\s|xml\?>)|<script\b|<style\b|<foreignObject\b|\son[a-z]+\s*=|@import|url\((?!\s*#)",
@@ -1349,6 +1538,25 @@ def main() -> int:
             re.IGNORECASE,
         ):
             errors.append(f"external SVG reference is not allowed: {svg_path.relative_to(site_root)}")
+        try:
+            svg_root = ET.fromstring(svg_text)
+        except ET.ParseError:
+            errors.append(f"generated SVG is not valid XML: {svg_path.relative_to(site_root)}")
+            continue
+        for element in svg_root.iter():
+            tag = element.tag.rsplit("}", 1)[-1].lower()
+            if tag not in SAFE_SVG_TAGS:
+                errors.append(f"unsafe generated SVG element <{tag}>: {svg_path.relative_to(site_root)}")
+            for raw_name, raw_value in element.attrib.items():
+                name = raw_name.rsplit("}", 1)[-1].lower()
+                value = raw_value.strip()
+                normalized_value = normalized_css_value(value)
+                if name == "style" or name.startswith("on"):
+                    errors.append(f"active generated SVG attribute {name}: {svg_path.relative_to(site_root)}")
+                if name == "href" and value and not value.startswith("#"):
+                    errors.append(f"external generated SVG href: {svg_path.relative_to(site_root)}")
+                if re.search(r"@import|url\s*\((?!\s*#)", normalized_value, re.IGNORECASE):
+                    errors.append(f"external generated SVG CSS reference: {svg_path.relative_to(site_root)}")
 
     check_css_rules(site_root, errors, checks)
     validate_public_metadata(site_root, parsed_pages, build_report, errors, checks)

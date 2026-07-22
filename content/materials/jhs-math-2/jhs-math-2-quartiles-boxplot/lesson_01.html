@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="ManabiGrid レッスン: L01 グラフが多すぎて比べられない——箱ひげ図との出会い">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ManabiGrid 展示版">
+  <meta property="og:title" content="L01 グラフが多すぎて比べられない——箱ひげ図との出会い｜ManabiGrid 展示版">
+  <meta property="og:description" content="ManabiGrid レッスン: L01 グラフが多すぎて比べられない——箱ひげ図との出会い">
+  <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.html">
+  <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>L01 グラフが多すぎて比べられない——箱ひげ図との出会い｜ManabiGrid 展示版</title>
+  <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.html">
+  <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <link rel="stylesheet" href="../../../../_assets/site.css">
+</head>
+<body class="page-lesson" data-source-sha256="7b206859c0f1546b50c27e3b589b2b1faed51ad9662a6a81faf60f24f89c8b98" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md">
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+  <header class="site-header">
+    <div class="site-nav container">
+      <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
+      <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+    </div>
+  </header>
+  <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">中2数学「四分位範囲と箱ひげ図」</a></li><li aria-current="page">L01 グラフが多すぎて比べられない——箱ひげ図との出会い</li></ol></nav>
+  <main id="main-content" class="page-shell" tabindex="-1" data-source-sha256="7b206859c0f1546b50c27e3b589b2b1faed51ad9662a6a81faf60f24f89c8b98" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md">
+<header id="top" class="lesson-header container">
+  <p class="lesson-kicker"><span class="doc-kind">レッスン</span><span>中学2年 数学 ／ 中2数学「四分位範囲と箱ひげ図」</span><span class="status-chip">人間レビュー済</span></p>
+  <h1 id="l01-グラフが多すぎて比べられない箱ひげ図との出会い"><span class="lesson-title-main">L01 グラフが多すぎて比べられない</span><span class="lesson-title-sub">箱ひげ図との出会い</span></h1>
+  <details class="lesson-meta"><summary>教材情報と正本</summary><p><code>materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md</code></p><p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本をGitHubで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p></details>
+</header><div class="container lesson-layout"><aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次"><p class="lesson-position" aria-label="単元内の位置">LESSON <strong>01</strong> / 06</p><nav class="toc" aria-label="このページの目次"><h2>このページ</h2><ol><li><a data-section-link="ねらい" href="lesson_01.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="準備運動道具箱の点検前提診断" href="lesson_01.html#%E6%BA%96%E5%82%99%E9%81%8B%E5%8B%95%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E7%82%B9%E6%A4%9C%E5%89%8D%E6%8F%90%E8%A8%BA%E6%96%AD">準備運動：道具箱の点検（前提診断）</a></li><li><a data-section-link="主概念1ヒストグラム3枚はいっぺんに比べられない" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A03%E6%9E%9A%E3%81%AF%E3%81%84%E3%81%A3%E3%81%BA%E3%82%93%E3%81%AB%E6%AF%94%E3%81%B9%E3%82%89%E3%82%8C%E3%81%AA%E3%81%84">主概念1：ヒストグラム3枚は、いっぺんに比べられない</a></li><li><a data-section-link="主概念2箱ひげ図5つの値だけでデータを語る" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E7%AE%B1%E3%81%B2%E3%81%92%E5%9B%B35%E3%81%A4%E3%81%AE%E5%80%A4%E3%81%A0%E3%81%91%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%AA%9E%E3%82%8B">主概念2：箱ひげ図——5つの値だけでデータを語る</a></li><li><a data-section-link="主概念3箱の意味真ん中に集まる約半数がそこにいる" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E7%AE%B1%E3%81%AE%E6%84%8F%E5%91%B3%E7%9C%9F%E3%82%93%E4%B8%AD%E3%81%AB%E9%9B%86%E3%81%BE%E3%82%8B%E7%B4%84%E5%8D%8A%E6%95%B0%E3%81%8C%E3%81%9D%E3%81%93%E3%81%AB%E3%81%84%E3%82%8B">主概念3：箱の意味——真ん中に集まる「約半数」がそこにいる</a></li><li><a data-section-link="練習" href="lesson_01.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></aside><article class="lesson-main lesson-body"><details class="mobile-section-nav"><summary>このページの目次</summary><nav aria-label="長いページの節一覧"><ol><li><a data-section-link="ねらい" href="lesson_01.html#%E3%81%AD%E3%82%89%E3%81%84">ねらい</a></li><li><a data-section-link="準備運動道具箱の点検前提診断" href="lesson_01.html#%E6%BA%96%E5%82%99%E9%81%8B%E5%8B%95%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E7%82%B9%E6%A4%9C%E5%89%8D%E6%8F%90%E8%A8%BA%E6%96%AD">準備運動：道具箱の点検（前提診断）</a></li><li><a data-section-link="主概念1ヒストグラム3枚はいっぺんに比べられない" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B51%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A03%E6%9E%9A%E3%81%AF%E3%81%84%E3%81%A3%E3%81%BA%E3%82%93%E3%81%AB%E6%AF%94%E3%81%B9%E3%82%89%E3%82%8C%E3%81%AA%E3%81%84">主概念1：ヒストグラム3枚は、いっぺんに比べられない</a></li><li><a data-section-link="主概念2箱ひげ図5つの値だけでデータを語る" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B52%E7%AE%B1%E3%81%B2%E3%81%92%E5%9B%B35%E3%81%A4%E3%81%AE%E5%80%A4%E3%81%A0%E3%81%91%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%AA%9E%E3%82%8B">主概念2：箱ひげ図——5つの値だけでデータを語る</a></li><li><a data-section-link="主概念3箱の意味真ん中に集まる約半数がそこにいる" href="lesson_01.html#%E4%B8%BB%E6%A6%82%E5%BF%B53%E7%AE%B1%E3%81%AE%E6%84%8F%E5%91%B3%E7%9C%9F%E3%82%93%E4%B8%AD%E3%81%AB%E9%9B%86%E3%81%BE%E3%82%8B%E7%B4%84%E5%8D%8A%E6%95%B0%E3%81%8C%E3%81%9D%E3%81%93%E3%81%AB%E3%81%84%E3%82%8B">主概念3：箱の意味——真ん中に集まる「約半数」がそこにいる</a></li><li><a data-section-link="練習" href="lesson_01.html#%E7%B7%B4%E7%BF%92">練習</a></li></ol></nav></details><h2 id="ねらい">ねらい</h2>
+<ul><li><p>ヒストグラムを何枚も並べて比べることの大変さを体感し、<strong>複数の集団を比べるための新しい図</strong>が必要になる場面を知る。</p></li><li><p><strong>箱ひげ図</strong>から5つの値（最小値・第1四分位数・中央値・第3四分位数・最大値）を読み取れるようになる。</p></li><li><p><strong>箱で示された区間に、全てのデータのうち真ん中に集まる約半数が含まれる</strong>——この読み方を最初に固定する。</p></li></ul>
+<h2 id="準備運動道具箱の点検前提診断">準備運動：道具箱の点検（前提診断）</h2>
+<p>この章では、これまでに学んだ「データの整理」の道具を総動員する。次の4問で点検しておこう。</p>
+<ol start="1"><li><p>7人の生徒の先週の読書時間（時間）は 1, 2, 3, 5, 6, 8, 10 だった。中央値を求めよう。</p></li><li><p>8人の生徒の通学時間（分）は 5, 7, 8, 10, 12, 15, 18, 20 だった。中央値を求めよう。</p></li><li><p>問2のデータの範囲（最大値−最小値）を求めよう。</p></li><li><p>ヒストグラムで、ある階級の長方形が他より高いことは何を表しているだろう。</p></li></ol>
+<p>問1と問2で求め方が違ったことに注意——データが<strong>奇数個ならど真ん中の値</strong>、<strong>偶数個なら真ん中2つの平均</strong>。この場合分けは、この章の主役「四分位数」を求めるときにくり返し登場する。あやしかった人は、ここで確実にしておこう。</p>
+<h2 id="主概念1ヒストグラム3枚はいっぺんに比べられない">主概念1：ヒストグラム3枚は、いっぺんに比べられない</h2>
+<p>図書委員のあなたが、1組・2組・3組の「先週の家庭学習時間」を調べて、クラスごとにヒストグラムを作ったとしよう。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 500" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-1b190b3490-title" aria-describedby="mg-1b190b3490-desc">
+<title id="mg-1b190b3490-title">3クラスの家庭学習時間のヒストグラム（3枚縦並び）</title>
+<desc id="mg-1b190b3490-desc">3クラスの家庭学習時間のヒストグラム3枚が縦に並ぶ。形はそれぞれ異なるが、どのクラスが全体として長いのか一目では判断しにくい</desc>
+<!-- L01_fig1_three_class_histograms.svg | 3クラスの家庭学習時間のヒストグラム（3枚縦並び） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="500" fill="#fff"/>
+<line x1="60.0" y1="152.0" x2="440.0" y2="152.0" stroke="#000" stroke-width="1.2"/>
+<line x1="60.0" y1="146.0" x2="60.0" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="114.3" y1="146.0" x2="114.3" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="168.6" y1="146.0" x2="168.6" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="222.9" y1="146.0" x2="222.9" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="277.1" y1="146.0" x2="277.1" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="331.4" y1="146.0" x2="331.4" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="385.7" y1="146.0" x2="385.7" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<line x1="440.0" y1="146.0" x2="440.0" y2="158.0" stroke="#000" stroke-width="0.9"/>
+<text x="60.0" y="168.0" font-size="10.5" text-anchor="middle">0</text>
+<text x="114.3" y="168.0" font-size="10.5" text-anchor="middle">2</text>
+<text x="168.6" y="168.0" font-size="10.5" text-anchor="middle">4</text>
+<text x="222.9" y="168.0" font-size="10.5" text-anchor="middle">6</text>
+<text x="277.1" y="168.0" font-size="10.5" text-anchor="middle">8</text>
+<text x="331.4" y="168.0" font-size="10.5" text-anchor="middle">10</text>
+<text x="385.7" y="168.0" font-size="10.5" text-anchor="middle">12</text>
+<text x="440.0" y="168.0" font-size="10.5" text-anchor="middle">14</text>
+<line x1="56.0" y1="152.0" x2="60.0" y2="152.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="156.0" font-size="10.5" text-anchor="end">0</text>
+<line x1="56.0" y1="104.0" x2="60.0" y2="104.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="108.0" font-size="10.5" text-anchor="end">4</text>
+<line x1="56.0" y1="56.0" x2="60.0" y2="56.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="60.0" font-size="10.5" text-anchor="end">8</text>
+<line x1="60.0" y1="152.0" x2="60.0" y2="38.0" stroke="#000" stroke-width="1.2"/>
+<rect x="60.0" y="140.0" width="54.3" height="12.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="114.3" y="80.0" width="54.3" height="72.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="168.6" y="56.0" width="54.3" height="96.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="222.9" y="128.0" width="54.3" height="24.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="277.1" y="104.0" width="54.3" height="48.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="331.4" y="128.0" width="54.3" height="24.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="385.7" y="140.0" width="54.3" height="12.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<text x="66.0" y="42.0" font-size="13" text-anchor="start" font-weight="bold">1組（24人）</text>
+<line x1="60.0" y1="302.0" x2="440.0" y2="302.0" stroke="#000" stroke-width="1.2"/>
+<line x1="60.0" y1="296.0" x2="60.0" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="114.3" y1="296.0" x2="114.3" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="168.6" y1="296.0" x2="168.6" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="222.9" y1="296.0" x2="222.9" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="277.1" y1="296.0" x2="277.1" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="331.4" y1="296.0" x2="331.4" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="385.7" y1="296.0" x2="385.7" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<line x1="440.0" y1="296.0" x2="440.0" y2="308.0" stroke="#000" stroke-width="0.9"/>
+<text x="60.0" y="318.0" font-size="10.5" text-anchor="middle">0</text>
+<text x="114.3" y="318.0" font-size="10.5" text-anchor="middle">2</text>
+<text x="168.6" y="318.0" font-size="10.5" text-anchor="middle">4</text>
+<text x="222.9" y="318.0" font-size="10.5" text-anchor="middle">6</text>
+<text x="277.1" y="318.0" font-size="10.5" text-anchor="middle">8</text>
+<text x="331.4" y="318.0" font-size="10.5" text-anchor="middle">10</text>
+<text x="385.7" y="318.0" font-size="10.5" text-anchor="middle">12</text>
+<text x="440.0" y="318.0" font-size="10.5" text-anchor="middle">14</text>
+<line x1="56.0" y1="302.0" x2="60.0" y2="302.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="306.0" font-size="10.5" text-anchor="end">0</text>
+<line x1="56.0" y1="254.0" x2="60.0" y2="254.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="258.0" font-size="10.5" text-anchor="end">4</text>
+<line x1="56.0" y1="206.0" x2="60.0" y2="206.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="210.0" font-size="10.5" text-anchor="end">8</text>
+<line x1="60.0" y1="302.0" x2="60.0" y2="188.0" stroke="#000" stroke-width="1.2"/>
+<rect x="114.3" y="278.0" width="54.3" height="24.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="168.6" y="242.0" width="54.3" height="60.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="222.9" y="194.0" width="54.3" height="108.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="277.1" y="254.0" width="54.3" height="48.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="331.4" y="254.0" width="54.3" height="48.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<text x="66.0" y="192.0" font-size="13" text-anchor="start" font-weight="bold">2組（24人）</text>
+<line x1="60.0" y1="452.0" x2="440.0" y2="452.0" stroke="#000" stroke-width="1.2"/>
+<line x1="60.0" y1="446.0" x2="60.0" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="114.3" y1="446.0" x2="114.3" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="168.6" y1="446.0" x2="168.6" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="222.9" y1="446.0" x2="222.9" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="277.1" y1="446.0" x2="277.1" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="331.4" y1="446.0" x2="331.4" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="385.7" y1="446.0" x2="385.7" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<line x1="440.0" y1="446.0" x2="440.0" y2="458.0" stroke="#000" stroke-width="0.9"/>
+<text x="60.0" y="468.0" font-size="10.5" text-anchor="middle">0</text>
+<text x="114.3" y="468.0" font-size="10.5" text-anchor="middle">2</text>
+<text x="168.6" y="468.0" font-size="10.5" text-anchor="middle">4</text>
+<text x="222.9" y="468.0" font-size="10.5" text-anchor="middle">6</text>
+<text x="277.1" y="468.0" font-size="10.5" text-anchor="middle">8</text>
+<text x="331.4" y="468.0" font-size="10.5" text-anchor="middle">10</text>
+<text x="385.7" y="468.0" font-size="10.5" text-anchor="middle">12</text>
+<text x="440.0" y="468.0" font-size="10.5" text-anchor="middle">14</text>
+<line x1="56.0" y1="452.0" x2="60.0" y2="452.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="456.0" font-size="10.5" text-anchor="end">0</text>
+<line x1="56.0" y1="404.0" x2="60.0" y2="404.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="408.0" font-size="10.5" text-anchor="end">4</text>
+<line x1="56.0" y1="356.0" x2="60.0" y2="356.0" stroke="#000" stroke-width="0.9"/>
+<text x="48.0" y="360.0" font-size="10.5" text-anchor="end">8</text>
+<line x1="60.0" y1="452.0" x2="60.0" y2="338.0" stroke="#000" stroke-width="1.2"/>
+<rect x="60.0" y="428.0" width="54.3" height="24.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="114.3" y="356.0" width="54.3" height="96.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="168.6" y="368.0" width="54.3" height="84.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="222.9" y="416.0" width="54.3" height="36.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="277.1" y="428.0" width="54.3" height="24.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="331.4" y="440.0" width="54.3" height="12.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<rect x="385.7" y="440.0" width="54.3" height="12.0" fill="#e6e6e6" stroke="#000" stroke-width="1.3"/>
+<text x="66.0" y="342.0" font-size="13" text-anchor="start" font-weight="bold">3組（24人）</text>
+<text x="250.0" y="22.0" font-size="13" text-anchor="middle" font-weight="bold">3クラスの家庭学習時間のヒストグラム</text>
+<text x="250.0" y="490.0" font-size="11" text-anchor="middle">横軸: 家庭学習時間（時間・階級の幅2）／縦軸: 度数（人）（架空の練習用データ）</text>
+</svg>
+</div><figcaption>3クラスの家庭学習時間のヒストグラム3枚が縦に並ぶ。形はそれぞれ異なるが、どのクラスが全体として長いのか一目では判断しにくい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L01_fig1_three_class_histograms.svg">図を大きく開く</a></figure>
+<p>1枚1枚はよく分かる。でも「どのクラスがいちばん勉強しているか」「散らばりが大きいのはどこか」を答えようとすると、3枚のあいだで目を往復させることになる。これが5クラス、10クラスだったら？　ヒストグラムは<strong>1つの集団の分布の形</strong>を見るのは得意だが、<strong>たくさんの集団を並べて比べる</strong>のは苦手なのだ。</p>
+<p>そこで発想を変える。<strong>1つの集団の情報を、思い切って数個の値に縮めてしまい</strong>、その数個だけを図にすれば、何本でも並べて比べられるはずだ。情報を縮める——これがこの章の合言葉になる。</p>
+<h2 id="主概念2箱ひげ図5つの値だけでデータを語る">主概念2：箱ひげ図——5つの値だけでデータを語る</h2>
+<p>同じ3クラスのデータを、新しい図で表すとこうなる。</p>
+<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-214ace8688-title" aria-describedby="mg-214ace8688-desc">
+<title id="mg-214ace8688-title">3クラスの家庭学習時間の箱ひげ図（5つの値の名前つき）</title>
+<desc id="mg-214ace8688-desc">3クラスの家庭学習時間の箱ひげ図が同じ数直線上に3本並ぶ。各図は左右にのびる線（ひげ）と中央の箱、箱の中の縦線からなり、1組の図に5つの値の名前が注記されている</desc>
+<!-- L01_fig2_three_class_boxplots.svg | 3クラスの家庭学習時間の箱ひげ図（5つの値の名前つき） -->
+<!-- generated by assets_provenance/generate_figures.py on 2026-07-18 (docs/SPEC_figures.md準拠・AI再利用メタ情報つき・SVG直接編集禁止/スクリプト改修で再生成) -->
+<rect x="0" y="0" width="480" height="330" fill="#fff"/>
+<line x1="60.0" y1="285.0" x2="440.0" y2="285.0" stroke="#000" stroke-width="1.2"/>
+<line x1="60.0" y1="279.0" x2="60.0" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="87.1" y1="281.5" x2="87.1" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="114.3" y1="279.0" x2="114.3" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="141.4" y1="281.5" x2="141.4" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="168.6" y1="279.0" x2="168.6" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="195.7" y1="281.5" x2="195.7" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="222.9" y1="279.0" x2="222.9" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="250.0" y1="281.5" x2="250.0" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="277.1" y1="279.0" x2="277.1" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="304.3" y1="281.5" x2="304.3" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="331.4" y1="279.0" x2="331.4" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="358.6" y1="281.5" x2="358.6" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="385.7" y1="279.0" x2="385.7" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<line x1="412.9" y1="281.5" x2="412.9" y2="288.5" stroke="#000" stroke-width="0.9"/>
+<line x1="440.0" y1="279.0" x2="440.0" y2="291.0" stroke="#000" stroke-width="0.9"/>
+<text x="60.0" y="303.0" font-size="11" text-anchor="middle">0</text>
+<text x="114.3" y="303.0" font-size="11" text-anchor="middle">2</text>
+<text x="168.6" y="303.0" font-size="11" text-anchor="middle">4</text>
+<text x="222.9" y="303.0" font-size="11" text-anchor="middle">6</text>
+<text x="277.1" y="303.0" font-size="11" text-anchor="middle">8</text>
+<text x="331.4" y="303.0" font-size="11" text-anchor="middle">10</text>
+<text x="385.7" y="303.0" font-size="11" text-anchor="middle">12</text>
+<text x="440.0" y="303.0" font-size="11" text-anchor="middle">14</text>
+<line x1="87.1" y1="118.0" x2="141.4" y2="118.0" stroke="#000" stroke-width="1.6"/>
+<line x1="277.1" y1="118.0" x2="385.7" y2="118.0" stroke="#000" stroke-width="1.6"/>
+<line x1="87.1" y1="109.7" x2="87.1" y2="126.3" stroke="#000" stroke-width="1.6"/>
+<line x1="385.7" y1="109.7" x2="385.7" y2="126.3" stroke="#000" stroke-width="1.6"/>
+<rect x="141.4" y="105.0" width="135.7" height="26.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="195.7" y1="105.0" x2="195.7" y2="131.0" stroke="#000" stroke-width="1.6"/>
+<text x="34.0" y="122.0" font-size="12" text-anchor="middle" font-weight="bold">1組</text>
+<line x1="114.3" y1="185.0" x2="195.7" y2="185.0" stroke="#000" stroke-width="1.6"/>
+<line x1="304.3" y1="185.0" x2="358.6" y2="185.0" stroke="#000" stroke-width="1.6"/>
+<line x1="114.3" y1="176.7" x2="114.3" y2="193.3" stroke="#000" stroke-width="1.6"/>
+<line x1="358.6" y1="176.7" x2="358.6" y2="193.3" stroke="#000" stroke-width="1.6"/>
+<rect x="195.7" y="172.0" width="108.6" height="26.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="250.0" y1="172.0" x2="250.0" y2="198.0" stroke="#000" stroke-width="1.6"/>
+<text x="34.0" y="189.0" font-size="12" text-anchor="middle" font-weight="bold">2組</text>
+<line x1="60.0" y1="245.0" x2="114.3" y2="245.0" stroke="#000" stroke-width="1.6"/>
+<line x1="222.9" y1="245.0" x2="412.9" y2="245.0" stroke="#000" stroke-width="1.6"/>
+<line x1="60.0" y1="236.7" x2="60.0" y2="253.3" stroke="#000" stroke-width="1.6"/>
+<line x1="412.9" y1="236.7" x2="412.9" y2="253.3" stroke="#000" stroke-width="1.6"/>
+<rect x="114.3" y="232.0" width="108.6" height="26.0" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="168.6" y1="232.0" x2="168.6" y2="258.0" stroke="#000" stroke-width="1.6"/>
+<text x="34.0" y="249.0" font-size="12" text-anchor="middle" font-weight="bold">3組</text>
+<line x1="87.1" y1="42.0" x2="87.1" y2="102.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="87.1" y="34.0" font-size="11" text-anchor="middle" font-weight="bold">最小値</text>
+<line x1="141.4" y1="70.0" x2="141.4" y2="102.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="141.4" y="62.0" font-size="11" text-anchor="middle" font-weight="bold">第1四分位数</text>
+<line x1="195.7" y1="42.0" x2="195.7" y2="102.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="195.7" y="34.0" font-size="11" text-anchor="middle" font-weight="bold">中央値</text>
+<line x1="277.1" y1="70.0" x2="277.1" y2="102.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="277.1" y="62.0" font-size="11" text-anchor="middle" font-weight="bold">第3四分位数</text>
+<line x1="385.7" y1="42.0" x2="385.7" y2="102.0" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+<text x="385.7" y="34.0" font-size="11" text-anchor="middle" font-weight="bold">最大値</text>
+<text x="250.0" y="318.0" font-size="11" text-anchor="middle">横軸: 家庭学習時間（時間）・各クラス24人（架空の練習用データ）</text>
+</svg>
+</div><figcaption>3クラスの家庭学習時間の箱ひげ図が同じ数直線上に3本並ぶ。各図は左右にのびる線（ひげ）と中央の箱、箱の中の縦線からなり、1組の図に5つの値の名前が注記されている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L01_fig2_three_class_boxplots.svg">図を大きく開く</a></figure>
+<p>この図を<strong>箱ひげ図</strong>（はこひげず）という。使う値はたった5つだ。</p>
+<ul><li><p><strong>最小値</strong>・<strong>最大値</strong>——データの両端。ひげの先がここまでのびる。</p></li><li><p><strong>中央値</strong>——データを大きさの順に並べたときの真ん中の値（小学校で学んだあの中央値）。箱の中の縦線。</p></li><li><p><strong>第1四分位数</strong>・<strong>第3四分位数</strong>——箱の左端と右端。データを小さい順に並べて<strong>四つに等しく分けたときの区切りの値</strong>で、くわしい求め方はL03で学ぶ。今日は「箱の両端の値」として読み取れれば十分。</p></li></ul>
+<p>3本を同じ数直線の上に並べると、「2組の箱はいちばん右にある」「3組は左寄りで、右に長くひげがのびている」——比較が<strong>一目</strong>でできる。ヒストグラム3枚とくらべてほしい。情報をたった5つの値に縮めた見返りが、この一覧性だ。</p>
+<div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「たった5つに縮めて、大事なことが消えないの？」</strong></p>
+<p>いい疑問で、答えは「消えるものもある」。箱ひげ図では、山がいくつあるかといった<strong>分布の形</strong>は見えなくなるし、<strong>平均値</strong>も図に書き込まれていない限り読み取れない。何が消えて何が残るかは、この章の最後（L06）で正面から扱う。道具の限界を知って使うのが、データの活用の流儀だ。</p></div>
+<h2 id="主概念3箱の意味真ん中に集まる約半数がそこにいる">主概念3：箱の意味——真ん中に集まる「約半数」がそこにいる</h2>
+<p>箱ひげ図の読み方で、最初に固定してほしいことが1つある。</p>
+<blockquote><p><strong>箱で示された区間には、全てのデータのうち、真ん中に集まる約半数のデータが含まれる。</strong></p></blockquote>
+<p>1組の箱は3時間から8時間。つまり「1組の24人のうち、真ん中あたりの<strong>約半数</strong>（約12人）は、家庭学習時間が3〜8時間の範囲にいる」と読める。残りの約半数は、左のひげ側と右のひげ側に<strong>約4分の1ずつ</strong>分かれている。</p>
+<p>「<strong>約</strong>半数」の「約」を落とさないでほしい。データの個数や同じ値の重なり方によって、ぴったり半数になるとは限らないからだ（次のL02で、実際に数えて確かめる）。</p>
+<p>そして、ここで先に1本くぎを打っておく。箱の<strong>長さ</strong>は「真ん中の約半数がどれくらいの幅に<strong>散らばっている</strong>か」を表すのであって、<strong>箱が長いほどデータの個数が多いわけではない</strong>。個数はどの部分でも約4分の1ずつ——長い箱も短い箱も、中にいる人数の割合はほぼ同じだ。これは多くの人がひっかかるポイントなので、L02でじっくり実験する。</p>
+<div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>この「箱ひげ図」、実は君たちのすこし上の世代は高校で習っていた内容なんだ。今の学習指導要領（平成29年告示）で高校の数学Iから中2に移されて、2020年度の中2から前倒しで教えられるようになった、教科書の中でもかなり新しい章。世の中でデータを読む力がそれだけ大事になってきた、ということの表れでもあるね。</p></div>
+<h2 id="練習">練習</h2>
+<ol start="1"><li><p>2組の箱ひげ図（主概念2の図）から、最小値・第1四分位数・中央値・第3四分位数・最大値を読み取ろう。</p></li><li><p>1組で、真ん中に集まる約半数の生徒が入っている区間は何時間から何時間だろう。</p></li><li><p>中央値がもっとも大きいのはどのクラスだろう。また、そのことは「そのクラスの全員が他のクラスより長く勉強している」ことを意味するだろうか。</p></li><li><p>次の文が正しければ○を、正しくなければ×を付けて理由を言おう。  (1) 1組には、家庭学習時間が12時間の生徒が少なくとも1人いる。  (2) 3組は1組より箱が短いので、3組の方が人数が少ない。  (3) 2組の生徒の約半数は、家庭学習時間が5時間以上9時間以下の区間にいる。</p></li></ol>
+<div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> ヒストグラムを作るにも、実は「1人1人の生データ→階級ごとの度数」という情報の縮約が起きている。箱ひげ図はさらに5つの値まで縮める。「情報を縮めると、比べられる集団の数が増える」——この関係を、生データ・ヒストグラム・箱ひげ図の3段階で、自分の言葉で説明してみよう。（気になる人は「データ 要約 なぜ必要」で調べてみると、統計の考え方の入り口が見つかる。）</p></div>
+<hr>
+<p>対応解答: answer_key_L01-03.md</p><a class="answer-link" href="answer_key_L01-03.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+<aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
+  <h2 id="lesson-provenance-title">この教材の来歴</h2>
+  <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+  <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 箱の中には「約半数」——箱ひげ図の読み方</a></nav></article></div></main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>出典と利用条件</h2>
+      <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-22生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
+    </section>
+    <section>
+      <h2>誤りを見つけたら教えてください</h2>
+      <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHubで誤りを報告<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ <a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
+      <p class="safety-note"><strong>大切:</strong> GitHubに書いた内容はインターネット全体に公開されます。名前・学校名・住所・連絡先・顔写真などを書かないでください。フォームはManabiGrid運営へ名前やメールアドレスを渡さず送れます。Google Forms側のデータ取扱いにはGoogleの規約が適用されます。</p>
+    </section>
+  </div>
+</footer>
+  <script src="../../../../_assets/site.js" defer></script>
+</body>
+</html>
