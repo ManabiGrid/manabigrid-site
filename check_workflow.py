@@ -83,6 +83,12 @@ def main() -> int:
         'run-name: "Pages / ${{ github.event_name }} / ${{ inputs.request_id || github.sha }}"' in text,
         "run name does not exactly match the request correlation contract",
     )
+    require(
+        errors,
+        "- name: Run update contract tests" in text
+        and "python3 -m unittest discover -s tests" in text,
+        "workflow does not run the provider-independent contract tests",
+    )
 
     cron_match = re.search(r"^\s*- cron: [\"']([^\"']+)[\"']", text, re.MULTILINE)
     require(errors, cron_match is not None, "missing scheduled trigger")

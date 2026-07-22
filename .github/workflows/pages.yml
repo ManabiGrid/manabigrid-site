@@ -128,6 +128,9 @@ jobs:
       - name: Check the workflow contract
         run: python3 check_workflow.py
 
+      - name: Run update contract tests
+        run: python3 -m unittest discover -s tests
+
       - name: Build the static site from the detected source revision
         run: python3 build_site.py --source source --output site-output --no-check
 

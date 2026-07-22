@@ -55,6 +55,14 @@ class BuildContractTests(unittest.TestCase):
         payload = '<svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p"/></defs><path d="M0 0" fill="url(#p)"/></svg>'
         build_site.validate_svg_source(payload, Path("internal.svg"))
 
+    def test_svg_ids_do_not_depend_on_checkout_root(self) -> None:
+        doc = Path("materials/jhs-math-1/example/lesson_01.md")
+        asset = Path("materials/jhs-math-1/example/assets/figure.svg")
+        first = build_site.svg_id_prefix(doc, asset, 1)
+        second = build_site.svg_id_prefix(doc, asset, 1)
+        self.assertEqual(first, second)
+        self.assertRegex(first, r"^mg-[0-9a-f]{10}-$")
+
     def test_review_state_conflict_is_conservative(self) -> None:
         self.assertTrue(build_site.has_review_state_conflict("候補ドラフト", "人間レビュー済"))
         self.assertFalse(build_site.has_review_state_conflict("候補ドラフト", "外部レビュー済"))

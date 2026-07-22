@@ -97,6 +97,12 @@ def normalized_css_value(value: str) -> str:
     return re.sub(r"/\*.*?\*/", "", decoded, flags=re.DOTALL)
 
 
+def svg_id_prefix(doc_rel: Path, asset_rel: Path, serial: int) -> str:
+    """Create checkout-independent SVG ids from canonical relative paths."""
+    key = f"{doc_rel.as_posix()}:{asset_rel.as_posix()}:{serial}"
+    return "mg-" + hashlib.sha256(key.encode("utf-8")).hexdigest()[:10] + "-"
+
+
 def validate_svg_source(svg: str, path: Path) -> None:
     """Reject active or remotely loading SVG before it reaches generated HTML."""
     if path.is_symlink():
@@ -866,8 +872,11 @@ class Markdown:
             # namespace.  Prefix each inlined figure so repeated pattern ids
             # such as h45 cannot collide with another figure or heading.
             self.svg_serial += 1
-            svg_key = f"{self.doc.rel.as_posix()}:{path}:{self.svg_serial}"
-            prefix = "mg-" + hashlib.sha256(svg_key.encode("utf-8")).hexdigest()[:10] + "-"
+            try:
+                asset_rel = path.resolve().relative_to(self.resolver.source.resolve())
+            except ValueError as exc:
+                raise BuildError(f"{path}: 正本root外のSVGは埋め込めません") from exc
+            prefix = svg_id_prefix(self.doc.rel, asset_rel, self.svg_serial)
             id_pattern = re.compile(r"\bid=([\"'])([^\"']+)\1")
             id_map = {old: prefix + old for _, old in id_pattern.findall(svg)}
             svg = id_pattern.sub(
