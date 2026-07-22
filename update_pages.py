@@ -23,6 +23,8 @@ WORKFLOW = "pages.yml"
 WORKFLOW_NAME = "Build and deploy ManabiGrid Pages"
 REPORT_PATH = ROOT / "update-report.json"
 SHA_LENGTH = 40
+SCHEMA_VERSION = "2"
+PUBLICATION_AUTHORITY = "not_observed"
 
 
 class UpdateError(RuntimeError):
@@ -66,6 +68,10 @@ def is_full_sha(value: str) -> bool:
     return len(value) == SHA_LENGTH and all(character in "0123456789abcdef" for character in value)
 
 
+def utc_now() -> str:
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+
 def remote_sha(remote: str) -> str:
     output = command(("git", "ls-remote", remote, "refs/heads/main"))
     value = output.split()[0] if output else ""
@@ -95,6 +101,15 @@ def published_sha() -> str | None:
         return None
     source = report.get("source")
     value = source.get("commit") if isinstance(source, dict) else None
+    return value if isinstance(value, str) and is_full_sha(value) else None
+
+
+def published_site_sha() -> str | None:
+    report = published_report()
+    if not report:
+        return None
+    publication = report.get("publication")
+    value = publication.get("site_commit") if isinstance(publication, dict) else None
     return value if isinstance(value, str) and is_full_sha(value) else None
 
 
@@ -177,6 +192,43 @@ def match_request_run(
     return RunMatch(database_id, str(run.get("displayTitle", "")), str(run.get("url", "")))
 
 
+def match_push_run(
+    runs: list[dict[str, Any]], expected_head_sha: str
+) -> RunMatch | None:
+    if not is_full_sha(expected_head_sha):
+        raise UpdateError("failed_run_correlation", "site commit SHAが不正です")
+    title = f"Pages / push / {expected_head_sha}"
+    matched = [run for run in runs if str(run.get("displayTitle", "")) == title]
+    if len(matched) > 1:
+        raise UpdateError(
+            "failed_run_correlation",
+            f"site commitに一致するpush runが複数あります: {expected_head_sha}",
+        )
+    if not matched:
+        return None
+    run = matched[0]
+    expected_metadata = {
+        "event": "push",
+        "headBranch": "main",
+        "headSha": expected_head_sha,
+        "workflowName": WORKFLOW_NAME,
+    }
+    mismatched = {
+        key: run.get(key)
+        for key, expected in expected_metadata.items()
+        if run.get(key) != expected
+    }
+    if mismatched:
+        raise UpdateError(
+            "failed_run_correlation",
+            f"site commit一致runのmetadataが契約外です: {mismatched}",
+        )
+    database_id = run.get("databaseId")
+    if not isinstance(database_id, int):
+        raise UpdateError("failed_run_correlation", "対応runのdatabaseIdを取得できません")
+    return RunMatch(database_id, str(run.get("displayTitle", "")), str(run.get("url", "")))
+
+
 def dispatch(source_sha: str, check_external_links: bool, correlation_timeout: int) -> RunMatch:
     request_id = str(uuid.uuid4())
     expected_head_sha = command(("git", "rev-parse", "HEAD"))
@@ -226,6 +278,44 @@ def dispatch(source_sha: str, check_external_links: bool, correlation_timeout: i
     raise UpdateError("failed_run_correlation", f"起動したrunをrequest_idで特定できません: {request_id}")
 
 
+def find_push_run(expected_head_sha: str, correlation_timeout: int) -> RunMatch:
+    deadline = time.monotonic() + correlation_timeout
+    while time.monotonic() < deadline:
+        raw = command(
+            (
+                "gh",
+                "run",
+                "list",
+                "--workflow",
+                WORKFLOW,
+                "--event",
+                "push",
+                "--branch",
+                "main",
+                "--commit",
+                expected_head_sha,
+                "--limit",
+                "20",
+                "--json",
+                "databaseId,displayTitle,event,headBranch,headSha,url,workflowName",
+            )
+        )
+        try:
+            runs = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise UpdateError("failed_run_correlation", "Actions run一覧がJSONではありません") from exc
+        if not isinstance(runs, list):
+            raise UpdateError("failed_run_correlation", "Actions run一覧の形式が不正です")
+        match = match_push_run(runs, expected_head_sha)
+        if match:
+            return match
+        time.sleep(3)
+    raise UpdateError(
+        "failed_run_correlation",
+        f"site commitに対応するpush runを特定できません: {expected_head_sha}",
+    )
+
+
 def wait_for_run(run: RunMatch, timeout: int) -> None:
     try:
         subprocess.run(
@@ -266,8 +356,74 @@ def wait_for_live(expected: str, timeout: int) -> None:
     raise UpdateError("failed_live_verify", f"公開build-reportが期待SHAになりません: {expected}")
 
 
+def verify_pages_deployment(expected_site_sha: str) -> None:
+    raw = command(
+        (
+            "gh",
+            "api",
+            f"repos/{CONFIG['site_repository']}/pages/deployments/{expected_site_sha}",
+        )
+    )
+    try:
+        deployment = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise UpdateError("failed_live_verify", "Pages deployment statusがJSONではありません") from exc
+    if not isinstance(deployment, dict) or deployment.get("status") != "succeed":
+        raise UpdateError(
+            "failed_live_verify",
+            f"Pages deploymentが成功状態ではありません: {deployment}",
+        )
+
+
+def wait_for_site_live(
+    expected_site_sha: str, expected_source_sha: str, timeout: int
+) -> None:
+    deadline = time.monotonic() + timeout
+    last_error = "公開build-reportをまだ取得できません"
+    while time.monotonic() < deadline:
+        report = published_report()
+        if report:
+            source = report.get("source")
+            publication = report.get("publication")
+            published_source = source.get("commit") if isinstance(source, dict) else None
+            published_site = (
+                publication.get("site_commit")
+                if isinstance(publication, dict)
+                else None
+            )
+            if (
+                published_site == expected_site_sha
+                and published_source == expected_source_sha
+            ):
+                verify_http_contract()
+                return
+            last_error = (
+                f"published_site={published_site}; expected_site={expected_site_sha}; "
+                f"published_source={published_source}; expected_source={expected_source_sha}"
+            )
+        time.sleep(10)
+    raise UpdateError("failed_live_verify", last_error)
+
+
 def write_report(payload: dict[str, Any]) -> None:
     REPORT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def publish_meta(status: str, payload: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "status": status,
+        "schema_version": SCHEMA_VERSION,
+        "publication_authority": PUBLICATION_AUTHORITY,
+        "generated_at": utc_now(),
+        **payload,
+    }
+
+
+def persist_snapshot(payload: dict[str, Any]) -> None:
+    try:
+        write_report(payload)
+    except OSError as exc:
+        payload["report_persist_error"] = f"update-report.jsonへ保存できません: {exc}"
 
 
 def status_payload() -> dict[str, Any]:
@@ -275,11 +431,58 @@ def status_payload() -> dict[str, Any]:
     site_remote = remote_sha("origin")
     source = remote_sha(source_remote())
     published = published_sha()
-    return {
-        "status": "current" if published == source else "update_available",
-        "site": {"local": local, "remote": site_remote, "clean": not bool(command(("git", "status", "--porcelain")))},
-        "source": {"remote": source, "published": published, "current": published == source},
-    }
+
+    site_clean = not bool(command(("git", "status", "--porcelain", "--untracked-files=all")))
+    current_branch = command(("git", "branch", "--show-current"))
+    workflow_contract_pass = True
+    try:
+        command((sys.executable, "check_workflow.py"))
+    except UpdateError:
+        workflow_contract_pass = False
+
+    source_sync = "current" if published == source else "update_available"
+
+    if not site_clean:
+        release_readiness = "blocked_dirty_site"
+    elif current_branch != "main":
+        release_readiness = "blocked_contract_drift"
+    elif local != site_remote:
+        release_readiness = "blocked_site_drift"
+    elif not workflow_contract_pass:
+        release_readiness = "blocked_contract_drift"
+    else:
+        release_readiness = "ready"
+
+    status = release_readiness if release_readiness != "ready" else source_sync
+
+    next_action_code = {
+        "ready": "await_publication_approval" if source_sync == "update_available" else "monitor",
+        "blocked_dirty_site": "preserve_and_inspect_dirty_worktree",
+        "blocked_site_drift": "inspect_site_drift",
+        "blocked_contract_drift": "inspect_contract_drift",
+    }.get(release_readiness, "investigate")
+
+    return publish_meta(
+        status,
+        {
+            "source_sync": source_sync,
+            "release_readiness": release_readiness,
+            "next_action_code": next_action_code,
+            "site": {
+                "local": local,
+                "remote": site_remote,
+                "clean": site_clean,
+                "branch": current_branch,
+                "local_eq_remote": local == site_remote,
+                "workflow_contract_pass": workflow_contract_pass,
+            },
+            "source": {
+                "remote": source,
+                "published": published,
+                "current": source_sync == "current",
+            },
+        },
+    )
 
 
 def publish(args: argparse.Namespace) -> dict[str, Any]:
@@ -291,9 +494,9 @@ def publish(args: argparse.Namespace) -> dict[str, Any]:
     checkout = require_release_checkout()
     expected = choose_source(args.source_sha)
     if published_sha() == expected:
-        return {"status": "already_current", **checkout, "source_sha": expected, "runs": []}
+        return publish_meta("already_current", {"runs": [], **checkout, "source_sha": expected})
     if args.dry_run:
-        return {"status": "dry_run_ready", **checkout, "source_sha": expected, "runs": []}
+        return publish_meta("dry_run_ready", {"runs": [], **checkout, "source_sha": expected})
 
     runs: list[dict[str, Any]] = []
     fixed_source = args.source_sha is not None
@@ -304,17 +507,26 @@ def publish(args: argparse.Namespace) -> dict[str, Any]:
         runs.append({"database_id": run.database_id, "title": run.title, "url": run.url})
         latest = remote_sha(source_remote())
         if latest == expected:
-            payload = {"status": "updated", **checkout, "source_sha": expected, "runs": runs}
+            payload = publish_meta(
+                "updated",
+                {
+                    "runs": runs,
+                    **checkout,
+                    "source_sha": expected,
+                },
+            )
             write_report(payload)
             return payload
         if fixed_source:
-            payload = {
-                "status": "blocked_source_drift_after_publish",
-                **checkout,
-                "source_sha": expected,
-                "latest_source_sha": latest,
-                "runs": runs,
-            }
+            payload = publish_meta(
+                "blocked_source_drift_after_publish",
+                {
+                    "runs": runs,
+                    **checkout,
+                    "source_sha": expected,
+                    "latest_source_sha": latest,
+                },
+            )
             write_report(payload)
             raise UpdateError(
                 "blocked_source_drift_after_publish",
@@ -329,6 +541,34 @@ def publish(args: argparse.Namespace) -> dict[str, Any]:
     )
 
 
+def verify_site_release(args: argparse.Namespace) -> dict[str, Any]:
+    checkout = require_release_checkout()
+    expected_site = args.site_sha or checkout["site_local"]
+    if not is_full_sha(expected_site) or expected_site != checkout["site_local"]:
+        raise UpdateError(
+            "blocked_site_drift",
+            "検証対象site SHAがcleanな現在HEADと一致しません",
+        )
+    expected_source = choose_source(args.source_sha)
+    run = find_push_run(expected_site, args.correlation_timeout)
+    wait_for_run(run, args.run_timeout)
+    wait_for_site_live(expected_site, expected_source, args.live_timeout)
+    verify_pages_deployment(expected_site)
+    payload = publish_meta(
+        "site_release_verified",
+        {
+            "runs": [
+                {"database_id": run.database_id, "title": run.title, "url": run.url}
+            ],
+            **checkout,
+            "site_sha": expected_site,
+            "source_sha": expected_source,
+        },
+    )
+    write_report(payload)
+    return payload
+
+
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
     subparsers = result.add_subparsers(dest="command", required=True)
@@ -341,21 +581,39 @@ def parser() -> argparse.ArgumentParser:
     publish_parser.add_argument("--correlation-timeout", type=int, default=120)
     publish_parser.add_argument("--run-timeout", type=int, default=1800)
     publish_parser.add_argument("--live-timeout", type=int, default=600)
+    verify_parser = subparsers.add_parser(
+        "verify-site-release",
+        help="push済みsite commitの該当run・Pages・公開build-reportを完全一致で照合する",
+    )
+    verify_parser.add_argument("--site-sha")
+    verify_parser.add_argument("--source-sha")
+    verify_parser.add_argument("--correlation-timeout", type=int, default=120)
+    verify_parser.add_argument("--run-timeout", type=int, default=1800)
+    verify_parser.add_argument("--live-timeout", type=int, default=600)
     return result
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parser().parse_args(argv)
     try:
-        payload = status_payload() if args.command == "status" else publish(args)
+        if args.command == "status":
+            payload = status_payload()
+        elif args.command == "publish":
+            payload = publish(args)
+        else:
+            payload = verify_site_release(args)
     except UpdateError as exc:
-        payload = {"status": exc.status, "error": str(exc)}
+        payload = publish_meta(exc.status, {"error": str(exc)})
+        persist_snapshot(payload)
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 1
     except (HTTPError, URLError, OSError, ValueError, json.JSONDecodeError) as exc:
-        payload = {"status": "failed_live_verify", "error": str(exc)}
+        payload = publish_meta("failed_live_verify", {"error": str(exc)})
+        persist_snapshot(payload)
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 1
+    if args.command == "status":
+        persist_snapshot(payload)
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0
 

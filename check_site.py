@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html as html_module
 import json
 import os
+import posixpath
 import re
 import subprocess
 import urllib.parse
@@ -13,7 +15,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Sequence, Set, Tuple
 from urllib.parse import unquote, urlsplit
 
 from public_site import (
@@ -42,6 +44,7 @@ FORBIDDEN_STRINGS = [
 ]
 BAD_SCHEMES = {"javascript", "data", "mailto", "tel"}
 SOURCE_QUARANTINE_WORKFLOW_SHA256 = "b0dabf30bcfadcd1eff318e54361304feb64fb659d2e494a31b6651b8ca9bcb9"
+OFFICIAL_SOURCE_REPOSITORY = "https://github.com/ManabiGrid/manabigrid"
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 ENGLISH_PASSAGE = re.compile(
     r"(?<![A-Za-z])(?:[A-Za-z][A-Za-z'’.-]*[,:;!?]?\s+){3,}"
@@ -64,6 +67,1095 @@ SAFE_SVG_TAGS = {
     "text",
     "title",
 }
+EXPECTED_CURRICULUM_STATUSES = (
+    "未着手", "調査済", "ドラフト", "QA済", "外部レビュー済", "人間レビュー済", "公開済",
+)
+EXPECTED_CURRICULUM_FAMILY_ROWS = (
+    ("jhs-math", "中学", "数学", "jhs-math-", "jhs-math"),
+    ("jhs-eng", "中学", "英語", "jhs-eng-", "jhs-eng"),
+    ("jhs-jpn", "中学", "国語", "jhs-jpn-", "jhs-jpn"),
+    ("jhs-sci", "中学", "理科", "jhs-sci-", "jhs-sci"),
+    ("jhs-soc", "中学", "社会", "jhs-soc-", "jhs-soc"),
+    ("hs-math", "高校", "数学", "hs-math-", "hs-math"),
+    ("hs-eng", "高校", "英語", "hs-eng-", "hs-eng"),
+    ("hs-jpn", "高校", "国語", "hs-jpn-", "hs-jpn"),
+    ("hs-sci", "高校", "理科", "hs-sci-", "hs-sci"),
+    ("hs-soc", "高校", "社会", "hs-soc-", "hs-soc"),
+)
+
+
+@dataclass(frozen=True)
+class HomeGridEntry:
+    """One rendered top-page grid cell, collected independently from HTML."""
+
+    subject: str
+    packages: str
+    lesson_pages: str
+    hrefs: Tuple[str, ...]
+    aria_labels: Tuple[str, ...]
+    heading: str
+    slots: int
+
+
+@dataclass(frozen=True)
+class CurriculumGridEntry:
+    family: str
+    unit_count: str
+    package_count: str
+    lesson_page_count: str
+    availability: str
+    school: str
+    subject: str
+    state_label: str
+    visible_unit_count: str
+    visible_availability: str
+    hrefs: Tuple[str, ...]
+    aria_labels: Tuple[str, ...]
+
+
+class CurriculumGridCollector(HTMLParser):
+    """Collect each ten-family card without trusting generator metadata."""
+
+    VOID_TAGS = HomeGridCollector.VOID_TAGS if "HomeGridCollector" in globals() else {
+        "area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+        "meta", "param", "source", "track", "wbr",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.entries: List[CurriculumGridEntry] = []
+        self._depth = 0
+        self._family = ""
+        self._unit_count = ""
+        self._package_count = ""
+        self._lesson_page_count = ""
+        self._availability = ""
+        self._hrefs: List[str] = []
+        self._aria_labels: List[str] = []
+        self._capture: Optional[str] = None
+        self._capture_depth: Optional[int] = None
+        self._capture_parts: List[str] = []
+        self._text: Dict[str, str] = {}
+
+    def handle_starttag(
+        self, tag: str, attrs: List[Tuple[str, Optional[str]]]
+    ) -> None:
+        attrs_dict = {name: value or "" for name, value in attrs}
+        classes = set(attrs_dict.get("class", "").split())
+        if self._depth == 0:
+            if tag != "li" or "curriculum-grid-item" not in classes:
+                return
+            self._depth = 1
+            self._family = attrs_dict.get("data-family", "")
+            self._unit_count = attrs_dict.get("data-unit-count", "")
+            self._package_count = attrs_dict.get("data-package-count", "")
+            self._lesson_page_count = attrs_dict.get("data-lesson-page-count", "")
+            self._availability = attrs_dict.get("data-availability", "")
+            self._hrefs = []
+            self._aria_labels = []
+            self._capture = None
+            self._capture_depth = None
+            self._capture_parts = []
+            self._text = {}
+            return
+        if tag not in self.VOID_TAGS:
+            self._depth += 1
+        if tag == "a":
+            self._hrefs.append(attrs_dict.get("href", ""))
+            self._aria_labels.append(attrs_dict.get("aria-label", ""))
+        field = None
+        if "curriculum-school" in classes:
+            field = "school"
+        elif "curriculum-availability" in classes:
+            field = "state"
+        elif "curriculum-count" in classes:
+            field = "visible_unit_count"
+        elif "curriculum-availability-text" in classes:
+            field = "visible_availability"
+        elif tag == "h3":
+            field = "subject"
+        if field:
+            self._capture = field
+            self._capture_depth = self._depth
+            self._capture_parts = []
+
+    def handle_data(self, data: str) -> None:
+        if self._capture is not None:
+            self._capture_parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if self._depth == 0 or tag in self.VOID_TAGS:
+            return
+        if self._capture_depth is not None and self._depth == self._capture_depth:
+            self._text[self._capture or ""] = " ".join(
+                "".join(self._capture_parts).split()
+            )
+            self._capture = None
+            self._capture_depth = None
+            self._capture_parts = []
+        self._depth -= 1
+        if self._depth == 0:
+            self.entries.append(
+                CurriculumGridEntry(
+                    family=self._family,
+                    unit_count=self._unit_count,
+                    package_count=self._package_count,
+                    lesson_page_count=self._lesson_page_count,
+                    availability=self._availability,
+                    school=self._text.get("school", ""),
+                    subject=self._text.get("subject", ""),
+                    state_label=self._text.get("state", ""),
+                    visible_unit_count=self._text.get("visible_unit_count", ""),
+                    visible_availability=self._text.get("visible_availability", ""),
+                    hrefs=tuple(self._hrefs),
+                    aria_labels=tuple(self._aria_labels),
+                )
+            )
+
+
+@dataclass(frozen=True)
+class CurriculumSkeletonRow:
+    item_id: str
+    status: str
+    material: str
+    title: str
+    visible_id: str
+    visible_status: str
+    state_kind: str
+    state_href: str
+    state_text: str
+
+
+@dataclass(frozen=True)
+class CurriculumSkeletonTrack:
+    label: str
+    count: int
+    count_unit: str
+    status_summary: str
+    rows: Tuple[CurriculumSkeletonRow, ...]
+
+
+CURRICULUM_TRACK_PATTERN = re.compile(
+    r'<details class="curriculum-track">\s*'
+    r'<summary><span><strong>(.*?)</strong><small>(\d+)(単元|件)</small></span>'
+    r'<span class="track-status-summary">(.*?)</span></summary>\s*'
+    r'<ol class="curriculum-unit-list">(.*?)</ol>\s*</details>',
+    re.DOTALL,
+)
+CURRICULUM_ROW_PATTERN = re.compile(
+    r'<li data-curriculum-id="([^"]+)" data-status="([^"]+)" '
+    r'data-material="(available|preparing)">\s*'
+    r'<div><strong>(.*?)</strong>'
+    r'(?:<span class="curriculum-unit-grade">.*?</span>)?'
+    r'<code>(.*?)</code></div>\s*'
+    r'<div class="curriculum-unit-state"><span class="status-chip">(.*?)</span>'
+    r'(?:<a class="curriculum-unit-link" href="([^"]+)">(.*?)</a>'
+    r'|<span class="curriculum-unit-pending">(.*?)</span>)</div>\s*</li>',
+    re.DOTALL,
+)
+
+
+def _curriculum_visible_text(value: str) -> str:
+    return " ".join(
+        html_module.unescape(re.sub(r"<[^>]*>", " ", value)).split()
+    )
+
+
+def collect_curriculum_skeleton_tracks(raw: str) -> Tuple[CurriculumSkeletonTrack, ...]:
+    tracks: List[CurriculumSkeletonTrack] = []
+    for label, count, count_unit, status_summary, rows_raw in CURRICULUM_TRACK_PATTERN.findall(raw):
+        rows = tuple(
+            CurriculumSkeletonRow(
+                item_id=html_module.unescape(item_id),
+                status=html_module.unescape(status),
+                material=material,
+                title=_curriculum_visible_text(title),
+                visible_id=_curriculum_visible_text(visible_id),
+                visible_status=_curriculum_visible_text(visible_status),
+                state_kind="link" if state_href else "pending",
+                state_href=html_module.unescape(state_href),
+                state_text=_curriculum_visible_text(state_link_text or state_pending_text),
+            )
+            for (
+                item_id,
+                status,
+                material,
+                title,
+                visible_id,
+                visible_status,
+                state_href,
+                state_link_text,
+                state_pending_text,
+            ) in CURRICULUM_ROW_PATTERN.findall(rows_raw)
+        )
+        tracks.append(
+            CurriculumSkeletonTrack(
+                label=_curriculum_visible_text(label),
+                count=int(count),
+                count_unit=count_unit,
+                status_summary=_curriculum_visible_text(status_summary),
+                rows=rows,
+            )
+        )
+    return tuple(tracks)
+
+
+def curriculum_status_summary_from_items(items: Sequence[Dict[str, str]]) -> str:
+    counts = Counter(str(item["status"]) for item in items)
+    return "、".join(
+        f"{status} {counts[status]}"
+        for status in EXPECTED_CURRICULUM_STATUSES
+        if counts.get(status)
+    )
+
+
+class HomeGridCollector(HTMLParser):
+    """Collect grid-cell contracts without relying on generator metadata."""
+
+    VOID_TAGS = {
+        "area",
+        "base",
+        "br",
+        "col",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.entries: List[HomeGridEntry] = []
+        self._depth = 0
+        self._subject = ""
+        self._packages = ""
+        self._lesson_pages = ""
+        self._hrefs: List[str] = []
+        self._aria_labels: List[str] = []
+        self._heading_parts: List[str] = []
+        self._heading_depth: Optional[int] = None
+        self._slots = 0
+
+    def handle_starttag(
+        self, tag: str, attrs: List[Tuple[str, Optional[str]]]
+    ) -> None:
+        attrs_dict = {name: value or "" for name, value in attrs}
+        classes = set(attrs_dict.get("class", "").split())
+        if self._depth == 0:
+            if tag != "li" or "learning-grid-item" not in classes:
+                return
+            self._depth = 1
+            self._subject = attrs_dict.get("data-subject", "")
+            self._packages = attrs_dict.get("data-package-count", "")
+            self._lesson_pages = attrs_dict.get("data-lesson-page-count", "")
+            self._hrefs = []
+            self._aria_labels = []
+            self._heading_parts = []
+            self._heading_depth = None
+            self._slots = 0
+            return
+
+        if tag not in self.VOID_TAGS:
+            self._depth += 1
+        if tag == "a":
+            self._hrefs.append(attrs_dict.get("href", ""))
+            self._aria_labels.append(attrs_dict.get("aria-label", ""))
+        if "learning-grid-heading" in classes:
+            self._heading_depth = self._depth
+        if "learning-grid-slot" in classes:
+            self._slots += 1
+
+    def handle_data(self, data: str) -> None:
+        if self._heading_depth is not None and self._depth >= self._heading_depth:
+            self._heading_parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if self._depth == 0 or tag in self.VOID_TAGS:
+            return
+        if self._heading_depth is not None and self._depth == self._heading_depth:
+            self._heading_depth = None
+        self._depth -= 1
+        if self._depth == 0:
+            self.entries.append(
+                HomeGridEntry(
+                    subject=self._subject,
+                    packages=self._packages,
+                    lesson_pages=self._lesson_pages,
+                    hrefs=tuple(self._hrefs),
+                    aria_labels=tuple(self._aria_labels),
+                    heading=" ".join("".join(self._heading_parts).split()),
+                    slots=self._slots,
+                )
+            )
+
+
+def canonical_home_grid_counts(source: Path) -> Dict[str, Tuple[int, int]]:
+    """Count packages and lesson pages directly from canonical materials."""
+    materials = source / "materials"
+    if not materials.is_dir():
+        raise FileNotFoundError(f"canonical materials directory not found: {materials}")
+
+    result: Dict[str, Tuple[int, int]] = {}
+    for subject_dir in sorted(
+        path
+        for path in materials.iterdir()
+        if path.is_dir() and not path.name.startswith(".")
+    ):
+        package_dirs = [
+            path
+            for path in sorted(subject_dir.iterdir())
+            if path.is_dir()
+            and not path.name.startswith(".")
+            and any(path.rglob("*.md"))
+        ]
+        lesson_pages = sum(
+            1
+            for package_dir in package_dirs
+            for markdown in package_dir.rglob("*.md")
+            if re.fullmatch(r"lesson_\d+\.md", markdown.name)
+            or markdown.name in {"diagnostic.md", "student_textbook_print.md"}
+        )
+        result[subject_dir.name] = (len(package_dirs), lesson_pages)
+    return result
+
+
+def home_grid_contract_errors(
+    canonical: Dict[str, Tuple[int, int]], report: object, html_text: str
+) -> List[str]:
+    """Compare report and rendered grid with a source-derived canonical map."""
+    errors: List[str] = []
+    if not isinstance(report, dict):
+        return ["build-report missing home_grid"]
+    reported_subjects = report.get("subjects")
+    if (
+        report.get("source") != "subject_registry_and_collected_units"
+        or not isinstance(reported_subjects, list)
+        or not reported_subjects
+    ):
+        return ["build-report home_grid contract mismatch"]
+
+    report_rows: List[Tuple[str, str, int, int]] = []
+    for item in reported_subjects:
+        if not isinstance(item, dict):
+            errors.append("home_grid subject row is not an object")
+            continue
+        slug = item.get("slug")
+        label = item.get("label")
+        packages = item.get("packages")
+        lesson_pages = item.get("lesson_pages")
+        if (
+            not isinstance(slug, str)
+            or not slug
+            or not isinstance(label, str)
+            or not label
+            or type(packages) is not int
+            or packages < 0
+            or type(lesson_pages) is not int
+            or lesson_pages < 0
+        ):
+            errors.append("home_grid subject row has invalid fields")
+            continue
+        report_rows.append((slug, label, packages, lesson_pages))
+
+    report_slugs = [slug for slug, _label, _packages, _lessons in report_rows]
+    report_labels = [label for _slug, label, _packages, _lessons in report_rows]
+    if len(report_slugs) != len(set(report_slugs)):
+        errors.append("home_grid report contains duplicate subjects")
+    if len(report_labels) != len(set(report_labels)):
+        errors.append("home_grid report contains duplicate labels")
+    missing_report = sorted(set(canonical) - set(report_slugs))
+    extra_report = sorted(set(report_slugs) - set(canonical))
+    if missing_report:
+        errors.append("home_grid report omits canonical subjects: " + ", ".join(missing_report))
+    if extra_report:
+        errors.append("home_grid report has non-canonical subjects: " + ", ".join(extra_report))
+    for slug, _label, packages, lesson_pages in report_rows:
+        expected = canonical.get(slug)
+        if expected is not None and expected != (packages, lesson_pages):
+            errors.append(f"home_grid report count differs from canonical source: {slug}")
+
+    canonical_packages = sum(packages for packages, _lessons in canonical.values())
+    canonical_lessons = sum(lessons for _packages, lessons in canonical.values())
+    if report.get("total_packages") != canonical_packages:
+        errors.append("home_grid total_packages differs from canonical source")
+    if report.get("total_lesson_pages") != canonical_lessons:
+        errors.append("home_grid total_lesson_pages differs from canonical source")
+
+    collector = HomeGridCollector()
+    collector.feed(html_text)
+    entries = collector.entries
+    rendered_slugs = [entry.subject for entry in entries]
+    rendered_headings = [entry.heading for entry in entries]
+    if len(rendered_slugs) != len(set(rendered_slugs)):
+        errors.append("home learning grid contains duplicate subjects")
+    if len(rendered_headings) != len(set(rendered_headings)):
+        errors.append("home learning grid contains duplicate visible labels")
+    missing_rendered = sorted(set(canonical) - set(rendered_slugs))
+    extra_rendered = sorted(set(rendered_slugs) - set(canonical))
+    if missing_rendered:
+        errors.append("home learning grid omits canonical subjects: " + ", ".join(missing_rendered))
+    if extra_rendered:
+        errors.append("home learning grid has non-canonical subjects: " + ", ".join(extra_rendered))
+    if rendered_slugs != report_slugs:
+        errors.append("home learning grid order or membership differs from home_grid report")
+
+    report_label_by_slug = {
+        slug: label for slug, label, _packages, _lessons in report_rows
+    }
+
+    for entry in entries:
+        expected = canonical.get(entry.subject)
+        if expected is None:
+            continue
+        expected_label = report_label_by_slug.get(entry.subject)
+        if entry.heading != expected_label:
+            errors.append(f"home learning grid visible label mismatch: {entry.subject}")
+        try:
+            rendered_counts = (int(entry.packages), int(entry.lesson_pages))
+        except ValueError:
+            errors.append(f"home learning grid has invalid count attributes: {entry.subject}")
+            continue
+        if rendered_counts != expected:
+            errors.append(f"home learning grid count differs from canonical source: {entry.subject}")
+        expected_href = f"subjects/{entry.subject}/index.html"
+        if entry.hrefs != (expected_href,):
+            errors.append(f"home learning grid subject href mismatch: {entry.subject}")
+        expected_aria = (
+            f"{expected_label}を開く。{expected[0]}パッケージ、"
+            f"レッスン・本文{expected[1]}ページ"
+        )
+        if entry.aria_labels != (expected_aria,):
+            errors.append(f"home learning grid aria-label mismatch: {entry.subject}")
+        if entry.slots != expected[0]:
+            errors.append(f"home learning grid slot count differs from canonical source: {entry.subject}")
+
+    if sum(entry.slots for entry in entries) != canonical_packages:
+        errors.append("home learning grid total slot count differs from canonical source")
+    return errors
+
+
+def _curriculum_text(value: str) -> str:
+    return re.sub(r"[`*_~]", "", value).strip()
+
+
+def _curriculum_cells(line: str) -> List[str]:
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def _curriculum_separator(cells: Sequence[str], width: int) -> bool:
+    return len(cells) == width and all(
+        re.fullmatch(r":?-{3,}:?", cell) for cell in cells
+    )
+
+
+def canonical_curriculum_snapshot(source: Path, contract_path: Path) -> Dict[str, object]:
+    """Independently derive the ten entrances from contract + source + materials."""
+    try:
+        contract = json.loads(contract_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"curriculum contract cannot be read: {exc}") from exc
+    version = contract.get("schema_version")
+    statuses = contract.get("status_values")
+    family_rows = contract.get("families")
+    if (
+        version != 1
+        or contract.get("source") != "curriculum/PROGRESS_INDEX.md"
+        or not isinstance(statuses, list)
+        or not statuses
+        or len(statuses) != len(set(statuses))
+        or not all(isinstance(value, str) and value for value in statuses)
+        or not isinstance(family_rows, list)
+        or len(family_rows) != 10
+    ):
+        raise ValueError("curriculum contract schema mismatch")
+    families: List[Dict[str, object]] = []
+    for row in family_rows:
+        if not isinstance(row, dict):
+            raise ValueError("curriculum family row is not an object")
+        values = {
+            key: row.get(key)
+            for key in ("slug", "school", "subject", "unit_id_prefix", "material_prefix")
+        }
+        if not all(isinstance(value, str) and value for value in values.values()):
+            raise ValueError("curriculum family fields are invalid")
+        families.append(values)
+    actual_rows = tuple(
+        (
+            str(row["slug"]),
+            str(row["school"]),
+            str(row["subject"]),
+            str(row["unit_id_prefix"]),
+            str(row["material_prefix"]),
+        )
+        for row in families
+    )
+    if tuple(statuses) != EXPECTED_CURRICULUM_STATUSES:
+        raise ValueError("curriculum contract statuses differ from fixed expectations")
+    if actual_rows != EXPECTED_CURRICULUM_FAMILY_ROWS:
+        raise ValueError("curriculum contract families differ from fixed expectations")
+
+    progress = source / "curriculum/PROGRESS_INDEX.md"
+    raw = progress.read_text(encoding="utf-8")
+    section = ""
+    unit_header = False
+    module_header = False
+    unit_separator = False
+    module_separator = False
+    units: List[Dict[str, str]] = []
+    modules: List[Dict[str, str]] = []
+    for line in raw.splitlines():
+        if line.startswith("## "):
+            if line == "## 全単元一覧（unit_id 順）":
+                section = "units"
+            elif line == "## 科目モジュール（単元と別枠: 診断・巻末資料）":
+                section = "modules"
+            else:
+                section = ""
+            continue
+        if section not in {"units", "modules"}:
+            continue
+        if not line:
+            continue
+        if not line.startswith("|"):
+            raise ValueError(f"curriculum {section} table has non-table or indented row")
+        cells = _curriculum_cells(line)
+        if section == "units":
+            if cells == ["unit_id", "単元名", "科目", "学校段階・学年", "レーン", "状態"]:
+                if unit_header:
+                    raise ValueError("curriculum unit header is duplicated")
+                unit_header = True
+                continue
+            if _curriculum_separator(cells, 6):
+                if not unit_header or unit_separator:
+                    raise ValueError("curriculum unit header missing before separator")
+                unit_separator = True
+                continue
+            if not unit_header or not unit_separator:
+                raise ValueError("curriculum unit header missing before rows")
+            if len(cells) != 6 or not re.fullmatch(r"`[^`]+`", cells[0]):
+                raise ValueError("curriculum unit table has malformed row")
+            item_id, title, subject, grade, lane, status = cells
+            units.append(
+                {
+                    "id": item_id.strip("`"),
+                    "title": _curriculum_text(title),
+                    "subject": _curriculum_text(subject),
+                    "grade": _curriculum_text(grade),
+                    "lane": _curriculum_text(lane),
+                    "status": _curriculum_text(status),
+                    "kind": "unit",
+                }
+            )
+        elif section == "modules":
+            if cells == ["module_id", "名称", "科目", "学校段階・学年", "状態"]:
+                if module_header:
+                    raise ValueError("curriculum module header is duplicated")
+                module_header = True
+                continue
+            if _curriculum_separator(cells, 5):
+                if not module_header or module_separator:
+                    raise ValueError("curriculum module header missing before separator")
+                module_separator = True
+                continue
+            if not module_header or not module_separator:
+                raise ValueError("curriculum module header missing before rows")
+            if len(cells) != 5 or not re.fullmatch(r"`[^`]+`", cells[0]):
+                raise ValueError("curriculum module table has malformed row")
+            item_id, title, subject, grade, status = cells
+            modules.append(
+                {
+                    "id": item_id.strip("`"),
+                    "title": _curriculum_text(title),
+                    "subject": _curriculum_text(subject),
+                    "grade": _curriculum_text(grade),
+                    "lane": "",
+                    "status": _curriculum_text(status),
+                    "kind": "module",
+                }
+            )
+    if (
+        not unit_header or not unit_separator or not units
+        or not module_header or not module_separator or not modules
+    ):
+        raise ValueError("curriculum canonical tables are missing")
+    items = units + modules
+    ids = [item["id"] for item in items]
+    duplicates = sorted(item_id for item_id, count in Counter(ids).items() if count > 1)
+    if duplicates:
+        raise ValueError("curriculum duplicate ids: " + ", ".join(duplicates[:8]))
+    allowed_subjects = {"数学", "英語", "国語", "理科", "社会"}
+    for item in items:
+        if not all(item[key] for key in ("id", "title", "subject", "grade", "status")):
+            raise ValueError(f"curriculum empty field: {item['id'] or '(missing id)'}")
+        if item["subject"] not in allowed_subjects:
+            raise ValueError(f"curriculum unknown subject: {item['subject']}")
+        if item["status"] not in statuses:
+            raise ValueError(f"curriculum unknown status: {item['status']}")
+        if item["kind"] == "unit" and item["lane"] != "公開コア":
+            raise ValueError(f"curriculum unknown lane: {item['id']}")
+
+    family_items: Dict[str, List[Dict[str, str]]] = {
+        str(row["slug"]): [] for row in families
+    }
+    for item in units:
+        matches = [
+            row for row in families if item["id"].startswith(str(row["unit_id_prefix"]))
+        ]
+        if len(matches) != 1:
+            raise ValueError(f"curriculum unit family match must be unique: {item['id']}")
+        row = matches[0]
+        if item["subject"] != row["subject"]:
+            raise ValueError(f"curriculum unit subject mismatch: {item['id']}")
+        family_items[str(row["slug"])].append(item)
+    empty_families = [slug for slug, rows in family_items.items() if not rows]
+    if empty_families:
+        raise ValueError("curriculum empty families: " + ", ".join(empty_families))
+
+    materials = source / "materials"
+    if not materials.is_dir():
+        raise ValueError("canonical materials directory missing")
+    material_packages: Dict[str, List[str]] = {}
+    lesson_counts: Dict[str, int] = {}
+    for subject_dir in sorted(path for path in materials.iterdir() if path.is_dir()):
+        packages = [
+            path.name
+            for path in sorted(subject_dir.iterdir())
+            if path.is_dir() and any(path.rglob("*.md"))
+        ]
+        material_packages[subject_dir.name] = packages
+        lesson_counts[subject_dir.name] = sum(
+            1
+            for package in packages
+            for markdown in (subject_dir / package).rglob("*.md")
+            if re.fullmatch(r"lesson_\d+\.md", markdown.name)
+            or markdown.name in {"diagnostic.md", "student_textbook_print.md"}
+        )
+    subject_family: Dict[str, str] = {}
+    for subject in material_packages:
+        matches = [
+            row
+            for row in families
+            if subject == row["material_prefix"]
+            or subject.startswith(str(row["material_prefix"]) + "-")
+        ]
+        if len(matches) != 1:
+            raise ValueError(f"material subject family match must be unique: {subject}")
+        subject_family[subject] = str(matches[0]["slug"])
+
+    package_to_items: Dict[str, List[Dict[str, str]]] = {}
+    item_material: Dict[str, str] = {}
+    all_package_slugs = [slug for rows in material_packages.values() for slug in rows]
+    for item in items:
+        candidates = [
+            slug
+            for slug in all_package_slugs
+            if item["id"] == slug or item["id"].startswith(slug + "--")
+        ]
+        if candidates:
+            longest = max(map(len, candidates))
+            winners = [slug for slug in candidates if len(slug) == longest]
+            if len(winners) != 1:
+                raise ValueError(f"curriculum item package match is ambiguous: {item['id']}")
+            item_material[item["id"]] = winners[0]
+            package_to_items.setdefault(winners[0], []).append(item)
+    for package in all_package_slugs:
+        linked = package_to_items.get(package, [])
+        if not linked:
+            raise ValueError(f"material package has no curriculum item: {package}")
+        if all(item["status"] in {"未着手", "調査済"} for item in linked):
+            raise ValueError(f"material package has only pre-body statuses: {package}")
+
+    expected_families: List[Dict[str, object]] = []
+    for row in families:
+        slug = str(row["slug"])
+        subjects = [
+            subject for subject, family_slug in subject_family.items() if family_slug == slug
+        ]
+        package_count = sum(len(material_packages[subject]) for subject in subjects)
+        expected_families.append(
+            {
+                "slug": slug,
+                "unit_id_prefix": row["unit_id_prefix"],
+                "school": row["school"],
+                "subject": row["subject"],
+                "label": f"{row['school']} {row['subject']}",
+                "href": f"curriculum/{slug}/index.html",
+                "registered_units": len(family_items[slug]),
+                "status_counts": dict(Counter(item["status"] for item in family_items[slug])),
+                "material_subjects": subjects,
+                "packages": package_count,
+                "lesson_pages": sum(lesson_counts[subject] for subject in subjects),
+                "availability": "available" if package_count else "preparing",
+            }
+        )
+    return {
+        "contract_version": version,
+        "progress_index_sha256": hashlib.sha256(progress.read_bytes()).hexdigest(),
+        "statuses": statuses,
+        "families": expected_families,
+        "units": units,
+        "modules": modules,
+        "item_material": item_material,
+        "total_packages": len(all_package_slugs),
+        "total_lesson_pages": sum(lesson_counts.values()),
+    }
+
+
+def _curriculum_relative_href(current: PurePosixPath, target: str) -> str:
+    return posixpath.relpath(target, current.parent.as_posix() or ".")
+
+
+def curriculum_grid_contract_errors(
+    snapshot: Dict[str, object], report: object, html_text: str, current: PurePosixPath
+) -> List[str]:
+    """Compare one rendered grid and report with the independently derived map."""
+    errors: List[str] = []
+    families = snapshot.get("families")
+    if not isinstance(families, list):
+        return ["canonical curriculum families are invalid"]
+    if not isinstance(report, dict):
+        return ["build-report missing curriculum_grid"]
+    reported = report.get("families")
+    if (
+        report.get("source") != "curriculum_progress_index_and_canonical_materials"
+        or report.get("contract_version") != snapshot.get("contract_version")
+        or report.get("progress_index_sha256") != snapshot.get("progress_index_sha256")
+        or not isinstance(reported, list)
+    ):
+        errors.append("build-report curriculum_grid contract mismatch")
+        reported = []
+    expected_slugs = [str(row["slug"]) for row in families]
+    reported_slugs = [str(row.get("slug", "")) for row in reported if isinstance(row, dict)]
+    if reported_slugs != expected_slugs:
+        errors.append("curriculum_grid report order or membership differs from canonical source")
+    for expected, actual in zip(families, reported):
+        if not isinstance(actual, dict):
+            errors.append("curriculum_grid report family row is invalid")
+            continue
+        for key in (
+            "slug", "label", "school", "subject", "href", "registered_units",
+            "status_counts", "material_subjects", "packages", "lesson_pages", "availability",
+        ):
+            if actual.get(key) != expected.get(key):
+                errors.append(f"curriculum_grid report {key} differs: {expected['slug']}")
+    available = sum(row["availability"] == "available" for row in families)
+    preparing = len(families) - available
+    totals = {
+        "total_entries": len(families),
+        "available_entries": available,
+        "preparing_entries": preparing,
+        "registered_units": len(snapshot.get("units", [])),
+        "registered_modules": len(snapshot.get("modules", [])),
+        "total_packages": snapshot.get("total_packages"),
+        "total_lesson_pages": snapshot.get("total_lesson_pages"),
+    }
+    for key, expected in totals.items():
+        if report.get(key) != expected:
+            errors.append(f"curriculum_grid report {key} differs from canonical source")
+
+    if current == PurePosixPath("index.html"):
+        expected_hero_fragments = (
+            f"OPEN LEARNING / {len(families)} CURRICULUM ENTRANCES",
+            (
+                "わからなくなった場所まで戻り、自分のペースで学び直せます。"
+                f"中学・高校{len(families)}入口のうち、{available}入口で"
+                f"{snapshot.get('total_packages')}パッケージを読めます。"
+                f"{preparing}入口は「準備中」です。登録も記録もいりません。"
+            ),
+        )
+        if any(fragment not in html_text for fragment in expected_hero_fragments):
+            errors.append("home curriculum hero totals or wording differ from canonical source")
+
+    collector = CurriculumGridCollector()
+    collector.feed(html_text)
+    entries = collector.entries
+    rendered_slugs = [entry.family for entry in entries]
+    if rendered_slugs != expected_slugs:
+        errors.append("curriculum grid order or membership differs from canonical source")
+    by_slug = {str(row["slug"]): row for row in families}
+    for entry in entries:
+        expected = by_slug.get(entry.family)
+        if expected is None:
+            errors.append(f"curriculum grid has non-canonical family: {entry.family}")
+            continue
+        try:
+            counts = (
+                int(entry.unit_count), int(entry.package_count), int(entry.lesson_page_count)
+            )
+        except ValueError:
+            errors.append(f"curriculum grid has invalid counts: {entry.family}")
+            continue
+        if counts != (
+            expected["registered_units"], expected["packages"], expected["lesson_pages"]
+        ):
+            errors.append(f"curriculum grid counts differ: {entry.family}")
+        if entry.availability != expected["availability"]:
+            errors.append(f"curriculum grid availability differs: {entry.family}")
+        if entry.school != expected["school"] or entry.subject != expected["subject"]:
+            errors.append(f"curriculum grid visible labels differ: {entry.family}")
+        state_label = "教材あり" if expected["availability"] == "available" else "準備中"
+        if entry.state_label != state_label:
+            errors.append(f"curriculum grid visible state differs: {entry.family}")
+        expected_unit_text = f"進捗表に{expected['registered_units']}単元"
+        if entry.visible_unit_count != expected_unit_text:
+            errors.append(f"curriculum grid visible unit count differs: {entry.family}")
+        expected_availability_text = (
+            f"{expected['packages']}パッケージ・レッスン／本文{expected['lesson_pages']}ページを掲載"
+            if expected["availability"] == "available"
+            else "このサイトで読める教材は、まだありません"
+        )
+        if entry.visible_availability != expected_availability_text:
+            errors.append(f"curriculum grid visible availability differs: {entry.family}")
+        target = _curriculum_relative_href(current, str(expected["href"]))
+        material_hrefs = [
+            _curriculum_relative_href(current, f"subjects/{subject}/index.html")
+            for subject in expected["material_subjects"]
+        ]
+        if list(entry.hrefs) != [target, *material_hrefs, target]:
+            errors.append(f"curriculum grid hrefs differ: {entry.family}")
+        expected_aria = (
+            f"{expected['label']}の学習グリッドを開く。進捗表に{expected['registered_units']}単元、"
+            + (
+                f"{expected['packages']}パッケージ掲載"
+                if expected["availability"] == "available"
+                else "教材は準備中"
+            )
+        )
+        if not entry.aria_labels or entry.aria_labels[0] != expected_aria:
+            errors.append(f"curriculum grid aria-label differs: {entry.family}")
+        expected_open_aria = f"{expected['label']}の単元の全体像を見る"
+        if len(entry.aria_labels) < 2 or entry.aria_labels[-1] != expected_open_aria:
+            errors.append(f"curriculum grid open-link aria-label differs: {entry.family}")
+    return errors
+
+
+def curriculum_skeleton_contract_errors(
+    snapshot: Dict[str, object], html_by_path: Dict[str, str]
+) -> List[str]:
+    """Validate all family skeleton rows and the separate module skeleton."""
+    errors: List[str] = []
+    families = snapshot.get("families")
+    units = snapshot.get("units")
+    modules = snapshot.get("modules")
+    item_material = snapshot.get("item_material")
+    if (
+        not isinstance(families, list)
+        or not isinstance(units, list)
+        or not isinstance(modules, list)
+        or not isinstance(item_material, dict)
+    ):
+        return ["canonical curriculum skeleton snapshot is invalid"]
+    def expected_row(item: Dict[str, str], current: PurePosixPath) -> CurriculumSkeletonRow:
+        item_id = str(item["id"])
+        package = item_material.get(item_id)
+        available = isinstance(package, str) and bool(package)
+        return CurriculumSkeletonRow(
+            item_id=item_id,
+            status=str(item["status"]),
+            material="available" if available else "preparing",
+            title=str(item["title"]),
+            visible_id=item_id,
+            visible_status=str(item["status"]),
+            state_kind="link" if available else "pending",
+            state_href=(
+                _curriculum_relative_href(current, f"units/{package}/index.html")
+                if available
+                else ""
+            ),
+            state_text="教材を読む" if available else "準備中",
+        )
+
+    for family in families:
+        if not isinstance(family, dict):
+            errors.append("canonical curriculum family is invalid")
+            continue
+        path = str(family["href"])
+        raw = html_by_path.get(path)
+        if raw is None:
+            errors.append(f"curriculum family skeleton page missing: {family['slug']}")
+            continue
+        if 'class="page-curriculum-family"' not in raw:
+            errors.append(f"curriculum family page class missing: {family['slug']}")
+        expected_items = sorted([
+            item
+            for item in units
+            if isinstance(item, dict)
+            and str(item.get("id", "")).startswith(str(family["unit_id_prefix"]))
+        ], key=lambda item: str(item["id"]))
+        expected_groups: Dict[str, List[Dict[str, str]]] = {}
+        for item in expected_items:
+            expected_groups.setdefault(str(item["grade"]), []).append(item)
+        expected_tracks = tuple(
+            CurriculumSkeletonTrack(
+                label=grade,
+                count=len(group_items),
+                count_unit="単元",
+                status_summary=curriculum_status_summary_from_items(group_items),
+                rows=tuple(
+                    expected_row(item, PurePosixPath(path)) for item in group_items
+                ),
+            )
+            for grade, group_items in expected_groups.items()
+        )
+        expected_family_label = str(family["label"])
+        expected_state_label = (
+            "教材あり" if family["availability"] == "available" else "準備中"
+        )
+        expected_status_summary = curriculum_status_summary_from_items(expected_items)
+        page_fragments = (
+            f"<h1>{html_module.escape(expected_family_label)}</h1>",
+            f'class="curriculum-availability is-{family["availability"]}">{expected_state_label}</span>',
+            f"正本の進捗表にある{len(expected_items)}単元を、学校段階・学年ごとに並べています。教材の掲載有無と制作工程の状態は別の情報です。",
+            f'<p class="curriculum-hero-meta">正本の状態: {html_module.escape(expected_status_summary)}</p>',
+        )
+        if any(fragment not in raw for fragment in page_fragments):
+            errors.append(f"curriculum family page summary differs: {family['slug']}")
+        actual_tracks = collect_curriculum_skeleton_tracks(raw)
+        if actual_tracks != expected_tracks:
+            errors.append(f"curriculum family visible skeleton differs: {family['slug']}")
+        actual_row_list = [row for track in actual_tracks for row in track.rows]
+        declared_row_ids = re.findall(r'data-curriculum-id="([^"]+)"', raw)
+        parsed_row_ids = [row.item_id for row in actual_row_list]
+        if declared_row_ids != parsed_row_ids:
+            errors.append(f"curriculum family has stray or malformed rows: {family['slug']}")
+        actual_rows = {row.item_id: (row.status, row.material) for row in actual_row_list}
+        expected_rows = {
+            row.item_id: (row.status, row.material)
+            for track in expected_tracks
+            for row in track.rows
+        }
+        if len(actual_row_list) != len(actual_rows):
+            errors.append(f"curriculum family skeleton has duplicate rows: {family['slug']}")
+        if actual_rows != expected_rows:
+            errors.append(f"curriculum family skeleton rows differ: {family['slug']}")
+        if family["availability"] == "preparing":
+            preparing_explanation = (
+                f"正本の進捗表には{len(expected_items)}単元が登録されていますが、"
+                "このサイトで読める教材本文はまだありません。"
+                "完成時期や制作中であることを示す表示ではありません。"
+            )
+            note_match = re.search(
+                r'<section class="container curriculum-preparing-note"[^>]*>(.*?)</section>',
+                raw,
+                re.DOTALL,
+            )
+            expected_note_text = (
+                "NOT YET PUBLISHED 教材は準備中です " + preparing_explanation
+            )
+            if (
+                note_match is None
+                or _curriculum_visible_text(note_match.group(1)) != expected_note_text
+                or any(
+                    forbidden in raw
+                    for forbidden in ("現在制作中", "まもなく完成", "完成予定です")
+                )
+            ):
+                errors.append(f"preparing family explanation missing: {family['slug']}")
+            if any(material == "available" for _status, material in actual_rows.values()):
+                errors.append(f"preparing family contains false material link: {family['slug']}")
+        else:
+            available_summary = (
+                f"{family['packages']}パッケージ、レッスン・本文"
+                f"{family['lesson_pages']}ページを掲載しています。"
+            )
+            if available_summary not in raw:
+                errors.append(f"available family summary differs: {family['slug']}")
+
+    modules_path = "curriculum/modules/index.html"
+    modules_raw = html_by_path.get(modules_path)
+    if modules_raw is None:
+        errors.append("curriculum modules skeleton page missing")
+    else:
+        expected_module_tracks: List[CurriculumSkeletonTrack] = []
+        for subject in ("数学", "英語", "国語", "理科", "社会"):
+            subject_items = [
+                item
+                for item in modules
+                if isinstance(item, dict) and str(item.get("subject", "")) == subject
+            ]
+            if subject_items:
+                expected_module_tracks.append(
+                    CurriculumSkeletonTrack(
+                        label=subject,
+                        count=len(subject_items),
+                        count_unit="件",
+                        status_summary=curriculum_status_summary_from_items(subject_items),
+                        rows=tuple(
+                            expected_row(item, PurePosixPath(modules_path))
+                            for item in subject_items
+                        ),
+                    )
+                )
+        actual_module_tracks = collect_curriculum_skeleton_tracks(modules_raw)
+        if actual_module_tracks != tuple(expected_module_tracks):
+            errors.append("curriculum modules visible skeleton differs")
+        actual_module_list = [
+            row for track in actual_module_tracks for row in track.rows
+        ]
+        declared_module_ids = re.findall(
+            r'data-curriculum-id="([^"]+)"', modules_raw
+        )
+        parsed_module_ids = [row.item_id for row in actual_module_list]
+        if declared_module_ids != parsed_module_ids:
+            errors.append("curriculum modules have stray or malformed rows")
+        actual_modules = {
+            row.item_id: (row.status, row.material) for row in actual_module_list
+        }
+        expected_modules = {
+            row.item_id: (row.status, row.material)
+            for track in expected_module_tracks
+            for row in track.rows
+        }
+        if len(actual_module_list) != len(actual_modules):
+            errors.append("curriculum modules skeleton has duplicate rows")
+        if actual_modules != expected_modules:
+            errors.append("curriculum modules skeleton rows differ")
+        actual_module_grades: Dict[str, str] = {}
+        for item_id, row_body in re.findall(
+            r'<li data-curriculum-id="([^"]+)"[^>]*>(.*?)</li>',
+            modules_raw,
+            re.DOTALL,
+        ):
+            grade_match = re.search(
+                r'<span class="curriculum-unit-grade">(.*?)</span>',
+                row_body,
+                re.DOTALL,
+            )
+            actual_module_grades[html_module.unescape(item_id)] = (
+                _curriculum_visible_text(grade_match.group(1))
+                if grade_match is not None
+                else ""
+            )
+        expected_module_grades = {
+            str(item["id"]): str(item["grade"])
+            for item in modules
+            if isinstance(item, dict)
+        }
+        if actual_module_grades != expected_module_grades:
+            errors.append("curriculum modules visible grades differ")
+        module_summary = (
+            f"公開コア単元とは別枠の{len(modules)}件です。"
+            "名称・学校段階・状態を正本の進捗表から表示します。"
+        )
+        if module_summary not in modules_raw:
+            errors.append("curriculum modules page summary differs")
+    curriculum_index_raw = html_by_path.get("curriculum/index.html")
+    if curriculum_index_raw is None:
+        errors.append("curriculum index page missing")
+    else:
+        expected_index_fragments = (
+            f"<h2 id=\"curriculum-grid-title\">{len(families)}の教科入口</h2>",
+            f"公開コア{len(units)}単元とは別に、正本には{len(modules)}件の科目モジュールが登録されています。",
+        )
+        if any(fragment not in curriculum_index_raw for fragment in expected_index_fragments):
+            errors.append("curriculum index visible totals differ")
+    return errors
 
 
 def decode_css_escapes(value: str) -> str:
@@ -871,6 +1963,62 @@ def freshness_message(built_commit: str, current_head: str) -> str | None:
     )
 
 
+def normalize_repository_url(value: object) -> str:
+    return str(value or "").strip().rstrip("/").removesuffix(".git")
+
+
+def source_checkout_contract_errors(
+    source_info: object,
+    actual_status: Optional[str] = None,
+    actual_origin: Optional[str] = None,
+    actual_head: Optional[str] = None,
+    expected_head: Optional[str] = None,
+) -> List[str]:
+    if not isinstance(source_info, dict):
+        return ["build-report source metadata is invalid"]
+    errors: List[str] = []
+    if source_info.get("git_status_before") != "" or source_info.get("git_status_after") != "":
+        errors.append("source checkout was not clean throughout build")
+    if normalize_repository_url(source_info.get("repository")) != OFFICIAL_SOURCE_REPOSITORY:
+        errors.append("reported source repository is not the official canonical repository")
+    if normalize_repository_url(source_info.get("origin")) != OFFICIAL_SOURCE_REPOSITORY:
+        errors.append("reported source origin is not the official canonical repository")
+    if actual_status is not None and actual_status != "":
+        errors.append("current source checkout has uncommitted changes")
+    if (
+        actual_origin is not None
+        and normalize_repository_url(actual_origin) != OFFICIAL_SOURCE_REPOSITORY
+    ):
+        errors.append("current source origin is not the official canonical repository")
+    if expected_head is not None and not re.fullmatch(r"[0-9a-f]{40}", expected_head):
+        errors.append("expected canonical source SHA is invalid")
+    elif actual_head is not None and expected_head is not None and actual_head != expected_head:
+        errors.append("current source HEAD is not the verified official main revision")
+    return errors
+
+
+def publication_site_contract_errors(
+    build_report: object, expected_site_sha: Optional[str]
+) -> List[str]:
+    if not isinstance(build_report, dict):
+        return ["build-report publication metadata is invalid"]
+    publication = build_report.get("publication")
+    if not isinstance(publication, dict):
+        return ["build-report publication metadata is invalid"]
+    reported = publication.get("site_commit")
+    errors: List[str] = []
+    if reported is not None and (
+        not isinstance(reported, str) or not re.fullmatch(r"[0-9a-f]{40}", reported)
+    ):
+        errors.append("reported site commit is invalid")
+    if expected_site_sha is not None:
+        if not re.fullmatch(r"[0-9a-f]{40}", expected_site_sha):
+            errors.append("expected site commit is invalid")
+        elif reported != expected_site_sha:
+            errors.append("reported site commit does not match the expected release commit")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Static site checker for ManabiGrid.")
     parser.add_argument(
@@ -882,6 +2030,14 @@ def main() -> int:
         "--source",
         type=Path,
         help="正本root。省略時はMANABIGRID_SOURCE_ROOTと隣接候補から解決します",
+    )
+    parser.add_argument(
+        "--expected-source-sha",
+        help="workflow等が独立取得した正本mainの小文字40桁SHA",
+    )
+    parser.add_argument(
+        "--expected-site-sha",
+        help="公開workflowがbuild-reportへ埋め込むsite commitの小文字40桁SHA",
     )
     parser.add_argument(
         "--report-output",
@@ -926,6 +2082,22 @@ def main() -> int:
     except Exception as exc:
         build_report = {}
         errors.append(str(exc))
+    publication_errors = publication_site_contract_errors(
+        build_report, args.expected_site_sha
+    )
+    errors.extend(publication_errors)
+    checks.append(
+        {
+            "name": "publication:site_commit",
+            "pass": not publication_errors,
+            "expected": args.expected_site_sha,
+            "reported": (
+                build_report.get("publication", {}).get("site_commit")
+                if isinstance(build_report.get("publication"), dict)
+                else None
+            ),
+        }
+    )
 
     public_files = iter_public_files(site_root)
     html_paths = sorted(path for path in public_files if path.suffix.lower() == ".html")
@@ -1105,6 +2277,8 @@ def main() -> int:
             errors.append(f"pages.total mismatch: report={total} html={len(html_paths)}")
         if pages.get("updates") != 1:
             errors.append("pages.updates must be exactly one")
+        if pages.get("curriculum") != 12:
+            errors.append("pages.curriculum must be exactly twelve")
     else:
         errors.append("build-report missing pages.total")
 
@@ -1149,6 +2323,108 @@ def main() -> int:
                 expected_update_commits.append(commit)
 
     home_page = parsed_pages.get(site_root / "index.html")
+    curriculum_index_page = parsed_pages.get(site_root / "curriculum/index.html")
+    curriculum_grid_ok = True
+    legacy_home_emphasis_ok = True
+    legacy_home_markers: List[str] = []
+    curriculum_report = build_report.get("curriculum_grid", {})
+    curriculum_source = resolve_source_root(site_root, args.source, build_report)
+    curriculum_snapshot: Dict[str, object] = {}
+    if curriculum_source is None:
+        curriculum_grid_ok = False
+        errors.append("curriculum grid cannot resolve canonical source")
+    else:
+        try:
+            curriculum_snapshot = canonical_curriculum_snapshot(
+                curriculum_source,
+                Path(__file__).resolve().parent / "curriculum_grid.contract.json",
+            )
+        except (OSError, ValueError) as exc:
+            curriculum_grid_ok = False
+            errors.append(f"curriculum grid canonical derivation failed: {exc}")
+    if not home_page or not curriculum_index_page:
+        curriculum_grid_ok = False
+        errors.append("home or curriculum index page is missing for grid validation")
+    else:
+        if curriculum_snapshot:
+            for page_value, current in (
+                (home_page.raw_text, PurePosixPath("index.html")),
+                (curriculum_index_page.raw_text, PurePosixPath("curriculum/index.html")),
+            ):
+                grid_errors = curriculum_grid_contract_errors(
+                    curriculum_snapshot, curriculum_report, page_value, current
+                )
+                if grid_errors:
+                    curriculum_grid_ok = False
+                    for error in grid_errors:
+                        if error not in errors:
+                            errors.append(error)
+            html_by_path = {
+                path.relative_to(site_root).as_posix(): parsed.raw_text
+                for path, parsed in parsed_pages.items()
+            }
+            skeleton_errors = curriculum_skeleton_contract_errors(
+                curriculum_snapshot, html_by_path
+            )
+            if skeleton_errors:
+                curriculum_grid_ok = False
+                errors.extend(skeleton_errors)
+            expected_subject_pages = sorted(
+                str(subject)
+                for family in curriculum_snapshot.get("families", [])
+                if isinstance(family, dict)
+                for subject in family.get("material_subjects", [])
+            )
+            actual_subject_pages = sorted(
+                path.parent.name for path in (site_root / "subjects").glob("*/index.html")
+            )
+            if expected_subject_pages != actual_subject_pages:
+                curriculum_grid_ok = False
+                errors.append("generated subject pages differ from canonical materials")
+        if (
+            '<section id="learning-grid"' not in home_page.raw_text
+            or '<ul class="curriculum-grid" role="list">' not in home_page.raw_text
+            or '<a class="primary-action" href="#learning-grid">' not in home_page.raw_text
+        ):
+            curriculum_grid_ok = False
+            errors.append("home learning grid primary navigation or list semantics are missing")
+        legacy_markers = (
+            "OPEN LEARNING / 中学3年 数学",
+            "中3数学の8単元",
+            'class="container learning-route"',
+            'id="math3-route"',
+            'class="learning-grid-tools"',
+            "<strong>中3数学で迷っている</strong>",
+            ">中3数学の診断を使う<",
+            ">中3数学の診断へ<",
+        )
+        legacy_home_markers = [
+            marker for marker in legacy_markers if marker in home_page.raw_text
+        ]
+        if legacy_home_markers:
+            curriculum_grid_ok = False
+            legacy_home_emphasis_ok = False
+            errors.append("legacy middle-school-math-only home emphasis remains")
+    checks.append(
+        {
+            "name": "content:curriculum_learning_grid",
+            "pass": curriculum_grid_ok,
+            "entries": len(curriculum_snapshot.get("families", [])),
+            "registered_units": len(curriculum_snapshot.get("units", [])),
+            "registered_modules": len(curriculum_snapshot.get("modules", [])),
+            "packages": curriculum_snapshot.get("total_packages", 0),
+            "source": "progress_index_plus_canonical_materials_direct_enumeration",
+        }
+    )
+    checks.append(
+        {
+            "name": "content:home_legacy_math3_markup_and_dedicated_emphasis_absent",
+            "pass": legacy_home_emphasis_ok,
+            "matched_markers": legacy_home_markers,
+            "scope": "top-page-only legacy DOM and dedicated CTA copy; ordinary update titles are allowed",
+        }
+    )
+
     updates_page = parsed_pages.get(site_root / "updates/index.html")
     if not home_page or not updates_page:
         update_history_ok = False
@@ -1226,27 +2502,48 @@ def main() -> int:
     source_commit_matches: Optional[bool] = None
     if isinstance(source_info, dict):
         source_root = resolve_source_root(site_root, args.source, build_report)
-        if source_info.get("git_status_before") != source_info.get("git_status_after"):
-            errors.append("source git status changed during build")
         built_commit_value = source_info.get("commit")
         built_commit = built_commit_value if isinstance(built_commit_value, str) else None
         if source_root and built_commit and (source_root / ".git").exists():
             try:
-                current_head = subprocess.run(
-                    ["git", "-C", str(source_root), "rev-parse", "HEAD"],
-                    check=True,
-                    capture_output=True,
-                    text=True,
-                ).stdout.strip()
+                def source_git(*git_args: str) -> str:
+                    return subprocess.run(
+                        ["git", "-C", str(source_root), *git_args],
+                        check=True,
+                        capture_output=True,
+                        text=True,
+                    ).stdout.strip()
+
+                current_head = source_git("rev-parse", "HEAD")
+                current_status = source_git("status", "--porcelain", "--untracked-files=all")
+                current_origin = source_git("config", "--get", "remote.origin.url")
+                expected_source_head = args.expected_source_sha
+                if expected_source_head is None:
+                    expected_source_head = source_git(
+                        "rev-parse", "refs/remotes/origin/main"
+                    )
+                errors.extend(
+                    source_checkout_contract_errors(
+                        source_info,
+                        actual_status=current_status,
+                        actual_origin=current_origin,
+                        actual_head=current_head,
+                        expected_head=expected_source_head,
+                    )
+                )
                 source_head_checked = True
                 source_commit_matches = built_commit == current_head
                 stale = freshness_message(built_commit, current_head)
                 if stale:
                     warnings.append(stale)
             except (OSError, subprocess.CalledProcessError) as exc:
-                warnings.append(f"正本HEADの鮮度検査を実行できませんでした: {exc}")
+                errors.extend(source_checkout_contract_errors(source_info))
+                errors.append(f"正本checkoutの来歴検査を実行できませんでした: {exc}")
+        else:
+            errors.extend(source_checkout_contract_errors(source_info))
     else:
         source_root = resolve_source_root(site_root, args.source, build_report)
+        errors.extend(source_checkout_contract_errors(source_info))
     if source_root is None:
         errors.append("正本Git rootを解決できないため、正本SHA・鮮度・検疫・更新履歴を照合できません")
     else:

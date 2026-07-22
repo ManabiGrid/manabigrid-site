@@ -2,6 +2,8 @@
 
 [ManabiGrid（まなびグリッド）](https://github.com/ManabiGrid/manabigrid)の公開OSS教材を、GitHubに慣れていない人も読みやすい静的サイトへ変換します。教材の正本は別リポジトリに保ち、このリポジトリは生成器、検査器、公開用HTMLを管理します。
 
+トップは特定学年を固定表示せず、正本の進捗表にある「中学／高校 × 5教科」の10入口を学習グリッドとして自動生成します。教材が実在する入口は今読める教科・学年へつなぎ、0件の入口も「準備中」として正本の単元骨格を示します。計画範囲は`curriculum/PROGRESS_INDEX.md`、掲載有無と件数は`materials/`から別々に取得するため、工程状態を「読める」と誤表示しません。
+
 - 公開サイト: https://manabigrid.github.io/manabigrid-site/
 - 正本: https://github.com/ManabiGrid/manabigrid
 - 教材・図版: CC BY 4.0
@@ -21,7 +23,7 @@ python3 build_site.py
 python3 build_site.py --source /path/to/manabigrid
 ```
 
-この1コマンドで全対象Markdownを再変換し、内部リンク、frontmatter非表示、`:::`ブロック、SVG、来歴、更新履歴、公開メタデータ、検索索引、公開検疫、正本HEADとの鮮度一致を検査します。件数は正本の更新に応じて変わります。更新履歴のため正本は履歴を省略しないGit cloneが必要です。
+この1コマンドで全対象Markdownを再変換し、学習グリッド、準備中の教科骨格、内部リンク、frontmatter非表示、`:::`ブロック、SVG、来歴、更新履歴、公開メタデータ、検索索引、公開検疫、正本HEADとの鮮度一致を検査します。件数は正本の更新に応じて変わります。更新履歴のため正本は履歴を省略しないGit cloneが必要です。
 
 ## ローカルで見る
 
@@ -70,7 +72,19 @@ python3 update_pages.py status
 python3 update_pages.py publish --approve-publication
 ```
 
+`status`は`source_sync`と`release_readiness`を分けて返します。正本SHAが公開版と同じでも、siteに未commit差分、branch違い、origin drift、workflow契約違いがあればトップレベル状態をblockedにし、「すべて公開済み」と誤報しにくくしています。結果はignored `update-report.json`にも保存します。
+
+ビルド自体も、公式ManabiGridをoriginに持つcleanな正本checkoutだけを受け付けます。未commit編集、fork、cleanだが未pushの正本HEADを正本コミット由来として表示せず、進捗表の不正行・罫線欠落・固定10入口の改変・可視単元名や学年群の不一致を生成側と独立検査側で停止します。
+
 2行目は、現在の依頼でこのGitHub Pages更新が明示承認されている場合だけ実行します。フラグ自体は承認の代わりになりません。通常の正本更新だけならsiteのcommitは不要で、Actionsが隔離環境で生成します。生成器の互換修正が必要な時だけ、siteコードの検証・commit・pushを別レーンで行います。
+
+正本SHAは同じまま、生成器・CSS・検査器だけをcommit／pushした更新では、push後に次の1コマンドで該当runと公開版を照合します。`publish`は正本が同じ場合に`already_current`となるため、この用途には使いません。
+
+```bash
+python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --source-sha <正本の40桁SHA>
+```
+
+公開`build-report.json`には正本commitに加えてsite commitも入り、別タスクや別モデルでも「どの生成器で作ったか」を機械確認できます。
 
 トップページには最新3件、`updates/`には表示に影響する正本Git更新を新しい順で最大50件掲載します。正本の全履歴を取得してから、教材Markdown・図版・進捗・案内・権利情報に関わる変更だけを選びます。閲覧時にGitHub APIへ接続する機能ではなく、静的ビルド時の生成です。
 
@@ -83,7 +97,7 @@ python3 update_pages.py publish --approve-publication
 リポジトリ全体はそのまま配信しません。`public_site.py`を単一allowlistとして、次だけをPages artifactへ入れます。
 
 - ルート: `.nojekyll`、`index.html`、`404.html`、`robots.txt`、`sitemap.xml`、`build-report.json`
-- ディレクトリ: `_assets/`、`_media/`、`about/`、`browse/`、`content/`、`progress/`、`subjects/`、`units/`、`updates/`
+- ディレクトリ: `_assets/`、`_media/`、`about/`、`browse/`、`content/`、`curriculum/`、`progress/`、`subjects/`、`units/`、`updates/`
 
 ```bash
 python3 package_site.py --dry-run
@@ -107,11 +121,12 @@ python3 check_external_links.py . --run
 
 HTTP 404/410はhard broken、401/403/429や一時的なネットワーク失敗はblocked/unknownとして分けて記録します。
 
-実描画は390×844pxと1440×1000pxで、トップ、教材検索、診断、英語レッスン、wide SVGレッスン、進捗一覧、GitHub案内、更新履歴、404、MathML試作ページを確認します。ライト／ダークの両方と、ダーク設定中でも印刷が白地・黒文字になることも検査します。
+実描画は390×844pxと1440×1000pxで、トップ、教材検索、診断、英語レッスン、wide SVGレッスン、進捗一覧、学習グリッド全体、準備中教科の骨格、GitHub案内、更新履歴、404、MathML試作ページを確認します。トップはさらに320×844pxの再配置、グリッドの可視量、ダーク配色のコントラスト、印刷時の白地復帰と途中改ページ回避を検査します。
 
 ## 主なファイル
 
 - `build_site.py`: 再実行可能な静的サイト生成器
+- `curriculum_grid.contract.json`: 中学／高校×5教科の安定URLとunit ID対応だけを固定する機械契約
 - `check_site.py`: 全ページ、リンク、メタデータ、鮮度、SVG、MathML、公開検疫の検査器
 - `check_external_links.py`: 明示実行する外部URL到達性検査器
 - `preview_server.py`: GitHub Pagesのproject pathと404を再現するlocalhostサーバー

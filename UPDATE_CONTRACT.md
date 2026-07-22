@@ -15,6 +15,8 @@ status: active
 - 生成HTMLを手編集しない。正本の本文・数値を「サイト向け」に書き換えない。
 - 検査失敗時にallowlist、検疫、期待件数を推測で緩めない。直前の正常なPagesは保持されるため、失敗したゲートと対象ファイルを報告して止める。
 - `--approve-publication`は誤操作防止の技術フラグであり、承認そのものではない。現在のユーザー依頼がこのPages更新を明示承認している時だけ指定する。
+- build入力は公式`https://github.com/ManabiGrid/manabigrid`をoriginに持つcleanなGit checkoutだけを許可する。dirtyな正本、fork、コピーへ差し替えて公式コミット由来のように表示しない。
+- SHAを省略したローカルbuildでも、正本HEADがfetch済み`origin/main`と完全一致しなければ停止する。cleanでも未pushの正本commitは公式スナップショットとして扱わない。固定再現時は`--expected-source-sha`で対象SHAを明示する。
 
 ## 通常更新の唯一の入口
 
@@ -23,6 +25,9 @@ status: active
 ```bash
 python3 update_pages.py status
 ```
+
+出力は`source_sync`（正本と公開版の一致）と`release_readiness`（site checkoutを安全に公開へ使えるか）の二軸で判定する。トップレベル`status`だけを見ても、dirty、branch違い、site drift、workflow契約違いを`current`と誤認しない。`publication_authority: not_observed`は、スクリプトが会話上の公開承認を推測しないことを示す。
+`next_action_code`も破壊操作を指示しない。dirtyなら`preserve_and_inspect_dirty_worktree`、site driftなら`inspect_site_drift`として、reset・checkout・pull等を自動選択させない。更新可能でも公開承認を観測していないstatusでは`await_publication_approval`に留める。
 
 明示承認があり、正本の現在`main`をすぐ公開する場合は次の1コマンドだけを使う。
 
@@ -38,6 +43,16 @@ python3 update_pages.py publish --approve-publication --source-sha <40桁SHA>
 
 外部URLへ実リクエストする一回検査は、依頼または承認がある大きな更新時だけ `--check-external-links` を足す。
 
+## サイトコードだけを更新した時の公開確認
+
+正本SHAがすでに公開版と同じでも、生成器・CSS・検査器のcommitを`main`へpushするとpush起点のPages workflowが再生成・公開する。この場合、通常更新の`publish`は`already_current`を返すため使わない。承認済みのsite commitをpushした後、次の入口でそのcommit専用run、公開`build-report.json`、Pages deploymentを完全一致で照合する。
+
+```bash
+python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --source-sha <正本の40桁SHA>
+```
+
+この入口はcleanなsite `main`、local HEADと`origin/main`の一致、`Pages / push / <site SHA>`というrun-name全体、event、branch、workflow名、公開レポート内のsite／source両SHA、Pages deploymentの成功状態を検査する。別runや「最新run」を代用しない。Actionsはbuild時に`MANABIGRID_SITE_COMMIT_SHA`を与え、公開`build-report.json`の`publication.site_commit`へ生成器commitを記録する。
+
 ## runnerが保証すること
 
 1. site checkoutがcleanな`main`で、local HEADと`origin/main`が同一か検査する。
@@ -47,6 +62,7 @@ python3 update_pages.py publish --approve-publication --source-sha <40桁SHA>
 5. build、全Markdown変換、内部リンク、SVG安全性、公開検疫、allowlist packageの全成功後だけPagesへdeployする。
 6. deploy後に公開`build-report.json`の正本SHA、トップHTTP 200、不存在URLHTTP 404を照合する。
 7. `--source-sha`省略時だけ、正本が公開中に進んだ場合は一度だけ最新SHAで追随する。明示SHAは固定し、公開後に進んでも新SHAを自動承認・再公開しない。
+8. siteコードのpush更新では、該当push run、公開レポートのsite／source両SHA、Pages deploymentを`verify-site-release`で照合する。
 
 公開workflowの最終結果が成功でも、runnerが`updated`または`already_current`を返すまでは完了と報告しない。
 
@@ -55,7 +71,9 @@ python3 update_pages.py publish --approve-publication --source-sha <40桁SHA>
 | 状態 | 意味 | 実行者の扱い |
 |---|---|---|
 | `current` / `already_current` | 公開SHAと正本SHAが一致 | 変更なしで完了 |
+| `update_available` | 正本が公開SHAより進んでおり、release checkoutは利用可能 | 明示承認がある時だけpublishへ進む |
 | `updated` | 対象runと公開後照合まで成功 | 実測SHA・run URLを報告 |
+| `site_release_verified` | site commit専用push run、公開両SHA、Pages deploymentが一致 | 実測site／source SHA・run URLを報告 |
 | `dry_run_ready` | 公開直前のlocal契約まで成功 | 公開したとは報告しない |
 | `blocked_missing_approval` | 公開承認なし | 実行しない |
 | `blocked_source_drift` | 承認SHAと正本mainが不一致 | 新SHAを推測承認しない |
@@ -66,6 +84,15 @@ python3 update_pages.py publish --approve-publication --source-sha <40桁SHA>
 | `failed_run_correlation` | 起動runをUUIDで一意に特定できない | 別runを成功扱いしない |
 | `failed_live_verify` | Pagesと期待SHA／HTTP契約が不一致 | deploy成功だけで完了扱いしない |
 | `blocked_missing_tool` / `failed_command` | `git`／`gh`等がない、認証・network・CLIが失敗 | 生の手動API操作へ迂回せず原因を報告する |
+
+## 学習グリッドの生成契約
+
+- 入口の固定slug、表示名、順序、`unit_id`接頭辞は`curriculum_grid.contract.json`を機械入力とし、生成器と独立検査器が中学・高校×5教科の固定期待値へ照合する。契約ファイルだけの誤編集で学校段階や教科を増減・改名できない。件数や状態をこの契約へ手書きしない。
+- 計画範囲、単元名、学校段階・学年、工程状態は正本`curriculum/PROGRESS_INDEX.md`の「全単元一覧」から取得する。教材の掲載有無は正本`materials/`の実在パッケージから取得し、二つを混同しない。
+- `準備中`は「進捗表に登録済みだが、このサイトで読める教材パッケージが0件」という表示状態であり、誰かが現在制作中、または完成予定があるという意味ではない。
+- 新しい教材が同じ入口へ追加された時は、同じ`curriculum/<slug>/` URLのまま自動で「教材あり」へ昇格する。空のレッスンページ、将来の本文、完成日、目安時間を推測生成しない。
+- 未知prefix、重複ID、未知状態、表header drift、罫線欠落、不正列、字下げされた表行、入口への0件／複数対応、PROGRESS_INDEXに対応しない教材パッケージはbuildを失敗させる。低effortの実行者が類似名や学年表記から補完しない。
+- `check_site.py`は`build-report.json`の自己申告を信用せず、PROGRESS_INDEXとmaterialsを独立直読し、10入口、全単元、状態内訳、準備中の免責文、骨格ページの可視単元名・ID・学年群・折りたたみ状態要約・リンク・読み上げ名を照合する。
 
 ## 互換性修正が必要な場合
 

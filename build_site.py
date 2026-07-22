@@ -27,6 +27,22 @@ from public_site import iter_public_files
 
 SITE_ROOT = Path(__file__).resolve().parent
 CONFIG_PATH = SITE_ROOT / "site.config.json"
+CURRICULUM_CONTRACT_PATH = SITE_ROOT / "curriculum_grid.contract.json"
+EXPECTED_CURRICULUM_STATUSES = (
+    "未着手", "調査済", "ドラフト", "QA済", "外部レビュー済", "人間レビュー済", "公開済",
+)
+EXPECTED_CURRICULUM_FAMILY_ROWS = (
+    ("jhs-math", "中学", "数学", "jhs-math-", "jhs-math"),
+    ("jhs-eng", "中学", "英語", "jhs-eng-", "jhs-eng"),
+    ("jhs-jpn", "中学", "国語", "jhs-jpn-", "jhs-jpn"),
+    ("jhs-sci", "中学", "理科", "jhs-sci-", "jhs-sci"),
+    ("jhs-soc", "中学", "社会", "jhs-soc-", "jhs-soc"),
+    ("hs-math", "高校", "数学", "hs-math-", "hs-math"),
+    ("hs-eng", "高校", "英語", "hs-eng-", "hs-eng"),
+    ("hs-jpn", "高校", "国語", "hs-jpn-", "hs-jpn"),
+    ("hs-sci", "高校", "理科", "hs-sci-", "hs-sci"),
+    ("hs-soc", "高校", "社会", "hs-soc-", "hs-soc"),
+)
 
 SAFE_SVG_TAGS = {
     "circle",
@@ -210,11 +226,11 @@ TAG_LABEL = {
     "internal": "制作メモ",
 }
 SUBJECTS = {
-    "jhs-math-3": ("中学3年 数学", 0),
-    "jhs-math-2": ("中学2年 数学", 1),
-    "jhs-math-1": ("中学1年 数学", 2),
+    "jhs-math-1": ("中学1年 数学", 0),
+    "jhs-eng-1": ("中学1年 英語", 1),
+    "jhs-math-2": ("中学2年 数学", 2),
     "jhs-sci-2": ("中学2年 理科", 3),
-    "jhs-eng-1": ("中学1年 英語", 4),
+    "jhs-math-3": ("中学3年 数学", 4),
     "jhs-jpn": ("中学 国語", 5),
     "jhs-soc": ("中学 社会", 6),
     "hs-math-i": ("高校 数学I", 7),
@@ -298,6 +314,47 @@ class UpdateEntry:
     title: str
     categories: tuple[str, ...]
     paths: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class CurriculumFamilySpec:
+    slug: str
+    school: str
+    subject: str
+    unit_id_prefix: str
+    material_prefix: str
+
+    @property
+    def label(self) -> str:
+        return f"{self.school} {self.subject}"
+
+
+@dataclass(frozen=True)
+class CurriculumItem:
+    item_id: str
+    title: str
+    subject: str
+    grade: str
+    status: str
+    lane: str | None
+    kind: str
+
+
+@dataclass
+class CurriculumFamily:
+    spec: CurriculumFamilySpec
+    items: list[CurriculumItem]
+    material_subjects: list[str]
+    package_count: int
+    lesson_page_count: int
+
+    @property
+    def availability(self) -> str:
+        return "available" if self.package_count else "preparing"
+
+    @property
+    def status_counts(self) -> Counter[str]:
+        return Counter(item.status for item in self.items)
 
 
 def subject_unit_orders_from_source(source: Path) -> dict[str, list[str]]:
@@ -395,6 +452,42 @@ def git(source: Path, *args: str) -> str:
         capture_output=True,
         text=True,
     ).stdout.strip()
+
+
+def normalize_repository_url(value: str) -> str:
+    return value.strip().rstrip("/").removesuffix(".git")
+
+
+def validate_source_checkout(
+    source: Path, expected_commit: str | None = None
+) -> tuple[str, str, str, str]:
+    """Require an untouched official checkout at one independently expected commit."""
+    status = git(source, "status", "--porcelain", "--untracked-files=all")
+    if status:
+        raise BuildError("正本Git作業ツリーに未commit差分があります。正本は変更せずに再実行してください")
+    origin = git(source, "config", "--get", "remote.origin.url")
+    if normalize_repository_url(origin) != normalize_repository_url(REPO_URL):
+        raise BuildError("正本originが公式ManabiGridリポジトリと一致しません")
+    head = git(source, "rev-parse", "HEAD")
+    if expected_commit is not None:
+        if not re.fullmatch(r"[0-9a-f]{40}", expected_commit):
+            raise BuildError("期待する正本SHAは小文字40桁で指定してください")
+        verified_commit = expected_commit
+        verification = "explicit_expected_sha"
+    else:
+        try:
+            verified_commit = git(source, "rev-parse", "refs/remotes/origin/main")
+        except subprocess.CalledProcessError as exc:
+            raise BuildError(
+                "正本のrefs/remotes/origin/mainを確認できません。fetch済みの公式cloneを使ってください"
+            ) from exc
+        verification = "fetched_origin_main"
+    if head != verified_commit:
+        raise BuildError(
+            "正本HEADが検証対象の公式mainと一致しません: "
+            f"head={head[:12]} expected={verified_commit[:12]}"
+        )
+    return status, origin, head, verification
 
 
 UPDATE_FILE_SUFFIXES = {".gif", ".jpeg", ".jpg", ".md", ".png", ".svg", ".webp"}
@@ -544,6 +637,245 @@ def plain(value: str) -> str:
     value = re.sub(r"[`*_~]", "", value)
     value = re.sub(r"<[^>]+>", "", value)
     return html.unescape(value).strip()
+
+
+def load_curriculum_contract() -> tuple[int, tuple[str, ...], list[CurriculumFamilySpec]]:
+    """Load the small human-reviewed routing contract; never infer new families."""
+    try:
+        raw = json.loads(CURRICULUM_CONTRACT_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise BuildError(f"curriculum grid contractを読めません: {exc}") from exc
+    version = raw.get("schema_version")
+    source = raw.get("source")
+    statuses = raw.get("status_values")
+    rows = raw.get("families")
+    if (
+        version != 1
+        or source != "curriculum/PROGRESS_INDEX.md"
+        or not isinstance(statuses, list)
+        or not statuses
+        or len(statuses) != len(set(statuses))
+        or not all(isinstance(value, str) and value for value in statuses)
+        or not isinstance(rows, list)
+        or not rows
+    ):
+        raise BuildError("curriculum grid contractのschemaが不正です")
+    families: list[CurriculumFamilySpec] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            raise BuildError("curriculum grid contractのfamily行が不正です")
+        fields = [
+            row.get("slug"),
+            row.get("school"),
+            row.get("subject"),
+            row.get("unit_id_prefix"),
+            row.get("material_prefix"),
+        ]
+        if not all(isinstance(value, str) and value for value in fields):
+            raise BuildError("curriculum grid contractのfamily項目が不足しています")
+        families.append(CurriculumFamilySpec(*fields))
+    actual_rows = tuple(
+        (
+            family.slug,
+            family.school,
+            family.subject,
+            family.unit_id_prefix,
+            family.material_prefix,
+        )
+        for family in families
+    )
+    if tuple(statuses) != EXPECTED_CURRICULUM_STATUSES:
+        raise BuildError("curriculum grid contractの状態集合または順序が固定契約と一致しません")
+    if actual_rows != EXPECTED_CURRICULUM_FAMILY_ROWS:
+        raise BuildError("curriculum grid contractは中学・高校×5教科の固定10入口と一致しません")
+    return version, tuple(statuses), families
+
+
+def curriculum_table_cells(line: str) -> list[str]:
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def curriculum_table_separator(cells: Sequence[str], width: int) -> bool:
+    return len(cells) == width and all(
+        re.fullmatch(r":?-{3,}:?", cell) for cell in cells
+    )
+
+
+def parse_curriculum_progress(
+    source: Path, allowed_statuses: Sequence[str]
+) -> tuple[list[CurriculumItem], list[CurriculumItem]]:
+    """Parse only the two canonical flat tables in PROGRESS_INDEX.md."""
+    progress = source / "curriculum/PROGRESS_INDEX.md"
+    text = progress.read_text(encoding="utf-8")
+    section = ""
+    unit_header = False
+    module_header = False
+    unit_separator = False
+    module_separator = False
+    units: list[CurriculumItem] = []
+    modules: list[CurriculumItem] = []
+    for line in text.splitlines():
+        if line.startswith("## "):
+            if line == "## 全単元一覧（unit_id 順）":
+                section = "units"
+            elif line == "## 科目モジュール（単元と別枠: 診断・巻末資料）":
+                section = "modules"
+            else:
+                section = ""
+            continue
+        if section not in {"units", "modules"}:
+            continue
+        if not line:
+            continue
+        if not line.startswith("|"):
+            raise BuildError(f"PROGRESS_INDEXの{section}表に表外または字下げされた行があります")
+        cells = curriculum_table_cells(line)
+        if section == "units" and cells == [
+            "unit_id",
+            "単元名",
+            "科目",
+            "学校段階・学年",
+            "レーン",
+            "状態",
+        ]:
+            if unit_header:
+                raise BuildError("PROGRESS_INDEXの全単元一覧ヘッダが重複しています")
+            unit_header = True
+            continue
+        if section == "modules" and cells == [
+            "module_id",
+            "名称",
+            "科目",
+            "学校段階・学年",
+            "状態",
+        ]:
+            if module_header:
+                raise BuildError("PROGRESS_INDEXの科目モジュール表ヘッダが重複しています")
+            module_header = True
+            continue
+        if section == "units" and curriculum_table_separator(cells, 6):
+            if not unit_header or unit_separator:
+                raise BuildError("PROGRESS_INDEXの全単元一覧ヘッダが不正です")
+            unit_separator = True
+            continue
+        if section == "modules" and curriculum_table_separator(cells, 5):
+            if not module_header or module_separator:
+                raise BuildError("PROGRESS_INDEXの科目モジュール表ヘッダが不正です")
+            module_separator = True
+            continue
+        if section == "units":
+            if not unit_header or not unit_separator:
+                raise BuildError("PROGRESS_INDEXの全単元一覧ヘッダが不正です")
+            if len(cells) != 6 or not re.fullmatch(r"`[^`]+`", cells[0]):
+                raise BuildError("PROGRESS_INDEXの全単元一覧に不正な行があります")
+            item_id, title, subject, grade, lane, status = cells
+            units.append(
+                CurriculumItem(
+                    item_id.strip("`"),
+                    plain(title),
+                    plain(subject),
+                    plain(grade),
+                    plain(status),
+                    plain(lane),
+                    "unit",
+                )
+            )
+        elif section == "modules":
+            if not module_header or not module_separator:
+                raise BuildError("PROGRESS_INDEXの科目モジュール表ヘッダが不正です")
+            if len(cells) != 5 or not re.fullmatch(r"`[^`]+`", cells[0]):
+                raise BuildError("PROGRESS_INDEXの科目モジュール表に不正な行があります")
+            item_id, title, subject, grade, status = cells
+            modules.append(
+                CurriculumItem(
+                    item_id.strip("`"),
+                    plain(title),
+                    plain(subject),
+                    plain(grade),
+                    plain(status),
+                    None,
+                    "module",
+                )
+            )
+    if (
+        not unit_header or not unit_separator or not units
+        or not module_header or not module_separator or not modules
+    ):
+        raise BuildError("PROGRESS_INDEXの全単元一覧または科目モジュール表を取得できません")
+    all_items = units + modules
+    ids = [item.item_id for item in all_items]
+    duplicate_ids = sorted(item_id for item_id, count in Counter(ids).items() if count > 1)
+    if duplicate_ids:
+        raise BuildError("PROGRESS_INDEXのIDが重複しています: " + ", ".join(duplicate_ids[:8]))
+    allowed_subjects = {"数学", "英語", "国語", "理科", "社会"}
+    allowed_status_set = set(allowed_statuses)
+    for item in all_items:
+        if not all((item.item_id, item.title, item.subject, item.grade, item.status)):
+            raise BuildError(f"PROGRESS_INDEXに空欄があります: {item.item_id or '(IDなし)'}")
+        if item.subject not in allowed_subjects:
+            raise BuildError(f"PROGRESS_INDEXに未知の科目があります: {item.subject}")
+        if item.status not in allowed_status_set:
+            raise BuildError(f"PROGRESS_INDEXに未知の状態があります: {item.status}")
+        if item.kind == "unit" and item.lane != "公開コア":
+            raise BuildError(f"全単元一覧に未知のレーンがあります: {item.item_id}: {item.lane}")
+    return units, modules
+
+
+def collect_curriculum_families(
+    source: Path,
+    units: dict[str, Unit],
+    specs: Sequence[CurriculumFamilySpec],
+    curriculum_units: Sequence[CurriculumItem],
+) -> list[CurriculumFamily]:
+    """Join planned units and real material packages without conflating states."""
+    by_spec: dict[str, list[CurriculumItem]] = {spec.slug: [] for spec in specs}
+    for item in curriculum_units:
+        matches = [spec for spec in specs if item.item_id.startswith(spec.unit_id_prefix)]
+        if len(matches) != 1:
+            raise BuildError(
+                f"curriculum unitは入口にちょうど1回対応する必要があります: {item.item_id}"
+            )
+        spec = matches[0]
+        if item.subject != spec.subject:
+            raise BuildError(
+                f"curriculum unitの科目と入口契約が一致しません: {item.item_id}"
+            )
+        by_spec[spec.slug].append(item)
+    if any(not by_spec[spec.slug] for spec in specs):
+        missing = [spec.slug for spec in specs if not by_spec[spec.slug]]
+        raise BuildError("curriculum入口に単元がありません: " + ", ".join(missing))
+
+    material_subjects = sorted({unit.subject for unit in units.values()})
+    material_matches: dict[str, str] = {}
+    for subject in material_subjects:
+        matches = [
+            spec
+            for spec in specs
+            if subject == spec.material_prefix
+            or subject.startswith(spec.material_prefix + "-")
+        ]
+        if len(matches) != 1:
+            raise BuildError(
+                f"materials教科は入口にちょうど1回対応する必要があります: {subject}"
+            )
+        material_matches[subject] = matches[0].slug
+
+    result: list[CurriculumFamily] = []
+    for spec in specs:
+        subjects = [
+            subject for subject, family_slug in material_matches.items() if family_slug == spec.slug
+        ]
+        packages = [unit for unit in units.values() if unit.subject in subjects]
+        result.append(
+            CurriculumFamily(
+                spec=spec,
+                items=sorted(by_spec[spec.slug], key=lambda item: item.item_id),
+                material_subjects=sorted(subjects, key=lambda subject: SUBJECTS[subject][1]),
+                package_count=len(packages),
+                lesson_page_count=sum(len(unit.lessons) for unit in packages),
+            )
+        )
+    return result
 
 
 def mathml_prototype(expression: str) -> str:
@@ -1997,55 +2329,303 @@ def updates_body(entries: Sequence[UpdateEntry]) -> str:
 </aside>"""
 
 
-def home_body(units: dict[str, Unit], updates: Sequence[UpdateEntry]) -> str:
-    current = Path("index.html")
-    diagnostic_unit = units.get("jhs-math-3-diagnostic")
-    diagnostic = (
-        diagnostic_unit.lessons[0].output
-        if diagnostic_unit and diagnostic_unit.lessons
-        else Path("browse/index.html")
-    )
-    appendix = (
-        Path("units/jhs-math-3-appendix/index.html")
-        if "jhs-math-3-appendix" in units
-        else Path("browse/index.html")
-    )
-    learning_slugs = [
-        slug
-        for slug in MATH3_ORDER
-        if slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}
-        and slug in units
+def curriculum_status_summary(
+    counts: Counter[str], allowed_statuses: Sequence[str]
+) -> str:
+    parts = [f"{status} {counts[status]}" for status in allowed_statuses if counts[status]]
+    return "、".join(parts)
+
+
+def curriculum_package_for_item(
+    item: CurriculumItem, units: dict[str, Unit]
+) -> Unit | None:
+    candidates = [
+        unit
+        for unit in units.values()
+        if item.item_id == unit.slug or item.item_id.startswith(unit.slug + "--")
     ]
-    learning_count = len(learning_slugs)
-    cards = "".join(
-        unit_card(current, units[slug], True, f"{index:02}")
-        for index, slug in enumerate(learning_slugs, start=1)
-        if slug in units
+    if not candidates:
+        return None
+    longest = max(len(unit.slug) for unit in candidates)
+    matches = [unit for unit in candidates if len(unit.slug) == longest]
+    if len(matches) != 1:
+        raise BuildError(f"単元と教材パッケージの対応が曖昧です: {item.item_id}")
+    return matches[0]
+
+
+def validate_material_curriculum_alignment(
+    units: dict[str, Unit], curriculum_items: Sequence[CurriculumItem]
+) -> None:
+    """Every real package must be backed by a canonical unit or module row."""
+    for unit in units.values():
+        matches = [
+            item
+            for item in curriculum_items
+            if item.item_id == unit.slug or item.item_id.startswith(unit.slug + "--")
+        ]
+        if not matches:
+            raise BuildError(f"教材パッケージがPROGRESS_INDEXに対応しません: {unit.slug}")
+        if all(item.status in {"未着手", "調査済"} for item in matches):
+            raise BuildError(
+                f"教材実体があるのにPROGRESS_INDEXが本文前の状態だけです: {unit.slug}"
+            )
+
+
+def curriculum_family_card(
+    current: Path,
+    family: CurriculumFamily,
+) -> str:
+    spec = family.spec
+    target = Path("curriculum") / spec.slug / "index.html"
+    available = family.availability == "available"
+    state_label = "教材あり" if available else "準備中"
+    material_links = ""
+    if available:
+        links = "".join(
+            f'<li><a href="{rel_href(current, Path("subjects") / subject / "index.html")}">{html.escape(SUBJECTS[subject][0])}</a></li>'
+            for subject in family.material_subjects
+        )
+        material_links = (
+            '<div class="curriculum-material-links"><span>いま読める入口</span>'
+            f'<ul role="list">{links}</ul></div>'
+        )
+        availability_text = (
+            f"{family.package_count}パッケージ・レッスン／本文{family.lesson_page_count}ページを掲載"
+        )
+    else:
+        availability_text = "このサイトで読める教材は、まだありません"
+    aria = (
+        f"{spec.label}の学習グリッドを開く。進捗表に{len(family.items)}単元、"
+        + (
+            f"{family.package_count}パッケージ掲載"
+            if available
+            else "教材は準備中"
+        )
     )
+    material_block = f"\n    {material_links}" if material_links else ""
+    return f"""
+<li class="curriculum-grid-item is-{family.availability}" data-family="{spec.slug}" data-unit-count="{len(family.items)}" data-package-count="{family.package_count}" data-lesson-page-count="{family.lesson_page_count}" data-availability="{family.availability}">
+  <article>
+    <div class="curriculum-card-top"><span class="curriculum-school">{html.escape(spec.school)}</span><span class="curriculum-availability">{state_label}</span></div>
+    <h3><a href="{rel_href(current, target)}" aria-label="{html.escape(aria, quote=True)}">{html.escape(spec.subject)}</a></h3>
+    <p class="curriculum-count">進捗表に<strong>{len(family.items)}単元</strong></p>
+    <p class="curriculum-availability-text">{availability_text}</p>{material_block}
+    <a class="curriculum-open" href="{rel_href(current, target)}" aria-label="{html.escape(spec.label, quote=True)}の単元の全体像を見る">単元の全体像を見る <span aria-hidden="true">→</span></a>
+  </article>
+</li>"""
+
+
+def curriculum_grid_markup(
+    current: Path,
+    families: Sequence[CurriculumFamily],
+) -> str:
+    return "".join(
+        curriculum_family_card(current, family) for family in families
+    )
+
+
+def curriculum_family_body(
+    family: CurriculumFamily,
+    units: dict[str, Unit],
+    allowed_statuses: Sequence[str],
+) -> str:
+    current = Path("curriculum") / family.spec.slug / "index.html"
+    available = family.availability == "available"
+    state_label = "教材あり" if available else "準備中"
+    status_summary = curriculum_status_summary(family.status_counts, allowed_statuses)
+    if available:
+        subject_cards = "".join(
+            f'<li><a href="{rel_href(current, Path("subjects") / subject / "index.html")}"><strong>{html.escape(SUBJECTS[subject][0])}</strong><span>{len(subject_units(units, subject))}パッケージ</span></a></li>'
+            for subject in family.material_subjects
+        )
+        availability_section = f"""
+<section class="container curriculum-available" aria-labelledby="available-materials-title">
+  <header class="section-head"><div><p class="eyebrow">READ NOW</p><h2 id="available-materials-title">いま読める教材</h2></div><p>{family.package_count}パッケージ、レッスン・本文{family.lesson_page_count}ページを掲載しています。</p></header>
+  <ul class="curriculum-material-entrances" role="list">{subject_cards}</ul>
+</section>"""
+    else:
+        availability_section = f"""
+<section class="container curriculum-preparing-note" aria-labelledby="preparing-note-title">
+  <p class="eyebrow">NOT YET PUBLISHED</p><h2 id="preparing-note-title">教材は準備中です</h2>
+  <p>正本の進捗表には{len(family.items)}単元が登録されていますが、このサイトで読める教材本文はまだありません。完成時期や制作中であることを示す表示ではありません。</p>
+</section>"""
+
+    grade_groups: dict[str, list[CurriculumItem]] = defaultdict(list)
+    for item in family.items:
+        grade_groups[item.grade].append(item)
+    details = ""
+    for grade, items in grade_groups.items():
+        item_counts = Counter(item.status for item in items)
+        rows = "".join(
+            curriculum_item_row(current, item, units) for item in items
+        )
+        details += f"""
+<details class="curriculum-track">
+  <summary><span><strong>{html.escape(grade)}</strong><small>{len(items)}単元</small></span><span class="track-status-summary">{html.escape(curriculum_status_summary(item_counts, allowed_statuses))}</span></summary>
+  <ol class="curriculum-unit-list">{rows}</ol>
+</details>"""
+    return f"""
+<section class="container unit-hero curriculum-hero">
+  <p class="eyebrow">CURRICULUM / {html.escape(family.spec.school.upper())}</p>
+  <div class="curriculum-title-row"><h1>{html.escape(family.spec.label)}</h1><span class="curriculum-availability is-{family.availability}">{state_label}</span></div>
+  <p>正本の進捗表にある{len(family.items)}単元を、学校段階・学年ごとに並べています。教材の掲載有無と制作工程の状態は別の情報です。</p>
+  <p class="curriculum-hero-meta">正本の状態: {html.escape(status_summary)}</p>
+</section>
+{availability_section}
+<section class="container curriculum-skeleton" aria-labelledby="curriculum-skeleton-title">
+  <header class="section-head"><div><p class="eyebrow">REGISTERED UNITS</p><h2 id="curriculum-skeleton-title">単元の骨格</h2></div><p>単元名・ID・状態は <code>curriculum/PROGRESS_INDEX.md</code> から生成しています。</p></header>
+  <div class="curriculum-tracks">{details}</div>
+  <p class="curriculum-progress-link"><a class="button button-secondary" href="{rel_href(current, Path('progress/index.html'))}">進捗一覧で詳しく見る</a></p>
+</section>"""
+
+
+def curriculum_item_row(
+    current: Path,
+    item: CurriculumItem,
+    units: dict[str, Unit],
+    *,
+    show_grade: bool = False,
+) -> str:
+    package = curriculum_package_for_item(item, units)
+    link = (
+        f'<a class="curriculum-unit-link" href="{rel_href(current, Path("units") / package.slug / "index.html")}">教材を読む</a>'
+        if package
+        else '<span class="curriculum-unit-pending">準備中</span>'
+    )
+    grade = (
+        f'<span class="curriculum-unit-grade">{html.escape(item.grade)}</span>'
+        if show_grade
+        else ""
+    )
+    return f"""
+<li data-curriculum-id="{html.escape(item.item_id, quote=True)}" data-status="{html.escape(item.status, quote=True)}" data-material="{'available' if package else 'preparing'}">
+  <div><strong>{html.escape(item.title)}</strong>{grade}<code>{html.escape(item.item_id)}</code></div>
+  <div class="curriculum-unit-state"><span class="status-chip">{html.escape(item.status)}</span>{link}</div>
+</li>"""
+
+
+def curriculum_index_body(
+    families: Sequence[CurriculumFamily],
+    modules: Sequence[CurriculumItem],
+) -> str:
+    current = Path("curriculum/index.html")
+    available = sum(family.availability == "available" for family in families)
+    preparing = len(families) - available
+    total_units = sum(len(family.items) for family in families)
+    return f"""
+<section class="container unit-hero curriculum-index-hero">
+  <p class="eyebrow">LEARNING GRID / {len(families)} ENTRANCES</p>
+  <h1>中学・高校の学習グリッド</h1>
+  <p>正本の進捗表にある5教科を、中学と高校に分けた全体図です。{available}入口には読める教材があり、{preparing}入口は単元の骨格を先に示しています。</p>
+</section>
+<section class="container curriculum-grid-section" aria-labelledby="curriculum-grid-title">
+  <header class="section-head"><div><p class="eyebrow">CURRICULUM</p><h2 id="curriculum-grid-title">{len(families)}の教科入口</h2></div><p>「準備中」は、進捗表に登録済みで、このサイトの教材本文がまだ0件という意味です。</p></header>
+  <ul class="curriculum-grid" role="list">{curriculum_grid_markup(current, families)}</ul>
+</section>
+<aside class="container curriculum-modules-note">
+  <p class="eyebrow">DIAGNOSTIC / APPENDIX</p><h2>診断・巻末資料など</h2>
+  <p>公開コア{total_units}単元とは別に、正本には{len(modules)}件の科目モジュールが登録されています。</p>
+  <a class="text-link" href="{rel_href(current, Path('curriculum/modules/index.html'))}">モジュールの骨格を見る</a>
+</aside>"""
+
+
+def curriculum_modules_body(
+    modules: Sequence[CurriculumItem], units: dict[str, Unit], allowed_statuses: Sequence[str]
+) -> str:
+    current = Path("curriculum/modules/index.html")
+    subject_groups: dict[str, list[CurriculumItem]] = defaultdict(list)
+    for item in modules:
+        subject_groups[item.subject].append(item)
+    sections = ""
+    for subject in ("数学", "英語", "国語", "理科", "社会"):
+        items = subject_groups.get(subject, [])
+        if not items:
+            continue
+        rows = "".join(
+            curriculum_item_row(current, item, units, show_grade=True)
+            for item in items
+        )
+        sections += f"""
+<details class="curriculum-track">
+  <summary><span><strong>{subject}</strong><small>{len(items)}件</small></span><span class="track-status-summary">{html.escape(curriculum_status_summary(Counter(item.status for item in items), allowed_statuses))}</span></summary>
+  <ol class="curriculum-unit-list">{rows}</ol>
+</details>"""
+    return f"""
+<section class="container unit-hero curriculum-hero">
+  <p class="eyebrow">DIAGNOSTIC / APPENDIX</p><h1>診断・巻末資料など</h1>
+  <p>公開コア単元とは別枠の{len(modules)}件です。名称・学校段階・状態を正本の進捗表から表示します。</p>
+</section>
+<section class="container curriculum-skeleton" aria-labelledby="module-skeleton-title">
+  <header class="section-head"><div><p class="eyebrow">REGISTERED MODULES</p><h2 id="module-skeleton-title">モジュールの骨格</h2></div><p>教材本文が実在する項目だけ「教材を読む」へつながります。</p></header>
+  <div class="curriculum-tracks">{sections}</div>
+</section>"""
+
+
+def subject_learning_grid_item(
+    current: Path, subject: str, units: dict[str, Unit]
+) -> str:
+    """Render one subject entrance from the current canonical package registry."""
+    label = SUBJECTS[subject][0]
+    packages = subject_units(units, subject)
+    package_count = len(packages)
+    lesson_page_count = sum(len(unit.lessons) for unit in packages)
+    slots = "".join(
+        '<span class="learning-grid-slot" aria-hidden="true"></span>'
+        for _ in packages
+    )
+    target = Path("subjects") / subject / "index.html"
+    accessible_label = (
+        f"{label}を開く。{package_count}パッケージ、"
+        f"レッスン・本文{lesson_page_count}ページ"
+    )
+    return f"""
+<li class="learning-grid-item" data-subject="{html.escape(subject, quote=True)}" data-package-count="{package_count}" data-lesson-page-count="{lesson_page_count}">
+  <a href="{rel_href(current, target)}" aria-label="{html.escape(accessible_label, quote=True)}">
+    <span class="learning-grid-heading"><strong>{html.escape(label)}</strong></span>
+    <span class="learning-grid-stats">{package_count}パッケージ<br>レッスン・本文 {lesson_page_count}ページ</span>
+    <span class="learning-grid-slots" aria-hidden="true">{slots}</span>
+    <span class="learning-grid-open">開く <span aria-hidden="true">→</span></span>
+  </a>
+</li>"""
+
+
+def home_body(
+    units: dict[str, Unit],
+    updates: Sequence[UpdateEntry],
+    curriculum_families: Sequence[CurriculumFamily],
+) -> str:
+    current = Path("index.html")
+    ordered_subjects = sorted(SUBJECTS, key=lambda subject: SUBJECTS[subject][1])
+    package_count = sum(len(subject_units(units, subject)) for subject in ordered_subjects)
+    curriculum_entry_count = len(curriculum_families)
+    available_family_count = sum(
+        family.availability == "available" for family in curriculum_families
+    )
+    preparing_family_count = curriculum_entry_count - available_family_count
     latest_updates = "".join(
         f"<li>{update_entry_html(entry, compact=True)}</li>" for entry in updates[:3]
     )
     return f"""
 <section class="home-hero container">
   <div class="hero-copy">
-    <p class="eyebrow">OPEN LEARNING / 中学3年 数学</p>
+    <p class="eyebrow">OPEN LEARNING / {curriculum_entry_count} CURRICULUM ENTRANCES</p>
     <h1><span class="hero-line"><span class="hero-phrase">つまずいた場所は、</span></span><span class="hero-line"><span class="hero-emphasis hero-phrase">次のスタート地点</span><span class="hero-phrase">になる。</span></span></h1>
-  <p class="hero-lead">わからなくなった場所まで戻り、自分のペースで学び直すオープン教材です。登録も記録もいりません。</p>
-    <div class="hero-actions"><a class="primary-action" href="{rel_href(current, diagnostic)}">診断から始める</a><a class="text-link" href="#math3-route">{learning_count}単元から選ぶ</a></div>
+    <p class="hero-lead">わからなくなった場所まで戻り、自分のペースで学び直せます。中学・高校{curriculum_entry_count}入口のうち、{available_family_count}入口で{package_count}パッケージを読めます。{preparing_family_count}入口は「準備中」です。登録も記録もいりません。</p>
+    <div class="hero-actions"><a class="primary-action" href="#learning-grid">学習グリッドを見る</a><a class="text-link" href="{rel_href(current, Path('browse/index.html'))}">教材を検索する</a></div>
   </div>
   <aside class="start-panel" aria-labelledby="start-panel-title">
     <p class="panel-code">START / 入口を選ぶ</p><h2 id="start-panel-title">どこからはじめる？</h2>
-    <ol class="start-choices">
-      <li><span class="choice-number">01</span><div><strong>勉強しに来た</strong><p>現在地がわからなければ診断へ。単元が決まっていれば{learning_count}単元から選べます。</p><a href="{rel_href(current, diagnostic)}">診断から始める</a></div></li>
-      <li><span class="choice-number">02</span><div><strong>支える・くわしく知る</strong><p>教材の状態、作り方、ライセンスを確認できます。</p><a href="#project-info">大人向けの案内を見る</a></div></li>
-    </ol>
-    <p class="start-note"><strong>点数は出ない。始める場所がわかる。</strong><span> 診断は、学び直す位置を探すための試行版です。</span></p>
+    <ul class="start-choices" role="list">
+      <li><span class="choice-label">選ぶ</span><div><strong>教科が決まっている</strong><a href="#learning-grid">中学・高校5教科の全体図へ</a></div></li>
+      <li><span class="choice-label">探す</span><div><strong>言葉やつまずきから探したい</strong><a href="{rel_href(current, Path('browse/index.html'))}">教材を検索する</a></div></li>
+    </ul>
+    <p class="start-adult"><a href="#project-info">保護者・先生・開発者の方へ</a></p>
   </aside>
 </section>
-<section id="math3-route" class="container learning-route">
-  <header class="section-head"><div><p class="eyebrow">PATH 01—{learning_count:02}</p><h2>中3数学の{learning_count}単元</h2></div><p>順番に進んでも、必要な単元だけ選んでもかまいません。</p></header>
-  <nav class="route-tools" aria-label="中3数学の補助入口"><a href="{rel_href(current, diagnostic)}">診断から始める</a><a href="{rel_href(current, appendix)}">巻末資料を見る</a></nav>
-  <div class="unit-route">{cards}</div>
+<section id="learning-grid" class="container learning-grid-section">
+  <header class="section-head"><div><p class="eyebrow">LEARNING GRID / {curriculum_entry_count} ENTRANCES</p><h2>中学・高校の学習グリッド</h2></div><p>{available_family_count}入口には読める教材があり、{preparing_family_count}入口は「準備中」です。進捗表にある全教科を省かず示します。</p></header>
+  <ul class="curriculum-grid" role="list">{curriculum_grid_markup(current, curriculum_families)}</ul>
+  <p class="curriculum-all-link"><a class="text-link" href="{rel_href(current, Path('curriculum/index.html'))}">学習グリッドの説明と全体像を見る</a></p>
 </section>
 <section class="container home-updates" aria-labelledby="home-updates-title">
   <header class="section-head"><div><p class="eyebrow">LATEST FROM GITHUB</p><h2 id="home-updates-title">最近の更新</h2></div><p>正本のうち、この展示に関わる変更です。</p></header>
@@ -2074,11 +2654,9 @@ def browse_body(units: dict[str, Unit]) -> str:
         for s in ordered
     )
     units_html = "".join(unit_card(current, u) for s in ordered for u in subject_units(units, s))
-    math3_count = len(
-        [slug for slug in MATH3_ORDER if slug not in {"jhs-math-3-diagnostic", "jhs-math-3-appendix"}]
-    )
+    package_count = sum(len(subject_units(units, subject)) for subject in ordered)
     return f"""
-<section class="container unit-hero"><p class="eyebrow">SUBJECT / UNIT / LESSON</p><h1>教材をさがす</h1><p>まず教科を選び、次に単元を選びます。中3数学は{math3_count}単元に加えて、診断テストと巻末資料があります。</p></section>
+<section class="container unit-hero"><p class="eyebrow">SUBJECT / UNIT / LESSON</p><h1>教材をさがす</h1><p>いまは{len(ordered)}つの教科・学年、{package_count}パッケージがあります。まず教科を選び、次に単元を選びます。</p></section>
 <section class="container search-panel"><h2>教材の中をさがす</h2><label for="material-search">教科・単元・レッスンのタイトルや見出し</label><input id="material-search" class="search-input" type="search" data-filter-input data-content-search-input autocomplete="off" placeholder="例: 平方根、英語、湿度"><output class="filter-status" data-filter-status data-filter-unit="件" role="status" aria-live="polite">{len(ordered) + len(units)}件を表示</output><div class="content-search-results" data-content-search-results hidden><h3>本文の候補</h3><ol data-content-search-list></ol></div></section>
 <section class="container catalog-section"><header class="section-head"><div><p class="eyebrow">SUBJECTS</p><h2>教科から選ぶ</h2></div></header><div class="card-grid subject-grid">{subjects_html}</div></section>
 <section class="container catalog-section"><header class="section-head"><div><p class="eyebrow">ALL UNITS</p><h2>すべての単元・モジュール</h2></div></header><div class="card-grid catalog-grid">{units_html}</div><p class="empty-state" data-empty-state hidden>一致する教材がありません。検索語を短くして、もう一度ためしてください。</p></section>"""
@@ -2344,6 +2922,7 @@ def clean(site_root: Path) -> None:
         "about",
         "browse",
         "content",
+        "curriculum",
         "progress",
         "subjects",
         "units",
@@ -2401,6 +2980,7 @@ def build(
     source: Path,
     site_root: Path,
     base_url: str = DEFAULT_BASE_URL,
+    expected_source_sha: str | None = None,
 ) -> dict[str, object]:
     global MATH3_ORDER, SUBJECT_UNIT_ORDER
     source = source.resolve()
@@ -2413,8 +2993,12 @@ def build(
     if parsed_base.scheme != "https" or not parsed_base.netloc:
         raise BuildError("base URL は https の絶対URLにしてください")
     base_url = base_url.rstrip("/") + "/"
-    before = git(source, "status", "--porcelain")
-    commit = git(source, "rev-parse", "HEAD")
+    site_commit = os.environ.get("MANABIGRID_SITE_COMMIT_SHA") or None
+    if site_commit is not None and not re.fullmatch(r"[0-9a-f]{40}", site_commit):
+        raise BuildError("MANABIGRID_SITE_COMMIT_SHAは小文字40桁で指定してください")
+    before, source_origin, commit, source_verification = validate_source_checkout(
+        source, expected_source_sha
+    )
     commit_date = git(source, "show", "-s", "--format=%cI", "HEAD")
     generated_at = dt.datetime.now().astimezone().isoformat(timespec="seconds")
     BUILD_CONTEXT.update(
@@ -2429,6 +3013,9 @@ def build(
     )
     SUBJECT_UNIT_ORDER = subject_unit_orders_from_source(source)
     MATH3_ORDER = SUBJECT_UNIT_ORDER.get("jhs-math-3", [])
+    curriculum_contract_version, allowed_statuses, curriculum_specs = (
+        load_curriculum_contract()
+    )
     updates, updates_truncated = collect_update_history(source)
     svg_guard_self_tests = self_test_svg_guard()
     clean(site_root)
@@ -2437,6 +3024,15 @@ def build(
     register_new_subjects(source, docs)
     units = collect_units(source, docs)
     assign_answers(units)
+    curriculum_units, curriculum_modules = parse_curriculum_progress(
+        source, allowed_statuses
+    )
+    curriculum_families = collect_curriculum_families(
+        source, units, curriculum_specs, curriculum_units
+    )
+    validate_material_curriculum_alignment(
+        units, [*curriculum_units, *curriculum_modules]
+    )
     stats = Stats(tagged_source=sum(d.tags for d in docs))
     resolver = Resolver(source, docs, media, units, stats)
     failures: list[dict[str, str]] = []
@@ -2471,7 +3067,11 @@ def build(
             Path("index.html"),
             "つまずいたところから学び直せる教材",
             "ManabiGridの教材を読みやすく並べた静的展示サイト",
-            home_body(units, updates),
+            home_body(
+                units,
+                updates,
+                curriculum_families,
+            ),
             [("トップ", None)],
             "page-home",
         ),
@@ -2496,6 +3096,53 @@ def build(
             about_body(),
             [("トップ", Path("index.html")), ("このサイトについて", None)],
             "page-about",
+        ),
+    )
+    write(
+        site_root / "curriculum/index.html",
+        page(
+            Path("curriculum/index.html"),
+            "中学・高校の学習グリッド",
+            "ManabiGridの中学・高校5教科と準備中教材を含む全体図",
+            curriculum_index_body(
+                curriculum_families, curriculum_modules
+            ),
+            [("トップ", Path("index.html")), ("学習グリッド", None)],
+            "page-curriculum-index",
+        ),
+    )
+    for family in curriculum_families:
+        output = Path("curriculum") / family.spec.slug / "index.html"
+        write(
+            site_root / output,
+            page(
+                output,
+                family.spec.label,
+                f"ManabiGrid {family.spec.label}の単元全体図と教材掲載状況",
+                curriculum_family_body(family, units, allowed_statuses),
+                [
+                    ("トップ", Path("index.html")),
+                    ("学習グリッド", Path("curriculum/index.html")),
+                    (family.spec.label, None),
+                ],
+                "page-curriculum-family",
+            ),
+        )
+    write(
+        site_root / "curriculum/modules/index.html",
+        page(
+            Path("curriculum/modules/index.html"),
+            "診断・巻末資料など",
+            "ManabiGridの科目モジュール、診断、巻末資料の登録状況",
+            curriculum_modules_body(
+                curriculum_modules, units, allowed_statuses
+            ),
+            [
+                ("トップ", Path("index.html")),
+                ("学習グリッド", Path("curriculum/index.html")),
+                ("診断・巻末資料など", None),
+            ],
+            "page-curriculum-modules",
         ),
     )
     write(
@@ -2578,7 +3225,7 @@ def build(
     write(site_root / "robots.txt", robots_text())
     write(site_root / "sitemap.xml", sitemap_xml(html_paths))
 
-    after = git(source, "status", "--porcelain")
+    after = git(source, "status", "--porcelain", "--untracked-files=all")
     if after != before:
         raise BuildError("ビルド前後で正本Git状態が変わりました")
     source_files = [
@@ -2597,7 +3244,9 @@ def build(
         "generated_at": generated_at,
         "source": {
             "repository": REPO_URL,
+            "origin": source_origin,
             "commit": commit,
+            "verified_against": source_verification,
             "commit_date": commit_date,
             "git_status_before": before,
             "git_status_after": after,
@@ -2616,8 +3265,45 @@ def build(
             "about": 1,
             "updates": 1,
             "not_found": 1,
+            "curriculum": len(curriculum_families) + 2,
             "subjects": len(SUBJECTS),
             "units": len(units),
+        },
+        "curriculum_grid": {
+            "source": "curriculum_progress_index_and_canonical_materials",
+            "contract_version": curriculum_contract_version,
+            "progress_index_sha256": sha(source / "curriculum/PROGRESS_INDEX.md"),
+            "families": [
+                {
+                    "slug": family.spec.slug,
+                    "label": family.spec.label,
+                    "school": family.spec.school,
+                    "subject": family.spec.subject,
+                    "href": f"curriculum/{family.spec.slug}/index.html",
+                    "registered_units": len(family.items),
+                    "status_counts": {
+                        status: family.status_counts[status]
+                        for status in allowed_statuses
+                        if family.status_counts[status]
+                    },
+                    "material_subjects": family.material_subjects,
+                    "packages": family.package_count,
+                    "lesson_pages": family.lesson_page_count,
+                    "availability": family.availability,
+                }
+                for family in curriculum_families
+            ],
+            "total_entries": len(curriculum_families),
+            "available_entries": sum(
+                family.availability == "available" for family in curriculum_families
+            ),
+            "preparing_entries": sum(
+                family.availability == "preparing" for family in curriculum_families
+            ),
+            "registered_units": len(curriculum_units),
+            "registered_modules": len(curriculum_modules),
+            "total_packages": len(units),
+            "total_lesson_pages": sum(len(unit.lessons) for unit in units.values()),
         },
         "features": {
             "frontmatter_stripped": sum(d.frontmatter for d in docs),
@@ -2702,6 +3388,7 @@ def build(
             "site_repository": SITE_CONFIG["site_repository"],
             "base_url": base_url,
             "deployment_artifact_allowlist": "public_site.py",
+            "site_commit": site_commit,
         },
         "source_files": source_files,
     }
@@ -2714,10 +3401,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output", type=Path, default=SITE_ROOT)
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    parser.add_argument(
+        "--expected-source-sha",
+        help="workflow等が独立取得した正本mainの小文字40桁SHA",
+    )
     parser.add_argument("--no-check", action="store_true")
     args = parser.parse_args(argv)
     try:
-        report = build(args.source, args.output, args.base_url)
+        report = build(
+            args.source,
+            args.output,
+            args.base_url,
+            args.expected_source_sha,
+        )
         print(
             f"生成完了: Markdown {report['markdown']['converted']}/"
             f"{report['markdown']['expected']}件、HTML {report['pages']['total']}ページ"
@@ -2730,6 +3426,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                     str(args.output.resolve()),
                     "--source",
                     str(args.source.resolve()),
+                    *(
+                        ["--expected-source-sha", args.expected_source_sha]
+                        if args.expected_source_sha
+                        else []
+                    ),
                 ],
                 check=True,
             )

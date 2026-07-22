@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""既存のローカルChromeを使う任意の実描画検査（外部通信・追加依存なし）。"""
+"""ローカルのChromium/Chromeを使う実描画検査（外部通信・追加依存なし）。"""
 
 from __future__ import annotations
 
 import base64
 import argparse
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -15,6 +16,7 @@ import socket
 import struct
 import subprocess
 import sys
+import tempfile
 import threading
 import time
 from urllib.parse import urlsplit
@@ -23,6 +25,7 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parent
 REVIEW_DIR = ROOT / "review" / "browser"
 MOBILE_VIEWPORT = {"width": 390, "height": 844, "deviceScaleFactor": 1, "mobile": True}
+NARROW_MOBILE_VIEWPORT = {"width": 320, "height": 844, "deviceScaleFactor": 1, "mobile": True}
 DESKTOP_VIEWPORT = {"width": 1440, "height": 1000, "deviceScaleFactor": 1, "mobile": False}
 PAGES = (
     ("top", ROOT / "index.html"),
@@ -43,6 +46,8 @@ PAGES = (
         / "content/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_03.html",
     ),
     ("progress", ROOT / "progress/index.html"),
+    ("curriculum", ROOT / "curriculum/index.html"),
+    ("curriculum-preparing", ROOT / "curriculum/hs-eng/index.html"),
     ("about", ROOT / "about/index.html"),
     ("updates", ROOT / "updates/index.html"),
     (
@@ -65,8 +70,45 @@ def expected_update_entries() -> int:
 EXPECTED_UPDATE_ENTRIES = expected_update_entries()
 
 
+def build_report_source_commit() -> str:
+    try:
+        report = json.loads((ROOT / "build-report.json").read_text(encoding="utf-8"))
+        source = report.get("source", {})
+        return str(source.get("commit", "")) if isinstance(source, dict) else ""
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return ""
+
+
+def expected_home_grid() -> tuple[int, int, int]:
+    try:
+        report = json.loads((ROOT / "build-report.json").read_text(encoding="utf-8"))
+        home_grid = report.get("curriculum_grid", {})
+        families = home_grid.get("families", [])
+        packages = home_grid.get("total_packages", 0)
+        preparing = home_grid.get("preparing_entries", 0)
+        return (
+            len(families) if isinstance(families, list) else 0,
+            int(packages) if isinstance(packages, int) else 0,
+            int(preparing) if isinstance(preparing, int) else 0,
+        )
+    except (OSError, json.JSONDecodeError, AttributeError, TypeError, ValueError):
+        return (0, 0, 0)
+
+
+EXPECTED_HOME_FAMILIES, EXPECTED_HOME_PACKAGES, EXPECTED_PREPARING_FAMILIES = (
+    expected_home_grid()
+)
+
+
 def find_chrome() -> str:
-    candidates = (
+    playwright_shells = sorted(
+        (Path.home() / "Library/Caches/ms-playwright").glob(
+            "chromium_headless_shell-*/chrome-mac/headless_shell"
+        ),
+        reverse=True,
+    )
+    candidates = tuple(str(path) for path in playwright_shells) + (
+        "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
         "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
         "/Applications/Chromium.app/Contents/MacOS/Chromium",
         shutil.which("google-chrome"),
@@ -179,11 +221,13 @@ class DevToolsSocket:
     """Chrome DevTools Protocolをlocalhost WebSocketで扱う。"""
 
     def __init__(self, chrome: str) -> None:
+        self.profile = tempfile.TemporaryDirectory(prefix="manabigrid-browser-check-")
         args = [
             chrome,
             "--headless=new",
             "--remote-debugging-port=0",
             "--remote-allow-origins=*",
+            f"--user-data-dir={self.profile.name}",
             "--allow-file-access-from-files",
             "--disable-background-networking",
             "--disable-component-update",
@@ -222,6 +266,7 @@ class DevToolsSocket:
         if not websocket_url:
             self.process.terminate()
             self.process.wait(timeout=3)
+            self.profile.cleanup()
             raise RuntimeError("Chrome DevToolsのlocalhost URLを取得できません")
         self.websocket = WebSocket(websocket_url)
         threading.Thread(target=self._drain_stderr, daemon=True).start()
@@ -238,12 +283,15 @@ class DevToolsSocket:
         try:
             self.websocket.close()
         finally:
-            self.process.terminate()
             try:
-                self.process.wait(timeout=3)
-            except subprocess.TimeoutExpired:
-                self.process.kill()
-                self.process.wait(timeout=3)
+                self.process.terminate()
+                try:
+                    self.process.wait(timeout=3)
+                except subprocess.TimeoutExpired:
+                    self.process.kill()
+                    self.process.wait(timeout=3)
+            finally:
+                self.profile.cleanup()
 
     def call(
         self,
@@ -356,7 +404,13 @@ METRICS_SCRIPT = r"""
     header: inspect('.site-header'),
     brand: inspect('.brand-link'),
     navigation: inspect('.site-links'),
-    firstUnitCard: inspect('.unit-route .unit-card'),
+    firstLearningGridItem: inspect('.curriculum-grid .curriculum-grid-item'),
+    homeLearningGridTitle: inspect('.learning-grid-section .section-head h2'),
+    homeLearningGridCount: document.querySelectorAll('.learning-grid-section .curriculum-grid-item').length,
+    homeLearningGridPackageCount: [...document.querySelectorAll('.learning-grid-section .curriculum-grid-item')].reduce((sum, item) => sum + Number(item.dataset.packageCount || 0), 0),
+    homePreparingGridCount: document.querySelectorAll('.learning-grid-section .curriculum-grid-item[data-availability="preparing"]').length,
+    homeLearningGridPrimary: inspect('.hero-actions .primary-action[href="#learning-grid"]'),
+    homeLegacyRouteCount: document.querySelectorAll('.page-home .learning-route').length,
     homeUpdateCount: document.querySelectorAll('.home-updates [data-update-commit]').length,
     homeUpdateListRole: document.querySelector('.home-updates .updates-list')?.getAttribute('role') || '',
     homeUpdatesAllLink: inspect('.home-updates .updates-all-link'),
@@ -402,6 +456,12 @@ METRICS_SCRIPT = r"""
     figureScroller: inspect('.figure-scroll'),
     progressDisclosureCount: document.querySelectorAll('[data-progress-disclosure]').length,
     progressOpenDisclosureCount: document.querySelectorAll('[data-progress-disclosure][open]').length,
+    curriculumFamilyCount: document.querySelectorAll('.page-curriculum-index .curriculum-grid-item').length,
+    curriculumPreparingCount: document.querySelectorAll('.page-curriculum-index .curriculum-grid-item[data-availability="preparing"]').length,
+    curriculumPreparingTitle: inspect('#preparing-note-title'),
+    curriculumTrackCount: document.querySelectorAll('.page-curriculum-family .curriculum-track').length,
+    curriculumUnitCount: document.querySelectorAll('.page-curriculum-family [data-curriculum-id]').length,
+    curriculumFalseAvailableCount: document.querySelectorAll('.page-curriculum-family [data-material="available"]').length,
     tableWraps: [...document.querySelectorAll('.table-wrap')].map((element) => ({
       visible: visible(element),
       clientWidth: element.clientWidth,
@@ -421,6 +481,15 @@ APPEARANCE_SCRIPT = r"""
     const element = document.querySelector(selector);
     return element ? getComputedStyle(element)[property] : '';
   };
+  const effectiveBackground = (selector) => {
+    let element = document.querySelector(selector);
+    while (element) {
+      const value = getComputedStyle(element).backgroundColor;
+      if (value && value !== 'transparent' && value !== 'rgba(0, 0, 0, 0)') return value;
+      element = element.parentElement;
+    }
+    return color('body', 'backgroundColor');
+  };
   return {
     dark: matchMedia('(prefers-color-scheme: dark)').matches,
     print: matchMedia('print').matches,
@@ -432,6 +501,11 @@ APPEARANCE_SCRIPT = r"""
     figureSourceColor: color('.figure-source', 'color'),
     primaryButtonBackground: color('.button, .primary-action', 'backgroundColor'),
     primaryButtonColor: color('.button, .primary-action', 'color'),
+    learningGridHeadingColor: color('.curriculum-grid-item h3 a', 'color'),
+    learningGridHeadingBackground: effectiveBackground('.curriculum-grid-item h3 a'),
+    learningGridSlotBorder: color('.curriculum-availability', 'borderTopColor'),
+    learningGridSlotBackground: effectiveBackground('.curriculum-availability'),
+    learningGridItemBreakInside: color('.curriculum-grid-item', 'breakInside'),
   };
 })()
 """
@@ -496,6 +570,24 @@ def set_media(
     pipe.call("Emulation.setEmulatedMedia", params, session)
 
 
+def set_viewport(
+    pipe: DevToolsSocket,
+    session: str,
+    viewport: dict[str, int | bool],
+) -> None:
+    pipe.call(
+        "Emulation.setDeviceMetricsOverride",
+        {
+            **viewport,
+            "screenWidth": viewport["width"],
+            "screenHeight": viewport["height"],
+            "positionX": 0,
+            "positionY": 0,
+        },
+        session,
+    )
+
+
 def is_white(value: object) -> bool:
     return str(value).replace(" ", "") in {"rgb(255,255,255)", "rgba(255,255,255,1)"}
 
@@ -553,6 +645,9 @@ def main() -> int:
     chrome = find_chrome()
     REVIEW_DIR.mkdir(parents=True, exist_ok=True)
     report: dict[str, object] = {
+        "schema_version": 2,
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "build_report_source_commit": build_report_source_commit(),
         "status": "ok",
         "chrome": chrome,
         "mode": mode,
@@ -588,17 +683,7 @@ def main() -> int:
             pipe.call("Runtime.enable", session_id=session)
             pipe.call("Log.enable", session_id=session)
             set_media(pipe, session, "screen", color_scheme)
-            pipe.call(
-                "Emulation.setDeviceMetricsOverride",
-                {
-                    **viewport,
-                    "screenWidth": viewport["width"],
-                    "screenHeight": viewport["height"],
-                    "positionX": 0,
-                    "positionY": 0,
-                },
-                session,
-            )
+            set_viewport(pipe, session, viewport)
             event_start = len(pipe.events)
             navigation = pipe.call("Page.navigate", {"url": page_url}, session)
             if navigation.get("errorText"):
@@ -710,14 +795,38 @@ def main() -> int:
                 if not isinstance(figure_source, dict) or float(figure_source.get("height", 0)) < 44:
                     page_errors.append("図を大きく開く導線のタップ高さが44px未満です")
             if label == "top":
-                first_unit = metrics.get("firstUnitCard")
+                first_grid_item = metrics.get("firstLearningGridItem")
+                first_grid_visible_height = (
+                    max(
+                        0.0,
+                        min(
+                            float(first_grid_item.get("bottom", 0)),
+                            float(viewport["height"]),
+                        )
+                        - max(float(first_grid_item.get("top", 0)), 0.0),
+                    )
+                    if isinstance(first_grid_item, dict) and first_grid_item.get("visible")
+                    else 0.0
+                )
+                if first_grid_visible_height < 44:
+                    page_errors.append(
+                        "第一画面に学習グリッドの先頭入口が44px以上見えていません"
+                    )
+                if metrics.get("homeLearningGridCount") != EXPECTED_HOME_FAMILIES:
+                    page_errors.append("トップの学習グリッドが中学・高校5教科の10入口を表示していません")
+                if metrics.get("homeLearningGridPackageCount") != EXPECTED_HOME_PACKAGES:
+                    page_errors.append("トップの学習グリッドの教材件数がパッケージ数と一致しません")
+                if metrics.get("homePreparingGridCount") != EXPECTED_PREPARING_FAMILIES:
+                    page_errors.append("トップの準備中入口数が正本由来の件数と一致しません")
+                home_grid_primary = metrics.get("homeLearningGridPrimary")
                 if (
-                    not isinstance(first_unit, dict)
-                    or not first_unit.get("present")
-                    or float(first_unit.get("top", viewport["height"] + 1))
-                    >= viewport["height"]
+                    not isinstance(home_grid_primary, dict)
+                    or not home_grid_primary.get("visible")
+                    or float(home_grid_primary.get("height", 0)) < 44
                 ):
-                    page_errors.append("第一画面に先頭単元カードが覗いていません")
+                    page_errors.append("トップの学習グリッド主要導線が可視または44px以上になっていません")
+                if metrics.get("homeLegacyRouteCount") != 0:
+                    page_errors.append("トップに旧中3数学専用ルートが残っています")
                 hero_phrases = metrics.get("heroPhrases", [])
                 if not hero_phrases or any(
                     not isinstance(item, dict)
@@ -743,6 +852,56 @@ def main() -> int:
                     or "更新履歴をすべて見る" not in str(home_updates_link.get("text", ""))
                 ):
                     page_errors.append("トップから更新履歴ページへの導線が見つかりません")
+                if viewport["mobile"]:
+                    set_viewport(pipe, session, NARROW_MOBILE_VIEWPORT)
+                    settle_first_paint(pipe, session)
+                    narrow_metrics = evaluate(pipe, session, METRICS_SCRIPT)
+                    metrics["narrow320"] = narrow_metrics
+                    if not isinstance(narrow_metrics, dict):
+                        page_errors.append("320pxトップの描画指標を取得できません")
+                    else:
+                        if narrow_metrics.get("innerWidth") != NARROW_MOBILE_VIEWPORT["width"]:
+                            page_errors.append(
+                                "320pxトップのCSS viewportを再現できません: "
+                                f"{narrow_metrics.get('innerWidth')}px"
+                            )
+                        if narrow_metrics.get("pageOverflow"):
+                            page_errors.append(
+                                "320pxトップが横にはみ出しています: "
+                                f"{narrow_metrics.get('pageWidth')}px"
+                            )
+                        narrow_heading = narrow_metrics.get("homeLearningGridTitle")
+                        narrow_entry = narrow_metrics.get("firstLearningGridItem")
+                        heading_visible_height = (
+                            max(
+                                0.0,
+                                min(
+                                    float(narrow_heading.get("bottom", 0)),
+                                    float(NARROW_MOBILE_VIEWPORT["height"]),
+                                )
+                                - max(float(narrow_heading.get("top", 0)), 0.0),
+                            )
+                            if isinstance(narrow_heading, dict) and narrow_heading.get("visible")
+                            else 0.0
+                        )
+                        entry_visible_height = (
+                            max(
+                                0.0,
+                                min(
+                                    float(narrow_entry.get("bottom", 0)),
+                                    float(NARROW_MOBILE_VIEWPORT["height"]),
+                                )
+                                - max(float(narrow_entry.get("top", 0)), 0.0),
+                            )
+                            if isinstance(narrow_entry, dict) and narrow_entry.get("visible")
+                            else 0.0
+                        )
+                        if heading_visible_height < 24 and entry_visible_height < 44:
+                            page_errors.append(
+                                "320px第一画面に学習グリッド見出しまたは意味ある入口が見えていません"
+                            )
+                    set_viewport(pipe, session, viewport)
+                    settle_first_paint(pipe, session)
             if label == "browse":
                 browse_result = evaluate(
                     pipe,
@@ -881,6 +1040,25 @@ def main() -> int:
                         for item in query_tables
                     ):
                         page_errors.append("検索で開いた進捗表に余分なTab停止があります")
+            if label == "curriculum":
+                if metrics.get("curriculumFamilyCount") != EXPECTED_HOME_FAMILIES:
+                    page_errors.append("学習グリッド全体ページが10入口を表示していません")
+                if metrics.get("curriculumPreparingCount") != EXPECTED_PREPARING_FAMILIES:
+                    page_errors.append("学習グリッド全体ページの準備中入口数が一致しません")
+            if label == "curriculum-preparing":
+                preparing_title = metrics.get("curriculumPreparingTitle")
+                if (
+                    not isinstance(preparing_title, dict)
+                    or not preparing_title.get("visible")
+                    or "準備中" not in str(preparing_title.get("text", ""))
+                ):
+                    page_errors.append("準備中教科ページの説明が可視になっていません")
+                if int(metrics.get("curriculumTrackCount", 0)) <= 0:
+                    page_errors.append("準備中教科ページに学年・科目別の骨格がありません")
+                if int(metrics.get("curriculumUnitCount", 0)) <= 0:
+                    page_errors.append("準備中教科ページに正本単元がありません")
+                if int(metrics.get("curriculumFalseAvailableCount", 0)) != 0:
+                    page_errors.append("準備中教科ページに偽の教材あり導線があります")
             if label == "about":
                 if metrics.get("aboutSteps", 0) < 6:
                     page_errors.append("GitHub初心者向け手順のol表示が不足しています")
@@ -985,6 +1163,10 @@ def main() -> int:
                     page_errors.append("スキップリンクが本文へ実フォーカス移動しません")
                 set_media(pipe, session, "screen", "dark")
                 dark_top = evaluate(pipe, session, APPEARANCE_SCRIPT)
+                metrics["darkTopAppearance"] = dark_top
+                dark_top_contrasts: dict[str, float] = {}
+                if not isinstance(dark_top, dict) or not dark_top.get("dark"):
+                    page_errors.append("トップのOS追従ダークモードがCDPで有効になりません")
                 try:
                     button_contrast = contrast_ratio(
                         dark_top.get("primaryButtonColor") if isinstance(dark_top, dict) else None,
@@ -993,10 +1175,57 @@ def main() -> int:
                 except ValueError as exc:
                     page_errors.append(f"ダークモード主ボタンのコントラストを測定できません: {exc}")
                 else:
+                    dark_top_contrasts["primaryButton"] = button_contrast
                     if button_contrast < 4.5:
                         page_errors.append(
                             f"ダークモード主ボタンのコントラスト不足: {button_contrast:.2f}:1"
                         )
+                for label_text, foreground_key, background_key, minimum in (
+                    (
+                        "学習グリッド見出し",
+                        "learningGridHeadingColor",
+                        "learningGridHeadingBackground",
+                        4.5,
+                    ),
+                    (
+                        "学習グリッドの升目境界",
+                        "learningGridSlotBorder",
+                        "learningGridSlotBackground",
+                        3.0,
+                    ),
+                ):
+                    try:
+                        grid_contrast = contrast_ratio(
+                            dark_top.get(foreground_key) if isinstance(dark_top, dict) else None,
+                            dark_top.get(background_key) if isinstance(dark_top, dict) else None,
+                        )
+                    except ValueError as exc:
+                        page_errors.append(
+                            f"ダークモードの{label_text}コントラストを測定できません: {exc}"
+                        )
+                    else:
+                        dark_top_contrasts[foreground_key] = grid_contrast
+                        if grid_contrast < minimum:
+                            page_errors.append(
+                                f"ダークモードの{label_text}コントラスト不足: "
+                                f"{grid_contrast:.2f}:1（必要 {minimum:.1f}:1）"
+                            )
+                set_media(pipe, session, "print")
+                printed_top = evaluate(pipe, session, APPEARANCE_SCRIPT)
+                metrics["darkTopContrasts"] = dark_top_contrasts
+                metrics["printTopAppearance"] = printed_top
+                if (
+                    not isinstance(printed_top, dict)
+                    or not printed_top.get("print")
+                    or not is_white(printed_top.get("rootBackground"))
+                    or not is_white(printed_top.get("bodyBackground"))
+                ):
+                    page_errors.append("トップがprint mediaで白地へ戻っていません")
+                if (
+                    not isinstance(printed_top, dict)
+                    or printed_top.get("learningGridItemBreakInside") != "avoid"
+                ):
+                    page_errors.append("印刷時の学習グリッド入口が途中改ページを避けていません")
                 set_media(pipe, session, "screen", color_scheme)
 
             if label == "lesson-wide-svg":

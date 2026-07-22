@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "source": "curriculum/PROGRESS_INDEX.md",
+  "status_values": [
+    "未着手",
+    "調査済",
+    "ドラフト",
+    "QA済",
+    "外部レビュー済",
+    "人間レビュー済",
+    "公開済"
+  ],
+  "families": [
+    {
+      "slug": "jhs-math",
+      "school": "中学",
+      "subject": "数学",
+      "unit_id_prefix": "jhs-math-",
+      "material_prefix": "jhs-math"
+    },
+    {
+      "slug": "jhs-eng",
+      "school": "中学",
+      "subject": "英語",
+      "unit_id_prefix": "jhs-eng-",
+      "material_prefix": "jhs-eng"
+    },
+    {
+      "slug": "jhs-jpn",
+      "school": "中学",
+      "subject": "国語",
+      "unit_id_prefix": "jhs-jpn-",
+      "material_prefix": "jhs-jpn"
+    },
+    {
+      "slug": "jhs-sci",
+      "school": "中学",
+      "subject": "理科",
+      "unit_id_prefix": "jhs-sci-",
+      "material_prefix": "jhs-sci"
+    },
+    {
+      "slug": "jhs-soc",
+      "school": "中学",
+      "subject": "社会",
+      "unit_id_prefix": "jhs-soc-",
+      "material_prefix": "jhs-soc"
+    },
+    {
+      "slug": "hs-math",
+      "school": "高校",
+      "subject": "数学",
+      "unit_id_prefix": "hs-math-",
+      "material_prefix": "hs-math"
+    },
+    {
+      "slug": "hs-eng",
+      "school": "高校",
+      "subject": "英語",
+      "unit_id_prefix": "hs-eng-",
+      "material_prefix": "hs-eng"
+    },
+    {
+      "slug": "hs-jpn",
+      "school": "高校",
+      "subject": "国語",
+      "unit_id_prefix": "hs-jpn-",
+      "material_prefix": "hs-jpn"
+    },
+    {
+      "slug": "hs-sci",
+      "school": "高校",
+      "subject": "理科",
+      "unit_id_prefix": "hs-sci-",
+      "material_prefix": "hs-sci"
+    },
+    {
+      "slug": "hs-soc",
+      "school": "高校",
+      "subject": "社会",
+      "unit_id_prefix": "hs-soc-",
+      "material_prefix": "hs-soc"
+    }
+  ]
+}

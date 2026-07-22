@@ -23,6 +23,7 @@ PUBLIC_DIRECTORIES = (
     "about",
     "browse",
     "content",
+    "curriculum",
     "progress",
     "subjects",
     "units",

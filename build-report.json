@@ -1,9 +1,11 @@
 {
   "status": "built",
-  "generated_at": "2026-07-22T11:24:50+09:00",
+  "generated_at": "2026-07-22T14:41:13+09:00",
   "source": {
     "repository": "https://github.com/ManabiGrid/manabigrid",
+    "origin": "https://github.com/ManabiGrid/manabigrid.git",
     "commit": "5700768bec42db1b2e59883c04e9e902fd0d06fa",
+    "verified_against": "explicit_expected_sha",
     "commit_date": "2026-07-21T08:01:52+09:00",
     "git_status_before": "",
     "git_status_after": ""
@@ -15,15 +17,201 @@
     "success_rate_percent": 100.0
   },
   "pages": {
-    "total": 505,
+    "total": 517,
     "content": 463,
     "top": 1,
     "browse": 1,
     "about": 1,
     "updates": 1,
     "not_found": 1,
+    "curriculum": 12,
     "subjects": 8,
     "units": 29
+  },
+  "curriculum_grid": {
+    "source": "curriculum_progress_index_and_canonical_materials",
+    "contract_version": 1,
+    "progress_index_sha256": "f7d77b6c4906875553796f62c4799a5cd30c775848c4035acf8e7351e7447c56",
+    "families": [
+      {
+        "slug": "jhs-math",
+        "label": "中学 数学",
+        "school": "中学",
+        "subject": "数学",
+        "href": "curriculum/jhs-math/index.html",
+        "registered_units": 37,
+        "status_counts": {
+          "人間レビュー済": 37
+        },
+        "material_subjects": [
+          "jhs-math-1",
+          "jhs-math-2",
+          "jhs-math-3"
+        ],
+        "packages": 24,
+        "lesson_pages": 219,
+        "availability": "available"
+      },
+      {
+        "slug": "jhs-eng",
+        "label": "中学 英語",
+        "school": "中学",
+        "subject": "英語",
+        "href": "curriculum/jhs-eng/index.html",
+        "registered_units": 29,
+        "status_counts": {
+          "未着手": 28,
+          "外部レビュー済": 1
+        },
+        "material_subjects": [
+          "jhs-eng-1"
+        ],
+        "packages": 1,
+        "lesson_pages": 8,
+        "availability": "available"
+      },
+      {
+        "slug": "jhs-jpn",
+        "label": "中学 国語",
+        "school": "中学",
+        "subject": "国語",
+        "href": "curriculum/jhs-jpn/index.html",
+        "registered_units": 27,
+        "status_counts": {
+          "未着手": 25,
+          "調査済": 1,
+          "外部レビュー済": 1
+        },
+        "material_subjects": [
+          "jhs-jpn"
+        ],
+        "packages": 1,
+        "lesson_pages": 7,
+        "availability": "available"
+      },
+      {
+        "slug": "jhs-sci",
+        "label": "中学 理科",
+        "school": "中学",
+        "subject": "理科",
+        "href": "curriculum/jhs-sci/index.html",
+        "registered_units": 81,
+        "status_counts": {
+          "未着手": 80,
+          "外部レビュー済": 1
+        },
+        "material_subjects": [
+          "jhs-sci-2"
+        ],
+        "packages": 1,
+        "lesson_pages": 5,
+        "availability": "available"
+      },
+      {
+        "slug": "jhs-soc",
+        "label": "中学 社会",
+        "school": "中学",
+        "subject": "社会",
+        "href": "curriculum/jhs-soc/index.html",
+        "registered_units": 80,
+        "status_counts": {
+          "未着手": 78,
+          "調査済": 1,
+          "外部レビュー済": 1
+        },
+        "material_subjects": [
+          "jhs-soc"
+        ],
+        "packages": 1,
+        "lesson_pages": 6,
+        "availability": "available"
+      },
+      {
+        "slug": "hs-math",
+        "label": "高校 数学",
+        "school": "高校",
+        "subject": "数学",
+        "href": "curriculum/hs-math/index.html",
+        "registered_units": 28,
+        "status_counts": {
+          "未着手": 25,
+          "ドラフト": 3
+        },
+        "material_subjects": [
+          "hs-math-i"
+        ],
+        "packages": 1,
+        "lesson_pages": 12,
+        "availability": "available"
+      },
+      {
+        "slug": "hs-eng",
+        "label": "高校 英語",
+        "school": "高校",
+        "subject": "英語",
+        "href": "curriculum/hs-eng/index.html",
+        "registered_units": 19,
+        "status_counts": {
+          "未着手": 19
+        },
+        "material_subjects": [],
+        "packages": 0,
+        "lesson_pages": 0,
+        "availability": "preparing"
+      },
+      {
+        "slug": "hs-jpn",
+        "label": "高校 国語",
+        "school": "高校",
+        "subject": "国語",
+        "href": "curriculum/hs-jpn/index.html",
+        "registered_units": 19,
+        "status_counts": {
+          "未着手": 19
+        },
+        "material_subjects": [],
+        "packages": 0,
+        "lesson_pages": 0,
+        "availability": "preparing"
+      },
+      {
+        "slug": "hs-sci",
+        "label": "高校 理科",
+        "school": "高校",
+        "subject": "理科",
+        "href": "curriculum/hs-sci/index.html",
+        "registered_units": 64,
+        "status_counts": {
+          "未着手": 64
+        },
+        "material_subjects": [],
+        "packages": 0,
+        "lesson_pages": 0,
+        "availability": "preparing"
+      },
+      {
+        "slug": "hs-soc",
+        "label": "高校 社会",
+        "school": "高校",
+        "subject": "社会",
+        "href": "curriculum/hs-soc/index.html",
+        "registered_units": 53,
+        "status_counts": {
+          "未着手": 53
+        },
+        "material_subjects": [],
+        "packages": 0,
+        "lesson_pages": 0,
+        "availability": "preparing"
+      }
+    ],
+    "total_entries": 10,
+    "available_entries": 6,
+    "preparing_entries": 4,
+    "registered_units": 437,
+    "registered_modules": 41,
+    "total_packages": 29,
+    "total_lesson_pages": 257
   },
   "features": {
     "frontmatter_stripped": 462,
@@ -53,7 +241,7 @@
       "output": "_assets/og-manabigrid.png",
       "sha256": "2484dabd83c341a34f34184e7d71fcfd31de89dd1dfa65cecebd5a3017efec8d"
     },
-    "sitemap_entries": 504,
+    "sitemap_entries": 516,
     "progress_disclosures": 12,
     "display_math_locations": [
       {
@@ -359,7 +547,8 @@
   "publication": {
     "site_repository": "ManabiGrid/manabigrid-site",
     "base_url": "https://manabigrid.github.io/manabigrid-site/",
-    "deployment_artifact_allowlist": "public_site.py"
+    "deployment_artifact_allowlist": "public_site.py",
+    "site_commit": null
   },
   "source_files": [
     {

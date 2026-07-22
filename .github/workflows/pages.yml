@@ -132,10 +132,12 @@ jobs:
         run: python3 -m unittest discover -s tests
 
       - name: Build the static site from the detected source revision
-        run: python3 build_site.py --source source --output site-output --no-check
+        env:
+          MANABIGRID_SITE_COMMIT_SHA: ${{ github.sha }}
+        run: python3 build_site.py --source source --output site-output --no-check --expected-source-sha "${{ needs.detect-source.outputs.source_sha }}"
 
       - name: Check the generated static site
-        run: python3 check_site.py site-output --source source
+        run: python3 check_site.py site-output --source source --expected-source-sha "${{ needs.detect-source.outputs.source_sha }}" --expected-site-sha "${{ github.sha }}"
 
       - name: Check external links once when manually requested
         if: github.event_name == 'workflow_dispatch' && inputs.check_external_links == 'true'
@@ -208,6 +210,7 @@ jobs:
       - name: Verify the published revision
         env:
           EXPECTED_SOURCE_SHA: ${{ needs.detect-source.outputs.source_sha }}
+          EXPECTED_SITE_SHA: ${{ github.sha }}
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           python3 - <<'PY'
@@ -220,6 +223,7 @@ jobs:
 
           base = os.environ["PAGE_URL"].rstrip("/") + "/"
           expected = os.environ["EXPECTED_SOURCE_SHA"]
+          expected_site = os.environ["EXPECTED_SITE_SHA"]
           report_url = urllib.parse.urljoin(base, "build-report.json")
           last_error = "公開レポートをまだ取得できません"
           for attempt in range(36):
@@ -231,10 +235,15 @@ jobs:
                   with urlopen(request, timeout=20) as response:
                       report = json.load(response)
                   published = report.get("source", {}).get("commit")
-                  if published == expected:
+                  published_site = report.get("publication", {}).get("site_commit")
+                  if published == expected and published_site == expected_site:
                       print(f"Published source verified: {published}")
+                      print(f"Published site verified: {published_site}")
                       break
-                  last_error = f"published={published}; expected={expected}"
+                  last_error = (
+                      f"published_source={published}; expected_source={expected}; "
+                      f"published_site={published_site}; expected_site={expected_site}"
+                  )
               except (HTTPError, URLError, OSError, ValueError, json.JSONDecodeError) as exc:
                   last_error = str(exc)
               time.sleep(10)

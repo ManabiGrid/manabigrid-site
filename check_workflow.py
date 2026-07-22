@@ -152,7 +152,13 @@ def main() -> int:
         "canonical source checkout is shallow; update history would be incomplete",
     )
     require(errors, "if: needs.detect-source.outputs.should_deploy == 'true'" in build, "unchanged scheduled source is not skipped")
-    require(errors, "check_site.py site-output --source source" in build, "site check is not pinned to the checked-out source")
+    require(
+        errors,
+        '--expected-source-sha "${{ needs.detect-source.outputs.source_sha }}"' in build
+        and 'MANABIGRID_SITE_COMMIT_SHA: ${{ github.sha }}' in build
+        and '--expected-site-sha "${{ github.sha }}"' in build,
+        "build/check does not pin canonical and site commit provenance",
+    )
     require(errors, "check_external_links.py site-output --run" in build, "one-time external link checker is not wired")
     require(
         errors,
@@ -165,6 +171,8 @@ def main() -> int:
         errors,
         "Verify the published revision" in deploy
         and "EXPECTED_SOURCE_SHA" in deploy
+        and "EXPECTED_SITE_SHA" in deploy
+        and 'report.get("publication", {}).get("site_commit")' in deploy
         and "build-report.json" in deploy
         and "missing page did not return HTTP 404" in deploy,
         "post-deploy published SHA / HTTP verification is incomplete",
