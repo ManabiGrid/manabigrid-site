@@ -111,6 +111,8 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 - 日本語本文はCSS禁則処理と利用可能な文節改行へ委ねる。意味や段落を変える自動`br`、句読点の移動、文字の補正は行わない。
 - 分数は`n/d`という見た目だけで自動MathML化しない。比、単位、URL等との区別が正本に明示された固定対象だけを変換契約へ追加する。
 - 全indexableページの`title`と`description`を重複不可にし、canonicalとsitemapの自己整合を検査する。検索エンジンへの登録、Search Console、URL検査依頼はGoogleアカウントを伴う外部操作として別承認レーンに置く。
+- Search Console所有権確認値は`site.config.json`だけを正とし、トップ`index.html`の正規な`html > head`直下へ1件だけ生成する。他ページへの複製、生成HTMLの手編集、Analytics／Tag Manager／追跡コードへの置換を行わない。`check_site.py`は属性重複なし、値の完全一致、トップ1件、他ページ0件を公開ゲートとして検査する。Googleが所有権を定期的に再確認するため、確認後も設定値を削除しない。
+- 公開ディレクトリ内のファイルは検査済み拡張子だけを許可し、`.htm`など意味的HTML検査の対象外になる形式をartifactへ含めない。新しい形式が必要な場合は、先に検査器とnegative testを追加してから許可集合を更新する。
 
 ## 互換性修正が必要な場合
 

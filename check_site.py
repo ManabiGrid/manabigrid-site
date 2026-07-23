@@ -23,6 +23,7 @@ from public_site import (
     missing_public_entries,
     quarantine_public_artifact,
     quarantine_self_test,
+    unsupported_public_files,
 )
 
 
@@ -1374,6 +1375,7 @@ class ParsedHtml:
     source_sha256_attr: Optional[str] = None
     canonical_hrefs: List[str] = field(default_factory=list)
     robots_values: List[str] = field(default_factory=list)
+    google_site_verification_meta: List[Tuple[str, bool, bool]] = field(default_factory=list)
     og_urls: List[str] = field(default_factory=list)
     og_images: List[str] = field(default_factory=list)
     mathml_count: int = 0
@@ -1485,10 +1487,34 @@ class HtmlCollector(HTMLParser):
                 else:
                     self.data.links.append(("link", "href", href))
         elif tag == "meta":
+            name_values = [
+                value or ""
+                for key, value in attrs
+                if key.lower() == "name"
+            ]
+            content_values = [
+                value or ""
+                for key, value in attrs
+                if key.lower() == "content"
+            ]
             name = attrs_dict.get("name", "").lower()
             http_equiv = attrs_dict.get("http-equiv", "").lower()
             property_name = attrs_dict.get("property", "").lower()
-            content = attrs_dict.get("content", "").strip()
+            raw_content = attrs_dict.get("content", "")
+            content = raw_content.strip()
+            is_google_verification = any(
+                value.lower() == "google-site-verification"
+                for value in name_values
+            )
+            if is_google_verification:
+                stack_tags = [item[0] for item in self.element_stack]
+                self.data.google_site_verification_meta.append(
+                    (
+                        content_values[0] if len(content_values) == 1 else "",
+                        stack_tags == ["html", "head"],
+                        len(name_values) == 1 and len(content_values) == 1,
+                    )
+                )
             if http_equiv == "content-security-policy":
                 self.data.csp_content = content
             elif name == "description":
@@ -1589,7 +1615,7 @@ def read_build_report(path: Path) -> Dict:
 def load_site_config() -> Dict[str, str]:
     path = Path(__file__).resolve().parent / "site.config.json"
     raw = json.loads(path.read_text(encoding="utf-8"))
-    required = {"base_url", "og_image_output"}
+    required = {"base_url", "og_image_output", "google_site_verification"}
     missing = sorted(required - raw.keys())
     if missing or any(not isinstance(raw.get(key), str) or not raw[key].strip() for key in required):
         raise ValueError("site.config.jsonの必須値が不足しています: " + ", ".join(missing))
@@ -1602,6 +1628,8 @@ def load_site_config() -> Dict[str, str]:
     output = Path(config["og_image_output"])
     if output.is_absolute() or ".." in output.parts:
         raise ValueError("site.config.jsonのog_image_outputは公開root内の相対パスにしてください")
+    if not re.fullmatch(r"[A-Za-z0-9_-]{20,256}", config["google_site_verification"]):
+        raise ValueError("site.config.jsonのgoogle_site_verificationが不正です")
     return config
 
 
@@ -1650,6 +1678,25 @@ def resolve_source_root(
     return None
 
 
+def google_site_verification_errors(
+    site_root: Path,
+    parsed_pages: Dict[Path, ParsedHtml],
+    expected_value: str,
+) -> List[str]:
+    """Require the exact Search Console token on the public home page only."""
+    errors: List[str] = []
+    for path, parsed in parsed_pages.items():
+        relative = path.relative_to(site_root)
+        expected = (
+            [(expected_value, True, True)]
+            if relative.as_posix() == "index.html"
+            else []
+        )
+        if parsed.google_site_verification_meta != expected:
+            errors.append(f"google site verification meta mismatch: {relative}")
+    return errors
+
+
 def validate_public_metadata(
     site_root: Path,
     parsed_pages: Dict[Path, ParsedHtml],
@@ -1691,6 +1738,18 @@ def validate_public_metadata(
             errors.append(f"robots meta mismatch: {relative}")
             metadata_ok = False
     checks.append({"name": "metadata:canonical_og_robots", "pass": metadata_ok})
+    verification_errors = google_site_verification_errors(
+        site_root,
+        parsed_pages,
+        config["google_site_verification"],
+    )
+    checks.append(
+        {
+            "name": "metadata:google_site_verification_home_only",
+            "pass": not verification_errors,
+        }
+    )
+    errors.extend(verification_errors)
 
     uniqueness_errors = metadata_uniqueness_errors(site_root, parsed_pages)
     checks.append(
@@ -2334,6 +2393,12 @@ def main() -> int:
     missing_public = missing_public_entries(site_root)
     if missing_public:
         errors.append("public allowlist entries missing: " + ", ".join(missing_public))
+    unsupported_public = unsupported_public_files(site_root)
+    if unsupported_public:
+        errors.append(
+            "public artifact has unsupported file types: "
+            + ", ".join(unsupported_public)
+        )
     quarantine_ok = quarantine_self_test()
     if not quarantine_ok:
         errors.append("public artifact quarantine self-test failed")
@@ -2347,9 +2412,15 @@ def main() -> int:
     checks.append(
         {
             "name": "public:allowlist_quarantine",
-            "pass": not missing_public and quarantine_ok and not quarantine_findings,
+            "pass": (
+                not missing_public
+                and not unsupported_public
+                and quarantine_ok
+                and not quarantine_findings
+            ),
             "files_checked": len(iter_public_files(site_root)),
             "findings": quarantine_findings,
+            "unsupported_files": unsupported_public,
             "scope": "allowlisted paths and UTF-8 text only; source history is not checked here",
         }
     )

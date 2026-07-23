@@ -30,6 +30,17 @@ PUBLIC_DIRECTORIES = (
     "updates",
 )
 
+PUBLIC_FILE_SUFFIXES = {
+    ".css",
+    ".html",
+    ".js",
+    ".json",
+    ".png",
+    ".svg",
+    ".txt",
+    ".xml",
+}
+
 # Keep this equivalent to the source repository's quarantine workflow.  The
 # artifact check intentionally examines only paths selected by this allowlist;
 # it is not a claim about the source repository's history.
@@ -118,6 +129,18 @@ def missing_public_entries(site_root: Path) -> list[str]:
     missing = [name for name in PUBLIC_ROOT_FILES if not (site_root / name).is_file()]
     missing.extend(name + "/" for name in PUBLIC_DIRECTORIES if not (site_root / name).is_dir())
     return missing
+
+
+def unsupported_public_files(site_root: Path) -> list[str]:
+    """Reject unreviewed file types that would otherwise enter the artifact."""
+    unsupported: list[str] = []
+    for path in iter_public_files(site_root):
+        relative = path.relative_to(site_root).as_posix()
+        if relative == ".nojekyll":
+            continue
+        if path.suffix.lower() not in PUBLIC_FILE_SUFFIXES:
+            unsupported.append(relative)
+    return unsupported
 
 
 def quarantine_public_artifact(site_root: Path) -> list[dict[str, Any]]:

@@ -7,7 +7,12 @@ import argparse
 import shutil
 from pathlib import Path
 
-from public_site import iter_public_files, missing_public_entries, quarantine_public_artifact
+from public_site import (
+    iter_public_files,
+    missing_public_entries,
+    quarantine_public_artifact,
+    unsupported_public_files,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -24,6 +29,11 @@ def main() -> int:
     missing = missing_public_entries(site_root)
     if missing:
         print("公開ファイル不足: " + ", ".join(missing))
+        return 1
+
+    unsupported = unsupported_public_files(site_root)
+    if unsupported:
+        print("未検査の拡張子を持つ公開ファイルがあります: " + ", ".join(unsupported))
         return 1
 
     quarantine_findings = quarantine_public_artifact(site_root)

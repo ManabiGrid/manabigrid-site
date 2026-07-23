@@ -8,9 +8,22 @@ import unittest
 from pathlib import Path, PurePosixPath
 
 import check_site
+import public_site
 
 
 class CheckSiteContractTests(unittest.TestCase):
+    def test_public_artifact_rejects_unreviewed_html_suffix(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            content = root / "content"
+            content.mkdir()
+            (content / "checked.html").write_text("<p>ok</p>", encoding="utf-8")
+            (content / "unchecked.htm").write_text("<p>not checked</p>", encoding="utf-8")
+            self.assertEqual(
+                public_site.unsupported_public_files(root),
+                ["content/unchecked.htm"],
+            )
+
     def test_html_collector_keeps_document_title_separate_from_svg_title(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "index.html"
@@ -47,6 +60,92 @@ class CheckSiteContractTests(unittest.TestCase):
             errors = check_site.metadata_uniqueness_errors(root, pages)
         self.assertTrue(any("duplicate indexable title" in error for error in errors))
         self.assertTrue(any("duplicate indexable description" in error for error in errors))
+
+    def test_search_console_verification_rejects_missing_duplicate_and_nonhome_meta(self) -> None:
+        expected = "A" * 20
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            home = root / "index.html"
+            about = root / "about/index.html"
+            about.parent.mkdir()
+
+            def parsed(path: Path, markup: str) -> check_site.ParsedHtml:
+                path.write_text(markup, encoding="utf-8")
+                return check_site.HtmlCollector(path).load()
+
+            valid = {
+                home: parsed(
+                    home,
+                    f'<html><head><meta name="google-site-verification" '
+                    f'content="{expected}"></head><body></body></html>',
+                ),
+                about: parsed(
+                    about,
+                    "<html><head></head><body></body></html>",
+                ),
+            }
+            self.assertEqual(
+                check_site.google_site_verification_errors(root, valid, expected),
+                [],
+            )
+
+            invalid_cases = [
+                parsed(
+                    home,
+                    f'<html><head></head><body><meta name="google-site-verification" '
+                    f'content="{expected}"></body></html>',
+                ),
+                parsed(
+                    home,
+                    f'<html><head><meta name="google-site-verification" '
+                    f'content=" {expected} "></head><body></body></html>',
+                ),
+                parsed(
+                    home,
+                    f'<html><head><meta name="google-site-verification" '
+                    f'content="{expected}"><meta name="google-site-verification" '
+                    f'content="{expected}"></head><body></body></html>',
+                ),
+                parsed(
+                    home,
+                    f'<html><body><head><meta name="google-site-verification" '
+                    f'content="{expected}"></head></body></html>',
+                ),
+                parsed(
+                    home,
+                    f'<html><head><template><meta name="google-site-verification" '
+                    f'content="{expected}"></template></head><body></body></html>',
+                ),
+                parsed(
+                    home,
+                    f'<html><head><meta name="google-site-verification" '
+                    f'content="WRONG" content="{expected}"></head><body></body></html>',
+                ),
+                parsed(
+                    home,
+                    f'<html><head><meta name="other" '
+                    f'name="google-site-verification" content="{expected}">'
+                    f"</head><body></body></html>",
+                ),
+            ]
+            for invalid_home in invalid_cases:
+                errors = check_site.google_site_verification_errors(
+                    root,
+                    {home: invalid_home, about: valid[about]},
+                    expected,
+                )
+                self.assertEqual(errors, ["google site verification meta mismatch: index.html"])
+
+            invalid_about = copy.deepcopy(valid)
+            invalid_about[about] = parsed(
+                about,
+                f'<html><head><meta name="google-site-verification" '
+                f'content="{expected}"></head><body></body></html>',
+            )
+            self.assertEqual(
+                check_site.google_site_verification_errors(root, invalid_about, expected),
+                ["google site verification meta mismatch: about/index.html"],
+            )
 
     def test_theme_storage_contract_rejects_key_and_mode_expansion(self) -> None:
         script = (

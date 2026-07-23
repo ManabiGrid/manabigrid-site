@@ -3,5 +3,6 @@
   "site_repository": "ManabiGrid/manabigrid-site",
   "source_repository_url": "https://github.com/ManabiGrid/manabigrid",
   "og_image_source": "docs/assets/banner.png",
-  "og_image_output": "_assets/og-manabigrid.png"
+  "og_image_output": "_assets/og-manabigrid.png",
+  "google_site_verification": "PGzsLGcuTJJ3tjKU60-2VZIzLPV9F-tTk2aqTYrvw90"
 }

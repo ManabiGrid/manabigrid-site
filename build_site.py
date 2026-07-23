@@ -192,11 +192,15 @@ def load_site_config() -> dict[str, str]:
         "source_repository_url",
         "og_image_source",
         "og_image_output",
+        "google_site_verification",
     }
     missing = sorted(required - raw.keys())
     if missing or any(not isinstance(raw.get(key), str) or not raw[key].strip() for key in required):
         raise RuntimeError("site.config.jsonの必須値が不足しています: " + ", ".join(missing))
-    return {key: str(raw[key]).strip() for key in required}
+    config = {key: str(raw[key]).strip() for key in required}
+    if not re.fullmatch(r"[A-Za-z0-9_-]{20,256}", config["google_site_verification"]):
+        raise RuntimeError("site.config.jsonのgoogle_site_verificationが不正です")
+    return config
 
 
 SITE_CONFIG = load_site_config()
@@ -1982,6 +1986,12 @@ def page(
         if canonical
         else ""
     )
+    google_verification_tag = (
+        '  <meta name="google-site-verification" '
+        f'content="{html.escape(SITE_CONFIG["google_site_verification"], quote=True)}">\n'
+        if current == Path("index.html")
+        else ""
+    )
     dialog = figure_dialog() if "data-figure-open" in body else ""
     return f"""<!doctype html>
 <html lang="ja">
@@ -1993,7 +2003,7 @@ def page(
   <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="{html.escape(description, quote=True)}">
   <meta name="robots" content="{html.escape(robots, quote=True)}">
-  <meta property="og:locale" content="ja_JP">
+{google_verification_tag}  <meta property="og:locale" content="ja_JP">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ManabiGrid 展示版">
   <meta property="og:title" content="{html.escape(full_title, quote=True)}">

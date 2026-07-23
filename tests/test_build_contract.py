@@ -98,6 +98,30 @@ class BuildContractTests(unittest.TestCase):
         self.assertIn("data-figure-close", figure_page)
         self.assertIn("data-figure-original", figure_page)
 
+    def test_search_console_verification_meta_is_home_only(self) -> None:
+        home = build_site.page(
+            Path("index.html"),
+            "トップ",
+            "説明",
+            "<p>本文</p>",
+            [("トップ", None)],
+            "page-home",
+        )
+        lesson = build_site.page(
+            Path("content/example.html"),
+            "教材",
+            "説明",
+            "<p>本文</p>",
+            [("トップ", Path("index.html")), ("教材", None)],
+            "page-lesson",
+        )
+        expected = (
+            '<meta name="google-site-verification" '
+            f'content="{build_site.SITE_CONFIG["google_site_verification"]}">'
+        )
+        self.assertEqual(home.count(expected), 1)
+        self.assertNotIn('name="google-site-verification"', lesson)
+
     def test_figure_dialog_script_has_keyboard_and_backdrop_close_contract(self) -> None:
         script = (
             (Path(build_site.__file__).with_name("static") / "site.js").read_text(

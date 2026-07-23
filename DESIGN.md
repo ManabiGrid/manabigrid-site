@@ -550,3 +550,12 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 - 初回の新検査は10条件中2条件を停止した。820pxでは長い資料名末尾のinline badgeが行の`scrollWidth`を5pxだけ増やしたが、ページ横はみ出しは0で実画像にも欠落はなかったため、許容差を8pxに固定した。文字200%では本文幅326pxを保ったまま最長行が398.41px高となり、当初の360px上限を超えたため、上限を文字倍率×220pxへ補正した。修正前の3.2rem／2.4rem列なら本文幅95%以上の条件で引き続き停止するため、元不具合を通す緩和ではない。
 - 独立した公開前監査は、初回修正が実データ行だけへクラスを付け、3種の空状態fallbackを通していないP2を検出した。教材0件の巻末資料では、空状態が旧2列の細い番号列へ残っていた。3種すべてを`resource-item-plain`へ統合し、全`.resource-list li`がnumbered/plainのどちらかであること、教材0件の代表ページも全端末で実描画することを追加した。
 - Markdown **463/463件（100%）**、HTML **517ページ**、内部リンク **12,217件**、外部リンク参照 **4,383件**、内部リンク切れ **0件**。標準ライブラリ契約テストは**119/119成功**、workflow dry-runはPASS、Pages artifact dry-runは**889ファイル、17,188,580 bytes、allowlist外0件**。
+
+## v13：Google Search Console所有権確認（2026-07-24）
+
+- **採用：URLプレフィックスプロパティ。** GitHub Pagesのproject path全体を対象にするため、`https://manabigrid.github.io/manabigrid-site/`を登録する。`github.io`のDNSを変更できないためDomainプロパティは使わない。
+- **採用：ホームだけのHTML meta確認。** Search Consoleが発行した確認値を`site.config.json`の単一設定へ置き、生成器がトップ`index.html`の`head`へ1件だけ出力する。Google Analytics、Tag Manager、外部JavaScript、Cookie、閲覧追跡は追加しない。
+- **採用：確認値を機械契約化。** `build_site.py`と独立した`check_site.py`の双方が確認値の文字種と長さを検査し、完成HTMLでは正規な`html > head`直下、属性重複なし、トップ1件・他ページ0件、設定値との完全一致を要求する。生成HTMLの手編集や、更新時に確認タグが消える状態を許可しない。
+- **監査で強化：未検査HTML形式をartifactへ入れない。** 公開allowlistのディレクトリは従来、任意拡張子を再帰収集する一方、意味的HTML検査は`.html`だけだった。現物に`.htm`は0件だが将来の迂回を防ぐため、検査済み拡張子集合を固定し、`.htm`等が1件でもあればcheckとpackageの双方を停止する。
+- **運用方針。** 所有権確認後もmetaを維持する。Search Consoleへ送信するsitemapは既存の自動生成`https://manabigrid.github.io/manabigrid-site/sitemap.xml`とし、全ページを個別登録しない。ホームは公開URL検査後に1回だけインデックス登録を依頼し、掲載時期や掲載自体は保証しない。
+- **独立監査結果。** 初回検査器は`body`／`template`内のmeta、前後空白値、重複属性を拒否できないP1と、未検査`.htm`をartifactへ含め得るP2を検出した。正規`html > head`直下と属性一意性を構造検査し、未検査拡張子をcheck／package双方で停止する負例へ修正した。最終再監査はP0／P1／P2各0件、122テスト成功、517 HTML中トップ1件・他516件0、リンク切れ0、追跡コード追加なしを確認した。
