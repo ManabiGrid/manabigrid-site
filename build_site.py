@@ -119,6 +119,18 @@ def svg_id_prefix(doc_rel: Path, asset_rel: Path, serial: int) -> str:
     return "mg-" + hashlib.sha256(key.encode("utf-8")).hexdigest()[:10] + "-"
 
 
+def svg_viewbox_layout(value: str) -> tuple[bool, bool]:
+    """Return (wide, compact_panoramic) from a four-number SVG viewBox."""
+    try:
+        _min_x, _min_y, width, height = (float(part) for part in value.split())
+    except (TypeError, ValueError):
+        return False, False
+    if width <= 0 or height <= 0:
+        return False, False
+    panoramic = width / height >= 2
+    return width >= 500 or panoramic, panoramic and width < 500
+
+
 def validate_svg_source(svg: str, path: Path) -> None:
     """Reject active or remotely loading SVG before it reaches generated HTML."""
     if path.is_symlink():
@@ -1289,12 +1301,15 @@ class Markdown:
 
             view_box = re.search(r"\bviewBox=[\"']([^\"']+)[\"']", svg, re.IGNORECASE)
             wide = False
+            compact_panoramic = False
             if view_box:
-                try:
-                    wide = float(view_box.group(1).split()[2]) >= 500
-                except (IndexError, ValueError):
-                    pass
-            figure_class = "lesson-figure figure-wide" if wide else "lesson-figure"
+                wide, compact_panoramic = svg_viewbox_layout(view_box.group(1))
+            figure_classes = ["lesson-figure"]
+            if wide:
+                figure_classes.append("figure-wide")
+            if compact_panoramic:
+                figure_classes.append("figure-panoramic")
+            figure_class = " ".join(figure_classes)
             attrs = (
                 f' class="{figure_class}" role="img" focusable="false"'
                 f' aria-labelledby="{title_id}" aria-describedby="{desc_id}"'
@@ -1313,14 +1328,19 @@ class Markdown:
             self.stats.svg_references += 1
             self.stats.svg_inlined += 1
             caption = f"<figcaption>{html.escape(alt)}</figcaption>" if alt else ""
-            figure_shell_class = "svg-figure is-wide" if wide else "svg-figure"
+            figure_shell_classes = ["svg-figure"]
+            if wide:
+                figure_shell_classes.append("is-wide")
+            if compact_panoramic:
+                figure_shell_classes.append("is-panoramic")
+            figure_shell_class = " ".join(figure_shell_classes)
             scroll_attrs = (
-                ' tabindex="0" role="region" aria-label="図を横にスクロール"'
+                ' data-scroll-label="図を横にスクロール"'
                 if wide
                 else ""
             )
             hint = (
-                '<p class="figure-scroll-hint screen-only" aria-hidden="true">'
+                '<p class="figure-scroll-hint screen-only" data-scroll-hint hidden>'
                 "→ よこにスクロール</p>"
                 if wide
                 else ""
@@ -1328,7 +1348,10 @@ class Markdown:
             return hold(
                 f'<figure class="{figure_shell_class}"><div class="figure-scroll"{scroll_attrs}>{svg}</div>'
                 f"{hint}{caption}"
-                f'<a class="figure-source screen-only" href="{href}">図を大きく開く</a></figure>'
+                f'<a class="figure-source screen-only" href="{href}" target="_blank"'
+                f' rel="noopener" data-figure-open'
+                f' data-figure-title="{html.escape(fallback_text, quote=True)}">'
+                "図を大きく見る</a></figure>"
             )
 
         value = self.IMAGE.sub(image_repl, value)
@@ -1861,6 +1884,41 @@ def footer() -> str:
 </footer>"""
 
 
+def page_end_nav(current: Path, local_href) -> str:
+    if current == Path("index.html"):
+        destination = Path("browse/index.html")
+        destination_label = "教材をさがす"
+    else:
+        destination = Path("index.html")
+        destination_label = "トップページへ"
+    return f"""
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="{local_href(destination)}"><span aria-hidden="true">⌂</span> {destination_label}</a>
+</nav>"""
+
+
+def figure_dialog() -> str:
+    return """
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>"""
+
+
 def breadcrumbs(current: Path, items: list[tuple[str, Path | None]]) -> str:
     rendered: list[str] = []
     for label, target in items:
@@ -1924,6 +1982,7 @@ def page(
         if canonical
         else ""
     )
+    dialog = figure_dialog() if "data-figure-open" in body else ""
     return f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -1931,8 +1990,7 @@ def page(
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="{html.escape(description, quote=True)}">
   <meta name="robots" content="{html.escape(robots, quote=True)}">
   <meta property="og:locale" content="ja_JP">
@@ -1948,19 +2006,23 @@ def page(
   <meta name="twitter:card" content="summary_large_image">
   <title>{html.escape(full_title)}</title>
 {canonical_tag}  <link rel="icon" type="image/svg+xml" href="{local_href(Path("_assets/favicon.svg"))}">
+  <script src="{local_href(Path("_assets/theme.js"))}"></script>
   <link rel="stylesheet" href="{local_href(Path("_assets/site.css"))}">
 </head>
-<body class="{page_class}"{source_attrs}>
+<body id="page-top" class="{page_class}"{source_attrs}>
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="{local_href(Path("index.html"))}"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="{local_href(Path("browse/index.html"))}">教材をさがす</a><a href="{local_href(Path("progress/index.html"))}">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   {breadcrumbs(current, crumb_items)}
-  <main id="main-content" class="page-shell" tabindex="-1"{source_attrs}>{body}</main>
+  <main id="main-content" class="page-shell" tabindex="-1"{source_attrs}>{body}
+{page_end_nav(current, local_href)}</main>
 {footer()}
+{dialog}
 {search_script}  <script src="{local_href(Path("_assets/site.js"))}" defer></script>
 </body>
 </html>
@@ -2710,13 +2772,15 @@ def subject_body(subject: str, units: list[Unit], docs: list[Doc]) -> str:
 
 
 def resource(current: Path, doc: Doc, sequence: int | None = None) -> str:
+    row_class = "resource-item-numbered" if sequence is not None else "resource-item-plain"
     number = (
         f'<span class="resource-number" aria-hidden="true">{sequence:02}</span>'
         if sequence is not None
         else ""
     )
     return (
-        f'<li>{number}<div><a href="{rel_href(current, doc.output)}">{html.escape(doc.title)}</a>'
+        f'<li class="{row_class}">{number}<div><a href="{rel_href(current, doc.output)}">'
+        f"{html.escape(doc.title)}</a>"
         f'<span class="doc-kind">{kind_label(doc.kind)}</span></div></li>'
     )
 
@@ -2750,10 +2814,10 @@ def unit_body(unit: Unit) -> str:
   <details class="unit-meta"><summary>教材の状態とID</summary><p><span class="status-chip">{html.escape(unit.status)}</span> <code>{html.escape(unit.slug)}</code></p></details>
 </section>
 <section class="container resource-list primary-resources">
-  <div><p class="eyebrow">LESSONS</p><h2>レッスン</h2><ol>{lessons or "<li>独立した本文ページはありません。</li>"}</ol></div>
+  <div><p class="eyebrow">LESSONS</p><h2>レッスン</h2><ol>{lessons or '<li class="resource-item-plain"><div>独立した本文ページはありません。</div></li>'}</ol></div>
 </section>
-<details class="container resource-list answer-resources"><summary>解答一覧を見る</summary><p>各レッスンを解き終えたあと、レッスン末の「答えを見る」から開けます。</p><ul>{answers or "<li>独立した解答ファイルはありません。</li>"}</ul></details>
-<details class="container resource-list production-resources"><summary>案内・指導・制作資料を見る</summary><ul>{other or "<li>案内・制作資料はありません。</li>"}</ul></details>"""
+<details class="container resource-list answer-resources"><summary>解答一覧を見る</summary><p>各レッスンを解き終えたあと、レッスン末の「答えを見る」から開けます。</p><ul>{answers or '<li class="resource-item-plain"><div>独立した解答ファイルはありません。</div></li>'}</ul></details>
+<details class="container resource-list production-resources"><summary>案内・指導・制作資料を見る</summary><ul>{other or '<li class="resource-item-plain"><div>案内・制作資料はありません。</div></li>'}</ul></details>"""
 
 
 def progress_counts(text: str) -> dict[str, int]:
@@ -2952,11 +3016,11 @@ def clean(site_root: Path) -> None:
 
 
 def copy_assets(source: Path, site_root: Path) -> tuple[dict[Path, Path], int]:
-    for name in ("site.css", "site.js", "favicon.svg"):
+    for name in ("site.css", "site.js", "theme.js", "favicon.svg"):
         if not (SITE_ROOT / "static" / name).exists():
             raise BuildError(f"static/{name} がありません")
     (site_root / "_assets").mkdir(parents=True)
-    for name in ("site.css", "site.js", "favicon.svg"):
+    for name in ("site.css", "site.js", "theme.js", "favicon.svg"):
         shutil.copy2(SITE_ROOT / "static" / name, site_root / "_assets" / name)
     og_source = source / OG_IMAGE_SOURCE
     if not og_source.is_file():
@@ -3038,6 +3102,7 @@ def build(
     stats = Stats(tagged_source=sum(d.tags for d in docs))
     resolver = Resolver(source, docs, media, units, stats)
     failures: list[dict[str, str]] = []
+    document_title_counts = Counter(doc.title for doc in docs)
 
     for doc in docs:
         try:
@@ -3046,12 +3111,16 @@ def build(
             if doc.unit == "jhs-math-3-diagnostic":
                 rendered = link_diagnostic_unit_mentions(rendered, doc.output, units)
             body = progress_body(doc, rendered, units) if doc.kind == "progress" else doc_body(doc, rendered, units)
+            metadata_title = doc.title
+            if document_title_counts[doc.title] > 1 and doc.unit in units:
+                metadata_title = f"{doc.title}｜{units[doc.unit].title}"
+            metadata_description = f"ManabiGrid {kind_label(doc.kind)}: {metadata_title}"
             write(
                 site_root / doc.output,
                 page(
                     doc.output,
-                    doc.title,
-                    f"ManabiGrid {kind_label(doc.kind)}: {doc.title}",
+                    metadata_title,
+                    metadata_description,
                     body,
                     doc_crumbs(doc, units),
                     f"page-{doc.kind}",
@@ -3119,7 +3188,7 @@ def build(
             site_root / output,
             page(
                 output,
-                family.spec.label,
+                f"{family.spec.label}の学習グリッド",
                 f"ManabiGrid {family.spec.label}の単元全体図と教材掲載状況",
                 curriculum_family_body(family, units, allowed_statuses),
                 [
@@ -3178,7 +3247,7 @@ def build(
             site_root / output,
             page(
                 output,
-                SUBJECTS[subject][0],
+                f"{SUBJECTS[subject][0]}の教材一覧",
                 f"ManabiGrid {SUBJECTS[subject][0]}の教材一覧",
                 subject_body(subject, subject_units(units, subject), docs),
                 [

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: レッスンマップ（単元構成案）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>レッスンマップ（単元構成案）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="9e2e37382e546df2bb71e45e3ca14b9df47ef42064adfc638a7e91b65ee517f9" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="9e2e37382e546df2bb71e45e3ca14b9df47ef42064adfc638a7e91b65ee517f9" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">レッスンマップ（単元構成案）</li></ol></nav>
@@ -49,7 +50,12 @@
 <h2 id="l04l12-構成メモ執筆時の骨子記録本文はv02執筆済み最新は各-lesson_xxmd-が正">L04〜L12 構成メモ（執筆時の骨子記録。本文はv0.2執筆済み——最新は各 lesson_XX.md が正）</h2>
 <ul><li><p><strong>L04</strong>: L01〜L03の統合演習。表→式→グラフの往復。凸の向き・軸・頂点・y軸との交点をそろえて描く手順の型化。<strong>このレッスンは定着回であり、新しい概念・新しい用語を立てない</strong>（y軸との交点は「x=0 を代入して y の値を求める」という既習の計算として扱い、新概念としては導入しない）。頂点が式から直接読める形（例: y=x²−1）の再確認をここでも1問入れる。</p></li><li><p><strong>L05</strong>: 下に凸なら頂点で最小・上に凸なら頂点で最大。<strong>あわせて「存在しない側」を必ず明記する: 定義域に制限がないとき、下に凸なら最大値は存在しない（いくらでも大きくなる）／上に凸なら最小値は存在しない</strong>。「最大値なし」と答えること自体が正答になる問いを1問置く。グラフを描いてから答える手順を固定。</p></li><li><p><strong>L06</strong>: 区間つき最大・最小の主手順は次の3段で型化する。<strong>①頂点（軸）が区間内にあるかをまず判定する → ②区間内にあれば「頂点の値＋両端点の値」を候補にし、区間外なら「端点の値のみ」を候補にする（区間外の頂点の値はこの関数では実現されないので候補にしない） → ③候補を比較して最大・最小を決める</strong>。「頂点と端点を常に全部比べる」という提示はしない（頂点が区間外の場合に誤った候補を混ぜる逆の誤転移を生むため）。場合分けは、区間[定数]×動く軸、または固定軸×動く区間のどちらか一方のみを1レッスン内で扱う（両方を同時に動かす提示をしない）。端点代入だけで答える誤転移への対策として①の判定を毎回言語化させる（数値根拠はteacher_notes側のみ）。</p></li><li><p><strong>L07</strong>: 面積・売上等の自作文脈。定義域が文脈から決まること（負の長さは不可等）を明示するステップを独立させる（L01の長方形例「x&gt;0」の再訪として接続する）。</p></li><li><p><strong>L08</strong>: 因数分解で解ける二次方程式から開始し、「解=共有点のx座標」をグラフ上で確認。解の公式は既習事項として接続するが、<strong>使用境界を固定する: 解の公式は「解を求める道具」としてのみ使用し、√の中身の符号の議論（判別式方向の定式化）へは進まない</strong>。共有点の「個数」の話題はL09に送る。</p></li><li><p><strong>L09</strong>: <strong>個数判定の主軸は「頂点のy座標の符号と凸の向き＋グラフ」に置く</strong>（例: 下に凸で頂点のy座標が負なら共有点2個）。方程式を解いて個数を数える確認は従とし、解の公式の√の中身を個数判定の道具として一般化しない（<strong>「グラフとx軸の共有点の個数」で止める。判別式の本格的定式化・解の種類の判別へは進まない</strong>）。</p></li><li><p><strong>L10</strong>: 前提2つ（①グラフが読める ②「不等式の解」とは条件を満たすx全部の集合）を本編の前に分離して確認するセクションを置く（S1総説準拠）。y&gt;0 ⇔ グラフがx軸より上、から開始。</p></li><li><p><strong>L11</strong>: 共有点が1個・0個の場合に特化する（文脈適用はL12へ移動——過密対策）。<strong>核は「不等号の種類（strict/non-strict）で解集合が変わる」の4パターンの区別</strong>。共有点1個の例 y=(x−1)² で全4パターンを明示する: (x−1)²&gt;0 → x≠1 ／ (x−1)²≧0 → すべての実数 ／ (x−1)²&lt;0 → 解なし ／ (x−1)²≦0 → x=1。「すべての実数・解なし」だけでまとめず、<strong>接点の1点を含むか除くかを毎回グラフで指差し確認</strong>する。共有点0個の場合（例: x²＋1&gt;0 → すべての実数、x²＋1&lt;0 → 解なし）も同様に4パターンで整理。誤答が集中しやすい領域のため演習を厚く。</p></li><li><p><strong>L12</strong>: 前半（約0.5時間）は二次不等式の文脈適用（L11から移した活用題。L07の「文脈が定義域・条件を決める」と接続）。後半は単元マップの再提示。数IIへの接続は「この先さらに詳しく学ぶ」の予告に留める（内容の先取りはしない）。</p></li></ul>
 <h2 id="未確認監修依頼事項">未確認・監修依頼事項</h2>
-<ul><li><p>時間配分28時間は summary の24〜29時間レンジ内での本草案の割り付けであり、学校のカリキュラムに合わせた増減は監修時に調整。</p></li><li><p>curriculum_code の紐付け（8451503300000000系8件。LOD照合済みは8451503311000000の1件のみ、他はCSV実測）はメタデータ付与工程で行い、本マップには記載しない。</p></li></ul></article></main>
+<ul><li><p>時間配分28時間は summary の24〜29時間レンジ内での本草案の割り付けであり、学校のカリキュラムに合わせた増減は監修時に調整。</p></li><li><p>curriculum_code の紐付け（8451503300000000系8件。LOD照合済みは8451503311000000の1件のみ、他はCSV実測）はメタデータ付与工程で行い、本マップには記載しない。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -58,7 +64,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -68,6 +74,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

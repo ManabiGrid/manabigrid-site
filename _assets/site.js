@@ -67,32 +67,39 @@
     return { total: matches.length, shown: visibleMatches.length };
   };
 
-  const syncScrollableTables = () => {
-    document.querySelectorAll('.table-wrap[data-scroll-label]').forEach((tableWrap) => {
-      const scrollable = tableWrap.scrollWidth > tableWrap.clientWidth + 1;
+  const syncScrollableRegions = () => {
+    document.querySelectorAll('[data-scroll-label]').forEach((region) => {
+      const scrollable = region.scrollWidth > region.clientWidth + 1;
       if (scrollable) {
-        tableWrap.setAttribute('tabindex', '0');
-        tableWrap.setAttribute('role', 'region');
-        tableWrap.setAttribute('aria-label', tableWrap.dataset.scrollLabel || '横にスクロールできる表');
+        region.setAttribute('tabindex', '0');
+        region.setAttribute('role', 'region');
+        region.setAttribute('aria-label', region.dataset.scrollLabel || '横にスクロールできます');
       } else {
-        tableWrap.removeAttribute('tabindex');
-        tableWrap.removeAttribute('role');
-        tableWrap.removeAttribute('aria-label');
+        region.removeAttribute('tabindex');
+        region.removeAttribute('role');
+        region.removeAttribute('aria-label');
+      }
+      if (region.classList.contains('figure-scroll')) {
+        region.classList.toggle('is-zoom-clickable', !scrollable);
+      }
+      const hint = region.closest('.svg-figure')?.querySelector('[data-scroll-hint]');
+      if (hint) {
+        hint.toggleAttribute('hidden', !scrollable);
       }
     });
   };
 
-  const scheduleScrollableTableSync = () => {
-    requestAnimationFrame(syncScrollableTables);
+  const scheduleScrollableRegionSync = () => {
+    requestAnimationFrame(syncScrollableRegions);
   };
 
-  const observeScrollableTables = () => {
+  const observeScrollableRegions = () => {
     document.querySelectorAll('details').forEach((details) => {
       if (details.querySelector('.table-wrap[data-scroll-label]')) {
-        details.addEventListener('toggle', scheduleScrollableTableSync);
+        details.addEventListener('toggle', scheduleScrollableRegionSync);
       }
     });
-    syncScrollableTables();
+    syncScrollableRegions();
   };
 
   const createFilter = () => {
@@ -146,7 +153,7 @@
           ? canonicalDisclosure && visibleRows > 0
           : q !== '' && visibleRows > 0;
       });
-      scheduleScrollableTableSync();
+      scheduleScrollableRegionSync();
 
       const contentResult = hasContentSearch
         ? buildContentResults(q)
@@ -247,15 +254,94 @@
     });
   };
 
+  const createFigureDialog = () => {
+    const dialog = document.querySelector('[data-figure-dialog]');
+    const image = dialog?.querySelector('[data-figure-dialog-image]');
+    const title = dialog?.querySelector('[data-figure-dialog-title]');
+    const original = dialog?.querySelector('[data-figure-original]');
+    const closeButton = dialog?.querySelector('[data-figure-close]');
+    const links = Array.from(document.querySelectorAll('[data-figure-open]'));
+    if (!dialog || !image || !title || !original || !closeButton || links.length === 0) {
+      return;
+    }
+
+    let activeLink = null;
+    let openingScrollY = 0;
+
+    const openFigure = (link) => {
+      if (typeof dialog.showModal !== 'function') return false;
+      activeLink = link;
+      openingScrollY = window.scrollY;
+      const figureTitle = link.dataset.figureTitle || '教材の図';
+      title.textContent = figureTitle;
+      image.alt = figureTitle;
+      image.src = link.href;
+      original.href = link.href;
+      dialog.showModal();
+      document.documentElement.classList.add('has-modal');
+      requestAnimationFrame(() => closeButton.focus({ preventScroll: true }));
+      return true;
+    };
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        if (
+          event.button !== 0
+          || event.metaKey
+          || event.ctrlKey
+          || event.shiftKey
+          || event.altKey
+        ) {
+          return;
+        }
+        if (openFigure(link)) event.preventDefault();
+      });
+
+      const scroller = link.closest('.svg-figure')?.querySelector('.figure-scroll');
+      if (!scroller) return;
+      scroller.classList.add('figure-zoom-candidate');
+      scroller.addEventListener('click', () => {
+        if (scroller.scrollWidth > scroller.clientWidth + 1) return;
+        if (!openFigure(link)) {
+          window.open(link.href, '_blank', 'noopener');
+        }
+      });
+    });
+
+    closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !dialog.open) return;
+      event.preventDefault();
+      dialog.close();
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.documentElement.classList.remove('has-modal');
+      image.removeAttribute('src');
+      image.alt = '';
+      if (activeLink) activeLink.focus({ preventScroll: true });
+      if (Math.abs(window.scrollY - openingScrollY) > 2) {
+        const previousBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, openingScrollY);
+        document.documentElement.style.scrollBehavior = previousBehavior;
+      }
+      activeLink = null;
+    });
+  };
+
   const start = () => {
     createSkipLink();
-    observeScrollableTables();
+    observeScrollableRegions();
     createFilter();
     createSectionObserver();
     createPrintPreparation();
+    createFigureDialog();
   };
 
-  window.addEventListener('resize', scheduleScrollableTableSync, { passive: true });
+  window.addEventListener('resize', scheduleScrollableRegionSync, { passive: true });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);

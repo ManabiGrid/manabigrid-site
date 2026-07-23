@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中1数学「文字と式」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中1数学「文字と式」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="8b54ff3296d6fb37f7e28e26f491749ab6f4a6be3258af79b423ff5debfab690" data-source-file="materials/jhs-math-1/jhs-math-1-letters-and-expressions/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="8b54ff3296d6fb37f7e28e26f491749ab6f4a6be3258af79b423ff5debfab690" data-source-file="materials/jhs-math-1/jhs-math-1-letters-and-expressions/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-letters-and-expressions/index.html">中1数学「文字と式」</a></li><li aria-current="page">teachernotes — 中1数学「文字と式」</li></ol></nav>
@@ -69,7 +70,12 @@
 <h2 id="d-design_handoff申し送り表記ビュー生成向け">D. DESIGN_HANDOFF申し送り（表記・ビュー生成向け）</h2>
 <ol start="1"><li><p><strong>分数の1行表記</strong>: 本文は a/5 等の1行表記を使用し、L02に「ノートではこう書く」の橋渡しを設置済み。組版時は可能なら真の分数組みへ（図版SVGとあわせて要デザイン判断）。</p></li><li><p><strong>×の復活</strong>: 代入時に×が復活する旨をL02guide・L06本文に明示済み——ビュー生成で記号を自動整形しないこと。</p></li><li><p><strong>＝を縦に連ねる書式</strong>: L11guideで導入。印刷版では計算例の行そろえを保持すること。</p></li><li><p><strong>図版</strong>: 全12レッスンの計15点（L02・L05・L07は各2点、他は各1点）を<code>assets_provenance/generate_figures.py</code>によるコード来歴方式SVGで実体化済み（<code>assets/*.svg</code>・本文は画像参照＋alt文に置換済み）。title/descへのAI再利用メタ情報埋め込み（OPS v2.5）適用済み。台帳は<code>assets_provenance/FIGURE_MANIFEST.md</code>。SVGの直接編集は禁止——スクリプト改修で再生成すること。</p></li><li><p><strong>ふりがな</strong>: 項（こう）・係数（けいすう）・代入（だいにゅう）・累乗（るいじょう）・等式（とうしき）・不等式（ふとうしき）・左辺/右辺/両辺（さへん/うへん/りょうへん）を初出時に併記済み。ビューでの表示切替対象。</p></li></ol>
 <h2 id="e-自己検査メモパスd向けの申し送り">E. 自己検査メモ（パスD向けの申し送り）</h2>
-<ul><li><p>数値解答は全問執筆時に再計算済み（answer_key 3ファイルに検算過程を明記）。</p></li><li><p>生徒向け本文（lesson_01〜12）に調査数値・年度・正答率の記載ゼロ（本ノートのみに転記）。</p></li><li><p>未習語（移項・同類項・多項式・単項式）の本文使用ゼロを執筆時に確認——パスDでgrep再確認を推奨。</p></li><li><p>一種類の文字の上限: L11〜L12の計算問題はすべて一文字。表す活動（L04練習1(4)の a・b、L05のv等）は取扱い(3)「表す・読む」範囲であり計算させていない。</p></li><li><p>時間配当の算術: 1節=1＋2＋1＋1＋2＋2＋1＋1＋1=12、2節=1＋2＋2=5、計17（lesson_mapと一致）。</p></li></ul></article></main>
+<ul><li><p>数値解答は全問執筆時に再計算済み（answer_key 3ファイルに検算過程を明記）。</p></li><li><p>生徒向け本文（lesson_01〜12）に調査数値・年度・正答率の記載ゼロ（本ノートのみに転記）。</p></li><li><p>未習語（移項・同類項・多項式・単項式）の本文使用ゼロを執筆時に確認——パスDでgrep再確認を推奨。</p></li><li><p>一種類の文字の上限: L11〜L12の計算問題はすべて一文字。表す活動（L04練習1(4)の a・b、L05のv等）は取扱い(3)「表す・読む」範囲であり計算させていない。</p></li><li><p>時間配当の算術: 1節=1＋2＋1＋1＋2＋2＋1＋1＋1=12、2節=1＋2＋2=5、計17（lesson_mapと一致）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -78,7 +84,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -88,6 +94,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

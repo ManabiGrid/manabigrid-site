@@ -338,6 +338,8 @@ def evidence_hashes() -> dict[str, str]:
         ROOT / "device_matrix_check.py",
         ROOT / "browser_check.py",
         ROOT / "static" / "site.css",
+        ROOT / "static" / "site.js",
+        ROOT / "static" / "theme.js",
         ROOT / "build_site.py",
         ROOT / "device_matrix.contract.json",
     )

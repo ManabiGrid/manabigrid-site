@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L02 積と商の表し方——×と÷を省く約束">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L02 積と商の表し方——×と÷を省く約束｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="86d1e949f5c9fb3dfe8d907bcae267d0356277b3057becaff6a106957a477dde" data-source-file="materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.md">
+<body id="page-top" class="page-lesson" data-source-sha256="86d1e949f5c9fb3dfe8d907bcae267d0356277b3057becaff6a106957a477dde" data-source-file="materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-letters-and-expressions/index.html">中1数学「文字と式」</a></li><li aria-current="page">L02 積と商の表し方——×と÷を省く約束</li></ol></nav>
@@ -74,7 +75,7 @@
 <text x="272.0" y="207.0" font-size="11" text-anchor="start">−1の1も書かない（−は残る）</text>
 <text x="220.0" y="248.0" font-size="12" text-anchor="middle">省けるのはかけ算の×だけ。a＋4 の＋は省けない</text>
 </svg>
-</div><figcaption>a×4→4a、b×a→ab、1×a→a、(−1)×a→−aの4つの書き替えを対応矢印で並べた一覧図。省く×・前に出る数・消える1</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-letters-and-expressions/assets/L02_fig1_product_notation_rules.svg">図を大きく開く</a></figure>
+</div><figcaption>a×4→4a、b×a→ab、1×a→a、(−1)×a→−aの4つの書き替えを対応矢印で並べた一覧図。省く×・前に出る数・消える1</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-letters-and-expressions/assets/L02_fig1_product_notation_rules.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="a×4→4a、b×a→ab、1×a→a、(−1)×a→−aの4つの書き替えを対応矢印で並べた一覧図。省く×・前に出る数・消える1">図を大きく見る</a></figure>
 <p>なぜ省くのか？ 理由は単純で、<strong>短く・見やすくなる</strong>からだ。x×3×y×2 と 6xy を見比べると、後者のほうが「6 が全体の個数、xy が中身」と一目で読める。約束は暗記のためでなく、便利さのためにある。</p>
 <p>気をつけたいのは、×を省けるのは<strong>かけ算だけ</strong>ということ。a＋4 の＋は省けない。4a と書いたら、それは必ず 4×a の意味だ。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「必ず省略」ではない、留保つきの約束</strong></p>
@@ -108,7 +109,7 @@
 <text x="220.0" y="220.0" font-size="13" text-anchor="middle" font-weight="bold">a/5＝10/5＝2 で一致 ✓　　5/a＝5/10＝0.5 で不一致 ✗</text>
 <text x="220.0" y="250.0" font-size="12" text-anchor="middle">上下の並びは、具体的な数を入れれば自分で点検できる</text>
 </svg>
-</div><figcaption>a÷5を分数a/5（aが分子・5が分母）へ直す図と誤り例5/aの対比。a＝10の代入で2と0.5に分かれ、上下の並びを自分で点検できる</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-letters-and-expressions/assets/L02_fig2_quotient_fraction_check.svg">図を大きく開く</a></figure>
+</div><figcaption>a÷5を分数a/5（aが分子・5が分母）へ直す図と誤り例5/aの対比。a＝10の代入で2と0.5に分かれ、上下の並びを自分で点検できる</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-letters-and-expressions/assets/L02_fig2_quotient_fraction_check.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="a÷5を分数a/5（aが分子・5が分母）へ直す図と誤り例5/aの対比。a＝10の代入で2と0.5に分かれ、上下の並びを自分で点検できる">図を大きく見る</a></figure>
 <p>(a＋3)÷4 のように、式のまとまりをわるときは、まとまりごと分子に載せて (a＋3)/4 と書く。</p>
 <blockquote><p><strong>ノートではこう書く</strong>……この教材では紙面の都合で a/5 のように「/」を使った1行の書き方も使うが、ノートでは分数の形（横線の上に a、下に 5）で書こう。教科書やテストの式も分数の形が基本だ。</p></blockquote>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>マイナスつきの商の置き場所</strong></p>
@@ -123,7 +124,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-letters-and-expressions/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 文字は「どんな数でも」の代理人</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-letters-and-expressions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 累乗の表し方と表記の総仕上げ</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 文字は「どんな数でも」の代理人</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-letters-and-expressions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 累乗の表し方と表記の総仕上げ</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -132,7 +138,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -142,6 +148,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

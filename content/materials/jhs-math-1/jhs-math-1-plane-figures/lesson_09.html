@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L09 おうぎ形〜中心角に比例する">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L09 おうぎ形〜中心角に比例する｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="be5c6d023b64a83caf24a9c2be5a05dabcfc4f71498ee3a27dfc7d1059e89655" data-source-file="materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.md">
+<body id="page-top" class="page-lesson" data-source-sha256="be5c6d023b64a83caf24a9c2be5a05dabcfc4f71498ee3a27dfc7d1059e89655" data-source-file="materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-plane-figures/index.html">中1数学「平面図形」</a></li><li aria-current="page">L09 おうぎ形〜中心角に比例する</li></ol></nav>
@@ -67,7 +68,7 @@
 <text x="375.1" y="232.5" font-size="12" text-anchor="middle">2つの半径と弧で囲まれた図形</text>
 <text x="235.0" y="262.0" font-size="12" text-anchor="middle">中心角は、おうぎ形が囲んでいる弧の側で測る</text>
 </svg>
-</div><figcaption>円の2つの半径と弧で囲まれたおうぎ形と、その中心角</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L09_fig1_sector_definition.svg">図を大きく開く</a></figure>
+</div><figcaption>円の2つの半径と弧で囲まれたおうぎ形と、その中心角</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L09_fig1_sector_definition.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円の2つの半径と弧で囲まれたおうぎ形と、その中心角">図を大きく見る</a></figure>
 <p>紙とはさみで確かめてみよう。コンパスで円をかいて切り抜き、<strong>半分に折る→もう半分に折る→もう1回折る</strong>と3回折ってから開くと、折り目で円が8等分され、<strong>中心角45°のおうぎ形が8つ</strong>現れる。360°÷8＝45°。おうぎ形は「円の一部」であり、中心角がその取り分を表している。この感覚が今日の主役だ。</p>
 <p>名前のとおり、おうぎ形は扇（おうぎ）を開いた形。漢字で<strong>扇形</strong>（おうぎがた）とも書く（学習指導要領などの公式文書はこの漢字表記を使っている）。</p>
 <h2 id="主概念2弧の長さも面積も中心角に比例する">主概念2：弧の長さも面積も中心角に比例する</h2>
@@ -78,7 +79,7 @@
 <p>表を縦にながめてみよう。中心角が30°→60°と<strong>2倍</strong>になると、弧の長さもπ→2πと<strong>2倍</strong>。面積も3π→6πと<strong>2倍</strong>。30°→90°の<strong>3倍</strong>では、弧も面積も<strong>3倍</strong>。どの行の組み合わせで試しても崩れない。</p>
 <blockquote><p><strong>同じ円からできるおうぎ形では、弧の長さも面積も、中心角の大きさに比例する。</strong></p></blockquote>
 <p>「比例」とは、一方が2倍・3倍…になると、もう一方も2倍・3倍…になる関係のことだった。おうぎ形は「円の一部」で、中心角がその<strong>取り分の割合</strong>を決めている。取り分が2倍なら、もらえる弧も面積も2倍。比例するのは、考えてみれば当然のことだったわけだ。</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 360" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-6213754cb2-title" aria-describedby="mg-6213754cb2-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 360" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-6213754cb2-title" aria-describedby="mg-6213754cb2-desc">
 <title id="mg-6213754cb2-title">弧の長さも面積も中心角に比例（段階図）</title>
 <desc id="mg-6213754cb2-desc">同じ半径で中心角だけが2倍・3倍・4倍になると、弧の長さと面積も2倍・3倍・4倍になることを示す図</desc>
 <!-- L09_fig2_proportional_sectors.svg | 弧の長さも面積も中心角に比例（段階図） -->
@@ -127,7 +128,7 @@
 <polygon points="393.0,352.0 387.5,354.5 387.5,349.5" fill="#555"/>
 <text x="243.5" y="349.0" font-size="10" text-anchor="middle">×4</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>同じ半径で中心角だけが2倍・3倍・4倍になると、弧の長さと面積も2倍・3倍・4倍になることを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L09_fig2_proportional_sectors.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>同じ半径で中心角だけが2倍・3倍・4倍になると、弧の長さと面積も2倍・3倍・4倍になることを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L09_fig2_proportional_sectors.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="同じ半径で中心角だけが2倍・3倍・4倍になると、弧の長さと面積も2倍・3倍・4倍になることを示す図">図を大きく見る</a></figure>
 <p>この「<strong>円全体の何分の何か</strong>」という見方が、おうぎ形のすべての計算の背骨になる。次のレッスンで公式の形にまとめるが、公式を忘れても、この見方さえあればいつでも自力で組み立て直せる。逆に、この見方が抜けたまま公式だけ覚えると、円の面積の公式と混ざって事故が起きる。<strong>式を書く前に「円全体の何分の何か」を分数で言う</strong>——今日から、この習慣で行こう。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ「表」をはさむのか</strong></p>
 <p>「おうぎ形は円の a/360」と一言で済ませずに、表をわざわざ作るのには理由がある。比例という関係は、1つの計算では見えない。<strong>いくつも並べて初めて「2倍なら2倍」が見える</strong>からだ。それに、この表の作業は検算の練習にもなっている。30°の行と60°の行を見比べて「ちゃんと2倍になっているか」を確かめるくせは、次のレッスンの公式計算でそのまま自分の答えのチェックに使える。</p></div>
@@ -144,7 +145,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 πで円をはかる</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-plane-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 おうぎ形の弧の長さと面積</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 πで円をはかる</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-plane-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 おうぎ形の弧の長さと面積</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -153,7 +159,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -163,6 +169,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

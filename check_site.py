@@ -39,7 +39,6 @@ FORBIDDEN_STRINGS = [
     "sendbeacon",
     "analytics",
     "tracking",
-    "localstorage",
     "sessionstorage",
 ]
 BAD_SCHEMES = {"javascript", "data", "mailto", "tel"}
@@ -1346,6 +1345,7 @@ class ParsedHtml:
     doctype_present: bool = False
     html_lang_ja: bool = False
     title: str = ""
+    descriptions: List[str] = field(default_factory=list)
     has_viewport: bool = False
     has_main: bool = False
     has_focusable_main_target: bool = False
@@ -1491,6 +1491,8 @@ class HtmlCollector(HTMLParser):
             content = attrs_dict.get("content", "").strip()
             if http_equiv == "content-security-policy":
                 self.data.csp_content = content
+            elif name == "description":
+                self.data.descriptions.append(content)
             elif name == "robots":
                 self.data.robots_values.append(content)
             elif property_name == "og:url":
@@ -1549,7 +1551,7 @@ class HtmlCollector(HTMLParser):
             self.data.mathml_count += 1
 
     def handle_endtag(self, tag: str) -> None:
-        if tag == "title" and not self.svg_depth:
+        if tag == "title" and self.data.in_title:
             self.data.in_title = False
         elif tag == "main":
             self.data.in_main = False
@@ -1690,6 +1692,15 @@ def validate_public_metadata(
             metadata_ok = False
     checks.append({"name": "metadata:canonical_og_robots", "pass": metadata_ok})
 
+    uniqueness_errors = metadata_uniqueness_errors(site_root, parsed_pages)
+    checks.append(
+        {
+            "name": "metadata:unique_titles_descriptions",
+            "pass": not uniqueness_errors,
+        }
+    )
+    errors.extend(uniqueness_errors)
+
     nojekyll = site_root / ".nojekyll"
     checks.append({"name": "public:nojekyll", "pass": nojekyll.is_file() and nojekyll.read_bytes() == b""})
     if not nojekyll.is_file() or nojekyll.read_bytes() != b"":
@@ -1752,6 +1763,95 @@ def validate_public_metadata(
     checks.append({"name": "content:mathml_single_prototype", "pass": mathml_ok, "pages": mathml_pages})
     if not mathml_ok:
         errors.append("MathML prototype count must be exactly one")
+
+
+def metadata_uniqueness_errors(
+    site_root: Path,
+    parsed_pages: Dict[Path, ParsedHtml],
+) -> List[str]:
+    """Require one useful, unambiguous title and description per indexable page."""
+    errors: List[str] = []
+    titles: Dict[str, List[str]] = {}
+    descriptions: Dict[str, List[str]] = {}
+    for path, parsed in parsed_pages.items():
+        if parsed.robots_values != ["index, follow"]:
+            continue
+        relative = path.relative_to(site_root).as_posix()
+        title = parsed.title.strip()
+        if not title:
+            errors.append(f"indexable page title is empty: {relative}")
+        else:
+            titles.setdefault(title, []).append(relative)
+        if len(parsed.descriptions) != 1 or not parsed.descriptions[0].strip():
+            errors.append(f"indexable page must have one description: {relative}")
+        else:
+            descriptions.setdefault(parsed.descriptions[0].strip(), []).append(relative)
+
+    for value, paths in sorted(titles.items()):
+        if len(paths) > 1:
+            errors.append(
+                "duplicate indexable title: "
+                + ", ".join(paths)
+                + f" ({value[:80]})"
+            )
+    for value, paths in sorted(descriptions.items()):
+        if len(paths) > 1:
+            errors.append(
+                "duplicate indexable description: "
+                + ", ".join(paths)
+                + f" ({value[:80]})"
+            )
+    return errors
+
+
+def theme_storage_contract_errors(
+    theme_js_text: str,
+    other_storage_users: List[str],
+) -> List[str]:
+    """Keep the sole persisted preference to one exact key and three exact values."""
+    errors: List[str] = []
+    storage_declarations = re.findall(
+        r"\bconst\s+STORAGE_KEY\s*=\s*(['\"])([^'\"]+)\1\s*;",
+        theme_js_text,
+    )
+    if storage_declarations != [("'", "manabigrid-theme")]:
+        errors.append("theme storage key declaration is not exact")
+
+    mode_declarations = re.findall(
+        r"\bconst\s+VALID_MODES\s*=\s*new\s+Set\(\[([^\]]*)\]\)\s*;",
+        theme_js_text,
+    )
+    normalized_modes = (
+        re.sub(r"\s+", "", mode_declarations[0]) if len(mode_declarations) == 1 else ""
+    )
+    if normalized_modes != "'system','light','dark'":
+        errors.append("theme modes are not exactly system, light, dark")
+
+    accesses = [
+        (method, re.sub(r"\s+", "", arguments))
+        for method, arguments in re.findall(
+            r"(?:window\.)?localStorage\.(getItem|setItem|removeItem)\s*\(([^)]*)\)",
+            theme_js_text,
+        )
+    ]
+    expected_accesses = [
+        ("getItem", "STORAGE_KEY"),
+        ("removeItem", "STORAGE_KEY"),
+        ("setItem", "STORAGE_KEY,mode"),
+    ]
+    if accesses != expected_accesses:
+        errors.append("theme storage access arguments are not exact")
+    if theme_js_text.lower().count("localstorage") != len(expected_accesses):
+        errors.append("theme script contains an unrecognized localStorage access")
+    if theme_js_text.count("STORAGE_KEY") != 1 + len(expected_accesses):
+        errors.append("theme storage key is used outside its exact declaration and accesses")
+    if theme_js_text.count("VALID_MODES.has(saved)") != 1:
+        errors.append("stored theme value is not checked against the exact modes")
+    if theme_js_text.count("VALID_MODES.has(select.value)") != 1:
+        errors.append("selected theme value is not checked against the exact modes")
+    if other_storage_users:
+        errors.append("another public script uses localStorage")
+    return errors
 
 
 def validate_external_link_appendix(
@@ -1872,7 +1972,7 @@ def validate_link(
         return "error", f"target not found: {value}", None
 
     if attr == "src" and tag == "script":
-        if target.name not in {"site.js", "search-index.js"} or "_assets" not in target.as_posix():
+        if target.name not in {"site.js", "search-index.js", "theme.js"} or "_assets" not in target.as_posix():
             return "error", "script source must be an approved _assets script", None
 
     if fragment and fragment not in id_map.get(target, set()):
@@ -2290,6 +2390,39 @@ def main() -> int:
             errors.append(f"internal favicon missing: {path.name}")
         if not parsed.has_site_nav_container:
             errors.append(f"site nav container contract missing: {path.name}")
+        if "page-top" not in parsed.ids:
+            errors.append(f"page-top target missing: {path.name}")
+        if "page-end-nav" not in parsed.classes:
+            errors.append(f"page-end navigation missing: {path.name}")
+        if (
+            "theme-control" not in parsed.classes
+            or parsed.raw_text.count("data-theme-select") != 1
+            or "_assets/theme.js" not in parsed.raw_text
+        ):
+            errors.append(f"theme control contract missing: {path.name}")
+
+        figure_links = re.findall(
+            r'<a\b[^>]*\bclass=["\'][^"\']*\bfigure-source\b[^"\']*["\'][^>]*>',
+            parsed.raw_text,
+            re.IGNORECASE,
+        )
+        if figure_links:
+            if (
+                "figure-dialog" not in parsed.classes
+                or "dialog" not in parsed.tags
+                or not all(
+                    "data-figure-open" in opening
+                    and re.search(r'\btarget=["\']_blank["\']', opening)
+                    and re.search(r'\brel=["\'][^"\']*\bnoopener\b', opening)
+                    for opening in figure_links
+                )
+                or "data-figure-close" not in parsed.raw_text
+                or "data-figure-original" not in parsed.raw_text
+                or parsed.raw_text.count('id="figure-dialog-title"') != 1
+            ):
+                errors.append(f"figure dialog or fallback contract missing: {path.name}")
+        elif "figure-dialog" in parsed.classes:
+            errors.append(f"unused figure dialog emitted: {path.name}")
 
         if parsed.inline_script_exists:
             errors.append(f"inline script not allowed: {path.name}")
@@ -2945,6 +3078,35 @@ def main() -> int:
             if keyword in lowered:
                 errors.append(f"forbidden string in js {js_path.name}: {keyword}")
                 break
+
+    theme_js_path = site_root / "_assets/theme.js"
+    theme_js_text = (
+        theme_js_path.read_text(encoding="utf-8") if theme_js_path.exists() else ""
+    )
+    other_storage_users = [
+        path.relative_to(site_root).as_posix()
+        for path in public_files
+        if path.suffix.lower() == ".js"
+        and path.resolve() != theme_js_path.resolve()
+        and "localstorage" in path.read_text(encoding="utf-8", errors="replace").lower()
+    ]
+    theme_storage_errors = (
+        theme_storage_contract_errors(theme_js_text, other_storage_users)
+        if theme_js_path.is_file()
+        else ["theme script is missing"]
+    )
+    theme_storage_ok = not theme_storage_errors
+    checks.append(
+        {
+            "name": "privacy:theme_preference_only",
+            "pass": theme_storage_ok,
+            "storage_key": "manabigrid-theme",
+            "other_storage_users": other_storage_users,
+            "contract_errors": theme_storage_errors,
+        }
+    )
+    if not theme_storage_ok:
+        errors.append("localStorage is not limited to the single theme preference contract")
 
     site_js_path = site_root / "_assets/site.js"
     site_js_text = site_js_path.read_text(encoding="utf-8") if site_js_path.exists() else ""

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中2数学「連立方程式」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中2数学「連立方程式」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="8b38b06d9c3af095e65512cce016bdcbde0f79d215c4270d98d84297a8951cb0" data-source-file="materials/jhs-math-2/jhs-math-2-simultaneous-equations/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="8b38b06d9c3af095e65512cce016bdcbde0f79d215c4270d98d84297a8951cb0" data-source-file="materials/jhs-math-2/jhs-math-2-simultaneous-equations/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-simultaneous-equations/index.html">中2数学「連立方程式」</a></li><li aria-current="page">teachernotes — 中2数学「連立方程式」</li></ol></nav>
@@ -74,7 +75,12 @@
 <h2 id="e-本ドラフト固有の判断保留事項パスde監修への申し送り">E. 本ドラフト固有の判断・保留事項（パスD・E・監修への申し送り）</h2>
 <ol start="1"><li><p><strong>13時間配分（2＋6＋4＋1）と12時間版の圧縮先</strong>（L07）は、教科書3社の枠（解き方6〜7・利用4前後・章末1〜2）の範囲内での設計判断。</p></li><li><p><strong>利用の文脈選択（ボート・模擬店・博物館・おもり・図書館・峠・販売数・原価定価）はすべて著者裁量の自作場面</strong>——summaryが明文で与える利用の要素は「特定の量への着目・表や線分図・二変数のよさ」まで。速さ・割合の場面を扱うこと自体は教科書標準の範囲と判断したが、<strong>「簡単な」「必要な程度」の歯止めとの適合はパスD/監修で判定されたい</strong>（数量設定は2段階以内・整数解になるよう全問代入検算済み）。</p></li><li><p><strong>L08 stretch S1</strong>（2本目が1本目の2倍で解が絞れない観察）: 「変数の数と方程式の数の一致は気付きまで」（A-6）の範囲内に収めたつもりだが、境界事例のため<strong>監修判定を求む</strong>。不可なら削除で本文に影響なし。</p></li><li><p><strong>L02の順序づけ</strong>（等式の性質の学び直し→辺々加減の意味づけ→解法選択の言語化）は<strong>rawの推論由来の設計判断</strong>（summary執筆契約5が出自明示を義務付け）——事実由来ではないことを本ノートに明示する。</p></li><li><p><strong>雑談枠</strong>: summary許可リストの3話題（2x＋y＝7表遊び=L01本文・L08／帰着の系統=L02／二変数のよさ=L06）を基礎に、残り（L03・L04・L05・L07）はsummary本文の事実（等式の性質の道具性・解法並立・帰着・表による整理）のみから構成した。<strong>実在人物・歴史逸話・調査数値は全編で不使用</strong>。H23未実施の逸話化もしていない。</p></li><li><p>練習・例題の数値設定はすべて自作し、<strong>全連立方程式の解を両式代入で検算済み</strong>（執筆中にL05練習3の初版が解なしの設定になっていたことを検算で検出し差し替えた——F節）。学調の問題の式（−２y＝１０等の誤答例の元設問を含む）は本文・練習に不使用（誤り指摘問題は同型の自作数値）。</p></li><li><p><strong>図版</strong>: 本単元は表（markdownテーブル）で足りるため、figure-specブロックは未使用（L01の解の列挙・L06〜L07の数量整理はすべて表で表現）。視覚素材が必要と判定された場合はL01のボート場面図が候補。</p></li></ol>
 <h2 id="f-自己検算で修正した箇所執筆ログ">F. 自己検算で修正した箇所（執筆ログ）</h2>
-<ol start="1"><li><p><strong>L05練習3（初版）</strong>: { 0.2x−0.1y＝0.4, 2(x−y)＋y＝3 } は整理するとどちらも「2x−y＝…」となり右辺が4と3で矛盾（解なし）——「解の存在しない連立」は本単元のdo_not_cover（不能の概念）に接近するため、{ 0.2x＋0.1y＝0.7, 3(x−y)＋5y＝12 }（解(2, 3)・両式代入検算済み）へ差し替えた。</p></li><li><p><strong>設計段階の数値差し替え</strong>（ファイル化前の検算で調整。初版の痕跡はファイルに残っていない）: L02練習(2)を2x＋y＝12型（解がx＝y＝4で対称になり例として弱い）から2x＋y＝13型（解(4, 5)）へ／L03練習(4)を5x−2y＝11型（y＝−1/2と分数解になる）から5x−2y＝4型（解(2, 3)）へ／L05型1の②を3x−2y＝1（x＝19/7と分数解）から3x−2y＝3（解(3, 3)）へ／L07主概念2の増減を「13人増」（x＝760/3）から「20人増」（解(300, 200)）へ／L07練習2の今月合計を345個（x＝y＝150で対称）から340個（解(100, 200)）へ。</p></li></ol></article></main>
+<ol start="1"><li><p><strong>L05練習3（初版）</strong>: { 0.2x−0.1y＝0.4, 2(x−y)＋y＝3 } は整理するとどちらも「2x−y＝…」となり右辺が4と3で矛盾（解なし）——「解の存在しない連立」は本単元のdo_not_cover（不能の概念）に接近するため、{ 0.2x＋0.1y＝0.7, 3(x−y)＋5y＝12 }（解(2, 3)・両式代入検算済み）へ差し替えた。</p></li><li><p><strong>設計段階の数値差し替え</strong>（ファイル化前の検算で調整。初版の痕跡はファイルに残っていない）: L02練習(2)を2x＋y＝12型（解がx＝y＝4で対称になり例として弱い）から2x＋y＝13型（解(4, 5)）へ／L03練習(4)を5x−2y＝11型（y＝−1/2と分数解になる）から5x−2y＝4型（解(2, 3)）へ／L05型1の②を3x−2y＝1（x＝19/7と分数解）から3x−2y＝3（解(3, 3)）へ／L07主概念2の増減を「13人増」（x＝760/3）から「20人増」（解(300, 200)）へ／L07練習2の今月合計を345個（x＝y＝150で対称）から340個（解(100, 200)）へ。</p></li></ol></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -83,7 +89,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -93,6 +99,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

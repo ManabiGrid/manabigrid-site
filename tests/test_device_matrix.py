@@ -42,6 +42,18 @@ class DeviceMatrixContractTests(unittest.TestCase):
         )
         self.assertTrue(any(profile.text_scale == 2.0 for profile in profiles))
 
+    def test_browser_matrix_keeps_the_unit_resource_regression_page(self) -> None:
+        pages = dict(browser_check.PAGES)
+        self.assertEqual(len(browser_check.PAGES) + 1, 14)
+        self.assertEqual(
+            pages.get("unit-resources"),
+            ROOT / "units/jhs-math-1-positive-negative-numbers/index.html",
+        )
+        self.assertEqual(
+            pages.get("unit-resources-empty"),
+            ROOT / "units/jhs-math-3-appendix/index.html",
+        )
+
     def test_duplicate_profile_id_is_rejected(self) -> None:
         payload = self.payload()
         profiles = payload["profiles"]
@@ -175,6 +187,8 @@ class DeviceMatrixContractTests(unittest.TestCase):
                 "device_matrix_check.py",
                 "browser_check.py",
                 "static/site.css",
+                "static/site.js",
+                "static/theme.js",
                 "build_site.py",
                 "device_matrix.contract.json",
             },

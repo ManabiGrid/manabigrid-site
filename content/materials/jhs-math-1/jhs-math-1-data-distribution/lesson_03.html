@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L03 データを棚に整理する——度数分布表とヒストグラム">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L03 データを棚に整理する——度数分布表とヒストグラム｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="edf1b9f1f80b991f755240c92e3c25f538a217b7b68f596b4985c77cbe36f70b" data-source-file="materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.md">
+<body id="page-top" class="page-lesson" data-source-sha256="edf1b9f1f80b991f755240c92e3c25f538a217b7b68f596b4985c77cbe36f70b" data-source-file="materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-data-distribution/index.html">中1数学「データの活用（度数分布・ヒストグラム）」</a></li><li aria-current="page">L03 データを棚に整理する——度数分布表とヒストグラム</li></ol></nav>
@@ -162,7 +163,7 @@
 <text x="240.0" y="26.0" font-size="13" text-anchor="middle" font-weight="bold">表の1列が、柱1本になる——柱の高さ=度数</text>
 <text x="240.0" y="438.0" font-size="11" text-anchor="middle">30人の通学時間・階級の幅5分（架空の練習用データ）</text>
 </svg>
-</div><figcaption>上に度数分布表を柱と同じ列位置で横向きに置き、下に通学時間のヒストグラムを描いて、表の各マスから対応する柱へまっすぐ下向きの矢印を1本ずつ引いた図。表の1階級が柱1本になり、柱の高さが度数を表す</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-data-distribution/assets/L03_fig1_histogram_commute.svg">図を大きく開く</a></figure>
+</div><figcaption>上に度数分布表を柱と同じ列位置で横向きに置き、下に通学時間のヒストグラムを描いて、表の各マスから対応する柱へまっすぐ下向きの矢印を1本ずつ引いた図。表の1階級が柱1本になり、柱の高さが度数を表す</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-data-distribution/assets/L03_fig1_histogram_commute.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="上に度数分布表を柱と同じ列位置で横向きに置き、下に通学時間のヒストグラムを描いて、表の各マスから対応する柱へまっすぐ下向きの矢印を1本ずつ引いた図。表の1階級が柱1本になり、柱の高さが度数を表す">図を大きく見る</a></figure>
 <p>実はこの図、小6で「柱状グラフ」として出会っている。中1では名前がヒストグラムになり、読み方をさらに深めていく。最初に固定してほしいのは軸の意味だ。</p>
 <ul><li><p><strong>横軸</strong>は階級：「何分か」という<strong>値</strong>の世界。</p></li><li><p><strong>縦軸</strong>は度数：「何人か」という<strong>個数</strong>の世界。</p></li></ul>
 <p>L01の合言葉「それは値？　度数？」がここでも効く。たとえば「25分以上30分未満の階級の度数は？」と聞かれたら、答えはその柱の<strong>高さ</strong>を縦軸で読んで「4人」。柱が「左から何番目にあるか」を答えるのではない。横軸上の位置と縦軸の高さを混同する読み間違いは、実際によく起きる。</p>
@@ -183,7 +184,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-data-distribution/lesson_03.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_02.html"><span>前のレッスン</span>L02 平均値は真ん中じゃない？——代表値の限界と範囲</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-data-distribution/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_04.html"><span>次のレッスン</span>L04 山の形が語ること——分布の形と階級値としての最頻値</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_02.html"><span>前のレッスン</span>L02 平均値は真ん中じゃない？——代表値の限界と範囲</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-data-distribution/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_04.html"><span>次のレッスン</span>L04 山の形が語ること——分布の形と階級値としての最頻値</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -192,7 +198,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -202,6 +208,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 円のふしぎ——動かしても変わらない角">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 円のふしぎ——動かしても変わらない角｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="e7255574751ffe6f16398080dece1b7ca65907cf4527f8e5a5dac104baecb30f" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="e7255574751ffe6f16398080dece1b7ca65907cf4527f8e5a5dac104baecb30f" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-inscribed-angle/index.html">中3数学「円周角の定理」</a></li><li aria-current="page">L01 円のふしぎ——動かしても変わらない角</li></ol></nav>
@@ -78,7 +79,7 @@
 <text x="180.0" y="296.0" font-size="12" text-anchor="middle">∠APB＝弧ABに対する円周角，∠AOB＝弧ABに対する中心角</text>
 <text x="180.0" y="314.0" font-size="12" text-anchor="middle">（Pは弧ABの上にはとらない。角は「どの弧に対するか」とセット）</text>
 </svg>
-</div><figcaption>円周角と中心角の定義</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L01_fig1_inscribed_central_definition.svg">図を大きく開く</a></figure>
+</div><figcaption>円周角と中心角の定義</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L01_fig1_inscribed_central_definition.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円周角と中心角の定義">図を大きく見る</a></figure>
 <p>大事なのは、円周角がいつも「<strong>どの弧に対する</strong>円周角か」とセットで決まることだ。角だけを見るのではなく、角の向こう側にある弧とペアで見る。この見方が、この章全体を貫く背骨になる。</p>
 <h2 id="主概念2実験点pを動かすと角はどうなる">主概念2：実験——点Pを動かすと、角はどうなる？</h2>
 <p>さて、ここからが今日の本番だ。円周上の点Pを、A、Bに重ならない範囲で弧ABと反対側の円周上を動かしてみる。∠APBの大きさはどうなるだろうか？</p>
@@ -126,7 +127,7 @@
 <text x="180.0" y="294.0" font-size="12" text-anchor="middle">中心角∠AOBを固定し，Pを円周に沿って動かして∠APBを測る</text>
 <text x="180.0" y="312.0" font-size="12" text-anchor="middle">（P・P′・P″の3か所——それぞれの角はどうなる？）</text>
 </svg>
-</div><figcaption>実験——点Pを動かす</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L01_fig2_experiment_moving_point.svg">図を大きく開く</a></figure>
+</div><figcaption>実験——点Pを動かす</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L01_fig2_experiment_moving_point.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="実験——点Pを動かす">図を大きく見る</a></figure>
 <p>多くの人の実験ノートには、「どこで測っても約50°」という結果が並ぶはずだ。つまり、次の2つだ。</p>
 <ul><li><p>∠APBは、Pをどこに動かしても<strong>変わらないらしい</strong>。</p></li><li><p>その大きさは、中心角の<strong>半分らしい</strong>。</p></li></ul>
 <p>「同じ弧を見ている角どうしは等しい」「しかも中心角のちょうど半分」。円周上のどこから見ても角が変わらないなんて、少し不思議だと思わないだろうか？</p>
@@ -168,7 +169,7 @@
 <text x="180.0" y="294.0" font-size="12" text-anchor="middle">弧AB（下側・グレー）に対する円周角はどれか，すべて挙げる</text>
 <text x="180.0" y="312.0" font-size="12" text-anchor="middle">（中心角∠AOB＝70°。円周角の数値はまだ求めない）</text>
 </svg>
-</div><figcaption>練習1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L01_fig3_practice_find_inscribed.svg">図を大きく開く</a></figure>
+</div><figcaption>練習1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L01_fig3_practice_find_inscribed.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="練習1の図">図を大きく見る</a></figure>
 <p> 図の中で、弧AB（下側の弧）に対する円周角をすべて答えよう。また、弧ABに対する中心角を答えよう。</p></li><li><p>次の角は、弧ABに対する円周角と<strong>いえるか</strong>。いえない場合は理由も一言書こう。  (ア) 円周上の点P（Pは弧AB上にはとらない）についての∠APB  (イ) 円の内部（円周上ではない点）Rについての∠ARB  (ウ) 円の中心Oについての∠AOB</p></li><li><p>コンパスと分度器を使って、中心角∠AOB＝80°の弧ABをもつ円を自分でかき、弧ABと反対側の円周上の3か所で円周角を測ってみよう。測る前に予想を書くこと。</p></li></ol>
 <div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 実験では中心角100°のとき円周角は約50°だった。では、中心角∠AOBが180°のとき（つまりABが直径のとき）、円周角∠APBは何度になると予想できるだろうか。予想を書き、コンパスと分度器で1回確かめてみよう（この特別な場合はL03の主役になる）。</p></div>
 <hr>
@@ -177,7 +178,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 円周角の定理——「どの弧に対する角か」を塗って見抜く</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 円周角の定理——「どの弧に対する角か」を塗って見抜く</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -186,7 +192,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -196,6 +202,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

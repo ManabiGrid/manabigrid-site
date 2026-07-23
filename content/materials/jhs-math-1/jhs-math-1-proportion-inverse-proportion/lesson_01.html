@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 決めると、決まる——関数">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 決めると、決まる——関数｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="b3c06034dc407c1b5847a8e863f18f995524cb5d3312e882928f855c9d4eba08" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="b3c06034dc407c1b5847a8e863f18f995524cb5d3312e882928f855c9d4eba08" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">中1数学「比例と反比例」</a></li><li aria-current="page">L01 決めると、決まる——関数</li></ol></nav>
@@ -85,7 +86,7 @@
 <line x1="442.0" y1="221.0" x2="436.2" y2="217.0" stroke="#000" stroke-width="1.2"/>
 <text x="410.0" y="242.0" font-size="9.5" text-anchor="middle">矢印が2本→関数でない</text>
 </svg>
-</div><figcaption>左の箱のxの値1・2・3から右の箱のyの値2・4・6へ、矢印が1本ずつのびる対応の矢印図。右下に矢印が2本に枝分かれする「関数でない場合」の対比が小さく添えられている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L01_fig1_function_arrow_map.svg">図を大きく開く</a></figure>
+</div><figcaption>左の箱のxの値1・2・3から右の箱のyの値2・4・6へ、矢印が1本ずつのびる対応の矢印図。右下に矢印が2本に枝分かれする「関数でない場合」の対比が小さく添えられている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L01_fig1_function_arrow_map.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="左の箱のxの値1・2・3から右の箱のyの値2・4・6へ、矢印が1本ずつのびる対応の矢印図。右下に矢印が2本に枝分かれする「関数でない場合」の対比が小さく添えられている">図を大きく見る</a></figure>
 <p>大事なのは、<strong>きまった式に表せなくても関数は関数</strong>だということ。たとえば「ある日の、時刻xにおける気温y℃」を考えると、時刻を決めればそのときの気温はただ一つに決まるから、yはxの関数だ。でも、気温を計算で求める式は書けそうにない。式に表すことができない関数関係もあるのだ。「ただ一つ決まるかどうか」だけが判定の基準になる。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「ただ一つ」を強調する理由</strong></p>
 <p>関数の定義で本当に効いているのは「決まる」ではなく「<strong>ただ一つ</strong>決まる」の部分だ。対応する値が2つ以上ありえたら関数ではない。この一言を落とすと、次の主概念2（方向の話）が判定できなくなる。授業・独習のどちらでも、判定のたびに「ただ一つか」と声に出して確認する習慣をつけたい。なお、xのように先に値を決める側・yのように決まる側という役割の区別は、この先の学習でずっと使う見方になる。</p></div>
@@ -118,7 +119,7 @@
 <text x="240.0" y="24.0" font-size="13" text-anchor="middle" font-weight="bold">影の長さの1日の変化（模式図）</text>
 <text x="240.0" y="232.0" font-size="11" text-anchor="middle">長さ96cmを決めても、時刻は2つ出てくる——逆向きは関数でない</text>
 </svg>
-</div><figcaption>影の長さの1日の変化を表すU字型の曲線に、高さ96cmの水平な破線が2点で交わり、交点に丸印がついた模式図。横軸は時刻（朝から夕）、縦軸は影の長さ</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L01_fig2_shadow_two_crossings.svg">図を大きく開く</a></figure>
+</div><figcaption>影の長さの1日の変化を表すU字型の曲線に、高さ96cmの水平な破線が2点で交わり、交点に丸印がついた模式図。横軸は時刻（朝から夕）、縦軸は影の長さ</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L01_fig2_shadow_two_crossings.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="影の長さの1日の変化を表すU字型の曲線に、高さ96cmの水平な破線が2点で交わり、交点に丸印がついた模式図。横軸は時刻（朝から夕）、縦軸は影の長さ">図を大きく見る</a></figure>
 <p>つまり、関数かどうかを調べるときは、<strong>どちらからどちらへの向きの話をしているのか</strong>を先にはっきりさせよう。「AはBの関数か」と「BはAの関数か」は、別々に調べる別の問題だ。</p>
 <div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>影の反例、ちょっと不思議な感じがしないだろうか。「決めれば決まる」なんて当たり前に思えるのに、向きを逆にしただけで崩れてしまう。数学では、命題の向きを逆にすると成り立たなくなる例がたくさんある。「逆は必ずしも成り立たない」——この感覚は、関数に限らず数学全体で効いてくる大切な用心だ。</p></div>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>逆向きの判定でつまずきやすいところ</strong></p>
@@ -134,7 +135,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 変数の動く範囲——変域</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 変数の動く範囲——変域</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -143,7 +149,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -153,6 +159,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

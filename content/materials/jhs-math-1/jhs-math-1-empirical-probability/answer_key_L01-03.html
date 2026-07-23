@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 解答: 解答編 L01〜L03（不確定な事象の起こりやすさ）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>解答編 L01〜L03（不確定な事象の起こりやすさ）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-answer" data-source-sha256="83e1ff410cb5170957bf225d4e4ab4b77c758b739497eb12b38c06e2445529e0" data-source-file="materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.md">
+<body id="page-top" class="page-answer" data-source-sha256="83e1ff410cb5170957bf225d4e4ab4b77c758b739497eb12b38c06e2445529e0" data-source-file="materials/jhs-math-1/jhs-math-1-empirical-probability/answer_key_L01-03.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-empirical-probability/index.html">中1数学「不確定な事象の起こりやすさ（頻度確率）」</a></li><li aria-current="page">解答編 L01〜L03（不確定な事象の起こりやすさ）</li></ol></nav>
@@ -57,7 +58,12 @@
 <h3 id="練習-2">練習</h3>
 <ol start="1"><li><p>（あ）960÷8000＝<strong>0.12</strong>。（検算: 8000×0.12＝960 ✓。相対度数の合計: 0.05＋0.08＋0.12＋0.15＋0.18＋0.17＋0.11＋0.07＋0.04＋0.02＋0.01＝1.00 ✓）</p></li><li><p>23.5cm: 100×0.15＝<strong>15足</strong>。25.0cm: 100×0.11＝<strong>11足</strong>。全サイズの見積もり: 5＋8＋12＋15＋18＋17＋11＋7＋4＋2＋1＝<strong>100足</strong> ✓（順に足すと 5→13→25→40→58→75→86→93→97→99→100）。</p></li><li><p>（解答例）「<strong>22.0cmの相対度数0.05は27.0cmの相対度数0.01より大きいから、22.0cmの靴を27.0cmより多く買うと考える。</strong>」（型: データの値を根拠に置き、「と考える」で結ぶ。回数（400回と80回）を根拠にしてもよい）</p></li><li><p>(1) <strong>×</strong>。過去の記録から言えるのは「借りられやすい傾向」までで、来年「必ず」いちばん多いとは言い切れない。過去1年の相対度数は確率であるとはいえず、確率と<strong>みなして</strong>予測しているだけである。  (2) <strong>×</strong>。確率とみなした0.18は多数回をならした傾向を表す数で、「100回のうちちょうど18回必ず」という回数の保証ではない。実際の回数は18回前後にぶれうる。  (3) <strong>○</strong>。これがこの単元で学んだ「みなし」の正しい使い方（傾向の予測のよりどころにする）。</p></li><li><p>（解答例）言ってはいけない。確率0.65は、<strong>多数回くり返したときに上向きが出る傾向</strong>（全体のうちおよそ0.65の割合）を表す数であって、次の1回に何が起こるかは相変わらず予言できない。</p></li></ol>
 <h3 id="stretch-2">stretch</h3>
-<p><strong>S1</strong>（例）コンビニのおにぎりの発注。①過去の「各種類が売れた個数の割合（相対度数）」を使っていそう。②分母（もとにする量）は「その期間に売れたおにぎりの総個数」。③みなしが外れるとき: 近くで大きな行事がある日や、新商品が出た直後など、「過去と同じ傾向が続く」という前提がくずれるとき。——③まで書けたら、過去データで未来を予測することの強みと限界の両方をつかめている。</p></article></main>
+<p><strong>S1</strong>（例）コンビニのおにぎりの発注。①過去の「各種類が売れた個数の割合（相対度数）」を使っていそう。②分母（もとにする量）は「その期間に売れたおにぎりの総個数」。③みなしが外れるとき: 近くで大きな行事がある日や、新商品が出た直後など、「過去と同じ傾向が続く」という前提がくずれるとき。——③まで書けたら、過去データで未来を予測することの強みと限界の両方をつかめている。</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -66,7 +72,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -76,6 +82,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

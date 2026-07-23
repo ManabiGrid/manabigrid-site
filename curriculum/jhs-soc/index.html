@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 中学 社会の単元全体図と教材掲載状況">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ManabiGrid 展示版">
-  <meta property="og:title" content="中学 社会｜ManabiGrid 展示版">
+  <meta property="og:title" content="中学 社会の学習グリッド｜ManabiGrid 展示版">
   <meta property="og:description" content="ManabiGrid 中学 社会の単元全体図と教材掲載状況">
   <meta property="og:url" content="https://manabigrid.github.io/manabigrid-site/curriculum/jhs-soc/">
   <meta property="og:image" content="https://manabigrid.github.io/manabigrid-site/_assets/og-manabigrid.png">
@@ -20,17 +19,19 @@
   <meta property="og:image:height" content="724">
   <meta property="og:image:alt" content="まなびグリッドの名称と、学び直しの道筋を表した教材プロジェクトのバナー">
   <meta name="twitter:card" content="summary_large_image">
-  <title>中学 社会｜ManabiGrid 展示版</title>
+  <title>中学 社会の学習グリッド｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/curriculum/jhs-soc/">
   <link rel="icon" type="image/svg+xml" href="../../_assets/favicon.svg">
+  <script src="../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../_assets/site.css">
 </head>
-<body class="page-curriculum-family">
+<body id="page-top" class="page-curriculum-family">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../browse/index.html">教材をさがす</a><a href="../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../index.html">トップ</a></li><li><a href="../index.html">学習グリッド</a></li><li aria-current="page">中学 社会</li></ol></nav>
@@ -382,7 +383,12 @@
 </li></ol>
 </details></div>
   <p class="curriculum-progress-link"><a class="button button-secondary" href="../../progress/index.html">進捗一覧で詳しく見る</a></p>
-</section></main>
+</section>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -391,7 +397,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -401,6 +407,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../_assets/site.js" defer></script>
 </body>
 </html>

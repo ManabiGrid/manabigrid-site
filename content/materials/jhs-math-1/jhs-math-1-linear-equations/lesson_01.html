@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 □からxへ——方程式とその解">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 □からxへ——方程式とその解｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="221c8f6c9cf8cb4c4dc17852219c3eaa1b161d008d696d420ff97477915c2d1d" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="221c8f6c9cf8cb4c4dc17852219c3eaa1b161d008d696d420ff97477915c2d1d" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-linear-equations/index.html">中1数学「一次方程式」</a></li><li aria-current="page">L01 □からxへ——方程式とその解</li></ol></nav>
@@ -56,7 +57,7 @@
 <div class="table-wrap" data-scroll-label="xの値・…・−3の表（1）"><table><thead><tr><th scope="col">xの値</th><th scope="col">…</th><th scope="col">−3</th><th scope="col">−2</th><th scope="col">−1</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">…</th></tr></thead><tbody><tr><td>x＋3の値</td><td>…</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>…</td></tr><tr><td>5と等しい？</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td><strong>○</strong></td><td>×</td><td>×</td></tr></tbody></table></div>
 <p>x＋3の値は、xを1増やすと1ずつ増えていく。だから表の「…」の部分（−3より小さい整数や3より大きい整数）では、x＋3の値は5からますます離れていくばかりで、5に等しくなることはない。成り立つのは <strong>x＝2 のときだけ</strong>で、2以外の数のときは成り立たない。この2のように、<strong>方程式を成り立たせる値、つまり方程式が表す条件を満たす値</strong>を、その方程式の<strong>解</strong>（かい）という。そして、解を求めることを、方程式を<strong>解く</strong>という。</p>
 <blockquote><p>【ことば】<strong>解（かい）・方程式を解く</strong> 方程式を成り立たせる文字の値を、その方程式の<strong>解</strong>という。解を求めることを、方程式を<strong>解く</strong>という。</p></blockquote>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 262" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-84baf77f12-title" aria-describedby="mg-84baf77f12-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 262" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-84baf77f12-title" aria-describedby="mg-84baf77f12-desc">
 <title id="mg-84baf77f12-title">代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</title>
 <desc id="mg-84baf77f12-desc">代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</desc>
 <!-- L01_fig1_substitute_and_check_table.svg | 代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ） -->
@@ -130,7 +131,7 @@
 <text x="280.0" y="214.0" font-size="12" text-anchor="middle">「…」の部分でも左辺は1ずつ増え続けるので、5に等しくなることはもうない</text>
 <text x="280.0" y="232.0" font-size="12" text-anchor="middle">①入力→②左辺の値→③判定 の3段で、1つずつ条件に照らしている</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-linear-equations/assets/L01_fig1_substitute_and_check_table.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-linear-equations/assets/L01_fig1_substitute_and_check_table.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="代入して確かめる表（x＋3＝5・○が付くのはx＝2だけ）">図を大きく見る</a></figure>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>一つずつ代入するなんて面倒？　その通り。でも</strong></p>
 <p>この「全部あてはめて探す」やり方は、たしかに能率がよくない。xの範囲を整数に限らなければ、全部試すことはそもそもできない。それでもこの活動を最初に置くのは、<strong>解とは何か</strong>を体で覚えるためだ。この章の後半でどんなに速い解き方を身につけても、「解＝代入すると成り立つ値」という意味は変わらない。速い解き方で出した答えが本当に解かどうかは、いつでも代入すれば確かめられる——この保険は最後まで使い続ける。</p></div>
 <h2 id="型の導入代入して確かめる">型の導入：「代入して確かめる」</h2>
@@ -147,7 +148,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-linear-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 天びんで考える——等式の性質</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-linear-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 天びんで考える——等式の性質</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -156,7 +162,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -166,6 +172,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

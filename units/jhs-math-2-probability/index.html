@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 中2数学「確率」のレッスン・解答一覧">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>中2数学「確率」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/units/jhs-math-2-probability/">
   <link rel="icon" type="image/svg+xml" href="../../_assets/favicon.svg">
+  <script src="../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../_assets/site.css">
 </head>
-<body class="page-unit">
+<body id="page-top" class="page-unit">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../browse/index.html">教材をさがす</a><a href="../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../index.html">トップ</a></li><li><a href="../../browse/index.html">教材をさがす</a></li><li><a href="../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li aria-current="page">中2数学「確率」</li></ol></nav>
@@ -41,10 +42,15 @@
   <details class="unit-meta"><summary>教材の状態とID</summary><p><span class="status-chip">人間レビュー済</span> <code>jhs-math-2-probability</code></p></details>
 </section>
 <section class="container resource-list primary-resources">
-  <div><p class="eyebrow">LESSONS</p><h2>レッスン</h2><ol><li><span class="resource-number" aria-hidden="true">01</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_01.html">L01 起こりやすさを数で表す——中1の確率をたしかめ直す</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">02</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_02.html">L02 投げる前に分かる確率——場合の数を基にして求める</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">03</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_03.html">L03 「3通り」か「4通り」か——同様に確からしいかを疑う</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">04</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_04.html">L04 樹形図——枝分かれで全部の場合をかき切る</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">05</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_05.html">L05 二次元の表——2つのさいころを一望する</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">06</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_06.html">L06 「〜でない」確率——1から引くという近道</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">07</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_07.html">L07 くじ引きは何番目でも公平か</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">08</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_08.html">L08 「確率が◯だから」——判断を説明する型</a><span class="doc-kind">レッスン</span></div></li><li><span class="resource-number" aria-hidden="true">09</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_09.html">L09 章末まとめ——意味・求め方・説明の総点検</a><span class="doc-kind">レッスン</span></div></li></ol></div>
+  <div><p class="eyebrow">LESSONS</p><h2>レッスン</h2><ol><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">01</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_01.html">L01 起こりやすさを数で表す——中1の確率をたしかめ直す</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">02</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_02.html">L02 投げる前に分かる確率——場合の数を基にして求める</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">03</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_03.html">L03 「3通り」か「4通り」か——同様に確からしいかを疑う</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">04</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_04.html">L04 樹形図——枝分かれで全部の場合をかき切る</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">05</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_05.html">L05 二次元の表——2つのさいころを一望する</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">06</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_06.html">L06 「〜でない」確率——1から引くという近道</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">07</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_07.html">L07 くじ引きは何番目でも公平か</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">08</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_08.html">L08 「確率が◯だから」——判断を説明する型</a><span class="doc-kind">レッスン</span></div></li><li class="resource-item-numbered"><span class="resource-number" aria-hidden="true">09</span><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_09.html">L09 章末まとめ——意味・求め方・説明の総点検</a><span class="doc-kind">レッスン</span></div></li></ol></div>
 </section>
-<details class="container resource-list answer-resources"><summary>解答一覧を見る</summary><p>各レッスンを解き終えたあと、レッスン末の「答えを見る」から開けます。</p><ul><li><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html">解答編 L01〜L05（確率の意味・樹形図・二次元の表）</a><span class="doc-kind">解答</span></div></li><li><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html">解答編 L06〜L09（1から引く・くじ引きの公平・説明の型・章末）</a><span class="doc-kind">解答</span></div></li></ul></details>
-<details class="container resource-list production-resources"><summary>案内・指導・制作資料を見る</summary><ul><li><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/README.html">中2数学「確率」 — 単元の目次</a><span class="doc-kind">案内・設計図</span></div></li><li><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/assets_provenance/FIGURE_MANIFEST.html">FIGUREMANIFEST — 確率単元 図版台帳</a><span class="doc-kind">制作資料</span></div></li><li><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_map.html">レッスンマップ — 中2数学「確率」（全9時間・8時間版調整可）</a><span class="doc-kind">案内・設計図</span></div></li><li><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/teacher_notes.html">teachernotes — 中2数学「確率」</a><span class="doc-kind">指導・制作資料</span></div></li></ul></details></main>
+<details class="container resource-list answer-resources"><summary>解答一覧を見る</summary><p>各レッスンを解き終えたあと、レッスン末の「答えを見る」から開けます。</p><ul><li class="resource-item-plain"><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L01-05.html">解答編 L01〜L05（確率の意味・樹形図・二次元の表）</a><span class="doc-kind">解答</span></div></li><li class="resource-item-plain"><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/answer_key_L06-09.html">解答編 L06〜L09（1から引く・くじ引きの公平・説明の型・章末）</a><span class="doc-kind">解答</span></div></li></ul></details>
+<details class="container resource-list production-resources"><summary>案内・指導・制作資料を見る</summary><ul><li class="resource-item-plain"><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/README.html">中2数学「確率」 — 単元の目次</a><span class="doc-kind">案内・設計図</span></div></li><li class="resource-item-plain"><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/assets_provenance/FIGURE_MANIFEST.html">FIGUREMANIFEST — 確率単元 図版台帳</a><span class="doc-kind">制作資料</span></div></li><li class="resource-item-plain"><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/lesson_map.html">レッスンマップ — 中2数学「確率」（全9時間・8時間版調整可）</a><span class="doc-kind">案内・設計図</span></div></li><li class="resource-item-plain"><div><a href="../../content/materials/jhs-math-2/jhs-math-2-probability/teacher_notes.html">teachernotes — 中2数学「確率」</a><span class="doc-kind">指導・制作資料</span></div></li></ul></details>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -53,7 +59,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -63,6 +69,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../_assets/site.js" defer></script>
 </body>
 </html>

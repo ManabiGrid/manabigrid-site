@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 図形のことばと記号〜対称性の学び直し">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 図形のことばと記号〜対称性の学び直し｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="24c4fa808cc1b1f6887d2f4e2c6cf01988edaeba807cc8c98eece8640fee946f" data-source-file="materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="24c4fa808cc1b1f6887d2f4e2c6cf01988edaeba807cc8c98eece8640fee946f" data-source-file="materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-plane-figures/index.html">中1数学「平面図形」</a></li><li aria-current="page">L01 図形のことばと記号〜対称性の学び直し</li></ol></nav>
@@ -82,7 +83,7 @@
 <text x="300.5" y="206.6" font-size="13" text-anchor="start" font-weight="bold">半直線AB</text>
 <text x="230.0" y="235.0" font-size="12" text-anchor="middle">同じ2点A・Bでも、のばし方（端があるかないか）で名前が変わる</text>
 </svg>
-</div><figcaption>同じ2点A・Bに対する直線・線分・半直線のちがい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L01_fig1_line_segment_ray.svg">図を大きく開く</a></figure>
+</div><figcaption>同じ2点A・Bに対する直線・線分・半直線のちがい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L01_fig1_line_segment_ray.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="同じ2点A・Bに対する直線・線分・半直線のちがい">図を大きく見る</a></figure>
 <p>角と三角形、垂直と平行にも記号を与えよう。</p>
 <blockquote><p>【ことば】</p>
 <ul><li><p><strong>∠AOB</strong> … 頂点Oから出る2つの半直線OA・OBがつくる角（記号∠は「角」と読む）</p></li><li><p><strong>△ABC</strong> … 3点A・B・Cを頂点とする三角形</p></li><li><p><strong>AB⊥CD</strong> … 直線ABと直線CDが垂直（記号⊥は「垂直」）</p></li><li><p><strong>AB∥CD</strong> … 直線ABと直線CDが平行（記号∥は「平行」）</p></li><li><p><strong>点と直線の距離</strong> … 点から直線にひいた<strong>垂線</strong>（すいせん）の、点から交点までの長さ</p></li></ul></blockquote>
@@ -105,7 +106,7 @@
 <text x="232.2" y="211.4" font-size="13" text-anchor="middle" font-weight="bold">H</text>
 <text x="210.0" y="237.0" font-size="12" text-anchor="middle">Pからℓへの線分のうち、垂直にひいた線分PHがいちばん短い＝点と直線の距離</text>
 </svg>
-</div><figcaption>点Pから直線ℓへひいた垂線と斜めの線分の比較。垂線がいちばん短い</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L01_fig2_point_line_distance.svg">図を大きく開く</a></figure>
+</div><figcaption>点Pから直線ℓへひいた垂線と斜めの線分の比較。垂線がいちばん短い</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L01_fig2_point_line_distance.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="点Pから直線ℓへひいた垂線と斜めの線分の比較。垂線がいちばん短い">図を大きく見る</a></figure>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>なぜ最初が「ことば」なのか</strong></p>
 <p>この単元の後半では、作図の手順や図形の移動を「言葉で説明する」場面が続く。説明がうまくいかない原因の多くは、考えが足りないことではなく、<strong>指しているものがずれること</strong>（直線のつもりが線分、角のつもりが頂点）にある。だから道具のことばを最初に1回そろえる。ここで完璧に暗記する必要はない。使いながら何度でも戻ってくればよい。</p></div>
 <h2 id="主概念2対称性で図形を見る線対称と点対称">主概念2：対称性で図形を見る（線対称と点対称）</h2>
@@ -137,7 +138,7 @@
 <text x="252.8" y="195.6" font-size="10" text-anchor="start">円</text>
 <text x="230.0" y="298.0" font-size="12" text-anchor="middle">重なり＝線対称でもあり点対称でもある図形</text>
 </svg>
-</div><figcaption>線対称と点対称のベン図。重なりに正方形・ひし形・円がある</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L01_fig3_symmetry_venn.svg">図を大きく開く</a></figure>
+</div><figcaption>線対称と点対称のベン図。重なりに正方形・ひし形・円がある</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L01_fig3_symmetry_venn.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="線対称と点対称のベン図。重なりに正方形・ひし形・円がある">図を大きく見る</a></figure>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「180°回転」と点対称</strong></p>
 <p>点対称の説明にある「180°回転させる」は、次のL02・L03で学ぶ<strong>回転移動</strong>の特別な場合を先どりした言い方だ。小6では「逆さまにしても同じ形」という感覚で学んでいるが、中学ではこれを「回転」という操作のことばで言い直していく。感覚から操作のことばへ。この言い直しが、この単元の背骨になる。</p></div>
 <div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>万華鏡（まんげきょう）をのぞいたことはあるかな。あの模様が美しく感じられるのは、鏡の反射で同じ形が折り返されて、対称な模様が生まれているからだ。対称性は「きれい」と感じる形の裏にひそんでいることが多い。この章が終わるころには、模様を見て「どこに対称の軸があるか」を探すくせがついているはずだよ。</p></div>
@@ -150,7 +151,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-plane-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 図形を動かす〜3つの移動</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-plane-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 図形を動かす〜3つの移動</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -159,7 +165,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -169,6 +175,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

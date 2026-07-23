@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L09 x軸との共有点の個数">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L09 x軸との共有点の個数｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="a4380468c813a88ee6edb50161058437f8786133870eb6780ceddbee2ba3e06f" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md">
+<body id="page-top" class="page-lesson" data-source-sha256="a4380468c813a88ee6edb50161058437f8786133870eb6780ceddbee2ba3e06f" data-source-file="materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/hs-math-i/index.html">高校 数学I</a></li><li><a href="../../../../units/hs-math-i-quadratic-functions/index.html">高校数学Ⅰ「二次関数」</a></li><li aria-current="page">L09 x軸との共有点の個数</li></ol></nav>
@@ -54,7 +55,7 @@
 <p>y=(x−2)² と変形できる。頂点 (2, 0) が<strong>x軸の上にのっている</strong>から、共有点は<strong>1個</strong>。グラフは点 (2, 0) でx軸に接する。</p>
 <p><strong>例題3</strong> y=x²＋2x＋3 のグラフとx軸の共有点の個数を求めよ。</p>
 <p>y=(x＋1)²＋2。頂点 (−1, 2)、下に凸。頂点がx軸より<strong>上</strong>にあり、グラフはそこから上がる一方だから、共有点は<strong>0個</strong>。「方程式 x²＋2x＋3=0 には実数の範囲で解がないから0個」と計算で押し切るのではなく、<strong>グラフが浮いているから交わらない</strong>、と絵で言えることが大切である。</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 547 283" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-2cd7742486-title" aria-describedby="mg-2cd7742486-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 547 283" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-2cd7742486-title" aria-describedby="mg-2cd7742486-desc">
 <title id="mg-2cd7742486-title">グラフとx軸の共有点——2個・1個・0個の3態</title>
 <desc id="mg-2cd7742486-desc">グラフとx軸の共有点——2個・1個・0個の3態</desc>
 <!-- L09_fig1_three_intersection_cases.svg | グラフとx軸の共有点——2個・1個・0個の3態 -->
@@ -141,7 +142,7 @@
 <text x="450.5" y="251.0" font-size="13" text-anchor="middle" font-weight="bold">0個</text>
 <text x="273.5" y="273.0" font-size="11" text-anchor="middle">（3つとも下に凸——凸の向きが変わると条件は逆になる）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>グラフとx軸の共有点——2個・1個・0個の3態</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L09_fig1_three_intersection_cases.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>グラフとx軸の共有点——2個・1個・0個の3態</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L09_fig1_three_intersection_cases.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="グラフとx軸の共有点——2個・1個・0個の3態">図を大きく見る</a></figure>
 <h2 id="4-上に凸の場合向きが変わると条件が逆になる">4. 上に凸の場合——向きが変わると条件が逆になる</h2>
 <p><strong>例題4</strong> y=−x²＋4x−3 のグラフとx軸の共有点の個数を求めよ。</p>
 <p>y=−(x−2)²＋1。頂点 (2, 1)、上に凸。今度は頂点がx軸より<strong>上</strong>にあることが「2個」の条件になる。グラフは頂点から左右へ下がっていき、x軸を2回横切る。共有点は<strong>2個</strong>（確認: −(x−1)(x−3)=0 より x=1, 3）。<strong>「頂点が下なら2個」と符号だけで覚えない</strong>こと。凸の向きとセットで、必ず概形をかいて判断する。</p>
@@ -178,7 +179,7 @@
 <text x="199.4" y="108.4" font-size="11" text-anchor="middle">(3, 0)</text>
 <text x="147.5" y="236.0" font-size="12" text-anchor="middle">y＝−x²＋4x−3（上に凸）——共有点2個</text>
 </svg>
-</div><figcaption>上に凸で頂点がx軸より上——共有点2個</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L09_fig2_concave_down_two_points.svg">図を大きく開く</a></figure>
+</div><figcaption>上に凸で頂点がx軸より上——共有点2個</figcaption><a class="figure-source screen-only" href="../../../../_media/hs-math-i/hs-math-i-quadratic-functions/assets/L09_fig2_concave_down_two_points.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="上に凸で頂点がx軸より上——共有点2個">図を大きく見る</a></figure>
 <h2 id="5-練習">5. 練習</h2>
 <p><strong>問1</strong> y=x²−2x−3 のグラフとx軸の共有点の個数を、頂点とグラフの概形から判定せよ。そのあと方程式を解いて確かめよ。</p>
 <p><strong>問2</strong> y=x²＋6x＋9 のグラフとx軸の共有点の個数を判定せよ。共有点があればその座標も答えよ。</p>
@@ -192,7 +193,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/hs-math-i/hs-math-i-quadratic-functions/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 二次方程式とグラフ——x軸との共有点</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 二次不等式①——前提の確認とグラフで解く</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 二次方程式とグラフ——x軸との共有点</a><a class="lesson-nav-unit" href="../../../../units/hs-math-i-quadratic-functions/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 二次不等式①——前提の確認とグラフで解く</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -201,7 +207,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -211,6 +217,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

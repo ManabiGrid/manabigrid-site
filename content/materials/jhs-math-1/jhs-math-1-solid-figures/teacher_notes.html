@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中1数学「空間図形」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中1数学「空間図形」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-solid-figures/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="a8bcabb7e447a2f77e0bfdf0ddeba6f3e655dfbed5ea81dbaf54825c7b4c7b7b" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="a8bcabb7e447a2f77e0bfdf0ddeba6f3e655dfbed5ea81dbaf54825c7b4c7b7b" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-solid-figures/index.html">中1数学「空間図形」</a></li><li aria-current="page">teachernotes — 中1数学「空間図形」</li></ol></nav>
@@ -67,7 +68,12 @@
 <h2 id="g-レッスン別指導メモ教室で使う場合のオプション含む">G. レッスン別指導メモ（教室で使う場合のオプション含む）</h2>
 <ul><li><p><strong>L01</strong>: 相手はだれ？チェックはここで軽く導入し、以後の全レッスンで反復する設計。導入時点では②（立体か平面図形か）だけで十分回る。</p></li><li><p><strong>L02</strong>: 鉛筆・下じき・消しゴムの実験は一人で完結（学習者単独成立の原則）。道具がない場合の想像代替も本文に併記済み。教室で使う場合は、班で「4本脚の机がガタつく床」を再現する活動に置き換えられるが、これはguideオプションであり本文の標準手順ではない。</p></li><li><p><strong>L03</strong>: 消去の順番（交わる→平行→残り）は数えもれ防止の実戦手順。answer_keyでは全設問に本数検算（12−1−交−平）を付した。</p></li><li><p><strong>L04</strong>: 「含まれる⇔平行」の混同は共有点の個数（無数/1/0）の言い分けで対処。L04練習5は「直線への垂直（とは限らない）」と「平面への垂直（平行と言える）」の対比が山場——結果が分かれること自体を見どころとして提示。</p></li><li><p><strong>L05</strong>: 回転体は「頭の中で回す→図に描く→答え合わせ」の順を崩さない。実物工作（切り抜き＋軸）は任意。母線の格（慣用語）はguideで開示済み。</p></li><li><p><strong>L06</strong>: 投影図の照合クイズ（円柱・円錐・球の平面図がすべて円）が中核。立面図⇔平面図の役割の取り違えには「どっちから見た図？チェック」。</p></li><li><p><strong>L07</strong>: a/360の先行約分を推奨手順として明示。πの検算はここで導入し、L08以降の全計量設問の指示文に組み込み済み。</p></li><li><p><strong>L08</strong>: 表面積は「式から入らず展開図から入る」を守らせる。円錐の6ステップ（円周→何分のいくつ→中心角→側面積）は、慣れるまで言葉つきでなぞらせる。πrℓはstretchで導出扱い（丸暗記の先行を避ける）。</p></li><li><p><strong>L09</strong>: 1時間構成のため、実験は紙上再現（3コマ図）で済ませ、練習は6問に絞った。19時間版ではここに1時間足し、実測に近い活動（容器・米や水）や練習の増強に充てる。</p></li><li><p><strong>L10</strong>: 球は展開図がかけない（表面積をL08の型で出せない）ことをguideで正面から説明し、公式の受け皿（円柱の2/3・まっぷたつにしてできる円の4枚分・円柱の側面積との一致）を用意した。半球の「切ると表面が増える」はつまずきどころなので練習4で明示的に扱う。なお解説は球の<strong>表面積</strong>についても「模型を用いたり実験による測定を行ったりして、実感を伴って理解」を挙げる（Brief§1-3(i)——fable_facing_summaryには未収載のため本文未反映。独習で成立する実感的確認の追加は<strong>次版改訂キュー</strong>・パスE裁定E-08）。</p></li><li><p><strong>L11</strong>: 総合演習（回転体→投影図→計量の連結）が単元の到達点。「間違いの博物館」（自分の誤答3つの言語化）は独習者向けの仕上げとして推奨。AI壁打ちの例文は自分の答案の添削依頼に限定（実在個人の情報を入力させる例は置かない）。</p></li></ul>
 <h2 id="h-本ドラフトの自己点検パスd入口用">H. 本ドラフトの自己点検（パスD入口用）</h2>
-<ul><li><p>レッスン数11・時間配当11＋6＋1＝18（lesson_mapの表と一致）。</p></li><li><p>雑談枠: 各レッスン1（計11）。Brief事実欄由来の話題はL02三脚・L04平面による空間の二分・L05ろくろ・L09カードの積み重ねの4件。残り7件は実在の逸話・調査数値・外部事実に依存しない数学内在・言葉の観察系で構成（レーン既定: 実在逸話はfact_check前に使わない）。パスE裁定で、L03「ねじれ」の語感は<strong>由来の説明でなく連想</strong>であること・L10球の1点接触は<strong>理想の球の話</strong>であること（現実のボールはつぶれて面で触れる）を本文に明示済み（E-20）。</p></li><li><p>図版: assets_provenance方式でSVG実体化済み（画像参照＋figure-spec併記）。L01×2・L02×2・L03×2・L04×2・L05×2・L06×3・L07×1・L08×2・L09×1・L10×1・L11×1（計19枚・各レッスン最低1枚を充足。検算はFIGURE_MANIFEST.md）。</p></li><li><p>計量の数値はすべて自作・著者再計算済み（answer_key各編末尾に検算記録）。学調・教科書の設問設定の転載なし。</p></li><li><p>他者前提活動ゼロ（すべて一人で完結。教室向けは本ノートG節のオプション記載のみ）。</p></li></ul></article></main>
+<ul><li><p>レッスン数11・時間配当11＋6＋1＝18（lesson_mapの表と一致）。</p></li><li><p>雑談枠: 各レッスン1（計11）。Brief事実欄由来の話題はL02三脚・L04平面による空間の二分・L05ろくろ・L09カードの積み重ねの4件。残り7件は実在の逸話・調査数値・外部事実に依存しない数学内在・言葉の観察系で構成（レーン既定: 実在逸話はfact_check前に使わない）。パスE裁定で、L03「ねじれ」の語感は<strong>由来の説明でなく連想</strong>であること・L10球の1点接触は<strong>理想の球の話</strong>であること（現実のボールはつぶれて面で触れる）を本文に明示済み（E-20）。</p></li><li><p>図版: assets_provenance方式でSVG実体化済み（画像参照＋figure-spec併記）。L01×2・L02×2・L03×2・L04×2・L05×2・L06×3・L07×1・L08×2・L09×1・L10×1・L11×1（計19枚・各レッスン最低1枚を充足。検算はFIGURE_MANIFEST.md）。</p></li><li><p>計量の数値はすべて自作・著者再計算済み（answer_key各編末尾に検算記録）。学調・教科書の設問設定の転載なし。</p></li><li><p>他者前提活動ゼロ（すべて一人で完結。教室向けは本ノートG節のオプション記載のみ）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -76,7 +82,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -86,6 +92,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

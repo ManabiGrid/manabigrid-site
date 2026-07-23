@@ -11,6 +11,71 @@ import check_site
 
 
 class CheckSiteContractTests(unittest.TestCase):
+    def test_html_collector_keeps_document_title_separate_from_svg_title(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "index.html"
+            path.write_text(
+                '<!doctype html><html lang="ja"><head><title>ページ名</title>'
+                '<meta name="description" content="固有の説明"></head><body>'
+                '<svg viewBox="0 0 10 10"><title id="figure-title">図の名前</title>'
+                '<desc id="figure-desc">説明</desc></svg></body></html>',
+                encoding="utf-8",
+            )
+            parsed = check_site.HtmlCollector(path).load()
+        self.assertEqual(parsed.title, "ページ名")
+        self.assertEqual(parsed.descriptions, ["固有の説明"])
+
+    def test_metadata_uniqueness_rejects_duplicate_indexable_values(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            first = root / "first.html"
+            second = root / "second.html"
+            pages = {
+                first: check_site.ParsedHtml(
+                    path=first,
+                    title="同じ題名",
+                    descriptions=["同じ説明"],
+                    robots_values=["index, follow"],
+                ),
+                second: check_site.ParsedHtml(
+                    path=second,
+                    title="同じ題名",
+                    descriptions=["同じ説明"],
+                    robots_values=["index, follow"],
+                ),
+            }
+            errors = check_site.metadata_uniqueness_errors(root, pages)
+        self.assertTrue(any("duplicate indexable title" in error for error in errors))
+        self.assertTrue(any("duplicate indexable description" in error for error in errors))
+
+    def test_theme_storage_contract_rejects_key_and_mode_expansion(self) -> None:
+        script = (
+            (Path(check_site.__file__).with_name("static") / "theme.js").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(check_site.theme_storage_contract_errors(script, []), [])
+        expanded_key = script.replace(
+            "setItem(STORAGE_KEY, mode)",
+            "setItem(STORAGE_KEY + '-extra', mode)",
+        )
+        self.assertTrue(
+            check_site.theme_storage_contract_errors(expanded_key, []),
+            "派生キーへの保存を拒否する",
+        )
+        expanded_modes = script.replace(
+            "['system', 'light', 'dark']",
+            "['system', 'light', 'dark', 'sepia']",
+        )
+        self.assertTrue(
+            check_site.theme_storage_contract_errors(expanded_modes, []),
+            "未承認テーマ値の追加を拒否する",
+        )
+        self.assertTrue(
+            check_site.theme_storage_contract_errors(script, ["_assets/other.js"]),
+            "別スクリプトのlocalStorage利用を拒否する",
+        )
+
     @staticmethod
     def write_minimal_progress(
         root: Path,

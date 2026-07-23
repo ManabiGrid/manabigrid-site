@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中2数学「確率」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中2数学「確率」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-probability/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="5924bdc2750602c5cca6e96ba66b64d5c0a22cdb79c1c1cbac9e25d94cc385f3" data-source-file="materials/jhs-math-2/jhs-math-2-probability/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="5924bdc2750602c5cca6e96ba66b64d5c0a22cdb79c1c1cbac9e25d94cc385f3" data-source-file="materials/jhs-math-2/jhs-math-2-probability/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-probability/index.html">中2数学「確率」</a></li><li aria-current="page">teachernotes — 中2数学「確率」</li></ol></nav>
@@ -71,7 +72,12 @@
 <p>独習者単独成立が本文の標準（v2.3）。以下の「教室で使う場合」は本ノート限りのオプションであり、本文の標準手順ではない。</p>
 <ul><li><p><strong>L01</strong>（1h）: 準備運動3・4（相対度数）がこの章の土台。紙コップ実験は教室では班分担で回数を稼げる（各班40回×5班＝200回の合算など）。保証解釈（主概念2）は「まちがい探し」形式で出すと定着がよい。</p></li><li><p><strong>L02</strong>（1h）: 合言葉「その分け方、同様に確からしい？」を教室掲示レベルで反復したい。主概念3の1200回の数値例は説明用の自作例——実データではないことを教師は把握しておく（生徒には「自分の実験で確かめよう」と促す設計）。</p></li><li><p><strong>L03</strong>（1h）: 本単元第1の山場。予想の記名投票（3通り説vs4通り説）→実験→樹形図の順を崩さない（先に正解を見せると対決構成が死ぬ）。「同じ10円玉2枚」（主概念3）まで到達して初めてこの時間は完結する（A-4）。</p></li><li><p><strong>L04</strong>（1h）: 「かき切ってから数える」＋かけ算検算をセットで手順化。練習4（3けたの数）は位取りと場合の数の接続——偶数条件が一の位で決まることに気づかせる。</p></li><li><p><strong>L05</strong>（1h）: 36マスの表は一度自分の手で全マス書かせる価値がある（以後は再利用可）。「模様で数える」guideは数え落とし防止の実戦技。</p></li><li><p><strong>L06</strong>（1h）: 1−pは<strong>必ず直接数え上げとの一致を1回以上体験させてから</strong>使わせる（answer_keyの併記様式はそのため）。「二分できるときだけ」のguardrail（guide）を飛ばさない。</p></li><li><p><strong>L07</strong>（1h）: 本単元第2の山場（説明の型の導入）。「Bは前の人次第では？」の違和感（guide）は必ず誰かが口にする——潰さずに「どの時点から見た確率か」で受ける。3行型はこの時間内に1回は白紙再現させたい。</p></li><li><p><strong>L08</strong>（1h）: 袋の玉（主概念1）は「個数の直観vs割合」の対決。通分の技能が怪しい生徒はここで露呈する——中1分数の学び直し接続。stretch S1（ゲーム設計）は時間があれば相互採点が効く（他人の設計の不公平を見抜く活動は説明力の裏返し）。</p></li><li><p><strong>L09</strong>（1h）: 3部屋チェックで弱点部屋を特定→総合演習は部屋3（説明）優先で。総合演習4は本単元の集大成（区別・樹形図20通り・3行型のフル装備）。時間不足なら1〜3を宿題に回しても4は授業内で。</p></li></ul>
 <h2 id="e-本ドラフト固有の判断保留事項パスde監修への申し送り">E. 本ドラフト固有の判断・保留事項（パスD・E・監修への申し送り）</h2>
-<ol start="1"><li><p><strong>9時間設計・8時間版はL01＋L02統合</strong>: 教科書3社の8〜9時間の枠内。説明側（L07〜L08）を圧縮候補にしなかったのはA-2の課題データ（NIER「引き続き課題」総括）に基づく設計判断。</p></li><li><p><strong>L02主概念3の「1200回投げて205回」はsummary外の自作数値例</strong>（実験データの引用ではない・本文中に「説明用の例」と明記済み）。205/1200＝0.1708…の計算は検算済み。実データと誤認されうるかはパスDで判定されたい。</p></li><li><p><strong>L06練習4のトランプ（52枚・絵札12枚）</strong>: トランプの構成（4マーク×13）は一般常識レベルの規格事実だがsummary外——一般的素材（くじ・カード類）の範囲と判断した。<strong>編集裁定で許容</strong>（2026-07-18・パスD指摘に対する裁定: 公知の規格事実であり調査数値ではない）。</p></li><li><p><strong>L05練習1(2)「和が4以下」・L09総合演習2「少なくとも一方は5」等の設問数値はすべて自作</strong>。L06練習4のトランプの規格（52枚・4マーク×13・絵札12枚）は一般常識素材であり調査由来でない。学調題材の設定（画びょうの上向き数・じゃんけんカードの構成・スティックゲーム等）・R1の2枚の硬貨の設問設定は不使用。L03の「2枚の硬貨で表2枚」という<strong>題材自体</strong>は解説明文の例（3通り誤りの明文化対象）であり一般的素材——設問文・図は自作。</p></li><li><p><strong>雑談枠の話題</strong>: summary雑談枠リストの4話題（保証解釈=L01・大数の法則=L02・3通りの錯覚=L03・くじ引き公平=L07）を基礎に、残り（L04・L05・L06・L08・L09）は単元内容そのものへの考察（樹形図＝道すじの地図・36マス＝全地図・裏口から数える・不確定でも比べられる・予想を立てる価値）のみで構成——<strong>実在の人物・歴史逸話・summary外の事実は全編で不使用</strong>（西田・服部2011等の研究知見も本ノート限り）。</p></li><li><p><strong>図</strong>: figure-specブロックはL01の相対度数グラフ1点のみ。樹形図・表はテキスト（等幅ブロック・markdown表）で本文内に自足させた——確率の図具は記号的なので画像生成を待たず学習可能、という設計判断。</p></li><li><p><strong>L09 stretch S1の3人ゲーム分割</strong>（{2,6,7}{3,4,5,10}{8,9,11,12}各12マス）は自作・検算済み（1+5+6=12・2+3+4+3=12・5+4+2+1=12、計36）。</p></li><li><p><strong>統合時の申し送り</strong>: 解答リンクは実ファイル名（answer_key_L01-05.md／answer_key_L06-09.md）で本文末尾に記載——view_generator統合時に <code>--answer-link-template</code> の整合確認が必要（平方根単元QA指摘#11と同型）。</p></li><li><p><strong>単元メタ（Codex転記用）</strong>: 学習指導要領コードの単元アンカーは<strong>8350223420000000</strong>（(2)不確定な事象の起こりやすさ）＋細目4件（知技(ｱ)(ｲ)・思判表(ｱ)(ｲ)）。<strong>JP-COS LOD文言一致は3件のみ</strong>——メタデータに照合状態を書き分ける。LOD記載時は<strong>CC BY 4.0クレジット表記</strong>。</p></li></ol></article></main>
+<ol start="1"><li><p><strong>9時間設計・8時間版はL01＋L02統合</strong>: 教科書3社の8〜9時間の枠内。説明側（L07〜L08）を圧縮候補にしなかったのはA-2の課題データ（NIER「引き続き課題」総括）に基づく設計判断。</p></li><li><p><strong>L02主概念3の「1200回投げて205回」はsummary外の自作数値例</strong>（実験データの引用ではない・本文中に「説明用の例」と明記済み）。205/1200＝0.1708…の計算は検算済み。実データと誤認されうるかはパスDで判定されたい。</p></li><li><p><strong>L06練習4のトランプ（52枚・絵札12枚）</strong>: トランプの構成（4マーク×13）は一般常識レベルの規格事実だがsummary外——一般的素材（くじ・カード類）の範囲と判断した。<strong>編集裁定で許容</strong>（2026-07-18・パスD指摘に対する裁定: 公知の規格事実であり調査数値ではない）。</p></li><li><p><strong>L05練習1(2)「和が4以下」・L09総合演習2「少なくとも一方は5」等の設問数値はすべて自作</strong>。L06練習4のトランプの規格（52枚・4マーク×13・絵札12枚）は一般常識素材であり調査由来でない。学調題材の設定（画びょうの上向き数・じゃんけんカードの構成・スティックゲーム等）・R1の2枚の硬貨の設問設定は不使用。L03の「2枚の硬貨で表2枚」という<strong>題材自体</strong>は解説明文の例（3通り誤りの明文化対象）であり一般的素材——設問文・図は自作。</p></li><li><p><strong>雑談枠の話題</strong>: summary雑談枠リストの4話題（保証解釈=L01・大数の法則=L02・3通りの錯覚=L03・くじ引き公平=L07）を基礎に、残り（L04・L05・L06・L08・L09）は単元内容そのものへの考察（樹形図＝道すじの地図・36マス＝全地図・裏口から数える・不確定でも比べられる・予想を立てる価値）のみで構成——<strong>実在の人物・歴史逸話・summary外の事実は全編で不使用</strong>（西田・服部2011等の研究知見も本ノート限り）。</p></li><li><p><strong>図</strong>: figure-specブロックはL01の相対度数グラフ1点のみ。樹形図・表はテキスト（等幅ブロック・markdown表）で本文内に自足させた——確率の図具は記号的なので画像生成を待たず学習可能、という設計判断。</p></li><li><p><strong>L09 stretch S1の3人ゲーム分割</strong>（{2,6,7}{3,4,5,10}{8,9,11,12}各12マス）は自作・検算済み（1+5+6=12・2+3+4+3=12・5+4+2+1=12、計36）。</p></li><li><p><strong>統合時の申し送り</strong>: 解答リンクは実ファイル名（answer_key_L01-05.md／answer_key_L06-09.md）で本文末尾に記載——view_generator統合時に <code>--answer-link-template</code> の整合確認が必要（平方根単元QA指摘#11と同型）。</p></li><li><p><strong>単元メタ（Codex転記用）</strong>: 学習指導要領コードの単元アンカーは<strong>8350223420000000</strong>（(2)不確定な事象の起こりやすさ）＋細目4件（知技(ｱ)(ｲ)・思判表(ｱ)(ｲ)）。<strong>JP-COS LOD文言一致は3件のみ</strong>——メタデータに照合状態を書き分ける。LOD記載時は<strong>CC BY 4.0クレジット表記</strong>。</p></li></ol></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -80,7 +86,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -90,6 +96,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

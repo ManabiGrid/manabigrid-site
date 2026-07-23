@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中2数学「四分位範囲と箱ひげ図」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中2数学「四分位範囲と箱ひげ図」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="cf91db2f0d3baf1c0495c1aac1ccd00e489ca579e2cdede0b0101371a8ae42a4" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="cf91db2f0d3baf1c0495c1aac1ccd00e489ca579e2cdede0b0101371a8ae42a4" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">中2数学「四分位範囲と箱ひげ図」</a></li><li aria-current="page">teachernotes — 中2数学「四分位範囲と箱ひげ図」</li></ol></nav>
@@ -72,7 +73,12 @@
 <p>独習者単独成立が本文の標準。以下の「教室で使う場合」は本ノート限りのオプションであり、本文の標準手順ではない。</p>
 <ul><li><p><strong>L01</strong>（1h）: 準備運動は前提診断（中央値の奇偶場合分け・範囲・ヒストグラムの読み）——問1・2の場合分けがL03の伏線なので飛ばさない。「箱=約半数」の第一固定（主概念3）と「箱の長さ≠個数」のくぎ（同）はここで種をまき、L02で実測する二段構え。教室では準備運動を無記名の挙手diagnosticに置き換え可。zatsudan（高校→中2移行）は単元の格A-2の事実のみで構成。</p></li><li><p><strong>L02</strong>（1h）: 本単元最大の誤概念（A-3のR4類型3・A-4の小口2011）への<strong>中心活動</strong>。A班=四分位数が.5になる設計（箱の端がデータ値と重ならず、数える活動が明確になる）は意図的——変更する場合はこの性質を保つこと。「同じ16人で箱の長さが違う」のドット数えは、5時間版でも削らない（lesson_map）。教室ではA班・B班を実測データ（上体起こし等）に置き換え可——ただし「同人数・箱の長さが明確に違う」性質を事前に確認してから。</p></li><li><p><strong>L03</strong>（1h）: 1方式宣言（A-5）の実装。例1（n=9）=割り切れない・例2（n=10）=割り切れるの対提示は「どちらも正しい答え」の固定のため。起こりやすいミスとして想定するのは奇数個での中央値の除き忘れ（設計上の想定——「最多」とする調査裏づけはない）→場合分けチャートと「まず個数を数える」を手順に組み込み済み。検算の型「4ブロックカウント」はここで導入し、以後answer_key全計算問題に適用。他方式の存在はguide層注記まで（do_not_cover遵守）。</p></li><li><p><strong>L04</strong>（1h）: 差し替え実験（35→12）は「範囲だけが激変し四分位範囲が不変」になるよう意図設計（n=11・端の値だけが動く配置）。「外れ値」の語の格の整理（guide）はここが初出。「かけ離れた値=機械的に除外ではなく理由を考える」はL06の批判的考察への伏線。<strong>1.5×IQR等の定量基準は全編不使用</strong>（do_not_cover）。教室では差し替え実験を生徒に予想させてから計算させると効く。</p></li><li><p><strong>L05</strong>（1h）: 学調実測で記述式の正答率が最も低く無解答が多い難所（記述式26.4〜33.9%・無解答22〜29%。本設計はここを最大の壁と推定——読み取りとは別設問・別形式のため直接比較ではない）への手当てで、練習配分が最も厚い。記述の型「①どの指標を見て②どちらがどうで③だから結論」は<strong>設計推奨・推論由来</strong>（公的資料の指定ではない——この格の明示は本ノートに置く契約）。比較根拠の3パターンの第3(一方の第3四分位数＜他方の第1四分位数)はL06練習1(3)で再使用。主教材の「B組=箱が短いが位置が右」の設計は、長さと位置の分離を試すため意図的。zatsudan（ハンドボール投げ）は解説の例示——「解説の中の例示」と格を本文中でも明示済み。</p></li><li><p><strong>L06</strong>（1h）: 一連の統計的活動（収集→整理→箱ひげ図→比較→説明）が背骨。計算タイム（前半/後半各10回）は「後半の第3四分位数(55)＜前半の第1四分位数(58)」＝パターン3が成り立つよう意図設計。通学時間（n=16）は二山分布（徒歩層5〜9分・バス層22〜26分・中央値15.5分の付近に誰もいない）を意図設計——「箱ひげ図の限界」の体感用。QUARTILE系の注意はA-5のとおり出力値を載せない形で処理済み。stretch S1（自分の問いで通し）が態度観点（A-6）の受け皿——教室ではワークシート化してレポート評価に使える。</p></li></ul>
 <h2 id="e-本ドラフト固有の判断保留事項パスde監修への申し送り">E. 本ドラフト固有の判断・保留事項（パスD・E・監修への申し送り）</h2>
-<ol start="1"><li><p><strong>L06 figure-specの度数表記に不整合1件（要修正判定）</strong>: 主概念3のヒストグラム指示で「20〜25に6人・25〜30に2人」とあるが、データ（22, 23, 23, 24, 24, 25, 25, 26）を「以上〜未満」の標準規約で数えると[20,25)=5人・[25,30)=3人が正しい（本再開時のスクリプト検算で検出・2026-07-15）。合計16人は合っている。本文数値・answer_keyには影響なし（練習2(1)の「10分より長く20分未満=0人」は正しい）。再開担当は「既存の書き換えをしない」契約のため未修正——パスD/Eで figure-spec の2値を5人・3人へ修正されたい。【解消済み・2026-07-18パスC: パスDのQA指摘としてfigure-specの2値を5人・3人へ修正し、Python再集計で一致確認】</p></li><li><p><strong>検算の全数一致</strong>: 本文・answer_keyの全四分位数・範囲・四分位範囲・個数カウント（33チェック）を採用方式のスクリプトで再検算し<strong>全一致</strong>（2026-07-15・上記1のfigure-spec内度数のみ例外）。全データセットは自作で、学調の設問設定（コマ回し・黄葉日・車型ロボット）・教科書とびら教材（通信速度・リサイクル率・冬日の日数）は不使用。</p></li><li><p><strong>記述の型・3パターンの格</strong>: 「①指標②どちらがどう③結論」の型と比較根拠の3パターンは設計推奨（推論由来）であり、公的資料の指定ではない（summary契約6に従い本ノート＝メタデータ側に格を記録）。パターン3の呼称「いちばん強い言い方」も教材側の表現。</p></li><li><p><strong>zatsudanのsummary外要素（許容判定待ち）</strong>: L02 zatsudanの「ニュースでたくさんの都道府県や国を比べるグラフに箱ひげ図が使われる」、L06 zatsudanの「統計の上級者ほど1つのデータを複数のグラフで見る」は、summary雑談枠リスト外の一般常識レベルの叙述。事実断定というより用途・姿勢の一般論だが、summary外に当たるかはパスD/監修で判定されたい（L01=移行事実・L03=中央値の重ねがけ（教材内容そのもの）・L04=解説明文・L05=ハンドボール投げ（許可話題）は問題なし）。【解消済み・2026-07-18パスC: パスD指摘2件の裁定によりいずれも教材内数理の叙述へ置換済み】</p></li><li><p><strong>調査数値の層分離の遵守</strong>: 生徒向け本文（lesson_01〜06・answer_key）に正答率・反応率等の調査数値は一切書いていない（L02本文の「大人でもやってしまうことが知られている」・L04本文の「実際とても多い」は数値なしの傾向表現——出典数値は本ノートA-3・A-4）。【2026-07-18パスC: パスD指摘2件により、L02は「〜という報告があるくらい」（報告形）へ、L04は「混同は起こりやすい」（断定調解除）へ修正済み】【2026-07-18 E: 外部批判レビュー採用によりL02の主語を「大人でも」→「大学生でも」に復元（出典=小口2011の対象は大学生）】</p></li><li><p><strong>実在の人物・逸話は全編不使用</strong>（新規追加禁止の契約遵守）。ハンドボール投げは解説の例示であり人物逸話ではない。</p></li><li><p><strong>統合時の申し送り</strong>: 解答ファイルは answer_key_L01-03.md／answer_key_L04-06.md の2分割。view_generator統合時は解答リンクのテンプレート指定（<code>--answer-link-template</code>相当）が実ファイル名と一致するか確認されたい（平方根単元QA指摘#11と同型の論点）。</p></li></ol></article></main>
+<ol start="1"><li><p><strong>L06 figure-specの度数表記に不整合1件（要修正判定）</strong>: 主概念3のヒストグラム指示で「20〜25に6人・25〜30に2人」とあるが、データ（22, 23, 23, 24, 24, 25, 25, 26）を「以上〜未満」の標準規約で数えると[20,25)=5人・[25,30)=3人が正しい（本再開時のスクリプト検算で検出・2026-07-15）。合計16人は合っている。本文数値・answer_keyには影響なし（練習2(1)の「10分より長く20分未満=0人」は正しい）。再開担当は「既存の書き換えをしない」契約のため未修正——パスD/Eで figure-spec の2値を5人・3人へ修正されたい。【解消済み・2026-07-18パスC: パスDのQA指摘としてfigure-specの2値を5人・3人へ修正し、Python再集計で一致確認】</p></li><li><p><strong>検算の全数一致</strong>: 本文・answer_keyの全四分位数・範囲・四分位範囲・個数カウント（33チェック）を採用方式のスクリプトで再検算し<strong>全一致</strong>（2026-07-15・上記1のfigure-spec内度数のみ例外）。全データセットは自作で、学調の設問設定（コマ回し・黄葉日・車型ロボット）・教科書とびら教材（通信速度・リサイクル率・冬日の日数）は不使用。</p></li><li><p><strong>記述の型・3パターンの格</strong>: 「①指標②どちらがどう③結論」の型と比較根拠の3パターンは設計推奨（推論由来）であり、公的資料の指定ではない（summary契約6に従い本ノート＝メタデータ側に格を記録）。パターン3の呼称「いちばん強い言い方」も教材側の表現。</p></li><li><p><strong>zatsudanのsummary外要素（許容判定待ち）</strong>: L02 zatsudanの「ニュースでたくさんの都道府県や国を比べるグラフに箱ひげ図が使われる」、L06 zatsudanの「統計の上級者ほど1つのデータを複数のグラフで見る」は、summary雑談枠リスト外の一般常識レベルの叙述。事実断定というより用途・姿勢の一般論だが、summary外に当たるかはパスD/監修で判定されたい（L01=移行事実・L03=中央値の重ねがけ（教材内容そのもの）・L04=解説明文・L05=ハンドボール投げ（許可話題）は問題なし）。【解消済み・2026-07-18パスC: パスD指摘2件の裁定によりいずれも教材内数理の叙述へ置換済み】</p></li><li><p><strong>調査数値の層分離の遵守</strong>: 生徒向け本文（lesson_01〜06・answer_key）に正答率・反応率等の調査数値は一切書いていない（L02本文の「大人でもやってしまうことが知られている」・L04本文の「実際とても多い」は数値なしの傾向表現——出典数値は本ノートA-3・A-4）。【2026-07-18パスC: パスD指摘2件により、L02は「〜という報告があるくらい」（報告形）へ、L04は「混同は起こりやすい」（断定調解除）へ修正済み】【2026-07-18 E: 外部批判レビュー採用によりL02の主語を「大人でも」→「大学生でも」に復元（出典=小口2011の対象は大学生）】</p></li><li><p><strong>実在の人物・逸話は全編不使用</strong>（新規追加禁止の契約遵守）。ハンドボール投げは解説の例示であり人物逸話ではない。</p></li><li><p><strong>統合時の申し送り</strong>: 解答ファイルは answer_key_L01-03.md／answer_key_L04-06.md の2分割。view_generator統合時は解答リンクのテンプレート指定（<code>--answer-link-template</code>相当）が実ファイル名と一致するか確認されたい（平方根単元QA指摘#11と同型の論点）。</p></li></ol></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -81,7 +87,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -91,6 +97,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

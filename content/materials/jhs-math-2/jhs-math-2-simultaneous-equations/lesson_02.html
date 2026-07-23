@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L02 文字を消すという作戦——等式の性質と加減法">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L02 文字を消すという作戦——等式の性質と加減法｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="3ea9c607d717017fbb537b2b0e1fbfbc91909e5718ede07ba8206034edf6ea6d" data-source-file="materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.md">
+<body id="page-top" class="page-lesson" data-source-sha256="3ea9c607d717017fbb537b2b0e1fbfbc91909e5718ede07ba8206034edf6ea6d" data-source-file="materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-simultaneous-equations/index.html">中2数学「連立方程式」</a></li><li aria-current="page">L02 文字を消すという作戦——等式の性質と加減法</li></ol></nav>
@@ -89,7 +90,7 @@
 <text x="230.0" y="216.0" font-size="12" text-anchor="middle">CとDは名札がちがっても中身は同じ量（②C＝D）——だから天びんは崩れない</text>
 <text x="230.0" y="236.0" font-size="12" text-anchor="middle">注意: 足すのは左辺どうしと右辺どうしの両方。片側だけにのせると等式が壊れる</text>
 </svg>
-</div><figcaption>天びん図（A＝B, C＝D なら A＋C＝B＋D）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-simultaneous-equations/assets/L02_fig1_balance_add_equals.svg">図を大きく開く</a></figure>
+</div><figcaption>天びん図（A＝B, C＝D なら A＋C＝B＋D）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-simultaneous-equations/assets/L02_fig1_balance_add_equals.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="天びん図（A＝B, C＝D なら A＋C＝B＋D）">図を大きく見る</a></figure>
 <h2 id="主概念2加減法文字を消して知っている形に戻す">主概念2：加減法——文字を消して、知っている形に戻す</h2>
 <p>連立方程式を解いてみよう。</p>
 <blockquote><p>① x＋y＝11 ② x−y＝3</p></blockquote>
@@ -125,7 +126,7 @@
 <text x="220.0" y="190.0" font-size="12" text-anchor="middle">筆算のように上下にそろえて書くと、左辺の列と右辺の列を同時に処理できて</text>
 <text x="220.0" y="208.0" font-size="12" text-anchor="middle">「右辺だけ置き去り」の事故が起きにくい（このあと x を求めて①に代入する）</text>
 </svg>
-</div><figcaption>加減法の筆算型（①＋②でyが消えて2x＝14）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-simultaneous-equations/assets/L02_fig2_elimination_column_addition.svg">図を大きく開く</a></figure>
+</div><figcaption>加減法の筆算型（①＋②でyが消えて2x＝14）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-simultaneous-equations/assets/L02_fig2_elimination_column_addition.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="加減法の筆算型（①＋②でyが消えて2x＝14）">図を大きく見る</a></figure>
 <p>xが分かれば、①に代入して 7＋y＝11 → y＝4。解は <strong>(x, y)＝(7, 4)</strong>。</p>
 <p>検算（L01の型）: ① 7＋4＝11 成り立つ／② 7−4＝3 成り立つ。両方OK。</p>
 <p>今度は<strong>引く</strong>型。</p>
@@ -148,7 +149,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-simultaneous-equations/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 条件が2つあるとき——二元一次方程式と連立方程式</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-simultaneous-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 係数をそろえる——加減法の完成</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 条件が2つあるとき——二元一次方程式と連立方程式</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-simultaneous-equations/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 係数をそろえる——加減法の完成</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -157,7 +163,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -167,6 +173,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

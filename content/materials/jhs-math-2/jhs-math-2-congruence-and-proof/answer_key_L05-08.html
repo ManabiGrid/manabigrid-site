@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 解答: 解答編 L05〜L08（合同と証明入門・二等辺三角形）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>解答編 L05〜L08（合同と証明入門・二等辺三角形）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-answer" data-source-sha256="7a328a2d7cc5c463bea111a30b5835288d2c8fea12b44455865bbf2954ae943c" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.md">
+<body id="page-top" class="page-answer" data-source-sha256="7a328a2d7cc5c463bea111a30b5835288d2c8fea12b44455865bbf2954ae943c" data-source-file="materials/jhs-math-2/jhs-math-2-congruence-and-proof/answer_key_L05-08.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-congruence-and-proof/index.html">中2数学「図形の合同と証明」</a></li><li aria-current="page">解答編 L05〜L08（合同と証明入門・二等辺三角形）</li></ol></nav>
@@ -61,7 +62,12 @@
 <h3 id="練習-3">練習</h3>
 <ol start="1"><li><p>∠B＝∠C【根拠: 底角の定理】。∠B＝∠C＝(180°−40°)÷2＝<strong>70°</strong>【根拠: 内角の和は180°】。検算: 40＋70＋70＝180 ✓</p></li><li><p>∠C＝∠B＝70°【底角の定理】、∠A＝180°−70°×2＝<strong>40°</strong>【内角の和】。検算: 40＋70＋70＝180 ✓</p></li><li><p>穴埋め: (あ) <strong>仮定</strong>　(い) <strong>MはBCの中点（そう取った）</strong>　(う) <strong>共通な辺</strong>　(え) <strong>対応する3組の辺がそれぞれ等しい</strong>  使った合同条件は<strong>主概念2と違う</strong>（主概念2は「対応する2組の辺がそれぞれ等しく、その間の角が等しい」、こちらは「対応する3組の辺がそれぞれ等しい」）。同じ定理に、違う補助線・違う条件の証明が2通りある——どちらも正しい。  (い)を「ADは∠Aの二等分線だから」と書けない理由: この補助線は「<strong>BCの中点Mと結ぶ</strong>」という身分で引いた線であって、∠Aを二等分するという身分は宣言していないし、まだ証明もされていない（補助線に込められる身分は1つ——guideの約束）。</p></li><li><p><strong>チェック①（循環論法）に引っかかる。</strong> 2つ目の材料「∠B＝∠C（二等辺三角形の底角は等しいから）」は、この証明が<strong>これから示そうとしている結論そのもの</strong>。示すべきことを根拠に使っている。正しくは、∠B＝∠Cを材料から外し、AB＝AC・∠BAD＝∠CAD・AD共通の3つ（条件2）で合同を出す——主概念2の道に戻ればよい。</p></li></ol>
 <h3 id="stretch-3">stretch</h3>
-<p><strong>S1</strong> <strong>成り立つ。</strong> 主概念3で示したのは、BD＝CD（ADは底辺の中点を通る）かつ∠ADB＝∠ADC＝90°（ADは底辺と垂直）——つまり<strong>直線ADは「BCの中点を通り、BCに垂直な直線</strong>」そのものだということ。BCの垂直二等分線と呼べる直線は1本しかないから、BCの垂直二等分線＝直線AD。直線ADは頂点Aを通っている（Aから引いた線だ）から、<strong>BCの垂直二等分線は頂点Aを通る</strong> ■（「すでに示した事実が、求める直線の定義とぴったり一致している」ことに気づけば、新しい合同は1つも要らない）</p></article></main>
+<p><strong>S1</strong> <strong>成り立つ。</strong> 主概念3で示したのは、BD＝CD（ADは底辺の中点を通る）かつ∠ADB＝∠ADC＝90°（ADは底辺と垂直）——つまり<strong>直線ADは「BCの中点を通り、BCに垂直な直線</strong>」そのものだということ。BCの垂直二等分線と呼べる直線は1本しかないから、BCの垂直二等分線＝直線AD。直線ADは頂点Aを通っている（Aから引いた線だ）から、<strong>BCの垂直二等分線は頂点Aを通る</strong> ■（「すでに示した事実が、求める直線の定義とぴったり一致している」ことに気づけば、新しい合同は1つも要らない）</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -70,7 +76,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -80,6 +86,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

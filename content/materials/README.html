@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: materials/ — 教材本文">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>materials/ — 教材本文｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/README.html">
   <link rel="icon" type="image/svg+xml" href="../../_assets/favicon.svg">
+  <script src="../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="3f631e0e44c4e888156f95a00da7df09e49d44267495297e9392d4fa2930a31e" data-source-file="materials/README.md">
+<body id="page-top" class="page-overview" data-source-sha256="3f631e0e44c4e888156f95a00da7df09e49d44267495297e9392d4fa2930a31e" data-source-file="materials/README.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../browse/index.html">教材をさがす</a><a href="../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../index.html">トップ</a></li><li><a href="../../browse/index.html">教材をさがす</a></li><li aria-current="page">materials/ — 教材本文</li></ol></nav>
@@ -52,7 +53,12 @@
 <p><code>distribution_status</code> の意味（frontmatterのステータス語彙）:</p>
 <ul><li><p><code>published_draft</code> = 公開済み・人間レビュー前の<strong>候補ドラフト</strong>。人間レビュー（実務者検収）が完了したファイルから、レビュー済みを示すステータス値（draft を reviewed に置き換えた値）へ昇格します。</p></li><li><p>各単元の工程到達点そのものは <a href="../../progress/index.html">../curriculum/PROGRESSINDEX.md</a>（レジストリ由来）が正です。</p></li></ul>
 <p>読むときの注意:</p>
-<ul><li><p>teacher_notes / teacher_guide の設計判断には<strong>根拠区分ラベル</strong>（Established / Adapted / Derived / Experimental / Rejected の5値・〔根拠区分: X〕のタグ様式）が付いています。</p></li><li><p>科目診断（<code>jhs-math-3-diagnostic</code>）は<strong>試行版</strong>です。難度・判定閾値は実利用データによる較正前で、較正後に改訂されます。</p></li><li><p>teacher_notes 等が参照する内部調査資料（HR番号等）は非公開です。非公開の理由と照会方法は <a href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/docs/METHODOLOGY.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../docs/METHODOLOGY.md</a>（§6「内部調査資料について」）を参照してください。</p></li><li><p><code>verify_required</code> の標記がある記述は原典照合が未了です。重要な用途の前に利用者側で原典を確認してください（<a href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/DISCLAIMER.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../DISCLAIMER.md</a>）。</p></li></ul></article></main>
+<ul><li><p>teacher_notes / teacher_guide の設計判断には<strong>根拠区分ラベル</strong>（Established / Adapted / Derived / Experimental / Rejected の5値・〔根拠区分: X〕のタグ様式）が付いています。</p></li><li><p>科目診断（<code>jhs-math-3-diagnostic</code>）は<strong>試行版</strong>です。難度・判定閾値は実利用データによる較正前で、較正後に改訂されます。</p></li><li><p>teacher_notes 等が参照する内部調査資料（HR番号等）は非公開です。非公開の理由と照会方法は <a href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/docs/METHODOLOGY.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../docs/METHODOLOGY.md</a>（§6「内部調査資料について」）を参照してください。</p></li><li><p><code>verify_required</code> の標記がある記述は原典照合が未了です。重要な用途の前に利用者側で原典を確認してください（<a href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/DISCLAIMER.md" class="external-link" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">../DISCLAIMER.md</a>）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -61,7 +67,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -71,6 +77,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../_assets/site.js" defer></script>
 </body>
 </html>

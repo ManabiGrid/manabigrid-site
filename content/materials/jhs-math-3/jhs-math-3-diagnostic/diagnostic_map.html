@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: 診断マップ — 中3数学「はじめる場所を見つける地図」設計文書">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>診断マップ — 中3数学「はじめる場所を見つける地図」設計文書｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-diagnostic/diagnostic_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="c511b61375c476cbb9e1ef710f71f8588d83f534d24516820a4b17b5e448c045" data-source-file="materials/jhs-math-3/jhs-math-3-diagnostic/diagnostic_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="c511b61375c476cbb9e1ef710f71f8588d83f534d24516820a4b17b5e448c045" data-source-file="materials/jhs-math-3/jhs-math-3-diagnostic/diagnostic_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-diagnostic/index.html">中3数学 診断テスト（試行版）</a></li><li aria-current="page">診断マップ — 中3数学「はじめる場所を見つける地図」設計文書</li></ol></nav>
@@ -61,7 +62,12 @@
 <h2 id="5-設問設計の規律">5. 設問設計の規律</h2>
 <ol start="1"><li><p><strong>全設問自作</strong>（教科書・過去問・調査問題の転載ゼロ）。数値・場面はすべて本モジュールのために新規に作成</p></li><li><p><strong>自己採点可能な形式のみ</strong>: 計算・短答・選択・表の穴埋め。説明を求める設問（Q10等）は「模範解答と見比べて、要点の語が入っているか」で自己採点できる形にする</p></li><li><p><strong>各段に意味理解の設問を混ぜる</strong>: 計算だけの診断は「手続きは覚えているが意味が抜けている」型のつまずきを見逃すため</p></li><li><p><strong>媒体等価</strong>（設計原則）: 画面・紙どちらでも同じに使える。図が必須の設問は置かない（図形の段も、言葉と数値だけで完結する設問にする）</p></li><li><p><strong>調査データの数値は引用しない</strong>: 本モジュールはパスA調査を経ていないため、難易度・誤答傾向の数値根拠は本文にもteacher_notes相当にも書かない（確実でない引用をしない規律）。設問の狙いは設計判断として記述する</p></li><li><p><strong>文体はv2.4準拠</strong>: 「〜してみよう」基本形・——は最小限・学年超え漢字の初出にふりがな括弧書き・【ことば】枠は最小限</p></li></ol>
 <h2 id="6-未確認保留事項正直に残す">6. 未確認・保留事項（正直に残す）</h2>
-<ul><li><p>系統順・単元配列は教科書の標準的な配列に基づく設計判断であり、<strong>教科書会社による配列差の網羅確認は未実施</strong>（verify_required）。ただし本診断の判定は「本パッケージの8単元の順」に接続するため、外部教科書の配列差は判定の妥当性を直接は損なわない</p></li><li><p>設問の難易度較正（こうせい: 適切な難しさへの調整）は未実施。パスD相当のQAと、可能なら実利用フィードバックでの改訂を前提とする</p></li><li><p>段の停止判定の閾値（「過半数誤り」）は運用実績のない初期値。実績が出たら見直す</p></li><li><p>中1・中2教材が将来整備されたら、判定表の「調べるフレーズ」橋渡しを実在レッスンへの直結に差し替える（本文書と判定表の両方に改稿が必要）</p></li><li><p>図形の段（段8）は角度計算と合同条件の識別のみを測り、証明の構成・図の読解は測定していない（測定項目の追加は判定表v2で検討）</p></li><li><p>同じ問題の再受験は、答えの記憶で通過しうる（記憶効果）。同型の再検査問題の作問は判定表v2と同時に検討する</p></li></ul></article></main>
+<ul><li><p>系統順・単元配列は教科書の標準的な配列に基づく設計判断であり、<strong>教科書会社による配列差の網羅確認は未実施</strong>（verify_required）。ただし本診断の判定は「本パッケージの8単元の順」に接続するため、外部教科書の配列差は判定の妥当性を直接は損なわない</p></li><li><p>設問の難易度較正（こうせい: 適切な難しさへの調整）は未実施。パスD相当のQAと、可能なら実利用フィードバックでの改訂を前提とする</p></li><li><p>段の停止判定の閾値（「過半数誤り」）は運用実績のない初期値。実績が出たら見直す</p></li><li><p>中1・中2教材が将来整備されたら、判定表の「調べるフレーズ」橋渡しを実在レッスンへの直結に差し替える（本文書と判定表の両方に改稿が必要）</p></li><li><p>図形の段（段8）は角度計算と合同条件の識別のみを測り、証明の構成・図の読解は測定していない（測定項目の追加は判定表v2で検討）</p></li><li><p>同じ問題の再受験は、答えの記憶で通過しうる（記憶効果）。同型の再検査問題の作問は判定表v2と同時に検討する</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -70,7 +76,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -80,6 +86,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

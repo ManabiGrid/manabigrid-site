@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: lessonmap — 湿度と飽和水蒸気量の計算（S-draftable範囲）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>lessonmap — 湿度と飽和水蒸気量の計算（S-draftable範囲）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="595777cc1f7b47e26d4a58fdecd66daa3bbfd35e85c1821b9a44d2dc17db80c0" data-source-file="materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="595777cc1f7b47e26d4a58fdecd66daa3bbfd35e85c1821b9a44d2dc17db80c0" data-source-file="materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-sci-2/index.html">中学2年 理科</a></li><li><a href="../../../../units/jhs-sci-2-humidity-calculation/index.html">中2理科「湿度と飽和水蒸気量の計算」</a></li><li aria-current="page">lessonmap — 湿度と飽和水蒸気量の計算（S-draftable範囲）</li></ol></nav>
@@ -52,7 +53,12 @@
 <ul><li><p><strong>小5割合を足場に、差分を明示</strong>：「くらべられる量÷もとにする量×100」は既習。新しいのは <strong>「もとにする量（分母）が気温によって変わる」</strong> こと。毎レッスン冒頭でこの一点に触れる。</p></li><li><p><strong>数表は架空</strong>：全問「この教材の練習用に作った架空の数表（実際の値は教科書で確認）」を使用。実測値の転記・生成はしない（V1）。</p></li><li><p><strong>問題文の作法</strong>：どの空気（どの部屋・どの気温の空気）の値かを毎回明示／丸め指示を毎回明示（V9対応）。</p></li><li><p><strong>値域</strong>：湿度は中学理科の標準的な表問題では<strong>通常0〜100%</strong>。計算結果が100%を大きく超えたら分子・分母の取り違えを疑う、を検算ヒューリスティックとして教える（「必ず0〜100%」とは書かない）。</p></li><li><p><strong>雑談枠</strong>：各レッスン1箇所。数理・気象の一般概念の範囲のみ（防災・健康隣接は書かない）。</p></li><li><p><strong>stretch分離</strong>：発展問題は「stretch」見出しで本文練習から分離。</p></li></ul>
 <h2 id="4-共通教材部品架空の練習用数表">4. 共通教材部品：架空の練習用数表</h2>
 <blockquote><p><strong>注意（全レッスン再掲）</strong>：下の数表は、この教材の練習用に作った<strong>架空の数表</strong>です。実際の飽和水蒸気量の値は教科書で確認してください。</p></blockquote>
-<div class="table-wrap" data-scroll-label="気温［℃］・0・5の表（2）"><table><thead><tr><th scope="col">気温［℃］</th><th scope="col">0</th><th scope="col">5</th><th scope="col">10</th><th scope="col">15</th><th scope="col">20</th><th scope="col">25</th><th scope="col">30</th></tr></thead><tbody><tr><td>飽和水蒸気量［g/m³］（架空値）</td><td>4.0</td><td>6.0</td><td>8.0</td><td>12.0</td><td>16.0</td><td>24.0</td><td>32.0</td></tr></tbody></table></div></article></main>
+<div class="table-wrap" data-scroll-label="気温［℃］・0・5の表（2）"><table><thead><tr><th scope="col">気温［℃］</th><th scope="col">0</th><th scope="col">5</th><th scope="col">10</th><th scope="col">15</th><th scope="col">20</th><th scope="col">25</th><th scope="col">30</th></tr></thead><tbody><tr><td>飽和水蒸気量［g/m³］（架空値）</td><td>4.0</td><td>6.0</td><td>8.0</td><td>12.0</td><td>16.0</td><td>24.0</td><td>32.0</td></tr></tbody></table></div></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -61,7 +67,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -71,6 +77,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

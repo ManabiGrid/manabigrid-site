@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L04 定規とコンパスの約束〜垂直二等分線">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L04 定規とコンパスの約束〜垂直二等分線｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="7d182fee67d3e82eadd0ab7fdd60528d7c210dd5da30189022193c383928e76f" data-source-file="materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.md">
+<body id="page-top" class="page-lesson" data-source-sha256="7d182fee67d3e82eadd0ab7fdd60528d7c210dd5da30189022193c383928e76f" data-source-file="materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-plane-figures/index.html">中1数学「平面図形」</a></li><li aria-current="page">L04 定規とコンパスの約束〜垂直二等分線</li></ol></nav>
@@ -96,7 +97,7 @@
 <text x="356.5" y="264.4" font-size="12" text-anchor="middle">② 交点P・Qを通る直線をひく</text>
 <text x="240.0" y="272.0" font-size="12" text-anchor="middle">弧の途中の印＝半径が等しいしるし。Mは中点・直角マークつき</text>
 </svg>
-</div><figcaption>線分ABの両端から等しい半径の弧をかき、2つの交点を通る直線をひく作図手順</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L04_fig1_perp_bisector_steps.svg">図を大きく開く</a></figure>
+</div><figcaption>線分ABの両端から等しい半径の弧をかき、2つの交点を通る直線をひく作図手順</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L04_fig1_perp_bisector_steps.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="線分ABの両端から等しい半径の弧をかき、2つの交点を通る直線をひく作図手順">図を大きく見る</a></figure>
 <p>さて、ここからが本番だ。<strong>なぜこの2手で「中点を通る」「垂直」の両方が実現できるのだろう？</strong></p>
 <p>手がかりは2つある。</p>
 <p><strong>手がかり1（等距離）</strong>: PはA中心の円とB中心の円の両方の上にあり、2つの円の半径は等しい。だから <strong>PA＝PB</strong>。同じ理由で <strong>QA＝QB</strong>。つまりPもQも、<strong>2点A・Bから等しい距離にある点</strong>だ。</p>
@@ -137,7 +138,7 @@
 <polygon points="244.1,74.7 241.8,80.9 237.9,77.1" fill="#000"/>
 <text x="210.0" y="288.0" font-size="12" text-anchor="middle">PA・PB・QA・QBの印＝等距離。直線PQで折ると図全体がぴったり重なる</text>
 </svg>
-</div><figcaption>垂直二等分線の作図の完成図に、2点からの等距離と、2円の線対称を示す印を重ねた図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L04_fig2_perp_bisector_reason.svg">図を大きく開く</a></figure>
+</div><figcaption>垂直二等分線の作図の完成図に、2点からの等距離と、2円の線対称を示す印を重ねた図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-plane-figures/assets/L04_fig2_perp_bisector_reason.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="垂直二等分線の作図の完成図に、2点からの等距離と、2円の線対称を示す印を重ねた図">図を大きく見る</a></figure>
 <h2 id="根拠一言ルール今日から全作図で">【根拠】一言ルール（今日から全作図で）</h2>
 <p>ここから先、作図や説明の課題では、「なぜそうなるか」を【<strong>根拠: …</strong>】の形で一言そえることにしよう。根拠に使ってよいのは、<strong>定義</strong>（ことば枠で決めたこと）と、<strong>すでに確かめたこと</strong>だけ。「そう見えるから」「測ったらそうだったから」は根拠にしない。たとえば今日の作図なら、次のように書ける。</p>
 <blockquote><p>P・QはどちらもA・Bから等距離【根拠: 等しい半径の円の上の点だから】。よって直線PQは線分ABの垂直二等分線【根拠: 垂直二等分線は2点から等距離の点の集まり】。</p></blockquote>
@@ -155,7 +156,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-plane-figures/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 移動を言葉で決める〜決定要素と説明の型</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-plane-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 角の二等分線と垂線</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 移動を言葉で決める〜決定要素と説明の型</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-plane-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 角の二等分線と垂線</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -164,7 +170,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -174,6 +180,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

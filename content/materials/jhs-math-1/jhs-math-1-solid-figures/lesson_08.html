@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L08 表面積〜展開図で平面にもどす">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L08 表面積〜展開図で平面にもどす｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="01ba6e74a8ebdac4adc1a6384bb004765ea767543d767e7f9affd8318eafe99f" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.md">
+<body id="page-top" class="page-lesson" data-source-sha256="01ba6e74a8ebdac4adc1a6384bb004765ea767543d767e7f9affd8318eafe99f" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-solid-figures/index.html">中1数学「空間図形」</a></li><li aria-current="page">L08 表面積〜展開図で平面にもどす</li></ol></nav>
@@ -52,7 +53,7 @@
 <ul><li><p>底面積＝3×4＝12（cm²）が2枚 → 24</p></li><li><p>底面の周＝(3＋4)×2＝14（cm）→ 側面積＝14×5＝70（cm²）</p></li><li><p>表面積＝24＋70＝<strong>94（cm²）</strong></p></li></ul>
 <p><strong>例題2（円柱）</strong>: 底面の半径4cm・高さ5cmの円柱。</p>
 <ul><li><p>底面積＝π×4²＝16π（cm²）が2枚 → 32π</p></li><li><p>側面の長方形: 横＝底面の円周＝2π×4＝8π・縦＝5 → 側面積＝8π×5＝40π（cm²）</p></li><li><p>表面積＝32π＋40π＝<strong>72π（cm²）</strong>　（πの検算: π✓・面積の次数✓・cm²✓）</p></li></ul>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 330" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-feba57f2da-title" aria-describedby="mg-feba57f2da-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 330" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-feba57f2da-title" aria-describedby="mg-feba57f2da-desc">
 <title id="mg-feba57f2da-title">円柱の展開図と各部品の寸法書きこみ（例題2）</title>
 <desc id="mg-feba57f2da-desc">底面の半径4cm高さ5cmの円柱の展開図と各部品の面積</desc>
 <!-- L08_fig1_cylinder_net_dims.svg | 円柱の展開図と各部品の寸法書きこみ（例題2） -->
@@ -75,7 +76,7 @@
 <text x="256.9" y="166.5" font-size="11" text-anchor="end">側面積8π×5＝40π</text>
 <text x="310.0" y="316.0" font-size="12" text-anchor="middle">展開図をかく → 部品ごとに面積 → 合計する（単位はcm）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>底面の半径4cm高さ5cmの円柱の展開図と各部品の面積</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L08_fig1_cylinder_net_dims.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>底面の半径4cm高さ5cmの円柱の展開図と各部品の面積</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L08_fig1_cylinder_net_dims.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="底面の半径4cm高さ5cmの円柱の展開図と各部品の面積">図を大きく見る</a></figure>
 <h2 id="主概念2角錐の表面積三角形の高さは側面の上で測る">主概念2：角錐の表面積〜三角形の高さは「側面の上」で測る</h2>
 <p><strong>例題3（正四角錐）</strong>: 底面が1辺6cmの正方形で、側面が合同な二等辺三角形4枚。三角形の高さ（頂点から底辺までの、<strong>側面の面の上で測った</strong>長さ）を5cmとする。</p>
 <ul><li><p>底面積＝6×6＝36（cm²）</p></li><li><p>側面積＝(1/2×6×5)×4＝15×4＝60（cm²）</p></li><li><p>表面積＝36＋60＝<strong>96（cm²）</strong></p></li></ul>
@@ -87,7 +88,7 @@
 <p>弧の長さが分かれば、中心角はL07の「逆向き」の手順で割り出せる。</p>
 <p><strong>例題4（円錐）</strong>: 底面の半径3cm・母線の長さ9cmの円錐の表面積を求めよう。</p>
 <ol start="1"><li><p>底面の円周＝2π×3＝6π（cm）。これが側面の扇形の弧の長さ。</p></li><li><p>扇形の半径は母線の9cm。半径9cmの円全体の円周は 2π×9＝18π（cm）。</p></li><li><p>弧はその 6π/18π＝<strong>1/3</strong> にあたる → 中心角＝360°×1/3＝<strong>120°</strong></p></li><li><p>側面積＝π×9²×1/3＝81π/3＝<strong>27π（cm²）</strong></p></li><li><p>底面積＝π×3²＝9π（cm²）</p></li><li><p>表面積＝27π＋9π＝<strong>36π（cm²）</strong>　（πの検算 ✓）</p></li></ol>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-c92db6f281-title" aria-describedby="mg-c92db6f281-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-c92db6f281-title" aria-describedby="mg-c92db6f281-desc">
 <title id="mg-c92db6f281-title">円錐の展開図（弧＝底面の円周・中心角120°）（例題4）</title>
 <desc id="mg-c92db6f281-desc">円錐の展開図。側面の扇形の弧の長さは底面の円周と等しい</desc>
 <!-- L08_fig2_cone_net_120.svg | 円錐の展開図（弧＝底面の円周・中心角120°）（例題4） -->
@@ -112,7 +113,7 @@
 <text x="378.0" y="218.0" font-size="11" text-anchor="middle">3</text>
 <text x="360.0" y="282.0" font-size="12" text-anchor="middle" font-weight="bold">太線どうしは長さが等しい（どちらも6π）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>円錐の展開図。側面の扇形の弧の長さは底面の円周と等しい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L08_fig2_cone_net_120.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>円錐の展開図。側面の扇形の弧の長さは底面の円周と等しい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L08_fig2_cone_net_120.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円錐の展開図。側面の扇形の弧の長さは底面の円周と等しい">図を大きく見る</a></figure>
 <p>手順を言葉にしておこう——<strong>求めたい中心角から出発せず、先に分かる「底面の円周」から逆向きにたどる</strong>。①底面の円周を出す ②母線の円全体の円周と比べて「何分のいくつ」かを出す ③中心角・側面積に翻訳する。この「分かる端から逆にたどる」考え方は、数学のあちこちで再登場する大物だ。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「1/3」を持ち回すと速くて安全</strong></p>
 <p>例題4で出た1/3（＝弧/円周＝中心角/360）は、<strong>底面の半径/母線</strong>（3/9）とも一致する。ℓ＝2πr が半径に比例するからだ。慣れてきたら「側面積＝母線の円の面積×(底面の半径/母線)」で一気に出してよい（π×9²×3/9＝27π）。ただし最初のうちは、例題4の6ステップを言葉つきでなぞる方が、なぜ成り立つかが残る。速さは理解のあとからついてくる。</p></div>
@@ -129,7 +130,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_08.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 円をもう一度〜πと扇形</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-solid-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_09.html"><span>次のレッスン</span>L09 体積〜柱体と錐体</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_07.html"><span>前のレッスン</span>L07 円をもう一度〜πと扇形</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-solid-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_09.html"><span>次のレッスン</span>L09 体積〜柱体と錐体</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -138,7 +144,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -148,6 +154,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

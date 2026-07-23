@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 解答: 解答編 L01〜L04（方程式の意味・等式の性質・移項・基本手順）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>解答編 L01〜L04（方程式の意味・等式の性質・移項・基本手順）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-answer" data-source-sha256="0bc6d6e669c34975efcfa9921f23eb541f5391250c2202ab818155a53c658aae" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.md">
+<body id="page-top" class="page-answer" data-source-sha256="0bc6d6e669c34975efcfa9921f23eb541f5391250c2202ab818155a53c658aae" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/answer_key_L01-04.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-linear-equations/index.html">中1数学「一次方程式」</a></li><li aria-current="page">解答編 L01〜L04（方程式の意味・等式の性質・移項・基本手順）</li></ol></nav>
@@ -60,7 +61,12 @@
 <h3 id="練習-3">練習</h3>
 <ol start="1"><li><p>(1) 3x＋2＝14 → 3x＝14−2＝12 → <strong>x＝4</strong>（検算: 左辺 3×4＋2＝14、右辺 14 ✓）  (2) 7x−4＝3x＋16 → 7x−3x＝16＋4 → 4x＝20 → <strong>x＝5</strong>（検算: 左辺 7×5−4＝31、右辺 3×5＋16＝31 ✓）  (3) 9−2x＝x＋3 → −2x−x＝3−9 → −3x＝−6 → <strong>x＝2</strong>（検算: 左辺 9−2×2＝5、右辺 2＋3＝5 ✓。両辺を−3でわるときの符号に注意）  (4) 6x＋5＝8x−7 → 6x−8x＝−7−5 → −2x＝−12 → <strong>x＝6</strong>（検算: 左辺 6×6＋5＝41、右辺 8×6−7＝41 ✓）</p></li><li><p>まちがい: ＋5を右辺へ移項するとき<strong>符号を変えていない</strong>（−3＋5 としている。正しくは −3−5）。  正しくは 2x−x＝−3−5 → <strong>x＝−8</strong>（検算: 左辺 2×(−8)＋5＝−11、右辺 −8−3＝−11 ✓）。  なお、誤答 x＝2 を代入すると左辺 9、右辺 −1 で合わず、検算でも発覚する。</p></li><li><p>4x−1＝2x＋7 → 4x−2x＝7＋1: <strong>移項</strong>（2xの移項は性質②「両辺から2xを引く」の省略、−1の移項は性質①「両辺に1を加える」の省略）  → 2x＝8: 両辺それぞれの式を<strong>整理</strong>した（各辺の中では式の計算。等式の性質①〜④は使っていないが、各辺の値は変わらないので、方程式全体としては同じ解を持つ等式への置きかえになっている）  → x＝4: <strong>両辺を2でわった</strong>（性質④）  （検算: 左辺 4×4−1＝15、右辺 2×4＋7＝15 ✓）</p></li><li><p>10−3x＝4x−4 → −3x−4x＝−4−10 → −7x＝−14 → <strong>x＝2</strong>（検算: 左辺 10−3×2＝4、右辺 4×2−4＝4 ✓）</p></li></ol>
 <h3 id="stretch-3">stretch</h3>
-<p><strong>S1</strong> 育て方の例（x＝3 から出発）: ① 両辺に2を加える: x＋2＝5 ② 両辺に3をかける: 3(x＋2)＝15 → かっこを外して 3x＋6＝15 ③ 両辺に2xを加える: 5x＋6＝15＋2x できた方程式 5x＋6＝15＋2x を基本手順で解く: 5x−2x＝15−6 → 3x＝9 → <strong>x＝3</strong> （検算: 左辺 5×3＋6＝21、右辺 15＋2×3＝21 ✓。行きの操作がすべて等式の性質だったから、帰り道も等式の性質で戻れて、解は3のまま保たれた）</p></article></main>
+<p><strong>S1</strong> 育て方の例（x＝3 から出発）: ① 両辺に2を加える: x＋2＝5 ② 両辺に3をかける: 3(x＋2)＝15 → かっこを外して 3x＋6＝15 ③ 両辺に2xを加える: 5x＋6＝15＋2x できた方程式 5x＋6＝15＋2x を基本手順で解く: 5x−2x＝15−6 → 3x＝9 → <strong>x＝3</strong> （検算: 左辺 5×3＋6＝21、右辺 15＋2×3＝21 ✓。行きの操作がすべて等式の性質だったから、帰り道も等式の性質で戻れて、解は3のまま保たれた）</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -69,7 +75,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -79,6 +85,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

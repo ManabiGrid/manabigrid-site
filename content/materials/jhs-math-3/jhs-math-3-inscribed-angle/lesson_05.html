@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L05 円周角の定理の逆——「同じ側」がカギ">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L05 円周角の定理の逆——「同じ側」がカギ｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_05.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="a3a0c454fb90b161f4d86344886e5d96dba5654b626763c78def5b067e7bb785" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_05.md">
+<body id="page-top" class="page-lesson" data-source-sha256="a3a0c454fb90b161f4d86344886e5d96dba5654b626763c78def5b067e7bb785" data-source-file="materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_05.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-inscribed-angle/index.html">中3数学「円周角の定理」</a></li><li aria-current="page">L05 円周角の定理の逆——「同じ側」がカギ</li></ol></nav>
@@ -73,7 +74,7 @@
 <text x="180.0" y="294.0" font-size="12" text-anchor="middle">P・Qは直線ABの同じ側で，ABを同じ50°で見ている</text>
 <text x="180.0" y="312.0" font-size="12" text-anchor="middle">（→4点A・B・P・Qは一つの円周上にある＝破線の円が出現する）</text>
 </svg>
-</div><figcaption>円周角の定理の逆</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig1_converse_theorem.svg">図を大きく開く</a></figure>
+</div><figcaption>円周角の定理の逆</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig1_converse_theorem.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円周角の定理の逆">図を大きく見る</a></figure>
 <p>この定理のありがたさは、「<strong>円がまだ図にないのに、円を出現させられる</strong>」ことだ。等しい角を2つ見つけたら、破線の円がふっと浮かび上がる。そして円が現れた瞬間、その円の上で円周角の定理(1)(2)がまるごと使えるようになる。</p>
 <h2 id="主概念2同じ側を落とすとどうなるか">主概念2：「同じ側」を落とすと、どうなるか</h2>
 <p>定理文の「直線ABの同じ側にあり」は、飾りではない。落とすと定理が壊れる。</p>
@@ -104,7 +105,7 @@
 <text x="180.0" y="384.0" font-size="12" text-anchor="middle">Q′は直線ABの反対側——同じ50°でも，A・B・Pの円には乗らない</text>
 <text x="180.0" y="402.0" font-size="12" text-anchor="middle">（「同じ側」の条件を落とすと定理は壊れる）</text>
 </svg>
-</div><figcaption>反対側の反例</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig2_counterexample_opposite_side.svg">図を大きく開く</a></figure>
+</div><figcaption>反対側の反例</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig2_counterexample_opposite_side.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="反対側の反例">図を大きく見る</a></figure>
 <p>図のように、ABの<strong>反対側</strong>にも、ABを50°の角で見る点はいくらでもある。しかし、その点Q′は、A、B、Pを通る円の上には乗らない。乗らない理由も円周角の定理で言い切れる。もしQ′がこの円の上にあるなら、∠AQ′Bは<strong>Pを含む側の弧AB</strong>に対する円周角、つまり中心角（360°−100°）÷2＝130°になるはずで、50°にはならないからだ。角が等しくても、直線ABをはさんで別々の側にいる2点については、この定理は何も言ってくれない——判定の前に、<strong>2点が同じ側にあるかを必ず目で確認する</strong>。これがこのレッスンの型だ。</p>
 <p>なお、この教材では逆の証明には立ち入らず、正しく使えるようになることに集中する。</p>
 <h3 id="例題1-一つの円周上にあるか判定する">例題1　一つの円周上にあるか判定する</h3>
@@ -135,7 +136,7 @@
 <text x="180.0" y="294.0" font-size="12" text-anchor="middle">∠ACB＝∠ADB。C・Dは直線ABの同じ側にある</text>
 <text x="180.0" y="312.0" font-size="12" text-anchor="middle">（例題1: 4点は一つの円周上にあるといえるか。円は描かない）</text>
 </svg>
-</div><figcaption>例題1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig3_example_judge_concyclic.svg">図を大きく開く</a></figure>
+</div><figcaption>例題1の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig3_example_judge_concyclic.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="例題1の図">図を大きく見る</a></figure>
 <p>図で、∠ACB＝∠ADB＝40°のとき、4点A、B、C、Dは一つの円周上にあるといえるか。</p>
 <p>（考え方）C、Dはどちらも直線ABの<strong>上側</strong>、つまり同じ側にある。そして∠ACB＝∠ADB。円周角の定理の逆の条件がそろったので、<strong>4点A、B、C、Dは一つの円周上にある</strong>といえる。</p>
 <h3 id="例題2-円を出現させて等角を収穫する">例題2　円を出現させて、等角を収穫する</h3>
@@ -148,7 +149,7 @@
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>定理と逆は「向き」が違う別の道具</strong></p>
 <p>「AならばB」が正しくても、「BならばA」が自動で正しいとは限らない。中2の逆の学習で出会った原則だ。円周角の定理の逆は、たまたま（条件付きで）成り立つ幸運な例で、だからこそ独立した定理として名前が付いている。使うときも向きを意識しよう。<strong>円がすでにある</strong>なら定理（円→等角）、<strong>円を出現させたい</strong>なら逆（等角→円）。図に円が描いてあるかどうかで、どちらの道具を持つべきかが決まる。</p></div>
 <h2 id="練習">練習</h2>
-<ol start="1"><li><p>次の(ア)〜(ウ)で、4点A、B、C、Dが一つの円周上にあるといえるか。「いえる」「いえない」「この定理だけでは判定できない」から選び、理由を書こう（C、Dの位置は各図のとおり）。</p><figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 296" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-ab5b566740-title" aria-describedby="mg-ab5b566740-desc">
+<ol start="1"><li><p>次の(ア)〜(ウ)で、4点A、B、C、Dが一つの円周上にあるといえるか。「いえる」「いえない」「この定理だけでは判定できない」から選び、理由を書こう（C、Dの位置は各図のとおり）。</p><figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 296" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-ab5b566740-title" aria-describedby="mg-ab5b566740-desc">
 <title id="mg-ab5b566740-title">練習1（ア）（イ）（ウ）の3パネル</title>
 <desc id="mg-ab5b566740-desc">練習1(ア)(イ)(ウ)の図</desc>
 <!-- L05_fig4_practice_three_cases.svg | 練習1（ア）（イ）（ウ）の3パネル -->
@@ -210,7 +211,7 @@
 <text x="548.0" y="258.0" font-size="12" text-anchor="middle" font-weight="bold">(ウ) 反対側</text>
 <text x="330.0" y="284.0" font-size="12" text-anchor="middle">練習1: それぞれ，4点A・B・C・Dは一つの円周上にあるといえるか</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>練習1(ア)(イ)(ウ)の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig4_practice_three_cases.svg">図を大きく開く</a></figure><p>(ア)  (イ)  (ウ)</p></li><li><figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-eff23b4e6a-title" aria-describedby="mg-eff23b4e6a-desc">
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>練習1(ア)(イ)(ウ)の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig4_practice_three_cases.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="練習1(ア)(イ)(ウ)の図">図を大きく見る</a></figure><p>(ア)  (イ)  (ウ)</p></li><li><figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-eff23b4e6a-title" aria-describedby="mg-eff23b4e6a-desc">
 <title id="mg-eff23b4e6a-title">判定→等角の収穫（35°・35°・28°）</title>
 <desc id="mg-eff23b4e6a-desc">練習2の図</desc>
 <!-- L05_fig5_practice_judge_harvest.svg | 判定→等角の収穫（35°・35°・28°） -->
@@ -240,7 +241,7 @@
 <text x="180.0" y="294.0" font-size="12" text-anchor="middle">∠BAC＝∠BDC（線分BCを見込む2つの角）——円は描かない</text>
 <text x="180.0" y="312.0" font-size="12" text-anchor="middle">（練習2: (1)一つの円周上にあるといえる理由 (2)∠ACDを求める）</text>
 </svg>
-</div><figcaption>練習2の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig5_practice_judge_harvest.svg">図を大きく開く</a></figure><p>∠BAC＝∠BDC＝35°である。  (1) 4点A、B、C、Dが一つの円周上にあるといえる理由を書こう。  (2) ∠ACDを求めよう。</p></li><li><p>例題2までの流れを、自分の言葉で「2段コンボ」として2行にまとめよう（1段目に使う定理・2段目に使う定理をはっきり書くこと）。</p></li></ol>
+</div><figcaption>練習2の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-inscribed-angle/assets/L05_fig5_practice_judge_harvest.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="練習2の図">図を大きく見る</a></figure><p>∠BAC＝∠BDC＝35°である。  (1) 4点A、B、C、Dが一つの円周上にあるといえる理由を書こう。  (2) ∠ACDを求めよう。</p></li><li><p>例題2までの流れを、自分の言葉で「2段コンボ」として2行にまとめよう（1段目に使う定理・2段目に使う定理をはっきり書くこと）。</p></li></ol>
 <div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 直線AB上にない点Pで、∠APB＝50°となるものを考える。直線ABの上側だけで見ると、そのような点Pの集まりはどんな図形になるだろうか。L03のstretch（円周上・内・外での角の大小）を手がかりに予想し、コンパスと分度器でいくつか点を打って確かめてみよう。さらに、下側も合わせると全体はどんな形になるかも考えてみよう。調べるフレーズ例:「ABを見込む角 軌跡」</p></div>
 <hr>
 <p>対応解答: answer_key_L05-08.md</p><a class="answer-link" href="answer_key_L05-08.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
@@ -248,7 +249,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-3/jhs-math-3-inscribed-angle/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 証明のよさ——「いつでも」と言い切るために</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 接線の作図——90°が道具になる</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 証明のよさ——「いつでも」と言い切るために</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-inscribed-angle/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 接線の作図——90°が道具になる</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -257,7 +263,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -267,6 +273,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

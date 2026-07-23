@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L09 体積〜柱体と錐体">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L09 体積〜柱体と錐体｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="748fc0e68d76866c6fad9ec3be6e4ae9b2ddf90b85912edbdf19e216dbbce227" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.md">
+<body id="page-top" class="page-lesson" data-source-sha256="748fc0e68d76866c6fad9ec3be6e4ae9b2ddf90b85912edbdf19e216dbbce227" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-solid-figures/index.html">中1数学「空間図形」</a></li><li aria-current="page">L09 体積〜柱体と錐体</li></ol></nav>
@@ -53,7 +54,7 @@
 <p>底面も高さも同じ円柱と円錐を並べる。円錐の体積は、円柱の何分のいくつだろう。</p>
 <p><strong>先に、自分の予想を書いてみよう</strong>（半分？ 3分の1? 4分の1?）　予想: ＿＿＿＿</p>
 <p>実験で確かめる。円錐の容器に水をすりきりまで入れ、同じ底面・同じ高さの円柱の容器に移す。1杯めで1/3くらいの高さ。2杯め、3杯め——<strong>ちょうど3杯で、ぴったり満杯</strong>になる。角錐と角柱でやっても同じく3杯。</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-3e131e61f9-title" aria-describedby="mg-3e131e61f9-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-3e131e61f9-title" aria-describedby="mg-3e131e61f9-desc">
 <title id="mg-3e131e61f9-title">円錐の容器から円柱の容器へ水を3回移す実験の図</title>
 <desc id="mg-3e131e61f9-desc">円錐3杯分の水で同じ底面と高さの円柱がちょうど満杯になる実験</desc>
 <!-- L09_fig1_pour_three_times.svg | 円錐の容器から円柱の容器へ水を3回移す実験の図 -->
@@ -103,7 +104,7 @@
 <text x="578.0" y="254.0" font-size="11" text-anchor="middle">満杯</text>
 <text x="310.0" y="284.0" font-size="12" text-anchor="middle">同じ底面・同じ高さの円錐と円柱。円錐3杯分でちょうど満杯</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>円錐3杯分の水で同じ底面と高さの円柱がちょうど満杯になる実験</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L09_fig1_pour_three_times.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>円錐3杯分の水で同じ底面と高さの円柱がちょうど満杯になる実験</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L09_fig1_pour_three_times.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円錐3杯分の水で同じ底面と高さの円柱がちょうど満杯になる実験">図を大きく見る</a></figure>
 <blockquote><p>【公式】<strong>錐体の体積</strong> 底面積S・高さhの錐体（角錐・円錐）の体積は　<strong>V＝(1/3)Sh</strong>（同じ底面・高さの柱体の<strong>1/3</strong>）</p></blockquote>
 <p>正直に言っておこう。この実験は「ちょうど1/3らしい」と強く納得させてくれるが、<strong>どんな錐体でも必ずぴったり1/3になることの証明ではない</strong>（それを言い切る道具は、ずっと先の学習で手に入る）。中学のいまは、実験で確かめた事実として<strong>認めて使う</strong>。「認めたものは認めたと分かって使う」のも、数学の誠実さのうちだ。</p>
 <p><strong>例題2</strong>: 底面が1辺6cmの正方形で、高さ5cmの正四角錐の体積。</p>
@@ -126,7 +127,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_09.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 表面積〜展開図で平面にもどす</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-solid-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 球の表面積と体積</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_08.html"><span>前のレッスン</span>L08 表面積〜展開図で平面にもどす</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-solid-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_10.html"><span>次のレッスン</span>L10 球の表面積と体積</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -135,7 +141,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -145,6 +151,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

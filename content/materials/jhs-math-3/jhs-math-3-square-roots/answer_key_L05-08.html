@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 解答: 解答編 L05〜L08（平方根の計算）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>解答編 L05〜L08（平方根の計算）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L05-08.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-answer" data-source-sha256="10f9ce2ab0079513fcd2cda6bf4172e545ac9801e6baa8b68309ea1cb006c356" data-source-file="materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L05-08.md">
+<body id="page-top" class="page-answer" data-source-sha256="10f9ce2ab0079513fcd2cda6bf4172e545ac9801e6baa8b68309ea1cb006c356" data-source-file="materials/jhs-math-3/jhs-math-3-square-roots/answer_key_L05-08.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-square-roots/index.html">中3数学「平方根」</a></li><li aria-current="page">解答編 L05〜L08（平方根の計算）</li></ol></nav>
@@ -59,7 +60,12 @@
 <ol start="1"><li><p>(1) 5√3＋2√3＝<strong>7√3</strong>（√3が5個＋2個＝7個）  (2) 7√5−3√5＝<strong>4√5</strong>  (3) 4√2＋√3−√2＋2√3＝(4−1)√2＋(1＋2)√3＝<strong>3√2＋3√3</strong>（違う√どうしはまとめず並べる）</p></li><li><p>(1) √27＋√12＝3√3＋2√3＝<strong>5√3</strong>（検算: (5√3)²＝75。近似 5×1.732＝8.66、8.66²＝74.9956≒75 ✓）  (2) √80−√20＝4√5−2√5＝<strong>2√5</strong>  (3) √8＋√50−√32＝2√2＋5√2−4√2＝<strong>3√2</strong></p></li><li><p>まちがい: <strong>√の中身どうしを足している</strong>（√a＋√b＝√(a＋b)型の誤り）。  左辺は √9＋√16＝3＋4＝<strong>7</strong>。右辺は √25＝<strong>5</strong>。7≠5 で等号は成り立たない。  この例は近似値すら不要で、両辺とも正確に計算できる強力な反例になっている。</p></li><li><p>①変形: √20＝2√5 だから √5＋√20＝√5＋2√5＝3√5  ②2乗して比較: (3√5)²＝9×5＝<strong>45</strong>、7²＝<strong>49</strong>。45＜49 で、どちらも正の数だから 3√5＜7。よって <strong>√5＋√20＜7</strong>  ③感覚の確認（近似値）: 3√5≒3×2.236＝6.708＜7 ✓（2乗検算: 6.708²＝44.997…≒45＝(3√5)² ✓）——結論と一致</p></li><li><p>(√2＋√3)²＝(√2)²＋2×√2×√3＋(√3)²＝2＋2√6＋3＝<strong>5＋2√6</strong>  （検算: 近似で (1.414＋1.732)²＝3.146²＝9.897…、5＋2×2.449＝9.898 ✓）</p></li></ol>
 <h3 id="stretch-3">stretch</h3>
 <p><strong>S1</strong> a＝0のとき、√0＋√b＝0＋√b＝√b、一方 √(0＋b)＝√b。<strong>等号が成り立つ</strong>（b＝0でも同様）。つまり「√a＋√b＝√(a＋b)は成り立たない」という主張は、正確には「<strong>a, bがともに正のとき</strong>は成り立たない」。本文の議論のあちこちに「a, bは正の数」という条件が付いていたのは、こういう端の場合を除いておくためだった。条件込みで規則を覚える習慣の練習になる。</p>
-<p><strong>S2</strong> 練習5の答え 5＋2√6 を a＋b√c の形と見ると、<strong>a＝5、b＝2、c＝6</strong>。書き方の約束（有理数部分を先に、√の項を後に）を決めておくと、答え合わせが機械的にできる。</p></article></main>
+<p><strong>S2</strong> 練習5の答え 5＋2√6 を a＋b√c の形と見ると、<strong>a＝5、b＝2、c＝6</strong>。書き方の約束（有理数部分を先に、√の項を後に）を決めておくと、答え合わせが機械的にできる。</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -68,7 +74,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -78,6 +84,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

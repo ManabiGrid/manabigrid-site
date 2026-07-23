@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中1数学「一次方程式」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中1数学「一次方程式」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-linear-equations/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="e3015a68e47e79964cfba82f08ec7fd6f943c5d7f7395bf6f6d72ebb6eab8038" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="e3015a68e47e79964cfba82f08ec7fd6f943c5d7f7395bf6f6d72ebb6eab8038" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-linear-equations/index.html">中1数学「一次方程式」</a></li><li aria-current="page">teachernotes — 中1数学「一次方程式」</li></ol></nav>
@@ -81,7 +82,12 @@
 <p>本教材は独習者単独で完結する設計（学習者単独成立の原則）。教室で使う場合のオプション: L02の天びんは実物の上皿天びんの演示に置き換えられる（解説の操作的活動の例示に合致）。L07のAI壁打ち枠は、教室では教師が「答えを言わないヒント役」を担う運用に読み替えられる。L09は「検算が通るのに答えられない」事件性が肝なので、例1を先に個人で解かせてから吟味の必要感を全体で共有する進行が合う。いずれの場合も本文の変更は不要。</p>
 <h2 id="j-図版発注メモ図版予定一覧">J. 図版発注メモ（【図版予定】一覧）</h2>
 <div class="table-wrap" data-scroll-label="位置・内容の表（5）"><table><thead><tr><th scope="col">位置</th><th scope="col">内容</th></tr></thead><tbody><tr><td>L01</td><td>代入−3〜3の表／数直線（x＋3＝5、x=2のみ成立を強調）</td></tr><tr><td>L02</td><td>天びん2コマ（x＋2＝7→x＝5、両皿から2個除去）</td></tr><tr><td>L03</td><td>性質②フル手順と移項の省略記法の対比（x＋6＝13）</td></tr><tr><td>L04</td><td>解く手順フローチャート（5x−7＝2x＋8素材・検算を本流に）</td></tr><tr><td>L05</td><td>前処理3分岐→基本手順→検算の手順マップ</td></tr><tr><td>L06</td><td>比例式→比の値→方程式の翻訳流れ図（x：12＝3：4）</td></tr><tr><td>L07</td><td>立式5ステップ手順図（りんごとみかん素材・ステップ2強調）</td></tr><tr><td>L08</td><td>過不足の線分図（総数58、4x＋18／7x−12の上下2段）</td></tr><tr><td>L09</td><td>検算・吟味の2関門図（x＝3.75素材）</td></tr><tr><td>L10</td><td>単元3部屋マップ（意味・解く・使う）</td></tr></tbody></table></div>
-<p>計10枚（各レッスン1枚——「各レッスン最低1枚」の努力目安を充足）。SVG化は実施済み（コード来歴方式・<code>assets/*.svg</code>・生成と検算は <code>assets_provenance/generate_figures.py</code>、台帳は <code>assets_provenance/FIGURE_MANIFEST.md</code>）。各図版にAI再利用メタ情報（title/desc）を埋め込み済み。</p></article></main>
+<p>計10枚（各レッスン1枚——「各レッスン最低1枚」の努力目安を充足）。SVG化は実施済み（コード来歴方式・<code>assets/*.svg</code>・生成と検算は <code>assets_provenance/generate_figures.py</code>、台帳は <code>assets_provenance/FIGURE_MANIFEST.md</code>）。各図版にAI再利用メタ情報（title/desc）を埋め込み済み。</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -90,7 +96,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -100,6 +106,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

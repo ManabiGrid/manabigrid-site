@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L06 平面の上に写し取る〜見取図・展開図・投影図">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L06 平面の上に写し取る〜見取図・展開図・投影図｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="1755cfd8add6cc223dafd700a5800d9f85cfc59a0457b4e28d1971902742302a" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.md">
+<body id="page-top" class="page-lesson" data-source-sha256="1755cfd8add6cc223dafd700a5800d9f85cfc59a0457b4e28d1971902742302a" data-source-file="materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-solid-figures/index.html">中1数学「空間図形」</a></li><li aria-current="page">L06 平面の上に写し取る〜見取図・展開図・投影図</li></ol></nav>
@@ -49,7 +50,7 @@
 <p>見取図は、立体の全体の形をひと目で伝える絵だ。ただし、平らな紙に奥行きを押しこんでいる以上、<strong>犠牲にしているもの</strong>がある。</p>
 <p>いまかいた立方体の見取図をよく見てみよう。立方体の面はぜんぶ合同な正方形のはずだ。ところが見取図では、正面の面だけが正方形で、奥行き方向の面は<strong>平行四辺形につぶれて</strong>いる。実際には等しい12本の辺も、紙の上では長さがまちまちだ。直角のはずの角が、直角に見えない場所もある。</p>
 <p><strong>見取図の約束</strong>: 実際には平行な辺は、図でも平行にかく。見えない辺は破線でかく。——守られているのはこのあたりまでで、<strong>長さと角の実際の大きさは、見取図から直接読み取ってはいけない</strong>。</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 290" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-53de272547-title" aria-describedby="mg-53de272547-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 290" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-53de272547-title" aria-describedby="mg-53de272547-desc">
 <title id="mg-53de272547-title">立方体の見取図で「等しいのに等しく見えない」箇所の指摘図</title>
 <desc id="mg-53de272547-desc">立方体の見取図では辺の長さや角の大きさが実際のとおりに見えないことを示す図</desc>
 <!-- L06_fig1_oblique_limits.svg | 立方体の見取図で「等しいのに等しく見えない」箇所の指摘図 -->
@@ -79,13 +80,13 @@
 <polygon points="244.4,216.0 246.4,208.6 251.3,212.6" fill="#000"/>
 <text x="240.0" y="278.0" font-size="12" text-anchor="middle">見取図では、長さと角の実際の大きさは読み取れない</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>立方体の見取図では辺の長さや角の大きさが実際のとおりに見えないことを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L06_fig1_oblique_limits.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>立方体の見取図では辺の長さや角の大きさが実際のとおりに見えないことを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L06_fig1_oblique_limits.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="立方体の見取図では辺の長さや角の大きさが実際のとおりに見えないことを示す図">図を大きく見る</a></figure>
 <p>L03で「ねじれの位置の2直線が、見取図では交わって見えることがある」と述べたのも同じ事情だ。見取図は<strong>形の雰囲気を運ぶ道具</strong>であって、長さ・角度・交わりの証拠にはならない。証拠がほしいときは、次の2つの道具の出番になる。</p>
 <h2 id="主概念2展開図面のほんとうの形を運ぶ">主概念2：展開図〜面の「ほんとうの形」を運ぶ</h2>
 <p><strong>展開図</strong>は、立体の表面を切り開いて平面に広げた図だ。広げてしまえばすべての面が紙の上にぺたりと乗るから、<strong>各面の実際の形と大きさがそのまま現れる</strong>。見取図で犠牲になった情報を、展開図が回収してくれる。</p>
 <p>そのかわり、立体としての全体の形は失われる。組み立てたときにどの辺とどの辺が重なるか。それを追う力が展開図を読む力だ。</p>
 <p><strong>紙上実験</strong>: 円柱の展開図を予想してみよう。底面の円2つと、側面。側面は曲面だが、切り開くと——<strong>長方形</strong>になる（缶のラベルをはがして広げる場面を想像しよう）。この長方形の横の長さは、底面の円周とぴったり等しい。巻き戻すときに円周に沿って貼りつくのだから。この「側面の横の長さ＝底面の円周」は、表面積（L08）の急所になる。</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-d094d217ba-title" aria-describedby="mg-d094d217ba-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-d094d217ba-title" aria-describedby="mg-d094d217ba-desc">
 <title id="mg-d094d217ba-title">円柱の展開図（側面の長方形の横＝底面の円周）</title>
 <desc id="mg-d094d217ba-desc">円柱の展開図。側面の長方形の横の長さは底面の円周に等しい</desc>
 <!-- L06_fig2_cylinder_net.svg | 円柱の展開図（側面の長方形の横＝底面の円周） -->
@@ -108,14 +109,14 @@
 <text x="452.5" y="201.0" font-size="11" text-anchor="start">縦＝高さ</text>
 <text x="360.0" y="320.0" font-size="12" text-anchor="middle" font-weight="bold">太線どうしは長さが等しい（横＝底面の円周）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>円柱の展開図。側面の長方形の横の長さは底面の円周に等しい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L06_fig2_cylinder_net.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>円柱の展開図。側面の長方形の横の長さは底面の円周に等しい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L06_fig2_cylinder_net.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円柱の展開図。側面の長方形の横の長さは底面の円周に等しい">図を大きく見る</a></figure>
 <h2 id="主概念3投影図真正面と真上から">主概念3：投影図〜真正面と真上から</h2>
 <p>3つ目の道具は、中学の数学で初めて学ぶ。</p>
 <blockquote><p>【ことば】<strong>投影図・立面図・平面図</strong> 立体を<strong>真正面から見た図</strong>を<strong>立面図（りつめんず）</strong>、<strong>真上から見た図</strong>を<strong>平面図</strong>（へいめんず）といい、この2つを上下に組にして表した図を<strong>投影図</strong>という。ふつう、上に立面図・下に平面図をかき、間を横線で仕切る。</p></blockquote>
 <p>投影図の強みは、決まった方向から<strong>まっすぐ写す</strong>ことにある。真正面から見た幅と高さ、真上から見た底面の形は、<strong>実際の大きさのまま</strong>図に現れる（見取図のようにつぶれない）。ただし、何もかもが実寸になるわけではない。<strong>写す方向に対して斜めに傾いた線分は、実際より短く写る</strong>（練習5の正四角錐の辺で確かめられる）。</p>
 <p>代表的な立体で照合してみよう。</p>
 <ul><li><p><strong>円柱</strong>（立てて置く）: 立面図は<strong>長方形</strong>・平面図は<strong>円</strong></p></li><li><p><strong>円錐</strong>（底面を下に）: 立面図は<strong>三角形</strong>・平面図は<strong>円</strong></p></li><li><p><strong>球</strong>: 立面図も平面図も<strong>円</strong></p></li><li><p><strong>四角柱</strong>（立てて置く）: 立面図は長方形・平面図は四角形</p></li></ul>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 350" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-a0fbe5b4c9-title" aria-describedby="mg-a0fbe5b4c9-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 350" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-a0fbe5b4c9-title" aria-describedby="mg-a0fbe5b4c9-desc">
 <title id="mg-a0fbe5b4c9-title">円柱・円錐・球の投影図の並置</title>
 <desc id="mg-a0fbe5b4c9-desc">円柱は長方形と円、円錐は三角形と円、球は円と円の投影図になることを示す図</desc>
 <!-- L06_fig3_projections_trio.svg | 円柱・円錐・球の投影図の並置 -->
@@ -150,7 +151,7 @@
 <text x="56.0" y="100.0" font-size="11" text-anchor="middle">見取図</text>
 <text x="310.0" y="336.0" font-size="12" text-anchor="middle">上に立面図（真正面）・下に平面図（真上）・間を横線で仕切る</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>円柱は長方形と円、円錐は三角形と円、球は円と円の投影図になることを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L06_fig3_projections_trio.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>円柱は長方形と円、円錐は三角形と円、球は円と円の投影図になることを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-solid-figures/assets/L06_fig3_projections_trio.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円柱は長方形と円、円錐は三角形と円、球は円と円の投影図になることを示す図">図を大きく見る</a></figure>
 <p>ここで面白いのは、円柱・円錐・球の<strong>平面図がぜんぶ円</strong>だということ。平面図だけでは3つを区別できない。立面図と<strong>組で読む</strong>から立体が決まる。逆に、投影図から立体を当てる遊び（練習3）は、頭の中で立体を組み上げる最高のトレーニングになる。</p>
 <p>ひとつ注意。円錐の立面図（三角形）の<strong>横の辺の長さは底面の直径</strong>であって、母線の長さではない……と言いたいところだが、実は立面図の三角形の<strong>斜めの辺</strong>がちょうど母線の実際の長さを表す（真正面から見ると、いちばん外側の母線は傾きがそのまま見えるからだ）。どの長さが実際のまま現れて、どの長さがそうでないか。図の種類ごとに問い直す癖をつけよう。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>3つの道具の分担表</strong></p>
@@ -167,7 +168,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-solid-figures/lesson_06.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_05.html"><span>前のレッスン</span>L05 動かしてできる立体〜回転体</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-solid-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_07.html"><span>次のレッスン</span>L07 円をもう一度〜πと扇形</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_05.html"><span>前のレッスン</span>L05 動かしてできる立体〜回転体</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-solid-figures/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_07.html"><span>次のレッスン</span>L07 円をもう一度〜πと扇形</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -176,7 +182,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -186,6 +192,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

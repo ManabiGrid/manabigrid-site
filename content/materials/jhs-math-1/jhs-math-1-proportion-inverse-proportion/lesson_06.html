@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L06 式を求める——表・式・グラフの往復">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L06 式を求める——表・式・グラフの往復｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="7e1ad396a89203facbb53c9389456a6d2996f848d832fc851b9859a79f4f9993" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.md">
+<body id="page-top" class="page-lesson" data-source-sha256="7e1ad396a89203facbb53c9389456a6d2996f848d832fc851b9859a79f4f9993" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">中1数学「比例と反比例」</a></li><li aria-current="page">L06 式を求める——表・式・グラフの往復</li></ol></nav>
@@ -121,7 +122,7 @@
 <text x="240.0" y="336.0" font-size="9.5" text-anchor="middle">座標を読む</text>
 <text x="240.0" y="384.0" font-size="11" text-anchor="middle">どの表現からでも、残りの2つが作れる（作ったら別の表現で検算）</text>
 </svg>
-</div><figcaption>三表現の往復マップ。中央の「同じ関係」の円のまわりに「表」「式 y＝−(3/2)x」「グラフ（右下がりの直線・点(−2, 3)にラベル）」の3つの箱があり、6本の矢印に操作名（商を計算・代入・原点と1点・通る点を読む・点を打つ・座標を読む）が添えられている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L06_fig1_three_representations_map.svg">図を大きく開く</a></figure>
+</div><figcaption>三表現の往復マップ。中央の「同じ関係」の円のまわりに「表」「式 y＝−(3/2)x」「グラフ（右下がりの直線・点(−2, 3)にラベル）」の3つの箱があり、6本の矢印に操作名（商を計算・代入・原点と1点・通る点を読む・点を打つ・座標を読む）が添えられている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L06_fig1_three_representations_map.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="三表現の往復マップ。中央の「同じ関係」の円のまわりに「表」「式 y＝−(3/2)x」「グラフ（右下がりの直線・点(−2, 3)にラベル）」の3つの箱があり、6本の矢印に操作名（商を計算・代入・原点と1点・通る点を読む・点を打つ・座標を読む）が添えられている">図を大きく見る</a></figure>
 <h2 id="三つの表現の使い分け">三つの表現の使い分け</h2>
 <ul><li><p><strong>表</strong>: 実際の値の記録に強い。とびとびの値を確かめるのに向く。</p></li><li><p><strong>式</strong>: 短くて正確。どんなxの値でも計算できる。</p></li><li><p><strong>グラフ</strong>: 全体のようすがひと目で分かる。増減や急さが見える。</p></li></ul>
 <p>そして、比例（や反比例）と分かっている関係なら、どれか一つから残りの二つが作れる。作ったら別の表現で検算する。この往復が、4節（活用）で問題を解くときの武器一式になる。</p>
@@ -204,7 +205,7 @@
 <text x="240.0" y="24.0" font-size="13" text-anchor="middle" font-weight="bold">練習——直線ア・イの式を求めよう</text>
 <text x="240.0" y="400.0" font-size="11" text-anchor="middle">格子の交点にのっている点（黒丸）を読み取って使う</text>
 </svg>
-</div><figcaption>方眼つき座標平面（−6〜6）に原点を通る直線ア（右上がり・ゆるやか）とイ（右下がり・急）。それぞれが通る格子点1つに黒丸がついている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L06_fig2_two_lines_practice.svg">図を大きく開く</a></figure></li><li><p>次の表で、yはxに比例している。表を完成させ、式を求めよう。</p>
+</div><figcaption>方眼つき座標平面（−6〜6）に原点を通る直線ア（右上がり・ゆるやか）とイ（右下がり・急）。それぞれが通る格子点1つに黒丸がついている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L06_fig2_two_lines_practice.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="方眼つき座標平面（−6〜6）に原点を通る直線ア（右上がり・ゆるやか）とイ（右下がり・急）。それぞれが通る格子点1つに黒丸がついている">図を大きく見る</a></figure></li><li><p>次の表で、yはxに比例している。表を完成させ、式を求めよう。</p>
 <div class="table-wrap" data-scroll-label="x・−4・−1の表（2）"><table><thead><tr><th scope="col">x</th><th scope="col">−4</th><th scope="col">−1</th><th scope="col">2</th><th scope="col"></th></tr></thead><tbody><tr><td>y</td><td></td><td>3</td><td></td><td>−18</td></tr></tbody></table></div></li><li><p>次の文が正しければ○、正しくなければ×を付けて、×は正しく直そう。  (1) yがxに比例するとき、x＝0・y＝0の組が分かれば比例定数が求められる。  (2) yがxに比例し、x＝2のときy＝7ならば、y＝(7/2)xである。</p></li></ol>
 <div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> yはxに比例し、xの変域が −2 ≦ x ≦ 6 のとき、yの変域は −9 ≦ y ≦ 3 になるという。比例定数は正だろうか、負だろうか。理由をつけて答え、式を求めてみよう（ヒント: xの変域の端とyの変域の端がどう対応するかを、a＞0の場合とa＜0の場合で考える）。</p></div>
 <hr>
@@ -213,7 +214,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_06.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_05.html"><span>前のレッスン</span>L05 比例のグラフ——原点を通る直線</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_07.html"><span>次のレッスン</span>L07 反比例を捉え直す——積が一定</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_05.html"><span>前のレッスン</span>L05 比例のグラフ——原点を通る直線</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_07.html"><span>次のレッスン</span>L07 反比例を捉え直す——積が一定</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -222,7 +228,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -232,6 +238,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

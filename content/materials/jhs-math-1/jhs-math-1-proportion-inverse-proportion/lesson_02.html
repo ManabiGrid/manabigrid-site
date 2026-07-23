@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L02 変数の動く範囲——変域">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L02 変数の動く範囲——変域｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="405a4e0a12168e25a7b48e84bba6bf977492da867e5bc0241293a9f9220ab097" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.md">
+<body id="page-top" class="page-lesson" data-source-sha256="405a4e0a12168e25a7b48e84bba6bf977492da867e5bc0241293a9f9220ab097" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">中1数学「比例と反比例」</a></li><li aria-current="page">L02 変数の動く範囲——変域</li></ol></nav>
@@ -50,7 +51,7 @@
 <p>書き方の区別を整理しておこう。</p>
 <div class="table-wrap" data-scroll-label="言い方・記号・その値を…の表（1）"><table><thead><tr><th scope="col">言い方</th><th scope="col">記号</th><th scope="col">その値を…</th></tr></thead><tbody><tr><td>x は a <strong>以上</strong></td><td>a ≦ x</td><td>ふくむ</td></tr><tr><td>x は a <strong>以下</strong></td><td>x ≦ a</td><td>ふくむ</td></tr><tr><td>x は a <strong>より大きい</strong></td><td>a ＜ x</td><td>ふくまない</td></tr><tr><td>x は a <strong>未満（みまん）</strong>（a より小さい）</td><td>x ＜ a</td><td>ふくまない</td></tr></tbody></table></div>
 <p>数直線の上では、ふくむ端（はし）を●、ふくまない端を○でかいて区別する。</p>
-<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-dc6cbb427e-title" aria-describedby="mg-dc6cbb427e-desc">
+<figure class="svg-figure is-wide is-panoramic"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" class="lesson-figure figure-wide figure-panoramic" role="img" focusable="false" aria-labelledby="mg-dc6cbb427e-title" aria-describedby="mg-dc6cbb427e-desc">
 <title id="mg-dc6cbb427e-title">数直線上の変域表示——0≦x≦15 と −2＜x≦3 の対比</title>
 <desc id="mg-dc6cbb427e-desc">数直線2本の対比。上段は0≦x≦15で両端とも黒丸・間が太線、下段は−2＜x≦3で−2が白丸・3が黒丸・間が太線。下に「●＝ふくむ／○＝ふくまない」の凡例</desc>
 <!-- L02_fig1_domain_number_lines.svg | 数直線上の変域表示——0≦x≦15 と −2＜x≦3 の対比 -->
@@ -100,7 +101,7 @@
 <circle cx="120.0" cy="212.0" r="4.5" fill="#fff" stroke="#000" stroke-width="1.2"/>
 <text x="130.0" y="216.0" font-size="10.5" text-anchor="start">＝ ふくまない（より大きい・未満）</text>
 </svg>
-</div><figcaption>数直線2本の対比。上段は0≦x≦15で両端とも黒丸・間が太線、下段は−2＜x≦3で−2が白丸・3が黒丸・間が太線。下に「●＝ふくむ／○＝ふくまない」の凡例</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L02_fig1_domain_number_lines.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>数直線2本の対比。上段は0≦x≦15で両端とも黒丸・間が太線、下段は−2＜x≦3で−2が白丸・3が黒丸・間が太線。下に「●＝ふくむ／○＝ふくまない」の凡例</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L02_fig1_domain_number_lines.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="数直線2本の対比。上段は0≦x≦15で両端とも黒丸・間が太線、下段は−2＜x≦3で−2が白丸・3が黒丸・間が太線。下に「●＝ふくむ／○＝ふくまない」の凡例">図を大きく見る</a></figure>
 <p>変域は負の数に広がることもある。たとえば「氷点下もふくめた1日の気温x℃が、最低−3℃・最高8℃だった」なら、xの変域は −3 ≦ x ≦ 8。小学校では変域を負でない数の範囲だけで考えてきたが、負の数を学んだ今は、変域も<strong>数直線全体</strong>を舞台にできる。この拡張が、次のレッスンで比例を捉え直すときの鍵になる。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>表記の崩れは「日本語→記号」の順で防ぐ</strong></p>
 <p>変域の答案でよくある崩れは、「以上」と「より大きい」の混同、そして不等号の向きの取り違えだ。おすすめの手順は、①まず日本語で「xは□以上□以下」と言い切る ②上の表で記号に置きかえる ③最後に「小さい数が左、大きい数が右」の形（a ≦ x ≦ b）に整える、の3段階。特に③の「小さい→大きいの順に左から書く」を守ると、15 ≦ x ≦ 0 のような向きの事故がなくなる。</p></div>
@@ -116,7 +117,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_02.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 決めると、決まる——関数</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 比例を捉え直す——負の数の世界へ</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_01.html"><span>前のレッスン</span>L01 決めると、決まる——関数</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_03.html"><span>次のレッスン</span>L03 比例を捉え直す——負の数の世界へ</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -125,7 +131,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -135,6 +141,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

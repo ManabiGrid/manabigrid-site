@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 定理を見いだす——3つの正方形">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 定理を見いだす——3つの正方形｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="dd397b8bc6f079bcfd31360f05387a7149f739b0cb91666960f343232410c143" data-source-file="materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="dd397b8bc6f079bcfd31360f05387a7149f739b0cb91666960f343232410c143" data-source-file="materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">中3数学「三平方の定理」</a></li><li aria-current="page">L01 定理を見いだす——3つの正方形</li></ol></nav>
@@ -85,7 +86,7 @@
 <text x="165.0" y="310.0" font-size="12" text-anchor="middle">直角三角形の3つの辺の上に，外側に正方形を3つかく</text>
 <text x="165.0" y="327.0" font-size="12" text-anchor="middle">（3つの正方形の面積の間に，何か関係はないだろうか？）</text>
 </svg>
-</div><figcaption>直角三角形の3辺の上の3つの正方形</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L01_fig1_three_squares_on_grid.svg">図を大きく開く</a></figure>
+</div><figcaption>直角三角形の3辺の上の3つの正方形</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L01_fig1_three_squares_on_grid.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="直角三角形の3辺の上の3つの正方形">図を大きく見る</a></figure>
 <p>直角三角形の3つの辺それぞれを1辺として、外側に正方形を3つかく。この3つの正方形の面積の間に、何か関係はないだろうか？</p>
 <h2 id="主概念1傾いた正方形の面積を求める">主概念1：傾いた正方形の面積を求める</h2>
 <p>上の図で、直角をはさむ2辺（3マスと4マス）の上の正方形は、面積がすぐ分かる。3×3＝9、4×4＝16だ。</p>
@@ -133,7 +134,7 @@
 <text x="200.0" y="286.0" font-size="12" text-anchor="middle">「囲んで引く」——マス目に沿った正方形で囲み，</text>
 <text x="200.0" y="303.0" font-size="12" text-anchor="middle">四すみの三角形（斜線部）を引く</text>
 </svg>
-</div><figcaption>囲んで引く——49−24＝25</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L01_fig2_enclose_and_subtract.svg">図を大きく開く</a></figure>
+</div><figcaption>囲んで引く——49−24＝25</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L01_fig2_enclose_and_subtract.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="囲んで引く——49−24＝25">図を大きく見る</a></figure>
 <p>大きい正方形の面積は 7×7＝49。四すみの直角三角形は1つが 3×4÷2＝6 だから4つで24。よって傾いた正方形の面積は</p>
 <p>49 − 24 ＝ 25</p>
 <p>数えにくい面積も、「囲んで引く」で正確に求められる。この技はこのあとも使うので、手になじませておこう。</p>
@@ -193,7 +194,7 @@
 <text x="230.0" y="270.0" font-size="12" text-anchor="middle">見本: 傾いた正方形を，マス目に沿った正方形で囲む</text>
 <text x="230.0" y="287.0" font-size="12" text-anchor="middle">（面積＝囲む正方形 − 四すみの直角三角形4つ分。値は表で求めよう）</text>
 </svg>
-</div><figcaption>やってみようの作図見本</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L01_fig3_tilted_square_examples.svg">図を大きく開く</a></figure>
+</div><figcaption>やってみようの作図見本</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L01_fig3_tilted_square_examples.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="やってみようの作図見本">図を大きく見る</a></figure>
 <p>結果を表にまとめてみよう。</p>
 <div class="table-wrap" data-scroll-label="直角をはさむ2辺・小さい正方形・中くらいの正方形の表（1）"><table><thead><tr><th scope="col">直角をはさむ2辺</th><th scope="col">小さい正方形</th><th scope="col">中くらいの正方形</th><th scope="col">一番大きい正方形</th></tr></thead><tbody><tr><td>3と4</td><td>9</td><td>16</td><td>25</td></tr><tr><td>1と2</td><td>1</td><td>4</td><td>？</td></tr><tr><td>2と3</td><td>4</td><td>9</td><td>？</td></tr></tbody></table></div>
 <p>どの直角三角形でも「小さい2つの和＝一番大きい1つ」になっていれば、これはもう偶然とは思えない。<strong>直角三角形の3つの辺の上の正方形の面積には、いつでも成り立つ関係がありそうだ</strong>——この発見を、次のレッスンで定理の形にする。</p>
@@ -210,7 +211,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 三平方の定理——意味・証明を知る・基本計算</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 三平方の定理——意味・証明を知る・基本計算</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -219,7 +225,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -229,6 +235,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

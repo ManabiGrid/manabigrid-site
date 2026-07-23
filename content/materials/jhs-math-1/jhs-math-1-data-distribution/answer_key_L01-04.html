@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 解答: 解答編 L01〜L04（代表値と範囲・度数分布表とヒストグラム）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>解答編 L01〜L04（代表値と範囲・度数分布表とヒストグラム）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-answer" data-source-sha256="dbcb382b5ace81cb3f66346e375cdbd80388ed72f1a2da921b0c9219878d1c7d" data-source-file="materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.md">
+<body id="page-top" class="page-answer" data-source-sha256="dbcb382b5ace81cb3f66346e375cdbd80388ed72f1a2da921b0c9219878d1c7d" data-source-file="materials/jhs-math-1/jhs-math-1-data-distribution/answer_key_L01-04.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-data-distribution/index.html">中1数学「データの活用（度数分布・ヒストグラム）」</a></li><li aria-current="page">解答編 L01〜L04（代表値と範囲・度数分布表とヒストグラム）</li></ol></nav>
@@ -69,7 +70,12 @@
 <ul><li><p>平均値: (600+50)÷31=650÷31≒<strong>21.0分</strong>（20.0分から約1分増）</p></li><li><p>中央値: 31個の真ん中=16番目=<strong>19分</strong>（18.5分から0.5分増）</p></li></ul>
 <p>→ このデータでは、中央値18.5分を<strong>まったく</strong>変えずに平均値を大きくする1人追加はできない。中央値を18.5分のままにするには、16番目に来る値として18分と19分の間の値（18.5分）を足すしかないが、それは平均値20.0分より小さいので平均値はむしろ下がってしまう（検算: 618.5÷31≒19.95分）。できるのは「中央値の動きを最小限（18.5→19分）に抑えつつ、平均値を大きく動かす」ことまで。そして動きの大きさがまるで違う——平均値は追加した値が大きいほどいくらでも動くのに対し、中央値は「順番が半歩ずれる」ぶん（このデータでは0.5分）しか動かない。端に足すほど平均値だけが大きく動く、というL02の性質をヒストグラムの右裾で再確認できる。 （検算: 追加後の合計650・個数31 ✓。16番目=並べ替え済みデータの17番目ではなく16番目であることを位置数えで確認: 15番目18、16番目19 ✓）</p>
 <hr>
-<p>本文: lesson_01.md〜lesson_04.md</p></article></main>
+<p>本文: lesson_01.md〜lesson_04.md</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -78,7 +84,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -88,6 +94,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

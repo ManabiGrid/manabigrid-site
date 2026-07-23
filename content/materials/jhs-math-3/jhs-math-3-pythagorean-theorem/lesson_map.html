@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: レッスンマップ — 中3数学「三平方の定理」（全12時間・13時間版調整可）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>レッスンマップ — 中3数学「三平方の定理」（全12時間・13時間版調整可）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="3b33cde8c2dc999e3c5b00a0d58577a2e7b7b1823763514f65df653227b480a2" data-source-file="materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="3b33cde8c2dc999e3c5b00a0d58577a2e7b7b1823763514f65df653227b480a2" data-source-file="materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">中3数学「三平方の定理」</a></li><li aria-current="page">レッスンマップ — 中3数学「三平方の定理」（全12時間・13時間版調整可）</li></ol></nav>
@@ -64,7 +65,12 @@
 <h2 id="レーン分離禁止事項の反映">レーン分離（禁止事項の反映）</h2>
 <ul><li><p><strong>入試レーン内容はpublic_coreに混ぜない</strong>: 展開図上の最短経路（ひもかけ）・切断面の計量・ピタゴラス数の暗記主義・「相似で比→三平方で実長」型の融合問題の定石は、entrance_exam差分レーンとして別途予約。最短経路は検定教科書の必修範囲を超える境界にある。</p></li><li><p><strong>数I三角比の本格展開禁止</strong>: sin/cos/tanは扱わない。特別角の比（1:1:√2、1:2:√3）→三角比の橋はL10の高校予告（雑談枠）まで。座標空間への一般化（数II先取り）も扱わない。</p></li><li><p><strong>証明の到達目標化禁止</strong>: 証明のアイデア紹介はL02本文＋stretchまで。証明の記述を練習問題に課さない。</p></li><li><p>例題の図形・数値はすべて自作。教科書・過去問の数値設定を写さない。</p></li></ul>
 <h2 id="ファイル構成と解答分離設計判断として確定">ファイル構成と解答分離（設計判断として確定）</h2>
-<ul><li><p>本文: lesson_01.md〜lesson_10.md（タグ付きcore。:::zatsudan各1・:::guide 2〜4・:::stretch。<strong>:::answerは不使用</strong>）</p></li><li><p>解答: answer_key_L01-05.md／answer_key_L06-10.md（全設問＋stretch設問の解答・検算過程つき）</p></li><li><p>各レッスン末に「対応解答: answer_key_xx.md」の1行を置く。</p></li><li><p>指導者メモ: teacher_notes.md（数値・出典・年度はsummary記載分のみを指標名ごと正確に転記）。</p></li></ul></article></main>
+<ul><li><p>本文: lesson_01.md〜lesson_10.md（タグ付きcore。:::zatsudan各1・:::guide 2〜4・:::stretch。<strong>:::answerは不使用</strong>）</p></li><li><p>解答: answer_key_L01-05.md／answer_key_L06-10.md（全設問＋stretch設問の解答・検算過程つき）</p></li><li><p>各レッスン末に「対応解答: answer_key_xx.md」の1行を置く。</p></li><li><p>指導者メモ: teacher_notes.md（数値・出典・年度はsummary記載分のみを指標名ごと正確に転記）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -73,7 +79,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -83,6 +89,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

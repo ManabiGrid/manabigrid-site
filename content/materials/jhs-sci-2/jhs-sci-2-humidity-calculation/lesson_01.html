@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: レッスン1 空気が水蒸気を含める「上限」は温度で決まる">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>レッスン1 空気が水蒸気を含める「上限」は温度で決まる｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="45ba52a481ca5c9501aae1de814d3df2829b1644a0a3fec5ba68cdc117eac410" data-source-file="materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="45ba52a481ca5c9501aae1de814d3df2829b1644a0a3fec5ba68cdc117eac410" data-source-file="materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-sci-2/index.html">中学2年 理科</a></li><li><a href="../../../../units/jhs-sci-2-humidity-calculation/index.html">中2理科「湿度と飽和水蒸気量の計算」</a></li><li aria-current="page">レッスン1 空気が水蒸気を含める「上限」は温度で決まる</li></ol></nav>
@@ -47,7 +48,7 @@
 <blockquote><p><strong>注意</strong>：下の数表は、この教材の練習用に作った<strong>架空の数表</strong>です。実際の飽和水蒸気量の値は教科書で確認してください。</p></blockquote>
 <div class="table-wrap" data-scroll-label="気温［℃］・0・5の表（1）"><table><thead><tr><th scope="col">気温［℃］</th><th scope="col">0</th><th scope="col">5</th><th scope="col">10</th><th scope="col">15</th><th scope="col">20</th><th scope="col">25</th><th scope="col">30</th></tr></thead><tbody><tr><td>飽和水蒸気量［g/m³］（架空値）</td><td>4.0</td><td>6.0</td><td>8.0</td><td>12.0</td><td>16.0</td><td>24.0</td><td>32.0</td></tr></tbody></table></div>
 <p>読み方は2ステップです。①上の行で気温を探す → ②その真下の値を読む。たとえば気温20℃の空気1m³が含むことのできる水蒸気の上限は、この架空数表では16.0gです。表を右へ進む（気温が上がる）ほど値が大きくなっていることも確かめてください。</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 348" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-b39ecc0105-title" aria-describedby="mg-b39ecc0105-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 348" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-b39ecc0105-title" aria-describedby="mg-b39ecc0105-desc">
 <title id="mg-b39ecc0105-title">気温と『上限』の棒グラフ（架空の練習用データ）</title>
 <desc id="mg-b39ecc0105-desc">気温と『上限』の棒グラフ（架空の練習用データ）</desc>
 <!-- L01_fig1_saturation_limit_bars.svg | 気温と『上限』の棒グラフ（架空の練習用データ） -->
@@ -125,7 +126,7 @@
 <text x="250.0" y="46.0" font-size="12" text-anchor="middle" font-weight="bold">——架空の練習用データ——</text>
 <text x="250.0" y="340.0" font-size="11" text-anchor="middle">（この教材の練習用に作った架空値。実際の値は教科書で確認すること）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>気温と『上限』の棒グラフ（架空の練習用データ）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-sci-2/jhs-sci-2-humidity-calculation/assets/L01_fig1_saturation_limit_bars.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>気温と『上限』の棒グラフ（架空の練習用データ）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-sci-2/jhs-sci-2-humidity-calculation/assets/L01_fig1_saturation_limit_bars.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="気温と『上限』の棒グラフ（架空の練習用データ）">図を大きく見る</a></figure>
 <h2 id="例題">例題</h2>
 <p><strong>例題1</strong>　この架空数表で、気温10℃の空気1m³が含むことのできる水蒸気の上限は何gか。小数第1位まで答えること。</p>
 <p><strong>考え方</strong>　表の「10」の真下を読む。→ <strong>8.0g</strong></p>
@@ -138,7 +139,7 @@
 <p><strong>S1</strong>　この架空数表で、気温が5℃から10℃に上がるときの上限の増え方（＋2.0g）と、25℃から30℃に上がるときの増え方を比べなさい。同じ「5℃上がる」でも増え方は同じか？　気づいたことを一文で書きなさい。</p>
 <h2 id="雑談枠霧の朝のからくり">☕ 雑談枠：霧の朝のからくり</h2>
 <p>夜から朝にかけて気温が下がると、空気の「上限」も小さくなります。水蒸気の量が変わらないとしたモデルで考えると、器のほうが縮んでいく、とイメージするとよいでしょう（実際の空気が物理的な器を持っているわけではありません）。上限が実際の水蒸気量まで縮むと、含みきれなくなった水蒸気が細かい水滴になって現れる——これが霧の正体の考え方です。「気温が下がると湿度が上がる」という規則性、次のレッスンで計算として確かめられますよ！</p>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 292" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-45a0fe7ea1-title" aria-describedby="mg-45a0fe7ea1-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 292" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-45a0fe7ea1-title" aria-describedby="mg-45a0fe7ea1-desc">
 <title id="mg-45a0fe7ea1-title">『器が縮む』イメージ図（比喩・霧のからくり）</title>
 <desc id="mg-45a0fe7ea1-desc">『器が縮む』イメージ図（比喩・霧のからくり）</desc>
 <!-- L01_fig2_shrinking_vessel_image.svg | 『器が縮む』イメージ図（比喩・霧のからくり） -->
@@ -172,12 +173,17 @@
 <text x="250.0" y="256.0" font-size="11" text-anchor="middle">（比喩です。実際の空気が物理的な器を持っている</text>
 <text x="250.0" y="272.0" font-size="11" text-anchor="middle">わけではありません——「上限」は気温で決まる値）</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>『器が縮む』イメージ図（比喩・霧のからくり）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-sci-2/jhs-sci-2-humidity-calculation/assets/L01_fig2_shrinking_vessel_image.svg">図を大きく開く</a></figure><a class="answer-link" href="answer_key_supplement.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>『器が縮む』イメージ図（比喩・霧のからくり）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-sci-2/jhs-sci-2-humidity-calculation/assets/L01_fig2_shrinking_vessel_image.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="『器が縮む』イメージ図（比喩・霧のからくり）">図を大きく見る</a></figure><a class="answer-link" href="answer_key_supplement.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
 <aside class="lesson-provenance" aria-labelledby="lesson-provenance-title">
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-sci-2-humidity-calculation/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>レッスン2 湿度の定義と求め方（順算）</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-sci-2-humidity-calculation/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>レッスン2 湿度の定義と求め方（順算）</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -186,7 +192,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -196,6 +202,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

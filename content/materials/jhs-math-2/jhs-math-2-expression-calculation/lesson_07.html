@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L07 式による説明②——自力記述へ">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L07 式による説明②——自力記述へ｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="b85e949f9973c27a8d3258104d7bc8cf8af0b877464ac95f6227e52078f95ce3" data-source-file="materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.md">
+<body id="page-top" class="page-lesson" data-source-sha256="b85e949f9973c27a8d3258104d7bc8cf8af0b877464ac95f6227e52078f95ce3" data-source-file="materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-expression-calculation/index.html">中2数学「式の計算」</a></li><li aria-current="page">L07 式による説明②——自力記述へ</li></ol></nav>
@@ -73,7 +74,7 @@
 <text x="220.0" y="230.0" font-size="13" text-anchor="middle">a＋b は整数 → 11×（整数）の形＝11の倍数</text>
 <text x="220.0" y="252.0" font-size="12" text-anchor="middle">（例: 52＋25＝77＝11×7。a＋b＝5＋2＝7 が「7」の正体）</text>
 </svg>
-</div><figcaption>もとの数10a＋bと位を入れかえた数10b＋aを位の箱で並べ、和が11(a＋b)＝11×（整数）になることを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-expression-calculation/assets/L07_fig1_digit_swap_sum.svg">図を大きく開く</a></figure>
+</div><figcaption>もとの数10a＋bと位を入れかえた数10b＋aを位の箱で並べ、和が11(a＋b)＝11×（整数）になることを示す図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-expression-calculation/assets/L07_fig1_digit_swap_sum.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="もとの数10a＋bと位を入れかえた数10b＋aを位の箱で並べ、和が11(a＋b)＝11×（整数）になることを示す図">図を大きく見る</a></figure>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>a、b の範囲の宣言を忘れない</strong></p>
 <p>ステップ1では本当は「a、b はどちらも1から9までの整数」という範囲の宣言が要る（十の位に0は来ない・入れかえた数も2けたの数になるためには一の位にも0は来ない・各位は1けた）。L05の「n は整数」と同じで、文字の箱に何を入れてよいかの取り決めだ。この宣言がないと、10a＋b がどんな数を表しているのか読み手に伝わらず、式が説明の根拠として働かない。書く癖をつけておこう。</p></div>
 <h2 id="主概念2結論だけを防ぐ3点セット">主概念2：「結論だけ」を防ぐ3点セット</h2>
@@ -92,7 +93,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_07.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_06.html"><span>前のレッスン</span>L06 式による説明①——4ステップの足場</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-expression-calculation/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_08.html"><span>次のレッスン</span>L08 等式の変形——目的に合わせて式をつくり直す</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_06.html"><span>前のレッスン</span>L06 式による説明①——4ステップの足場</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-expression-calculation/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_08.html"><span>次のレッスン</span>L08 等式の変形——目的に合わせて式をつくり直す</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -101,7 +107,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -111,6 +117,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="ad1021f54e60c10e56b6eaf0a5eb3520839f03a7d03dc19863fa715dd9b056ed" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md">
+<body id="page-top" class="page-lesson" data-source-sha256="ad1021f54e60c10e56b6eaf0a5eb3520839f03a7d03dc19863fa715dd9b056ed" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">中2数学「四分位範囲と箱ひげ図」</a></li><li aria-current="page">L04 四分位範囲——「かけ離れた値」に強い散らばりの物差し</li></ol></nav>
@@ -130,7 +131,7 @@
 <text x="250.0" y="28.0" font-size="13" text-anchor="middle" font-weight="bold">差し替え実験——範囲は激変・四分位数は不変</text>
 <text x="250.0" y="318.0" font-size="11" text-anchor="middle">横軸: 借りた本の冊数（冊）・各11人（架空の練習用データ）</text>
 </svg>
-</div><figcaption>AとBの箱ひげ図を上下に並べた比較図。箱（3〜9）と中央値の位置は2本で完全に同じで、右のひげの長さだけが35から12へ縮んでいる</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L04_fig2_outlier_swap_experiment.svg">図を大きく開く</a></figure>
+</div><figcaption>AとBの箱ひげ図を上下に並べた比較図。箱（3〜9）と中央値の位置は2本で完全に同じで、右のひげの長さだけが35から12へ縮んでいる</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L04_fig2_outlier_swap_experiment.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="AとBの箱ひげ図を上下に並べた比較図。箱（3〜9）と中央値の位置は2本で完全に同じで、右のひげの長さだけが35から12へ縮んでいる">図を大きく見る</a></figure>
 <p>範囲と四分位範囲は、こう使い分ける。</p>
 <ul><li><p><strong>範囲</strong>: データ<strong>全体</strong>の幅。極端にかけ離れた値の影響を<strong>受けやすい</strong>。</p></li><li><p><strong>四分位範囲</strong>: 真ん中の<strong>約半数</strong>の幅。極端にかけ離れた値の影響を<strong>ほとんど受けない</strong>。</p></li></ul>
 <p>名前が似ているので、定義を丸暗記するより「<strong>35冊の実験でどちらが動いたか</strong>」で覚えるのがおすすめだ。テストで「四分位範囲を求めよ」と聞かれて範囲（最大値−最小値）を答えてしまう混同は起こりやすい。求める前に「箱の長さの方だっけ、全体の幅の方だっけ」と一呼吸おこう。</p>
@@ -209,7 +210,7 @@
 <text x="250.0" y="28.0" font-size="13" text-anchor="middle" font-weight="bold">① 5つの値を求めてから——箱ひげ図をかく手順</text>
 <text x="250.0" y="242.0" font-size="11" text-anchor="middle">横軸: 借りた本の冊数（冊）・11人（架空の練習用データ）</text>
 </svg>
-</div><figcaption>冊数0から35の数直線上の箱ひげ図。箱は3から9で中に中央値の縦線。左のひげは0まで短く、右のひげは35まで非常に長い。手順番号①〜④が各部品に振られている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L04_fig1_boxplot_draw_steps.svg">図を大きく開く</a></figure>
+</div><figcaption>冊数0から35の数直線上の箱ひげ図。箱は3から9で中に中央値の縦線。左のひげは0まで短く、右のひげは35まで非常に長い。手順番号①〜④が各部品に振られている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L04_fig1_boxplot_draw_steps.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="冊数0から35の数直線上の箱ひげ図。箱は3から9で中に中央値の縦線。左のひげは0まで短く、右のひげは35まで非常に長い。手順番号①〜④が各部品に振られている">図を大きく見る</a></figure>
 <p>かき上がったら<strong>検算を2つ</strong>: ①5つの値が図の左から小さい順に並んでいるか。②箱の区間に全体の<strong>約半数</strong>が入っているか（元のデータで数える）。Aなら箱（3〜9）の中は 4, 5, 6, 7, 8 と、区切り上の3, 9——区切りの上の値（3と9）を箱の中に入れて数えるかどうかで個数は多少ゆれる。だからこその「<strong>約</strong>半数」だ。</p>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>かくときの定番ミス2つ</strong></p>
 <p>①<strong>箱を最小値〜最大値でかいてしまう</strong>（それはひげも含めた全体）。箱はあくまで第1〜第3四分位数の間。②<strong>ひげのかき忘れ・ひげを四分位範囲と同じ長さにしてしまう</strong>。ひげの先は最小値・最大値——データによって左右の長さはふつう違う。完成したら「箱＝約半数」「ひげの先＝両端の値」と声に出して点検しよう。</p></div>
@@ -222,7 +223,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 四分位数の求め方——データを4等分する3つの区切り</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 くらべて、根拠を書く——箱の位置で語る</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 四分位数の求め方——データを4等分する3つの区切り</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 くらべて、根拠を書く——箱の位置で語る</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -231,7 +237,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -241,6 +247,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 制作資料: FIGUREMANIFEST — データの分布単元 図版台帳">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>FIGUREMANIFEST — データの分布単元 図版台帳｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-data-distribution/assets_provenance/FIGURE_MANIFEST.html">
   <link rel="icon" type="image/svg+xml" href="../../../../../_assets/favicon.svg">
+  <script src="../../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../../_assets/site.css">
 </head>
-<body class="page-reference" data-source-sha256="e4a157d76fe88b2c9d1a7ebfe0d05cd17e83e18966fccd056a60ed7b6a5a139f" data-source-file="materials/jhs-math-1/jhs-math-1-data-distribution/assets_provenance/FIGURE_MANIFEST.md">
+<body id="page-top" class="page-reference" data-source-sha256="e4a157d76fe88b2c9d1a7ebfe0d05cd17e83e18966fccd056a60ed7b6a5a139f" data-source-file="materials/jhs-math-1/jhs-math-1-data-distribution/assets_provenance/FIGURE_MANIFEST.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../../browse/index.html">教材をさがす</a><a href="../../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../../index.html">トップ</a></li><li><a href="../../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../../units/jhs-math-1-data-distribution/index.html">中1数学「データの活用（度数分布・ヒストグラム）」</a></li><li aria-current="page">FIGUREMANIFEST — データの分布単元 図版台帳</li></ol></nav>
@@ -42,7 +43,12 @@
 </header><div class="container notice" role="note"><strong>制作資料です。</strong>生徒向けの学習本文ではなく、指導・設計・図版来歴の記録です。</div><article class="container lesson-body"><p>生成日: 2026-07-18 ／ 生成方式: <code>assets_provenance/generate_figures.py</code>（Python標準ライブラリのみ・パラメトリック生成）／ 度数分布は<strong>本文の生データからスクリプト内で再集計</strong>してassert検算（平均値・中央値・最頻値・相対度数・累積度数も再計算して本文値と照合）。全図で下表の統計検算（スクリプト内assert）と禁止文字列の機械検査（&lt;text&gt;/&lt;title&gt;/&lt;desc&gt;の数値トークンを許可リストと照合）が生成時に自動実行され、全件合格。全SVGにAI再利用メタ情報（&lt;title&gt;=図名・&lt;desc&gt;=意図/主要数値/同型図をAIに描かせる再現指示）を埋め込み済み。</p>
 <div class="table-wrap" data-scroll-label="ファイル・対象レッスン・図の意図の表（1）"><table><thead><tr><th scope="col">ファイル</th><th scope="col">対象レッスン</th><th scope="col">図の意図</th><th scope="col">パラメータ（本文一致）</th><th scope="col">検証結果（生成時assert＋機械検査）</th></tr></thead><tbody><tr><td><code>L01_fig1_dotplot_test10.svg</code></td><td>L01</td><td>計算テスト10人の得点のドットプロット——生データを1人1点で並べ「散らばりの全体」を見る最初の表現</td><td>10人の得点（本文転記）→積み上がり{7:3個,8:2個,9:2個}を再集計</td><td>10人分のデータ（本文「10人が受けた」と一致） ✓／並べ替えると本文の 4,5,6,7,7,7,8,8,9,9 と一致 ✓／積み上がり: 7に3個・8と9に2個ずつ（図版指定と一致） ✓／合計70・平均値7点（本文の計算と一致——図には描かない） ✓／中央値7点（偶数個・真ん中2つの平均。本文と一致——図には描かない） ✓／最頻値7点（最多3回。本文と一致——図には描かない） ✓／打点数=10（1人1点） ✓／数値トークン検査（許可外なし） ✓</td></tr><tr><td><code>L02_fig1_outlier_dotplot_compare.svg</code></td><td>L02</td><td>外れ値実験のドットプロット2段比較（90分の1人と平均値の動き）——90分の1個が平均値だけを大きく動かすことの可視化（外れ値実験）</td><td>8人の練習時間（本文転記）→平均20/中央10.5・除外後は平均10/中央10を再計算</td><td>8人・合計160・平均値20分（本文の計算と一致） ✓／中央値10.5分（偶数個・4番目と5番目の平均。本文と一致） ✓／90分を除いた7人: 合計70・平均値10分・中央値10分（本文と一致） ✓／平均値は10→20へ2倍・中央値は10→10.5とほとんど動かない（本文の主旨） ✓／数値トークン検査（許可外なし） ✓</td></tr><tr><td><code>L03_fig1_histogram_commute.svg</code></td><td>L03</td><td>通学時間のヒストグラム（階級幅5分・表と柱の1対1対応つき)——度数分布表→ヒストグラムの変換の初対面（行と柱の1対1対応）</td><td>通学時間30個の生データ（本文転記）→度数=[1, 2, 5, 9, 5, 4, 2, 2]を再集計</td><td>30個の生データから度数を再集計——本文の表（1,2,5,9,5,4,2,2）と一致（実測=[1, 2, 5, 9, 5, 4, 2, 2]） ✓／度数の合計=30（本文の検算と一致） ✓／山は1つ・頂上は15以上20未満（度数9）で右へ裾（本文の読みと一致） ✓／答え漏れ検査: PASS（1項目・対象値はanswer_key由来・非開示） ✓</td></tr><tr><td><code>L04_fig1_freq_polygon_overlay.svg</code></td><td>L04</td><td>ヒストグラムと度数折れ線の重ね図（通学時間・階級幅5分）——柱の頂上の中点を結ぶ作図手順と「山の形だけを抜き出す」表現の可視化</td><td>L03と同一の生データ→度数=[1, 2, 5, 9, 5, 4, 2, 2]・頂点は階級値2.5〜37.5</td><td>L03と同一データ: 度数を生データから再集計——本文の表と一致（実測=[1, 2, 5, 9, 5, 4, 2, 2]） ✓／折れ線の頂点は各階級の真ん中（階級値）——2.5,7.5,…,37.5 ✓／両端は隣の度数0の階級の階級値（-2.5と42.5）で横軸に降りる（本文の手順と一致） ✓／答え漏れ検査: PASS（3項目・対象値はanswer_key由来・非開示） ✓</td></tr><tr><td><code>L04_fig2_shape_vs_averages.svg</code></td><td>L04</td><td>分布の形と代表値の並びの3型比較図（対称・右裾・左裾）——対称・右裾・左裾での代表値の位置関係の一覧整理（L02 guideの回収）</td><td>密度曲線3本（数式定義）→曲線から平均・中央値・最頻値を数値計算</td><td>①対称: 平均値・中央値・最頻値が中央でほぼ一致（曲線から数値計算） ✓／②右に裾: 最頻値＜中央値＜平均値の順に右へ（曲線から数値計算・本文と一致） ✓／③左に裾: 平均値＜中央値＜最頻値の順に左へ（曲線から数値計算・本文と一致） ✓／数値トークン検査（許可外なし） ✓</td></tr><tr><td><code>L05_fig1_hist_width2.svg</code></td><td>L05</td><td>的当てスコアのヒストグラム（階級幅2点・山が2つ）——山が2つある分布の姿を見せる（幅8との比較の前半）</td><td>スコア40個の生データ（本文転記）→幅2の度数=[1, 2, 5, 8, 3, 4, 8, 5, 3, 1]を再集計</td><td>40個の生データから幅2の度数を再集計——本文の表（1,2,5,8,3,4,8,5,3,1）と一致（実測=[1, 2, 5, 8, 3, 4, 8, 5, 3, 1]） ✓／度数の合計=40（本文の検算と一致） ✓／山が2つ: [6,8)と[12,14)が最多8・あいだの[8,10)がへこむ（本文の読みと一致） ✓／答え漏れ検査: PASS（1項目・対象値はanswer_key由来・非開示） ✓</td></tr><tr><td><code>L05_fig2_hist_width8.svg</code></td><td>L05</td><td>的当てスコアのヒストグラム（階級幅8点・山が1つに見える）——幅を広げると2つの山が1つに見えることの体感（L05-1との対比）</td><td>同一の生データ40個→幅8の度数=[16, 20, 4]を再集計（幅2の合算とも照合）</td><td>同じ40個の生データから幅8の度数を再集計——本文の表（16,20,4）と一致（実測=[16, 20, 4]） ✓／度数の合計=40（同一データの検算） ✓／幅2の表を4階級ずつ合算しても同じ値になる（本文「合算したもの」と一致）（合算=[16, 20, 4]） ✓／山が1つ: 真ん中の階級だけが最多の単峰（本文の読みと一致） ✓／答え漏れ検査: PASS（1項目・対象値はanswer_key由来・非開示） ✓</td></tr><tr><td><code>L06_fig1_freq_vs_relfreq.svg</code></td><td>L06</td><td>度数の柱と相対度数の柱の並置比較図（1年生40人と2年生25人）——総度数が違うと度数の図はフェアな比較にならないことの可視化（逆転の体感）</td><td>度数1年=[4, 10, 12, 8, 6]／2年=[2, 5, 9, 6, 3]（本文転記）→相対度数を再計算</td><td>総度数: 1年生40人・2年生25人（本文と一致） ✓／1年生の相対度数を度数÷総度数で再計算——本文の表（0.10〜0.15）と一致（実測=[0.1, 0.25, 0.3, 0.2, 0.15]） ✓／2年生の相対度数を再計算——本文の表（0.08〜0.12）と一致（実測=[0.08, 0.2, 0.36, 0.24, 0.12]） ✓／相対度数の合計はどちらも1.00（部分÷全体の検算） ✓／[8,12)と[12,16)で逆転: 度数は1年生が多いのに相対度数は2年生が上（本文と一致） ✓／数値トークン検査（許可外なし） ✓</td></tr><tr><td><code>L07_fig1_cumulative_stack.svg</code></td><td>L07</td><td>累積度数の積み上げ模式図（下から順に積んで最後は総度数）——「下から順に積む」動きの可視化（途中を飛ばす誤りの予防）</td><td>度数=[4, 10, 12, 8, 6]（L06と同一・本文転記）→累積=[4, 14, 26, 34, 40]を再計算</td><td>累積度数を「1つ上の累積度数＋その階級の度数」で再計算——本文の表（4,14,26,34,40）と一致（実測=[4, 14, 26, 34, 40]） ✓／最後の累積度数=総度数40人（本文の検算の型と一致） ✓／数値トークン検査（許可外なし） ✓</td></tr><tr><td><code>L08_fig1_axis_trick_bars.svg</code></td><td>L08</td><td>同じデータの2通りの棒グラフ（縦軸の始点操作による誇張の実験）——縦軸の始点操作による視覚的誇張の体感（批判的考察・観点5）</td><td>A班105本・B班98本（本文転記)→差7本・高さ比を左右両図で検算</td><td>差=105−98=7本（本文と一致） ✓／差は7%ほど（7÷98≒0.07・本文と一致） ✓／左図（縦軸0から）: 柱の高さの比は1.1倍未満——ほぼ同じ高さに見える ✓／右図（縦軸95から）: 柱の高さの比は(105−95)/(98−95)＝2倍以上——本文と一致 ✓／数値トークン検査（許可外なし） ✓</td></tr></tbody></table></div>
 <h2 id="再生成改修の手順第三者向け">再生成・改修の手順（第三者向け）</h2>
-<ol start="1"><li><p><code>generate_figures.py</code> の該当 <code>fig_*</code> 関数冒頭「パラメータ」ブロック（またはモジュール先頭の共有生データ）を編集する  （数値は必ず該当 <code>lesson_XX.md</code> 本文と一致させる）。</p></li><li><p><code>python3 generate_figures.py</code> を実行する。統計検算assert・禁止文字列検査に  1つでも落ちると図は出力されない。</p></li><li><p><code>assets/</code> のSVGと本ファイルが自動更新される。SVGの直接編集は禁止（来歴が切れる）。</p></li></ol></article></main>
+<ol start="1"><li><p><code>generate_figures.py</code> の該当 <code>fig_*</code> 関数冒頭「パラメータ」ブロック（またはモジュール先頭の共有生データ）を編集する  （数値は必ず該当 <code>lesson_XX.md</code> 本文と一致させる）。</p></li><li><p><code>python3 generate_figures.py</code> を実行する。統計検算assert・禁止文字列検査に  1つでも落ちると図は出力されない。</p></li><li><p><code>assets/</code> のSVGと本ファイルが自動更新される。SVGの直接編集は禁止（来歴が切れる）。</p></li></ol></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -51,7 +57,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -61,6 +67,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../../_assets/site.js" defer></script>
 </body>
 </html>

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L10 章末まとめ——「形を変えても解は変わらない」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L10 章末まとめ——「形を変えても解は変わらない」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="eaf525e17d66ee3e3560218029a796a55576e733796a9ae8ec86065d788c18c5" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.md">
+<body id="page-top" class="page-lesson" data-source-sha256="eaf525e17d66ee3e3560218029a796a55576e733796a9ae8ec86065d788c18c5" data-source-file="materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-linear-equations/index.html">中1数学「一次方程式」</a></li><li aria-current="page">L10 章末まとめ——「形を変えても解は変わらない」</li></ol></nav>
@@ -49,7 +50,7 @@
 <ul><li><p>移項を使って解ける。そして「移項の根拠は等式の性質①②」と言える（L03）</p></li><li><p>文字の項と数の項が両辺に混ざった方程式を、Ａx＝Ｂの形に整理して解ける（L04）</p></li><li><p>かっこ・小数・分数の前処理ができる。両辺に数をかけるときは全部の項にかける（L05）</p></li><li><p>比例式を、比の値を使って一次方程式に直して解ける（L06）</p></li><li><p>解いたら代入検算する習慣がついている（L01・L05）</p></li></ul>
 <p><strong>部屋3：使う（立式と吟味）</strong></p>
 <ul><li><p>「等しい2つの数量」を見つけて方程式をつくれる（L07）</p></li><li><p>左辺・右辺が何を表すかを言葉で言える（L07・L08）</p></li><li><p>過不足・速さの場面で、同じ数量を二通りに表して立式できる（L08）</p></li><li><p>検算と吟味の2段チェックができる（L09）</p></li></ul>
-<figure class="svg-figure is-wide"><div class="figure-scroll" tabindex="0" role="region" aria-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 312" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-cd6356165f-title" aria-describedby="mg-cd6356165f-desc">
+<figure class="svg-figure is-wide"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 312" class="lesson-figure figure-wide" role="img" focusable="false" aria-labelledby="mg-cd6356165f-title" aria-describedby="mg-cd6356165f-desc">
 <title id="mg-cd6356165f-title">単元全体の3部屋マップ（意味・解く・使う＋廊下L10）</title>
 <desc id="mg-cd6356165f-desc">単元全体の3部屋マップ（意味・解く・使う＋廊下L10）</desc>
 <!-- L10_fig1_three_rooms_map.svg | 単元全体の3部屋マップ（意味・解く・使う＋廊下L10） -->
@@ -86,7 +87,7 @@
 <text x="271.0" y="270.0" font-size="12" text-anchor="middle">この章の背骨:「形を変えても解は変わらない」——意味が根拠を支え、</text>
 <text x="271.0" y="288.0" font-size="12" text-anchor="middle">根拠が手続きを支え、手続きが場面の問題解決を支える</text>
 </svg>
-</div><p class="figure-scroll-hint screen-only" aria-hidden="true">→ よこにスクロール</p><figcaption>単元全体の3部屋マップ（意味・解く・使う＋廊下L10）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-linear-equations/assets/L10_fig1_three_rooms_map.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>単元全体の3部屋マップ（意味・解く・使う＋廊下L10）</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-linear-equations/assets/L10_fig1_three_rooms_map.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="単元全体の3部屋マップ（意味・解く・使う＋廊下L10）">図を大きく見る</a></figure>
 <h2 id="総合演習">総合演習</h2>
 <ol start="1"><li><p><strong>意味の部屋から</strong>: −1, 0, 1, 2 のうち、方程式 5x−2＝3x＋2 の解はどれだろうか。4つの値をそれぞれ両辺に代入して確かめよう。</p></li><li><p><strong>根拠を言う</strong>: 方程式 x−6＝4 を x＝4＋6 と変形した。この変形を、(ア)移項という言葉を使った説明、(イ)等式の性質①〜④のどれを使ったかの説明、の両方で述べよう。</p></li><li><p><strong>解く</strong>: (3x−2)/4＝(x＋2)/2 を解こう（代入検算まで）。</p></li><li><p><strong>比例式</strong>: x：6＝5：3 を解こう（比の値の検算まで）。</p></li><li><p><strong>使う（立式から吟味まで）</strong>: 1個80円のドーナツと1個130円のマフィンを、合わせて9個買ったら、代金は920円だった。ドーナツを何個買っただろうか。立式の型の5ステップと、検算・吟味の2段チェックをすべて書くこと。</p></li></ol>
 <div class="callout callout-guide" role="note" aria-label="もう一歩くわしく"><div class="callout-label">もう一歩くわしく</div><p><strong>「解けたのに説明で詰まる」は伸びしろの合図</strong></p>
@@ -101,7 +102,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-linear-equations/lesson_10.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_09.html"><span>前のレッスン</span>L09 その解、場面に合ってる？——解の吟味</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-linear-equations/index.html">単元の目次</a><span class="lesson-nav-spacer" aria-hidden="true"></span></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_09.html"><span>前のレッスン</span>L09 その解、場面に合ってる？——解の吟味</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-linear-equations/index.html">単元の目次</a><span class="lesson-nav-spacer" aria-hidden="true"></span></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -110,7 +116,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -120,6 +126,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

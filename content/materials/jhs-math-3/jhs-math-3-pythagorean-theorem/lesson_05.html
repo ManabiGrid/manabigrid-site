@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L05 対角線・弦・2点間の距離——直角三角形を見つける">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L05 対角線・弦・2点間の距離——直角三角形を見つける｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="9e7a844b0eb01ad100610fc49ff73740be64ee9f92c3c1024cea30701af3388b" data-source-file="materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md">
+<body id="page-top" class="page-lesson" data-source-sha256="9e7a844b0eb01ad100610fc49ff73740be64ee9f92c3c1024cea30701af3388b" data-source-file="materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">中3数学「三平方の定理」</a></li><li aria-current="page">L05 対角線・弦・2点間の距離——直角三角形を見つける</li></ol></nav>
@@ -65,7 +66,7 @@
 <text x="200.0" y="228.0" font-size="12" text-anchor="middle">対角線ACが長方形を2つの直角三角形に分ける（∠B＝90°を使う）</text>
 <text x="200.0" y="245.0" font-size="12" text-anchor="middle">（例題1: 対角線ACの長さを求める）</text>
 </svg>
-</div><figcaption>長方形の対角線</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig1_rectangle_diagonal.svg">図を大きく開く</a></figure>
+</div><figcaption>長方形の対角線</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig1_rectangle_diagonal.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="長方形の対角線">図を大きく見る</a></figure>
 <p><strong>考え方</strong>: 対角線を1本引くと、長方形は合同な直角三角形2つに分かれる。長方形の角はすべて直角だから、対角線は「縦4cm・横6cmを直角をはさむ2辺とする直角三角形」の斜辺そのものだ。</p>
 <p>対角線²＝4²＋6²＝16＋36＝52 → 対角線＝√52＝<strong>2√13</strong>（cm）</p>
 <p>検算: (2√13)²＝52＝16＋36 ✓</p>
@@ -101,7 +102,7 @@
 <text x="200.0" y="288.0" font-size="12" text-anchor="middle">中心Oから弦ABへ垂線OH（3cm）＋半径OA（5cm）→直角三角形OAH</text>
 <text x="200.0" y="305.0" font-size="12" text-anchor="middle">垂線は弦を2等分する（AH＝HB・同ティック）</text>
 </svg>
-</div><figcaption>円の弦と中心からの距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig2_circle_chord_distance.svg">図を大きく開く</a></figure>
+</div><figcaption>円の弦と中心からの距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig2_circle_chord_distance.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="円の弦と中心からの距離">図を大きく見る</a></figure>
 <p><strong>考え方</strong>: 中心Oから弦に垂線OHを下ろす。ここで半径OAを1本引くと——直角三角形OAHの完成！ 斜辺は半径の5cm、1辺は3cm。</p>
 <p>AH²＋3²＝5² → AH²＝25−9＝16 → AH＝4（cm）</p>
 <p>垂線OHは弦ABを2等分するから（円の対称性による性質）、AB＝2×AH＝<strong>8cm</strong>。</p>
@@ -161,7 +162,7 @@
 <text x="200.0" y="292.0" font-size="12" text-anchor="middle">ABを斜辺に，横の線と縦の線で直角三角形ABCを作る（破線）</text>
 <text x="200.0" y="309.0" font-size="12" text-anchor="middle">（例題3: 2点A・B間の距離を求める）</text>
 </svg>
-</div><figcaption>座標平面上の2点間の距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig3_coordinate_distance.svg">図を大きく開く</a></figure>
+</div><figcaption>座標平面上の2点間の距離</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-pythagorean-theorem/assets/L05_fig3_coordinate_distance.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="座標平面上の2点間の距離">図を大きく見る</a></figure>
 <p><strong>考え方</strong>: AとBを結ぶ線分を斜辺として、<strong>横の線と縦の線で直角三角形を作る</strong>。横方向のずれは 4−1＝3、縦方向のずれは 6−2＝4。</p>
 <p>AB²＝3²＋4²＝9＋16＝25 → AB＝<strong>5</strong></p>
 <p>座標平面は、目に見えないだけで全体が方眼だ。だから2点間の距離は、いつでも「横のずれ」「縦のずれ」を2辺とする直角三角形で求められる。グラフの章で学んだ座標と、図形の章の三平方が、ここでつながる。</p>
@@ -179,7 +180,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-3/jhs-math-3-pythagorean-theorem/lesson_05.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 正三角形の高さと三角定規の3辺の比</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 √の長さを作図する——数直線上の平方根</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_04.html"><span>前のレッスン</span>L04 正三角形の高さと三角定規の3辺の比</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-pythagorean-theorem/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_06.html"><span>次のレッスン</span>L06 √の長さを作図する——数直線上の平方根</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -188,7 +194,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -198,6 +204,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

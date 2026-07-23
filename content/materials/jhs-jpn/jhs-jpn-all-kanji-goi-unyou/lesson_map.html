@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: 漢字と語彙の運用 — 単元構成案（全学年横断・基盤単元）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>漢字と語彙の運用 — 単元構成案（全学年横断・基盤単元）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/lesson_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="eee9535696c24639039be4551ba5c2282a1a73154dac57db26213d5eebf01ac7" data-source-file="materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/lesson_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="eee9535696c24639039be4551ba5c2282a1a73154dac57db26213d5eebf01ac7" data-source-file="materials/jhs-jpn/jhs-jpn-all-kanji-goi-unyou/lesson_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-jpn/index.html">中学 国語</a></li><li><a href="../../../../units/jhs-jpn-all-kanji-goi-unyou/index.html">中学国語「漢字と語彙の運用」（全学年横断）</a></li><li aria-current="page">漢字と語彙の運用 — 単元構成案（全学年横断・基盤単元）</li></ol></nav>
@@ -56,7 +57,12 @@
 <h2 id="5-本スライスの範囲">5. 本スライスの範囲</h2>
 <p>執筆状況（2026-07-10更新）: <strong>lesson_01〜03は2026-07-08、lesson_04〜07は2026-07-09に本文・解答・teacher_notesまで執筆済み</strong>（セルフQA工程で確認済み）。未執筆は<strong>L0診断ミニテストのみ</strong>（構成案の状態。本文・解答・判定規準は改稿時に作成する）。interactive HTML（変換候補選択UI）はL3の設計を核に別スライスで扱う。</p>
 <h2 id="6-検証チェック各レッスン共通機械チェック想定">6. 検証チェック（各レッスン共通・機械チェック想定）</h2>
-<ul><li><p>断定語検出: 「必ず」「〜が正解」「〜と書くのが正しい」等が使い分け解説に出ないこと。※検出対象は<strong>用法の断定</strong>のみとし、否定文脈（直後に「と言い切れない」「としない」等の否定・引用が続く場合。例: 「『この字が絶対に正解！』と言い切れない」）は除外する</p></li><li><p>「基準」「制限」が常用漢字表の説明に出ないこと</p></li><li><p>調査由来の数値（正答率・無解答率等）が本文（生徒可読部）に出ないこと（数値はteacher_notes側のみ・調査名＋年度付き。例外は常用漢字表2,136字＝告示年付きの制度事実のみ）</p></li><li><p>自作例文3点検証: ①公的な使い分け例と矛盾しない ②設問例文は文脈が漢字を一意に決める（許容型は許容条件を答え側に明示）③常用漢字表の音訓範囲内</p></li></ul></article></main>
+<ul><li><p>断定語検出: 「必ず」「〜が正解」「〜と書くのが正しい」等が使い分け解説に出ないこと。※検出対象は<strong>用法の断定</strong>のみとし、否定文脈（直後に「と言い切れない」「としない」等の否定・引用が続く場合。例: 「『この字が絶対に正解！』と言い切れない」）は除外する</p></li><li><p>「基準」「制限」が常用漢字表の説明に出ないこと</p></li><li><p>調査由来の数値（正答率・無解答率等）が本文（生徒可読部）に出ないこと（数値はteacher_notes側のみ・調査名＋年度付き。例外は常用漢字表2,136字＝告示年付きの制度事実のみ）</p></li><li><p>自作例文3点検証: ①公的な使い分け例と矛盾しない ②設問例文は文脈が漢字を一意に決める（許容型は許容条件を答え側に明示）③常用漢字表の音訓範囲内</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -65,7 +71,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -75,6 +81,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

@@ -65,6 +65,110 @@ class BuildContractTests(unittest.TestCase):
         self.assertEqual(first, second)
         self.assertRegex(first, r"^mg-[0-9a-f]{10}-$")
 
+    def test_svg_viewbox_layout_detects_compact_panorama(self) -> None:
+        self.assertEqual(build_site.svg_viewbox_layout("0 0 480 130"), (True, True))
+        self.assertEqual(build_site.svg_viewbox_layout("0 0 640 480"), (True, False))
+        self.assertEqual(build_site.svg_viewbox_layout("0 0 320 240"), (False, False))
+        self.assertEqual(build_site.svg_viewbox_layout("not a viewbox"), (False, False))
+
+    def test_page_shell_has_theme_end_navigation_and_conditional_figure_dialog(self) -> None:
+        ordinary = build_site.page(
+            Path("about/index.html"),
+            "案内",
+            "説明",
+            "<p>本文</p>",
+            [("トップ", Path("index.html")), ("案内", None)],
+            "page-about",
+        )
+        self.assertIn('id="page-top"', ordinary)
+        self.assertIn("data-theme-select", ordinary)
+        self.assertIn("_assets/theme.js", ordinary)
+        self.assertIn('class="page-end-nav', ordinary)
+        self.assertNotIn("data-figure-dialog", ordinary)
+
+        figure_page = build_site.page(
+            Path("content/example.html"),
+            "図のある教材",
+            "説明",
+            '<a class="figure-source" data-figure-open href="../_media/example.svg">図を大きく見る</a>',
+            [("トップ", Path("index.html")), ("教材", None)],
+            "page-lesson",
+        )
+        self.assertEqual(figure_page.count("data-figure-dialog "), 1)
+        self.assertIn("data-figure-close", figure_page)
+        self.assertIn("data-figure-original", figure_page)
+
+    def test_figure_dialog_script_has_keyboard_and_backdrop_close_contract(self) -> None:
+        script = (
+            (Path(build_site.__file__).with_name("static") / "site.js").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertIn("event.key !== 'Escape'", script)
+        self.assertIn("event.target === dialog", script)
+        self.assertIn("activeLink.focus({ preventScroll: true })", script)
+        self.assertIn("window.scrollTo(0, openingScrollY)", script)
+
+    def test_print_theme_restores_primary_controls_to_black_on_white(self) -> None:
+        css = (
+            (Path(build_site.__file__).with_name("static") / "site.css").read_text(
+                encoding="utf-8"
+            )
+        )
+        print_css = css.split("@media print", 1)[1]
+        self.assertRegex(
+            print_css,
+            r"\.button,\s*\.primary-action\s*\{[^}]*background:\s*#fff\s*!important;"
+            r"[^}]*color:\s*#000\s*!important;",
+        )
+
+    def test_unnumbered_unit_resources_use_the_full_content_column(self) -> None:
+        doc = build_site.Doc(
+            path=Path("/source/answer.md"),
+            rel=Path("materials/example/answer.md"),
+            output=Path("content/materials/example/answer.html"),
+            kind="answer",
+            title="解答集",
+            subject="jhs-math-1",
+            unit="example",
+            sha256="0" * 64,
+            frontmatter=False,
+            tags=0,
+        )
+        current = Path("units/example/index.html")
+        numbered = build_site.resource(current, doc, 1)
+        plain = build_site.resource(current, doc)
+        css = (
+            (Path(build_site.__file__).with_name("static") / "site.css").read_text(
+                encoding="utf-8"
+            )
+        )
+
+        self.assertIn('class="resource-item-numbered"', numbered)
+        self.assertIn('class="resource-item-plain"', plain)
+        self.assertNotIn('class="resource-number"', plain)
+        self.assertRegex(
+            css,
+            r"\.resource-list li\.resource-item-plain\s*\{"
+            r"[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);",
+        )
+
+    def test_empty_unit_resources_use_the_same_plain_row_contract(self) -> None:
+        body = build_site.unit_body(
+            build_site.Unit(
+                slug="jhs-math-3-empty",
+                subject="jhs-math-3",
+                title="空の単元",
+                docs=[],
+            )
+        )
+        self.assertEqual(body.count('class="resource-item-plain"'), 3)
+        self.assertEqual(
+            body.count('<li class="resource-item-plain"><div>'),
+            3,
+        )
+        self.assertNotRegex(body, r"<(?:ol|ul)><li>(?:独立|案内)")
+
     def test_review_state_conflict_is_conservative(self) -> None:
         self.assertTrue(build_site.has_review_state_conflict("候補ドラフト", "人間レビュー済"))
         self.assertFalse(build_site.has_review_state_conflict("候補ドラフト", "外部レビュー済"))

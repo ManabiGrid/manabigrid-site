@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L04 平面の住所——座標">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L04 平面の住所——座標｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="440386338793693ffbcf796abf1f1ac2bd02e42d616576ce3ae1f563befbd557" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.md">
+<body id="page-top" class="page-lesson" data-source-sha256="440386338793693ffbcf796abf1f1ac2bd02e42d616576ce3ae1f563befbd557" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">中1数学「比例と反比例」</a></li><li aria-current="page">L04 平面の住所——座標</li></ol></nav>
@@ -141,7 +142,7 @@
 <text x="240.0" y="404.0" font-size="11" text-anchor="middle">点Ａ: x軸へ垂直に下ろすと3・y軸へ下ろすと2 → Ａ(3, 2)</text>
 <text x="240.0" y="422.0" font-size="11" text-anchor="middle">ＥとＦは軸の上の点（座標の一方が0）</text>
 </svg>
-</div><figcaption>方眼つき座標平面（−5〜5）に原点Ｏと点Ａ〜Ｆの6点。点Ａにだけx軸・y軸へ垂直に下ろす破線が添えられ、ＥとＦは軸の上にある</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L04_fig1_coordinate_plane_basics.svg">図を大きく開く</a></figure>
+</div><figcaption>方眼つき座標平面（−5〜5）に原点Ｏと点Ａ〜Ｆの6点。点Ａにだけx軸・y軸へ垂直に下ろす破線が添えられ、ＥとＦは軸の上にある</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L04_fig1_coordinate_plane_basics.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="方眼つき座標平面（−5〜5）に原点Ｏと点Ａ〜Ｆの6点。点Ａにだけx軸・y軸へ垂直に下ろす破線が添えられ、ＥとＦは軸の上にある">図を大きく見る</a></figure>
 <p>負の数のおかげで、右にも左にも、上にも下にも住所がつけられる。x座標が負なら原点より<strong>左</strong>、y座標が負なら原点より<strong>下</strong>。たとえば(−2, −3)は「左へ2、下へ3」の点だ。</p>
 <p>軸の上の点にも注意しよう。x軸の上にある点はy座標が0（たとえば(−3, 0)）、y軸の上にある点はx座標が0（たとえば(0, 3)）。原点Ｏの座標は(0, 0)だ。</p>
 <div class="callout callout-zatsudan" role="note" aria-label="ちょっとひと息"><div class="callout-label">ちょっとひと息</div><p>たった2本の数直線を直角に組んだだけで、平面のどの点にも、もれなく・重なりなく、数の組の「住所」がつく。逆に、数の組を1つ言えば点が1つに決まる。点と数の組がぴったり一対一——この仕組みのおかげで、次のレッスンからは「関係」を「絵」として見られるようになる。図形の世界と数の世界をつなぐ、小さくて強い発明だ。</p></div>
@@ -243,7 +244,7 @@
 <text x="240.0" y="24.0" font-size="13" text-anchor="middle" font-weight="bold">練習——点Ａ〜Ｆの座標を読もう</text>
 <text x="240.0" y="404.0" font-size="11" text-anchor="middle">方眼を目でたどって、（横→たて）の順で読む</text>
 </svg>
-</div><figcaption>方眼つき座標平面（−5〜5）に点Ａ〜Ｆの6点が黒丸と名前ラベルだけで打たれた練習用の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L04_fig2_coordinate_reading_practice.svg">図を大きく開く</a></figure></li><li><p>次の点を座標平面にとろう（図はノートにかく）。  Ｐ(4, 3)　Ｑ(−2, 5)　Ｒ(−5, −2)　Ｓ(1, −4)　Ｔ(0, 4)　Ｕ(−3, 0)</p></li><li><p>次の文が正しければ○、正しくなければ×を付けて、×は正しく直そう。  (1) 点(2, 3)と点(3, 2)は同じ点である。  (2) x軸の上にある点は、y座標が0である。  (3) 原点Ｏの座標は(0, 0)である。</p></li><li><p>点(a, b)がy軸の上にあるとき、aとbについて分かることを書こう。</p></li></ol>
+</div><figcaption>方眼つき座標平面（−5〜5）に点Ａ〜Ｆの6点が黒丸と名前ラベルだけで打たれた練習用の図</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-1/jhs-math-1-proportion-inverse-proportion/assets/L04_fig2_coordinate_reading_practice.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="方眼つき座標平面（−5〜5）に点Ａ〜Ｆの6点が黒丸と名前ラベルだけで打たれた練習用の図">図を大きく見る</a></figure></li><li><p>次の点を座標平面にとろう（図はノートにかく）。  Ｐ(4, 3)　Ｑ(−2, 5)　Ｒ(−5, −2)　Ｓ(1, −4)　Ｔ(0, 4)　Ｕ(−3, 0)</p></li><li><p>次の文が正しければ○、正しくなければ×を付けて、×は正しく直そう。  (1) 点(2, 3)と点(3, 2)は同じ点である。  (2) x軸の上にある点は、y座標が0である。  (3) 原点Ｏの座標は(0, 0)である。</p></li><li><p>点(a, b)がy軸の上にあるとき、aとbについて分かることを書こう。</p></li></ol>
 <div class="callout callout-stretch" role="note" aria-label="チャレンジ"><div class="callout-label">チャレンジ</div><p><strong>S1</strong> 点Ａ(3, 2)に対して、x軸をはさんでちょうど反対側（x軸について対称な位置）にある点Ｂの座標を考えよう。同じように、y軸をはさんで反対側の点Ｃ、原点をはさんで反対側の点Ｄの座標も求め、符号の変わり方の規則を1文でまとめてみよう。</p></div>
 <hr>
 <p>対応解答: answer_key_L01-04.md</p><a class="answer-link" href="answer_key_L01-04.html"><span>自分で考えてから</span><strong>答えを見る</strong></a>
@@ -251,7 +252,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/lesson_04.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 比例を捉え直す——負の数の世界へ</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 比例のグラフ——原点を通る直線</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><a class="lesson-nav-prev" href="lesson_03.html"><span>前のレッスン</span>L03 比例を捉え直す——負の数の世界へ</a><a class="lesson-nav-unit" href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_05.html"><span>次のレッスン</span>L05 比例のグラフ——原点を通る直線</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -260,7 +266,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -270,6 +276,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

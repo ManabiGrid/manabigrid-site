@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: レッスンマップ — 中2数学「式の計算」（全14時間・12〜13時間版調整可）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>レッスンマップ — 中2数学「式の計算」（全14時間・12〜13時間版調整可）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="01f54afc253b9755c2fc36e77dcdfd44f46892e7195a526ba02d71031ef235ba" data-source-file="materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="01f54afc253b9755c2fc36e77dcdfd44f46892e7195a526ba02d71031ef235ba" data-source-file="materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-expression-calculation/index.html">中2数学「式の計算」</a></li><li aria-current="page">レッスンマップ — 中2数学「式の計算」（全14時間・12〜13時間版調整可）</li></ol></nav>
@@ -63,7 +64,12 @@
 <h2 id="レーン分離do_not_cover禁止事項の反映">レーン分離・do_not_cover（禁止事項の反映）</h2>
 <ul><li><p><strong>中3先取り禁止</strong>: 単項式×多項式の乗法・多項式÷単項式・簡単な一次式の乗法・乗法公式・展開・因数分解は扱わない（中2は「単項式どうしの乗法や除法」まで＝解説原文）。</p></li><li><p><strong>複雑な計算練習の量産禁止</strong>: 「連立二元一次方程式を解くのに必要な２（３x−２y）−３（２x＋５y）程度」（解説明文）を超える複雑な計算をpublic_coreに置かない。等式の変形も「必要以上に複雑で無目的なものにならないように」。</p></li><li><p><strong>調査問題（全国学調R4〜R7・H15調査）の設問本文・図・数値設定の転載禁止</strong>——練習・活動はすべて自作数値。</p></li><li><p><strong>教科書紙面・学習項目の中身の模倣禁止</strong>（配当時数・章構成等の事実情報のみ参照済み）。</p></li><li><p><strong>生徒向け本文に調査数値を書かない</strong>（正答率・反応率・通過率等は設計根拠としてteacher_notes側のみ）。</p></li><li><p>「同類項」以外の語を〔用語・記号〕指定と偽装しない（指定は1語のみ。単項式・多項式は解説本文語、次数・係数・分配法則は指定外）。</p></li><li><p>summary外の事実追加・Web再調査・answer keyの本文混在の禁止。</p></li></ul>
 <h2 id="ファイル構成と解答分離">ファイル構成と解答分離</h2>
-<ul><li><p>本文: lesson_01.md〜lesson_10.md（タグ付きcore。:::zatsudan各1・:::guide 2〜3・:::stretch。<strong>:::answerは不使用</strong>）</p></li><li><p>解答: answer_key_L01-04.md／answer_key_L05-07.md／answer_key_L08-10.md（全設問＋stretch設問の解答・検算過程つき。計算問題には代入検算、等式の変形には「元の等式に戻す」検算を添える）</p></li><li><p>各レッスン末に「対応解答: answer_key_xx.md」の1行を置く。</p></li><li><p>指導者メモ: teacher_notes.md（数値・出典・年度・問題番号・指標名をsummary記載分のみ正確に転記。並置注記・準正答→正答の変換禁止等の解釈規律を保存）。</p></li></ul></article></main>
+<ul><li><p>本文: lesson_01.md〜lesson_10.md（タグ付きcore。:::zatsudan各1・:::guide 2〜3・:::stretch。<strong>:::answerは不使用</strong>）</p></li><li><p>解答: answer_key_L01-04.md／answer_key_L05-07.md／answer_key_L08-10.md（全設問＋stretch設問の解答・検算過程つき。計算問題には代入検算、等式の変形には「元の等式に戻す」検算を添える）</p></li><li><p>各レッスン末に「対応解答: answer_key_xx.md」の1行を置く。</p></li><li><p>指導者メモ: teacher_notes.md（数値・出典・年度・問題番号・指標名をsummary記載分のみ正確に転記。並置注記・準正答→正答の変換禁止等の解釈規律を保存）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -72,7 +78,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -82,6 +88,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

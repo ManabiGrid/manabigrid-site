@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 解答: 解答編 L01〜L04（式の展開）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>解答編 L01〜L04（式の展開）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-expansion-factorization/answer_key_L01-04.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-answer" data-source-sha256="3cbdc157d7fa72acba6b18c7da20fd80df07e2258cba736b278607dfe07fbb69" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/answer_key_L01-04.md">
+<body id="page-top" class="page-answer" data-source-sha256="3cbdc157d7fa72acba6b18c7da20fd80df07e2258cba736b278607dfe07fbb69" data-source-file="materials/jhs-math-3/jhs-math-3-expansion-factorization/answer_key_L01-04.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-expansion-factorization/index.html">中3数学「式の展開と因数分解」</a></li><li aria-current="page">解答編 L01〜L04（式の展開）</li></ol></nav>
@@ -62,7 +63,12 @@
 <ol start="1"><li><p>(1) (x＋6)²＝<strong>x²＋12x＋36</strong>  (2) (x−9)²＝<strong>x²−18x＋81</strong>（最後の項は (−9)²＝＋81）  (3) (a＋5)(a−5)＝<strong>a²−25</strong>  (4) (2x＋3)²＝(2x)²＋2×2x×3＋3²＝<strong>4x²＋12x＋9</strong>  (5) (3a−4b)(3a＋4b)＝(3a)²−(4b)²＝<strong>9a²−16b²</strong></p></li><li><p>(1) 別々の数 → 公式①: 和 −13・積 36 → <strong>x²−13x＋36</strong>  (2) 符号だけ違う → 公式④: <strong>x²−100</strong>  (3) 同じかっこの2乗 → 公式③: <strong>x²−2x＋1</strong>  (4) 別々の数 → 公式①: 和 6・積 −16 → <strong>a²＋6a−16</strong></p></li><li><p>(1) x＋y＝M と置く。(M＋2)(M−2)＝M²−4＝(x＋y)²−4＝<strong>x²＋2xy＋y²−4</strong>  (2) a−b＝M と置く。(M＋5)²＝M²＋10M＋25＝(a−b)²＋10(a−b)＋25＝<strong>a²−2ab＋b²＋10a−10b＋25</strong></p></li><li><p>a＝3, b＝4 のとき、(3＋4)²＝7²＝<strong>49</strong>。一方 3²＋4²＝9＋16＝<strong>25</strong>。49≠25 なので (a＋b)²＝a²＋b² は正しくない。  正しい展開 a²＋2ab＋b² との差は <strong>2ab の項</strong>（この例では 2×3×4＝24。実際 49−25＝24 ✓）。</p></li></ol>
 <h3 id="stretch-3">stretch</h3>
 <p><strong>S1</strong> 差: (a＋b)²−(a−b)²＝(a²＋2ab＋b²)−(a²−2ab＋b²)＝<strong>4ab</strong> 和: (a＋b)²＋(a−b)²＝<strong>2a²＋2b²</strong> 検算（a＝5, b＝2）: 差 7²−3²＝49−9＝40＝4×5×2 ✓、和 49＋9＝58＝2×25＋2×4 ✓</p>
-<p><strong>S2</strong> は設問ではなく、解き方の道筋（公式④→x²をひとまとまりとみてもう一度公式④）を示した「発展の入り口」のため、解答はなし（この先の4乗の式の展開・因数分解は高校範囲として本文で予告のみ）。</p></article></main>
+<p><strong>S2</strong> は設問ではなく、解き方の道筋（公式④→x²をひとまとまりとみてもう一度公式④）を示した「発展の入り口」のため、解答はなし（この先の4乗の式の展開・因数分解は高校範囲として本文で予告のみ）。</p></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -71,7 +77,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -81,6 +87,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 グラフが多すぎて比べられない——箱ひげ図との出会い">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 グラフが多すぎて比べられない——箱ひげ図との出会い｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="7b206859c0f1546b50c27e3b589b2b1faed51ad9662a6a81faf60f24f89c8b98" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="7b206859c0f1546b50c27e3b589b2b1faed51ad9662a6a81faf60f24f89c8b98" data-source-file="materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-2/index.html">中学2年 数学</a></li><li><a href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">中2数学「四分位範囲と箱ひげ図」</a></li><li aria-current="page">L01 グラフが多すぎて比べられない——箱ひげ図との出会い</li></ol></nav>
@@ -150,7 +151,7 @@
 <text x="250.0" y="22.0" font-size="13" text-anchor="middle" font-weight="bold">3クラスの家庭学習時間のヒストグラム</text>
 <text x="250.0" y="490.0" font-size="11" text-anchor="middle">横軸: 家庭学習時間（時間・階級の幅2）／縦軸: 度数（人）（架空の練習用データ）</text>
 </svg>
-</div><figcaption>3クラスの家庭学習時間のヒストグラム3枚が縦に並ぶ。形はそれぞれ異なるが、どのクラスが全体として長いのか一目では判断しにくい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L01_fig1_three_class_histograms.svg">図を大きく開く</a></figure>
+</div><figcaption>3クラスの家庭学習時間のヒストグラム3枚が縦に並ぶ。形はそれぞれ異なるが、どのクラスが全体として長いのか一目では判断しにくい</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L01_fig1_three_class_histograms.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="3クラスの家庭学習時間のヒストグラム3枚が縦に並ぶ。形はそれぞれ異なるが、どのクラスが全体として長いのか一目では判断しにくい">図を大きく見る</a></figure>
 <p>1枚1枚はよく分かる。でも「どのクラスがいちばん勉強しているか」「散らばりが大きいのはどこか」を答えようとすると、3枚のあいだで目を往復させることになる。これが5クラス、10クラスだったら？　ヒストグラムは<strong>1つの集団の分布の形</strong>を見るのは得意だが、<strong>たくさんの集団を並べて比べる</strong>のは苦手なのだ。</p>
 <p>そこで発想を変える。<strong>1つの集団の情報を、思い切って数個の値に縮めてしまい</strong>、その数個だけを図にすれば、何本でも並べて比べられるはずだ。情報を縮める——これがこの章の合言葉になる。</p>
 <h2 id="主概念2箱ひげ図5つの値だけでデータを語る">主概念2：箱ひげ図——5つの値だけでデータを語る</h2>
@@ -218,7 +219,7 @@
 <text x="385.7" y="34.0" font-size="11" text-anchor="middle" font-weight="bold">最大値</text>
 <text x="250.0" y="318.0" font-size="11" text-anchor="middle">横軸: 家庭学習時間（時間）・各クラス24人（架空の練習用データ）</text>
 </svg>
-</div><figcaption>3クラスの家庭学習時間の箱ひげ図が同じ数直線上に3本並ぶ。各図は左右にのびる線（ひげ）と中央の箱、箱の中の縦線からなり、1組の図に5つの値の名前が注記されている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L01_fig2_three_class_boxplots.svg">図を大きく開く</a></figure>
+</div><figcaption>3クラスの家庭学習時間の箱ひげ図が同じ数直線上に3本並ぶ。各図は左右にのびる線（ひげ）と中央の箱、箱の中の縦線からなり、1組の図に5つの値の名前が注記されている</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-2/jhs-math-2-quartiles-boxplot/assets/L01_fig2_three_class_boxplots.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="3クラスの家庭学習時間の箱ひげ図が同じ数直線上に3本並ぶ。各図は左右にのびる線（ひげ）と中央の箱、箱の中の縦線からなり、1組の図に5つの値の名前が注記されている">図を大きく見る</a></figure>
 <p>この図を<strong>箱ひげ図</strong>（はこひげず）という。使う値はたった5つだ。</p>
 <ul><li><p><strong>最小値</strong>・<strong>最大値</strong>——データの両端。ひげの先がここまでのびる。</p></li><li><p><strong>中央値</strong>——データを大きさの順に並べたときの真ん中の値（小学校で学んだあの中央値）。箱の中の縦線。</p></li><li><p><strong>第1四分位数</strong>・<strong>第3四分位数</strong>——箱の左端と右端。データを小さい順に並べて<strong>四つに等しく分けたときの区切りの値</strong>で、くわしい求め方はL03で学ぶ。今日は「箱の両端の値」として読み取れれば十分。</p></li></ul>
 <p>3本を同じ数直線の上に並べると、「2組の箱はいちばん右にある」「3組は左寄りで、右に長くひげがのびている」——比較が<strong>一目</strong>でできる。ヒストグラム3枚とくらべてほしい。情報をたった5つの値に縮めた見返りが、この一覧性だ。</p>
@@ -240,7 +241,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-2/jhs-math-2-quartiles-boxplot/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 箱の中には「約半数」——箱ひげ図の読み方</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-2-quartiles-boxplot/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 箱の中には「約半数」——箱ひげ図の読み方</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -249,7 +255,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -259,6 +265,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

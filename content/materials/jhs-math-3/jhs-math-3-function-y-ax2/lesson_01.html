@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid レッスン: L01 関数の物語・第3幕——2乗に比例との出会い">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>L01 関数の物語・第3幕——2乗に比例との出会い｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-lesson" data-source-sha256="d6ba5e588b5e51bc0f04b4996e6b3a5e3716914e8e9204c4053aec0f475da6d6" data-source-file="materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md">
+<body id="page-top" class="page-lesson" data-source-sha256="d6ba5e588b5e51bc0f04b4996e6b3a5e3716914e8e9204c4053aec0f475da6d6" data-source-file="materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../units/jhs-math-3-function-y-ax2/index.html">中3数学「関数y=ax²」</a></li><li aria-current="page">L01 関数の物語・第3幕——2乗に比例との出会い</li></ol></nav>
@@ -48,7 +49,7 @@
 <h2 id="主概念1同じ正方形からちがう増え方が生まれる">主概念1：同じ正方形から、ちがう増え方が生まれる</h2>
 <p>1辺がx cmの正方形を考えよう。この正方形から、2つの量が決まる。</p>
 <ul><li><p>まわりの長さ y＝4x（cm）</p></li><li><p>面積 y＝x²（cm²）</p></li></ul>
-<figure class="svg-figure"><div class="figure-scroll"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 172" class="lesson-figure" role="img" focusable="false" aria-labelledby="mg-4c6a73ecb6-title" aria-describedby="mg-4c6a73ecb6-desc">
+<figure class="svg-figure is-wide is-panoramic"><div class="figure-scroll" data-scroll-label="図を横にスクロール"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 172" class="lesson-figure figure-wide figure-panoramic" role="img" focusable="false" aria-labelledby="mg-4c6a73ecb6-title" aria-describedby="mg-4c6a73ecb6-desc">
 <title id="mg-4c6a73ecb6-title">1辺1〜4cmの正方形——まわりの長さと面積</title>
 <desc id="mg-4c6a73ecb6-desc">1辺1〜4cmの正方形——まわりの長さと面積</desc>
 <!-- L01_fig1_growing_squares.svg | 1辺1〜4cmの正方形——まわりの長さと面積 -->
@@ -83,7 +84,7 @@
 <text x="352.0" y="138.0" font-size="12" text-anchor="middle">まわり16cm</text>
 <text x="352.0" y="154.0" font-size="12" text-anchor="middle">面積16cm²</text>
 </svg>
-</div><figcaption>1辺1〜4cmの正方形——まわりの長さと面積</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L01_fig1_growing_squares.svg">図を大きく開く</a></figure>
+</div><p class="figure-scroll-hint screen-only" data-scroll-hint hidden>→ よこにスクロール</p><figcaption>1辺1〜4cmの正方形——まわりの長さと面積</figcaption><a class="figure-source screen-only" href="../../../../_media/jhs-math-3/jhs-math-3-function-y-ax2/assets/L01_fig1_growing_squares.svg" target="_blank" rel="noopener" data-figure-open data-figure-title="1辺1〜4cmの正方形——まわりの長さと面積">図を大きく見る</a></figure>
 <p>どちらも、xの値を決めるとyの値がただ1つ決まる。つまりどちらも<strong>yはxの関数</strong>だ。では、増え方も同じだろうか？ 表で比べてみよう。</p>
 <div class="table-wrap" data-scroll-label="x（cm）・1・2の表（1）"><table><thead><tr><th scope="col">x（cm）</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr></thead><tbody><tr><td>まわりの長さ y＝4x</td><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td><td>24</td></tr><tr><td>面積 y＝x²</td><td>1</td><td>4</td><td>9</td><td>16</td><td>25</td><td>36</td></tr></tbody></table></div>
 <p>まわりの長さは、中1で学んだ比例そのものだ。xが2倍・3倍になると、yも2倍・3倍になる。</p>
@@ -111,7 +112,12 @@
   <h2 id="lesson-provenance-title">この教材の来歴</h2>
   <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/materials/jhs-math-3/jhs-math-3-function-y-ax2/lesson_01.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">正本Markdownを固定コミットで見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
   <p>誤りや分かりにくい所は、<a class="external-link" href="https://github.com/ManabiGrid/manabigrid/issues/new?template=error_report.yml" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">GitHub Issue<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>または<a class="external-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">おたよりフォーム<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>で知らせられます。個人情報は書かないでください。</p>
-</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-function-y-ax2/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 「yはxの2乗に比例する」——定義と式の決定</a></nav></article></div></main>
+</aside><nav class="lesson-nav" aria-label="レッスン間の移動"><span class="lesson-nav-spacer" aria-hidden="true"></span><a class="lesson-nav-unit" href="../../../../units/jhs-math-3-function-y-ax2/index.html">単元の目次</a><a class="lesson-nav-next" href="lesson_02.html"><span>次のレッスン</span>L02 「yはxの2乗に比例する」——定義と式の決定</a></nav></article></div>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -120,7 +126,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -130,6 +136,24 @@
     </section>
   </div>
 </footer>
+
+<dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+  <div class="figure-dialog-panel">
+    <header class="figure-dialog-header">
+      <h2 id="figure-dialog-title" data-figure-dialog-title>図を大きく見る</h2>
+      <button class="figure-dialog-close" type="button" data-figure-close>
+        <span aria-hidden="true">×</span><span>閉じる</span>
+      </button>
+    </header>
+    <div class="figure-dialog-viewport" data-figure-dialog-viewport>
+      <img data-figure-dialog-image alt="">
+    </div>
+    <footer class="figure-dialog-footer">
+      <p>大きな図は上下左右にスクロールできます。</p>
+      <a data-figure-original target="_blank" rel="noopener">SVGを別のタブで開く</a>
+    </footer>
+  </div>
+</dialog>
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

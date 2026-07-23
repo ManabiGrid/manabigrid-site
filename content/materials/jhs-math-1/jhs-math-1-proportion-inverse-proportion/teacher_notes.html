@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 指導・制作資料: teachernotes — 中1数学「比例と反比例」">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>teachernotes — 中1数学「比例と反比例」｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/teacher_notes.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-teacher" data-source-sha256="f198c9e7c10a260c077a3ebc43ebaf5df2f4f5fd76354675d8d1ec4376477699" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/teacher_notes.md">
+<body id="page-top" class="page-teacher" data-source-sha256="f198c9e7c10a260c077a3ebc43ebaf5df2f4f5fd76354675d8d1ec4376477699" data-source-file="materials/jhs-math-1/jhs-math-1-proportion-inverse-proportion/teacher_notes.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-proportion-inverse-proportion/index.html">中1数学「比例と反比例」</a></li><li aria-current="page">teachernotes — 中1数学「比例と反比例」</li></ol></nav>
@@ -66,7 +67,12 @@
 <h3 id="e-1-評価設計nier学習評価に関する参考資料令和2年3月">E-1. 評価設計（NIER『学習評価に関する参考資料』令和2年3月）</h3>
 <ul><li><p>C(1)の評価規準例（3観点・<strong>1学年型</strong>「気付いて」の語り）で設計する。</p></li><li><p><strong>「意味の理解」と「技能」を別の評価場面に</strong>（A-6の乖離=手続き85.0% vs 意味理解21.1〜43.4%が実測されているため）——L12の部屋1（意味）と部屋2（技能）の分離、L01/L07（意味）とL05/L06/L08（技能）のレッスン分離に反映。</p></li><li><p>態度観点は「<strong>比例・反比例のよさ（少ない情報から全体が分かる・予測できる）の言語化</strong>」——L10 zatsudan・L11練習4（計画を書く問題）・S1（信頼度の考察）が対応する場面。</p></li><li><p><strong>本単元の公的な単元事例は不在</strong>——型は事例1（一次関数=<strong>第2学年の事例</strong>）の3観点構成を1学年語彙に落として使う。第2学年の事例であることを偽装しない。</p></li></ul>
 <h3 id="e-2-提出前自己検査2026-07-18パスc自己実測パスdの独立検証を代替しない">E-2. 提出前自己検査（2026-07-18・パスC自己実測。パスDの独立検証を代替しない）</h3>
-<ul><li><p>[x] 禁止語grep: 「変化の割合」「傾き」「切片」「定義域」「値域」「漸近線」「一次関数」「y=ax+b」——本文・解答・本ノートの生徒可読引用部で0件（本ノートの禁止語一覧行のみ該当）。</p></li><li><p>[x] 中2予告ゼロ: L12を含む全レッスンに次学年内容の予告なし（接続の記述は本ノートA-3のみ）。</p></li><li><p>[x] 時間配当の算術: 2+1+2+1+2+2+2+2+2+2+1+1＝20。節小計 3+7+6+3+1＝20。子単元 10+6+3+1＝20 ✓。</p></li><li><p>[x] 数値解答の再計算: answer_key全設問の代入・商・積の検算を執筆時に手計算で実施（各解答に検算式を明記）。</p></li><li><p>[x] 学調数値の年度なし使用ゼロ: 本ノートの数値はすべて年度・設問番号（または設問名）つき。生徒向け本文・雑談枠への数値記載ゼロ。</p></li><li><p>[x] 雑談枠12箇所の出自: L01=逆の不成立（純数学）／L02=変域の意味（純数学）／L03=2方向拡張（summary）／L04=一対一対応（summary定義由来）／L05=グラフのよさ（三表現の役割・summary）／L06=<strong>三つの言葉</strong>（summary承認話題）／L07=<strong>正多角形×外角=360</strong>（summary承認話題・xy＝360）／L08=軸に触れない観察（summary記載の性質）／L09=対比の構造（純数学）／L10=<strong>少ない情報から全体</strong>（summary態度文言）／L11=みなしの自覚（summary但し書き由来）／L12=<strong>小5から3回目の螺旋＋三つの言葉</strong>（summary承認話題）。実在逸話・実在人物ゼロ。</p></li><li><p>[x] 他者前提活動ゼロ: 本文の活動・練習はすべて一人で完結（ペア・発表等は本ノートD節の教室オプションのみ）。</p></li><li><p>[x] 図版: 全12レッスンに各1枚以上・計19枚（L01×2・L04×2・L05×3・L06×2・L08×2・L10×2・他6レッスン各1）。プレースホルダはコード来歴方式のSVG（<code>assets/</code>・生成スクリプト＝<code>assets_provenance/generate_figures.py</code>・台帳＝<code>assets_provenance/FIGURE_MANIFEST.md</code>）で実体化済み。意図・主要数値・再現説明は本文のfigure-specコメントとSVGの&lt;desc&gt;に保持。</p></li><li><p>[x] answer leakage: 本文にヒント超の解答記載なし（:::answer不使用・解答は別ファイル3分冊）。</p></li><li><p>[x] summary外の事実断定: 教科書名・調査の追加詳細・実在の逸話等の追加なし（場面・数値は全て自作である旨を各所に明記）。</p></li></ul></article></main>
+<ul><li><p>[x] 禁止語grep: 「変化の割合」「傾き」「切片」「定義域」「値域」「漸近線」「一次関数」「y=ax+b」——本文・解答・本ノートの生徒可読引用部で0件（本ノートの禁止語一覧行のみ該当）。</p></li><li><p>[x] 中2予告ゼロ: L12を含む全レッスンに次学年内容の予告なし（接続の記述は本ノートA-3のみ）。</p></li><li><p>[x] 時間配当の算術: 2+1+2+1+2+2+2+2+2+2+1+1＝20。節小計 3+7+6+3+1＝20。子単元 10+6+3+1＝20 ✓。</p></li><li><p>[x] 数値解答の再計算: answer_key全設問の代入・商・積の検算を執筆時に手計算で実施（各解答に検算式を明記）。</p></li><li><p>[x] 学調数値の年度なし使用ゼロ: 本ノートの数値はすべて年度・設問番号（または設問名）つき。生徒向け本文・雑談枠への数値記載ゼロ。</p></li><li><p>[x] 雑談枠12箇所の出自: L01=逆の不成立（純数学）／L02=変域の意味（純数学）／L03=2方向拡張（summary）／L04=一対一対応（summary定義由来）／L05=グラフのよさ（三表現の役割・summary）／L06=<strong>三つの言葉</strong>（summary承認話題）／L07=<strong>正多角形×外角=360</strong>（summary承認話題・xy＝360）／L08=軸に触れない観察（summary記載の性質）／L09=対比の構造（純数学）／L10=<strong>少ない情報から全体</strong>（summary態度文言）／L11=みなしの自覚（summary但し書き由来）／L12=<strong>小5から3回目の螺旋＋三つの言葉</strong>（summary承認話題）。実在逸話・実在人物ゼロ。</p></li><li><p>[x] 他者前提活動ゼロ: 本文の活動・練習はすべて一人で完結（ペア・発表等は本ノートD節の教室オプションのみ）。</p></li><li><p>[x] 図版: 全12レッスンに各1枚以上・計19枚（L01×2・L04×2・L05×3・L06×2・L08×2・L10×2・他6レッスン各1）。プレースホルダはコード来歴方式のSVG（<code>assets/</code>・生成スクリプト＝<code>assets_provenance/generate_figures.py</code>・台帳＝<code>assets_provenance/FIGURE_MANIFEST.md</code>）で実体化済み。意図・主要数値・再現説明は本文のfigure-specコメントとSVGの&lt;desc&gt;に保持。</p></li><li><p>[x] answer leakage: 本文にヒント超の解答記載なし（:::answer不使用・解答は別ファイル3分冊）。</p></li><li><p>[x] summary外の事実断定: 教科書名・調査の追加詳細・実在の逸話等の追加なし（場面・数値は全て自作である旨を各所に明記）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -75,7 +81,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -85,6 +91,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>

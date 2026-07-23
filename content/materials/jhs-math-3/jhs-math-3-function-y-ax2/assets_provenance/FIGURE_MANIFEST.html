@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 制作資料: FIGUREMANIFEST — 関数y=ax²単元 図版台帳">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>FIGUREMANIFEST — 関数y=ax²単元 図版台帳｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-3/jhs-math-3-function-y-ax2/assets_provenance/FIGURE_MANIFEST.html">
   <link rel="icon" type="image/svg+xml" href="../../../../../_assets/favicon.svg">
+  <script src="../../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../../_assets/site.css">
 </head>
-<body class="page-reference" data-source-sha256="eb78a7e0b4998d9f6fffd1a4237528a8871dff3f6a4f1ee01a72337617b541ae" data-source-file="materials/jhs-math-3/jhs-math-3-function-y-ax2/assets_provenance/FIGURE_MANIFEST.md">
+<body id="page-top" class="page-reference" data-source-sha256="eb78a7e0b4998d9f6fffd1a4237528a8871dff3f6a4f1ee01a72337617b541ae" data-source-file="materials/jhs-math-3/jhs-math-3-function-y-ax2/assets_provenance/FIGURE_MANIFEST.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../../browse/index.html">教材をさがす</a><a href="../../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../../index.html">トップ</a></li><li><a href="../../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../../subjects/jhs-math-3/index.html">中学3年 数学</a></li><li><a href="../../../../../units/jhs-math-3-function-y-ax2/index.html">中3数学「関数y=ax²」</a></li><li aria-current="page">FIGUREMANIFEST — 関数y=ax²単元 図版台帳</li></ol></nav>
@@ -46,7 +47,12 @@
 <h2 id="座標スケールの注記関数グラフ規約スペック8未決1への暫定実装">座標・スケールの注記（関数グラフ規約——スペック§8未決1への暫定実装）</h2>
 <ul><li><p>通過点・変域端点・階段の●○はすべて式から座標計算し、プレースホルダの指定値とassertで照合（目分量ゼロ）。曲線は関数を160〜240分割でサンプリングした折れ線。</p></li><li><p>yの範囲が大きい図（L05図1・L07図1・L08・L10図2・L12）はx軸とy軸の縮尺を変えている（1目盛=1の目盛線は等間隔のまま）。縦横比が意味を持つL10図1（正方形）は等縮尺。</p></li><li><p>軸は矢印つき・目盛は1目盛=1（L12のy軸は200円刻み）。数値ラベルは判読性と答えの分離を優先して間引く。</p></li></ul>
 <h2 id="再生成改修の手順第三者向け">再生成・改修の手順（第三者向け）</h2>
-<ol start="1"><li><p><code>generate_figures.py</code> の該当 <code>fig_*</code> 関数冒頭「パラメータ」ブロックを編集する  （数値は必ず該当 <code>lesson_XX.md</code> 本文と一致させる）。</p></li><li><p><code>python3 generate_figures.py</code> を実行する。検算assertに1つでも落ちると図は出力されない。</p></li><li><p><code>assets/</code> のSVGと本ファイルが自動更新される。  SVGの直接編集は禁止（来歴が切れる）。</p></li></ol></article></main>
+<ol start="1"><li><p><code>generate_figures.py</code> の該当 <code>fig_*</code> 関数冒頭「パラメータ」ブロックを編集する  （数値は必ず該当 <code>lesson_XX.md</code> 本文と一致させる）。</p></li><li><p><code>python3 generate_figures.py</code> を実行する。検算assertに1つでも落ちると図は出力されない。</p></li><li><p><code>assets/</code> のSVGと本ファイルが自動更新される。  SVGの直接編集は禁止（来歴が切れる）。</p></li></ol></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -55,7 +61,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -65,6 +71,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../../_assets/site.js" defer></script>
 </body>
 </html>

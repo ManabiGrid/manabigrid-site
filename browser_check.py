@@ -55,6 +55,14 @@ PAGES = (
         "mathml",
         ROOT / "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html",
     ),
+    (
+        "unit-resources",
+        ROOT / "units/jhs-math-1-positive-negative-numbers/index.html",
+    ),
+    (
+        "unit-resources-empty",
+        ROOT / "units/jhs-math-3-appendix/index.html",
+    ),
 )
 NOT_FOUND_ROUTE = "browser-check-not-found"
 
@@ -410,6 +418,12 @@ METRICS_SCRIPT = r"""
       clientWidth: element.clientWidth,
       scrollWidth: element.scrollWidth,
       text: (element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
+      href: element.getAttribute('href') || '',
+      target: element.getAttribute('target') || '',
+      tabindex: element.getAttribute('tabindex') || '',
+      role: element.getAttribute('role') || '',
+      ariaLabel: element.getAttribute('aria-label') || '',
+      value: 'value' in element ? element.value : '',
     };
   };
   const localScrollers = [...document.querySelectorAll('.figure-scroll, .table-wrap, .math-block, pre')]
@@ -419,6 +433,9 @@ METRICS_SCRIPT = r"""
       clientWidth: element.clientWidth,
       scrollWidth: element.scrollWidth,
       overflowX: getComputedStyle(element).overflowX,
+      tabindex: element.getAttribute('tabindex') || '',
+      role: element.getAttribute('role') || '',
+      label: element.getAttribute('aria-label') || '',
     }));
   const viewportWidth = root.clientWidth;
   const pageWidth = Math.max(root.scrollWidth, body ? body.scrollWidth : 0);
@@ -439,6 +456,11 @@ METRICS_SCRIPT = r"""
     header: inspect('.site-header'),
     brand: inspect('.brand-link'),
     navigation: inspect('.site-links'),
+    themeControl: inspect('[data-theme-select]'),
+    themeMode: document.querySelector('[data-theme-select]')?.value || '',
+    pageEndNavigation: inspect('.page-end-nav'),
+    pageEndTop: inspect('[data-page-top-link]'),
+    pageEndDestination: inspect('.page-end-nav a:not([data-page-top-link])'),
     firstLearningGridItem: inspect('.curriculum-grid .curriculum-grid-item'),
     homeLearningGridTitle: inspect('.learning-grid-section .section-head h2'),
     homeLearningGridCount: document.querySelectorAll('.learning-grid-section .curriculum-grid-item').length,
@@ -467,6 +489,8 @@ METRICS_SCRIPT = r"""
     diagnosticStart: inspect('.diagnostic-start'),
     diagnosticStartAction: inspect('.diagnostic-start .button'),
     figureSource: inspect('.figure-source'),
+    figureHint: inspect('[data-scroll-hint]'),
+    figureDialog: inspect('[data-figure-dialog]'),
     notFoundTitle: inspect('#not-found-title'),
     notFoundPrimaryAction: inspect('.not-found-actions .button'),
     notFoundSecondaryAction: inspect('.not-found-actions a:not(.button)'),
@@ -550,6 +574,134 @@ APPEARANCE_SCRIPT = r"""
     learningGridItemBreakInside: color('.curriculum-grid-item', 'breakInside'),
   };
 })()
+"""
+
+THEME_INTERACTION_SCRIPT = r"""
+new Promise((resolve) => {
+  const select = document.querySelector('[data-theme-select]');
+  if (!select) return resolve(null);
+  const saved = () => {
+    try { return localStorage.getItem('manabigrid-theme'); }
+    catch (_error) { return 'storage-unavailable'; }
+  };
+  const snapshot = () => ({
+    value: select.value,
+    attribute: document.documentElement.getAttribute('data-theme'),
+    saved: saved(),
+    background: getComputedStyle(document.body).backgroundColor,
+  });
+  const choose = (value) => {
+    select.value = value;
+    select.dispatchEvent(new Event('change', {bubbles: true}));
+  };
+  const initial = snapshot();
+  choose('dark');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const dark = snapshot();
+    choose('light');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const light = snapshot();
+      choose('system');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        resolve({initial, dark, light, system: snapshot()});
+      }));
+    }));
+  }));
+})
+"""
+
+FIGURE_DIALOG_INTERACTION_SCRIPT = r"""
+new Promise((resolve) => {
+  const link = document.querySelector('[data-figure-open]');
+  const dialog = document.querySelector('[data-figure-dialog]');
+  const image = dialog?.querySelector('[data-figure-dialog-image]');
+  const close = dialog?.querySelector('[data-figure-close]');
+  if (!link || !dialog || !image || !close) return resolve(null);
+  const root = document.documentElement;
+  const previousBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  link.scrollIntoView({block: 'center'});
+  root.style.scrollBehavior = previousBehavior;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const beforeY = scrollY;
+    const beforeUrl = location.href;
+    link.click();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const opened = {
+        open: dialog.open,
+        urlUnchanged: location.href === beforeUrl,
+        imageSource: image.getAttribute('src') || '',
+        activeIsClose: document.activeElement === close,
+        rootLocked: root.classList.contains('has-modal'),
+      };
+      close.click();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const closed = {
+          open: dialog.open,
+          activeIsLink: document.activeElement === link,
+          scrollDelta: Math.abs(scrollY - beforeY),
+          rootLocked: root.classList.contains('has-modal'),
+        };
+        link.click();
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          close.dispatchEvent(new KeyboardEvent('keydown', {
+            key: 'Escape',
+            bubbles: true,
+          }));
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            const escapeClosed = !dialog.open;
+            const escapeReturnedFocus = document.activeElement === link;
+            resolve({
+              opened,
+              closed,
+              escapeClosed,
+              escapeReturnedFocus,
+              target: link.getAttribute('target') || '',
+            });
+          }));
+        }));
+      }));
+    }));
+  }));
+})
+"""
+
+FIGURE_DIALOG_BACKDROP_PREP_SCRIPT = r"""
+new Promise((resolve) => {
+  const link = document.querySelector('[data-figure-open]');
+  const dialog = document.querySelector('[data-figure-dialog]');
+  if (!link || !dialog) return resolve(null);
+  link.scrollIntoView({block: 'center'});
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const beforeY = scrollY;
+    link.click();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const rect = dialog.getBoundingClientRect();
+      const x = Math.max(1, Math.floor(rect.left / 2));
+      const y = Math.max(1, Math.floor(rect.top / 2));
+      resolve({
+        open: dialog.open,
+        x,
+        y,
+        targetIsDialog: document.elementFromPoint(x, y) === dialog,
+        beforeY,
+      });
+    }));
+  }));
+})
+"""
+
+FIGURE_DIALOG_BACKDROP_RESULT_SCRIPT = r"""
+new Promise((resolve) => {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    resolve({
+      open: document.querySelector('[data-figure-dialog]')?.open || false,
+      activeIsLink: document.activeElement?.matches?.('[data-figure-open]') || false,
+      scrollY,
+      rootLocked: document.documentElement.classList.contains('has-modal'),
+    });
+  }));
+})
 """
 
 
@@ -861,6 +1013,23 @@ def main() -> int:
                     screenshot_origin_y = max(
                         0.0, float(figure_scroller.get("top", 0.0)) - 120.0
                     )
+            elif label in {"unit-resources", "unit-resources-empty"}:
+                resource_origin = evaluate(
+                    pipe,
+                    session,
+                    """
+new Promise((resolve) => {
+  const details = [...document.querySelectorAll('details.resource-list')];
+  details.forEach((item) => {
+    if (!item.open) item.querySelector('summary')?.click();
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    resolve(details[0]?.getBoundingClientRect().top + scrollY || 0);
+  }));
+})
+""",
+                )
+                screenshot_origin_y = max(0.0, float(resource_origin) - 120.0)
             screenshot = pipe.call(
                 "Page.captureScreenshot",
                 {
@@ -922,6 +1091,28 @@ def main() -> int:
                 navigation_metrics.get("clientWidth", 0)
             ) + 1:
                 page_errors.append("共通サイトナビが表示領域からはみ出しています")
+            theme_control = metrics.get("themeControl")
+            if (
+                not isinstance(theme_control, dict)
+                or not theme_control.get("visible")
+                or float(theme_control.get("height", 0)) < 44
+                or metrics.get("themeMode") not in {"system", "light", "dark"}
+            ):
+                page_errors.append("表示テーマの選択肢が共通ヘッダーで操作可能ではありません")
+            page_end_navigation = metrics.get("pageEndNavigation")
+            page_end_top = metrics.get("pageEndTop")
+            page_end_destination = metrics.get("pageEndDestination")
+            if (
+                not isinstance(page_end_navigation, dict)
+                or not page_end_navigation.get("visible")
+                or not isinstance(page_end_top, dict)
+                or page_end_top.get("href") != "#page-top"
+                or float(page_end_top.get("height", 0)) < 44
+                or not isinstance(page_end_destination, dict)
+                or not page_end_destination.get("href")
+                or float(page_end_destination.get("height", 0)) < 44
+            ):
+                page_errors.append("ページ末の先頭・主要入口への回復導線が不足しています")
             mobile_nav_interaction: dict[str, object] | None = None
             mobile_nav = metrics.get("mobileSectionNav")
             if isinstance(mobile_nav, dict) and mobile_nav.get("visible"):
@@ -1020,9 +1211,112 @@ new Promise((resolve) => {
                 )
                 if not figure_scrollers or invalid_wide_scroller:
                     page_errors.append("wide SVGが局所横スクロールになっていません")
+                if any(
+                    int(item.get("scrollWidth", 0)) > int(item.get("clientWidth", 0)) + 1
+                    and (
+                        item.get("tabindex") != "0"
+                        or item.get("role") != "region"
+                        or not item.get("label")
+                    )
+                    for item in figure_scrollers
+                ):
+                    page_errors.append("横スクロール可能な図にフォーカスと読み上げ名がありません")
                 figure_source = metrics.get("figureSource")
-                if not isinstance(figure_source, dict) or float(figure_source.get("height", 0)) < 44:
-                    page_errors.append("図を大きく開く導線のタップ高さが44px未満です")
+                if (
+                    not isinstance(figure_source, dict)
+                    or float(figure_source.get("height", 0)) < 44
+                    or figure_source.get("target") != "_blank"
+                ):
+                    page_errors.append("図を大きく見る導線または新規タブfallbackが不足しています")
+                figure_hint = metrics.get("figureHint")
+                if (
+                    any(
+                        int(item.get("scrollWidth", 0)) > int(item.get("clientWidth", 0)) + 1
+                        for item in figure_scrollers
+                    )
+                    and (
+                        not isinstance(figure_hint, dict)
+                        or not figure_hint.get("visible")
+                    )
+                ):
+                    page_errors.append("横スクロール可能な図の操作ヒントが表示されません")
+            if label == "lesson-wide-svg":
+                dialog_interaction = evaluate(
+                    pipe,
+                    session,
+                    FIGURE_DIALOG_INTERACTION_SCRIPT,
+                )
+                metrics["figureDialogInteraction"] = dialog_interaction
+                if (
+                    not isinstance(dialog_interaction, dict)
+                    or dialog_interaction.get("target") != "_blank"
+                    or dialog_interaction.get("escapeClosed") is not True
+                    or dialog_interaction.get("escapeReturnedFocus") is not True
+                    or not isinstance(dialog_interaction.get("opened"), dict)
+                    or dialog_interaction["opened"].get("open") is not True
+                    or dialog_interaction["opened"].get("urlUnchanged") is not True
+                    or not dialog_interaction["opened"].get("imageSource")
+                    or dialog_interaction["opened"].get("activeIsClose") is not True
+                    or dialog_interaction["opened"].get("rootLocked") is not True
+                    or not isinstance(dialog_interaction.get("closed"), dict)
+                    or dialog_interaction["closed"].get("open") is not False
+                    or dialog_interaction["closed"].get("activeIsLink") is not True
+                    or float(dialog_interaction["closed"].get("scrollDelta", 99)) > 2
+                    or dialog_interaction["closed"].get("rootLocked") is not False
+                ):
+                    page_errors.append(
+                        "図モーダルの表示・閉じる・背景クリック・位置／フォーカス復帰を確認できません"
+                    )
+                if not viewport["mobile"]:
+                    backdrop_prep = evaluate(
+                        pipe,
+                        session,
+                        FIGURE_DIALOG_BACKDROP_PREP_SCRIPT,
+                    )
+                    metrics["figureBackdropPrep"] = backdrop_prep
+                    if (
+                        not isinstance(backdrop_prep, dict)
+                        or backdrop_prep.get("open") is not True
+                        or backdrop_prep.get("targetIsDialog") is not True
+                    ):
+                        page_errors.append(
+                            "図モーダル外側の黒い背景を実座標で特定できません"
+                        )
+                    else:
+                        x = float(backdrop_prep["x"])
+                        y = float(backdrop_prep["y"])
+                        for event_type in ("mousePressed", "mouseReleased"):
+                            pipe.call(
+                                "Input.dispatchMouseEvent",
+                                {
+                                    "type": event_type,
+                                    "x": x,
+                                    "y": y,
+                                    "button": "left",
+                                    "clickCount": 1,
+                                },
+                                session,
+                            )
+                        backdrop_result = evaluate(
+                            pipe,
+                            session,
+                            FIGURE_DIALOG_BACKDROP_RESULT_SCRIPT,
+                        )
+                        metrics["figureBackdropResult"] = backdrop_result
+                        if (
+                            not isinstance(backdrop_result, dict)
+                            or backdrop_result.get("open") is not False
+                            or backdrop_result.get("activeIsLink") is not True
+                            or backdrop_result.get("rootLocked") is not False
+                            or abs(
+                                float(backdrop_result.get("scrollY", -99))
+                                - float(backdrop_prep.get("beforeY", 99))
+                            )
+                            > 2
+                        ):
+                            page_errors.append(
+                                "図モーダルの黒い背景を実座標で押して元位置へ戻れません"
+                            )
             if label == "top":
                 first_grid_item = metrics.get("firstLearningGridItem")
                 first_grid_visible_height = (
@@ -1402,6 +1696,109 @@ new Promise((resolve) => {
                     page_errors.append("静的MathMLがページ内にありません")
                 elif not mathml.get("staticRuntimeFree"):
                     page_errors.append("MathMLページが外部数式ランタイムを参照しています")
+            if label in {"unit-resources", "unit-resources-empty"}:
+                unit_resources = evaluate(
+                    pipe,
+                    session,
+                    """
+new Promise((resolve) => {
+  const details = [...document.querySelectorAll('details.resource-list')];
+  details.forEach((item) => {
+    if (!item.open) item.querySelector('summary')?.click();
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const rows = [...document.querySelectorAll(
+      'details.resource-list li.resource-item-plain'
+    )].map((row) => {
+      const content = row.querySelector(':scope > div');
+      const rowRect = row.getBoundingClientRect();
+      const contentRect = content?.getBoundingClientRect();
+      return {
+        rowWidth: rowRect.width,
+        contentWidth: contentRect?.width || 0,
+        height: rowRect.height,
+        scrollWidth: row.scrollWidth,
+        clientWidth: row.clientWidth,
+      };
+    });
+    const allRows = [...document.querySelectorAll('.resource-list li')];
+    const classifiedRows = allRows.filter((row) =>
+      row.classList.contains('resource-item-numbered')
+      || row.classList.contains('resource-item-plain')
+    );
+    const firstLesson = document.querySelector(
+      '.primary-resources li.resource-item-numbered'
+    );
+    const primaryPlain = document.querySelector(
+      '.primary-resources li.resource-item-plain'
+    );
+    resolve({
+      disclosureCount: details.length,
+      allOpen: details.every((item) => item.open),
+      rows,
+      allRowCount: allRows.length,
+      classifiedRowCount: classifiedRows.length,
+      numberedLessonPresent: Boolean(
+        firstLesson && firstLesson.querySelector('.resource-number')
+      ),
+      primaryPlainPresent: Boolean(primaryPlain),
+      numberedLessonColumns: firstLesson
+        ? getComputedStyle(firstLesson).gridTemplateColumns
+        : '',
+    });
+  }));
+})
+""",
+                )
+                metrics["unitResources"] = unit_resources
+                rows = (
+                    unit_resources.get("rows", [])
+                    if isinstance(unit_resources, dict)
+                    else []
+                )
+                max_row_height = 220 * args.text_scale
+                if (
+                    not isinstance(unit_resources, dict)
+                    or unit_resources.get("disclosureCount") != 2
+                    or unit_resources.get("allOpen") is not True
+                    or unit_resources.get("allRowCount")
+                    != unit_resources.get("classifiedRowCount")
+                    or not rows
+                    or any(
+                        not isinstance(row, dict)
+                        or float(row.get("contentWidth", 0))
+                        < float(row.get("rowWidth", 1)) * 0.95
+                        or int(row.get("scrollWidth", 0))
+                        > int(row.get("clientWidth", 0)) + 8
+                        or float(row.get("height", max_row_height + 1))
+                        > max_row_height
+                        for row in rows
+                    )
+                ):
+                    page_errors.append(
+                        "単元ページの解答・制作資料が本文幅1列で短く表示されていません"
+                    )
+                if label == "unit-resources":
+                    lesson_columns = str(
+                        unit_resources.get("numberedLessonColumns", "")
+                        if isinstance(unit_resources, dict)
+                        else ""
+                    ).split()
+                    if (
+                        not isinstance(unit_resources, dict)
+                        or unit_resources.get("numberedLessonPresent") is not True
+                        or len(lesson_columns) < 2
+                    ):
+                        page_errors.append(
+                            "単元ページの番号付きレッスン行が2列ではありません"
+                        )
+                elif (
+                    not isinstance(unit_resources, dict)
+                    or unit_resources.get("primaryPlainPresent") is not True
+                ):
+                    page_errors.append(
+                        "教材0件の単元ページで空状態が本文幅1列になっていません"
+                    )
             if label == "not-found":
                 if metrics.get("navigationResponseStatus") != 404:
                     page_errors.append(
@@ -1427,6 +1824,32 @@ new Promise((resolve) => {
                         page_errors.append("404.htmlの副導線のタップ高さが44px未満です")
 
             if label == "top":
+                theme_interaction = evaluate(
+                    pipe,
+                    session,
+                    THEME_INTERACTION_SCRIPT,
+                )
+                metrics["themeInteraction"] = theme_interaction
+                if (
+                    not isinstance(theme_interaction, dict)
+                    or not isinstance(theme_interaction.get("dark"), dict)
+                    or theme_interaction["dark"].get("attribute") != "dark"
+                    or theme_interaction["dark"].get("saved")
+                    not in {"dark", "storage-unavailable"}
+                    or not isinstance(theme_interaction.get("light"), dict)
+                    or theme_interaction["light"].get("attribute") != "light"
+                    or theme_interaction["light"].get("saved")
+                    not in {"light", "storage-unavailable"}
+                    or theme_interaction["dark"].get("background")
+                    == theme_interaction["light"].get("background")
+                    or not isinstance(theme_interaction.get("system"), dict)
+                    or theme_interaction["system"].get("attribute") is not None
+                    or theme_interaction["system"].get("saved")
+                    not in {None, "storage-unavailable"}
+                ):
+                    page_errors.append(
+                        "表示テーマの自動・明るい・暗い切替と保存を確認できません"
+                    )
                 if not viewport["mobile"] and viewport["height"] > 800:
                     sticky_header = evaluate(
                         pipe,
@@ -1471,6 +1894,27 @@ new Promise((resolve) => {
                     or skip_result.get("hash") != "#main-content"
                 ):
                     page_errors.append("スキップリンクが本文へ実フォーカス移動しません")
+                evaluate(
+                    pipe,
+                    session,
+                    "(() => { const select = document.querySelector('[data-theme-select]'); select.value = 'dark'; select.dispatchEvent(new Event('change', {bubbles: true})); return document.documentElement.getAttribute('data-theme'); })()",
+                )
+                set_media(pipe, session, "print")
+                explicit_dark_print = evaluate(pipe, session, APPEARANCE_SCRIPT)
+                metrics["explicitDarkPrintAppearance"] = explicit_dark_print
+                if (
+                    not isinstance(explicit_dark_print, dict)
+                    or not explicit_dark_print.get("print")
+                    or not is_white(explicit_dark_print.get("rootBackground"))
+                    or not is_white(explicit_dark_print.get("bodyBackground"))
+                ):
+                    page_errors.append("明示ダーク選択から印刷時の白地へ戻りません")
+                set_media(pipe, session, "screen", color_scheme)
+                evaluate(
+                    pipe,
+                    session,
+                    "(() => { const select = document.querySelector('[data-theme-select]'); select.value = 'system'; select.dispatchEvent(new Event('change', {bubbles: true})); return document.documentElement.getAttribute('data-theme'); })()",
+                )
                 set_media(pipe, session, "screen", "dark")
                 dark_top = evaluate(pipe, session, APPEARANCE_SCRIPT)
                 metrics["darkTopAppearance"] = dark_top
@@ -1565,6 +2009,38 @@ new Promise((resolve) => {
                     or not is_white(printed.get("bodyBackground"))
                 ):
                     page_errors.append("print mediaで必ずライト表示になっていません")
+                set_media(pipe, session, "screen", color_scheme)
+
+            if label in {"top", "progress", "about"}:
+                set_media(pipe, session, "print")
+                printed_controls = evaluate(pipe, session, APPEARANCE_SCRIPT)
+                metrics["printControlsAppearance"] = printed_controls
+                try:
+                    printed_button_contrast = contrast_ratio(
+                        (
+                            printed_controls.get("primaryButtonColor")
+                            if isinstance(printed_controls, dict)
+                            else None
+                        ),
+                        (
+                            printed_controls.get("primaryButtonBackground")
+                            if isinstance(printed_controls, dict)
+                            else None
+                        ),
+                    )
+                except ValueError as exc:
+                    page_errors.append(
+                        f"印刷時の主ボタンのコントラストを測定できません: {exc}"
+                    )
+                else:
+                    metrics["printButtonContrast"] = printed_button_contrast
+                    if (
+                        not is_white(printed_controls.get("primaryButtonBackground"))
+                        or printed_button_contrast < 4.5
+                    ):
+                        page_errors.append(
+                            "印刷時の主ボタンが白地・読みやすい文字色へ戻っていません"
+                        )
                 set_media(pipe, session, "screen", color_scheme)
 
             runtime_errors = event_errors(pipe.events, event_start, session)

@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="ManabiGrid 案内・設計図: レッスンマップ — 中1数学「不確定な事象の起こりやすさ」（全3時間・2時間版調整可）">
   <meta name="robots" content="index, follow">
   <meta property="og:locale" content="ja_JP">
@@ -23,14 +22,16 @@
   <title>レッスンマップ — 中1数学「不確定な事象の起こりやすさ」（全3時間・2時間版調整可）｜ManabiGrid 展示版</title>
   <link rel="canonical" href="https://manabigrid.github.io/manabigrid-site/content/materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_map.html">
   <link rel="icon" type="image/svg+xml" href="../../../../_assets/favicon.svg">
+  <script src="../../../../_assets/theme.js"></script>
   <link rel="stylesheet" href="../../../../_assets/site.css">
 </head>
-<body class="page-overview" data-source-sha256="d904d9f5b7b9904f821b63920adcbf685f5f04d85972763a01c2ed3a5010913a" data-source-file="materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_map.md">
+<body id="page-top" class="page-overview" data-source-sha256="d904d9f5b7b9904f821b63920adcbf685f5f04d85972763a01c2ed3a5010913a" data-source-file="materials/jhs-math-1/jhs-math-1-empirical-probability/lesson_map.md">
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
     <div class="site-nav container">
       <div class="brand"><a class="brand-link" href="../../../../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>まなびグリッド<small>ManabiGrid</small></span></a></div>
       <nav class="site-links" aria-label="サイト内"><a href="../../../../browse/index.html">教材をさがす</a><a href="../../../../progress/index.html">進捗一覧</a></nav>
+      <label class="theme-control"><span class="theme-control-label">表示</span><select data-theme-select aria-label="表示テーマ"><option value="system">自動</option><option value="light">明るい</option><option value="dark">暗い</option></select></label>
     </div>
   </header>
   <nav class="breadcrumb container" aria-label="パンくずリスト"><ol><li><a href="../../../../index.html">トップ</a></li><li><a href="../../../../browse/index.html">教材をさがす</a></li><li><a href="../../../../subjects/jhs-math-1/index.html">中学1年 数学</a></li><li><a href="../../../../units/jhs-math-1-empirical-probability/index.html">中1数学「不確定な事象の起こりやすさ（頻度確率）」</a></li><li aria-current="page">レッスンマップ — 中1数学「不確定な事象の起こりやすさ」（全3時間・2時間版調整可）</li></ol></nav>
@@ -58,7 +59,12 @@
 <h2 id="評価の型summary教材設計の要点を反映">評価の型（summary教材設計の要点を反映）</h2>
 <ul><li><p>知識・技能: 「意味」（実験表から確率としてふさわしい値を選ぶ）と「必要性」（少数回で判断してよいかの正誤判断）の2系統。</p></li><li><p>思考・判断・表現: 「◯◯の相対度数が最も大きいから△△と判断する」の根拠つき表現の型（貸靴型の記述・L03）。</p></li><li><p>態度: 「回数を増やす前後で自分の予想を検討し直す」振り返り（L01→L02。中1水準「気付いて」「検討」——中2の「実感」「評価・改善」を先取りしない）。</p></li><li><p>数値評価問題はすべて解答再計算可能な形（度数・総度数明示）で設計。</p></li></ul>
 <h2 id="ファイル構成と解答分離">ファイル構成と解答分離</h2>
-<ul><li><p>本文: lesson_01.md〜lesson_03.md（タグ付きcore。:::zatsudan各1・:::guide 2〜3・:::stretch各1。<strong>:::answerは不使用</strong>）</p></li><li><p>解答: answer_key_L01-03.md（全設問＋stretch設問の解答・検算過程つき。相対度数の計算にはすべて割り算の検算を添える）</p></li><li><p>各レッスン末に「対応解答: answer_key_L01-03.md」の1行を置く。</p></li><li><p>指導者メモ: teacher_notes.md（学調数値・出典・年度・設問番号・帰属をsummary記載分のみ正確に転記。生徒向け本文への転用禁止）。</p></li><li><p>図版は実体化済み: <code>assets/</code>のSVG4枚（各レッスン最低1枚）を<code>assets_provenance/generate_figures.py</code>（コード来歴方式・Python標準ライブラリのみ・assert検算・解答値の禁止文字列検査つき）でパラメトリック生成し、本文から画像参照＋figure-specコメントで参照。台帳は<code>assets_provenance/FIGURE_MANIFEST.md</code>（自動生成）。SVGの直接編集は禁止（スクリプト改修で再生成）。</p></li></ul></article></main>
+<ul><li><p>本文: lesson_01.md〜lesson_03.md（タグ付きcore。:::zatsudan各1・:::guide 2〜3・:::stretch各1。<strong>:::answerは不使用</strong>）</p></li><li><p>解答: answer_key_L01-03.md（全設問＋stretch設問の解答・検算過程つき。相対度数の計算にはすべて割り算の検算を添える）</p></li><li><p>各レッスン末に「対応解答: answer_key_L01-03.md」の1行を置く。</p></li><li><p>指導者メモ: teacher_notes.md（学調数値・出典・年度・設問番号・帰属をsummary記載分のみ正確に転記。生徒向け本文への転用禁止）。</p></li><li><p>図版は実体化済み: <code>assets/</code>のSVG4枚（各レッスン最低1枚）を<code>assets_provenance/generate_figures.py</code>（コード来歴方式・Python標準ライブラリのみ・assert検算・解答値の禁止文字列検査つき）でパラメトリック生成し、本文から画像参照＋figure-specコメントで参照。台帳は<code>assets_provenance/FIGURE_MANIFEST.md</code>（自動生成）。SVGの直接編集は禁止（スクリプト改修で再生成）。</p></li></ul></article>
+
+<nav class="page-end-nav container screen-only" aria-label="ページの終わり">
+  <a href="#page-top" data-page-top-link><span aria-hidden="true">↑</span> ページの先頭へ</a>
+  <a href="../../../../index.html"><span aria-hidden="true">⌂</span> トップページへ</a>
+</nav></main>
 
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -67,7 +73,7 @@
       <p>出典: <a class="external-link" href="https://github.com/ManabiGrid/manabigrid" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">ManabiGrid（まなびグリッド） https://github.com/ManabiGrid/manabigrid<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a> ／ 教材ライセンス: <a class="external-link" href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">CC BY 4.0<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p><a class="external-link" href="https://github.com/ManabiGrid/manabigrid/blob/5700768bec42db1b2e59883c04e9e902fd0d06fa/NOTICE.md" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">引用・第三者資料・名称など、ライセンスの権利除外を見る<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a></p>
       <p>表示形式のみ変更（Markdown→HTML）。教材本文の意味・数値は変更していません。</p>
-      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-23生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
+      <p class="snapshot-note">この展示は正本コミット <a class="external-link" href="https://github.com/ManabiGrid/manabigrid/tree/5700768bec42db1b2e59883c04e9e902fd0d06fa" target="_blank" rel="noopener noreferrer external" referrerpolicy="no-referrer">5700768b<span class="sr-only">（外部サイト・新しいタブで開きます）</span></a>（2026-07-24生成）のスナップショットです。展示版の正本はGitHubにあります。</p>
       <p>ManabiGridの展示版です。学校・公的機関の公式教材や公認サイトではありません。</p>
     </section>
     <section>
@@ -77,6 +83,7 @@
     </section>
   </div>
 </footer>
+
   <script src="../../../../_assets/site.js" defer></script>
 </body>
 </html>
