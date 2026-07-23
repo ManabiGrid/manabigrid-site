@@ -72,6 +72,86 @@ class CheckSiteContractTests(unittest.TestCase):
         self.assertTrue(any("official canonical" in error for error in errors))
         self.assertTrue(any("verified official main" in error for error in errors))
 
+    @staticmethod
+    def write_markdown_source_fixture(root: Path) -> list[dict]:
+        (root / "materials/example").mkdir(parents=True)
+        (root / "curriculum").mkdir()
+        (root / "materials/README.md").write_text("# Materials\n", encoding="utf-8")
+        (root / "materials/example/lesson.md").write_text(
+            "# Lesson\n", encoding="utf-8"
+        )
+        (root / "curriculum/PROGRESS_INDEX.md").write_text(
+            "# Progress\n", encoding="utf-8"
+        )
+        return [
+            {
+                "source": "materials/README.md",
+                "output": "content/materials/README.html",
+                "sha256": "a" * 64,
+            },
+            {
+                "source": "materials/example/lesson.md",
+                "output": "content/materials/example/lesson.html",
+                "sha256": "b" * 64,
+            },
+            {
+                "source": "curriculum/PROGRESS_INDEX.md",
+                "output": "progress/index.html",
+                "sha256": "c" * 64,
+            },
+        ]
+
+    def test_source_manifest_matches_independently_enumerated_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = self.write_markdown_source_fixture(root)
+            errors = check_site.source_manifest_contract_errors(
+                root,
+                manifest,
+                {"expected": 3, "converted": 3, "failed": []},
+            )
+        self.assertEqual(errors, [])
+
+    def test_source_manifest_rejects_omitted_canonical_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = self.write_markdown_source_fixture(root)[:-1]
+            errors = check_site.source_manifest_contract_errors(
+                root,
+                manifest,
+                {"expected": 2, "converted": 2, "failed": []},
+            )
+        self.assertTrue(any("omits canonical Markdown" in error for error in errors))
+        self.assertTrue(any("independently enumerated" in error for error in errors))
+
+    def test_source_manifest_rejects_duplicate_source_or_output(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = self.write_markdown_source_fixture(root)
+            manifest[1]["source"] = manifest[0]["source"]
+            manifest[2]["output"] = manifest[0]["output"]
+            errors = check_site.source_manifest_contract_errors(
+                root,
+                manifest,
+                {"expected": 3, "converted": 3, "failed": []},
+            )
+        self.assertTrue(any("duplicate sources" in error for error in errors))
+        self.assertTrue(any("duplicate outputs" in error for error in errors))
+
+    def test_source_manifest_rejects_missing_hash_or_unsafe_output(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = self.write_markdown_source_fixture(root)
+            manifest[0].pop("sha256")
+            manifest[1]["output"] = "../escaped.html"
+            errors = check_site.source_manifest_contract_errors(
+                root,
+                manifest,
+                {"expected": 3, "converted": 3, "failed": []},
+            )
+        self.assertTrue(any("sha256 is invalid" in error for error in errors))
+        self.assertTrue(any("output path is unsafe" in error for error in errors))
+
     def test_publication_site_commit_must_match_expected_release(self) -> None:
         report = {"publication": {"site_commit": "a" * 40}}
         self.assertEqual(
@@ -79,6 +159,25 @@ class CheckSiteContractTests(unittest.TestCase):
         )
         errors = check_site.publication_site_contract_errors(report, "b" * 40)
         self.assertTrue(any("expected release commit" in error for error in errors))
+
+    def test_reported_source_commit_must_match_expected_release(self) -> None:
+        self.assertEqual(
+            check_site.reported_source_commit_contract_errors(
+                "a" * 40,
+                "a" * 40,
+            ),
+            [],
+        )
+        mismatch = check_site.reported_source_commit_contract_errors(
+            "a" * 40,
+            "b" * 40,
+        )
+        self.assertTrue(any("expected canonical SHA" in error for error in mismatch))
+        invalid = check_site.reported_source_commit_contract_errors(
+            "not-a-sha",
+            None,
+        )
+        self.assertTrue(any("40-character SHA" in error for error in invalid))
 
     def test_curriculum_status_summary_uses_visible_contract_separator(self) -> None:
         self.assertEqual(

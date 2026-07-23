@@ -450,3 +450,41 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 - 外部URLは同一URL集合をこの監査工程で一回実査済み。497件中496件到達、hard broken 0件、blocked/unknown 1件。残る1件は`https://github.com/signup`が自動検査へ返す403で、利用者向け404/410ではない。
 
 公開は、ユーザーが対象差分のcommit、push、既存GitHub Pages更新を明示承認した場合だけ行う。siteコードだけの更新では`publish`を流用せず、push後に`verify-site-release`を使い、該当site commit専用runと公開site/source両SHAを閉ループ確認する。
+
+## v10：スマートフォン／タブレット実描画と更新契約の敵対監査（2026-07-23）
+
+対象正本コミットは`5700768bec42db1b2e59883c04e9e902fd0d06fa`。対象読者は13歳前後を含む学習者、保護者・教員、GitHubを初めて見る人。ページの仕事は、端末サイズや文字拡大にかかわらず「学習グリッドを選ぶ」「教材を検索する」「長いレッスン内を移動する」を迷わず行えること。主要行動は教材入口の選択と検索であり、装飾や端末名ごとの別UIは増やさない。
+
+### 端末設計の採否と修正
+
+- **採用：固定の端末マトリクスを機械契約にする。** `device_matrix.contract.json`へ320×568、360×800、390×844、412×915の縦スマホ、844×390の横スマホ、600×960、768×1024、820×1180の縦タブレット、1024×768の横タブレット、390×844で文字200%相当の10条件を固定した。`device_matrix_check.py`がローカルserverを自動起動し、各条件で12代表ページと主要操作を検査する。端末名や市場占有率をコードへ固定せず、実際に壊れやすい幅・高さ・向き・文字倍率を契約にする。
+- **採用：文字200%時は文節を保ちながら再配置を許す。** 通常表示では「つまずいた場所は、／次のスタート地点になる。」の文節境界を保つ。一方、文字だけを200%にした初回検査では、句を`nowrap`にしたままページ幅540pxまで横へはみ出したため、要素幅を超える時だけ句内の改行を許可した。ヘッダーもブランドとナビが同じ行で重なったため、通常390pxでは1行を維持し、必要時だけ2行へ折り返す。検査器はブランド・ナビ自身の`scrollWidth`も測り、ページ全体の幅だけでは見落とす文字のはみ出しを拒否する。
+- **採用：低いタブレットでは固定サイド目次を使わない。** 1024×768など幅は広いが高さが短い画面では、長い固定目次が本文より強くなる。幅1100px以下または高さ800px以下は1列本文と折りたたみ目次へ切り替え、目次に可視の「開く／閉じる」を追加した。ネイティブ`details`の開閉状態を保ち、固定ボタンや画面占有パネルは追加しない。
+- **採用：局所スクロールは必要な時だけ要求する。** wide SVGが画面内へ収まる768〜844pxでは、横スクロールを無理に発生させない。実幅がコンテナ幅を超える時だけ`overflow-x:auto`、フォーカス可能領域、名前、ヒントを要求する。一般表も文字拡大後に再測定して、必要になった時だけTab停止とregion名を付ける。
+- **採用：小型スマホは情報を削りすぎず密度を調整する。** 320pxではヘッダーを小さくし、トップの英字eyebrowだけを省く。主見出し、説明、主要CTA、「どこからはじめる？」は残す。390×844では学習グリッド先頭を約46px見せ、スクロール誘因を維持する。高さ568pxではグリッド表示を無理に第一画面へ押し込まず、主要CTAと選択パネルを優先する。
+- **見送り：端末別ページまたは動的サイト化。** 今回の問題はCSS reflow、静的`details`、build時検査で解決できた。ユーザーエージェント判定、サーバー状態、閲覧データ送信を足す理由はなく、静的サイトのプライバシーと障害耐性を維持する。
+
+### 低effort・別モデル向け更新契約の補強
+
+- `update_pages.py status`は公開レポートを検証できたかを示す`published_state`、正本の`source_sync`、公開版site commitとの`site_sync`、checkoutの`release_readiness`、日次workflowの`operational_readiness`を別々に返す。site origin・repository・base URL・正本URLはコード内の公式trust anchorへ固定し、すべてのGitHub CLI workflow操作で`--repo`と`GH_HOST=github.com`を固定し、外部`GH_REPO`を除外する。設定ファイルやshell環境だけを別repo／hostへ書き換えても公開操作へ進まない。
+- 正本SHAが同じでもsite commitが未公開なら`already_current`としない。通常`publish`は`blocked_site_release_requires_verification`で停止し、承認済みsite push後の`verify-site-release`へ分ける。
+- 公開レポートの取得失敗・不正JSON・SHA欠落は更新あり／site releaseありと推測せず、`published_state: unknown`と`blocked_published_state_unknown`で停止する。
+- 日次workflowがdisabled、直近scheduleが72時間超、`completed/success`以外、または直近runのhead SHA／branchが現在のsite `main`と不一致の場合は、教材がたまたま最新でも運用正常と報告しない。`skipped`や`neutral`も成功の代用にせず、実行中は`in_progress`として区別する。今回のread-only実査ではworkflowはactive、直近scheduleは2026-07-22T19:43:54Z開始・成功、head SHAは公開／remote site commit `95f67717c81b2f6cb7cd248aa7804b1ef959290d`、branchは`main`と一致した。
+- `check_workflow.py`は文字列検索ではなく、固定の日次cron、全stepの名前・個数・順序、step blockのSHA-256、deploy jobの`if`を構造位置ごとに照合する。年1回cron、古い正しい条件をコメントに残した`always()`、test／site checkの`echo`置換、`if: false`、`continue-on-error`、検疫後の追加step、無名stepをすべて拒否する。
+- `check_site.py`はレポートの`463/463`だけを信用せず、正本`materials/**/*.md`と`curriculum/PROGRESS_INDEX.md`を独立列挙する。欠落、余分なsource、source／output重複、件数自己申告の不一致を公開ゲートで停止する。
+- READMEの最初の運用入口を`python3 update_pages.py status`にし、ローカル生成、互換修正、公開承認を別レーンで説明した。端末検査は`python3 device_matrix_check.py`の1コマンドで再実行できる。
+
+### 実描画・動作・回帰結果
+
+- 初回マトリクスは2/10条件だけ成功し、文字200%の見出し／ヘッダー、390px第一画面の可視量、収まるwide SVGへの過剰なscroll要求、文字拡大後の表region同期、幅は広いが低いレッスン目次を検出した。修正後は**10/10 profile、各12/12ページ、計120 page-profile描画、エラー0**。全条件でページ全体の横はみ出し0。最終reportは検査runner・ブラウザ検査器・CSS・生成器・端末契約と10個の個別browser reportをSHA-256で結び、文字200%ではroot/bodyが16pxから32pxへ変わったことを12ページすべてで実測した。
+- 実ブラウザでも320×568トップを再読込し、CSS viewport 320px、ページ幅320px、主要CTA可視を確認した。1024×768英語レッスンはサイド目次非表示・折りたたみ目次表示となり、実クリックで開いて8節を表示した。マトリクス側でも英語8節・診断12節を開閉し、全アンカー、最終リンクの描画、再閉鎖を確認した。390×844教材検索へ「平方根」を入力し、本文候補21件、最初がレッスン、ページ横はみ出し0を確認した。
+- 受け入れた実描画は、320×568トップ、390×844トップ、768×1024トップ、1024×768英語レッスン、390×844文字200%トップ。小型スマホでは主行動を維持し、標準タブレットでは2列グリッド、横向きタブレットでは本文幅を抑え、文字200%ではヘッダーを2行にして重なりを解消した。
+- Markdown **463/463件（100%）**、HTML **517ページ**、内部リンク **10,666件**、外部リンク参照 **4,383件**、内部リンク切れ **0件**。標準ライブラリ契約テストは **109/109成功**、workflow dry-runはPASS。root生成物のPages artifact dry-runは **888ファイル、16,646,328 bytes、artifactへのallowlist外収録0件**。加えてActionsと同じsite/source SHA固定条件で`review/`配下へ隔離再生成し、463/463件、517ページ、リンク切れ0、正本／site両SHA一致、**888ファイル、16,646,368 bytes、artifactへのallowlist外収録0件**を確認した。古いignored `site-output/`は証拠に使わない。
+- 更新statusの実測は`source_sync: current`、`site_sync: current`、`operational_readiness: active`、トップレベルは`blocked_dirty_site`。これは今回の未commitローカル改修を正しく保持・検出している状態であり、公開済みとは報告しない。
+
+### 残る検証限界
+
+- 端末マトリクスはChromiumのCSS viewportによる実描画であり、物理端末、iOS Safari、Android各社ブラウザ、OSの文字サイズ設定、画面密度、ノッチ・safe area、ソフトキーボードを完全再現しない。文字200%はreflow回帰を強く検出するproxyとして扱う。
+- 物理端末固有差を理由に公開を止める既知不具合は今回見つかっていない。ただし公開後に実機固有の再現例が得られた場合は、その幅・高さ・状態を契約へ追加し、既存条件を削らずnegative testとして固定する。
+
+本節の変更はローカル生成物まで。正本リポジトリは変更していない。site repositoryへのcommit、push、GitHub Pages更新も実行していない。

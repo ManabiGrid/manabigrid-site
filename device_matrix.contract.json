@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "id": "phone-compact",
+      "label": "小型スマートフォン",
+      "form_factor": "phone",
+      "orientation": "portrait",
+      "width": 320,
+      "height": 568,
+      "text_scale": 1.0
+    },
+    {
+      "id": "phone-android",
+      "label": "標準Androidスマートフォン",
+      "form_factor": "phone",
+      "orientation": "portrait",
+      "width": 360,
+      "height": 800,
+      "text_scale": 1.0
+    },
+    {
+      "id": "phone-modern",
+      "label": "標準スマートフォン",
+      "form_factor": "phone",
+      "orientation": "portrait",
+      "width": 390,
+      "height": 844,
+      "text_scale": 1.0
+    },
+    {
+      "id": "phone-large",
+      "label": "大型Androidスマートフォン",
+      "form_factor": "phone",
+      "orientation": "portrait",
+      "width": 412,
+      "height": 915,
+      "text_scale": 1.0
+    },
+    {
+      "id": "phone-landscape",
+      "label": "スマートフォン横向き",
+      "form_factor": "phone",
+      "orientation": "landscape",
+      "width": 844,
+      "height": 390,
+      "text_scale": 1.0
+    },
+    {
+      "id": "tablet-small",
+      "label": "小型タブレット",
+      "form_factor": "tablet",
+      "orientation": "portrait",
+      "width": 600,
+      "height": 960,
+      "text_scale": 1.0
+    },
+    {
+      "id": "tablet-standard",
+      "label": "標準タブレット",
+      "form_factor": "tablet",
+      "orientation": "portrait",
+      "width": 768,
+      "height": 1024,
+      "text_scale": 1.0
+    },
+    {
+      "id": "tablet-large",
+      "label": "大型タブレット",
+      "form_factor": "tablet",
+      "orientation": "portrait",
+      "width": 820,
+      "height": 1180,
+      "text_scale": 1.0
+    },
+    {
+      "id": "tablet-landscape",
+      "label": "タブレット横向き",
+      "form_factor": "tablet",
+      "orientation": "landscape",
+      "width": 1024,
+      "height": 768,
+      "text_scale": 1.0
+    },
+    {
+      "id": "phone-text-200",
+      "label": "スマートフォン文字200%",
+      "form_factor": "phone",
+      "orientation": "portrait",
+      "width": 390,
+      "height": 844,
+      "text_scale": 2.0
+    }
+  ]
+}

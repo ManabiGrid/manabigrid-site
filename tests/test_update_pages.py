@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import json
 import unittest
 from argparse import Namespace
+from datetime import datetime, timezone
 from unittest.mock import patch
 
 import update_pages
@@ -38,6 +40,18 @@ class UpdatePagesContractTests(unittest.TestCase):
         self.assertFalse(update_pages.is_full_sha("A" * 40))
         self.assertFalse(update_pages.is_full_sha("a" * 39))
         self.assertFalse(update_pages.is_full_sha("z" * 40))
+
+    def test_github_cli_environment_cannot_redirect_to_another_host(self) -> None:
+        with patch.dict(
+            update_pages.os.environ,
+            {
+                "GH_HOST": "github.example.invalid",
+                "GH_REPO": "example/wrong-repository",
+            },
+        ):
+            environment = update_pages.command_environment(("gh", "run", "list"))
+        self.assertEqual(environment["GH_HOST"], "github.com")
+        self.assertNotIn("GH_REPO", environment)
 
     def test_request_id_selects_only_its_run(self) -> None:
         request_id = self.REQUEST_ID
@@ -131,12 +145,81 @@ class UpdatePagesContractTests(unittest.TestCase):
                 update_pages.choose_source(approved)
         self.assertEqual(caught.exception.status, "blocked_source_drift")
 
+    def test_site_origin_normalization_accepts_only_expected_github_repo(self) -> None:
+        self.assertEqual(
+            update_pages.normalize_github_remote(
+                "git@github.com:ManabiGrid/manabigrid-site.git"
+            ),
+            "manabigrid/manabigrid-site",
+        )
+        self.assertEqual(
+            update_pages.normalize_github_remote(
+                "https://github.com/ManabiGrid/manabigrid-site.git"
+            ),
+            "manabigrid/manabigrid-site",
+        )
+        self.assertEqual(
+            update_pages.normalize_github_remote(
+                "ssh://git@github.com/ManabiGrid/manabigrid-site.git"
+            ),
+            "manabigrid/manabigrid-site",
+        )
+        self.assertIsNone(
+            update_pages.normalize_github_remote(
+                "https://token@github.com/ManabiGrid/manabigrid-site.git"
+            )
+        )
+        self.assertNotEqual(
+            update_pages.normalize_github_remote(
+                "https://github.com/example/manabigrid-site.git"
+            ),
+            update_pages.expected_site_repository(),
+        )
+
+    def test_release_trust_anchors_reject_mutable_config_drift(self) -> None:
+        with patch.dict(
+            update_pages.CONFIG,
+            {"site_repository": "example/manabigrid-site"},
+        ):
+            with self.assertRaises(update_pages.UpdateError) as caught:
+                update_pages.official_site_repository()
+        self.assertEqual(caught.exception.status, "blocked_config_drift")
+        with patch.dict(
+            update_pages.CONFIG,
+            {"base_url": "https://example.invalid/"},
+        ):
+            with self.assertRaises(update_pages.UpdateError) as caught:
+                update_pages.official_base_url()
+        self.assertEqual(caught.exception.status, "blocked_config_drift")
+        with patch.dict(
+            update_pages.CONFIG,
+            {"source_repository_url": "https://github.com/example/fork"},
+        ):
+            with self.assertRaises(update_pages.UpdateError) as caught:
+                update_pages.official_source_repository_url()
+        self.assertEqual(caught.exception.status, "blocked_config_drift")
+
+    def test_release_checkout_rejects_fork_origin_before_remote_lookup(self) -> None:
+        with (
+            patch.object(
+                update_pages,
+                "site_origin",
+                return_value="https://github.com/example/manabigrid-site.git",
+            ),
+            patch.object(update_pages, "remote_sha") as remote,
+        ):
+            with self.assertRaises(update_pages.UpdateError) as caught:
+                update_pages.require_release_checkout()
+        self.assertEqual(caught.exception.status, "blocked_site_origin")
+        remote.assert_not_called()
+
     def test_status_shows_update_blocked_when_site_dirty(self) -> None:
         local = self.SITE_SHA
         remote = self.SITE_SHA
         source = "a" * 40
         command_map = {
             ("git", "rev-parse", "HEAD"): local,
+            ("git", "remote", "get-url", "origin"): "https://github.com/ManabiGrid/manabigrid-site.git",
             ("git", "ls-remote", "origin", "refs/heads/main"): remote,
             ("git", "status", "--porcelain", "--untracked-files=all"): " M dirty",
             ("git", "branch", "--show-current"): "main",
@@ -151,7 +234,21 @@ class UpdatePagesContractTests(unittest.TestCase):
                 "remote_sha",
                 side_effect=lambda remote_url: source if remote_url == update_pages.source_remote() else remote,
             ):
-                with patch.object(update_pages, "published_sha", return_value=source):
+                with (
+                    patch.object(
+                        update_pages,
+                        "published_report",
+                        return_value={
+                            "source": {"commit": source},
+                            "publication": {"site_commit": local},
+                        },
+                    ),
+                    patch.object(
+                        update_pages,
+                        "workflow_operational_status",
+                        return_value={"status": "active"},
+                    ),
+                ):
                     payload = update_pages.status_payload()
         self.assertEqual(payload["source_sync"], "current")
         self.assertEqual(payload["release_readiness"], "blocked_dirty_site")
@@ -167,6 +264,7 @@ class UpdatePagesContractTests(unittest.TestCase):
         published = "b" * 40
         command_map = {
             ("git", "rev-parse", "HEAD"): local,
+            ("git", "remote", "get-url", "origin"): "git@github.com:ManabiGrid/manabigrid-site.git",
             ("git", "status", "--porcelain", "--untracked-files=all"): " M dirty",
             ("git", "branch", "--show-current"): "main",
             (update_pages.sys.executable, "check_workflow.py"): "PASS",
@@ -181,7 +279,21 @@ class UpdatePagesContractTests(unittest.TestCase):
                 "remote_sha",
                 side_effect=lambda remote_url: source if remote_url == update_pages.source_remote() else local,
             ):
-                with patch.object(update_pages, "published_sha", return_value=published):
+                with (
+                    patch.object(
+                        update_pages,
+                        "published_report",
+                        return_value={
+                            "source": {"commit": published},
+                            "publication": {"site_commit": local},
+                        },
+                    ),
+                    patch.object(
+                        update_pages,
+                        "workflow_operational_status",
+                        return_value={"status": "active"},
+                    ),
+                ):
                     payload = update_pages.status_payload()
         self.assertEqual(payload["source_sync"], "update_available")
         self.assertEqual(payload["release_readiness"], "blocked_dirty_site")
@@ -190,10 +302,255 @@ class UpdatePagesContractTests(unittest.TestCase):
             payload["next_action_code"], "preserve_and_inspect_dirty_worktree"
         )
 
+    def test_status_does_not_infer_sync_when_published_report_is_unavailable(self) -> None:
+        local = self.SITE_SHA
+        source = "a" * 40
+        command_map = {
+            ("git", "rev-parse", "HEAD"): local,
+            (
+                "git",
+                "remote",
+                "get-url",
+                "origin",
+            ): "https://github.com/ManabiGrid/manabigrid-site.git",
+            ("git", "status", "--porcelain", "--untracked-files=all"): "",
+            ("git", "branch", "--show-current"): "main",
+            (update_pages.sys.executable, "check_workflow.py"): "PASS",
+        }
+        with patch.object(
+            update_pages,
+            "command",
+            side_effect=lambda args, **_: command_map.get(tuple(args), ""),
+        ):
+            with patch.object(
+                update_pages,
+                "remote_sha",
+                side_effect=lambda remote_url: (
+                    source
+                    if remote_url == update_pages.source_remote()
+                    else local
+                ),
+            ):
+                with (
+                    patch.object(update_pages, "published_report", return_value=None),
+                    patch.object(
+                        update_pages,
+                        "workflow_operational_status",
+                        return_value={"status": "active"},
+                    ),
+                ):
+                    payload = update_pages.status_payload()
+        self.assertEqual(payload["published_state"], "unknown")
+        self.assertEqual(payload["source_sync"], "unknown")
+        self.assertEqual(payload["site_sync"], "unknown")
+        self.assertEqual(
+            payload["release_readiness"],
+            "blocked_published_state_unknown",
+        )
+        self.assertEqual(payload["status"], "blocked_published_state_unknown")
+        self.assertEqual(payload["next_action_code"], "inspect_published_state")
+
+    def test_status_preserves_configuration_drift_as_primary_block(self) -> None:
+        local = self.SITE_SHA
+        source = "a" * 40
+        command_map = {
+            ("git", "rev-parse", "HEAD"): local,
+            (
+                "git",
+                "remote",
+                "get-url",
+                "origin",
+            ): "https://github.com/ManabiGrid/manabigrid-site.git",
+            ("git", "status", "--porcelain", "--untracked-files=all"): "",
+            ("git", "branch", "--show-current"): "main",
+            (update_pages.sys.executable, "check_workflow.py"): "PASS",
+        }
+        with patch.dict(
+            update_pages.CONFIG,
+            {"site_repository": "example/fork"},
+        ):
+            with patch.object(
+                update_pages,
+                "command",
+                side_effect=lambda args, **_: command_map.get(tuple(args), ""),
+            ):
+                with patch.object(
+                    update_pages,
+                    "remote_sha",
+                    side_effect=lambda remote_url: (
+                        source
+                        if remote_url
+                        == update_pages.OFFICIAL_SOURCE_REPOSITORY_URL + ".git"
+                        else local
+                    ),
+                ):
+                    with (
+                        patch.object(update_pages, "published_report") as report,
+                        patch.object(
+                            update_pages,
+                            "workflow_operational_status",
+                        ) as operational,
+                    ):
+                        payload = update_pages.status_payload()
+        report.assert_not_called()
+        operational.assert_not_called()
+        self.assertEqual(payload["status"], "blocked_config_drift")
+        self.assertEqual(payload["release_readiness"], "blocked_config_drift")
+        self.assertEqual(payload["next_action_code"], "inspect_config_drift")
+        self.assertFalse(payload["configuration"]["valid"])
+
     def test_publish_flag_cannot_be_omitted(self) -> None:
         with self.assertRaises(update_pages.UpdateError) as caught:
             update_pages.publish(Namespace(approve_publication=False))
         self.assertEqual(caught.exception.status, "blocked_missing_approval")
+
+    def test_publish_rejects_source_current_but_site_release_pending(self) -> None:
+        source = "a" * 40
+        args = Namespace(
+            approve_publication=True,
+            source_sha=source,
+            dry_run=False,
+            check_external_links=False,
+            correlation_timeout=1,
+            run_timeout=1,
+            live_timeout=1,
+        )
+        with (
+            patch.object(
+                update_pages,
+                "require_release_checkout",
+                return_value={
+                    "site_local": self.SITE_SHA,
+                    "site_remote": self.SITE_SHA,
+                    "site_origin": "official",
+                },
+            ),
+            patch.object(update_pages, "choose_source", return_value=source),
+            patch.object(
+                update_pages,
+                "published_report",
+                return_value={
+                    "source": {"commit": source},
+                    "publication": {"site_commit": "d" * 40},
+                },
+            ),
+        ):
+            with self.assertRaises(update_pages.UpdateError) as caught:
+                update_pages.publish(args)
+        self.assertEqual(
+            caught.exception.status,
+            "blocked_site_release_requires_verification",
+        )
+
+    def test_workflow_operational_status_detects_active_schedule(self) -> None:
+        created_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        responses = iter(
+            [
+                '{"state":"active"}',
+                (
+                    '[{"createdAt":'
+                    + repr(created_at).replace("'", '"')
+                    + ',"conclusion":"success","status":"completed","url":"run",'
+                    + '"headSha":"'
+                    + self.SITE_SHA
+                    + '","headBranch":"main"}]'
+                ),
+            ]
+        )
+        with patch.object(update_pages, "command", side_effect=lambda *_args, **_kwargs: next(responses)):
+            status = update_pages.workflow_operational_status(self.SITE_SHA)
+        self.assertEqual(status["status"], "active")
+
+    def test_schedule_run_must_exercise_current_site_revision(self) -> None:
+        created_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        responses = iter(
+            [
+                '{"state":"active"}',
+                (
+                    '[{"createdAt":'
+                    + repr(created_at).replace("'", '"')
+                    + ',"conclusion":"success","status":"completed",'
+                    + '"url":"run","headSha":"'
+                    + ("d" * 40)
+                    + '","headBranch":"main"}]'
+                ),
+            ]
+        )
+        with patch.object(
+            update_pages,
+            "command",
+            side_effect=lambda *_args, **_kwargs: next(responses),
+        ):
+            status = update_pages.workflow_operational_status(self.SITE_SHA)
+        self.assertEqual(status["status"], "unverified_revision")
+        latest = status["latest_schedule"]
+        assert isinstance(latest, dict)
+        self.assertFalse(latest["head_matches_current"])
+
+    def test_schedule_is_active_only_after_successful_completion(self) -> None:
+        created_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        for run_status, conclusion, expected in (
+            ("completed", "skipped", "failed"),
+            ("completed", "neutral", "failed"),
+            ("in_progress", "", "in_progress"),
+        ):
+            with self.subTest(run_status=run_status, conclusion=conclusion):
+                responses = iter(
+                    [
+                        '{"state":"active"}',
+                        json.dumps(
+                            [
+                                {
+                                    "createdAt": created_at,
+                                    "conclusion": conclusion,
+                                    "status": run_status,
+                                    "url": "run",
+                                    "headSha": self.SITE_SHA,
+                                    "headBranch": "main",
+                                }
+                            ]
+                        ),
+                    ]
+                )
+                with patch.object(
+                    update_pages,
+                    "command",
+                    side_effect=lambda *_args, **_kwargs: next(responses),
+                ):
+                    status = update_pages.workflow_operational_status(
+                        self.SITE_SHA
+                    )
+                self.assertEqual(status["status"], expected)
+
+    def test_schedule_run_from_another_branch_is_not_active(self) -> None:
+        created_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        responses = iter(
+            [
+                '{"state":"active"}',
+                json.dumps(
+                    [
+                        {
+                            "createdAt": created_at,
+                            "conclusion": "success",
+                            "status": "completed",
+                            "url": "run",
+                            "headSha": self.SITE_SHA,
+                            "headBranch": "preview",
+                        }
+                    ]
+                ),
+            ]
+        )
+        with patch.object(
+            update_pages,
+            "command",
+            side_effect=lambda *_args, **_kwargs: next(responses),
+        ):
+            status = update_pages.workflow_operational_status(self.SITE_SHA)
+        self.assertEqual(status["status"], "unverified_revision")
+        latest = status["latest_schedule"]
+        assert isinstance(latest, dict)
+        self.assertFalse(latest["branch_matches_main"])
 
     def test_explicit_source_never_auto_follows_new_sha(self) -> None:
         approved = "a" * 40
@@ -212,10 +569,11 @@ class UpdatePagesContractTests(unittest.TestCase):
         with (
             patch.object(update_pages, "require_release_checkout", return_value={"site_local": self.SITE_SHA, "site_remote": self.SITE_SHA}),
             patch.object(update_pages, "choose_source", return_value=approved),
-            patch.object(update_pages, "published_sha", return_value=None),
+            patch.object(update_pages, "published_report", return_value=None),
             patch.object(update_pages, "dispatch", side_effect=lambda sha, *_: dispatched.append(sha) or run),
             patch.object(update_pages, "wait_for_run"),
-            patch.object(update_pages, "wait_for_live"),
+            patch.object(update_pages, "wait_for_site_live"),
+            patch.object(update_pages, "verify_pages_deployment"),
             patch.object(update_pages, "remote_sha", return_value=newer),
             patch.object(update_pages, "write_report"),
         ):

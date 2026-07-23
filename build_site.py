@@ -2061,7 +2061,9 @@ def mobile_section_nav(current: Path, headings: list[tuple[int, str, str]]) -> s
         for _, title, anchor in sections[:30]
     )
     return (
-        '<details class="mobile-section-nav"><summary>このページの目次</summary>'
+        '<details class="mobile-section-nav"><summary><span>このページの目次</span>'
+        '<span class="disclosure-label is-closed" aria-hidden="true">開く</span>'
+        '<span class="disclosure-label is-open" aria-hidden="true">閉じる</span></summary>'
         f'<nav aria-label="長いページの節一覧"><ol>{links}</ol></nav></details>'
     )
 

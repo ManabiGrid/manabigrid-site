@@ -324,10 +324,14 @@ summary:focus-visible,
 
 .hero-line { display: block; }
 
-/* 句をひとかたまりにして、語の途中で折り返さない。 */
+/*
+ * 通常幅では句をひとかたまりにする。
+ * 文字だけを拡大した時は要素幅を超えず、句の中でも再配置を許す。
+ */
 .hero-phrase {
   display: inline-block;
-  white-space: nowrap;
+  max-width: 100%;
+  white-space: normal;
 }
 
 .hero-emphasis {
@@ -396,7 +400,14 @@ summary:focus-visible,
 
 .start-choices strong { display: block; line-height: 1.45; }
 .start-choices p { margin: .25rem 0 .35rem; color: var(--muted); font-size: .88rem; line-height: 1.7; }
-.start-choices a { display: inline-block; margin-top: .3rem; font-size: .9rem; font-weight: 800; }
+.start-choices a {
+  display: inline-flex;
+  min-height: 1.5rem;
+  align-items: center;
+  margin-top: .3rem;
+  font-size: .9rem;
+  font-weight: 800;
+}
 
 .start-adult {
   margin: .65rem 0 0;
@@ -435,7 +446,13 @@ summary:focus-visible,
   border-top: 1px solid var(--ink);
 }
 
-.route-tools a { font-size: .9rem; font-weight: 800; }
+.route-tools a {
+  display: inline-flex;
+  min-height: 1.5rem;
+  align-items: center;
+  font-size: .9rem;
+  font-weight: 800;
+}
 
 .learning-grid {
   display: grid;
@@ -775,6 +792,11 @@ summary:focus-visible,
 
 .curriculum-unit-link,
 .curriculum-unit-pending { font-size: .72rem; font-weight: 800; }
+.curriculum-unit-link {
+  display: inline-flex;
+  min-height: 1.5rem;
+  align-items: center;
+}
 .curriculum-unit-pending { color: var(--muted); }
 .curriculum-progress-link { margin-top: 1.25rem; }
 
@@ -1012,6 +1034,9 @@ summary:focus-visible,
 
 .unit-meta summary,
 .lesson-meta summary {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
   width: fit-content;
   cursor: pointer;
   font-weight: 700;
@@ -1174,7 +1199,22 @@ details.resource-list > p { max-width: 44rem; color: var(--muted); font-size: .8
   padding: .75rem 0;
 }
 
-.mobile-section-nav summary { cursor: pointer; font-weight: 800; }
+.mobile-section-nav summary {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  font-weight: 800;
+}
+.mobile-section-nav .disclosure-label {
+  margin-left: auto;
+  color: var(--blue);
+  font-size: .75rem;
+}
+.mobile-section-nav .is-open { display: none; }
+.mobile-section-nav[open] .is-closed { display: none; }
+.mobile-section-nav[open] .is-open { display: inline; }
 .mobile-section-nav ol { margin: .75rem 0 0; padding-left: 1.35rem; }
 .mobile-section-nav li { margin: .35rem 0; }
 .mobile-section-nav a[aria-current="location"] { color: var(--ink); font-weight: 800; }
@@ -1633,7 +1673,8 @@ tbody tr:hover { background: var(--canvas); }
 
 .about-hero .title-phrase {
   display: inline-block;
-  white-space: nowrap;
+  max-width: 100%;
+  white-space: normal;
 }
 
 .about-body section {
@@ -1738,6 +1779,19 @@ tbody tr:hover { background: var(--canvas); }
   html { scroll-behavior: auto; }
 }
 
+@media (max-width: 1100px), (max-height: 800px) {
+  .lesson-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lesson-sidebar { display: none; }
+  .mobile-section-nav { display: block; }
+  .lesson-main {
+    width: min(100%, var(--read-width));
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 900px) {
   :root { --header-offset: 1rem; }
 
@@ -1799,17 +1853,28 @@ tbody tr:hover { background: var(--canvas); }
 
   .site-nav {
     min-height: 0;
+    flex-wrap: wrap;
     gap: .35rem .7rem;
     padding-top: .45rem;
     padding-bottom: .45rem;
   }
 
-  .brand { gap: .35rem; }
+  .brand { flex: 0 0 auto; gap: .35rem; }
   .brand-mark { width: 24px; height: 24px; }
-  .brand-link { gap: .45rem; font-size: .9rem; white-space: nowrap; }
+  .brand-link {
+    min-width: max-content;
+    gap: .45rem;
+    font-size: .9rem;
+    white-space: nowrap;
+  }
   .brand-link small { display: none; }
-  .site-links { width: auto; gap: .65rem; border-top: 0; }
-  .site-links a { min-height: 2.75rem; font-size: .76rem; white-space: nowrap; }
+  .site-links {
+    width: auto;
+    margin-left: auto;
+    gap: .65rem;
+    border-top: 0;
+  }
+  .site-links a { min-height: 44px; font-size: .76rem; white-space: nowrap; }
 
   .breadcrumb { padding-top: .6rem; font-size: .72rem; }
   .home-hero { padding-top: 1.3rem; padding-bottom: .5rem; }
@@ -1838,6 +1903,7 @@ tbody tr:hover { background: var(--canvas); }
 
   .learning-grid-section .section-head { margin-bottom: .3rem; }
   .learning-grid-section .section-head > p { margin-top: .3rem; font-size: .78rem; }
+  .learning-grid-section .curriculum-grid { margin-top: .75rem; }
   .learning-grid-item > a { min-height: 10.6rem; padding: .85rem; }
   .learning-grid-heading > strong { font-size: 1.25rem; }
   .learning-grid-stats { margin-top: .4rem; font-size: .8125rem; line-height: 1.5; }
@@ -1927,8 +1993,13 @@ tbody tr:hover { background: var(--canvas); }
 }
 
 @media (max-width: 359px) {
-  .site-nav { flex-wrap: wrap; }
-  .site-links { width: 100%; border-top: 1px solid var(--line); }
+  .site-nav { gap: .2rem; }
+  .brand { gap: .25rem; }
+  .brand-mark { width: 22px; height: 22px; }
+  .brand-link { gap: .35rem; font-size: .78rem; }
+  .site-links { width: auto; gap: .35rem; border-top: 0; }
+  .site-links a { font-size: .69rem; }
+  .page-home .hero-copy > .eyebrow { display: none; }
   .about-hero h1 { font-size: 1.45rem; }
 }
 

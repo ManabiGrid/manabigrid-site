@@ -1963,6 +1963,26 @@ def freshness_message(built_commit: str, current_head: str) -> str | None:
     )
 
 
+def reported_source_commit_contract_errors(
+    built_commit: object,
+    expected_source_sha: Optional[str],
+) -> List[str]:
+    """Bind publication checks to the exact independently approved source SHA."""
+
+    if not isinstance(built_commit, str) or not re.fullmatch(
+        r"[0-9a-f]{40}",
+        built_commit,
+    ):
+        return ["build-report source commit is not a lowercase 40-character SHA"]
+    if expected_source_sha is None:
+        return []
+    if not re.fullmatch(r"[0-9a-f]{40}", expected_source_sha):
+        return ["expected canonical source SHA is invalid"]
+    if built_commit != expected_source_sha:
+        return ["build-report source commit does not match expected canonical SHA"]
+    return []
+
+
 def normalize_repository_url(value: object) -> str:
     return str(value or "").strip().rstrip("/").removesuffix(".git")
 
@@ -1994,6 +2014,107 @@ def source_checkout_contract_errors(
         errors.append("expected canonical source SHA is invalid")
     elif actual_head is not None and expected_head is not None and actual_head != expected_head:
         errors.append("current source HEAD is not the verified official main revision")
+    return errors
+
+
+def expected_markdown_sources(source_root: Path) -> Set[str]:
+    """Return the complete canonical Markdown set that must be converted."""
+    expected = {
+        path.relative_to(source_root).as_posix()
+        for path in (source_root / "materials").rglob("*.md")
+        if path.is_file()
+    }
+    progress = source_root / "curriculum/PROGRESS_INDEX.md"
+    if progress.is_file():
+        expected.add(progress.relative_to(source_root).as_posix())
+    return expected
+
+
+def source_manifest_contract_errors(
+    source_root: Path,
+    source_files: object,
+    markdown_report: object,
+    site_root: Optional[Path] = None,
+) -> List[str]:
+    """Reject incomplete, duplicated, or self-reported-only conversion manifests."""
+    expected = expected_markdown_sources(source_root)
+    if not isinstance(source_files, list):
+        return ["build-report source_files must be a list"]
+
+    errors: List[str] = []
+    sources: List[str] = []
+    outputs: List[str] = []
+    for index, item in enumerate(source_files):
+        if not isinstance(item, dict):
+            errors.append(f"source_files[{index}] must be an object")
+            continue
+        source = item.get("source")
+        output = item.get("output")
+        source_sha = item.get("sha256")
+        if not isinstance(source, str) or not source:
+            errors.append(f"source_files[{index}].source is invalid")
+        else:
+            sources.append(source)
+        if not isinstance(output, str) or not output:
+            errors.append(f"source_files[{index}].output is invalid")
+        else:
+            outputs.append(output)
+            output_path = PurePosixPath(output)
+            if (
+                output_path.is_absolute()
+                or ".." in output_path.parts
+                or output_path.suffix != ".html"
+            ):
+                errors.append(f"source_files[{index}].output path is unsafe")
+            elif site_root is not None and not (site_root / output).is_file():
+                errors.append(f"source_files[{index}].output is missing")
+        if not isinstance(source_sha, str) or not re.fullmatch(
+            r"[0-9a-f]{64}", source_sha
+        ):
+            errors.append(f"source_files[{index}].sha256 is invalid")
+
+    source_counts = Counter(sources)
+    output_counts = Counter(outputs)
+    duplicate_sources = sorted(
+        source for source, count in source_counts.items() if count > 1
+    )
+    duplicate_outputs = sorted(
+        output for output, count in output_counts.items() if count > 1
+    )
+    if duplicate_sources:
+        errors.append(
+            "source_files has duplicate sources: " + ", ".join(duplicate_sources[:5])
+        )
+    if duplicate_outputs:
+        errors.append(
+            "source_files has duplicate outputs: " + ", ".join(duplicate_outputs[:5])
+        )
+
+    actual = set(sources)
+    missing = sorted(expected - actual)
+    extra = sorted(actual - expected)
+    if missing:
+        errors.append(
+            "source_files omits canonical Markdown: " + ", ".join(missing[:5])
+        )
+    if extra:
+        errors.append(
+            "source_files includes noncanonical Markdown: " + ", ".join(extra[:5])
+        )
+
+    if not isinstance(markdown_report, dict):
+        errors.append("build-report markdown summary is invalid")
+    else:
+        expected_count = len(expected)
+        if (
+            markdown_report.get("expected") != expected_count
+            or markdown_report.get("converted") != expected_count
+            or markdown_report.get("failed") != []
+            or len(source_files) != expected_count
+        ):
+            errors.append(
+                "markdown summary does not match the independently enumerated canonical set"
+            )
     return errors
 
 
@@ -2488,8 +2609,8 @@ def main() -> int:
 
     source_files = build_report.get("source_files", [])
     if not isinstance(source_files, list):
+        errors.append("build-report missing source_files")
         source_files = []
-        warnings.append("build-report missing source_files")
 
     lesson_map: Dict[Path, bool] = {}
     answer_map: Set[Path] = set()
@@ -2504,6 +2625,12 @@ def main() -> int:
         source_root = resolve_source_root(site_root, args.source, build_report)
         built_commit_value = source_info.get("commit")
         built_commit = built_commit_value if isinstance(built_commit_value, str) else None
+        errors.extend(
+            reported_source_commit_contract_errors(
+                built_commit,
+                args.expected_source_sha,
+            )
+        )
         if source_root and built_commit and (source_root / ".git").exists():
             try:
                 def source_git(*git_args: str) -> str:
@@ -2547,6 +2674,21 @@ def main() -> int:
     if source_root is None:
         errors.append("正本Git rootを解決できないため、正本SHA・鮮度・検疫・更新履歴を照合できません")
     else:
+        source_manifest_errors = source_manifest_contract_errors(
+            source_root,
+            source_files,
+            markdown,
+            site_root,
+        )
+        errors.extend(source_manifest_errors)
+        checks.append(
+            {
+                "name": "source:markdown_manifest_complete",
+                "pass": not source_manifest_errors,
+                "canonical_files": len(expected_markdown_sources(source_root)),
+                "reported_files": len(source_files),
+            }
+        )
         source_workflow = source_root / ".github/workflows/quarantine.yml"
         workflow_ok = source_workflow.is_file() and sha256_file(source_workflow) == SOURCE_QUARANTINE_WORKFLOW_SHA256
         checks.append(

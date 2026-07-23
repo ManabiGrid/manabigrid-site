@@ -27,6 +27,7 @@ REVIEW_DIR = ROOT / "review" / "browser"
 MOBILE_VIEWPORT = {"width": 390, "height": 844, "deviceScaleFactor": 1, "mobile": True}
 NARROW_MOBILE_VIEWPORT = {"width": 320, "height": 844, "deviceScaleFactor": 1, "mobile": True}
 DESKTOP_VIEWPORT = {"width": 1440, "height": 1000, "deviceScaleFactor": 1, "mobile": False}
+PROFILE_ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 PAGES = (
     ("top", ROOT / "index.html"),
     ("browse", ROOT / "browse/index.html"),
@@ -56,6 +57,36 @@ PAGES = (
     ),
 )
 NOT_FOUND_ROUTE = "browser-check-not-found"
+
+
+def viewport_argument(value: str) -> tuple[int, int]:
+    match = re.fullmatch(r"([1-9]\d{1,3})x([1-9]\d{1,3})", value)
+    if not match:
+        raise argparse.ArgumentTypeError("viewportは WIDTHxHEIGHT 形式で指定してください")
+    width, height = (int(part) for part in match.groups())
+    if not (280 <= width <= 2560 and 320 <= height <= 2560):
+        raise argparse.ArgumentTypeError(
+            "viewportは幅280〜2560px、高さ320〜2560pxの範囲で指定してください"
+        )
+    return width, height
+
+
+def profile_id_argument(value: str) -> str:
+    if not PROFILE_ID_PATTERN.fullmatch(value):
+        raise argparse.ArgumentTypeError(
+            "profile-idは小文字英数字と単一ハイフンだけで指定してください"
+        )
+    return value
+
+
+def text_scale_argument(value: str) -> float:
+    try:
+        scale = float(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("text-scaleは数値で指定してください") from exc
+    if not 1.0 <= scale <= 2.0:
+        raise argparse.ArgumentTypeError("text-scaleは1.0〜2.0で指定してください")
+    return scale
 
 
 def expected_update_entries() -> int:
@@ -376,6 +407,8 @@ METRICS_SCRIPT = r"""
       left: rect.left,
       width: rect.width,
       height: rect.height,
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
       text: (element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
     };
   };
@@ -399,6 +432,8 @@ METRICS_SCRIPT = r"""
     viewportWidth,
     pageWidth,
     pageOverflow: pageWidth > viewportWidth + 1,
+    rootFontSize: getComputedStyle(root).fontSize,
+    bodyFontSize: body ? getComputedStyle(body).fontSize : '',
     focusableCount: focusable.length,
     firstFocusable: focusable[0] || null,
     header: inspect('.site-header'),
@@ -421,7 +456,10 @@ METRICS_SCRIPT = r"""
     updateCommitLinkCount: document.querySelectorAll('.page-updates [data-update-commit] a[href*="/commit/"]').length,
     heroPhrases: [...document.querySelectorAll('.hero-phrase')].map((element) => {
       const rect = element.getBoundingClientRect();
-      return { text: (element.textContent || '').trim(), width: rect.width, top: rect.top, bottom: rect.bottom, rectCount: element.getClientRects().length };
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const textRects = [...range.getClientRects()].filter((item) => item.width > 0 && item.height > 0);
+      return { text: (element.textContent || '').trim(), width: rect.width, top: rect.top, bottom: rect.bottom, rectCount: textRects.length };
     }),
     readableNow: inspect('.readable-now'),
     readableNowTitle: inspect('#readable-now-title'),
@@ -432,6 +470,7 @@ METRICS_SCRIPT = r"""
     notFoundTitle: inspect('#not-found-title'),
     notFoundPrimaryAction: inspect('.not-found-actions .button'),
     notFoundSecondaryAction: inspect('.not-found-actions a:not(.button)'),
+    lessonSidebar: inspect('.lesson-sidebar'),
     mobileSectionNav: inspect('.mobile-section-nav'),
     englishBlockquote: inspect('blockquote [lang="en"], blockquote[lang="en"]'),
     aboutSteps: document.querySelectorAll('.about-steps li').length,
@@ -444,7 +483,10 @@ METRICS_SCRIPT = r"""
     ),
     aboutTitlePhrases: [...document.querySelectorAll('.about-hero .title-phrase')].map((element) => {
       const rect = element.getBoundingClientRect();
-      return { text: (element.textContent || '').trim(), width: rect.width, rectCount: element.getClientRects().length };
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const textRects = [...range.getClientRects()].filter((item) => item.width > 0 && item.height > 0);
+      return { text: (element.textContent || '').trim(), width: rect.width, rectCount: textRects.length };
     }),
     glossaryTerms: document.querySelectorAll('.github-glossary dt').length,
     glossaryDefinitions: document.querySelectorAll('.github-glossary dd').length,
@@ -537,6 +579,80 @@ def settle_first_paint(pipe: DevToolsSocket, session: str) -> None:
     )
 
 
+def apply_text_scale(
+    pipe: DevToolsSocket,
+    session: str,
+    scale: float,
+) -> dict[str, float]:
+    if scale == 1.0:
+        return {
+            "requestedScale": scale,
+            "rootBaselinePx": 0.0,
+            "bodyBaselinePx": 0.0,
+            "rootAppliedPx": 0.0,
+            "bodyAppliedPx": 0.0,
+        }
+    result = evaluate(
+        pipe,
+        session,
+        (
+            "(async () => {"
+            "const root = document.documentElement;"
+            "const body = document.body;"
+            "const rootPx = Number.parseFloat(getComputedStyle(root).fontSize);"
+            "const bodyPx = Number.parseFloat(getComputedStyle(body).fontSize);"
+            f"root.style.fontSize = `${{rootPx * {scale!r}}}px`;"
+            f"body.style.fontSize = `${{bodyPx * {scale!r}}}px`;"
+            "window.dispatchEvent(new Event('resize'));"
+            "await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));"
+            "return {"
+            f"requestedScale: {scale!r},"
+            "rootBaselinePx: rootPx,"
+            "bodyBaselinePx: bodyPx,"
+            "rootAppliedPx: Number.parseFloat(getComputedStyle(root).fontSize),"
+            "bodyAppliedPx: Number.parseFloat(getComputedStyle(body).fontSize)"
+            "};"
+            "})()"
+        ),
+    )
+    return validate_text_scale_result(result, scale)
+
+
+def validate_text_scale_result(
+    result: object,
+    scale: float,
+) -> dict[str, float]:
+    """Prove that both root and body actually received the requested scale."""
+
+    keys = (
+        "requestedScale",
+        "rootBaselinePx",
+        "bodyBaselinePx",
+        "rootAppliedPx",
+        "bodyAppliedPx",
+    )
+    if not isinstance(result, dict):
+        raise RuntimeError("文字拡大のcomputed styleを確認できません")
+    try:
+        metrics = {key: float(result[key]) for key in keys}
+    except (KeyError, TypeError, ValueError) as exc:
+        raise RuntimeError("文字拡大のcomputed styleを確認できません") from exc
+    if abs(metrics["requestedScale"] - scale) > 0.001:
+        raise RuntimeError("文字拡大の要求倍率と計測倍率が一致しません")
+    for target in ("root", "body"):
+        baseline = metrics[f"{target}BaselinePx"]
+        applied = metrics[f"{target}AppliedPx"]
+        expected = baseline * scale
+        tolerance = max(0.05, expected * 0.01)
+        if baseline <= 0 or abs(applied - expected) > tolerance:
+            raise RuntimeError(
+                f"文字拡大が{target}へ要求どおり適用されていません: "
+                f"baseline={baseline}px, applied={applied}px, "
+                f"expected={expected}px"
+            )
+    return metrics
+
+
 def event_errors(events: list[dict[str, object]], start: int, session: str) -> list[str]:
     errors: list[str] = []
     for event in events[start:]:
@@ -620,7 +736,26 @@ def contrast_ratio(foreground: object, background: object) -> float:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--desktop", action="store_true")
+    viewport_group = parser.add_mutually_exclusive_group()
+    viewport_group.add_argument("--desktop", action="store_true")
+    viewport_group.add_argument(
+        "--viewport",
+        type=viewport_argument,
+        metavar="WIDTHxHEIGHT",
+        help="任意のCSS viewportを指定する",
+    )
+    parser.add_argument(
+        "--profile-id",
+        type=profile_id_argument,
+        help="レポートと画像を識別する安定ID",
+    )
+    parser.add_argument(
+        "--text-scale",
+        type=text_scale_argument,
+        default=1.0,
+        metavar="SCALE",
+        help="文字だけを1.0〜2.0倍へ拡大する（既定1.0）",
+    )
     parser.add_argument("--dark", action="store_true", help="OSダーク配色をエミュレートして撮影")
     parser.add_argument(
         "--base-url",
@@ -639,18 +774,35 @@ def main() -> int:
         }:
             print("--base-url はlocalhostのHTTP(S)だけを指定できます", file=sys.stderr)
             return 2
-    mode = "desktop" if args.desktop else "mobile"
+    if args.viewport:
+        width, height = args.viewport
+        viewport = {
+            "width": width,
+            "height": height,
+            "deviceScaleFactor": 1,
+            "mobile": width <= 900,
+        }
+        mode = "custom"
+    else:
+        mode = "desktop" if args.desktop else "mobile"
+        viewport = DESKTOP_VIEWPORT if mode == "desktop" else MOBILE_VIEWPORT
     color_scheme = "dark" if args.dark else "light"
-    viewport = DESKTOP_VIEWPORT if mode == "desktop" else MOBILE_VIEWPORT
+    profile_id = args.profile_id
+    if profile_id is None and args.viewport:
+        profile_id = f"viewport-{viewport['width']}x{viewport['height']}"
+        if args.text_scale != 1.0:
+            profile_id += f"-text-{round(args.text_scale * 100)}"
     chrome = find_chrome()
     REVIEW_DIR.mkdir(parents=True, exist_ok=True)
     report: dict[str, object] = {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "build_report_source_commit": build_report_source_commit(),
         "status": "ok",
         "chrome": chrome,
         "mode": mode,
+        "profile_id": profile_id,
+        "text_scale": args.text_scale,
         "color_scheme": color_scheme,
         "base_url": base_url,
         "viewport_css_pixels": viewport,
@@ -691,17 +843,17 @@ def main() -> int:
                 continue
             wait_until_complete(pipe, session, page_url)
             pipe.call("Page.bringToFront", session_id=session)
+            text_scale_metrics = apply_text_scale(
+                pipe,
+                session,
+                args.text_scale,
+            )
             settle_first_paint(pipe, session)
             metrics = evaluate(pipe, session, METRICS_SCRIPT)
             if not isinstance(metrics, dict):
                 errors.append(f"{label}: 描画指標を取得できません")
                 continue
-            if not viewport["mobile"]:
-                evaluate(
-                    pipe,
-                    session,
-                    "new Promise((resolve) => { const header = document.querySelector('.site-header'); if (header) header.style.position = 'static'; requestAnimationFrame(() => requestAnimationFrame(() => resolve(true))); })",
-                )
+            metrics["textScale"] = text_scale_metrics
             screenshot_origin_y = 0.0
             if label == "lesson-wide-svg":
                 figure_scroller = metrics.get("figureScroller")
@@ -726,7 +878,11 @@ def main() -> int:
                 session,
             )
             color_suffix = "-dark" if args.dark else ""
-            screenshot_path = REVIEW_DIR / f"{label}-{viewport['width']}x{viewport['height']}{color_suffix}.png"
+            profile_suffix = f"-{profile_id}" if profile_id else ""
+            screenshot_path = REVIEW_DIR / (
+                f"{label}-{viewport['width']}x{viewport['height']}"
+                f"{profile_suffix}{color_suffix}.png"
+            )
             screenshot_path.write_bytes(base64.b64decode(str(screenshot["data"])))
 
             page_errors: list[str] = []
@@ -753,6 +909,8 @@ def main() -> int:
                 or "まなびグリッド" not in str(brand.get("text", ""))
             ):
                 page_errors.append("ブランド名が共通ヘッダー内で可視になっていません")
+            elif int(brand.get("scrollWidth", 0)) > int(brand.get("clientWidth", 0)) + 1:
+                page_errors.append("共通ヘッダーのブランド名が表示領域からはみ出しています")
             if (
                 not isinstance(navigation_metrics, dict)
                 or not navigation_metrics.get("visible")
@@ -760,6 +918,71 @@ def main() -> int:
                 or "進捗一覧" not in str(navigation_metrics.get("text", ""))
             ):
                 page_errors.append("共通サイトナビが可視になっていません")
+            elif int(navigation_metrics.get("scrollWidth", 0)) > int(
+                navigation_metrics.get("clientWidth", 0)
+            ) + 1:
+                page_errors.append("共通サイトナビが表示領域からはみ出しています")
+            mobile_nav_interaction: dict[str, object] | None = None
+            mobile_nav = metrics.get("mobileSectionNav")
+            if isinstance(mobile_nav, dict) and mobile_nav.get("visible"):
+                interaction = evaluate(
+                    pipe,
+                    session,
+                    """
+new Promise((resolve) => {
+  const details = document.querySelector('.mobile-section-nav');
+  const summary = details?.querySelector('summary');
+  if (!details || !summary) return resolve(null);
+  const links = [...details.querySelectorAll('a[href*="#"]')];
+  const targetExists = (link) => {
+    try {
+      const hash = new URL(link.href, location.href).hash;
+      return Boolean(hash && document.getElementById(decodeURIComponent(hash.slice(1))));
+    } catch (_) {
+      return false;
+    }
+  };
+  summary.click();
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const openLabel = details.querySelector('.disclosure-label.is-open');
+    const last = links.at(-1);
+    const lastRect = last?.getBoundingClientRect();
+    const result = {
+      open: details.open,
+      labelVisible: Boolean(
+        openLabel
+        && getComputedStyle(openLabel).display !== 'none'
+        && openLabel.getBoundingClientRect().height > 0
+      ),
+      linkCount: links.length,
+      targetCount: links.filter(targetExists).length,
+      lastLinkRendered: Boolean(lastRect && lastRect.height > 0 && lastRect.width > 0),
+      lastHref: last?.getAttribute('href') || '',
+    };
+    summary.click();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      result.closed = !details.open;
+      resolve(result);
+    }));
+  }));
+})
+""",
+                )
+                if isinstance(interaction, dict):
+                    mobile_nav_interaction = interaction
+                    metrics["mobileSectionNavInteraction"] = interaction
+                if (
+                    not isinstance(interaction, dict)
+                    or interaction.get("open") is not True
+                    or interaction.get("closed") is not True
+                    or interaction.get("labelVisible") is not True
+                    or int(interaction.get("linkCount", 0)) == 0
+                    or interaction.get("linkCount") != interaction.get("targetCount")
+                    or interaction.get("lastLinkRendered") is not True
+                ):
+                    page_errors.append(
+                        "折りたたみ目次の開閉・リンク・最終節を確認できません"
+                    )
             first = metrics.get("firstFocusable")
             if not isinstance(first, dict) or "skip-link" not in str(first.get("class", "")).split():
                 page_errors.append("最初のフォーカス対象がskip linkではありません")
@@ -782,14 +1005,20 @@ def main() -> int:
                 page_errors.append("横スクロール可能な表にフォーカスと名前がありません")
             if label == "lesson-wide-svg" and viewport["mobile"]:
                 scrollers = metrics.get("localScrollers", [])
-                wide_scroller = any(
+                figure_scrollers = [
+                    item
+                    for item in scrollers
+                    if isinstance(item, dict)
+                    and "figure-scroll" in str(item.get("class", "")).split()
+                ]
+                invalid_wide_scroller = any(
                     isinstance(item, dict)
                     and "figure-scroll" in str(item.get("class", "")).split()
                     and int(item.get("scrollWidth", 0)) > int(item.get("clientWidth", 0))
-                    and item.get("overflowX") == "auto"
-                    for item in scrollers
+                    and item.get("overflowX") != "auto"
+                    for item in figure_scrollers
                 )
-                if not wide_scroller:
+                if not figure_scrollers or invalid_wide_scroller:
                     page_errors.append("wide SVGが局所横スクロールになっていません")
                 figure_source = metrics.get("figureSource")
                 if not isinstance(figure_source, dict) or float(figure_source.get("height", 0)) < 44:
@@ -808,7 +1037,12 @@ def main() -> int:
                     if isinstance(first_grid_item, dict) and first_grid_item.get("visible")
                     else 0.0
                 )
-                if first_grid_visible_height < 44:
+                canonical_mobile_view = (
+                    viewport["width"] == MOBILE_VIEWPORT["width"]
+                    and viewport["height"] == MOBILE_VIEWPORT["height"]
+                    and args.text_scale == 1.0
+                )
+                if canonical_mobile_view and first_grid_visible_height < 44:
                     page_errors.append(
                         "第一画面に学習グリッドの先頭入口が44px以上見えていません"
                     )
@@ -830,12 +1064,22 @@ def main() -> int:
                 hero_phrases = metrics.get("heroPhrases", [])
                 if not hero_phrases or any(
                     not isinstance(item, dict)
-                    or int(item.get("rectCount", 0)) != 1
+                    or (
+                        args.text_scale == 1.0
+                        and int(item.get("rectCount", 0)) != 1
+                    )
                     or float(item.get("width", viewport["width"] + 1)) > viewport["width"]
                     for item in hero_phrases
                 ):
                     page_errors.append("ヒーローの句が語中改行なしで収まっていません")
                 elif (
+                    args.text_scale == 1.0
+                    and (viewport["width"], viewport["height"])
+                    in {
+                        (MOBILE_VIEWPORT["width"], MOBILE_VIEWPORT["height"]),
+                        (DESKTOP_VIEWPORT["width"], DESKTOP_VIEWPORT["height"]),
+                    }
+                ) and (
                     len(hero_phrases) != 3
                     or abs(float(hero_phrases[0].get("top", 0)) - float(hero_phrases[1].get("top", 0))) < 1
                     or abs(float(hero_phrases[1].get("top", 0)) - float(hero_phrases[2].get("top", 0))) > 1
@@ -852,7 +1096,7 @@ def main() -> int:
                     or "更新履歴をすべて見る" not in str(home_updates_link.get("text", ""))
                 ):
                     page_errors.append("トップから更新履歴ページへの導線が見つかりません")
-                if viewport["mobile"]:
+                if canonical_mobile_view and args.viewport is None:
                     set_viewport(pipe, session, NARROW_MOBILE_VIEWPORT)
                     settle_first_paint(pipe, session)
                     narrow_metrics = evaluate(pipe, session, METRICS_SCRIPT)
@@ -967,13 +1211,43 @@ def main() -> int:
                     or "Q1" not in str(diagnostic_action.get("text", ""))
                 ):
                     page_errors.append("診断ページの開始予告とQ1導線が可視になっていません")
+                if (
+                    isinstance(mobile_nav, dict)
+                    and mobile_nav.get("visible")
+                    and (
+                        not isinstance(mobile_nav_interaction, dict)
+                        or mobile_nav_interaction.get("linkCount") != 12
+                    )
+                ):
+                    page_errors.append("診断の折りたたみ目次が12節を表示していません")
             if label == "english":
                 english_blockquote = metrics.get("englishBlockquote")
-                mobile_nav = metrics.get("mobileSectionNav")
+                lesson_sidebar = metrics.get("lessonSidebar")
+                compact_lesson_layout = (
+                    viewport["width"] <= 1100 or viewport["height"] <= 800
+                )
                 if not isinstance(english_blockquote, dict) or not english_blockquote.get("present"):
                     page_errors.append("英語4語以上の例文に部分言語lang=enがありません")
                 if not isinstance(mobile_nav, dict) or not mobile_nav.get("present"):
                     page_errors.append("6節のレッスンにモバイル用目次が生成されていません")
+                elif compact_lesson_layout and not mobile_nav.get("visible"):
+                    page_errors.append("低い画面で折りたたみ目次が表示されていません")
+                elif not compact_lesson_layout and (
+                    not isinstance(lesson_sidebar, dict)
+                    or not lesson_sidebar.get("visible")
+                ):
+                    page_errors.append("十分に広い画面でレッスンサイド目次が表示されていません")
+                if (
+                    isinstance(mobile_nav, dict)
+                    and mobile_nav.get("visible")
+                    and (
+                        not isinstance(mobile_nav_interaction, dict)
+                        or mobile_nav_interaction.get("linkCount") != 8
+                    )
+                ):
+                    page_errors.append(
+                        "長いレッスンの折りたたみ目次が8節を表示していません"
+                    )
             if label == "progress":
                 if metrics.get("progressDisclosureCount") != 12:
                     page_errors.append("進捗の大きな表が12区分の折りたたみになっていません")
@@ -1065,7 +1339,10 @@ def main() -> int:
                 about_title_phrases = metrics.get("aboutTitlePhrases", [])
                 if len(about_title_phrases) != 2 or any(
                     not isinstance(item, dict)
-                    or int(item.get("rectCount", 0)) != 1
+                    or (
+                        args.text_scale == 1.0
+                        and int(item.get("rectCount", 0)) != 1
+                    )
                     or float(item.get("width", viewport["width"] + 1)) > viewport["width"]
                     for item in about_title_phrases
                 ):
@@ -1150,6 +1427,39 @@ def main() -> int:
                         page_errors.append("404.htmlの副導線のタップ高さが44px未満です")
 
             if label == "top":
+                if not viewport["mobile"] and viewport["height"] > 800:
+                    sticky_header = evaluate(
+                        pipe,
+                        session,
+                        """
+new Promise((resolve) => {
+  const header = document.querySelector('.site-header');
+  if (!header) return resolve(null);
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+  scrollTo(0, Math.min(320, maxScroll));
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const rect = header.getBoundingClientRect();
+    const result = {
+      position: getComputedStyle(header).position,
+      top: rect.top,
+      scrollY,
+    };
+    scrollTo(0, 0);
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve(result)));
+  }));
+})
+""",
+                    )
+                    metrics["stickyHeader"] = sticky_header
+                    if (
+                        not isinstance(sticky_header, dict)
+                        or sticky_header.get("position") != "sticky"
+                        or float(sticky_header.get("scrollY", 0)) < 1
+                        or abs(float(sticky_header.get("top", 99))) > 1
+                    ):
+                        page_errors.append(
+                            "デスクトップの共通ヘッダーがスクロール時に上端へ固定されません"
+                        )
                 skip_result = evaluate(
                     pipe,
                     session,
@@ -1292,14 +1602,14 @@ def main() -> int:
 
     report["errors"] = errors
     report["status"] = "ok" if not errors else "failed"
-    report_name = (
-        f"browser-check-{mode}{'-dark' if args.dark else ''}-report.json"
-    )
+    report_key = profile_id or mode
+    report_name = f"browser-check-{report_key}{'-dark' if args.dark else ''}-report.json"
     report_path = REVIEW_DIR / report_name
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"実描画: {len(report.get('pages', []))}/{len(page_specs) if 'page_specs' in locals() else len(PAGES)}ページ、"
         f"CSS viewport {viewport['width']}×{viewport['height']}、"
+        f"文字 {args.text_scale:.2f}倍、"
         f"エラー{len(errors)}"
     )
     if errors:
