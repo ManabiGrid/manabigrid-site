@@ -3,7 +3,9 @@ from __future__ import annotations
 from contextlib import redirect_stdout
 import io
 import json
+import os
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from argparse import Namespace
@@ -1156,10 +1158,14 @@ class UpdatePagesContractTests(unittest.TestCase):
             1,
         )[0]
         required_commands = (
+            "set -euo pipefail",
             'SOURCE_ROOT="/absolute/path/to/clean-canonical-checkout"',
             'SOURCE_SHA="$(git ls-remote '
             "https://github.com/ManabiGrid/manabigrid.git "
             "refs/heads/main | awk '{print $1}')\"",
+            'if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then',
+            "canonical source main did not resolve to one "
+            "lowercase 40-character SHA",
             'FRESH_OUTPUT="$(mktemp -d "$PWD/review/site-output.XXXXXX")"',
             'CHECK_REPORT="${FRESH_OUTPUT}.check-report.json"',
             'python3 build_site.py --source "$SOURCE_ROOT" '
@@ -1178,12 +1184,97 @@ class UpdatePagesContractTests(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertIn(command, section)
         self.assertIn("site SHAを捏造しない", section)
+        self.assertLess(
+            section.index("set -euo pipefail"),
+            section.index('SOURCE_SHA="$(git ls-remote'),
+        )
         self.assertNotRegex(
             section,
             r"(?m)^python3 (?:build_site|check_site|package_site|"
             r"device_matrix_check|negative_css_overflow_check)\.py"
             r"(?: --no-check| --dry-run)?$",
         )
+
+    def test_compatibility_runbook_stops_on_failure_and_invalid_sha(
+        self,
+    ) -> None:
+        contract = (
+            Path(__file__).resolve().parents[1] / "UPDATE_CONTRACT.md"
+        ).read_text(encoding="utf-8")
+        section = contract.split("## 互換性修正が必要な場合", 1)[1].split(
+            "\n## ",
+            1,
+        )[0]
+        bash_block = section.split("```bash", 1)[1].split("```", 1)[0]
+        prologue = bash_block.split("SOURCE_ROOT=", 1)[0]
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            environment = dict(os.environ)
+
+            command_marker = root / "continued-after-command-failure"
+            environment["MARKER"] = str(command_marker)
+            command_result = subprocess.run(
+                [
+                    "bash",
+                    "-c",
+                    prologue + 'false\nprintf reached > "$MARKER"\n',
+                ],
+                capture_output=True,
+                text=True,
+                env=environment,
+                check=False,
+            )
+            self.assertNotEqual(command_result.returncode, 0)
+            self.assertFalse(command_marker.exists())
+
+            pipeline_marker = root / "continued-after-pipeline-failure"
+            environment["MARKER"] = str(pipeline_marker)
+            pipeline_result = subprocess.run(
+                [
+                    "bash",
+                    "-c",
+                    prologue
+                    + 'SOURCE_SHA="$(false | awk \'{print $1}\')"\n'
+                    + 'printf reached > "$MARKER"\n',
+                ],
+                capture_output=True,
+                text=True,
+                env=environment,
+                check=False,
+            )
+            self.assertNotEqual(pipeline_result.returncode, 0)
+            self.assertFalse(pipeline_marker.exists())
+
+            sha_header = bash_block.split("mkdir -p review", 1)[0]
+            sha_header = "\n".join(
+                (
+                    'SOURCE_SHA="not-a-sha"'
+                    if line.startswith("SOURCE_SHA=")
+                    else line
+                )
+                for line in sha_header.splitlines()
+                if not line.startswith("SOURCE_ROOT=")
+            )
+            sha_marker = root / "continued-after-invalid-sha"
+            environment["MARKER"] = str(sha_marker)
+            sha_result = subprocess.run(
+                [
+                    "bash",
+                    "-c",
+                    sha_header + '\nprintf reached > "$MARKER"\n',
+                ],
+                capture_output=True,
+                text=True,
+                env=environment,
+                check=False,
+            )
+            self.assertNotEqual(sha_result.returncode, 0)
+            self.assertFalse(sha_marker.exists())
+            self.assertIn(
+                "canonical source main did not resolve",
+                sha_result.stderr,
+            )
 
 
 if __name__ == "__main__":

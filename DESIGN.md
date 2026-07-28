@@ -731,6 +731,11 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 - **site SHAを推測しない。** 未commitのworktreeに真のsite commit SHAはないため、
   ローカル事前検証では正本SHAだけを固定する。commit後のPR workflowが実際の
   GitHub SHAを生成器と独立検査器へ渡す二段階にし、架空のsite SHAで来歴を作らない。
+- **P1を追加修正：複数commandの途中失敗を隠さない。** 安全な入力先へ直した
+  runbookにもfail-fast指定がなく、途中gateの非0終了を後続commandの成功が隠せた。
+  block先頭の`set -euo pipefail`と正本SHAの小文字40桁検査を必須化し、順序を含む
+  契約テストを追加した。空SHA、`git ls-remote`／pipeline失敗、途中gate失敗では
+  後続検査へ進まない。
 - 他の独立監査でP0／P1は検出されなかった。同一PRがworkflow、validator、testsを
   同時変更する時にrepository内checkだけでは意味上の独立性を保証できないP2は残る。
   今回は複数の読み取り専用敵対監査と実PR gateで補完し、将来のgate-core変更にも

@@ -128,8 +128,13 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 4. repo rootから次の一組を実行する。`SOURCE_ROOT`だけを公式originを持つcleanな正本checkoutの絶対pathへ置き換える。正本SHAは公式remoteから読み、`FRESH_OUTPUT`はignored `review/`配下へ毎回新規作成し、`CHECK_REPORT`は公開候補の外に置く。`--source`、`--output`、`--site-root`、`--expected-source-sha`を省略したり、`.`やrepo rootへ置き換えたりしない。
 
 ```bash
+set -euo pipefail
 SOURCE_ROOT="/absolute/path/to/clean-canonical-checkout"
 SOURCE_SHA="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+  printf 'canonical source main did not resolve to one lowercase 40-character SHA\n' >&2
+  exit 1
+fi
 mkdir -p review
 FRESH_OUTPUT="$(mktemp -d "$PWD/review/site-output.XXXXXX")"
 CHECK_REPORT="${FRESH_OUTPUT}.check-report.json"
