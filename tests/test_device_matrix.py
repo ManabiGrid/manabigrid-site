@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import errno
 import hashlib
 import json
 from pathlib import Path
@@ -49,6 +50,24 @@ class DeviceMatrixContractTests(unittest.TestCase):
         )
         self.assertEqual(browser_check.PRINT_VIEWPORT["width"], 794)
         self.assertFalse(browser_check.PRINT_VIEWPORT["mobile"])
+
+    def test_chrome_profile_cleanup_retries_directory_race(self) -> None:
+        class FlakyProfile:
+            def __init__(self) -> None:
+                self.calls = 0
+
+            def cleanup(self) -> None:
+                self.calls += 1
+                if self.calls == 1:
+                    raise OSError(errno.ENOTEMPTY, "directory not empty")
+
+        socket = browser_check.DevToolsSocket.__new__(
+            browser_check.DevToolsSocket
+        )
+        profile = FlakyProfile()
+        socket.profile = profile
+        socket._cleanup_profile()
+        self.assertEqual(profile.calls, 2)
 
     def test_browser_matrix_keeps_the_unit_resource_regression_page(self) -> None:
         pages = dict(browser_check.PAGES)

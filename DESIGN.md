@@ -684,7 +684,7 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 
 ### 実測結果
 
-- 標準ライブラリ契約テスト **173/173成功**。既存Pages workflowと新PR workflowの
+- 標準ライブラリ契約テスト **174/174成功**。既存Pages workflowと新PR workflowの
   dry-run契約、Ruby YAML構文parse、Python compile、`git diff --check`もPASS。
 - 正本 `5700768bec42db1b2e59883c04e9e902fd0d06fa`は前後ともclean、originは公式。
   fresh候補はMarkdown **463/463（100%）**、HTML **517**、内部リンク
@@ -706,7 +706,10 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 - GitHub Actions上の初回実PR run `30370022111`は、clean checkoutに
   `review/browser`が存在しないためtest fixtureの一時directory作成で失敗した。
   test自身が親directoryを作るよう修正し、空の一時rootでも同じtestが成功することを
-  再現確認した。PR上の最終runが全step成功するまではmerge根拠にしない。
+  再現確認した。第2 run `30370226074`では10/11 profileの描画完了後、Linuxの
+  Chrome子processと一時profile削除が競合して`ENOTEMPTY`で停止した。process終了後の
+  profile cleanupだけを5秒上限で再試行し、初回`ENOTEMPTY`からの回復testとローカル
+  11/11実描画を通した。PR上の最終runが全step成功するまではmerge根拠にしない。
 - 通常のrequired status checkはcheck名とsource appを基準にする。今回の一意名称、
   workflow全体digest、同名job検査はgate-core不変時の誤編集・低effort迂回を強く
   止める。一方、同じPRでworkflow、validator、tests、MathML registryと期待値を

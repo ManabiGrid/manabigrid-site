@@ -365,7 +365,7 @@ class DevToolsSocket:
         if not websocket_url:
             self.process.terminate()
             self.process.wait(timeout=3)
-            self.profile.cleanup()
+            self._cleanup_profile()
             raise RuntimeError("Chrome DevToolsのlocalhost URLを取得できません")
         self.websocket = WebSocket(websocket_url)
         threading.Thread(target=self._drain_stderr, daemon=True).start()
@@ -377,6 +377,19 @@ class DevToolsSocket:
             return
         for _line in self.process.stderr:
             pass
+
+    def _cleanup_profile(self) -> None:
+        """Wait out short Chrome child-process races before removing the profile."""
+
+        deadline = time.monotonic() + 5
+        while True:
+            try:
+                self.profile.cleanup()
+                return
+            except OSError:
+                if time.monotonic() >= deadline:
+                    raise
+                time.sleep(0.05)
 
     def close(self) -> None:
         try:
@@ -390,7 +403,7 @@ class DevToolsSocket:
                     self.process.kill()
                     self.process.wait(timeout=3)
             finally:
-                self.profile.cleanup()
+                self._cleanup_profile()
 
     def call(
         self,
