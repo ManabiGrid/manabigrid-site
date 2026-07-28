@@ -307,10 +307,12 @@ class DeviceMatrixContractTests(unittest.TestCase):
             height=568,
             text_scale=1.0,
         )
+        review_browser = ROOT / "review" / "browser"
+        review_browser.mkdir(parents=True, exist_ok=True)
         with (
             tempfile.TemporaryDirectory() as site_directory,
             tempfile.TemporaryDirectory(
-                dir=ROOT / "review" / "browser"
+                dir=review_browser
             ) as report_directory,
         ):
             site_root = Path(site_directory)

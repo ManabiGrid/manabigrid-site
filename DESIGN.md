@@ -672,9 +672,10 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
   `manabigrid-site-pr-gate`必須、未解決thread禁止、bypass actorなしを提案する。
   単独maintainer運用を即時停止しないため承認数は0とし、独立reviewerを常時確保
   できた時だけ別承認で1へ上げる。
-- 2026-07-28のread-only API実測でsite repositoryのrulesetは0件。proposal内の
-  integration ID 15368は正本repositoryのGitHub Actions status checksから観測した
-  候補であり、site側の初回実PRでcheck名・source appを実測するまで適用しない。
+- 2026-07-28のread-only API実測でsite repositoryのrulesetは0件。site側の実PR
+  #1／run `30370022111`でcheck名`manabigrid-site-pr-gate`、source app
+  `github-actions`、integration ID `15368`を確認した。ruleset案の値とは一致したが、
+  workflowがmainへ入りfreshな成功checkを確認するまで適用しない。
 - 適用前snapshot、初回check成功、明示承認を必須にし、新規ruleset IDを使った削除、
   適用前一覧・main SHA・公開SHA・日次workflow状態との再照合をrollback手順として
   `MAIN_RULESET_PROPOSAL.md`へ記録した。
@@ -702,9 +703,10 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 
 ### 限界と承認境界
 
-- GitHub Actions上の実PR runはworkflowをcommit／pushしていないため未実行。
-  runner imageにChrome／Chromiumが含まれることはGitHub公式runner資料で確認したが、
-  required check名とintegrationは初回実PRで再確認する。
+- GitHub Actions上の初回実PR run `30370022111`は、clean checkoutに
+  `review/browser`が存在しないためtest fixtureの一時directory作成で失敗した。
+  test自身が親directoryを作るよう修正し、空の一時rootでも同じtestが成功することを
+  再現確認した。PR上の最終runが全step成功するまではmerge根拠にしない。
 - 通常のrequired status checkはcheck名とsource appを基準にする。今回の一意名称、
   workflow全体digest、同名job検査はgate-core不変時の誤編集・低effort迂回を強く
   止める。一方、同じPRでworkflow、validator、tests、MathML registryと期待値を
