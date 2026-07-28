@@ -123,9 +123,27 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 通常更新runnerはコードを自動修正しない。新しいMarkdown・SVG・正本構造でゲートが失敗した場合だけ、次の別レーンで扱う。
 
 1. 失敗run、正本SHA、最初の失敗ファイルとエラーを固定する。
-2. repo内のignored `review/`配下に新しい隔離出力を作り、同じSHAから再生成する。既存の`site-output/`や過去レポートを現行候補として流用せず、正本はread-onlyのままにする。
+2. repo内のignored `review/`配下に新しい実行用directoryを作り、その配下の空の`<fresh-output>`へ同じSHAから再生成する。既存の`site-output/`、repo root、過去レポートを現行候補として流用せず、正本はread-onlyのままにする。
 3. 安全性と意味を弱めない最小修正とnegative testを追加する。
-4. `python3 check_pr_workflow.py`、`python3 -m unittest discover -s tests -v`、`build_site.py --no-check`、`check_site.py`、`python3 package_site.py --dry-run`、`python3 device_matrix_check.py --site-root <fresh-output>`、`python3 negative_css_overflow_check.py --site-root <fresh-output>`を通す。
+4. repo rootから次の一組を実行する。`SOURCE_ROOT`だけを公式originを持つcleanな正本checkoutの絶対pathへ置き換える。正本SHAは公式remoteから読み、`FRESH_OUTPUT`はignored `review/`配下へ毎回新規作成し、`CHECK_REPORT`は公開候補の外に置く。`--source`、`--output`、`--site-root`、`--expected-source-sha`を省略したり、`.`やrepo rootへ置き換えたりしない。
+
+```bash
+SOURCE_ROOT="/absolute/path/to/clean-canonical-checkout"
+SOURCE_SHA="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+mkdir -p review
+FRESH_OUTPUT="$(mktemp -d "$PWD/review/site-output.XXXXXX")"
+CHECK_REPORT="${FRESH_OUTPUT}.check-report.json"
+python3 check_workflow.py
+python3 check_pr_workflow.py
+python3 -m unittest discover -s tests -v
+python3 build_site.py --source "$SOURCE_ROOT" --output "$FRESH_OUTPUT" --no-check --expected-source-sha "$SOURCE_SHA"
+python3 check_site.py "$FRESH_OUTPUT" --source "$SOURCE_ROOT" --expected-source-sha "$SOURCE_SHA" --report-output "$CHECK_REPORT"
+python3 package_site.py --site-root "$FRESH_OUTPUT" --dry-run
+python3 device_matrix_check.py --site-root "$FRESH_OUTPUT"
+python3 negative_css_overflow_check.py --site-root "$FRESH_OUTPUT"
+```
+
+未commitの候補に対応するsite commit SHAは存在しないため、ローカル検証でsite SHAを捏造しない。commit後のPR workflowが実際のGitHub SHAを`MANABIGRID_SITE_COMMIT_SHA`へ渡し、`check_site.py --expected-site-sha`で生成物と完全一致させる。
 5. siteコードのcommit／push／Pages更新が明示承認されている場合だけ反映する。
 
 repo内にignored `site-output/`が残っても、公開検査は`public_site.py`のallowlistだけを走査する。runner自身は生成物を作らず、Actionsの隔離checkoutでbuildする。

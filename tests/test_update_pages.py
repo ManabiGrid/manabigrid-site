@@ -1145,6 +1145,46 @@ class UpdatePagesContractTests(unittest.TestCase):
         self.assertEqual(printed["latest_source_sha"], "b" * 40)
         self.assertEqual(printed["error"], "source moved")
 
+    def test_compatibility_runbook_pins_fresh_roots_and_source_sha(
+        self,
+    ) -> None:
+        contract = (
+            Path(__file__).resolve().parents[1] / "UPDATE_CONTRACT.md"
+        ).read_text(encoding="utf-8")
+        section = contract.split("## 互換性修正が必要な場合", 1)[1].split(
+            "\n## ",
+            1,
+        )[0]
+        required_commands = (
+            'SOURCE_ROOT="/absolute/path/to/clean-canonical-checkout"',
+            'SOURCE_SHA="$(git ls-remote '
+            "https://github.com/ManabiGrid/manabigrid.git "
+            "refs/heads/main | awk '{print $1}')\"",
+            'FRESH_OUTPUT="$(mktemp -d "$PWD/review/site-output.XXXXXX")"',
+            'CHECK_REPORT="${FRESH_OUTPUT}.check-report.json"',
+            'python3 build_site.py --source "$SOURCE_ROOT" '
+            '--output "$FRESH_OUTPUT" --no-check '
+            '--expected-source-sha "$SOURCE_SHA"',
+            'python3 check_site.py "$FRESH_OUTPUT" '
+            '--source "$SOURCE_ROOT" '
+            '--expected-source-sha "$SOURCE_SHA" '
+            '--report-output "$CHECK_REPORT"',
+            'python3 package_site.py --site-root "$FRESH_OUTPUT" --dry-run',
+            'python3 device_matrix_check.py --site-root "$FRESH_OUTPUT"',
+            "python3 negative_css_overflow_check.py "
+            '--site-root "$FRESH_OUTPUT"',
+        )
+        for command in required_commands:
+            with self.subTest(command=command):
+                self.assertIn(command, section)
+        self.assertIn("site SHAを捏造しない", section)
+        self.assertNotRegex(
+            section,
+            r"(?m)^python3 (?:build_site|check_site|package_site|"
+            r"device_matrix_check|negative_css_overflow_check)\.py"
+            r"(?: --no-check| --dry-run)?$",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

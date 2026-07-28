@@ -718,3 +718,20 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
   ruleset workflow／Actions policyは別の外部設定案として評価する。
 - この節ではcommit、push、PR、workflow dispatch、Pages更新、ruleset／Actions
   policy変更を行っていない。既存の日次workflowと公開Pagesも変更していない。
+
+### 公開直前の敵対的再監査（2026-07-29）
+
+- **P1を採用・修正：互換修正runbookの出力先省略。** 説明ではignored
+  `review/`配下のfresh候補を要求していたが、直後の例示が`build_site.py`、
+  `check_site.py`、`package_site.py`の入力・出力rootを省略していた。既定値を
+  文字どおり使う低effort実行者はrepo rootの追跡済み生成物を上書きし、fresh候補
+  ではない場所を検査できた。全コマンドへ同一の`SOURCE_ROOT`、
+  `FRESH_OUTPUT`、`SOURCE_SHA`を明示し、検査レポートも候補外の
+  `CHECK_REPORT`へ分離した。これらの引数を欠く短縮手順は契約テストで拒否する。
+- **site SHAを推測しない。** 未commitのworktreeに真のsite commit SHAはないため、
+  ローカル事前検証では正本SHAだけを固定する。commit後のPR workflowが実際の
+  GitHub SHAを生成器と独立検査器へ渡す二段階にし、架空のsite SHAで来歴を作らない。
+- 他の独立監査でP0／P1は検出されなかった。同一PRがworkflow、validator、testsを
+  同時変更する時にrepository内checkだけでは意味上の独立性を保証できないP2は残る。
+  今回は複数の読み取り専用敵対監査と実PR gateで補完し、将来のgate-core変更にも
+  独立reviewを必須とする。
