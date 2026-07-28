@@ -591,3 +591,152 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
 - 読み上げはMathML／ARIA／`semantics`／注記のDOM構造とChrome Accessibility treeへの公開まで検査した。VoiceOver、NVDA等の実音声と読み順は未検証であり、支援技術ごとの差までは成功扱いしない。
 - 印刷はChromeのprint mediaで白黒・横幅・コントラストを検査した。物理プリンター、用紙、ドライバー固有差は未検証。
 - 物理iOS／Android端末は未検証。ChromiumのCSS viewportと文字拡大proxyによる結果であり、OS固有の数式フォント差は残る。
+
+## v15：モデル非依存のsite-code更新レーン（2026-07-28）
+
+対象はsite repositoryの生成器、検査器、CSS、workflow等を変更する更新。教材正本は
+引き続きread-onlyとし、既存の日次`pages.yml`、公開済みPages、GitHub設定を変えず、
+低effort・別モデルでも同じ停止条件へ収束する機械レーンを追加した。
+
+### statusと公開検証記録
+
+- **採用：statusをstdout-onlyにする。** `python3 update_pages.py status`は成功・
+  例外ともschema v5のJSONを標準出力へ返すだけにした。ファイル保存、workflow
+  dispatch、GitHub状態変更を行わない。実CLI前後で既存`update-report.json`の
+  SHA-256、mtime、sizeが完全一致することを確認した。
+- **監査修正：statusの将来の副作用も負例化する。** 実`status_payload()`を完全mock
+  環境で動かし、許可する外部操作をGit read、`git ls-remote`、GitHub GET/list、
+  両workflow checkerの10操作へ完全一致させた。未知command、直接subprocess、
+  未審査HTTP、dispatch、記録保存を追加するとtestが停止する。さらにGit読取へ
+  `GIT_OPTIONAL_LOCKS=0`を強制し、`git status`の任意index refreshも抑止する。
+- **採用：公開検証記録だけを原子的に保存する。** `update-report.json`は
+  `record_type: publication_verification`専用とし、Actions run、公開source／site
+  SHA、Pages deployment、HTTP契約の完全照合後だけ、一時ファイルから
+  `os.replace`で更新する。status、dry-run、already-current、公開前failureは保存
+  できず、validationとnegative testで旧記録を保持する。
+- **採用：公開後driftも証拠を失わない。** 固定SHA公開後に正本が進んだ場合は、
+  公開済みSHAの完全照合記録を1回だけ保存してから非0停止する。mainの一般例外
+  handlerが詳細payloadを簡略errorで再保存する経路を廃止した。自動追随1回目の
+  後続処理が失敗しても、直前に確認できた公開記録を残す。
+- **監査修正：公開確認後の正本HEAD再取得失敗でも証拠を失わない。** 対象run、
+  公開source／site SHA、Pages deployment、HTTP契約を完全照合した後、最後の
+  `git ls-remote`だけが失敗する経路を再現した。現在は
+  `blocked_source_state_unknown_after_publish`として検証済み公開版を原子的に
+  記録してから非0停止し、正本の鮮度を推測しない。
+- **既存ローカル記録は移行しない。** 現在のignored `update-report.json`は旧schema
+  のstatus snapshotだったため、statusは`legacy_or_invalid`と明示する。公開して
+  いないのに新しい検証記録を捏造せず、次回の完全照合済み公開でのみ置き換える。
+
+### PR workflowと実描画
+
+- **採用：非deployのPR専用workflow。** `.github/workflows/pr-validate.yml`は
+  `pull_request`→mainだけ、`contents: read`、`ubuntu-24.04`、単一job
+  `manabigrid-site-pr-gate`とした。正本mainを観測SHAへ固定checkoutし、両workflow
+  契約、全unit test、fresh build、独立check、公開検疫、固定11端末のChrome実描画を
+  行い、最後に意図的CSS横あふれを同じ実描画gateが拒否する負例まで
+  `site-output`へ実行する。全gate後に正本mainを再照合し、実行中に進んでいれば
+  旧SHAのgreenをmerge根拠にせず再実行を要求する。Pages write、ID token、secret、deploy/upload、
+  `pull_request_target`、path filterは持たない。
+- **採用：workflow自身をfail-closedにする。** `check_pr_workflow.py`はworkflow全体の
+  review済みSHA-256、trigger、権限、runner、action pin、step名・個数・順序、
+  command、検疫語彙、workflowファイルallowlistを照合する。全testの`echo`置換、
+  実描画の`if:false`、checkの`continue-on-error`、検疫削除、CSS負例削除、
+  Pages write/deploy追加、必須check名をliteral・引用符付き・式生成でshadowする
+  別workflow、末尾の正本drift再照合削除をnegative testで拒否する。
+- **修正：fresh出力を本当に描画する。** 旧matrixはrepository rootの追跡済みHTMLと
+  `build-report.json`を固定参照しており、PR buildが壊れても偽陽性になり得た。
+  `browser_check.py`と`device_matrix_check.py`へ`--site-root`を通し、ページ集合、
+  build-report、preview配信rootをfresh候補へ束縛した。公開候補には
+  `site.config.json`がないことも実測で発見し、base pathだけはreview済みrepo設定、
+  配信ファイルは候補rootという分離にした。
+- **監査修正：古い実描画証拠を流用できないようにする。** localhost配信中の
+  `build-report.json`と指定候補のSHA-256を描画前に照合する。matrix reportは
+  preview server、base path設定、public allowlistを含む10ファイル、Chrome版、
+  187 PNGのhash・寸法を実ファイルと照合し、各PNGの幅・高さと実測
+  `innerWidth`／`innerHeight`も端末profileへ固定する。公開候補889ファイルの
+  tree hash前後一致も記録する。
+- **採用：CSS横あふれの実negative。** `negative_css_overflow_check.py`は正常候補を
+  一時領域へpackageし、そのコピーの`_assets/site.css`だけへ
+  `min-width:1600px`を加える。320px実Chromeで全17代表ページのpage overflowを
+  検出し、非0停止することを要求する。ページ数17、label一意性、各ページの
+  overflow errorを個別に照合し、一部ページだけの停止では成功扱いしない。正本、
+  正常候補、repo CSSは変更しない。
+- **MathML allowlistを維持。** PR workflowは全MathML契約テストとfresh
+  `check_site.py`を必須にする。同じ式の未承認ページへの追加、未知ID、tree／件数
+  改変は引き続き停止し、今回MathML対象を増やしていない。
+
+### main ruleset案
+
+- **草案のみ：まだGitHubへ未適用。** `.github/rulesets/main.proposal.json`はdefault
+  branchの削除・force push禁止、PR必須、strictな
+  `manabigrid-site-pr-gate`必須、未解決thread禁止、bypass actorなしを提案する。
+  単独maintainer運用を即時停止しないため承認数は0とし、独立reviewerを常時確保
+  できた時だけ別承認で1へ上げる。
+- 2026-07-28のread-only API実測でsite repositoryのrulesetは0件。site側の実PR
+  #1／run `30370022111`でcheck名`manabigrid-site-pr-gate`、source app
+  `github-actions`、integration ID `15368`を確認した。ruleset案の値とは一致したが、
+  workflowがmainへ入りfreshな成功checkを確認するまで適用しない。
+- 適用前snapshot、初回check成功、明示承認を必須にし、新規ruleset IDを使った削除、
+  適用前一覧・main SHA・公開SHA・日次workflow状態との再照合をrollback手順として
+  `MAIN_RULESET_PROPOSAL.md`へ記録した。
+- 適用前の成功checkは7日以内、可能なら同一作業内に限定する。rulesetが想定0件で
+  ない時はstackせず、POST結果不明時は再POSTせず一意な新規IDをread-only照合する。
+
+### 実測結果
+
+- 標準ライブラリ契約テスト **174/174成功**。既存Pages workflowと新PR workflowの
+  dry-run契約、Ruby YAML構文parse、Python compile、`git diff --check`もPASS。
+- 正本 `5700768bec42db1b2e59883c04e9e902fd0d06fa`は前後ともclean、originは公式。
+  fresh候補はMarkdown **463/463（100%）**、HTML **517**、内部リンク
+  **12,217件・切れ0**、外部リンク参照 **4,383件**。公開候補は
+  **889ファイル、17,208,520 bytes、allowlist外0件**。
+- fresh候補のChrome実描画は **11/11 profile**、各**17/17ページ**、計
+  **187 page-profile**、エラー0。320／360／390／412px phone、844px横、
+  600／768／820px tablet、1024px横、320／390px文字200%を含む。
+  matrix reportは候補rootと候補`build-report.json` SHA-256
+  `788549f67f48f8bc52b63fb713c5cfcde6e7a903b8c48a55a6ccfb41c9c096f4`
+  に束縛した。Chromeは`HeadlessChrome/140.0.7339.16`、公開候補treeは前後とも
+  `1fa886ee588c89e0a7e297c681707081c9bd780e6fe49da447445655b56d6712`。
+- CSS横あふれ負例は非0で停止し、47 errors中17件が意図したpage overflow。
+  workflow迂回10種、CSS負例report契約2種、未承認MathML2種の抽出negative
+  testも14/14成功した。
+
+### 限界と承認境界
+
+- GitHub Actions上の初回実PR run `30370022111`は、clean checkoutに
+  `review/browser`が存在しないためtest fixtureの一時directory作成で失敗した。
+  test自身が親directoryを作るよう修正し、空の一時rootでも同じtestが成功することを
+  再現確認した。第2 run `30370226074`では10/11 profileの描画完了後、Linuxの
+  Chrome子processと一時profile削除が競合して`ENOTEMPTY`で停止した。process終了後の
+  profile cleanupだけを5秒上限で再試行し、初回`ENOTEMPTY`からの回復testとローカル
+  11/11実描画を通した。PR上の最終runが全step成功するまではmerge根拠にしない。
+- 通常のrequired status checkはcheck名とsource appを基準にする。今回の一意名称、
+  workflow全体digest、同名job検査はgate-core不変時の誤編集・低effort迂回を強く
+  止める。一方、同じPRでworkflow、validator、tests、MathML registryと期待値を
+  同時変更した場合、それが人間承認済みかは独立判定できず、暗号学的trust anchor
+  ではない。gate-core変更は独立review対象とし、利用planが許すorganization-level
+  ruleset workflow／Actions policyは別の外部設定案として評価する。
+- この節ではcommit、push、PR、workflow dispatch、Pages更新、ruleset／Actions
+  policy変更を行っていない。既存の日次workflowと公開Pagesも変更していない。
+
+### 公開直前の敵対的再監査（2026-07-29）
+
+- **P1を採用・修正：互換修正runbookの出力先省略。** 説明ではignored
+  `review/`配下のfresh候補を要求していたが、直後の例示が`build_site.py`、
+  `check_site.py`、`package_site.py`の入力・出力rootを省略していた。既定値を
+  文字どおり使う低effort実行者はrepo rootの追跡済み生成物を上書きし、fresh候補
+  ではない場所を検査できた。全コマンドへ同一の`SOURCE_ROOT`、
+  `FRESH_OUTPUT`、`SOURCE_SHA`を明示し、検査レポートも候補外の
+  `CHECK_REPORT`へ分離した。これらの引数を欠く短縮手順は契約テストで拒否する。
+- **site SHAを推測しない。** 未commitのworktreeに真のsite commit SHAはないため、
+  ローカル事前検証では正本SHAだけを固定する。commit後のPR workflowが実際の
+  GitHub SHAを生成器と独立検査器へ渡す二段階にし、架空のsite SHAで来歴を作らない。
+- **P1を追加修正：複数commandの途中失敗を隠さない。** 安全な入力先へ直した
+  runbookにもfail-fast指定がなく、途中gateの非0終了を後続commandの成功が隠せた。
+  block先頭の`set -euo pipefail`と正本SHAの小文字40桁検査を必須化し、順序を含む
+  契約テストを追加した。空SHA、`git ls-remote`／pipeline失敗、途中gate失敗では
+  後続検査へ進まない。
+- 他の独立監査でP0／P1は検出されなかった。同一PRがworkflow、validator、testsを
+  同時変更する時にrepository内checkだけでは意味上の独立性を保証できないP2は残る。
+  今回は複数の読み取り専用敵対監査と実PR gateで補完し、将来のgate-core変更にも
+  独立reviewを必須とする。

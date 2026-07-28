@@ -29,6 +29,8 @@ python3 update_pages.py status
 出力は`published_state`（公開レポートを検証できたか）、`source_sync`（正本と公開版の一致）、`site_sync`（公開版がどのsite commitで生成されたか）、`release_readiness`（site checkoutを安全に公開へ使えるか）、`operational_readiness`（日次workflowがactiveで最近動いたか）の五軸で判定する。公開レポートの取得失敗・不正JSON・SHA欠落は`unknown`とし、正本更新やsite releaseを推測しない。checkout側に他のblock理由がなければ`blocked_published_state_unknown`で停止する。site checkoutの`origin`は`ManabiGrid/manabigrid-site`と完全一致させ、GitHub CLIは`--repo ManabiGrid/manabigrid-site`と`GH_HOST=github.com`を固定し、外部環境の`GH_REPO`を除外して、別repo・別GitHub hostへ誤送信しない。トップレベル`status`だけを見ても、dirty、branch違い、site drift、workflow契約違い、scheduled workflowの無効化・停滞を`current`と誤認しない。`publication_authority: not_observed`は、スクリプトが会話上の公開承認を推測しないことを示す。
 `next_action_code`も破壊操作を指示しない。dirtyなら`preserve_and_inspect_dirty_worktree`、site driftなら`inspect_site_drift`として、reset・checkout・pull等を自動選択させない。更新可能でも公開承認を観測していないstatusでは`await_publication_approval`に留める。
 
+`status`は成功時も例外時もJSONを標準出力へ返すだけである。repo内外のファイルを作成・更新せず、Git読取には`GIT_OPTIONAL_LOCKS=0`を強制してindex refreshやlock作成も抑止し、workflow dispatch、GitHub設定変更、commit、push、Pages更新を行わない。ignored `update-report.json`は状態snapshotではなく、公開後の完全照合を通った最後の`publication_verification`専用記録とする。`updated`、`site_release_verified`、公開自体は確認できた`blocked_source_drift_after_publish`、または公開確認後の正本HEAD再取得だけが失敗した`blocked_source_state_unknown_after_publish`だけを、正本SHA、site SHA、Actions runとともに一時ファイルから原子的に置換する。status、dry-run、already-current、公開前のblock／failure、一般例外はこの記録を上書きしない。
+
 明示承認があり、正本の現在`main`をすぐ公開する場合は次の1コマンドだけを使う。
 
 ```bash
@@ -79,6 +81,7 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 | `blocked_missing_approval` | 公開承認なし | 実行しない |
 | `blocked_source_drift` | 承認SHAと正本mainが不一致 | 新SHAを推測承認しない |
 | `blocked_source_drift_after_publish` | 固定SHAの公開後に正本mainが進んだ | 公開済みSHAを記録し、新SHAを自動公開しない |
+| `blocked_source_state_unknown_after_publish` | 対象run・公開両SHA・Pages・HTTPは完全照合済みだが、最後の正本main再取得だけが失敗 | 検証済み公開版を記録して非0停止し、正本の鮮度を推測しない |
 | `blocked_dirty_site` / `blocked_site_drift` | site checkoutがrelease状態でない | 差分を保持し、由来を確認する |
 | `blocked_site_origin` | site checkoutのoriginが公式repositoryでない | remoteを自動変更せず、対象checkoutを確認する |
 | `blocked_config_drift` | repository、base URL、正本URLがコード内の公式trust anchorと不一致 | 設定だけを信頼せず、変更意図を別レビューする |
@@ -120,16 +123,47 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 通常更新runnerはコードを自動修正しない。新しいMarkdown・SVG・正本構造でゲートが失敗した場合だけ、次の別レーンで扱う。
 
 1. 失敗run、正本SHA、最初の失敗ファイルとエラーを固定する。
-2. repo内のignored `review/`配下に新しい隔離出力を作り、同じSHAから再生成する。既存の`site-output/`や過去レポートを現行候補として流用せず、正本はread-onlyのままにする。
+2. repo内のignored `review/`配下に新しい実行用directoryを作り、その配下の空の`<fresh-output>`へ同じSHAから再生成する。既存の`site-output/`、repo root、過去レポートを現行候補として流用せず、正本はread-onlyのままにする。
 3. 安全性と意味を弱めない最小修正とnegative testを追加する。
-4. `python3 -m unittest discover -s tests`、`python3 check_workflow.py`、`build_site.py --no-check`、`check_site.py`、`python3 device_matrix_check.py`、`package_site.py`を通す。
+4. repo rootから次の一組を実行する。`SOURCE_ROOT`だけを公式originを持つcleanな正本checkoutの絶対pathへ置き換える。正本SHAは公式remoteから読み、`FRESH_OUTPUT`はignored `review/`配下へ毎回新規作成し、`CHECK_REPORT`は公開候補の外に置く。`--source`、`--output`、`--site-root`、`--expected-source-sha`を省略したり、`.`やrepo rootへ置き換えたりしない。
+
+```bash
+set -euo pipefail
+SOURCE_ROOT="/absolute/path/to/clean-canonical-checkout"
+SOURCE_SHA="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+  printf 'canonical source main did not resolve to one lowercase 40-character SHA\n' >&2
+  exit 1
+fi
+mkdir -p review
+FRESH_OUTPUT="$(mktemp -d "$PWD/review/site-output.XXXXXX")"
+CHECK_REPORT="${FRESH_OUTPUT}.check-report.json"
+python3 check_workflow.py
+python3 check_pr_workflow.py
+python3 -m unittest discover -s tests -v
+python3 build_site.py --source "$SOURCE_ROOT" --output "$FRESH_OUTPUT" --no-check --expected-source-sha "$SOURCE_SHA"
+python3 check_site.py "$FRESH_OUTPUT" --source "$SOURCE_ROOT" --expected-source-sha "$SOURCE_SHA" --report-output "$CHECK_REPORT"
+python3 package_site.py --site-root "$FRESH_OUTPUT" --dry-run
+python3 device_matrix_check.py --site-root "$FRESH_OUTPUT"
+python3 negative_css_overflow_check.py --site-root "$FRESH_OUTPUT"
+```
+
+未commitの候補に対応するsite commit SHAは存在しないため、ローカル検証でsite SHAを捏造しない。commit後のPR workflowが実際のGitHub SHAを`MANABIGRID_SITE_COMMIT_SHA`へ渡し、`check_site.py --expected-site-sha`で生成物と完全一致させる。
 5. siteコードのcommit／push／Pages更新が明示承認されている場合だけ反映する。
 
 repo内にignored `site-output/`が残っても、公開検査は`public_site.py`のallowlistだけを走査する。runner自身は生成物を作らず、Actionsの隔離checkoutでbuildする。
 
 `check_workflow.py`は単なる文字列の存在ではなく、固定の日次cron、全jobのstep名・個数・順序、各step blockのSHA-256、deploy jobの`if`条件を構造位置ごとに照合する。コメントや`echo`、`if: false`、`continue-on-error`、検疫後の追加step、名前のないstep、別keyへ同じ文字列を書いてゲートを通すことはできない。workflowを意図的に変える時は、変更内容と負例をレビューしてから契約digestを更新する。
 
-スマホ／タブレット互換性を変えるCSS・生成器修正では`device_matrix.contract.json`を入力に`python3 device_matrix_check.py`を実行する。固定11条件を削って不具合を消さず、追加が必要なら契約とnegative testを同時に更新する。文字200%条件は320pxと390pxの両方を必須にし、実機OS挙動の完全再現ではなく、reflow回帰を検出するCSS文字寸法proxyとして扱う。printの幅判定はscreen viewportから分離し、A4相当794pxで行う。matrix reportは各profileの新規browser report、runner、ブラウザ検査器、CSS、生成器、契約のSHA-256と、文字倍率の適用前後実測値を持つ。古いreportの件数だけを現行コードの証拠に流用しない。
+`.github/workflows/pr-validate.yml`はsiteコード専用の非deploy workflowである。`pull_request`からmainを対象とし、権限は`contents: read`だけ、job名は`manabigrid-site-pr-gate`へ固定する。正本mainの観測SHAをcheckoutし、全契約テスト、fresh build、独立check、公開検疫、固定11端末の実Chrome描画、意図的CSS横あふれを実描画gateが拒否する負例を同じ`site-output`へ順番に実行する。全gate後に正本mainを再取得し、冒頭の観測SHAから進んでいればgreenにせず、同じPR検証を再実行させる。Pages／ID token write、deploy/upload action、secret、path filter、`pull_request_target`、job／stepのskip、`continue-on-error`を追加しない。`check_pr_workflow.py`はworkflow全体のreview済みSHA-256に加えてtrigger、権限、action pin、step名・順序、必須command、検疫語彙、workflowファイル集合、他workflowによる必須check名のliteral／引用符付き／式生成shadow、正本SHAの冒頭・末尾2回照合を検査する。
+
+CSS横あふれの検出器を変更した時は`python3 negative_css_overflow_check.py`で、一時的な公開候補だけへ意図的な`min-width`を加え、320px実描画が「ページ全体が横にはみ出しています」で非0停止することを確認する。未承認MathMLは、固定3ページ以外への追加と正規化tree／件数の改変を既存negative testが拒否する状態を維持する。失敗を消すために端末条件、対象ページ、MathML allowlist、検疫を緩めない。
+
+main rulesetは`MAIN_RULESET_PROPOSAL.md`と`.github/rulesets/main.proposal.json`が未適用draftである。最初の実PRで必須check名とGitHub Actions integrationを観測し、適用直前snapshotと新しい明示承認を得るまではGitHub設定を変更しない。
+
+スマホ／タブレット互換性を変えるCSS・生成器修正では`device_matrix.contract.json`を入力に`python3 device_matrix_check.py`を実行する。固定11条件を削って不具合を消さず、追加が必要なら契約とnegative testを同時に更新する。文字200%条件は320pxと390pxの両方を必須にし、実機OS挙動の完全再現ではなく、reflow回帰を検出するCSS文字寸法proxyとして扱う。printの幅判定はscreen viewportから分離し、A4相当794pxで行う。matrix reportは各profileの新規browser report、runner、ブラウザ検査器、preview server、base path設定、CSS、生成器、公開allowlist、契約のSHA-256、Chrome／Chromium version、各screenshotのSHA-256とPNG寸法、公開候補treeの前後SHA-256を持つ。`--base-url`利用時は配信中`build-report.json`と`--site-root`のSHA-256が一致しなければ描画前に停止する。古いreportの件数だけを現行コードの証拠に流用しない。
+
+workflow、checker、`public_site.py`、browser verifier、tests、MathML registryを同じPRで変更すれば、同一repository内のcheckだけでは「人間が承認した意味変更」かを独立判定できない。これらgate-coreの変更は独立reviewを必要とし、validatorと期待値を同時に弱めてgreenにしない。承認数0のruleset案は、gate-coreがreview済みの時に省略・回帰を止める設計であり、同一PRによるvalidator自己改変の外部trust anchorではない。
 
 ## 実行後に報告する最小証拠
 

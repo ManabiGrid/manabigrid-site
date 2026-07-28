@@ -1,0 +1,143 @@
+name: Validate ManabiGrid site code
+run-name: "PR validation / ${{ github.event.pull_request.number }} / ${{ github.sha }}"
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-validate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: manabigrid-site-pr-gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out the reviewed site revision
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
+
+      - name: Read the canonical ManabiGrid source revision
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_sha="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+          if [[ ! "${source_sha}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "canonical source main did not resolve to one lowercase 40-character SHA" >&2
+            exit 1
+          fi
+          printf 'sha=%s\n' "${source_sha}" >> "${GITHUB_OUTPUT}"
+
+      - name: Check out the canonical source at the observed revision
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          repository: ManabiGrid/manabigrid
+          ref: ${{ steps.source.outputs.sha }}
+          path: source
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Check both workflow contracts
+        run: |
+          python3 check_workflow.py
+          python3 check_pr_workflow.py
+
+      - name: Run every contract test
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Build a fresh static site
+        env:
+          MANABIGRID_SITE_COMMIT_SHA: ${{ github.sha }}
+        run: python3 build_site.py --source source --output site-output --no-check --expected-source-sha "${{ steps.source.outputs.sha }}"
+
+      - name: Check the fresh static site
+        run: python3 check_site.py site-output --source source --expected-source-sha "${{ steps.source.outputs.sha }}" --expected-site-sha "${{ github.sha }}"
+
+      - name: Quarantine the generated public candidate
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from public_site import iter_public_files, missing_public_entries
+
+          root = Path("site-output")
+          missing = missing_public_entries(root)
+          if missing:
+              raise SystemExit("public allowlist is incomplete: " + ", ".join(missing))
+
+          report_path = root / "build-report.json"
+          report = json.loads(report_path.read_text(encoding="utf-8"))
+          source = report.get("source")
+          if isinstance(source, dict):
+              for key in ("root", "git_status_before", "git_status_after"):
+                  source.pop(key, None)
+          report_path.write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+
+          forbidden = (
+              "/Users/",
+              "/home/runner/",
+              "manabigrid_public_staging",
+              "INTERNAL_ONLY",
+          )
+          text_suffixes = {
+              ".css",
+              ".html",
+              ".js",
+              ".json",
+              ".svg",
+              ".txt",
+              ".xml",
+          }
+          violations = []
+          for path in iter_public_files(root):
+              if path.suffix.lower() not in text_suffixes:
+                  continue
+              text = path.read_text(encoding="utf-8", errors="replace")
+              for token in forbidden:
+                  if token in text:
+                      violations.append(
+                          f"{path.relative_to(root)} contains {token!r}"
+                      )
+          if violations:
+              raise SystemExit(
+                  "quarantine rejected public candidate:\n"
+                  + "\n".join(violations)
+              )
+          print(
+              f"Quarantine passed: {len(iter_public_files(root))} "
+              "allowlisted files"
+          )
+          PY
+          python3 package_site.py --site-root site-output --dry-run
+
+      - name: Render all eleven device profiles
+        run: python3 device_matrix_check.py --site-root site-output
+
+      - name: Prove the browser gate rejects CSS page overflow
+        run: python3 negative_css_overflow_check.py --site-root site-output
+
+      - name: Reject canonical source drift during validation
+        env:
+          INITIAL_SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest_source_sha="$(git ls-remote https://github.com/ManabiGrid/manabigrid.git refs/heads/main | awk '{print $1}')"
+          if [[ ! "${latest_source_sha}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "canonical source main did not resolve during final recheck" >&2
+            exit 1
+          fi
+          if [[ "${latest_source_sha}" != "${INITIAL_SOURCE_SHA}" ]]; then
+            echo "canonical source drifted during validation; rerun the PR gate" >&2
+            exit 1
+          fi
