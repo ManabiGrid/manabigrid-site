@@ -31,7 +31,7 @@ class DeviceMatrixContractTests(unittest.TestCase):
         profiles = device_matrix_check.load_contract(
             ROOT / "device_matrix.contract.json"
         )
-        self.assertEqual(len(profiles), 10)
+        self.assertEqual(len(profiles), 11)
         self.assertIn(
             ("phone", "landscape"),
             {(profile.form_factor, profile.orientation) for profile in profiles},
@@ -40,11 +40,16 @@ class DeviceMatrixContractTests(unittest.TestCase):
             ("tablet", "landscape"),
             {(profile.form_factor, profile.orientation) for profile in profiles},
         )
-        self.assertTrue(any(profile.text_scale == 2.0 for profile in profiles))
+        self.assertEqual(
+            {(profile.width, profile.text_scale) for profile in profiles if profile.text_scale == 2.0},
+            {(320, 2.0), (390, 2.0)},
+        )
+        self.assertEqual(browser_check.PRINT_VIEWPORT["width"], 794)
+        self.assertFalse(browser_check.PRINT_VIEWPORT["mobile"])
 
     def test_browser_matrix_keeps_the_unit_resource_regression_page(self) -> None:
         pages = dict(browser_check.PAGES)
-        self.assertEqual(len(browser_check.PAGES) + 1, 14)
+        self.assertEqual(len(browser_check.PAGES) + 1, 17)
         self.assertEqual(
             pages.get("unit-resources"),
             ROOT / "units/jhs-math-1-positive-negative-numbers/index.html",
@@ -52,6 +57,14 @@ class DeviceMatrixContractTests(unittest.TestCase):
         self.assertEqual(
             pages.get("unit-resources-empty"),
             ROOT / "units/jhs-math-3-appendix/index.html",
+        )
+        self.assertEqual(
+            set(browser_check.INLINE_MATH_BROWSER_EXPECTATIONS),
+            {
+                "math-inline-x-times",
+                "math-inline-signed-fractions",
+                "math-inline-variable-fraction",
+            },
         )
 
     def test_duplicate_profile_id_is_rejected(self) -> None:

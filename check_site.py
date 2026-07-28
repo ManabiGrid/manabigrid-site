@@ -113,6 +113,96 @@ class CurriculumGridEntry:
     aria_labels: Tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class InlineMathExpectation:
+    trial_id: str
+    source: str
+    output: str
+    annotation: str
+    aria_label: str
+    count: int
+    required_tags: Tuple[str, ...]
+    canonical_math: str
+
+
+INLINE_MATH_EXPECTATIONS = (
+    InlineMathExpectation(
+        "x-times-evaluation",
+        "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.md",
+        "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html",
+        "2x＋2＝2×3＋2＝8",
+        "二エックスたす二は、二かける三たす二で、八",
+        1,
+        ("math", "semantics", "mrow", "mn", "mi", "mo", "annotation"),
+        '<math aria-label="二エックスたす二は、二かける三たす二で、八" '
+        'class="inline-math" data-math-id="x-times-evaluation" display="inline">'
+        '<semantics><mrow><mn>2</mn><mo class="math-invisible-times">\u2062</mo>'
+        '<mi>x</mi><mo>+</mo><mn>2</mn><mo>=</mo><mn>2</mn><mo>×</mo>'
+        '<mn>3</mn><mo>+</mo><mn>2</mn><mo>=</mo><mn>8</mn></mrow>'
+        '<annotation encoding="text/plain">2x＋2＝2×3＋2＝8</annotation>'
+        '</semantics></math>',
+    ),
+    InlineMathExpectation(
+        "signed-addition",
+        "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md",
+        "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+        "(＋5)＋(−8)＝−3",
+        "プラス五たすマイナス八は、マイナス三",
+        2,
+        ("math", "semantics", "mrow", "mn", "mo", "annotation"),
+        '<math aria-label="プラス五たすマイナス八は、マイナス三" '
+        'class="inline-math" data-math-id="signed-addition" display="inline">'
+        '<semantics><mrow><mo>(</mo><mo>+</mo><mn>5</mn><mo>)</mo><mo>+</mo>'
+        '<mo>(</mo><mo>−</mo><mn>8</mn><mo>)</mo><mo>=</mo><mo>−</mo>'
+        '<mn>3</mn></mrow><annotation encoding="text/plain">'
+        '(＋5)＋(−8)＝−3</annotation></semantics></math>',
+    ),
+    InlineMathExpectation(
+        "signed-numeric-fractions",
+        "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md",
+        "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+        "(−2/3)＋(＋1/2)",
+        "マイナス三分の二たす、プラス二分の一",
+        1,
+        ("math", "semantics", "mrow", "mn", "mo", "mfrac", "annotation"),
+        '<math aria-label="マイナス三分の二たす、プラス二分の一" '
+        'class="inline-math" data-math-id="signed-numeric-fractions" display="inline">'
+        '<semantics><mrow><mo>(</mo><mo>−</mo><mfrac><mn>2</mn><mn>3</mn>'
+        '</mfrac><mo>)</mo><mo>+</mo><mo>(</mo><mo>+</mo><mfrac><mn>1</mn>'
+        '<mn>2</mn></mfrac><mo>)</mo></mrow><annotation encoding="text/plain">'
+        '(−2/3)＋(＋1/2)</annotation></semantics></math>',
+    ),
+    InlineMathExpectation(
+        "variable-fraction",
+        "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.md",
+        "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html",
+        "8xy/2x",
+        "二エックス分の八エックスワイ",
+        1,
+        ("math", "semantics", "mrow", "mn", "mi", "mo", "mfrac", "annotation"),
+        '<math aria-label="二エックス分の八エックスワイ" '
+        'class="inline-math" data-math-id="variable-fraction" display="inline">'
+        '<semantics><mrow><mfrac><mrow><mn>8</mn>'
+        '<mo class="math-invisible-times">\u2062</mo><mi>x</mi>'
+        '<mo class="math-invisible-times">\u2062</mo><mi>y</mi></mrow>'
+        '<mrow><mn>2</mn><mo class="math-invisible-times">\u2062</mo>'
+        '<mi>x</mi></mrow></mfrac></mrow><annotation encoding="text/plain">'
+        '8xy/2x</annotation></semantics></math>',
+    ),
+)
+DISPLAY_MATH_EXPECTATION = (
+    "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html"
+)
+DISPLAY_MATH_CANONICAL = (
+    '<math aria-label="MNはBCに平行、MNはBCの2分の1" display="block"><semantics>'
+    '<mrow><mi>MN</mi><mo>∥</mo><mi>BC</mi><mo>,</mo><mspace width="1em">'
+    '</mspace><mi>MN</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac>'
+    '<mi>BC</mi></mrow><annotation encoding="application/x-tex">'
+    r'MN∥BC,\quad MN=\frac{1}{2}BC'
+    '</annotation></semantics></math>'
+)
+
+
 class CurriculumGridCollector(HTMLParser):
     """Collect each ten-family card without trusting generator metadata."""
 
@@ -1341,6 +1431,35 @@ def canonical_public_update_commits(
 
 
 @dataclass
+class ParsedMath:
+    classes: Set[str]
+    display: str
+    trial_id: str
+    aria_label: str
+    tags: Set[str] = field(default_factory=set)
+    annotation_encoding: str = ""
+    annotation_text: str = ""
+    annotation_count: int = 0
+    canonical_parts: List[str] = field(default_factory=list)
+
+    @property
+    def canonical_markup(self) -> str:
+        return "".join(self.canonical_parts)
+
+
+def canonical_start_tag(
+    tag: str,
+    attrs: Sequence[Tuple[str, Optional[str]]],
+) -> str:
+    """Serialize one parsed start tag with stable attribute order."""
+    attributes = "".join(
+        f' {name}="{html_module.escape(value or "", quote=True)}"'
+        for name, value in sorted(attrs)
+    )
+    return f"<{tag}{attributes}>"
+
+
+@dataclass
 class ParsedHtml:
     path: Path
     doctype_present: bool = False
@@ -1379,6 +1498,7 @@ class ParsedHtml:
     og_urls: List[str] = field(default_factory=list)
     og_images: List[str] = field(default_factory=list)
     mathml_count: int = 0
+    mathml_nodes: List[ParsedMath] = field(default_factory=list)
     in_title: bool = False
     in_main: bool = False
     in_paragraph: bool = False
@@ -1394,6 +1514,8 @@ class HtmlCollector(HTMLParser):
         self.lang_en_depth = 0
         self.excluded_text_depth = 0
         self.element_stack: List[Tuple[str, bool, bool]] = []
+        self.math_stack: List[ParsedMath] = []
+        self.math_annotation_stack: List[ParsedMath] = []
 
     def load(self) -> ParsedHtml:
         text = self.data.path.read_text(encoding="utf-8")
@@ -1434,6 +1556,28 @@ class HtmlCollector(HTMLParser):
         class_tokens = set(cls.split())
         if cls:
             self.data.classes.update(class_tokens)
+
+        if tag == "math":
+            math_node = ParsedMath(
+                classes=class_tokens,
+                display=attrs_dict.get("display", ""),
+                trial_id=attrs_dict.get("data-math-id", ""),
+                aria_label=attrs_dict.get("aria-label", ""),
+            )
+            self.data.mathml_nodes.append(math_node)
+            self.data.mathml_count += 1
+            self.math_stack.append(math_node)
+        if self.math_stack:
+            self.math_stack[-1].canonical_parts.append(
+                canonical_start_tag(tag, attrs)
+            )
+            self.math_stack[-1].tags.add(tag)
+            if tag == "annotation":
+                self.math_stack[-1].annotation_count += 1
+                self.math_stack[-1].annotation_encoding = attrs_dict.get(
+                    "encoding", ""
+                )
+                self.math_annotation_stack.append(self.math_stack[-1])
 
         if {"site-nav", "container"}.issubset(class_tokens):
             self.data.has_site_nav_container = True
@@ -1573,9 +1717,6 @@ class HtmlCollector(HTMLParser):
                     attrs_dict.get("class", ""),
                 )
             )
-        elif tag == "math":
-            self.data.mathml_count += 1
-
     def handle_endtag(self, tag: str) -> None:
         if tag == "title" and self.data.in_title:
             self.data.in_title = False
@@ -1583,6 +1724,12 @@ class HtmlCollector(HTMLParser):
             self.data.in_main = False
         elif tag == "p":
             self.data.in_paragraph = False
+        if self.math_stack:
+            self.math_stack[-1].canonical_parts.append(f"</{tag}>")
+        if tag == "annotation" and self.math_annotation_stack:
+            self.math_annotation_stack.pop()
+        if tag == "math" and self.math_stack:
+            self.math_stack.pop()
         if tag == "svg":
             self.svg_depth = max(0, self.svg_depth - 1)
         for index in range(len(self.element_stack) - 1, -1, -1):
@@ -1594,6 +1741,12 @@ class HtmlCollector(HTMLParser):
                 break
 
     def handle_data(self, data: str) -> None:
+        if self.math_stack:
+            self.math_stack[-1].canonical_parts.append(
+                html_module.escape(data, quote=False)
+            )
+        if self.math_annotation_stack:
+            self.math_annotation_stack[-1].annotation_text += data
         if self.data.in_title:
             self.data.title += data
         if self.data.in_main:
@@ -1694,6 +1847,185 @@ def google_site_verification_errors(
         )
         if parsed.google_site_verification_meta != expected:
             errors.append(f"google site verification meta mismatch: {relative}")
+    return errors
+
+
+def inline_math_contract_errors(
+    site_root: Path,
+    parsed_pages: Dict[Path, ParsedHtml],
+    build_report: Dict[str, object],
+) -> List[str]:
+    """Independently require the exact three-page inline MathML trial."""
+    errors: List[str] = []
+    expected_by_id = {
+        expectation.trial_id: expectation
+        for expectation in INLINE_MATH_EXPECTATIONS
+    }
+    if len(expected_by_id) != len(INLINE_MATH_EXPECTATIONS):
+        return ["inline MathML expectation IDs are duplicated"]
+
+    actual_counts: Counter[Tuple[str, str]] = Counter()
+    display_nodes: List[Tuple[str, ParsedMath]] = []
+    for path, parsed in parsed_pages.items():
+        relative = path.relative_to(site_root).as_posix()
+        inline_count = sum(
+            1 for node in parsed.mathml_nodes if "inline-math" in node.classes
+        )
+        wrapper_count = len(
+            re.findall(
+                r'<span class="inline-math-scroll" '
+                r'data-scroll-label="数式を横にスクロール">\s*'
+                r'<math class="inline-math"',
+                parsed.raw_text,
+            )
+        )
+        shell_count = parsed.raw_text.count('<span class="inline-math-shell">')
+        hint_count = parsed.raw_text.count(
+            '<span class="inline-math-scroll-hint screen-only" '
+            'data-math-scroll-hint aria-hidden="true" hidden>'
+            "↔ 数式は左右に動かせます</span>"
+        )
+        if (
+            wrapper_count != inline_count
+            or shell_count != inline_count
+            or hint_count != inline_count
+        ):
+            errors.append(
+                f"inline MathML scroll wrapper mismatch: {relative}: "
+                f"wrapper={wrapper_count}, shell={shell_count}, "
+                f"hint={hint_count}, math={inline_count}"
+            )
+        for node in parsed.mathml_nodes:
+            if "inline-math" not in node.classes:
+                display_nodes.append((relative, node))
+                continue
+            expectation = expected_by_id.get(node.trial_id)
+            if expectation is None:
+                errors.append(
+                    f"unapproved inline MathML trial: {relative}: {node.trial_id or '(missing id)'}"
+                )
+                continue
+            actual_counts[(relative, node.trial_id)] += 1
+            if node.classes != {"inline-math"}:
+                errors.append(
+                    f"inline MathML class mismatch: {relative}: {node.trial_id}"
+                )
+            if relative != expectation.output:
+                errors.append(
+                    f"inline MathML emitted on wrong page: {node.trial_id}: {relative}"
+                )
+            if (
+                node.display != "inline"
+                or node.aria_label != expectation.aria_label
+                or node.annotation_count != 1
+                or node.annotation_encoding != "text/plain"
+                or node.annotation_text.strip() != expectation.annotation
+                or node.tags != set(expectation.required_tags)
+                or node.canonical_markup != expectation.canonical_math
+            ):
+                errors.append(
+                    f"inline MathML semantics mismatch: {relative}: {node.trial_id}"
+                )
+
+    for expectation in INLINE_MATH_EXPECTATIONS:
+        actual = actual_counts[(expectation.output, expectation.trial_id)]
+        if actual != expectation.count:
+            errors.append(
+                f"inline MathML count mismatch: {expectation.trial_id}: "
+                f"{actual}/{expectation.count}"
+            )
+    expected_keys = {
+        (expectation.output, expectation.trial_id)
+        for expectation in INLINE_MATH_EXPECTATIONS
+    }
+    for relative, trial_id in sorted(set(actual_counts) - expected_keys):
+        errors.append(f"unexpected inline MathML location: {relative}: {trial_id}")
+
+    if len(display_nodes) != 1:
+        errors.append(f"display MathML count mismatch: {len(display_nodes)}/1")
+    else:
+        relative, node = display_nodes[0]
+        if (
+            relative != DISPLAY_MATH_EXPECTATION
+            or node.classes
+            or node.display != "block"
+            or node.trial_id
+            or node.aria_label != "MNはBCに平行、MNはBCの2分の1"
+            or node.annotation_count != 1
+            or node.annotation_encoding != "application/x-tex"
+            or node.annotation_text.strip()
+            != r"MN∥BC,\quad MN=\frac{1}{2}BC"
+            or node.canonical_markup != DISPLAY_MATH_CANONICAL
+            or node.tags
+            != {
+                "math",
+                "semantics",
+                "mrow",
+                "mi",
+                "mo",
+                "mspace",
+                "mfrac",
+                "mn",
+                "annotation",
+            }
+        ):
+            errors.append("display MathML prototype semantics mismatch")
+
+    features = build_report.get("features")
+    if not isinstance(features, dict):
+        errors.append("build-report missing MathML features")
+    else:
+        expected_report = [
+            {
+                "id": expectation.trial_id,
+                "source": expectation.source,
+                "output": expectation.output,
+                "expression": expectation.annotation,
+                "aria_label": expectation.aria_label,
+                "expected_occurrences": expectation.count,
+                "rendered_occurrences": expectation.count,
+            }
+            for expectation in INLINE_MATH_EXPECTATIONS
+        ]
+        actual_report = features.get("inline_math_trials")
+        strict_report_types = (
+            isinstance(actual_report, list)
+            and all(
+                isinstance(row, dict)
+                and all(
+                    type(row.get(field)) is str
+                    for field in (
+                        "id",
+                        "source",
+                        "output",
+                        "expression",
+                        "aria_label",
+                    )
+                )
+                and all(
+                    type(row.get(field)) is int
+                    for field in (
+                        "expected_occurrences",
+                        "rendered_occurrences",
+                    )
+                )
+                for row in actual_report
+            )
+        )
+        if actual_report != expected_report or not strict_report_types:
+            errors.append("build-report inline MathML trial details mismatch")
+        inline_math_rendered = features.get("inline_math_rendered")
+        if (
+            type(inline_math_rendered) is not int
+            or inline_math_rendered
+            != sum(
+                expectation.count for expectation in INLINE_MATH_EXPECTATIONS
+            )
+        ):
+            errors.append("build-report inline MathML rendered count mismatch")
+        display_prototypes = features.get("mathml_static_prototypes")
+        if type(display_prototypes) is not int or display_prototypes != 1:
+            errors.append("build-report display MathML prototype count mismatch")
     return errors
 
 
@@ -1813,15 +2145,28 @@ def validate_public_metadata(
     if not sitemap_ok:
         errors.append("sitemap.xml contract mismatch")
 
-    mathml_pages = [
-        path.relative_to(site_root).as_posix()
-        for path, parsed in parsed_pages.items()
-        if parsed.mathml_count
-    ]
-    mathml_ok = len(mathml_pages) == 1 and sum(parsed_pages[site_root / page].mathml_count for page in mathml_pages) == 1
-    checks.append({"name": "content:mathml_single_prototype", "pass": mathml_ok, "pages": mathml_pages})
-    if not mathml_ok:
-        errors.append("MathML prototype count must be exactly one")
+    mathml_errors = inline_math_contract_errors(
+        site_root,
+        parsed_pages,
+        build_report,
+    )
+    checks.append(
+        {
+            "name": "content:mathml_fixed_three_page_trial",
+            "pass": not mathml_errors,
+            "inline_pages": sorted(
+                {
+                    expectation.output
+                    for expectation in INLINE_MATH_EXPECTATIONS
+                }
+            ),
+            "inline_nodes": sum(
+                expectation.count for expectation in INLINE_MATH_EXPECTATIONS
+            ),
+            "display_nodes": 1,
+        }
+    )
+    errors.extend(mathml_errors)
 
 
 def metadata_uniqueness_errors(

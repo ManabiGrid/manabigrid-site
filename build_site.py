@@ -268,8 +268,170 @@ MATHML_PROTOTYPE_SOURCE = Path(
 MATHML_PROTOTYPE_EXPRESSION = r"MN∥BC,\quad MN=\frac{1}{2}BC"
 
 
+@dataclass(frozen=True)
+class InlineMathTrial:
+    trial_id: str
+    source: Path
+    literal: str
+    expected_occurrences: int
+    aria_label: str
+    presentation: str
+
+
+INLINE_MATH_TRIALS = (
+    InlineMathTrial(
+        trial_id="x-times-evaluation",
+        source=Path(
+            "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.md"
+        ),
+        literal="2x＋2＝2×3＋2＝8",
+        expected_occurrences=1,
+        aria_label="二エックスたす二は、二かける三たす二で、八",
+        presentation=(
+            "<mrow><mn>2</mn><mo class=\"math-invisible-times\">&#x2062;</mo>"
+            "<mi>x</mi><mo>+</mo><mn>2</mn><mo>=</mo><mn>2</mn>"
+            "<mo>×</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>=</mo><mn>8</mn></mrow>"
+        ),
+    ),
+    InlineMathTrial(
+        trial_id="signed-addition",
+        source=Path(
+            "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md"
+        ),
+        literal="(＋5)＋(−8)＝−3",
+        expected_occurrences=2,
+        aria_label="プラス五たすマイナス八は、マイナス三",
+        presentation=(
+            "<mrow><mo>(</mo><mo>+</mo><mn>5</mn><mo>)</mo><mo>+</mo>"
+            "<mo>(</mo><mo>−</mo><mn>8</mn><mo>)</mo><mo>=</mo>"
+            "<mo>−</mo><mn>3</mn></mrow>"
+        ),
+    ),
+    InlineMathTrial(
+        trial_id="signed-numeric-fractions",
+        source=Path(
+            "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md"
+        ),
+        literal="(−2/3)＋(＋1/2)",
+        expected_occurrences=1,
+        aria_label="マイナス三分の二たす、プラス二分の一",
+        presentation=(
+            "<mrow><mo>(</mo><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac>"
+            "<mo>)</mo><mo>+</mo><mo>(</mo><mo>+</mo>"
+            "<mfrac><mn>1</mn><mn>2</mn></mfrac><mo>)</mo></mrow>"
+        ),
+    ),
+    InlineMathTrial(
+        trial_id="variable-fraction",
+        source=Path(
+            "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.md"
+        ),
+        literal="8xy/2x",
+        expected_occurrences=1,
+        aria_label="二エックス分の八エックスワイ",
+        presentation=(
+            "<mrow><mfrac><mrow><mn>8</mn>"
+            "<mo class=\"math-invisible-times\">&#x2062;</mo><mi>x</mi>"
+            "<mo class=\"math-invisible-times\">&#x2062;</mo><mi>y</mi></mrow>"
+            "<mrow><mn>2</mn><mo class=\"math-invisible-times\">&#x2062;</mo>"
+            "<mi>x</mi></mrow></mfrac></mrow>"
+        ),
+    ),
+)
+
+
 class BuildError(RuntimeError):
     pass
+
+
+def inline_math_trials_for(source: Path) -> tuple[InlineMathTrial, ...]:
+    return tuple(trial for trial in INLINE_MATH_TRIALS if trial.source == source)
+
+
+def validate_inline_math_source_registry(source_root: Path) -> None:
+    """Fail closed unless every approved source literal still occurs exactly as reviewed."""
+    trial_ids = [trial.trial_id for trial in INLINE_MATH_TRIALS]
+    sources = {trial.source for trial in INLINE_MATH_TRIALS}
+    if len(trial_ids) != len(set(trial_ids)):
+        raise BuildError("インラインMathML試作IDが重複しています")
+    if sources != {
+        Path("materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md"),
+        Path("materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.md"),
+        Path("materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.md"),
+    }:
+        raise BuildError("インラインMathML試作は代表3ページだけに限定してください")
+    for index, first in enumerate(INLINE_MATH_TRIALS):
+        for second in INLINE_MATH_TRIALS[index + 1 :]:
+            if first.source == second.source and (
+                first.literal in second.literal or second.literal in first.literal
+            ):
+                raise BuildError(
+                    "インラインMathML試作の完全一致文字列を包含させないでください: "
+                    f"{first.trial_id}/{second.trial_id}"
+                )
+    for trial in INLINE_MATH_TRIALS:
+        if (
+            not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", trial.trial_id)
+            or trial.source.is_absolute()
+            or ".." in trial.source.parts
+            or not trial.literal
+            or trial.expected_occurrences < 1
+            or not trial.aria_label
+        ):
+            raise BuildError(f"インラインMathML試作契約が不正です: {trial.trial_id}")
+        try:
+            presentation_root = ET.fromstring(
+                "<math><semantics>" + trial.presentation + "</semantics></math>"
+            )
+        except ET.ParseError as exc:
+            raise BuildError(
+                f"インラインMathML試作をXMLとして解析できません: {trial.trial_id}"
+            ) from exc
+        allowed_tags = {"math", "semantics", "mrow", "mn", "mi", "mo", "mfrac"}
+        for element in presentation_root.iter():
+            if element.tag not in allowed_tags:
+                raise BuildError(
+                    f"インラインMathML試作に未許可要素があります: "
+                    f"{trial.trial_id}: {element.tag}"
+                )
+            if element.attrib and not (
+                element.tag == "mo"
+                and element.attrib == {"class": "math-invisible-times"}
+            ):
+                raise BuildError(
+                    f"インラインMathML試作に未許可属性があります: {trial.trial_id}"
+                )
+        path = source_root / trial.source
+        if not path.is_file():
+            raise BuildError(f"インラインMathML試作の正本がありません: {trial.source}")
+        occurrences = path.read_text(encoding="utf-8").count(trial.literal)
+        if occurrences != trial.expected_occurrences:
+            raise BuildError(
+                "インラインMathML試作の完全一致件数が変わりました: "
+                f"{trial.source}: {trial.trial_id}: "
+                f"{occurrences}/{trial.expected_occurrences}"
+            )
+
+
+def render_inline_math(trial: InlineMathTrial) -> str:
+    """Render one path-and-literal allowlisted expression as native inline MathML."""
+    return (
+        '<span class="inline-math-shell">'
+        '<span class="inline-math-scroll"'
+        ' data-scroll-label="数式を横にスクロール">'
+        '<math class="inline-math" display="inline"'
+        f' data-math-id="{html.escape(trial.trial_id, quote=True)}"'
+        f' aria-label="{html.escape(trial.aria_label, quote=True)}">'
+        "<semantics>"
+        + trial.presentation
+        + '<annotation encoding="text/plain">'
+        + html.escape(trial.literal)
+        + "</annotation></semantics></math></span>"
+        '<span class="inline-math-scroll-hint screen-only"'
+        ' data-math-scroll-hint aria-hidden="true" hidden>'
+        "↔ 数式は左右に動かせます"
+        "</span></span>"
+    )
 
 
 @dataclass
@@ -319,6 +481,7 @@ class Stats:
     svg_references: int = 0
     svg_inlined: int = 0
     mathml_prototypes: int = 0
+    inline_math_rendered: Counter[str] = field(default_factory=Counter)
     repaired_links: list[dict[str, str]] = field(default_factory=list)
 
 
@@ -899,7 +1062,8 @@ def mathml_prototype(expression: str) -> str:
     if expression != MATHML_PROTOTYPE_EXPRESSION:
         raise BuildError("MathML試作の対象外の式です")
     return (
-        '<div class="math-block mathml-prototype" aria-label="数式">'
+        '<div class="math-block mathml-prototype"'
+        ' data-scroll-label="数式を横にスクロール">'
         '<span class="formula-label">数式・MathML試作</span>'
         '<math display="block" aria-label="MNはBCに平行、MNはBCの2分の1">'
         '<semantics><mrow><mi>MN</mi><mo>∥</mo><mi>BC</mi><mo>,</mo>'
@@ -1195,6 +1359,7 @@ class Markdown:
         self.svg_serial = 0
         self.table_serial = 0
         self.current_section = ""
+        self.inline_math_counts: Counter[str] = Counter()
 
     def inline(self, value: str) -> str:
         tokens: list[str] = []
@@ -1376,6 +1541,17 @@ class Markdown:
             )
 
         value = self.LINK.sub(link_repl, value)
+
+        # Inline mathematics is intentionally not inferred from punctuation.
+        # Only a reviewed source path + exact literal pair can reach MathML.
+        for trial in inline_math_trials_for(self.doc.rel):
+            occurrences = value.count(trial.literal)
+            if not occurrences:
+                continue
+            value = value.replace(trial.literal, hold(render_inline_math(trial)))
+            self.inline_math_counts[trial.trial_id] += occurrences
+            self.stats.inline_math_rendered[trial.trial_id] += occurrences
+
         value = value.replace("<u>", hold("<u>")).replace("</u>", hold("</u>"))
         rendered = html.escape(value, quote=False)
         rendered = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", rendered)
@@ -1849,6 +2025,17 @@ class Markdown:
         if frontmatter != self.doc.frontmatter:
             raise BuildError(f"{self.doc.rel}: frontmatter検出が不安定です")
         rendered = self.blocks(strip_generated_nav(body).splitlines())
+        expected_inline_math = Counter(
+            {
+                trial.trial_id: trial.expected_occurrences
+                for trial in inline_math_trials_for(self.doc.rel)
+            }
+        )
+        if self.inline_math_counts != expected_inline_math:
+            raise BuildError(
+                f"{self.doc.rel}: インラインMathML描画件数が契約と不一致です: "
+                f"{dict(self.inline_math_counts)}/{dict(expected_inline_math)}"
+            )
         self.doc.headings = self.headings
         return rendered
 
@@ -2788,9 +2975,22 @@ def resource(current: Path, doc: Doc, sequence: int | None = None) -> str:
         if sequence is not None
         else ""
     )
+    title_markup = html.escape(doc.title)
+    label_attribute = ""
+    if sequence is None:
+        trailing_detail = re.fullmatch(r"(.+?)(（.+）)", doc.title)
+        if trailing_detail:
+            title_markup = (
+                f"{html.escape(trailing_detail.group(1))}"
+                '<span class="resource-detail" aria-hidden="true">'
+                f"{html.escape(trailing_detail.group(2))}</span>"
+            )
+            label_attribute = (
+                f' aria-label="{html.escape(doc.title, quote=True)}"'
+            )
     return (
-        f'<li class="{row_class}">{number}<div><a href="{rel_href(current, doc.output)}">'
-        f"{html.escape(doc.title)}</a>"
+        f'<li class="{row_class}">{number}<div><a href="{rel_href(current, doc.output)}"'
+        f"{label_attribute}>{title_markup}</a>"
         f'<span class="doc-kind">{kind_label(doc.kind)}</span></div></li>'
     )
 
@@ -3094,6 +3294,7 @@ def build(
     )
     updates, updates_truncated = collect_update_history(source)
     svg_guard_self_tests = self_test_svg_guard()
+    validate_inline_math_source_registry(source)
     clean(site_root)
     media, svg_count = copy_assets(source, site_root)
     docs = collect_docs(source)
@@ -3410,6 +3611,21 @@ def build(
             "search_index_entries": len(search_entries),
             "update_history_entries": len(updates),
             "mathml_static_prototypes": stats.mathml_prototypes,
+            "inline_math_trials": [
+                {
+                    "id": trial.trial_id,
+                    "source": trial.source.as_posix(),
+                    "output": output_for(trial.source).as_posix(),
+                    "expression": trial.literal,
+                    "aria_label": trial.aria_label,
+                    "expected_occurrences": trial.expected_occurrences,
+                    "rendered_occurrences": stats.inline_math_rendered[
+                        trial.trial_id
+                    ],
+                }
+                for trial in INLINE_MATH_TRIALS
+            ],
+            "inline_math_rendered": sum(stats.inline_math_rendered.values()),
             "og_image": {
                 "source": OG_IMAGE_SOURCE.as_posix(),
                 "output": OG_IMAGE_OUTPUT.as_posix(),

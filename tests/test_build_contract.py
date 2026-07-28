@@ -177,6 +177,44 @@ class BuildContractTests(unittest.TestCase):
             r"[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);",
         )
 
+    def test_unnumbered_resource_keeps_full_name_for_accessibility_when_compacted(self) -> None:
+        doc = build_site.Doc(
+            path=Path("/source/answer.md"),
+            rel=Path("materials/example/answer.md"),
+            output=Path("content/materials/example/answer.html"),
+            kind="answer",
+            title="解答集 L01〜L04（正の数・負の数／数直線）",
+            subject="jhs-math-1",
+            unit="example",
+            sha256="0" * 64,
+            frontmatter=False,
+            tags=0,
+        )
+        current = Path("units/example/index.html")
+        plain = build_site.resource(current, doc)
+        numbered = build_site.resource(current, doc, 1)
+        css = (
+            (Path(build_site.__file__).with_name("static") / "site.css").read_text(
+                encoding="utf-8"
+            )
+        )
+
+        self.assertIn(
+            'aria-label="解答集 L01〜L04（正の数・負の数／数直線）"',
+            plain,
+        )
+        self.assertIn(
+            '<span class="resource-detail" aria-hidden="true">'
+            "（正の数・負の数／数直線）</span>",
+            plain,
+        )
+        self.assertNotIn("resource-detail", numbered)
+        self.assertRegex(
+            css,
+            r"@media \(max-width:\s*359px\)\s*\{[\s\S]*?"
+            r"\.resource-item-plain \.resource-detail\s*\{\s*display:\s*none;",
+        )
+
     def test_empty_unit_resources_use_the_same_plain_row_contract(self) -> None:
         body = build_site.unit_body(
             build_site.Unit(

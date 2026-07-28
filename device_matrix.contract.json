@@ -83,6 +83,15 @@
       "text_scale": 1.0
     },
     {
+      "id": "phone-compact-text-200",
+      "label": "小型スマートフォン文字200%",
+      "form_factor": "phone",
+      "orientation": "portrait",
+      "width": 320,
+      "height": 568,
+      "text_scale": 2.0
+    },
+    {
       "id": "phone-text-200",
       "label": "スマートフォン文字200%",
       "form_factor": "phone",

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import base64
 import argparse
+from collections import Counter
 from datetime import datetime, timezone
 import json
 import os
@@ -27,7 +28,20 @@ REVIEW_DIR = ROOT / "review" / "browser"
 MOBILE_VIEWPORT = {"width": 390, "height": 844, "deviceScaleFactor": 1, "mobile": True}
 NARROW_MOBILE_VIEWPORT = {"width": 320, "height": 844, "deviceScaleFactor": 1, "mobile": True}
 DESKTOP_VIEWPORT = {"width": 1440, "height": 1000, "deviceScaleFactor": 1, "mobile": False}
+PRINT_VIEWPORT = {"width": 794, "height": 1123, "deviceScaleFactor": 1, "mobile": False}
 PROFILE_ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+INLINE_MATH_BROWSER_EXPECTATIONS = {
+    "math-inline-x-times": {
+        "x-times-evaluation": {"count": 1, "fractions": 0},
+    },
+    "math-inline-signed-fractions": {
+        "signed-addition": {"count": 2, "fractions": 0},
+        "signed-numeric-fractions": {"count": 1, "fractions": 2},
+    },
+    "math-inline-variable-fraction": {
+        "variable-fraction": {"count": 1, "fractions": 1},
+    },
+}
 PAGES = (
     ("top", ROOT / "index.html"),
     ("browse", ROOT / "browse/index.html"),
@@ -54,6 +68,21 @@ PAGES = (
     (
         "mathml",
         ROOT / "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html",
+    ),
+    (
+        "math-inline-x-times",
+        ROOT
+        / "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html",
+    ),
+    (
+        "math-inline-signed-fractions",
+        ROOT
+        / "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+    ),
+    (
+        "math-inline-variable-fraction",
+        ROOT
+        / "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html",
     ),
     (
         "unit-resources",
@@ -426,7 +455,7 @@ METRICS_SCRIPT = r"""
       value: 'value' in element ? element.value : '',
     };
   };
-  const localScrollers = [...document.querySelectorAll('.figure-scroll, .table-wrap, .math-block, pre')]
+  const localScrollers = [...document.querySelectorAll('.figure-scroll, .table-wrap, .math-block, .inline-math-scroll, pre')]
     .filter(visible)
     .map((element) => ({
       class: element.className || element.tagName.toLowerCase(),
@@ -518,6 +547,69 @@ METRICS_SCRIPT = r"""
       present: Boolean(document.querySelector('math')),
       staticRuntimeFree: !document.querySelector('script[src*="mathjax" i], script[src*="katex" i]'),
     },
+    inlineMath: [...document.querySelectorAll('math.inline-math')].map((element) => {
+      const rect = element.getBoundingClientRect();
+      const scroller = element.closest('.inline-math-scroll');
+      const scrollerRect = scroller?.getBoundingClientRect();
+      const hint = scroller?.closest('.inline-math-shell')
+        ?.querySelector('[data-math-scroll-hint]');
+      const variables = [...element.querySelectorAll('mi')];
+      const operators = [...element.querySelectorAll('mo')];
+      const times = operators.filter((item) => (item.textContent || '').trim() === '×');
+      const plusMinus = operators.filter((item) => ['+', '−'].includes((item.textContent || '').trim()));
+      const plusMinusCenters = plusMinus.map((item) => {
+        const operatorRect = item.getBoundingClientRect();
+        return (operatorRect.top + operatorRect.bottom) / 2;
+      });
+      const fractions = [...element.querySelectorAll('mfrac')];
+      const annotation = element.querySelector('annotation[encoding="text/plain"]');
+      return {
+        id: element.dataset.mathId || '',
+        visible: visible(element),
+        display: element.getAttribute('display') || '',
+        ariaLabel: element.getAttribute('aria-label') || '',
+        annotation: (annotation?.textContent || '').trim(),
+        semanticsCount: element.querySelectorAll(':scope > semantics').length,
+        fractionCount: fractions.length,
+        fractionsStacked: fractions.every((fraction) => {
+          const numerator = fraction.children[0]?.getBoundingClientRect();
+          const denominator = fraction.children[1]?.getBoundingClientRect();
+          return Boolean(
+            numerator
+            && denominator
+            && (numerator.top + numerator.bottom) / 2
+              < (denominator.top + denominator.bottom) / 2
+          );
+        }),
+        variableCount: variables.length,
+        operatorCount: operators.length,
+        variableItalic: variables.length > 0 && variables.every((item) => getComputedStyle(item).fontStyle === 'italic'),
+        timesNormal: times.length > 0 && times.every((item) => getComputedStyle(item).fontStyle === 'normal'),
+        operatorsNormal: operators.every((item) => getComputedStyle(item).fontStyle === 'normal'),
+        plusMinusFontFamilies: [...new Set(plusMinus.map((item) => getComputedStyle(item).fontFamily))],
+        plusMinusCenterSpread: plusMinusCenters.length
+          ? Math.max(...plusMinusCenters) - Math.min(...plusMinusCenters)
+          : 0,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        color: getComputedStyle(element).color,
+        scrollerLeft: scrollerRect?.left ?? -2,
+        scrollerRight: scrollerRect?.right ?? innerWidth + 2,
+        scrollerWidth: scroller?.clientWidth ?? 0,
+        scrollerScrollWidth: scroller?.scrollWidth ?? 0,
+        scrollerOverflowX: scroller ? getComputedStyle(scroller).overflowX : '',
+        scrollerTabindex: scroller?.getAttribute('tabindex') || '',
+        scrollerRole: scroller?.getAttribute('role') || '',
+        scrollerLabel: scroller?.getAttribute('aria-label') || '',
+        scrollHintHidden: hint?.hasAttribute('hidden') ?? true,
+        scrollHintVisible: hint ? visible(hint) : false,
+        scrollHintText: (hint?.textContent || '').trim(),
+      };
+    }),
     navigationResponseStatus: performance.getEntriesByType('navigation')[0]?.responseStatus || 0,
     figureScroller: inspect('.figure-scroll'),
     progressDisclosureCount: document.querySelectorAll('[data-progress-disclosure]').length,
@@ -572,6 +664,33 @@ APPEARANCE_SCRIPT = r"""
     learningGridSlotBorder: color('.curriculum-availability', 'borderTopColor'),
     learningGridSlotBackground: effectiveBackground('.curriculum-availability'),
     learningGridItemBreakInside: color('.curriculum-grid-item', 'breakInside'),
+  };
+})()
+"""
+
+MATH_MEDIA_SCRIPT = r"""
+(() => {
+  const root = document.documentElement;
+  const body = document.body;
+  const nodes = [...document.querySelectorAll('math.inline-math')].map((element) => {
+    const rect = element.getBoundingClientRect();
+    return {
+      id: element.dataset.mathId || '',
+      color: getComputedStyle(element).color,
+      width: rect.width,
+      height: rect.height,
+      left: rect.left,
+      right: rect.right,
+    };
+  });
+  return {
+    dark: matchMedia('(prefers-color-scheme: dark)').matches,
+    print: matchMedia('print').matches,
+    rootBackground: getComputedStyle(root).backgroundColor,
+    bodyBackground: getComputedStyle(body).backgroundColor,
+    viewportWidth: root.clientWidth,
+    pageWidth: Math.max(root.scrollWidth, body.scrollWidth),
+    nodes,
   };
 })()
 """
@@ -861,16 +980,22 @@ def is_white(value: object) -> bool:
 
 
 def contrast_ratio(foreground: object, background: object) -> float:
-    """Return the WCAG contrast ratio for opaque computed rgb()/rgba() colors."""
+    """Return WCAG contrast after compositing a translucent foreground."""
 
-    def luminance(value: object) -> float:
+    def parse(value: object) -> tuple[list[float], float]:
         channels = re.fullmatch(
-            r"rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*(?:1(?:\.0+)?))?\s*\)",
+            r"rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)"
+            r"(?:\s*,\s*(0(?:\.\d+)?|1(?:\.0+)?))?\s*\)",
             str(value),
         )
         if not channels:
-            raise ValueError(f"不透明なRGB色ではありません: {value!r}")
-        rgb = [int(channel) / 255 for channel in channels.groups()]
+            raise ValueError(f"RGB色として解釈できません: {value!r}")
+        red, green, blue, alpha = channels.groups()
+        return [int(channel) / 255 for channel in (red, green, blue)], (
+            float(alpha) if alpha is not None else 1.0
+        )
+
+    def luminance(rgb: list[float]) -> float:
         linear = [
             channel / 12.92
             if channel <= 0.04045
@@ -879,8 +1004,19 @@ def contrast_ratio(foreground: object, background: object) -> float:
         ]
         return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
 
-    foreground_luminance = luminance(foreground)
-    background_luminance = luminance(background)
+    foreground_rgb, foreground_alpha = parse(foreground)
+    background_rgb, background_alpha = parse(background)
+    if background_alpha != 1:
+        raise ValueError(f"背景色が不透明ではありません: {background!r}")
+    composited_foreground = [
+        foreground_channel * foreground_alpha
+        + background_channel * (1 - foreground_alpha)
+        for foreground_channel, background_channel in zip(
+            foreground_rgb, background_rgb, strict=True
+        )
+    ]
+    foreground_luminance = luminance(composited_foreground)
+    background_luminance = luminance(background_rgb)
     lighter = max(foreground_luminance, background_luminance)
     darker = min(foreground_luminance, background_luminance)
     return (lighter + 0.05) / (darker + 0.05)
@@ -1013,6 +1149,13 @@ def main() -> int:
                     screenshot_origin_y = max(
                         0.0, float(figure_scroller.get("top", 0.0)) - 120.0
                     )
+            elif label in INLINE_MATH_BROWSER_EXPECTATIONS:
+                math_origin = evaluate(
+                    pipe,
+                    session,
+                    "document.querySelector('math.inline-math')?.getBoundingClientRect().top + scrollY || 0",
+                )
+                screenshot_origin_y = max(0.0, float(math_origin) - 180.0)
             elif label in {"unit-resources", "unit-resources-empty"}:
                 resource_origin = evaluate(
                     pipe,
@@ -1194,6 +1337,37 @@ new Promise((resolve) => {
                 for item in table_wraps
             ):
                 page_errors.append("横スクロール可能な表にフォーカスと名前がありません")
+            if label == "mathml":
+                math_scrollers = [
+                    item
+                    for item in metrics.get("localScrollers", [])
+                    if isinstance(item, dict)
+                    and "math-block" in str(item.get("class", "")).split()
+                ]
+                if not math_scrollers:
+                    page_errors.append("表示MathMLの数式領域がありません")
+                if any(
+                    int(item.get("scrollWidth", 0))
+                    > int(item.get("clientWidth", 0)) + 1
+                    and (
+                        item.get("tabindex") != "0"
+                        or item.get("role") != "region"
+                        or not item.get("label")
+                    )
+                    for item in math_scrollers
+                ):
+                    page_errors.append(
+                        "横スクロール可能な表示MathMLにフォーカスと名前がありません"
+                    )
+                if any(
+                    int(item.get("scrollWidth", 0))
+                    <= int(item.get("clientWidth", 0)) + 1
+                    and item.get("tabindex") == "0"
+                    for item in math_scrollers
+                ):
+                    page_errors.append(
+                        "横スクロール不要の表示MathMLが余分なTab停止になっています"
+                    )
             if label == "lesson-wide-svg" and viewport["mobile"]:
                 scrollers = metrics.get("localScrollers", [])
                 figure_scrollers = [
@@ -1696,6 +1870,378 @@ new Promise((resolve) => {
                     page_errors.append("静的MathMLがページ内にありません")
                 elif not mathml.get("staticRuntimeFree"):
                     page_errors.append("MathMLページが外部数式ランタイムを参照しています")
+            if label in INLINE_MATH_BROWSER_EXPECTATIONS:
+                expected_math = INLINE_MATH_BROWSER_EXPECTATIONS[label]
+                inline_math = metrics.get("inlineMath", [])
+                if not isinstance(inline_math, list):
+                    page_errors.append("インラインMathMLの描画指標を取得できません")
+                    inline_math = []
+                accessibility_tree = pipe.call(
+                    "Accessibility.getFullAXTree",
+                    {},
+                    session,
+                )
+                accessibility_nodes = accessibility_tree.get("nodes", [])
+                if not isinstance(accessibility_nodes, list):
+                    accessibility_nodes = []
+                math_accessibility_nodes: list[dict[str, object]] = []
+                for node in accessibility_nodes:
+                    if not isinstance(node, dict):
+                        continue
+                    role = node.get("role", {})
+                    name = node.get("name", {})
+                    role_value = (
+                        role.get("value", "")
+                        if isinstance(role, dict)
+                        else ""
+                    )
+                    name_value = (
+                        name.get("value", "")
+                        if isinstance(name, dict)
+                        else ""
+                    )
+                    if role_value == "MathMLMath":
+                        math_accessibility_nodes.append(
+                            {
+                                "role": role_value,
+                                "name": name_value,
+                                "ignored": node.get("ignored"),
+                            }
+                        )
+                metrics["inlineMathAccessibility"] = math_accessibility_nodes
+                actual_counts = Counter(
+                    str(item.get("id", ""))
+                    for item in inline_math
+                    if isinstance(item, dict)
+                )
+                expected_counts = Counter(
+                    {
+                        trial_id: int(contract["count"])
+                        for trial_id, contract in expected_math.items()
+                    }
+                )
+                if actual_counts != expected_counts:
+                    page_errors.append(
+                        "インラインMathMLのID・件数が代表ページ契約と一致しません"
+                    )
+                expected_accessibility_names = Counter(
+                    str(item.get("ariaLabel", ""))
+                    for item in inline_math
+                    if isinstance(item, dict)
+                )
+                actual_accessibility_names = Counter(
+                    str(item.get("name", ""))
+                    for item in math_accessibility_nodes
+                    if item.get("ignored") is False
+                )
+                if (
+                    not expected_accessibility_names
+                    or actual_accessibility_names
+                    != expected_accessibility_names
+                ):
+                    page_errors.append(
+                        "インラインMathMLが読み上げ用Accessibility treeへ"
+                        "同じ件数・名前で公開されていません"
+                    )
+                for item in inline_math:
+                    if not isinstance(item, dict):
+                        page_errors.append("インラインMathMLの描画指標が不正です")
+                        continue
+                    trial_id = str(item.get("id", ""))
+                    contract = expected_math.get(trial_id)
+                    if contract is None:
+                        continue
+                    if (
+                        not item.get("visible")
+                        or item.get("display") != "inline"
+                        or not item.get("ariaLabel")
+                        or not item.get("annotation")
+                        or int(item.get("semanticsCount", 0)) != 1
+                        or int(item.get("fractionCount", -1))
+                        != int(contract["fractions"])
+                        or (
+                            int(contract["fractions"]) > 0
+                            and item.get("fractionsStacked") is not True
+                        )
+                        or item.get("operatorsNormal") is not True
+                        or float(item.get("width", 0)) <= 0
+                        or float(item.get("height", 0)) <= 0
+                        or float(item.get("scrollerLeft", -2)) < -1
+                        or float(item.get("scrollerRight", viewport["width"] + 2))
+                        > viewport["width"] + 1
+                    ):
+                        page_errors.append(
+                            f"インラインMathMLの意味構造またはreflowが不正です: {trial_id}"
+                        )
+                    scroller_width = int(item.get("scrollerWidth", 0))
+                    scroller_scroll_width = int(
+                        item.get("scrollerScrollWidth", 0)
+                    )
+                    scroller_scrollable = (
+                        scroller_scroll_width > scroller_width + 1
+                    )
+                    if (
+                        item.get("scrollerOverflowX") not in {"auto", "scroll"}
+                        or (
+                            scroller_scrollable
+                            and (
+                                item.get("scrollerTabindex") != "0"
+                                or item.get("scrollerRole") != "region"
+                                or item.get("scrollerLabel")
+                                != "数式を横にスクロール"
+                                or item.get("scrollHintHidden") is not False
+                                or item.get("scrollHintVisible") is not True
+                                or item.get("scrollHintText")
+                                != "↔ 数式は左右に動かせます"
+                            )
+                        )
+                        or (
+                            not scroller_scrollable
+                            and (
+                                any(
+                                    item.get(field)
+                                    for field in (
+                                        "scrollerTabindex",
+                                        "scrollerRole",
+                                        "scrollerLabel",
+                                    )
+                                )
+                                or item.get("scrollHintHidden") is not True
+                                or item.get("scrollHintVisible") is not False
+                            )
+                        )
+                    ):
+                        page_errors.append(
+                            f"インラインMathMLの局所スクロール契約が不正です: {trial_id}"
+                        )
+                    if trial_id in {"x-times-evaluation", "variable-fraction"} and (
+                        int(item.get("variableCount", 0)) < 1
+                        or item.get("variableItalic") is not True
+                    ):
+                        page_errors.append(
+                            f"変数が数式用の斜体として区別されません: {trial_id}"
+                        )
+                    if trial_id == "x-times-evaluation" and (
+                        int(item.get("operatorCount", 0)) < 1
+                        or item.get("timesNormal") is not True
+                    ):
+                        page_errors.append(
+                            "変数xと乗算記号×の書体上の役割が区別されません"
+                        )
+                    plus_minus_families = item.get("plusMinusFontFamilies", [])
+                    if (
+                        trial_id
+                        in {"signed-addition", "signed-numeric-fractions"}
+                        and (
+                            not isinstance(plus_minus_families, list)
+                            or len(plus_minus_families) != 1
+                            or float(item.get("plusMinusCenterSpread", 999))
+                            > 1
+                        )
+                    ):
+                        page_errors.append(
+                            f"＋と−が同じ数式書体で組まれていません: {trial_id}"
+                        )
+
+                scroll_targets = evaluate(
+                    pipe,
+                    session,
+                    """
+(() => {
+  const targets = [...document.querySelectorAll('.inline-math-scroll')]
+    .filter((element) => element.scrollWidth > element.clientWidth + 1);
+  targets.forEach((element, index) => {
+    element.dataset.browserScrollIndex = String(index);
+    element.scrollLeft = 0;
+  });
+  return targets.map((element, index) => ({
+    index,
+    id: element.querySelector('math.inline-math')?.dataset.mathId || '',
+    maxScroll: element.scrollWidth - element.clientWidth,
+  }));
+})()
+""",
+                )
+                scroll_interactions: list[dict[str, object]] = []
+                if not isinstance(scroll_targets, list):
+                    page_errors.append(
+                        "横長のインラインMathMLを操作対象として取得できません"
+                    )
+                    scroll_targets = []
+                for scroll_target in scroll_targets:
+                    if not isinstance(scroll_target, dict):
+                        page_errors.append(
+                            "横長のインラインMathML操作対象が不正です"
+                        )
+                        continue
+                    target_index = int(scroll_target.get("index", -1))
+                    prep = evaluate(
+                        pipe,
+                        session,
+                        f"""
+(() => {{
+  const element = document.querySelector(
+    '.inline-math-scroll[data-browser-scroll-index="{target_index}"]'
+  );
+  if (!element) return null;
+  element.scrollLeft = 0;
+  element.focus();
+  return {{
+    active: document.activeElement === element,
+    before: element.scrollLeft,
+    maxScroll: element.scrollWidth - element.clientWidth,
+  }};
+}})()
+""",
+                    )
+                    for _ in range(2):
+                        pipe.call(
+                            "Input.dispatchKeyEvent",
+                            {
+                                "type": "rawKeyDown",
+                                "key": "ArrowRight",
+                                "code": "ArrowRight",
+                                "windowsVirtualKeyCode": 39,
+                                "nativeVirtualKeyCode": 124,
+                            },
+                            session,
+                        )
+                        pipe.call(
+                            "Input.dispatchKeyEvent",
+                            {
+                                "type": "keyUp",
+                                "key": "ArrowRight",
+                                "code": "ArrowRight",
+                                "windowsVirtualKeyCode": 39,
+                                "nativeVirtualKeyCode": 124,
+                            },
+                            session,
+                        )
+                    result = evaluate(
+                        pipe,
+                        session,
+                        f"""
+new Promise((resolve) => {{
+  setTimeout(() => {{
+    requestAnimationFrame(() => requestAnimationFrame(() => {{
+      const element = document.querySelector(
+        '.inline-math-scroll[data-browser-scroll-index="{target_index}"]'
+      );
+      resolve(element ? {{
+        active: document.activeElement === element,
+        after: element.scrollLeft,
+        maxScroll: element.scrollWidth - element.clientWidth,
+      }} : null);
+    }}));
+  }}, 250);
+}})
+""",
+                    )
+                    interaction = {
+                        "id": str(scroll_target.get("id", "")),
+                        "prep": prep,
+                        "result": result,
+                        "delta": (
+                            float(result.get("after", 0))
+                            - float(prep.get("before", 0))
+                            if isinstance(prep, dict)
+                            and isinstance(result, dict)
+                            else 0
+                        ),
+                    }
+                    scroll_interactions.append(interaction)
+                    if (
+                        not isinstance(prep, dict)
+                        or prep.get("active") is not True
+                        or float(prep.get("before", -1)) != 0
+                        or float(prep.get("maxScroll", 0)) <= 0
+                        or not isinstance(result, dict)
+                        or result.get("active") is not True
+                        or float(interaction["delta"]) <= 0
+                        or float(result.get("after", 0))
+                        > float(result.get("maxScroll", -1)) + 1
+                    ):
+                        page_errors.append(
+                            "横長のインラインMathMLをフォーカスして"
+                            f"右矢印キーで動かせません: {scroll_target.get('id', '')}"
+                        )
+                metrics["inlineMathScrollInteractions"] = scroll_interactions
+                evaluate(
+                    pipe,
+                    session,
+                    """
+(() => {
+  document.querySelectorAll(
+    '.inline-math-scroll[data-browser-scroll-index]'
+  ).forEach((element) => {
+    element.scrollLeft = 0;
+    element.removeAttribute('data-browser-scroll-index');
+  });
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+  return true;
+})()
+""",
+                )
+
+                set_media(pipe, session, "screen", "dark")
+                dark_math = evaluate(pipe, session, MATH_MEDIA_SCRIPT)
+                metrics["darkInlineMathAppearance"] = dark_math
+                if (
+                    not isinstance(dark_math, dict)
+                    or not dark_math.get("dark")
+                    or is_white(dark_math.get("rootBackground"))
+                    or float(dark_math.get("pageWidth", viewport["width"] + 2))
+                    > float(dark_math.get("viewportWidth", viewport["width"])) + 1
+                ):
+                    page_errors.append(
+                        "インラインMathMLのダーク表示または横幅が不正です"
+                    )
+                elif any(
+                    contrast_ratio(
+                        item.get("color"),
+                        dark_math.get("bodyBackground"),
+                    )
+                    < 4.5
+                    for item in dark_math.get("nodes", [])
+                    if isinstance(item, dict)
+                ):
+                    page_errors.append(
+                        "ダーク表示のインラインMathMLでコントラストが不足しています"
+                    )
+
+                set_viewport(pipe, session, PRINT_VIEWPORT)
+                set_media(pipe, session, "print")
+                settle_first_paint(pipe, session)
+                print_math = evaluate(pipe, session, MATH_MEDIA_SCRIPT)
+                metrics["printInlineMathAppearance"] = print_math
+                if (
+                    not isinstance(print_math, dict)
+                    or not print_math.get("print")
+                    or not is_white(print_math.get("rootBackground"))
+                    or not is_white(print_math.get("bodyBackground"))
+                    or float(print_math.get("pageWidth", viewport["width"] + 2))
+                    > float(print_math.get("viewportWidth", viewport["width"])) + 1
+                ):
+                    page_errors.append(
+                        "インラインMathMLが印刷時の白地へ収まっていません"
+                    )
+                elif any(
+                    contrast_ratio(
+                        item.get("color"),
+                        print_math.get("bodyBackground"),
+                    )
+                    < 7
+                    for item in print_math.get("nodes", [])
+                    if isinstance(item, dict)
+                ):
+                    page_errors.append(
+                        "印刷時のインラインMathMLで黒字コントラストが不足しています"
+                    )
+                set_media(pipe, session, "screen", color_scheme)
+                set_viewport(pipe, session, viewport)
+                settle_first_paint(pipe, session)
             if label in {"unit-resources", "unit-resources-empty"}:
                 unit_resources = evaluate(
                     pipe,

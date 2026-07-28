@@ -100,7 +100,8 @@ button:focus-visible,
 input:focus-visible,
 summary:focus-visible,
 .table-wrap:focus-visible,
-.figure-scroll:focus-visible {
+.figure-scroll:focus-visible,
+.inline-math-scroll:focus-visible {
   outline: 3px solid var(--blue);
   outline-offset: 3px;
 }
@@ -1475,6 +1476,47 @@ details.resource-list > ul { width: min(100%, 50rem); }
   font-size: 1.2em;
 }
 
+.inline-math-shell {
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-inline-size: 100%;
+  vertical-align: middle;
+}
+
+.inline-math-scroll {
+  display: block;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--control-border) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.inline-math-scroll-hint {
+  margin-block-start: .15em;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: .55em;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .02em;
+  text-align: end;
+}
+
+.inline-math {
+  color: inherit;
+  font-family: math, "STIX Two Math", "Cambria Math", serif;
+  font-size: 1.1em;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+
+.inline-math mi { font-style: italic; }
+.inline-math mo { font-style: normal; }
+
 .table-wrap {
   width: 100%;
   min-width: 0;
@@ -2210,6 +2252,13 @@ tbody tr:hover { background: var(--canvas); }
 }
 
 @media (max-width: 359px) {
+  .about-steps li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .1rem;
+  }
+  .about-steps li::before { line-height: 1.4; }
+  .resource-item-plain .resource-detail { display: none; }
+
   .site-nav { gap: .2rem; }
   .brand { gap: .25rem; }
   .brand-mark { width: 22px; height: 22px; }
@@ -2294,6 +2343,9 @@ tbody tr:hover { background: var(--canvas); }
     color: #000 !important;
   }
   .callout, .notice, .safety-note, .formula-block, .math-block { background: #fff; break-inside: avoid; }
+  .inline-math-shell,
+  .inline-math-scroll { max-inline-size: none; overflow: visible; }
+  .inline-math { color: #000; }
   .svg-figure, .figure-scroll { overflow: visible; break-inside: avoid; }
   .svg-figure svg { max-height: 220mm; }
   .svg-figure .figure-wide { width: 100%; min-width: 0; }

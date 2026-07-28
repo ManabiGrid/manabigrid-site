@@ -109,7 +109,8 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 - 横長SVGはviewBox幅500以上、または縦横比2以上を候補にする。ただしフォーカス可能領域、region名、操作ヒントは実描画で横幅が超過した時だけ付ける。表も同じ実幅基準を使う。
 - 単元ページの番号付きレッスン行と、番号を持たない解答・案内・指導・制作資料の行を同じgrid列へ流し込まない。後者は本文幅1列で表示し、短い資料一覧が細い番号列へ折り返されて縦長になる回帰を契約テストで拒否する。
 - 日本語本文はCSS禁則処理と利用可能な文節改行へ委ねる。意味や段落を変える自動`br`、句読点の移動、文字の補正は行わない。
-- 分数は`n/d`という見た目だけで自動MathML化しない。比、単位、URL等との区別が正本に明示された固定対象だけを変換契約へ追加する。
+- 分数は`n/d`という見た目だけで自動MathML化しない。比、単位、URL、日付、正誤記号等との区別を推測せず、インラインMathMLはsource path・元文字列・期待出現数・静的presentation MathML・読み上げ名を固定レジストリへ追加した対象だけに限定する。固定対象が欠落・増加した場合、未知の要素／属性が入った場合、3ページ以外へMathMLが現れた場合はビルドまたは公開検査を停止する。
+- インラインMathMLは`semantics`と元文字列の`annotation encoding="text/plain"`を持ち、変数は`mi`、数は`mn`、演算子は`mo`、上下型分数は`mfrac`で表す。読み上げ用`aria-label`だけでなく、要素順・数値・符号・分子分母・属性を含む正規化MathML木を固定期待値へ完全一致させ、生成HTMLや正本を手編集して帳尻を合わせない。件数レポートは真偽値や小数で整数を代用しない。
 - 全indexableページの`title`と`description`を重複不可にし、canonicalとsitemapの自己整合を検査する。検索エンジンへの登録、Search Console、URL検査依頼はGoogleアカウントを伴う外部操作として別承認レーンに置く。
 - Search Console所有権確認値は`site.config.json`だけを正とし、トップ`index.html`の正規な`html > head`直下へ1件だけ生成する。他ページへの複製、生成HTMLの手編集、Analytics／Tag Manager／追跡コードへの置換を行わない。`check_site.py`は属性重複なし、値の完全一致、トップ1件、他ページ0件を公開ゲートとして検査する。Googleが所有権を定期的に再確認するため、確認後も設定値を削除しない。
 - 公開ディレクトリ内のファイルは検査済み拡張子だけを許可し、`.htm`など意味的HTML検査の対象外になる形式をartifactへ含めない。新しい形式が必要な場合は、先に検査器とnegative testを追加してから許可集合を更新する。
@@ -128,7 +129,7 @@ repo内にignored `site-output/`が残っても、公開検査は`public_site.py
 
 `check_workflow.py`は単なる文字列の存在ではなく、固定の日次cron、全jobのstep名・個数・順序、各step blockのSHA-256、deploy jobの`if`条件を構造位置ごとに照合する。コメントや`echo`、`if: false`、`continue-on-error`、検疫後の追加step、名前のないstep、別keyへ同じ文字列を書いてゲートを通すことはできない。workflowを意図的に変える時は、変更内容と負例をレビューしてから契約digestを更新する。
 
-スマホ／タブレット互換性を変えるCSS・生成器修正では`device_matrix.contract.json`を入力に`python3 device_matrix_check.py`を実行する。固定10条件を削って不具合を消さず、追加が必要なら契約とnegative testを同時に更新する。文字200%条件は実機OS挙動の完全再現ではなく、reflow回帰を検出するCSS文字寸法proxyとして扱う。matrix reportは各profileの新規browser report、runner、ブラウザ検査器、CSS、生成器、契約のSHA-256と、文字倍率の適用前後実測値を持つ。古いreportの件数だけを現行コードの証拠に流用しない。
+スマホ／タブレット互換性を変えるCSS・生成器修正では`device_matrix.contract.json`を入力に`python3 device_matrix_check.py`を実行する。固定11条件を削って不具合を消さず、追加が必要なら契約とnegative testを同時に更新する。文字200%条件は320pxと390pxの両方を必須にし、実機OS挙動の完全再現ではなく、reflow回帰を検出するCSS文字寸法proxyとして扱う。printの幅判定はscreen viewportから分離し、A4相当794pxで行う。matrix reportは各profileの新規browser report、runner、ブラウザ検査器、CSS、生成器、契約のSHA-256と、文字倍率の適用前後実測値を持つ。古いreportの件数だけを現行コードの証拠に流用しない。
 
 ## 実行後に報告する最小証拠
 

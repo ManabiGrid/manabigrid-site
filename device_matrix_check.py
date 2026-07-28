@@ -43,6 +43,7 @@ REQUIRED_PROFILE_SIGNATURES = {
     ("tablet-standard", "tablet", "portrait", 768, 1024, 1.0),
     ("tablet-large", "tablet", "portrait", 820, 1180, 1.0),
     ("tablet-landscape", "tablet", "landscape", 1024, 768, 1.0),
+    ("phone-compact-text-200", "phone", "portrait", 320, 568, 2.0),
     ("phone-text-200", "phone", "portrait", 390, 844, 2.0),
 }
 

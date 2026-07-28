@@ -86,6 +86,11 @@
       if (hint) {
         hint.toggleAttribute('hidden', !scrollable);
       }
+      const mathHint = region.closest('.inline-math-shell')
+        ?.querySelector('[data-math-scroll-hint]');
+      if (mathHint) {
+        mathHint.toggleAttribute('hidden', !scrollable);
+      }
     });
   };
 

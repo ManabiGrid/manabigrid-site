@@ -1,11 +1,11 @@
 {
   "status": "built",
-  "generated_at": "2026-07-24T05:14:23+09:00",
+  "generated_at": "2026-07-28T15:53:26+09:00",
   "source": {
     "repository": "https://github.com/ManabiGrid/manabigrid",
     "origin": "https://github.com/ManabiGrid/manabigrid.git",
     "commit": "5700768bec42db1b2e59883c04e9e902fd0d06fa",
-    "verified_against": "fetched_origin_main",
+    "verified_against": "explicit_expected_sha",
     "commit_date": "2026-07-21T08:01:52+09:00",
     "git_status_before": "",
     "git_status_after": ""
@@ -236,6 +236,45 @@
     "search_index_entries": 394,
     "update_history_entries": 20,
     "mathml_static_prototypes": 1,
+    "inline_math_trials": [
+      {
+        "id": "x-times-evaluation",
+        "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.md",
+        "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html",
+        "expression": "2x＋2＝2×3＋2＝8",
+        "aria_label": "二エックスたす二は、二かける三たす二で、八",
+        "expected_occurrences": 1,
+        "rendered_occurrences": 1
+      },
+      {
+        "id": "signed-addition",
+        "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md",
+        "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+        "expression": "(＋5)＋(−8)＝−3",
+        "aria_label": "プラス五たすマイナス八は、マイナス三",
+        "expected_occurrences": 2,
+        "rendered_occurrences": 2
+      },
+      {
+        "id": "signed-numeric-fractions",
+        "source": "materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.md",
+        "output": "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
+        "expression": "(−2/3)＋(＋1/2)",
+        "aria_label": "マイナス三分の二たす、プラス二分の一",
+        "expected_occurrences": 1,
+        "rendered_occurrences": 1
+      },
+      {
+        "id": "variable-fraction",
+        "source": "materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.md",
+        "output": "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html",
+        "expression": "8xy/2x",
+        "aria_label": "二エックス分の八エックスワイ",
+        "expected_occurrences": 1,
+        "rendered_occurrences": 1
+      }
+    ],
+    "inline_math_rendered": 5,
     "og_image": {
       "source": "docs/assets/banner.png",
       "output": "_assets/og-manabigrid.png",

@@ -57,7 +57,12 @@ class PreviewHandler(SimpleHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
         if self.command != "HEAD":
-            self.wfile.write(body)
+            try:
+                self.wfile.write(body)
+            except (BrokenPipeError, ConnectionResetError):
+                # Chrome may cancel an image response after navigation or capture.
+                # This is a normal client disconnect, not a site or link failure.
+                return
 
     def _not_found(self) -> None:
         fallback = self.root / "404.html"
