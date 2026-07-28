@@ -24,10 +24,23 @@ ROOT = Path(__file__).resolve().parent
 CONFIG = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
 WORKFLOW = "pages.yml"
 WORKFLOW_NAME = "Build and deploy ManabiGrid Pages"
+WORKFLOW_CHECKERS = ("check_workflow.py", "check_pr_workflow.py")
 REPORT_PATH = ROOT / "update-report.json"
 SHA_LENGTH = 40
-SCHEMA_VERSION = "4"
+SCHEMA_VERSION = "5"
 PUBLICATION_AUTHORITY = "not_observed"
+STATUS_RECORD_TYPE = "status_snapshot"
+RELEASE_RECORD_TYPE = "publication_verification"
+OPERATION_RECORD_TYPE = "operation_result"
+ERROR_RECORD_TYPE = "operation_error"
+RELEASE_RECORD_STATUSES = frozenset(
+    {
+        "updated",
+        "site_release_verified",
+        "blocked_source_drift_after_publish",
+        "blocked_source_state_unknown_after_publish",
+    }
+)
 SCHEDULE_STALE_HOURS = 72
 OFFICIAL_SITE_REPOSITORY = "ManabiGrid/manabigrid-site"
 OFFICIAL_BASE_URL = "https://manabigrid.github.io/manabigrid-site/"
@@ -35,9 +48,16 @@ OFFICIAL_SOURCE_REPOSITORY_URL = "https://github.com/ManabiGrid/manabigrid"
 
 
 class UpdateError(RuntimeError):
-    def __init__(self, status: str, message: str) -> None:
+    def __init__(
+        self,
+        status: str,
+        message: str,
+        *,
+        payload: dict[str, Any] | None = None,
+    ) -> None:
         super().__init__(message)
         self.status = status
+        self.payload = payload
 
 
 @dataclass(frozen=True)
@@ -49,6 +69,9 @@ class RunMatch:
 
 def command_environment(arguments: Sequence[str]) -> dict[str, str]:
     environment = os.environ.copy()
+    if arguments and arguments[0] == "git":
+        # Read-only inspection must not refresh the index or create lock files.
+        environment["GIT_OPTIONAL_LOCKS"] = "0"
     if arguments and arguments[0] == "gh":
         environment["GH_HOST"] = "github.com"
         environment.pop("GH_REPO", None)
@@ -364,10 +387,14 @@ def require_release_checkout() -> dict[str, str]:
             "blocked_site_drift",
             f"サイトcheckoutがorigin/mainと一致しません: local={local}; remote={remote}",
         )
-    try:
-        command((sys.executable, "check_workflow.py"))
-    except UpdateError as exc:
-        raise UpdateError("blocked_contract_drift", str(exc)) from exc
+    for checker in WORKFLOW_CHECKERS:
+        try:
+            command((sys.executable, checker))
+        except UpdateError as exc:
+            raise UpdateError(
+                "blocked_contract_drift",
+                f"{checker}: {exc}",
+            ) from exc
     return {"site_local": local, "site_remote": remote, "site_origin": origin}
 
 
@@ -653,25 +680,169 @@ def wait_for_site_live(
     raise UpdateError("failed_live_verify", last_error)
 
 
-def write_report(payload: dict[str, Any]) -> None:
-    REPORT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
-def publish_meta(status: str, payload: dict[str, Any]) -> dict[str, Any]:
+def publish_meta(
+    status: str,
+    payload: dict[str, Any],
+    *,
+    record_type: str = OPERATION_RECORD_TYPE,
+) -> dict[str, Any]:
     return {
         "status": status,
         "schema_version": SCHEMA_VERSION,
+        "record_type": record_type,
         "publication_authority": PUBLICATION_AUTHORITY,
         "generated_at": utc_now(),
         **payload,
     }
 
 
-def persist_snapshot(payload: dict[str, Any]) -> None:
+def release_meta(status: str, payload: dict[str, Any]) -> dict[str, Any]:
+    result = publish_meta(status, payload, record_type=RELEASE_RECORD_TYPE)
+    result["publication_verified"] = True
+    result["verified_at"] = result["generated_at"]
+    return result
+
+
+def validate_release_record(payload: dict[str, Any]) -> None:
+    if payload.get("schema_version") != SCHEMA_VERSION:
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証記録のschema_versionが現行契約と一致しません",
+        )
+    if payload.get("record_type") != RELEASE_RECORD_TYPE:
+        raise UpdateError(
+            "failed_release_record",
+            "status snapshotや一般エラーを公開検証記録へ保存できません",
+        )
+    if payload.get("status") not in RELEASE_RECORD_STATUSES:
+        raise UpdateError(
+            "failed_release_record",
+            "公開後の完全照合を表さないstatusは公開検証記録へ保存できません",
+        )
+    if payload.get("publication_verified") is not True:
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証済みフラグのない記録は保存できません",
+        )
+    if payload.get("publication_authority") != PUBLICATION_AUTHORITY:
+        raise UpdateError(
+            "failed_release_record",
+            "公開承認の観測状態が現行契約と一致しません",
+        )
+    if not isinstance(payload.get("verified_at"), str):
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証日時がない記録は保存できません",
+        )
+    source_sha = payload.get("source_sha")
+    site_sha = payload.get("site_sha", payload.get("site_local"))
+    if not isinstance(source_sha, str) or not is_full_sha(source_sha):
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証記録の正本SHAが不正です",
+        )
+    if not isinstance(site_sha, str) or not is_full_sha(site_sha):
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証記録のsite SHAが不正です",
+        )
+    site_local = payload.get("site_local")
+    site_remote = payload.get("site_remote")
+    if (
+        not isinstance(site_local, str)
+        or not isinstance(site_remote, str)
+        or site_local != site_sha
+        or site_remote != site_sha
+    ):
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証記録のlocal／remote site SHAが一致しません",
+        )
+    if payload.get("site_origin") != (
+        "https://github.com/manabigrid/manabigrid-site.git"
+    ):
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証記録のsite originが公式repositoryと一致しません",
+        )
+    runs = payload.get("runs")
+    if (
+        not isinstance(runs, list)
+        or not runs
+        or any(
+            not isinstance(run, dict)
+            or type(run.get("database_id")) is not int
+            or not isinstance(run.get("title"), str)
+            or not run["title"].strip()
+            or not isinstance(run.get("url"), str)
+            or run["url"]
+            != (
+                "https://github.com/ManabiGrid/manabigrid-site/actions/runs/"
+                f"{run.get('database_id')}"
+            )
+            for run in runs
+        )
+    ):
+        raise UpdateError(
+            "failed_release_record",
+            "公開検証記録に完全照合したActions runがありません",
+        )
+
+
+def write_release_record(payload: dict[str, Any]) -> None:
+    validate_release_record(payload)
+    temporary_path = REPORT_PATH.with_name(
+        f".{REPORT_PATH.name}.{uuid.uuid4().hex}.tmp"
+    )
     try:
-        write_report(payload)
+        temporary_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        os.replace(temporary_path, REPORT_PATH)
     except OSError as exc:
-        payload["report_persist_error"] = f"update-report.jsonへ保存できません: {exc}"
+        try:
+            temporary_path.unlink(missing_ok=True)
+        except OSError:
+            pass
+        message = f"update-report.jsonへ保存できません: {exc}"
+        failed_payload = publish_meta(
+            "failed_release_record",
+            {
+                "error": message,
+                "record_persisted": False,
+                "verified_publication": payload,
+            },
+            record_type=ERROR_RECORD_TYPE,
+        )
+        raise UpdateError(
+            "failed_release_record",
+            message,
+            payload=failed_payload,
+        ) from exc
+
+
+def release_record_summary() -> dict[str, Any]:
+    if not REPORT_PATH.is_file():
+        return {"state": "missing"}
+    try:
+        payload = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError("top level is not an object")
+        validate_release_record(payload)
+    except (OSError, ValueError, json.JSONDecodeError, UpdateError) as exc:
+        return {
+            "state": "legacy_or_invalid",
+            "error": str(exc),
+        }
+    return {
+        "state": "valid",
+        "status": payload["status"],
+        "verified_at": payload["verified_at"],
+        "site_sha": payload.get("site_sha", payload.get("site_local")),
+        "source_sha": payload["source_sha"],
+        "runs": len(payload["runs"]),
+    }
 
 
 def status_payload() -> dict[str, Any]:
@@ -712,11 +883,15 @@ def status_payload() -> dict[str, Any]:
 
     site_clean = not bool(command(("git", "status", "--porcelain", "--untracked-files=all")))
     current_branch = command(("git", "branch", "--show-current"))
-    workflow_contract_pass = True
-    try:
-        command((sys.executable, "check_workflow.py"))
-    except UpdateError:
-        workflow_contract_pass = False
+    workflow_contracts: dict[str, bool] = {}
+    for checker in WORKFLOW_CHECKERS:
+        try:
+            command((sys.executable, checker))
+        except UpdateError:
+            workflow_contracts[checker] = False
+        else:
+            workflow_contracts[checker] = True
+    workflow_contract_pass = all(workflow_contracts.values())
 
     source_sync = (
         "unknown"
@@ -802,6 +977,7 @@ def status_payload() -> dict[str, Any]:
                 "branch": current_branch,
                 "local_eq_remote": local == site_remote,
                 "workflow_contract_pass": workflow_contract_pass,
+                "workflow_contracts": workflow_contracts,
             },
             "source": {
                 "remote": source,
@@ -809,7 +985,9 @@ def status_payload() -> dict[str, Any]:
                 "current": source_sync == "current",
             },
             "operations": operational,
+            "publication_verification_record": release_record_summary(),
         },
+        record_type=STATUS_RECORD_TYPE,
     )
 
 
@@ -848,9 +1026,32 @@ def publish(args: argparse.Namespace) -> dict[str, Any]:
         )
         verify_pages_deployment(checkout["site_local"])
         runs.append({"database_id": run.database_id, "title": run.title, "url": run.url})
-        latest = remote_sha(source_remote())
+        try:
+            latest = remote_sha(source_remote())
+        except UpdateError as exc:
+            message = (
+                "公開版の完全照合後、正本mainの最新SHAを取得できませんでした。"
+                "検証済み公開版は記録し、自動追随は停止します"
+            )
+            payload = release_meta(
+                "blocked_source_state_unknown_after_publish",
+                {
+                    "runs": runs,
+                    **checkout,
+                    "source_sha": expected,
+                    "source_freshness": "unknown",
+                    "freshness_error_status": exc.status,
+                    "error": message,
+                },
+            )
+            write_release_record(payload)
+            raise UpdateError(
+                "blocked_source_state_unknown_after_publish",
+                message,
+                payload=payload,
+            ) from exc
         if latest == expected:
-            payload = publish_meta(
+            payload = release_meta(
                 "updated",
                 {
                     "runs": runs,
@@ -858,30 +1059,33 @@ def publish(args: argparse.Namespace) -> dict[str, Any]:
                     "source_sha": expected,
                 },
             )
-            write_report(payload)
+            write_release_record(payload)
             return payload
-        if fixed_source:
-            payload = publish_meta(
-                "blocked_source_drift_after_publish",
-                {
-                    "runs": runs,
-                    **checkout,
-                    "source_sha": expected,
-                    "latest_source_sha": latest,
-                },
-            )
-            write_report(payload)
+        message = (
+            "固定承認SHAの公開後に正本mainが進みました。新SHAは自動公開しません"
+            if fixed_source
+            else "公開後にも正本mainが進んだため、最新化を安全に打ち切りました"
+        )
+        payload = release_meta(
+            "blocked_source_drift_after_publish",
+            {
+                "runs": runs,
+                **checkout,
+                "source_sha": expected,
+                "latest_source_sha": latest,
+                "error": message,
+            },
+        )
+        write_release_record(payload)
+        if fixed_source or attempt == 1:
             raise UpdateError(
                 "blocked_source_drift_after_publish",
-                "固定承認SHAの公開後に正本mainが進みました。新SHAは自動公開しません",
+                message,
+                payload=payload,
             )
         expected = latest
-        if attempt == 0:
-            continue
-    raise UpdateError(
-        "blocked_source_drift_after_publish",
-        "正本mainが2回の公開中にも更新され続けたため、最新化を安全に打ち切りました",
-    )
+        continue
+    raise AssertionError("publish retry loop must return or raise")
 
 
 def verify_site_release(args: argparse.Namespace) -> dict[str, Any]:
@@ -897,7 +1101,7 @@ def verify_site_release(args: argparse.Namespace) -> dict[str, Any]:
     wait_for_run(run, args.run_timeout)
     wait_for_site_live(expected_site, expected_source, args.live_timeout)
     verify_pages_deployment(expected_site)
-    payload = publish_meta(
+    payload = release_meta(
         "site_release_verified",
         {
             "runs": [
@@ -908,7 +1112,7 @@ def verify_site_release(args: argparse.Namespace) -> dict[str, Any]:
             "source_sha": expected_source,
         },
     )
-    write_report(payload)
+    write_release_record(payload)
     return payload
 
 
@@ -946,17 +1150,25 @@ def main(argv: Sequence[str] | None = None) -> int:
         else:
             payload = verify_site_release(args)
     except UpdateError as exc:
-        payload = publish_meta(exc.status, {"error": str(exc)})
-        persist_snapshot(payload)
+        payload = (
+            {**exc.payload, "error": str(exc)}
+            if exc.payload is not None
+            else publish_meta(
+                exc.status,
+                {"error": str(exc)},
+                record_type=ERROR_RECORD_TYPE,
+            )
+        )
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 1
     except (HTTPError, URLError, OSError, ValueError, json.JSONDecodeError) as exc:
-        payload = publish_meta("failed_live_verify", {"error": str(exc)})
-        persist_snapshot(payload)
+        payload = publish_meta(
+            "failed_live_verify",
+            {"error": str(exc)},
+            record_type=ERROR_RECORD_TYPE,
+        )
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 1
-    if args.command == "status":
-        persist_snapshot(payload)
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0
 

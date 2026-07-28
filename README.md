@@ -95,11 +95,15 @@ python3 update_pages.py status
 python3 update_pages.py publish --approve-publication
 ```
 
-`status`は`published_state`（公開レポートを正しく取得できたか）、`source_sync`（正本）、`site_sync`（生成器）、`release_readiness`（公開に使えるcheckoutか）、`operational_readiness`（日次workflowがactiveで最近動いたか）を分けて返します。公開レポートを取得・検証できない時は正本やsiteの差分を推測せず、`blocked_published_state_unknown`で停止します。正本SHAが公開版と同じでも、siteに未commit差分、未公開site commit、branch違い、origin drift、workflow契約違い、schedule無効化があればトップレベル状態をblockedにし、「すべて公開済み」と誤報しにくくしています。結果はignored `update-report.json`にも保存します。
+`status`は`published_state`（公開レポートを正しく取得できたか）、`source_sync`（正本）、`site_sync`（生成器）、`release_readiness`（公開に使えるcheckoutか）、`operational_readiness`（日次workflowがactiveで最近動いたか）を分けて返します。公開レポートを取得・検証できない時は正本やsiteの差分を推測せず、`blocked_published_state_unknown`で停止します。正本SHAが公開版と同じでも、siteに未commit差分、未公開site commit、branch違い、origin drift、workflow契約違い、schedule無効化があればトップレベル状態をblockedにし、「すべて公開済み」と誤報しにくくしています。`status`は成功・失敗とも標準出力へJSONを返すだけで、ファイル、workflow、GitHub状態を変更しません。
+
+ignored `update-report.json`はstatusの履歴ではありません。`publish`または`verify-site-release`がActions run、公開された正本／site両SHA、Pages deployment、HTTP契約を完全照合できた時だけ、`record_type: publication_verification`として原子的に更新します。公開確認後の正本HEAD再取得だけが失敗した場合も、検証済み公開版を記録して非0停止します。後からstatusやdry-run、公開前の失敗を実行しても、最後の公開検証記録を上書きしません。
 
 ビルド自体も、公式ManabiGridをoriginに持つcleanな正本checkoutだけを受け付けます。未commit編集、fork、cleanだが未pushの正本HEADを正本コミット由来として表示せず、進捗表の不正行・罫線欠落・固定10入口の改変・可視単元名や学年群の不一致を生成側と独立検査側で停止します。
 
 2行目は、現在の依頼でこのGitHub Pages更新が明示承認されている場合だけ実行します。フラグ自体は承認の代わりになりません。通常の正本更新だけならsiteのcommitは不要で、Actionsが隔離環境で生成します。生成器の互換修正が必要な時だけ、siteコードの検証・commit・pushを別レーンで行います。
+
+siteコードの別レーンは`.github/workflows/pr-validate.yml`です。PRごとに全契約テスト、正本の観測SHAからのfresh build、独立check、公開候補検疫、固定11端末条件のChrome実描画、CSS横あふれを実描画gateが拒否する負例を`site-output`へ実行します。最後に正本mainを再照合し、検証中に進んだ時は旧SHAでgreenにしません。job名`manabigrid-site-pr-gate`をruleset候補の必須check名として固定し、このworkflowにはPages／ID tokenのwrite権限、deploy action、secretを与えません。rulesetはまだ未適用で、設定案と戻し方だけを`MAIN_RULESET_PROPOSAL.md`へ置いています。
 
 正本SHAは同じまま、生成器・CSS・検査器だけをcommit／pushした更新では、push後に次の1コマンドで該当runと公開版を照合します。未公開site commitがある状態で`publish`を実行しても`already_current`にはせず、`blocked_site_release_requires_verification`で停止します。
 

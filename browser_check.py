@@ -7,6 +7,7 @@ import base64
 import argparse
 from collections import Counter
 from datetime import datetime, timezone
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -20,7 +21,9 @@ import sys
 import tempfile
 import threading
 import time
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
+from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parent
@@ -42,58 +45,42 @@ INLINE_MATH_BROWSER_EXPECTATIONS = {
         "variable-fraction": {"count": 1, "fractions": 1},
     },
 }
-PAGES = (
-    ("top", ROOT / "index.html"),
-    ("browse", ROOT / "browse/index.html"),
-    (
-        "diagnostic",
-        ROOT
-        / "content/materials/jhs-math-3/jhs-math-3-diagnostic/diagnostic.html",
-    ),
-    (
-        "english",
-        ROOT
-        / "content/materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/lesson_01.html",
-    ),
-    (
-        "lesson-wide-svg",
-        ROOT
-        / "content/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_03.html",
-    ),
-    ("progress", ROOT / "progress/index.html"),
-    ("curriculum", ROOT / "curriculum/index.html"),
-    ("curriculum-preparing", ROOT / "curriculum/hs-eng/index.html"),
-    ("about", ROOT / "about/index.html"),
-    ("updates", ROOT / "updates/index.html"),
-    (
-        "mathml",
-        ROOT / "content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html",
-    ),
-    (
-        "math-inline-x-times",
-        ROOT
-        / "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html",
-    ),
-    (
-        "math-inline-signed-fractions",
-        ROOT
-        / "content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html",
-    ),
-    (
-        "math-inline-variable-fraction",
-        ROOT
-        / "content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html",
-    ),
-    (
-        "unit-resources",
-        ROOT / "units/jhs-math-1-positive-negative-numbers/index.html",
-    ),
-    (
-        "unit-resources-empty",
-        ROOT / "units/jhs-math-3-appendix/index.html",
-    ),
+PAGE_RELATIVE_PATHS = (
+    ("top", Path("index.html")),
+    ("browse", Path("browse/index.html")),
+    ("diagnostic", Path("content/materials/jhs-math-3/jhs-math-3-diagnostic/diagnostic.html")),
+    ("english", Path("content/materials/jhs-eng-1/jhs-eng-1-introducing-yourself-and-others/lesson_01.html")),
+    ("lesson-wide-svg", Path("content/materials/jhs-sci-2/jhs-sci-2-humidity-calculation/lesson_03.html")),
+    ("progress", Path("progress/index.html")),
+    ("curriculum", Path("curriculum/index.html")),
+    ("curriculum-preparing", Path("curriculum/hs-eng/index.html")),
+    ("about", Path("about/index.html")),
+    ("updates", Path("updates/index.html")),
+    ("mathml", Path("content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html")),
+    ("math-inline-x-times", Path("content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html")),
+    ("math-inline-signed-fractions", Path("content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html")),
+    ("math-inline-variable-fraction", Path("content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html")),
+    ("unit-resources", Path("units/jhs-math-1-positive-negative-numbers/index.html")),
+    ("unit-resources-empty", Path("units/jhs-math-3-appendix/index.html")),
 )
+PAGES = tuple((label, ROOT / path) for label, path in PAGE_RELATIVE_PATHS)
 NOT_FOUND_ROUTE = "browser-check-not-found"
+
+
+def resolve_site_root(value: str | None = None) -> Path:
+    if not value:
+        return ROOT
+    root = Path(value).resolve()
+    if not root.is_dir():
+        raise RuntimeError("指定site rootは存在するディレクトリである必要があります")
+    for name in ("index.html", "404.html", "build-report.json"):
+        if not (root / name).is_file():
+            raise RuntimeError(f"指定site rootに{name}がありません: {root}")
+    return root
+
+
+def resolve_pages(site_root: Path) -> tuple[tuple[str, Path], ...]:
+    return tuple((label, site_root / path) for label, path in PAGE_RELATIVE_PATHS)
 
 
 def viewport_argument(value: str) -> tuple[int, int]:
@@ -126,9 +113,9 @@ def text_scale_argument(value: str) -> float:
     return scale
 
 
-def expected_update_entries() -> int:
+def expected_update_entries(site_root: Path = ROOT) -> int:
     try:
-        report = json.loads((ROOT / "build-report.json").read_text(encoding="utf-8"))
+        report = json.loads((site_root / "build-report.json").read_text(encoding="utf-8"))
         entries = report.get("update_history", {}).get("entries", [])
         return len(entries) if isinstance(entries, list) else 0
     except (OSError, json.JSONDecodeError, AttributeError):
@@ -138,18 +125,62 @@ def expected_update_entries() -> int:
 EXPECTED_UPDATE_ENTRIES = expected_update_entries()
 
 
-def build_report_source_commit() -> str:
+def build_report_source_commit(site_root: Path = ROOT) -> str:
     try:
-        report = json.loads((ROOT / "build-report.json").read_text(encoding="utf-8"))
+        report = json.loads((site_root / "build-report.json").read_text(encoding="utf-8"))
         source = report.get("source", {})
         return str(source.get("commit", "")) if isinstance(source, dict) else ""
     except (OSError, json.JSONDecodeError, AttributeError):
         return ""
 
 
-def expected_home_grid() -> tuple[int, int, int]:
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_base_url_site_root(base_url: str, site_root: Path) -> str:
+    """Bind a localhost preview URL to the exact candidate used for expectations."""
+    expected = file_sha256(site_root / "build-report.json")
+    url = (
+        base_url.rstrip("/")
+        + f"/build-report.json?browser-root-check={time.time_ns()}"
+    )
     try:
-        report = json.loads((ROOT / "build-report.json").read_text(encoding="utf-8"))
+        with urlopen(
+            Request(
+                url,
+                headers={"User-Agent": "ManabiGrid-Browser-Root-Check/1.0"},
+            ),
+            timeout=5,
+        ) as response:
+            if response.status != 200:
+                raise RuntimeError(
+                    f"localhost build-reportがHTTP {response.status}です"
+                )
+            observed = hashlib.sha256(response.read()).hexdigest()
+    except (HTTPError, URLError, OSError) as exc:
+        raise RuntimeError(
+            f"localhost build-reportを照合できません: {exc}"
+        ) from exc
+    if observed != expected:
+        raise RuntimeError(
+            "localhostで配信中の成果物と--site-rootが一致しません"
+        )
+    return observed
+
+
+def png_dimensions(data: bytes) -> tuple[int, int]:
+    if len(data) < 24 or data[:8] != b"\x89PNG\r\n\x1a\n":
+        raise RuntimeError("screenshotが有効なPNGではありません")
+    width, height = struct.unpack(">II", data[16:24])
+    if width <= 0 or height <= 0:
+        raise RuntimeError("screenshotのPNG寸法が不正です")
+    return width, height
+
+
+def expected_home_grid(site_root: Path = ROOT) -> tuple[int, int, int]:
+    try:
+        report = json.loads((site_root / "build-report.json").read_text(encoding="utf-8"))
         home_grid = report.get("curriculum_grid", {})
         families = home_grid.get("families", [])
         packages = home_grid.get("total_packages", 0)
@@ -1052,16 +1083,44 @@ def main() -> int:
             "（例: http://127.0.0.1:8765/manabigrid-site）"
         ),
     )
+    parser.add_argument(
+        "--site-root",
+        help="実描画対象のsite root（既定:現行リポジトリroot）",
+    )
     args = parser.parse_args()
+    try:
+        site_root = resolve_site_root(args.site_root)
+    except RuntimeError as exc:
+        print(f"--site-root は不正です: {exc}", file=sys.stderr)
+        return 2
+
     base_url = args.base_url.rstrip("/") if args.base_url else None
     if base_url:
         parsed_base = urlsplit(base_url)
-        if parsed_base.scheme not in {"http", "https"} or parsed_base.hostname not in {
-            "127.0.0.1",
-            "localhost",
-        }:
+        if (
+            parsed_base.scheme not in {"http", "https"}
+            or parsed_base.hostname not in {
+                "127.0.0.1",
+                "localhost",
+                "::1",
+            }
+            or parsed_base.username is not None
+            or parsed_base.password is not None
+            or parsed_base.query
+            or parsed_base.fragment
+        ):
             print("--base-url はlocalhostのHTTP(S)だけを指定できます", file=sys.stderr)
             return 2
+        try:
+            served_build_report_sha256 = verify_base_url_site_root(
+                base_url,
+                site_root,
+            )
+        except RuntimeError as exc:
+            print(f"--base-url と --site-root の照合に失敗: {exc}", file=sys.stderr)
+            return 2
+    else:
+        served_build_report_sha256 = None
     if args.viewport:
         width, height = args.viewport
         viewport = {
@@ -1083,11 +1142,15 @@ def main() -> int:
     chrome = find_chrome()
     REVIEW_DIR.mkdir(parents=True, exist_ok=True)
     report: dict[str, object] = {
-        "schema_version": 3,
+        "schema_version": 4,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
-        "build_report_source_commit": build_report_source_commit(),
+        "site_root": str(site_root),
+        "build_report_source_commit": build_report_source_commit(site_root),
+        "build_report_sha256": file_sha256(site_root / "build-report.json"),
+        "served_build_report_sha256": served_build_report_sha256,
         "status": "ok",
         "chrome": chrome,
+        "browser_version": None,
         "mode": mode,
         "profile_id": profile_id,
         "text_scale": args.text_scale,
@@ -1101,16 +1164,23 @@ def main() -> int:
     pipe: DevToolsSocket | None = None
     try:
         pipe = open_devtools(chrome)
+        report["browser_version"] = pipe.call("Browser.getVersion")
         pages: list[dict[str, object]] = []
-        page_specs = list(PAGES)
+        page_paths = list(resolve_pages(site_root))
+        expected_update_entries_count = expected_update_entries(site_root)
+        (
+            expected_home_families,
+            expected_home_packages,
+            expected_preparing_families,
+        ) = expected_home_grid(site_root)
         if base_url:
-            page_specs.append(("not-found", ROOT / "404.html"))
-        for label, path in page_specs:
+            page_paths.append(("not-found", site_root / "404.html"))
+        for label, path in page_paths:
             if label == "not-found":
                 page_url = f"{base_url}/{NOT_FOUND_ROUTE}"
             else:
                 page_url = (
-                    f"{base_url}/{path.relative_to(ROOT).as_posix()}"
+                    f"{base_url}/{path.relative_to(site_root).as_posix()}"
                     if base_url
                     else path.as_uri()
                 )
@@ -1195,7 +1265,11 @@ new Promise((resolve) => {
                 f"{label}-{viewport['width']}x{viewport['height']}"
                 f"{profile_suffix}{color_suffix}.png"
             )
-            screenshot_path.write_bytes(base64.b64decode(str(screenshot["data"])))
+            screenshot_bytes = base64.b64decode(str(screenshot["data"]))
+            screenshot_width, screenshot_height = png_dimensions(
+                screenshot_bytes
+            )
+            screenshot_path.write_bytes(screenshot_bytes)
 
             page_errors: list[str] = []
             if metrics.get("innerWidth") != viewport["width"]:
@@ -1514,11 +1588,11 @@ new Promise((resolve) => {
                     page_errors.append(
                         "第一画面に学習グリッドの先頭入口が44px以上見えていません"
                     )
-                if metrics.get("homeLearningGridCount") != EXPECTED_HOME_FAMILIES:
+                if metrics.get("homeLearningGridCount") != expected_home_families:
                     page_errors.append("トップの学習グリッドが中学・高校5教科の10入口を表示していません")
-                if metrics.get("homeLearningGridPackageCount") != EXPECTED_HOME_PACKAGES:
+                if metrics.get("homeLearningGridPackageCount") != expected_home_packages:
                     page_errors.append("トップの学習グリッドの教材件数がパッケージ数と一致しません")
-                if metrics.get("homePreparingGridCount") != EXPECTED_PREPARING_FAMILIES:
+                if metrics.get("homePreparingGridCount") != expected_preparing_families:
                     page_errors.append("トップの準備中入口数が正本由来の件数と一致しません")
                 home_grid_primary = metrics.get("homeLearningGridPrimary")
                 if (
@@ -1554,7 +1628,7 @@ new Promise((resolve) => {
                 ):
                     page_errors.append("ヒーロー見出しが意図した文節2行になっていません")
                 home_updates_link = metrics.get("homeUpdatesAllLink")
-                if metrics.get("homeUpdateCount") != min(3, EXPECTED_UPDATE_ENTRIES):
+                if metrics.get("homeUpdateCount") != min(3, expected_update_entries_count):
                     page_errors.append("トップの最近の更新が最新3件になっていません")
                 if metrics.get("homeUpdateListRole") != "list":
                     page_errors.append("トップの更新時系列がリストとして公開されていません")
@@ -1783,9 +1857,9 @@ new Promise((resolve) => {
                     ):
                         page_errors.append("検索で開いた進捗表に余分なTab停止があります")
             if label == "curriculum":
-                if metrics.get("curriculumFamilyCount") != EXPECTED_HOME_FAMILIES:
+                if metrics.get("curriculumFamilyCount") != expected_home_families:
                     page_errors.append("学習グリッド全体ページが10入口を表示していません")
-                if metrics.get("curriculumPreparingCount") != EXPECTED_PREPARING_FAMILIES:
+                if metrics.get("curriculumPreparingCount") != expected_preparing_families:
                     page_errors.append("学習グリッド全体ページの準備中入口数が一致しません")
             if label == "curriculum-preparing":
                 preparing_title = metrics.get("curriculumPreparingTitle")
@@ -1855,7 +1929,7 @@ new Promise((resolve) => {
                     or "更新履歴" not in str(updates_title.get("text", ""))
                 ):
                     page_errors.append("更新履歴ページの主見出しが表示されていません")
-                if update_count != EXPECTED_UPDATE_ENTRIES or update_count < 1:
+                if update_count != expected_update_entries_count or update_count < 1:
                     page_errors.append("更新履歴ページに更新がありません")
                 elif metrics.get("updateListRole") != "list":
                     page_errors.append("更新履歴の時系列がリストとして公開されていません")
@@ -2606,8 +2680,15 @@ new Promise((resolve) => {
             pages.append(
                 {
                     "label": label,
-                    "file": str(path.relative_to(ROOT)),
+                    "file": str(path.relative_to(site_root)),
                     "screenshot": str(screenshot_path.relative_to(ROOT)),
+                    "screenshot_sha256": hashlib.sha256(
+                        screenshot_bytes
+                    ).hexdigest(),
+                    "screenshot_pixels": {
+                        "width": screenshot_width,
+                        "height": screenshot_height,
+                    },
                     "screenshot_origin_y": screenshot_origin_y,
                     "metrics": metrics,
                     "errors": page_errors,
@@ -2629,7 +2710,8 @@ new Promise((resolve) => {
     report_path = REVIEW_DIR / report_name
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
-        f"実描画: {len(report.get('pages', []))}/{len(page_specs) if 'page_specs' in locals() else len(PAGES)}ページ、"
+        f"実描画: {len(report.get('pages', []))}/"
+        f"{len(page_paths) if 'page_paths' in locals() else len(PAGES)}ページ、"
         f"CSS viewport {viewport['width']}×{viewport['height']}、"
         f"文字 {args.text_scale:.2f}倍、"
         f"エラー{len(errors)}"

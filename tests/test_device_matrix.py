@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
+import time
 import unittest
+from urllib.request import urlopen
 
 import browser_check
 import device_matrix_check
@@ -153,6 +156,7 @@ class DeviceMatrixContractTests(unittest.TestCase):
                 profile,
                 "http://127.0.0.1:8765/manabigrid-site",
                 python="python3",
+                site_root=ROOT,
             ),
             [
                 "python3",
@@ -165,8 +169,82 @@ class DeviceMatrixContractTests(unittest.TestCase):
                 "2",
                 "--base-url",
                 "http://127.0.0.1:8765/manabigrid-site",
+                "--site-root",
+                str(ROOT),
             ],
         )
+
+    def test_validate_site_root_requires_expected_build_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            temporary_root = Path(temporary)
+            (temporary_root / "index.html").write_text("ok", encoding="utf-8")
+            (temporary_root / "404.html").write_text("ok", encoding="utf-8")
+            with self.assertRaises(device_matrix_check.MatrixError):
+                device_matrix_check.validate_site_root(str(temporary_root))
+
+    def test_validate_site_root_accepts_valid_root(self) -> None:
+        self.assertTrue(
+            device_matrix_check.validate_site_root(str(ROOT)).is_absolute()
+        )
+
+    def test_local_preview_does_not_require_config_inside_generated_site(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            candidate = Path(temporary)
+            (candidate / "index.html").write_text(
+                "fresh candidate marker",
+                encoding="utf-8",
+            )
+            (candidate / "404.html").write_text("not found", encoding="utf-8")
+            (candidate / "build-report.json").write_text(
+                "{}",
+                encoding="utf-8",
+            )
+            self.assertFalse((candidate / "site.config.json").exists())
+            with device_matrix_check.LocalPreview(candidate) as base_url:
+                self.assertTrue(
+                    base_url.endswith("/manabigrid-site"),
+                    base_url,
+                )
+                self.assertEqual(
+                    browser_check.verify_base_url_site_root(
+                        base_url,
+                        candidate,
+                    ),
+                    browser_check.file_sha256(
+                        candidate / "build-report.json"
+                    ),
+                )
+                with urlopen(base_url + "/", timeout=2) as response:
+                    self.assertEqual(
+                        response.read().decode("utf-8"),
+                        "fresh candidate marker",
+                    )
+
+    def test_local_preview_and_site_root_mismatch_is_rejected(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as served_directory,
+            tempfile.TemporaryDirectory() as expected_directory,
+        ):
+            served = Path(served_directory)
+            expected = Path(expected_directory)
+            for root, report in (
+                (served, '{"candidate":"served"}'),
+                (expected, '{"candidate":"different"}'),
+            ):
+                (root / "index.html").write_text("ok", encoding="utf-8")
+                (root / "404.html").write_text("not found", encoding="utf-8")
+                (root / "build-report.json").write_text(
+                    report,
+                    encoding="utf-8",
+                )
+            with device_matrix_check.LocalPreview(served) as base_url:
+                with self.assertRaisesRegex(RuntimeError, "一致しません"):
+                    browser_check.verify_base_url_site_root(
+                        base_url,
+                        expected,
+                    )
 
     def test_browser_viewport_and_scale_parsers_fail_closed(self) -> None:
         self.assertEqual(browser_check.viewport_argument("320x568"), (320, 568))
@@ -204,6 +282,9 @@ class DeviceMatrixContractTests(unittest.TestCase):
                 "static/theme.js",
                 "build_site.py",
                 "device_matrix.contract.json",
+                "preview_server.py",
+                "site.config.json",
+                "public_site.py",
             },
         )
         self.assertTrue(
@@ -213,6 +294,141 @@ class DeviceMatrixContractTests(unittest.TestCase):
                 for value in hashes.values()
             )
         )
+
+    def test_browser_report_evidence_binds_png_version_and_candidate(
+        self,
+    ) -> None:
+        profile = device_matrix_check.DeviceProfile(
+            id="evidence-test",
+            label="evidence test",
+            form_factor="phone",
+            orientation="portrait",
+            width=320,
+            height=568,
+            text_scale=1.0,
+        )
+        with (
+            tempfile.TemporaryDirectory() as site_directory,
+            tempfile.TemporaryDirectory(
+                dir=ROOT / "review" / "browser"
+            ) as report_directory,
+        ):
+            site_root = Path(site_directory)
+            for name in ("index.html", "404.html"):
+                (site_root / name).write_text(name, encoding="utf-8")
+            (site_root / "build-report.json").write_text(
+                '{"source":{"commit":"'
+                + "a" * 40
+                + '"}}',
+                encoding="utf-8",
+            )
+            report_root = Path(report_directory)
+            screenshot = report_root / "evidence.png"
+            png = (
+                b"\x89PNG\r\n\x1a\n"
+                + b"\0" * 8
+                + (320).to_bytes(4, "big")
+                + (568).to_bytes(4, "big")
+            )
+            started_ns = time.time_ns()
+            screenshot.write_bytes(png)
+            screenshot_relative = screenshot.relative_to(ROOT).as_posix()
+            screenshot_sha = hashlib.sha256(png).hexdigest()
+            build_sha = browser_check.file_sha256(
+                site_root / "build-report.json"
+            )
+            report = {
+                "status": "ok",
+                "site_root": str(site_root.resolve()),
+                "build_report_sha256": build_sha,
+                "served_build_report_sha256": build_sha,
+                "profile_id": profile.id,
+                "text_scale": profile.text_scale,
+                "viewport_css_pixels": {
+                    "width": profile.width,
+                    "height": profile.height,
+                },
+                "browser_version": {"product": "HeadlessChrome/test"},
+                "pages": [
+                    {
+                        "screenshot": screenshot_relative,
+                        "screenshot_sha256": screenshot_sha,
+                        "screenshot_pixels": {
+                            "width": 320,
+                            "height": 568,
+                        },
+                        "metrics": {
+                            "innerWidth": 320,
+                            "innerHeight": 568,
+                        },
+                    }
+                    for _ in range(
+                        device_matrix_check.EXPECTED_RENDERED_PAGES
+                    )
+                ],
+            }
+            report_path = report_root / "report.json"
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            self.assertEqual(
+                device_matrix_check.validate_browser_report_evidence(
+                    report_path,
+                    profile,
+                    site_root,
+                    started_ns,
+                ),
+                [],
+            )
+            report["pages"][0]["metrics"]["innerHeight"] = 567
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            errors = device_matrix_check.validate_browser_report_evidence(
+                report_path,
+                profile,
+                site_root,
+                started_ns,
+            )
+            self.assertTrue(
+                any("実測CSS viewport" in error for error in errors),
+                errors,
+            )
+            report["pages"][0]["metrics"]["innerHeight"] = 568
+            short_png = (
+                b"\x89PNG\r\n\x1a\n"
+                + b"\0" * 8
+                + (320).to_bytes(4, "big")
+                + (567).to_bytes(4, "big")
+            )
+            screenshot.write_bytes(short_png)
+            short_sha = hashlib.sha256(short_png).hexdigest()
+            for page in report["pages"]:
+                page["screenshot_sha256"] = short_sha
+                page["screenshot_pixels"]["height"] = 567
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            errors = device_matrix_check.validate_browser_report_evidence(
+                report_path,
+                profile,
+                site_root,
+                started_ns,
+            )
+            self.assertTrue(
+                any("screenshot高さ" in error for error in errors),
+                errors,
+            )
+            screenshot.write_bytes(png)
+            for page in report["pages"]:
+                page["screenshot_sha256"] = screenshot_sha
+                page["screenshot_pixels"]["height"] = 568
+            report["served_build_report_sha256"] = "b" * 64
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            errors = device_matrix_check.validate_browser_report_evidence(
+                report_path,
+                profile,
+                site_root,
+                started_ns,
+            )
+            self.assertTrue(
+                any("配信build-report" in error for error in errors),
+                errors,
+            )
 
 
 if __name__ == "__main__":
