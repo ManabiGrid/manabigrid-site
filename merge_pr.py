@@ -263,32 +263,48 @@ def load_pull_request(reference: str) -> PullRequest:
     return pull_request
 
 
+def decode_paginated_commit_documents(raw: str) -> list[object]:
+    decoder = json.JSONDecoder()
+    commits: list[object] = []
+    position = 0
+    while True:
+        while position < len(raw) and raw[position].isspace():
+            position += 1
+        if position == len(raw):
+            return commits
+        try:
+            page, position = decoder.raw_decode(raw, position)
+        except json.JSONDecodeError as exc:
+            raise MergeGuardError(
+                "pull request commit response was malformed"
+            ) from exc
+        if not isinstance(page, list):
+            raise MergeGuardError(
+                "pull request commit response was malformed"
+            )
+        commits.extend(page)
+
+
 def validate_pull_request_commits(pull_request: PullRequest) -> int:
     completed = run_command(
         [
             "gh",
             "api",
             "--paginate",
-            "--slurp",
             (
                 f"repos/{REPOSITORY}/pulls/{pull_request.number}/commits"
                 "?per_page=100"
             ),
             "--jq",
             (
-                "map(.[]) | map({sha: .sha, "
+                "map({sha: .sha, "
                 "author: .commit.author.email, "
                 "committer: .commit.committer.email})"
             ),
         ]
     )
     raw = require_success(completed, "pull request commit verification")
-    try:
-        commits = json.loads(raw)
-    except json.JSONDecodeError as exc:
-        raise MergeGuardError(
-            "pull request commit response was malformed"
-        ) from exc
+    commits = decode_paginated_commit_documents(raw)
     if not isinstance(commits, list) or not commits:
         raise MergeGuardError("pull request has no verifiable commits")
     for index, commit in enumerate(commits, start=1):

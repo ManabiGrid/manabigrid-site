@@ -344,6 +344,224 @@ class MergePrTests(unittest.TestCase):
                 merge_pr.validate_pull_request_commits(pull_request)
         self.assertNotIn(private, str(raised.exception))
 
+    def test_pr_commit_pages_are_fully_checked_in_order(self) -> None:
+        first = "11111+first-fixture@users.noreply.github.com"
+        second = "22222+second-fixture@users.noreply.github.com"
+        third = "33333+third-fixture@users.noreply.github.com"
+        pages = (
+            json.dumps(
+                [
+                    {
+                        "sha": "b" * 40,
+                        "author": first,
+                        "committer": first,
+                    }
+                ]
+            )
+            + "\n"
+            + json.dumps(
+                [
+                    {
+                        "sha": "c" * 40,
+                        "author": second,
+                        "committer": second,
+                    },
+                    {
+                        "sha": "a" * 40,
+                        "author": third,
+                        "committer": third,
+                    },
+                ]
+            )
+        )
+        pull_request = merge_pr.PullRequest(
+            number=17,
+            head_sha="a" * 40,
+            base_ref="main",
+            state="OPEN",
+            is_draft=False,
+            url="https://github.com/ManabiGrid/manabigrid-site/pull/17",
+        )
+        decoded = merge_pr.decode_paginated_commit_documents(pages)
+        self.assertEqual(
+            [commit["sha"] for commit in decoded],
+            ["b" * 40, "c" * 40, "a" * 40],
+        )
+        with (
+            patch.object(
+                merge_pr,
+                "run_command",
+                return_value=completed(pages),
+            ) as run_command,
+            patch.object(
+                merge_pr.check_commit_identity,
+                "validate_commit_identity",
+            ) as validate_identity,
+        ):
+            self.assertEqual(
+                merge_pr.validate_pull_request_commits(pull_request),
+                3,
+            )
+        self.assertEqual(
+            [call.args for call in validate_identity.call_args_list],
+            [(first, first), (second, second), (third, third)],
+        )
+        command = run_command.call_args.args[0]
+        self.assertIn("--paginate", command)
+        self.assertIn("--jq", command)
+        self.assertNotIn("--slurp", command)
+        query = command[command.index("--jq") + 1]
+        self.assertTrue(query.startswith("map({sha:"))
+        self.assertNotIn("map(.[])", query)
+
+    def test_second_commit_page_rejects_private_identity(self) -> None:
+        noreply = "12345+fixture-user@users.noreply.github.com"
+        private = "private-second-page@example.test"
+        pages = (
+            json.dumps(
+                [
+                    {
+                        "sha": "b" * 40,
+                        "author": noreply,
+                        "committer": noreply,
+                    }
+                ]
+            )
+            + "\n"
+            + json.dumps(
+                [
+                    {
+                        "sha": "c" * 40,
+                        "author": private,
+                        "committer": noreply,
+                    },
+                    {
+                        "sha": "a" * 40,
+                        "author": noreply,
+                        "committer": noreply,
+                    },
+                ]
+            )
+        )
+        pull_request = merge_pr.PullRequest(
+            number=17,
+            head_sha="a" * 40,
+            base_ref="main",
+            state="OPEN",
+            is_draft=False,
+            url="https://github.com/ManabiGrid/manabigrid-site/pull/17",
+        )
+        with patch.object(
+            merge_pr,
+            "run_command",
+            return_value=completed(pages),
+        ):
+            with self.assertRaises(merge_pr.MergeGuardError) as raised:
+                merge_pr.validate_pull_request_commits(pull_request)
+        self.assertNotIn(private, str(raised.exception))
+
+    def test_malformed_and_trailing_commit_pages_are_rejected(self) -> None:
+        noreply = "12345+fixture-user@users.noreply.github.com"
+        valid_page = json.dumps(
+            [
+                {
+                    "sha": "a" * 40,
+                    "author": noreply,
+                    "committer": noreply,
+                }
+            ]
+        )
+        pull_request = merge_pr.PullRequest(
+            number=17,
+            head_sha="a" * 40,
+            base_ref="main",
+            state="OPEN",
+            is_draft=False,
+            url="https://github.com/ManabiGrid/manabigrid-site/pull/17",
+        )
+        for raw in (
+            valid_page[:-1],
+            valid_page + "\ntrailing",
+            valid_page + "\n{}",
+        ):
+            with self.subTest(raw_suffix=raw[-12:]):
+                with patch.object(
+                    merge_pr,
+                    "run_command",
+                    return_value=completed(raw),
+                ):
+                    with self.assertRaises(merge_pr.MergeGuardError):
+                        merge_pr.validate_pull_request_commits(pull_request)
+
+    def test_main_stops_before_merge_on_malformed_commit_pages(self) -> None:
+        private = "private-trailing@example.test"
+        head = "a" * 40
+        noreply = "12345+fixture-user@users.noreply.github.com"
+        pull_request = merge_pr.PullRequest(
+            number=17,
+            head_sha=head,
+            base_ref="main",
+            state="OPEN",
+            is_draft=False,
+            url="https://github.com/ManabiGrid/manabigrid-site/pull/17",
+        )
+        malformed = (
+            json.dumps(
+                [
+                    {
+                        "sha": head,
+                        "author": noreply,
+                        "committer": noreply,
+                    }
+                ]
+            )
+            + "\n"
+            + private
+        )
+        output = io.StringIO()
+        with (
+            patch.object(
+                merge_pr,
+                "load_authenticated_user",
+                return_value=merge_pr.AuthenticatedUser(
+                    12345,
+                    "fixture-user",
+                ),
+            ),
+            patch.object(merge_pr, "verify_pages_environment_policy"),
+            patch.object(
+                merge_pr,
+                "load_local_author_email",
+                return_value=noreply,
+            ),
+            patch.object(
+                merge_pr,
+                "load_pull_request",
+                return_value=pull_request,
+            ),
+            patch.object(
+                merge_pr,
+                "run_command",
+                return_value=completed(malformed),
+            ) as run_command,
+            redirect_stdout(output),
+        ):
+            result = merge_pr.main(
+                [
+                    "17",
+                    "--approve-merge",
+                    "--reviewed-head-sha",
+                    head,
+                ]
+            )
+        self.assertEqual(result, 1)
+        run_command.assert_called_once()
+        command = run_command.call_args.args[0]
+        self.assertEqual(command[:3], ["gh", "api", "--paginate"])
+        self.assertNotIn("merge", command)
+        self.assertNotIn(private, output.getvalue())
+        self.assertIn("FAIL", output.getvalue())
+
     def test_pr_commit_list_must_end_at_reviewed_head(self) -> None:
         commits = [
             {
