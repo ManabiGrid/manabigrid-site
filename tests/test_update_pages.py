@@ -5,6 +5,7 @@ import io
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import tempfile
 import unittest
@@ -1194,6 +1195,51 @@ class UpdatePagesContractTests(unittest.TestCase):
             r"device_matrix_check|negative_css_overflow_check)\.py"
             r"(?: --no-check| --dry-run)?$",
         )
+
+    def test_merge_runbook_uses_only_the_guarded_entrypoint(self) -> None:
+        contract = (
+            Path(__file__).resolve().parents[1] / "UPDATE_CONTRACT.md"
+        ).read_text(encoding="utf-8")
+        section = contract.split("## PR mergeのメール再発防止", 1)[1].split(
+            "\n## ",
+            1,
+        )[0]
+        self.assertIn(
+            "python3 merge_pr.py <PR番号またはURL> --approve-merge "
+            "--reviewed-head-sha <独立レビュー済みの40桁head SHA>",
+            section,
+        )
+        self.assertIn(
+            'BASE_SHA="$(git merge-base origin/main HEAD)"',
+            section,
+        )
+        self.assertIn(
+            'python3 check_commit_identity.py --since "$BASE_SHA" '
+            '--commit "$HEAD_SHA"',
+            section,
+        )
+        self.assertIn("--match-head-commit", section)
+        self.assertIn("--author-email", section)
+        self.assertIn(
+            "実メール値や外部commandの本文は出力しない",
+            section,
+        )
+        self.assertIn("固定privacy baseline", section)
+        self.assertIn(
+            "生の`gh pr merge`、Web UIのmergeボタン、`--admin`、"
+            "`--auto`、`--delete-branch`、squash、rebaseへ迂回しない。",
+            section,
+        )
+        self.assertIn("履歴改変・force push", section)
+        bash_blocks = re.findall(r"```bash\n(.*?)```", section, re.DOTALL)
+        self.assertEqual(len(bash_blocks), 2)
+        self.assertEqual(
+            bash_blocks[1].strip(),
+            "python3 merge_pr.py <PR番号またはURL> --approve-merge "
+            "--reviewed-head-sha <独立レビュー済みの40桁head SHA>",
+        )
+        for bash_block in bash_blocks:
+            self.assertNotIn("gh pr merge", bash_block)
 
     def test_compatibility_runbook_stops_on_failure_and_invalid_sha(
         self,

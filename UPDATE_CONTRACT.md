@@ -55,6 +55,34 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 
 この入口はcleanなsite `main`、local HEADと`origin/main`の一致、`Pages / push / <site SHA>`というrun-name全体、event、branch、workflow名、公開レポート内のsite／source両SHA、Pages deploymentの成功状態を検査する。別runや「最新run」を代用しない。Actionsはbuild時に`MANABIGRID_SITE_COMMIT_SHA`を与え、公開`build-report.json`の`publication.site_commit`へ生成器commitを記録する。
 
+## PR mergeのメール再発防止
+
+site-codeのPRをmergeする前に、GitHubアカウントの「Keep my email addresses private」と「Block command line pushes that expose my email」が有効であることを、メール実値を記録せず設定画面で確認する。これは今後のWeb操作・CLI pushに対する補助防御であり、既存commitを変更しない。
+
+feature branchをpushする前に、`origin/main`との分岐後に作成した全commitをローカルで検査する。先端だけを代用しない。
+
+```bash
+set -euo pipefail
+git fetch origin main
+BASE_SHA="$(git merge-base origin/main HEAD)"
+HEAD_SHA="$(git rev-parse HEAD)"
+python3 check_commit_identity.py --since "$BASE_SHA" --commit "$HEAD_SHA"
+```
+
+mergeは、独立レビュー、`manabigrid-site-pr-gate`成功、ユーザーによる当該mergeの明示承認がすべて揃った時だけ、repo rootから次の入口を使う。生の`gh pr merge`、Web UIのmergeボタン、`--admin`、`--auto`、`--delete-branch`、squash、rebaseへ迂回しない。
+
+```bash
+python3 merge_pr.py <PR番号またはURL> --approve-merge --reviewed-head-sha <独立レビュー済みの40桁head SHA>
+```
+
+`--approve-merge`は技術フラグであり、会話上の承認を代替しない。runnerは`GH_HOST=github.com`と`ManabiGrid/manabigrid-site`を固定し、認証中アカウントのID・loginから導けるGitHub noreplyとrepo-local `user.email`を照合する。実メール値や外部commandの本文は出力しない。provider側の公開trust anchorとして、`github-pages` environmentがcustom deployment branch policy 1件の`main`だけを許可していることもread-onlyで再確認する。このpolicyの追加・変更・削除は別承認レーンとする。対象PRがopen・非draft・base `main`・mergeableで、固定workflowの必須checkが一意に成功していることを確認する。PR内の全commitのauthor／committerを検査し、入力された独立レビュー済みSHAとlive headの一致後、そのSHAを`--match-head-commit`へ、確認済みnoreplyを`--author-email`へ渡す。merge commandが0以外でも即座に未mergeと断定せず、必ずserver側をfresh再確認する。PRが`MERGED`であること、merge commitがレビュー済みheadを親に持つこと、実際のauthor／committerがnoreplyであることまで揃った時だけ成功とする。queue・pending・取得不能は`STATE UNKNOWN AFTER ATTEMPT`として再実行せず停止する。
+
+mainへのpush、日次schedule、手動Pagesのいずれも、site checkout直後かつ正本取得・build・artifact・deployより前に、固定privacy baseline `96669b41da250a17bd8a0bd77a397dee2af938c1`より後から対象site commitまでの全commitを`check_commit_identity.py`で検査する。baseline自体は既存履歴として変更・再判定せず、対象がbaselineの子孫でない、検査範囲が空、履歴取得が浅い場合も停止する。authorはGitHub user noreply、committerはGitHub user noreplyまたはGitHub server noreplyだけを許可し、値はログへ出さない。続けて`GITHUB_REF`が`refs/heads/main`、`GITHUB_SHA`が公式remote mainと一致し、そのcommitが一意のmerged PRと固定headの成功済み`manabigrid-site-pr-gate`に結び付くことをGitHub APIで再照合する。site commitは親が正確に2件のmerge commitで、2番目の親がreview済みPR headでなければならない。feature branchからの手動dispatch、PRを通らないdirect push、squash／rebase、check未成功のmergeはここで停止する。不適合なら直前の公開版を保持して停止する。これにより過去commitのSHA・PR・Actions記録・Pages来歴は変わらない。
+
+このrunnerと文書は、repository ownerが生のCLIやWeb UIを操作する権限自体をprovider側で剥奪しない。ruleset未適用の状態では「merge_pr.pyを通ったこと」自体は証明できないが、Pagesは実結果として公式main・merged PR・成功check・固定head・全commitのnoreplyを再構成する。経路そのものをprovider側で制限するruleset適用は別承認レーンとする。
+
+アカウント設定のrollbackは2項目を無条件にOFFへせず、変更前に記録した個別stateへ戻す。site-code側を戻す場合は履歴改変せず、この節、runner、Pages identity step、checkerとtestをrevertする新しいPRを作る。どちらも既存commitからメール値を消去する操作ではない。履歴改変・force pushはこの通常レーンに含めない。
+
 ## runnerが保証すること
 
 1. site checkoutがcleanな`main`で、local HEADと`origin/main`が同一か検査する。
@@ -65,6 +93,7 @@ python3 update_pages.py verify-site-release --site-sha <siteの40桁SHA> --sourc
 6. deploy後に公開`build-report.json`の正本SHA、トップHTTP 200、不存在URLHTTP 404を照合する。
 7. `--source-sha`省略時だけ、正本が公開中に進んだ場合は一度だけ最新SHAで追随する。明示SHAは固定し、公開後に進んでも新SHAを自動承認・再公開しない。
 8. siteコードのpush更新では、該当push run、公開レポートのsite／source両SHA、Pages deploymentを`verify-site-release`で照合する。
+9. PR mergeでは全commit、必須check、独立レビュー済みhead SHA、確認済みnoreply authorを同時に固定し、merge後の実commitも再照合する。Pagesは固定baseline以降の全commitのauthor・committerが許可されたnoreplyかを最初に検査する。
 
 公開workflowの最終結果が成功でも、runnerが`updated`、`already_current`、またはsiteコード更新時の`site_release_verified`を返すまでは完了と報告しない。
 

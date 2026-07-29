@@ -10,6 +10,22 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "pages.yml"
+IDENTITY_STEP = (
+    "      - name: Verify publication commit identity\n"
+    "        run: >-\n"
+    "          python3 check_commit_identity.py\n"
+    "          --since 96669b41da250a17bd8a0bd77a397dee2af938c1\n"
+    '          --commit "${GITHUB_SHA}"\n\n'
+)
+PROVENANCE_STEP = (
+    "      - name: Verify reviewed PR release provenance\n"
+    "        env:\n"
+    "          GITHUB_TOKEN: ${{ github.token }}\n"
+    "        run: >-\n"
+    "          python3 check_release_provenance.py\n"
+    '          --site-sha "${GITHUB_SHA}"\n'
+    '          --ref "${GITHUB_REF}"\n\n'
+)
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -95,6 +111,126 @@ class WorkflowContractTests(unittest.TestCase):
         completed = self.run_checker(text)
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("build step contract changed", completed.stdout)
+
+    def test_publication_identity_step_cannot_be_removed(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            IDENTITY_STEP,
+            "",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("detect-source step list or order differs", completed.stdout)
+
+    def test_publication_identity_step_cannot_be_disabled(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            "      - name: Verify publication commit identity\n"
+            "        run: >-\n"
+            "          python3 check_commit_identity.py",
+            "      - name: Verify publication commit identity\n"
+            "        if: false\n"
+            "        run: >-\n"
+            "          python3 check_commit_identity.py",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("detect-source step contract changed", completed.stdout)
+
+    def test_publication_identity_command_cannot_be_echoed(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            "        run: >-\n"
+            "          python3 check_commit_identity.py\n"
+            "          --since 96669b41da250a17bd8a0bd77a397dee2af938c1\n"
+            '          --commit "${GITHUB_SHA}"',
+            '        run: echo "identity check skipped"',
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn(
+            "Pages does not verify every commit after the privacy baseline",
+            completed.stdout,
+        )
+
+    def test_publication_identity_range_requires_full_history(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            "          fetch-depth: 0\n",
+            "",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn(
+            "publication identity range requires complete site history",
+            completed.stdout,
+        )
+
+    def test_publication_identity_step_cannot_run_after_source_detection(
+        self,
+    ) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8")
+        text = text.replace(IDENTITY_STEP, "", 1)
+        text = text.replace(
+            "      - name: Deploy only for a changed source or an explicit site update",
+            IDENTITY_STEP
+            + "      - name: Deploy only for a changed source or an explicit site update",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("detect-source step list or order differs", completed.stdout)
+
+    def test_release_provenance_step_cannot_be_removed(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            PROVENANCE_STEP,
+            "",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("detect-source step list or order differs", completed.stdout)
+
+    def test_release_provenance_step_cannot_be_disabled(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            "      - name: Verify reviewed PR release provenance\n"
+            "        env:",
+            "      - name: Verify reviewed PR release provenance\n"
+            "        if: false\n"
+            "        env:",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("detect-source step contract changed", completed.stdout)
+
+    def test_release_provenance_must_use_live_github_ref(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            '          --ref "${GITHUB_REF}"',
+            "          --ref refs/heads/main",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn(
+            "Pages does not bind publication to official main",
+            completed.stdout,
+        )
+
+    def test_release_provenance_permissions_are_read_only_and_complete(
+        self,
+    ) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8").replace(
+            "  checks: read\n",
+            "",
+            1,
+        )
+        completed = self.run_checker(text)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn(
+            "top-level permissions are not the reviewed read-only set",
+            completed.stdout,
+        )
 
     def test_required_site_check_cannot_continue_on_error(self) -> None:
         text = WORKFLOW.read_text(encoding="utf-8").replace(
