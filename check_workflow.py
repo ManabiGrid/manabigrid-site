@@ -18,11 +18,20 @@ ACTION_PINS = {
     "actions/deploy-pages": ("cd2ce8fcbc39b97be8ca5fce6e763baed58fa128", "v5"),
 }
 EXPECTED_DAILY_CRON = "17 18 * * *"
+PRIVACY_BASELINE_SHA = "96669b41da250a17bd8a0bd77a397dee2af938c1"
 STEP_CONTRACTS = {
     "detect-source": [
         (
             "Check out the site configuration",
-            "69a9b0baac84b75dccc096a75f937b4250d65d8af82aec8017d1fc742da9e6f5",
+            "9534149767a495ec943dc77f9ef9415d6b59cfb16ac3e09c714c401e03a42ccf",
+        ),
+        (
+            "Verify publication commit identity",
+            "f7f1f7586dfa17a59db40809a5cc96aabd3d440e3cb8f28bc0984335f14f1959",
+        ),
+        (
+            "Verify reviewed PR release provenance",
+            "de733e72793d155c633ef126b5e24f553d6a0ffcba10eb6bde55443398c0bdad",
         ),
         (
             "Read the ManabiGrid main revision",
@@ -272,7 +281,20 @@ def main() -> int:
         )
         require(errors, "Asia/Tokyo" in text, "schedule must document its Asia/Tokyo conversion")
 
-    require(errors, bool(re.search(r"^permissions:\n  contents: read\s*$", active_text, re.MULTILINE)), "top-level permissions are not minimal contents: read")
+    require(
+        errors,
+        bool(
+            re.search(
+                r"^permissions:\n"
+                r"  contents: read\n"
+                r"  checks: read\n"
+                r"  pull-requests: read\s*$",
+                active_text,
+                re.MULTILINE,
+            )
+        ),
+        "top-level permissions are not the reviewed read-only set",
+    )
     require(errors, bool(re.search(r"^concurrency:\n  group: pages\n  cancel-in-progress: false\s*$", active_text, re.MULTILINE)), "Pages concurrency contract is missing")
 
     uses_lines = [line.strip() for line in lines if re.match(r"\s*uses:\s+", line)]
@@ -295,6 +317,52 @@ def main() -> int:
     require_exact_step_contracts(errors, "detect-source", source)
     require_exact_step_contracts(errors, "build", build)
     require_exact_step_contracts(errors, "deploy", deploy)
+    site_checkout_step = step_block(
+        source,
+        "Check out the site configuration",
+    )
+    require(
+        errors,
+        "fetch-depth: 0" in site_checkout_step,
+        "publication identity range requires complete site history",
+    )
+    identity_step = step_block(
+        source,
+        "Verify publication commit identity",
+    )
+    require(
+        errors,
+        "run: >-" in identity_step
+        and "python3 check_commit_identity.py" in identity_step
+        and f"--since {PRIVACY_BASELINE_SHA}" in identity_step
+        and '--commit "${GITHUB_SHA}"' in identity_step,
+        "Pages does not verify every commit after the privacy baseline",
+    )
+    require(
+        errors,
+        source.find("Verify publication commit identity")
+        < source.find("Read the ManabiGrid main revision"),
+        "publication identity check must run before canonical source detection",
+    )
+    provenance_step = step_block(
+        source,
+        "Verify reviewed PR release provenance",
+    )
+    require(
+        errors,
+        "GITHUB_TOKEN: ${{ github.token }}" in provenance_step
+        and "python3 check_release_provenance.py" in provenance_step
+        and '--site-sha "${GITHUB_SHA}"' in provenance_step
+        and '--ref "${GITHUB_REF}"' in provenance_step,
+        "Pages does not bind publication to official main and a green PR gate",
+    )
+    require(
+        errors,
+        source.find("Verify publication commit identity")
+        < source.find("Verify reviewed PR release provenance")
+        < source.find("Read the ManabiGrid main revision"),
+        "release provenance checks must precede canonical source detection",
+    )
     contract_test_step = step_block(build, "Run update contract tests")
     require(
         errors,

@@ -25,6 +25,8 @@ on:
 
 permissions:
   contents: read
+  checks: read
+  pull-requests: read
 
 concurrency:
   group: pages
@@ -42,6 +44,21 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      - name: Verify publication commit identity
+        run: >-
+          python3 check_commit_identity.py
+          --since 96669b41da250a17bd8a0bd77a397dee2af938c1
+          --commit "${GITHUB_SHA}"
+
+      - name: Verify reviewed PR release provenance
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python3 check_release_provenance.py
+          --site-sha "${GITHUB_SHA}"
+          --ref "${GITHUB_REF}"
 
       - name: Read the ManabiGrid main revision
         id: source
