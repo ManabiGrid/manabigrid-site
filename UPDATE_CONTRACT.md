@@ -188,7 +188,32 @@ repo内にignored `site-output/`が残っても、公開検査は`public_site.py
 
 CSS横あふれの検出器を変更した時は`python3 negative_css_overflow_check.py`で、一時的な公開候補だけへ意図的な`min-width`を加え、320px実描画が「ページ全体が横にはみ出しています」で非0停止することを確認する。未承認MathMLは、固定3ページ以外への追加と正規化tree／件数の改変を既存negative testが拒否する状態を維持する。失敗を消すために端末条件、対象ページ、MathML allowlist、検疫を緩めない。
 
-main rulesetは`MAIN_RULESET_PROPOSAL.md`と`.github/rulesets/main.proposal.json`が未適用draftである。最初の実PRで必須check名とGitHub Actions integrationを観測し、適用直前snapshotと新しい明示承認を得るまではGitHub設定を変更しない。
+main rulesetは`MAIN_RULESET_PROPOSAL.md`と`.github/rulesets/main.proposal.json`が
+未適用draftである。適用前の唯一の正規entrypointは`apply_ruleset.py`とし、
+生のWeb UI、`gh api`のPOST／DELETE、payload pathの手動差替えで迂回しない。
+read-only確認は、cleanな公式`main`で次を実行する。
+
+```bash
+python3 apply_ruleset.py preflight \
+  --reviewed-site-sha "<40桁のreview済みsite SHA>" \
+  --reviewed-payload-sha256 "<64桁のreview済みpayload SHA-256>"
+```
+
+`apply` subcommandと二つのapproval flagは事故防止の技術guardであり、オーナーの
+新しい個別承認を代替しない。承認はrepository、site SHA、payload SHA-256、
+active作成、15分以内の条件付きrollbackへ固定する。runnerは検証済みpayload bytesを
+stdinで1回だけ送信し、POST／DELETEの曖昧結果を再送せず、main実効rulesと
+read-only operational snapshotでのみ確定する。`review/ruleset-apply-transaction.json`
+はfileと親directoryを同期してからPOSTし、同journalに記録したローカルUTCのPOST
+intentとprocess内の単調時計を15分期限の正本にする。journal同期後のPOST直前に
+payloadとremote snapshotを再照合し、2回目の不一致観測後、DELETE intent同期後の
+DELETE直前にもdetailとoperational snapshotを再取得する。各mutation直前に期限と
+非逆行を再判定する。terminal状態をjournalへ同期できなければ成功exitにしない。
+journalが残る場合は
+上書きせず、前transactionの
+状態を解決する。初回実PRで必須check名と
+GitHub Actions integrationを観測し、適用直前snapshotと新しい明示承認を得るまでは
+GitHub設定を変更しない。
 
 スマホ／タブレット互換性を変えるCSS・生成器修正では`device_matrix.contract.json`を入力に`python3 device_matrix_check.py`を実行する。固定11条件を削って不具合を消さず、追加が必要なら契約とnegative testを同時に更新する。文字200%条件は320pxと390pxの両方を必須にし、実機OS挙動の完全再現ではなく、reflow回帰を検出するCSS文字寸法proxyとして扱う。printの幅判定はscreen viewportから分離し、A4相当794pxで行う。matrix reportは各profileの新規browser report、runner、ブラウザ検査器、preview server、base path設定、CSS、生成器、公開allowlist、契約のSHA-256、Chrome／Chromium version、各screenshotのSHA-256とPNG寸法、公開候補treeの前後SHA-256を持つ。`--base-url`利用時は配信中`build-report.json`と`--site-root`のSHA-256が一致しなければ描画前に停止する。古いreportの件数だけを現行コードの証拠に流用しない。
 

@@ -103,7 +103,7 @@ ignored `update-report.json`はstatusの履歴ではありません。`publish`�
 
 2行目は、現在の依頼でこのGitHub Pages更新が明示承認されている場合だけ実行します。フラグ自体は承認の代わりになりません。通常の正本更新だけならsiteのcommitは不要で、Actionsが隔離環境で生成します。生成器の互換修正が必要な時だけ、siteコードの検証・commit・pushを別レーンで行います。
 
-siteコードの別レーンは`.github/workflows/pr-validate.yml`です。PRごとに全契約テスト、正本の観測SHAからのfresh build、独立check、公開候補検疫、固定11端末条件のChrome実描画、CSS横あふれを実描画gateが拒否する負例を`site-output`へ実行します。最後に正本mainを再照合し、検証中に進んだ時は旧SHAでgreenにしません。job名`manabigrid-site-pr-gate`をruleset候補の必須check名として固定し、このworkflowにはPages／ID tokenのwrite権限、deploy action、secretを与えません。rulesetはまだ未適用で、設定案と戻し方だけを`MAIN_RULESET_PROPOSAL.md`へ置いています。
+siteコードの別レーンは`.github/workflows/pr-validate.yml`です。PRごとに全契約テスト、正本の観測SHAからのfresh build、独立check、公開候補検疫、固定11端末条件のChrome実描画、CSS横あふれを実描画gateが拒否する負例を`site-output`へ実行します。最後に正本mainを再照合し、検証中に進んだ時は旧SHAでgreenにしません。job名`manabigrid-site-pr-gate`をruleset候補の必須check名として固定し、このworkflowにはPages／ID tokenのwrite権限、deploy action、secretを与えません。rulesetはまだ未適用です。設定案、read-only preflight、結果不明POST、main実効rules、条件付きrollbackは`MAIN_RULESET_PROPOSAL.md`を正本とし、外部設定を変える唯一のguarded entrypoint候補を`apply_ruleset.py`へ置いています。runnerの存在やapproval flagは、オーナーの新しい個別承認を代替しません。
 
 正本SHAは同じまま、生成器・CSS・検査器だけをcommit／pushした更新では、push後に次の1コマンドで該当runと公開版を照合します。未公開site commitがある状態で`publish`を実行しても`already_current`にはせず、`blocked_site_release_requires_verification`で停止します。
 

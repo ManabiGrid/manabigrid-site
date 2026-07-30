@@ -680,23 +680,36 @@ v8を実装した担当とは別の読み取り専用エージェントへ、情
   適用前一覧・main SHA・公開SHA・日次workflow状態との再照合をrollback手順として
   `MAIN_RULESET_PROPOSAL.md`へ記録した。
 - 適用前の成功checkは7日以内、可能なら同一作業内に限定する。rulesetが想定0件で
-  ない時はstackせず、POST結果不明時は再POSTせず一意な新規IDをread-only照合する。
+  ない時はstackしない。POST結果不明時は再POSTせず、一覧差分から所有IDを推定せず
+  `STATE_UNKNOWN_AFTER_POST`で停止する。
+- **2026-07-30、適用前guarded runnerをローカル実装したが、rulesetは未適用のまま。**
+  `apply_ruleset.py`はreview済みsite／payload SHA、検証済みpayload bytesのstdin固定、
+  strict page flatten、create／detail／main実効rulesの正規化、結果不明POST／DELETEの
+  再送禁止、file＋親directoryを同期するatomic intent journal、journalへ永続化した
+  ローカルUTCのPOST intentとprocess内の単調時計から15分以内、かつ2回同じ意味的
+  不一致を観測した時だけの
+  条件付きrollbackを1つの状態機械にした。GET不能・partial・伝播待ちは削除理由にせず、
+  journal同期後のPOST直前にpayloadとremote snapshotを再照合し、DELETE intent同期後の
+  DELETE直前にもdetailとoperational snapshotを再取得する。各mutation直前に期限と
+  非逆行を再判定する。terminal journalを同期できない場合は成功exitにしない。main、Actions、
+  Pages environment、公開site／source SHAがdriftしたらDELETEしない。
+  実適用は引き続き、固定SHAとrollback範囲を含むオーナーの新しい個別承認が必要である。
 
 ### 実測結果
 
-- 標準ライブラリ契約テスト **174/174成功**。既存Pages workflowと新PR workflowの
+- 2026-07-30の現行treeで標準ライブラリ契約テスト **302/302成功**。既存Pages workflowと新PR workflowの
   dry-run契約、Ruby YAML構文parse、Python compile、`git diff --check`もPASS。
 - 正本 `5700768bec42db1b2e59883c04e9e902fd0d06fa`は前後ともclean、originは公式。
   fresh候補はMarkdown **463/463（100%）**、HTML **517**、内部リンク
   **12,217件・切れ0**、外部リンク参照 **4,383件**。公開候補は
-  **889ファイル、17,208,520 bytes、allowlist外0件**。
+  **889ファイル、17,208,577 bytes、allowlist外0件**。
 - fresh候補のChrome実描画は **11/11 profile**、各**17/17ページ**、計
   **187 page-profile**、エラー0。320／360／390／412px phone、844px横、
   600／768／820px tablet、1024px横、320／390px文字200%を含む。
   matrix reportは候補rootと候補`build-report.json` SHA-256
-  `788549f67f48f8bc52b63fb713c5cfcde6e7a903b8c48a55a6ccfb41c9c096f4`
+  `b483f9a3347e54cdfe5a5fc62cd89a257c7ae6f39a0e734000a2dfe623770745`
   に束縛した。Chromeは`HeadlessChrome/140.0.7339.16`、公開候補treeは前後とも
-  `1fa886ee588c89e0a7e297c681707081c9bd780e6fe49da447445655b56d6712`。
+  `232a03d6dd91121206e528e78b8b0930bf30c3d19efab33a18381e088f6b97a4`。
 - CSS横あふれ負例は非0で停止し、47 errors中17件が意図したpage overflow。
   workflow迂回10種、CSS負例report契約2種、未承認MathML2種の抽出negative
   testも14/14成功した。
