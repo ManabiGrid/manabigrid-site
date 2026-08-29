@@ -71,7 +71,8 @@ class DeviceMatrixContractTests(unittest.TestCase):
 
     def test_browser_matrix_keeps_the_unit_resource_regression_page(self) -> None:
         pages = dict(browser_check.PAGES)
-        self.assertEqual(len(browser_check.PAGES) + 1, 17)
+        # 2026-08-29: mathml専用ページの引退で16（=PAGES15+404の1）へ
+        self.assertEqual(len(browser_check.PAGES) + 1, 16)
         self.assertEqual(
             pages.get("unit-resources"),
             ROOT / "units/jhs-math-1-positive-negative-numbers/index.html",
