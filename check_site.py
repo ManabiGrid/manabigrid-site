@@ -1941,35 +1941,10 @@ def inline_math_contract_errors(
     for relative, trial_id in sorted(set(actual_counts) - expected_keys):
         errors.append(f"unexpected inline MathML location: {relative}: {trial_id}")
 
-    if len(display_nodes) != 1:
-        errors.append(f"display MathML count mismatch: {len(display_nodes)}/1")
-    else:
-        relative, node = display_nodes[0]
-        if (
-            relative != DISPLAY_MATH_EXPECTATION
-            or node.classes
-            or node.display != "block"
-            or node.trial_id
-            or node.aria_label != "MNはBCに平行、MNはBCの2分の1"
-            or node.annotation_count != 1
-            or node.annotation_encoding != "application/x-tex"
-            or node.annotation_text.strip()
-            != r"MN∥BC,\quad MN=\frac{1}{2}BC"
-            or node.canonical_markup != DISPLAY_MATH_CANONICAL
-            or node.tags
-            != {
-                "math",
-                "semantics",
-                "mrow",
-                "mi",
-                "mo",
-                "mspace",
-                "mfrac",
-                "mn",
-                "annotation",
-            }
-        ):
-            errors.append("display MathML prototype semantics mismatch")
+    # 2026-08-29: 正本側のIssue #21裁定（数式は通常Markdown表記へ）により
+    # display数式の静的試作は正本から撤去された。期待件数は0（出現したら契約違反）。
+    if display_nodes:
+        errors.append(f"display MathML count mismatch: {len(display_nodes)}/0")
 
     features = build_report.get("features")
     if not isinstance(features, dict):
@@ -2024,7 +1999,7 @@ def inline_math_contract_errors(
         ):
             errors.append("build-report inline MathML rendered count mismatch")
         display_prototypes = features.get("mathml_static_prototypes")
-        if type(display_prototypes) is not int or display_prototypes != 1:
+        if type(display_prototypes) is not int or display_prototypes != 0:
             errors.append("build-report display MathML prototype count mismatch")
     return errors
 
