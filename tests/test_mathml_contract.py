@@ -151,7 +151,7 @@ class InlineMathCheckTests(unittest.TestCase):
     def build_report() -> dict[str, object]:
         return {
             "features": {
-                "mathml_static_prototypes": 1,
+                "mathml_static_prototypes": 0,
                 "inline_math_rendered": sum(
                     item.count for item in check_site.INLINE_MATH_EXPECTATIONS
                 ),
@@ -181,9 +181,7 @@ class InlineMathCheckTests(unittest.TestCase):
                 [build_site.render_inline_math(build_trials[expectation.trial_id])]
                 * expectation.count
             )
-        fragments[check_site.DISPLAY_MATH_EXPECTATION].append(
-            build_site.mathml_prototype(build_site.MATHML_PROTOTYPE_EXPRESSION)
-        )
+        # 2026-08-29: 正本のIssue #21裁定によりdisplay試作は撤去（期待0件）。
         parsed: dict[Path, check_site.ParsedHtml] = {}
         for relative, nodes in fragments.items():
             path = site_root / relative
@@ -207,6 +205,30 @@ class InlineMathCheckTests(unittest.TestCase):
                 self.build_report(),
             )
         self.assertEqual(errors, [])
+
+    def test_checker_rejects_any_display_mathml_after_retirement(self) -> None:
+        """2026-08-29撤去後の契約: display数式は1件でも出現したら違反。"""
+        with tempfile.TemporaryDirectory() as temporary:
+            site_root = Path(temporary)
+            parsed = self.write_valid_pages(site_root)
+            target = site_root / check_site.DISPLAY_MATH_EXPECTATION
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(
+                "<!doctype html><html><body><main>"
+                + build_site.mathml_prototype(build_site.MATHML_PROTOTYPE_EXPRESSION)
+                + "</main></body></html>",
+                encoding="utf-8",
+            )
+            parsed[target] = check_site.HtmlCollector(target).load()
+            errors = check_site.inline_math_contract_errors(
+                site_root,
+                parsed,
+                self.build_report(),
+            )
+        self.assertTrue(
+            any("display MathML count mismatch: 1/0" in error for error in errors),
+            errors,
+        )
 
     def test_checker_rejects_missing_unapproved_or_malformed_mathml(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -259,13 +281,6 @@ class InlineMathCheckTests(unittest.TestCase):
                 "<mo>=</mo><mo>−</mo><mn>3</mn>",
                 "<mo>=</mo><mo>+</mo><mn>3</mn>",
                 "inline MathML semantics mismatch",
-            ),
-            (
-                "display fraction inversion",
-                check_site.DISPLAY_MATH_EXPECTATION,
-                "<mfrac><mn>1</mn><mn>2</mn></mfrac>",
-                "<mfrac><mn>2</mn><mn>1</mn></mfrac>",
-                "display MathML prototype semantics mismatch",
             ),
             (
                 "unknown operator attribute",
