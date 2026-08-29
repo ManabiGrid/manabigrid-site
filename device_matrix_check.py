@@ -48,7 +48,8 @@ REQUIRED_PROFILE_SIGNATURES = {
     ("phone-compact-text-200", "phone", "portrait", 320, 568, 2.0),
     ("phone-text-200", "phone", "portrait", 390, 844, 2.0),
 }
-EXPECTED_RENDERED_PAGES = 17
+# 2026-08-29: mathml専用ページの引退（正本Issue #21裁定）で17→16
+EXPECTED_RENDERED_PAGES = 16
 
 
 class MatrixError(RuntimeError):

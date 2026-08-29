@@ -246,7 +246,7 @@ class CssOverflowNegativeGateTests(unittest.TestCase):
         pages.pop()
         errors = negative_css_overflow_check.validate_negative_report(report)
         self.assertTrue(
-            any("17ページ" in error for error in errors),
+            any("16ページ" in error for error in errors),
             errors,
         )
 

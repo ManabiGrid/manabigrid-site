@@ -56,7 +56,7 @@ PAGE_RELATIVE_PATHS = (
     ("curriculum-preparing", Path("curriculum/hs-eng/index.html")),
     ("about", Path("about/index.html")),
     ("updates", Path("updates/index.html")),
-    ("mathml", Path("content/materials/jhs-math-3/jhs-math-3-similar-figures/lesson_10.html")),
+    # 2026-08-29: display数式試作は正本Issue #21裁定で撤去（mathml専用検査を引退）
     ("math-inline-x-times", Path("content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_01.html")),
     ("math-inline-signed-fractions", Path("content/materials/jhs-math-1/jhs-math-1-positive-negative-numbers/lesson_05.html")),
     ("math-inline-variable-fraction", Path("content/materials/jhs-math-2/jhs-math-2-expression-calculation/lesson_04.html")),
@@ -1424,37 +1424,6 @@ new Promise((resolve) => {
                 for item in table_wraps
             ):
                 page_errors.append("横スクロール可能な表にフォーカスと名前がありません")
-            if label == "mathml":
-                math_scrollers = [
-                    item
-                    for item in metrics.get("localScrollers", [])
-                    if isinstance(item, dict)
-                    and "math-block" in str(item.get("class", "")).split()
-                ]
-                if not math_scrollers:
-                    page_errors.append("表示MathMLの数式領域がありません")
-                if any(
-                    int(item.get("scrollWidth", 0))
-                    > int(item.get("clientWidth", 0)) + 1
-                    and (
-                        item.get("tabindex") != "0"
-                        or item.get("role") != "region"
-                        or not item.get("label")
-                    )
-                    for item in math_scrollers
-                ):
-                    page_errors.append(
-                        "横スクロール可能な表示MathMLにフォーカスと名前がありません"
-                    )
-                if any(
-                    int(item.get("scrollWidth", 0))
-                    <= int(item.get("clientWidth", 0)) + 1
-                    and item.get("tabindex") == "0"
-                    for item in math_scrollers
-                ):
-                    page_errors.append(
-                        "横スクロール不要の表示MathMLが余分なTab停止になっています"
-                    )
             if label == "lesson-wide-svg" and viewport["mobile"]:
                 scrollers = metrics.get("localScrollers", [])
                 figure_scrollers = [
@@ -1951,12 +1920,6 @@ new Promise((resolve) => {
                     or int(metrics.get("updateCommitLinkCount", 0)) != update_count
                 ):
                     page_errors.append("更新履歴の日付または固定コミットリンクが不足しています")
-            if label == "mathml":
-                mathml = metrics.get("mathml")
-                if not isinstance(mathml, dict) or not mathml.get("present"):
-                    page_errors.append("静的MathMLがページ内にありません")
-                elif not mathml.get("staticRuntimeFree"):
-                    page_errors.append("MathMLページが外部数式ランタイムを参照しています")
             if label in INLINE_MATH_BROWSER_EXPECTATIONS:
                 expected_math = INLINE_MATH_BROWSER_EXPECTATIONS[label]
                 inline_math = metrics.get("inlineMath", [])

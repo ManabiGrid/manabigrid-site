@@ -1,5 +1,7 @@
 # Issue候補: 表示数式3箇所のMarkdown表現を再検討する
 
+> **状態（2026-08-29追記）**: 正本のIssue #21は「数式3箇所の通常Markdown表記化」で解決済み（正本PR #23）。表示MathML試作はサイト側からも引退した。本草案は検討記録として保存する。
+
 - status: owner-delivered-draft
 - audience: maintainer
 - external_send: not_performed
