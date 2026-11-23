@@ -53,6 +53,7 @@ ENGLISH_PASSAGE = re.compile(
 UPDATE_FILE_SUFFIXES = {".gif", ".jpeg", ".jpg", ".md", ".png", ".svg", ".webp"}
 SAFE_SVG_TAGS = {
     "circle",
+    "clippath",
     "defs",
     "desc",
     "ellipse",
@@ -66,7 +67,32 @@ SAFE_SVG_TAGS = {
     "svg",
     "text",
     "title",
+    "tspan",
 }
+# clipPath is a passive geometry mask.  A clip-path value may only point to a
+# same-document fragment, so clipping can never load another resource.
+SVG_LOCAL_CLIP_PATH = re.compile(r"url\(\s*#[^\s()'\"]+\s*\)")
+# Accept the original heading and the exact extension supplied for this repair.
+# Further category names require review rather than a wildcard match.
+CURRICULUM_MODULE_HEADING = re.compile(
+    r"## 科目モジュール（単元と別枠: 診断・巻末資料(?:・発展モジュール)?）"
+)
+# build_site.SUBJECTS lists the reviewed subjects in display order, and
+# register_new_subjects appends newly discovered subject folders alphabetically.
+# Mirror that rule so an entrance with several subjects (高校数学: 数学I・数学A)
+# is compared in the builder display order.
+KNOWN_MATERIAL_SUBJECT_ORDER = (
+    "jhs-math-1", "jhs-eng-1", "jhs-math-2", "jhs-sci-2",
+    "jhs-math-3", "jhs-jpn", "jhs-soc", "hs-math-i",
+)
+
+
+def material_subject_order_key(subject: str) -> tuple[int, str]:
+    if subject in KNOWN_MATERIAL_SUBJECT_ORDER:
+        return (KNOWN_MATERIAL_SUBJECT_ORDER.index(subject), "")
+    return (len(KNOWN_MATERIAL_SUBJECT_ORDER), subject)
+
+
 EXPECTED_CURRICULUM_STATUSES = (
     "未着手", "調査済", "ドラフト", "QA済", "外部レビュー済", "人間レビュー済", "公開済",
 )
@@ -703,7 +729,7 @@ def canonical_curriculum_snapshot(source: Path, contract_path: Path) -> Dict[str
         if line.startswith("## "):
             if line == "## 全単元一覧（unit_id 順）":
                 section = "units"
-            elif line == "## 科目モジュール（単元と別枠: 診断・巻末資料）":
+            elif CURRICULUM_MODULE_HEADING.fullmatch(line):
                 section = "modules"
             else:
                 section = ""
@@ -864,9 +890,10 @@ def canonical_curriculum_snapshot(source: Path, contract_path: Path) -> Dict[str
     expected_families: List[Dict[str, object]] = []
     for row in families:
         slug = str(row["slug"])
-        subjects = [
-            subject for subject, family_slug in subject_family.items() if family_slug == slug
-        ]
+        subjects = sorted(
+            (subject for subject, family_slug in subject_family.items() if family_slug == slug),
+            key=material_subject_order_key,
+        )
         package_count = sum(len(material_packages[subject]) for subject in subjects)
         expected_families.append(
             {
@@ -2619,6 +2646,84 @@ def publication_site_contract_errors(
     return errors
 
 
+def check_generated_svg(svg_text: str, display_path: Path, errors: List[str]) -> None:
+    """Check the complete SVG tree, including passive text and clip children."""
+    if re.search(
+        r"<!---?>|<!DOCTYPE\b|<!ENTITY\b|<\?(?!xml\s|xml\?>)|<script\b|<style\b|<foreignObject\b|\son[a-z]+\s*=|@import|url\((?!\s*#)",
+        svg_text,
+        re.IGNORECASE,
+    ):
+        errors.append(f"active SVG content is not allowed: {display_path}")
+    if re.search(
+        r"(?:href|xlink:href)\s*=\s*['\"](?:https?:)?//",
+        svg_text,
+        re.IGNORECASE,
+    ):
+        errors.append(f"external SVG reference is not allowed: {display_path}")
+    try:
+        svg_root = ET.fromstring(svg_text)
+    except ET.ParseError:
+        errors.append(f"generated SVG is not valid XML: {display_path}")
+        return
+    for element in svg_root.iter():
+        tag = element.tag.rsplit("}", 1)[-1].lower()
+        if tag not in SAFE_SVG_TAGS:
+            errors.append(f"unsafe generated SVG element <{tag}>: {display_path}")
+        for raw_name, raw_value in element.attrib.items():
+            name = raw_name.rsplit("}", 1)[-1].lower()
+            value = raw_value.strip()
+            normalized_value = normalized_css_value(value)
+            if raw_name == "{http://www.w3.org/XML/1998/namespace}base":
+                errors.append(f"generated SVG xml:base is not allowed: {display_path}")
+            if name == "style" or name.startswith("on"):
+                errors.append(f"active generated SVG attribute {name}: {display_path}")
+            if name == "href" and value and not value.startswith("#"):
+                errors.append(f"external generated SVG href: {display_path}")
+            if re.search(r"@import|url\s*\((?!\s*#)", normalized_value, re.IGNORECASE):
+                errors.append(f"external generated SVG CSS reference: {display_path}")
+            if name == "clip-path" and not SVG_LOCAL_CLIP_PATH.fullmatch(normalized_value):
+                errors.append(f"non-local generated SVG clip-path: {display_path}")
+
+
+def check_inline_svgs(markup: str, display_path: Path, errors: List[str]) -> None:
+    """Check complete outer SVG fragments, preserving nested SVG and XML case."""
+    class SvgCollector(HTMLParser):
+        def __init__(self) -> None:
+            super().__init__(convert_charrefs=False)
+            self.depth = 0
+            self.start = 0
+            self.line_offsets = [0]
+            for line in markup.split("\n"):
+                self.line_offsets.append(self.line_offsets[-1] + len(line) + 1)
+
+        def source_offset(self) -> int:
+            line, column = self.getpos()
+            return self.line_offsets[line - 1] + column
+
+        def handle_starttag(self, tag: str, attrs: list) -> None:
+            if tag == "svg":
+                if not self.depth:
+                    self.start = self.source_offset()
+                self.depth += 1
+
+        def handle_startendtag(self, tag: str, attrs: list) -> None:
+            if tag == "svg" and not self.depth:
+                check_generated_svg(self.get_starttag_text(), display_path, errors)
+
+        def handle_endtag(self, tag: str) -> None:
+            if tag == "svg" and self.depth:
+                self.depth -= 1
+                if not self.depth:
+                    end = markup.find(">", self.source_offset()) + 1
+                    check_generated_svg(markup[self.start:end], display_path, errors)
+
+    collector = SvgCollector()
+    collector.feed(markup)
+    collector.close()
+    if collector.depth:
+        errors.append(f"unclosed inline SVG: {display_path}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Static site checker for ManabiGrid.")
     parser.add_argument(
@@ -2835,16 +2940,7 @@ def main() -> int:
             ):
                 if len(re.findall(rf"\s{attribute}\s*=", opening, re.IGNORECASE)) > 1:
                     errors.append(f"duplicate SVG {attribute} attribute: {path.name}")
-        for svg_fragment in re.findall(
-            r"<svg\b.*?</svg>", parsed.raw_text, re.IGNORECASE | re.DOTALL
-        ):
-            if re.search(
-                r"<script\b|<style\b|<foreignObject\b|\son[a-z]+\s*=|@import|url\((?!\s*#)",
-                svg_fragment,
-                re.IGNORECASE,
-            ):
-                errors.append(f"active or remote-loading inline SVG is not allowed: {path.name}")
-                break
+        check_inline_svgs(parsed.raw_text, path.relative_to(site_root), errors)
         if parsed.block_in_paragraph:
             errors.append(
                 "block element nested in paragraph: "
@@ -3348,7 +3444,7 @@ def main() -> int:
             errors.append("features svg_references mismatch")
         if features.get("svg_source") != features.get("svg_copied"):
             errors.append("features svg_source mismatch")
-        if features.get("svg_guard_self_tests") != 6:
+        if features.get("svg_guard_self_tests") != 8:
             errors.append("features svg_guard_self_tests missing or incomplete")
         review_conflicts = features.get("review_state_conflicts")
         expected_conflicts: Dict[str, str] = {}
@@ -3517,38 +3613,11 @@ def main() -> int:
             errors.append(f"local absolute path leaked into public asset: {asset_path.relative_to(site_root)}")
 
     for svg_path in (path for path in public_files if path.suffix.lower() == ".svg"):
-        svg_text = svg_path.read_text(encoding="utf-8", errors="replace")
-        if re.search(
-            r"<!DOCTYPE\b|<!ENTITY\b|<\?(?!xml\s|xml\?>)|<script\b|<style\b|<foreignObject\b|\son[a-z]+\s*=|@import|url\((?!\s*#)",
-            svg_text,
-            re.IGNORECASE,
-        ):
-            errors.append(f"active SVG content is not allowed: {svg_path.relative_to(site_root)}")
-        if re.search(
-            r"(?:href|xlink:href)\s*=\s*['\"](?:https?:)?//",
-            svg_text,
-            re.IGNORECASE,
-        ):
-            errors.append(f"external SVG reference is not allowed: {svg_path.relative_to(site_root)}")
-        try:
-            svg_root = ET.fromstring(svg_text)
-        except ET.ParseError:
-            errors.append(f"generated SVG is not valid XML: {svg_path.relative_to(site_root)}")
-            continue
-        for element in svg_root.iter():
-            tag = element.tag.rsplit("}", 1)[-1].lower()
-            if tag not in SAFE_SVG_TAGS:
-                errors.append(f"unsafe generated SVG element <{tag}>: {svg_path.relative_to(site_root)}")
-            for raw_name, raw_value in element.attrib.items():
-                name = raw_name.rsplit("}", 1)[-1].lower()
-                value = raw_value.strip()
-                normalized_value = normalized_css_value(value)
-                if name == "style" or name.startswith("on"):
-                    errors.append(f"active generated SVG attribute {name}: {svg_path.relative_to(site_root)}")
-                if name == "href" and value and not value.startswith("#"):
-                    errors.append(f"external generated SVG href: {svg_path.relative_to(site_root)}")
-                if re.search(r"@import|url\s*\((?!\s*#)", normalized_value, re.IGNORECASE):
-                    errors.append(f"external generated SVG CSS reference: {svg_path.relative_to(site_root)}")
+        check_generated_svg(
+            svg_path.read_text(encoding="utf-8", errors="replace"),
+            svg_path.relative_to(site_root),
+            errors,
+        )
 
     check_css_rules(site_root, errors, checks)
     validate_public_metadata(site_root, parsed_pages, build_report, errors, checks)

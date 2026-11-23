@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import itertools
 import json
+import re
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
+from html.parser import HTMLParser
 from pathlib import Path
 from unittest.mock import patch
 
@@ -56,6 +60,193 @@ class BuildContractTests(unittest.TestCase):
     def test_svg_internal_paint_server_remains_allowed(self) -> None:
         payload = '<svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p"/></defs><path d="M0 0" fill="url(#p)"/></svg>'
         build_site.validate_svg_source(payload, Path("internal.svg"))
+
+    def test_svg_tspan_with_coordinates_is_allowed(self) -> None:
+        payload = (
+            '<svg xmlns="http://www.w3.org/2000/svg"><text>'
+            '<tspan x="10" y="20">縦</tspan><tspan x="10" y="40">書</tspan>'
+            '</text></svg>'
+        )
+        build_site.validate_svg_source(payload, Path("tspan.svg"))
+
+    def test_svg_tspan_rejects_active_and_external_attributes(self) -> None:
+        for attribute, reason in (
+            ('onload="alert(1)"', "active SVG属性"),
+            ('onclick="alert(1)"', "active SVG属性"),
+            ('style="fill:red"', "active SVG属性"),
+            ('href="https://evil.example/text.svg#t"', "SVGの外部参照"),
+            ('xlink:href="//evil.example/text.svg#t"', "SVGの外部参照"),
+            ('fill="url(https://evil.example/paint.svg#p)"', "SVGの外部CSS参照"),
+            (r'fill="u\72l(https://evil.example/paint.svg#p)"', "SVGの外部CSS参照"),
+        ):
+            payload = (
+                '<svg xmlns="http://www.w3.org/2000/svg" '
+                'xmlns:xlink="http://www.w3.org/1999/xlink"><text>'
+                f'<tspan x="10" y="20" {attribute}>字</tspan></text></svg>'
+            )
+            with self.subTest(attribute=attribute), self.assertRaisesRegex(build_site.BuildError, reason):
+                build_site.validate_svg_source(payload, Path("tspan-bad.svg"))
+
+    def test_svg_guard_self_test_includes_tspan_event(self) -> None:
+        self.assertIn("tspan-event", build_site.SVG_GUARD_MALICIOUS_SAMPLES)
+        self.assertEqual(build_site.self_test_svg_guard(), 8)
+
+    def test_svg_local_clip_path_rejects_xml_base_override(self) -> None:
+        for base in ("https://evil.example/c.svg", "other.svg"):
+            payload = (
+                f'<svg xmlns="http://www.w3.org/2000/svg" xml:base="{base}">'
+                '<defs><clipPath id="c"><rect width="1" height="1"/></clipPath></defs>'
+                '<circle r="1" clip-path="url(#c)"/></svg>'
+            )
+            with self.subTest(base=base), self.assertRaisesRegex(build_site.BuildError, "xml:base"):
+                build_site.validate_svg_source(payload, Path("clip-base.svg"))
+
+    def test_svg_local_clip_path_remains_allowed(self) -> None:
+        payload = (
+            '<svg xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="c">'
+            '<path d="M0 0 L1 1 Z"/></clipPath></defs>'
+            '<circle cx="1" cy="1" r="1" clip-path="url(#c)"/></svg>'
+        )
+        build_site.validate_svg_source(payload, Path("clip.svg"))
+
+    def test_svg_clip_path_inline_rewrites_all_allowed_local_spellings(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            asset = root / "figure.svg"
+            doc = build_site.Doc(
+                path=root / "lesson.md", rel=Path("lesson.md"),
+                output=Path("content/lesson.html"), kind="lesson", title="例",
+                subject=None, unit=None, sha256="", frontmatter=False, tags=0,
+            )
+            for quote, value in itertools.product(
+                ("'", '"'),
+                ("url(#c)", "url( #c )", "url(#c )", r"u\72l(#c)", "url(/*c*/#c)", "url(&#35;c)"),
+            ):
+                with self.subTest(quote=quote, value=value):
+                    asset.write_text(
+                        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">'
+                        '<defs><clipPath id="c"><rect width="1" height="1"/></clipPath></defs>'
+                        f'<circle r="1" clip-path={quote}{value}{quote}/>'
+                        '<text><tspan x="1" y="2">字</tspan></text></svg>',
+                        encoding="utf-8",
+                    )
+                    stats = build_site.Stats()
+                    resolver = build_site.Resolver(root, [doc], {asset: Path("_media/figure.svg")}, {}, stats)
+                    rendered = build_site.Markdown(doc, resolver, stats).inline("![図](figure.svg)")
+                    svg = re.search(r"<svg\b.*?</svg>", rendered).group(0)
+                    tree = ET.fromstring(svg)
+                    clip = tree.find(".//{http://www.w3.org/2000/svg}clipPath")
+                    circle = tree.find("{http://www.w3.org/2000/svg}circle")
+                    self.assertEqual(circle.get("clip-path"), f'url(#{clip.get("id")})')
+                    self.assertTrue(clip.get("id").startswith("mg-"))
+                    self.assertIn(f"clip-path={quote}url(#{clip.get('id')}){quote}", svg)
+                    self.assertEqual(tree.find(".//{http://www.w3.org/2000/svg}tspan").text, "字")
+
+    def render_inline_svg(self, payload: str) -> str:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            asset = root / "figure.svg"
+            asset.write_text(payload, encoding="utf-8")
+            doc = build_site.Doc(
+                path=root / "lesson.md", rel=Path("lesson.md"),
+                output=Path("content/lesson.html"), kind="lesson", title="例",
+                subject=None, unit=None, sha256="", frontmatter=False, tags=0,
+            )
+            stats = build_site.Stats()
+            resolver = build_site.Resolver(root, [doc], {asset: Path("_media/figure.svg")}, {}, stats)
+            return build_site.Markdown(doc, resolver, stats).inline("![図](figure.svg)")
+
+    def assert_inline_svg_group_attributes(self, body: str, expected: list) -> None:
+        class GroupCollector(HTMLParser):
+            def __init__(self) -> None:
+                super().__init__()
+                self.groups = []
+
+            def handle_starttag(self, tag: str, attrs: list) -> None:
+                if tag == "g":
+                    self.groups.append(attrs)
+
+        payload = f'<svg xmlns="http://www.w3.org/2000/svg">{body}</svg>'
+        build_site.validate_svg_source(payload, Path("attribute-text.svg"))
+        rendered = self.render_inline_svg(payload)
+        collector = GroupCollector()
+        collector.feed(rendered)
+        collector.close()
+        # Inspect HTML attributes, not just XML validity or a downstream check.
+        self.assertEqual(collector.groups, [expected])
+        svg = re.search(r"<svg\b.*?</svg>", rendered, re.DOTALL).group(0)
+        ET.fromstring(svg)
+
+    def test_svg_clip_path_text_in_attribute_preserves_quotes(self) -> None:
+        for text in (
+            "a clip-path='u' onload=alert(1) b",
+            "a clip-path='u' href=javascript:alert(1) b",
+        ):
+            with self.subTest(text=text):
+                self.assert_inline_svg_group_attributes(
+                    f'<g aria-label="{text}"><rect/></g>', [("aria-label", text)]
+                )
+
+    def test_svg_clip_path_text_cannot_cross_tags_or_other_quotes(self) -> None:
+        # Review specimens 3 and 4 still break out if only quotes are preserved
+        # while the value regexp remains .*?.
+        for body, expected in (
+            ('<g data-a="clip-path="><text>" onmouseover=alert(1) x="</text></g>',
+             [("data-a", "clip-path=")]),
+            ("""<g data-a="x clip-path='" data-b='y'>" onmouseover='alert(1)' ><rect/></g>""",
+             [("data-a", "x clip-path='"), ("data-b", "y")]),
+        ):
+            with self.subTest(body=body):
+                self.assert_inline_svg_group_attributes(body, expected)
+
+    def test_svg_html_early_closed_comments_rejected_before_inline_output(self) -> None:
+        for opener, body in itertools.product(
+            ("<!-->", "<!--->"),
+            (
+                '<script>alert(1)</script>',
+                '<a href="javascript:alert(1)">字</a>',
+                '<img src="https://e.example/t.png">',
+                '<meta http-equiv="refresh" content="0;URL=https://e.example/">',
+                '<a><set attributeName="href" to="javascript:alert(1)"/>字</a>',
+            ),
+        ):
+            payload = f'<svg xmlns="http://www.w3.org/2000/svg">{opener}{body}--></svg>'
+            with self.subTest(opener=opener, body=body):
+                with self.assertRaisesRegex(build_site.BuildError, "HTMLで早期終了"):
+                    build_site.validate_svg_source(payload, Path("comment.svg"))
+                with self.assertRaisesRegex(build_site.BuildError, "HTMLで早期終了"):
+                    self.render_inline_svg(payload)
+
+    def test_svg_regular_comments_remain_allowed(self) -> None:
+        payload = '<svg xmlns="http://www.w3.org/2000/svg"><!----><!-- 図の説明 --><rect/></svg>'
+        build_site.validate_svg_source(payload, Path("comment.svg"))
+        self.assertIn('<!----><!-- 図の説明 -->', self.render_inline_svg(payload))
+
+    def test_svg_guard_self_test_includes_html_comment_breakout(self) -> None:
+        self.assertIn("html-comment-breakout", build_site.SVG_GUARD_MALICIOUS_SAMPLES)
+        self.assertEqual(build_site.self_test_svg_guard(), 8)
+
+    def test_svg_clip_path_rejects_non_local_reference(self) -> None:
+        for name, value in {
+            "external": "url(https://evil.example/c.svg#c)",
+            "css-escape": r"u\72l(https://evil.example/c.svg#c)",
+            "not-a-fragment": "inset(0)",
+        }.items():
+            payload = (
+                '<svg xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="c">'
+                '<rect width="1" height="1"/></clipPath></defs>'
+                f'<circle r="1" clip-path="{value}"/></svg>'
+            )
+            with self.subTest(name=name), self.assertRaises(build_site.BuildError):
+                build_site.validate_svg_source(payload, Path(f"clip-{name}.svg"))
+
+    def test_svg_clip_path_children_keep_the_tag_allowlist(self) -> None:
+        payload = (
+            '<svg xmlns="http://www.w3.org/2000/svg"><clipPath id="c">'
+            '<foreignObject><div/></foreignObject></clipPath></svg>'
+        )
+        with self.assertRaises(build_site.BuildError):
+            build_site.validate_svg_source(payload, Path("clip-child.svg"))
 
     def test_svg_ids_do_not_depend_on_checkout_root(self) -> None:
         doc = Path("materials/jhs-math-1/example/lesson_01.md")
@@ -440,6 +631,71 @@ class BuildContractTests(unittest.TestCase):
             )
             with self.assertRaises(build_site.BuildError):
                 build_site.parse_curriculum_progress(root, ("未着手", "人間レビュー済"))
+
+    def test_table_escaped_pipe_is_literal_cell_text(self) -> None:
+        self.assertEqual(
+            build_site.Markdown.split_table(r"| a | \|x\|＝5 | {x \| x>2} |"),
+            ["a", "|x|＝5", "{x | x>2}"],
+        )
+        self.assertEqual(
+            build_site.Markdown.split_table("| a | `b` | \\c |"),
+            ["a", "`b`", "\\c"],
+        )
+
+    def test_table_escaped_pipe_preserves_cell_boundaries_and_terminal_pipe(self) -> None:
+        for source, expected in (
+            (r"| c | \|", ["c", "|"]),
+            (r"| a | \|b| c |", ["a", "|b", "c"]),
+            (r"| a | `\|x\|` |", ["a", "`|x|`"]),
+            (r"| a | \\\| |", ["a", r"\\|"]),
+            (r"| a | \\|", ["a", r"\\"]),
+            (r"| a | |x| |", ["a", "|x|"]),
+            (r"| a | \\|x| |", ["a", r"\\|x|"]),
+            (r"| a | \\\\|x| |", ["a", r"\\\\|x|"]),
+        ):
+            with self.subTest(source=source):
+                self.assertEqual(build_site.Markdown.split_table(source), expected)
+
+    def test_curriculum_parser_accepts_appended_module_category(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.write_progress_fixture(root)
+            progress = root / "curriculum/PROGRESS_INDEX.md"
+            progress.write_text(
+                progress.read_text(encoding="utf-8").replace(
+                    "（単元と別枠: 診断・巻末資料）",
+                    "（単元と別枠: 診断・巻末資料・発展モジュール）",
+                ),
+                encoding="utf-8",
+            )
+            _units, modules = build_site.parse_curriculum_progress(
+                root, ("未着手", "人間レビュー済")
+            )
+        self.assertEqual([item.item_id for item in modules], ["jhs-math-module"])
+
+    def test_curriculum_parser_ignores_unrelated_module_heading(self) -> None:
+        for heading in (
+            "## 科目モジュール（参考）",
+            "## 科目モジュール（単元と別枠: 発展モジュール）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料）の補足",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・参考）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・<script>alert(1)</script>）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・発展モジュール・発展モジュール）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・ 発展モジュール）",
+        ):
+            with self.subTest(heading=heading), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                self.write_progress_fixture(root)
+                progress = root / "curriculum/PROGRESS_INDEX.md"
+                progress.write_text(
+                    progress.read_text(encoding="utf-8").replace(
+                        "## 科目モジュール（単元と別枠: 診断・巻末資料）", heading
+                    ),
+                    encoding="utf-8",
+                )
+                with self.assertRaisesRegex(build_site.BuildError, "取得できません"):
+                    build_site.parse_curriculum_progress(root, ("未着手", "人間レビュー済"))
 
     def test_curriculum_family_join_rejects_unknown_prefix(self) -> None:
         spec = build_site.CurriculumFamilySpec(
