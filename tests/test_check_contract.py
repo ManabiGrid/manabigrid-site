@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import copy
+import io
+import itertools
 import json
 import re
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path, PurePosixPath
+from unittest.mock import patch
 
 import check_site
 import public_site
@@ -384,6 +388,247 @@ class CheckSiteContractTests(unittest.TestCase):
             contract = Path(check_site.__file__).with_name("curriculum_grid.contract.json")
             with self.assertRaisesRegex(ValueError, "header missing before rows"):
                 check_site.canonical_curriculum_snapshot(root, contract)
+
+    def test_module_heading_accepts_old_and_appended_categories_only(self) -> None:
+        accepted = (
+            "## 科目モジュール（単元と別枠: 診断・巻末資料）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・発展モジュール）",
+        )
+        rejected = (
+            "## 科目モジュール（参考）",
+            "## 科目モジュール（単元と別枠: 発展モジュール）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料）の補足",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・参考）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・<script>alert(1)</script>）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・発展モジュール・発展モジュール）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・）",
+            "## 科目モジュール（単元と別枠: 診断・巻末資料・ 発展モジュール）",
+        )
+        for heading in accepted:
+            self.assertIsNotNone(check_site.CURRICULUM_MODULE_HEADING.fullmatch(heading), heading)
+        for heading in rejected:
+            self.assertIsNone(check_site.CURRICULUM_MODULE_HEADING.fullmatch(heading), heading)
+
+    def test_canonical_curriculum_snapshot_ignores_unrelated_module_heading(self) -> None:
+        for suffix in ("参考", "単元と別枠: 発展モジュール", "単元と別枠: 診断・巻末資料・参考"):
+            with self.subTest(suffix=suffix), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                self.write_minimal_progress(root)
+                progress = root / "curriculum/PROGRESS_INDEX.md"
+                progress.write_text(
+                    progress.read_text(encoding="utf-8").replace(
+                        "## 科目モジュール（単元と別枠: 診断・巻末資料）",
+                        f"## 科目モジュール（{suffix}）",
+                    ),
+                    encoding="utf-8",
+                )
+                contract = Path(check_site.__file__).with_name("curriculum_grid.contract.json")
+                with self.assertRaisesRegex(ValueError, "tables are missing"):
+                    check_site.canonical_curriculum_snapshot(root, contract)
+
+    def test_canonical_curriculum_snapshot_accepts_exact_module_heading_extension(self) -> None:
+        contract = Path(check_site.__file__).with_name("curriculum_grid.contract.json")
+        rows = [
+            f"| `{prefix}sample` | 例 | {subject} | {school} | 公開コア | **未着手** |"
+            for _slug, school, subject, prefix, _material in check_site.EXPECTED_CURRICULUM_FAMILY_ROWS
+        ]
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.write_minimal_progress(root, unit_row="\n".join(rows))
+            (root / "materials").mkdir()
+            # Multiple subjects in one entrance exercise the ordering at its consumer.
+            (root / "materials/hs-math-a").mkdir()
+            (root / "materials/hs-math-i").mkdir()
+            before = check_site.canonical_curriculum_snapshot(root, contract)
+            progress = root / "curriculum/PROGRESS_INDEX.md"
+            progress.write_text(
+                progress.read_text(encoding="utf-8").replace(
+                    "診断・巻末資料）", "診断・巻末資料・発展モジュール）"
+                ), encoding="utf-8",
+            )
+            after = check_site.canonical_curriculum_snapshot(root, contract)
+        self.assertEqual(before["modules"], after["modules"])
+        self.assertEqual(before["families"], after["families"])
+        self.assertEqual([item["id"] for item in after["modules"]], ["jhs-math-module"])
+        hs_math = next(family for family in after["families"] if family["slug"] == "hs-math")
+        self.assertEqual(hs_math["material_subjects"], ["hs-math-i", "hs-math-a"])
+
+    def test_material_subject_order_mirrors_builder_registration(self) -> None:
+        import build_site
+
+        self.assertEqual(
+            tuple(build_site.SUBJECTS)[: len(check_site.KNOWN_MATERIAL_SUBJECT_ORDER)],
+            check_site.KNOWN_MATERIAL_SUBJECT_ORDER,
+        )
+        self.assertEqual(
+            sorted(["hs-math-a", "hs-math-i"], key=check_site.material_subject_order_key),
+            ["hs-math-i", "hs-math-a"],
+        )
+        self.assertEqual(
+            sorted(["jhs-math-3", "hs-math-z", "jhs-math-1", "hs-math-b"], key=check_site.material_subject_order_key),
+            ["jhs-math-1", "jhs-math-3", "hs-math-b", "hs-math-z"],
+        )
+
+    def test_generated_svg_clip_path_must_stay_local(self) -> None:
+        self.assertIsNotNone(check_site.SVG_LOCAL_CLIP_PATH.fullmatch("url(#mg-0123456789-clipA)"))
+        for value in ("url(https://evil.example/c.svg#c)", "inset(0)", "url(#a) url(#b)"):
+            self.assertIsNone(check_site.SVG_LOCAL_CLIP_PATH.fullmatch(value), value)
+
+    def test_generated_and_inline_svg_tspan_with_coordinates_is_allowed(self) -> None:
+        svg = (
+            '<svg xmlns="http://www.w3.org/2000/svg"><text>'
+            '<tspan x="10" y="20">縦</tspan><tspan x="10" y="40">書</tspan>'
+            '</text></svg>'
+        )
+        for guard in (check_site.check_generated_svg, check_site.check_inline_svgs):
+            errors = []
+            guard(svg, Path("tspan.svg"), errors)
+            self.assertEqual(errors, [], guard.__name__)
+
+    def test_inline_svg_guard_handles_nested_and_self_closing_svg(self) -> None:
+        valid = (
+            '<p>前</p>\n<svg xmlns="http://www.w3.org/2000/svg"><svg/>'
+            '<svg><text><tspan x="1" y="2">&#23383;</tspan></text></svg>'
+            '<defs><clipPath id="c"><rect/></clipPath></defs></svg>\n<svg/>'
+        )
+        errors = []
+        check_site.check_inline_svgs(valid, Path("inline.html"), errors)
+        self.assertEqual(errors, [])
+        for markup in (
+            valid.replace('<tspan x="1"', '<tspan onload="alert(1)" x="1"'),
+            valid + '<svg onload="alert(1)"/>',
+            valid + '<svg><text>unclosed',
+        ):
+            with self.subTest(markup=markup):
+                errors = []
+                check_site.check_inline_svgs(markup, Path("inline.html"), errors)
+                self.assertTrue(errors)
+
+    def test_generated_and_inline_svg_tspan_rejects_active_and_external_attributes(self) -> None:
+        for attribute, reason in (
+            ('onload="alert(1)"', "active generated SVG attribute onload"),
+            ('onclick="alert(1)"', "active generated SVG attribute onclick"),
+            ('style="fill:red"', "active generated SVG attribute style"),
+            ('href="https://evil.example/text.svg#t"', "external generated SVG href"),
+            ('xlink:href="//evil.example/text.svg#t"', "external generated SVG href"),
+            ('fill="url(https://evil.example/paint.svg#p)"', "external generated SVG CSS reference"),
+            (r'fill="u\72l(https://evil.example/paint.svg#p)"', "external generated SVG CSS reference"),
+        ):
+            svg = (
+                '<svg xmlns="http://www.w3.org/2000/svg" '
+                'xmlns:xlink="http://www.w3.org/1999/xlink"><text>'
+                f'<tspan x="10" y="20" {attribute}>字</tspan></text></svg>'
+            )
+            for guard in (check_site.check_generated_svg, check_site.check_inline_svgs):
+                with self.subTest(attribute=attribute, guard=guard.__name__):
+                    errors = []
+                    guard(svg, Path("tspan-bad.svg"), errors)
+                    self.assertTrue(any(reason in error for error in errors), errors)
+
+    def test_generated_and_inline_svg_clip_path_tree_is_checked(self) -> None:
+        valid = (
+            '<svg xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="c">'
+            '<rect width="1" height="1"/></clipPath></defs>'
+            '<circle r="1" clip-path="url(#c)"/></svg>'
+        )
+        bad = {
+            "external": valid.replace("url(#c)", "url(https://evil.example/c.svg#c)"),
+            "css-escape": valid.replace("url(#c)", r"u\72l(https://evil.example/c.svg#c)"),
+            "non-fragment": valid.replace("url(#c)", "inset(0)"),
+            "multiple": valid.replace("url(#c)", "url(#c) url(#d)"),
+            "child": valid.replace('<rect width="1" height="1"/>', '<foreignObject><div/></foreignObject>'),
+            "base": valid.replace('<clipPath id="c">', '<clipPath id="c" xml:base="https://evil.example/c.svg">'),
+            "relative-base": valid.replace('<circle r="1"', '<circle xml:base="other.svg" r="1"'),
+            "style": valid.replace('<clipPath id="c">', '<clipPath id="c" style="fill:red">'),
+            "event": valid.replace('<clipPath id="c">', '<clipPath id="c" onload="alert(1)">'),
+        }
+        for guard in (check_site.check_generated_svg, check_site.check_inline_svgs):
+            errors = []
+            guard(valid, Path("clip.svg"), errors)
+            self.assertEqual(errors, [], guard.__name__)
+            for name, svg in bad.items():
+                with self.subTest(name=name, guard=guard.__name__):
+                    errors = []
+                    guard(svg, Path("clip-bad.svg"), errors)
+                    self.assertTrue(errors)
+
+    def test_generated_and_inline_svg_reject_html_early_closed_comments(self) -> None:
+        for guard, opener, body in itertools.product(
+            (check_site.check_generated_svg, check_site.check_inline_svgs),
+            ("<!-->", "<!--->"),
+            (
+                '<script>alert(1)</script>',
+                '<a href="javascript:alert(1)">字</a>',
+                '<img src="https://e.example/t.png">',
+                '<meta http-equiv="refresh" content="0;URL=https://e.example/">',
+                '<a><set attributeName="href" to="javascript:alert(1)"/>字</a>',
+            ),
+        ):
+            svg = f'<svg xmlns="http://www.w3.org/2000/svg">{opener}{body}--></svg>'
+            with self.subTest(guard=guard.__name__, opener=opener, body=body):
+                errors = []
+                guard(svg, Path("comment.svg"), errors)
+                self.assertIn("active SVG content is not allowed: comment.svg", errors)
+
+    def test_generated_and_inline_svg_allow_regular_comments(self) -> None:
+        svg = '<svg xmlns="http://www.w3.org/2000/svg"><!----><!-- 図の説明 --><rect/></svg>'
+        for guard in (check_site.check_generated_svg, check_site.check_inline_svgs):
+            with self.subTest(guard=guard.__name__):
+                errors = []
+                guard(svg, Path("comment.svg"), errors)
+                self.assertEqual(errors, [])
+
+    def run_minimal_site_check(self, svg: str, self_tests: int | None = 8) -> tuple[int, set[str]]:
+        # This intentionally incomplete site has unrelated contract errors.
+        # Compare exact error sets against a control, so those errors cannot
+        # make a missing SVG gate look like a successful negative test.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            site = root / "site"
+            site.mkdir()
+            (site / "_assets").mkdir()
+            (site / "_assets/search-index.json").write_text("[]", encoding="utf-8")
+            (site / "index.html").write_text(
+                '<!doctype html><html lang="ja"><head><title>検査</title></head>'
+                f'<body><main>{svg}</main></body></html>', encoding="utf-8",
+            )
+            (site / "build-report.json").write_text(
+                json.dumps({"features": {"svg_guard_self_tests": self_tests}}),
+                encoding="utf-8",
+            )
+            report = root / "check.json"
+            argv = ["check_site.py", str(site), "--report-output", str(report)]
+            # Do not discover a developer's adjacent canonical checkout.
+            # The real HTML parser, SVG guards and feature checks remain active.
+            with patch("sys.argv", argv), patch.object(
+                check_site, "resolve_source_root", return_value=None
+            ), redirect_stdout(io.StringIO()):
+                code = check_site.main()
+            result = json.loads(report.read_text(encoding="utf-8"))
+            self.assertEqual(result["html_pages"], 1)
+            return code, set(result["errors"])
+
+    def test_main_rejects_unsafe_inline_svg(self) -> None:
+        valid = '<svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>'
+        _control_code, control_errors = self.run_minimal_site_check(valid)
+        message = "non-local generated SVG clip-path: index.html"
+        self.assertNotIn(message, control_errors)
+        code, errors = self.run_minimal_site_check(
+            valid.replace('<rect/>', '<rect clip-path="inset(0)"/>')
+        )
+        self.assertEqual(code, 1)
+        self.assertEqual(errors, control_errors | {message})
+
+    def test_main_requires_exact_svg_guard_self_test_count(self) -> None:
+        svg = '<svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>'
+        message = "features svg_guard_self_tests missing or incomplete"
+        _control_code, control_errors = self.run_minimal_site_check(svg, 8)
+        self.assertNotIn(message, control_errors)
+        for count in (None, 6, 7, 9):
+            with self.subTest(count=count):
+                code, errors = self.run_minimal_site_check(svg, count)
+                self.assertEqual(code, 1)
+                self.assertEqual(errors, control_errors | {message})
 
     def test_review_conflicts_are_derived_from_canonical_source(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

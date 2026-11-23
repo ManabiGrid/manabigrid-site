@@ -46,6 +46,7 @@ EXPECTED_CURRICULUM_FAMILY_ROWS = (
 
 SAFE_SVG_TAGS = {
     "circle",
+    "clippath",
     "defs",
     "desc",
     "ellipse",
@@ -59,12 +60,23 @@ SAFE_SVG_TAGS = {
     "svg",
     "text",
     "title",
+    "tspan",
 }
+# clipPath is a passive geometry mask.  A clip-path value may only point to a
+# same-document fragment, so clipping can never load another resource.
+SVG_LOCAL_CLIP_PATH = re.compile(r"url\(\s*#[^\s()'\"]+\s*\)")
+# Accept the original heading and the exact extension supplied for this repair.
+# Further category names require review rather than a wildcard match.
+CURRICULUM_MODULE_HEADING = re.compile(
+    r"## 科目モジュール（単元と別枠: 診断・巻末資料(?:・発展モジュール)?）"
+)
 ENGLISH_PASSAGE = re.compile(
     r"(?<![A-Za-z])(?:[A-Za-z][A-Za-z'’.-]*[,:;!?]?\s+){3,}"
     r"[A-Za-z][A-Za-z'’.-]*[,:;.!?]?"
 )
 SVG_GUARD_MALICIOUS_SAMPLES = {
+    "html-comment-breakout": '<svg xmlns="http://www.w3.org/2000/svg"><!--><meta http-equiv="refresh" content="0;URL=https://evil.example/"/>--></svg>',
+    "tspan-event": '<svg xmlns="http://www.w3.org/2000/svg"><text><tspan x="1" y="2" onload="alert(1)">字</tspan></text></svg>',
     "style-import": '<svg xmlns="http://www.w3.org/2000/svg"><rect style="fill:url(https://evil.example/x)"/></svg>',
     "foreign-object": '<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><div/></foreignObject></svg>',
     "external-url": '<svg xmlns="http://www.w3.org/2000/svg"><pattern href="https://evil.example/p"/></svg>',
@@ -137,6 +149,9 @@ def validate_svg_source(svg: str, path: Path) -> None:
         raise BuildError(f"{path}: symlinkのSVGは埋め込めません")
     if re.search(r"<!DOCTYPE\b|<!ENTITY\b", svg, re.IGNORECASE):
         raise BuildError(f"{path}: DOCTYPE / ENTITYを含むSVGは埋め込めません")
+    # HTML closes these comments immediately; XML would hide their contents.
+    if re.search(r"<!---?>", svg):
+        raise BuildError(f"{path}: HTMLで早期終了するSVGコメントは使えません")
     if re.search(r"<\?(?!xml\s|xml\?>)", svg, re.IGNORECASE):
         raise BuildError(f"{path}: XML処理命令を含むSVGは埋め込めません")
     try:
@@ -150,6 +165,8 @@ def validate_svg_source(svg: str, path: Path) -> None:
         for raw_name, raw_value in element.attrib.items():
             name = raw_name.rsplit("}", 1)[-1].lower()
             value = raw_value.strip()
+            if raw_name == "{http://www.w3.org/XML/1998/namespace}base":
+                raise BuildError(f"{path}: SVGのxml:baseは使えません")
             if name == "style" or name.startswith("on"):
                 raise BuildError(f"{path}: active SVG属性 {name} は使えません")
             if name == "href" and value and not value.startswith("#"):
@@ -157,6 +174,8 @@ def validate_svg_source(svg: str, path: Path) -> None:
             normalized_value = normalized_css_value(value)
             if re.search(r"@import|url\s*\((?!\s*#)", normalized_value, re.IGNORECASE):
                 raise BuildError(f"{path}: SVGの外部CSS参照は使えません: {name}")
+            if name == "clip-path" and not SVG_LOCAL_CLIP_PATH.fullmatch(normalized_value):
+                raise BuildError(f"{path}: SVGのclip-pathは同じ図の中の#id参照だけ使えます: {value}")
 
 
 def self_test_svg_guard() -> int:
@@ -897,7 +916,7 @@ def parse_curriculum_progress(
         if line.startswith("## "):
             if line == "## 全単元一覧（unit_id 順）":
                 section = "units"
-            elif line == "## 科目モジュール（単元と別枠: 診断・巻末資料）":
+            elif CURRICULUM_MODULE_HEADING.fullmatch(line):
                 section = "modules"
             else:
                 section = ""
@@ -1395,8 +1414,17 @@ class Markdown:
             svg = id_pattern.sub(
                 lambda m: f'id={m.group(1)}{id_map[m.group(2)]}{m.group(1)}', svg
             )
+            # The guard accepts normalized local clip references. Canonicalize
+            # their spelling before prefixing ids, including CSS/XML escapes.
             svg = re.sub(
-                r"url\(#([^)]+)\)",
+                r"\bclip-path\s*=\s*([\"'])([^\"'<>]*)\1",
+                lambda m: "clip-path=" + m.group(1)
+                + html.escape(normalized_css_value(html.unescape(m.group(2))).strip(), quote=True)
+                + m.group(1),
+                svg,
+            )
+            svg = re.sub(
+                r"url\(\s*#([^\s()'\"]+)\s*\)",
                 lambda m: f"url(#{id_map.get(m.group(1), m.group(1))})",
                 svg,
             )
@@ -1694,17 +1722,31 @@ class Markdown:
         protected: list[str] = []
 
         def protect(match: re.Match[str]) -> str:
+            before = match.string[:match.start()]
+            backslashes = len(before) - len(before.rstrip("\\"))
+            if backslashes % 2:
+                return match.group(0)
             protected.append(match.group(0))
             return f"@@ABS{len(protected) - 1}@@"
 
-        value = re.sub(r"\|[A-Za-z][A-Za-z0-9′']*\|", protect, line.strip().strip("|"))
+        value = line.strip()
+        if value.startswith("|"):
+            value = value[1:]
+        trailing_backslashes = len(value[:-1]) - len(value[:-1].rstrip("\\"))
+        if value.endswith("|") and trailing_backslashes % 2 == 0:
+            value = value[:-1]
+        value = re.sub(r"\|[A-Za-z][A-Za-z0-9′']*\|", protect, value)
         cells: list[str] = []
         buffer: list[str] = []
         escaped = False
         in_code = False
         for char in value:
             if escaped:
-                buffer.append(char)
+                if char == "|":
+                    # GFM: an escaped pipe is literal cell text, not a separator.
+                    buffer[-1] = "|"
+                else:
+                    buffer.append(char)
                 escaped = False
             elif char == "\\":
                 buffer.append(char)
