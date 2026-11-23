@@ -34,6 +34,12 @@ ALLOWED_EXTERNAL_HOSTS = {
     "github.com",
     "www.ndl.go.jp",
 }
+RATING_ENDPOINT_PATTERN = r"https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec"
+RATING_ASSETS = {"_assets/rating.js", "_assets/rating.css"}
+RATING_FEEDBACK_URL = (
+    "https://docs.google.com/forms/d/e/"
+    "1FAIpQLSeKBOQ9EB_DGfkh7Y0LYU83w6ghkPTQfH65BSFjVVWtwEEt9Q/viewform"
+)
 FORBIDDEN_STRINGS = [
     "fetch(",
     "xmlhttprequest",
@@ -1810,7 +1816,41 @@ def load_site_config() -> Dict[str, str]:
         raise ValueError("site.config.jsonのog_image_outputは公開root内の相対パスにしてください")
     if not re.fullmatch(r"[A-Za-z0-9_-]{20,256}", config["google_site_verification"]):
         raise ValueError("site.config.jsonのgoogle_site_verificationが不正です")
+    config["rating_endpoint"] = validate_rating_endpoint(raw.get("rating_endpoint", ""))
     return config
+
+
+def validate_rating_endpoint(value: object) -> str:
+    """Allow one explicit Apps Script deployment URL, or the disabled empty value."""
+    if not isinstance(value, str) or (
+        value and re.fullmatch(RATING_ENDPOINT_PATTERN, value) is None
+    ):
+        raise ValueError("site.config.jsonのrating_endpointが不正です")
+    return value
+
+
+def csp_contract_errors(content: str, rating_page: bool = False) -> List[str]:
+    """Permit only the rating endpoint host and its count GET redirect host.
+
+    CSP cannot constrain request methods. The rating script contract fixes both
+    initial request URLs and prohibits redirects for POST below.
+    """
+    directives = [item.strip() for item in content.split(";") if item.strip()]
+    expected_connect = (
+        "connect-src https://script.google.com https://script.googleusercontent.com"
+        if rating_page else "connect-src 'none'"
+    )
+    required = {
+        "default-src 'self'", "script-src 'self'", expected_connect,
+        "object-src 'none'", "frame-src 'none'", "base-uri 'none'",
+        "form-action 'none'",
+    }
+    connect_directives = [
+        item for item in directives if item.split(None, 1)[0].lower() == "connect-src"
+    ]
+    if not required.issubset(set(directives)) or connect_directives != [expected_connect]:
+        return ["restrictive CSP missing or incomplete"]
+    return []
 
 
 def public_url(base_url: str, relative: Path) -> str:
@@ -2260,6 +2300,329 @@ def theme_storage_contract_errors(
     return errors
 
 
+def javascript_privacy_contract_errors(
+    relative_path: str, text: str, rating_endpoint: str = ""
+) -> List[str]:
+    """Apply the existing bans, with one named, independently checked exception."""
+    lowered = text.lower()
+    errors: List[str] = []
+    is_rating = bool(rating_endpoint) and relative_path == "_assets/rating.js"
+    for keyword in FORBIDDEN_STRINGS:
+        if keyword == "fetch(" and is_rating:
+            continue
+        if keyword in lowered:
+            errors.append(f"forbidden string in js {relative_path}: {keyword}")
+            break
+    if not is_rating and re.search(r"\bfetch\s*\(", text, re.IGNORECASE):
+        if not any("fetch(" in error for error in errors):
+            errors.append(f"forbidden string in js {relative_path}: fetch(")
+    if is_rating:
+        errors.extend(rating_script_contract_errors(text, rating_endpoint))
+    return errors
+
+
+def javascript_contract_tokens(text: str) -> Tuple[str, ...]:
+    """Tokenize fixed rating snippets without altering quoted or template literals.
+
+    This is a comparator for the reviewed snippets, not a general JavaScript parser.
+    Template literals are kept whole, including their interpolation source.
+    A line terminator after return is retained because JavaScript inserts a semicolon.
+    """
+    tokens: List[str] = []
+    index = 0
+    line_terminator_pending = False
+    line_terminators = "\r\n\u2028\u2029"
+    while index < len(text):
+        character = text[index]
+        if character.isspace():
+            line_terminator_pending |= character in line_terminators
+            index += 1
+            continue
+        if text.startswith("//", index):
+            closing = index + 2
+            while closing < len(text) and text[closing] not in line_terminators:
+                closing += 1
+            line_terminator_pending |= closing < len(text)
+            index = closing
+            continue
+        if text.startswith("/*", index):
+            closing = text.find("*/", index + 2)
+            end = len(text) if closing < 0 else closing + 2
+            line_terminator_pending |= any(value in text[index:end] for value in line_terminators)
+            index = end
+            continue
+        if line_terminator_pending and tokens and tokens[-1] == "return":
+            tokens.append("\n")
+        line_terminator_pending = False
+        start = index
+        if character in {"'", '"', "`"}:
+            index += 1
+            while index < len(text):
+                if text[index] == "\\":
+                    index += 2
+                elif text[index] == character:
+                    index += 1
+                    break
+                else:
+                    index += 1
+        elif character.isalnum() or character in {"_", "$"}:
+            index += 1
+            while index < len(text) and (text[index].isalnum() or text[index] in {"_", "$"}):
+                index += 1
+        else:
+            index += 1
+        tokens.append(text[start:index])
+    return tuple(tokens)
+
+
+def javascript_fragment_count(tokens: Tuple[str, ...], fragment: str) -> int:
+    expected = javascript_contract_tokens(fragment)
+    return sum(
+        tokens[index:index + len(expected)] == expected
+        for index in range(len(tokens) - len(expected) + 1)
+    )
+
+
+def rating_script_contract_errors(text: str, endpoint: str) -> List[str]:
+    """Fix the endpoint, two requests and date-only local duplicate suppression."""
+    errors: List[str] = []
+    try:
+        if not validate_rating_endpoint(endpoint):
+            raise ValueError("rating disabled")
+    except ValueError:
+        return ["rating script is present without a valid enabled endpoint"]
+    declarations = re.findall(r"\bconst\s+ENDPOINT\s*=\s*([^;]+);", text)
+    if declarations != [json.dumps(endpoint, ensure_ascii=False)]:
+        errors.append("rating endpoint declaration does not exactly match site config")
+    if text.count("ENDPOINT") != 4:
+        errors.append("rating endpoint is used outside its declaration and two requests")
+    expected_targets = [javascript_contract_tokens(value) for value in (
+        "ENDPOINT + '?unit=' + encodeURIComponent(unit)", "ENDPOINT",
+    )]
+    targets = [
+        javascript_contract_tokens(value)
+        for value in re.findall(r"\bfetch\s*\(\s*(.*?)\s*,\s*\{", text, re.DOTALL)
+    ]
+    if sorted(targets) != sorted(expected_targets) or len(re.findall(r"\bfetch\b", text)) != 2:
+        errors.append("rating requests do not use the exact configured endpoint")
+    request_calls = [
+        javascript_contract_tokens(call)
+        for call in re.findall(r"\bfetch\s*\(.*?\}\s*\)", text, re.DOTALL)
+    ]
+    expected_calls = [javascript_contract_tokens(value) for value in (
+        "fetch(ENDPOINT,{method:'POST',mode:'no-cors',redirect:'error',body,credentials:'omit',referrerPolicy:'no-referrer',})",
+        "fetch(ENDPOINT+'?unit='+encodeURIComponent(unit),{method:'GET',credentials:'omit',referrerPolicy:'no-referrer',})",
+    )]
+    if sorted(request_calls) != sorted(expected_calls):
+        errors.append("rating request methods, payload, or privacy options differ")
+    tokens = javascript_contract_tokens(text)
+    if (
+        javascript_fragment_count(tokens, "const body = new URLSearchParams({unit,lesson,rating});") != 1
+        or javascript_fragment_count(tokens, "if(reason) body.set('reason',reason);") != 1
+        or len(re.findall(r"\bbody\b", text)) != 3
+    ):
+        errors.append("rating request body contains fields outside the fixed rating payload")
+
+    key_declarations = re.findall(r"\bconst\s+storageKey\s*=\s*([^;]+);", text)
+    if key_declarations != ["`manabigrid-rating:${unit}:${lesson}`"]:
+        errors.append("rating storage key is not the exact unit and lesson key")
+    accesses = [
+        (method, javascript_contract_tokens(arguments))
+        for method, arguments in re.findall(
+            r"(?:window\.)?localStorage\.(getItem|setItem|removeItem)\s*\(([^)]*)\)",
+            text,
+        )
+    ]
+    if accesses != [
+        ("getItem", javascript_contract_tokens("storageKey")),
+        ("setItem", javascript_contract_tokens("storageKey,today")),
+    ]:
+        errors.append("rating storage read and write arguments are not exact")
+    if text.lower().count("localstorage") != 2 or text.count("storageKey") != 3:
+        errors.append("rating script contains an additional storage access or key use")
+    date_declarations = re.findall(r"\bconst\s+today\s*=\s*([^;]+);", text)
+    expected_date = (
+        "`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-"
+        "${String(now.getDate()).padStart(2, '0')}`"
+    )
+    expected_local_day = (
+        "const localDay=()=>{const now=new Date();const today=" + expected_date
+        + ";return today;};"
+    )
+    expected_save_day = (
+        "const saveDay=(today)=>{try{window.localStorage.setItem(storageKey,today);"
+        "}catch(_error){}};"
+    )
+    if (
+        [javascript_contract_tokens(item) for item in date_declarations] != [
+            javascript_contract_tokens(expected_date), javascript_contract_tokens("localDay()"),
+        ]
+        or len(re.findall(r"\bconst\s+now\s*=\s*new\s+Date\(\)\s*;", text)) != 1
+        or len(re.findall(r"\btoday\s*=(?!=)", text)) != 2
+        or len(re.findall(r"\bstorageKey\s*=(?!=)", text)) != 1
+        or javascript_fragment_count(tokens, expected_local_day) != 1
+        or javascript_fragment_count(tokens, expected_save_day) != 1
+        or javascript_fragment_count(tokens, "saveDay(today);") != 1
+        or len(re.findall(r"\bsaveDay\b", text)) != 2
+    ):
+        errors.append("rating duplicate suppression must store only the local calendar date")
+    return errors
+
+
+def canonical_rating_pages(source_root: Path) -> Tuple[Dict[str, Tuple[str, str]], Dict[str, str]]:
+    """Enumerate lesson identity from source names rather than build self-report."""
+    grouped: Dict[str, List[Path]] = {}
+    units: Set[str] = set()
+    for path in sorted((source_root / "materials").rglob("*.md")):
+        relative = path.relative_to(source_root)
+        if len(relative.parts) < 4:
+            continue
+        unit = relative.parts[2]
+        units.add(unit)
+        if re.fullmatch(r"lesson_\d+\.md", path.name) or path.name in {
+            "diagnostic.md", "student_textbook_print.md",
+        }:
+            grouped.setdefault(unit, []).append(relative)
+
+    def natural_name(path: Path) -> Tuple[object, ...]:
+        return tuple(int(part) if part.isdigit() else part.lower() for part in re.split(r"(\d+)", path.name))
+
+    lessons = {
+        (PurePosixPath("content") / path.with_suffix(".html")).as_posix():
+            (unit, f"L{number:02}")
+        for unit, paths in grouped.items()
+        for number, path in enumerate(sorted(paths, key=natural_name), 1)
+    }
+    counts = {f"units/{unit}/index.html": unit for unit in sorted(units)}
+    counts.update({page: unit for page, (unit, _lesson) in lessons.items()})
+    return lessons, counts
+
+
+class RatingMarkupCollector(HTMLParser):
+    """Read the rating identity and count hooks, including malformed duplicates."""
+
+    def __init__(self, raw: str):
+        super().__init__(convert_charrefs=True)
+        self.sections: List[Tuple[str, Dict[str, str], bool]] = []
+        self.counts: List[Tuple[str, Dict[str, str], bool]] = []
+        self.duplicate_attributes = False
+        self.invalid_placement = False
+        self.unexpected_identity = False
+        self.rating_scripts: List[str] = []
+        self.rating_styles: List[str] = []
+        self.invalid_asset_semantics = False
+        self.stack: List[str] = []
+        self.feed(raw)
+
+    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
+        attributes = {key: value or "" for key, value in attrs}
+        names = [key for key, _value in attrs]
+        is_section = "data-rating-unit" in attributes or "lesson-rating" in attributes.get("class", "").split()
+        is_count = "data-rating-count-unit" in attributes or "rating-count" in attributes.get("class", "").split()
+        if any(name.startswith("data-rating-") for name in names):
+            self.duplicate_attributes |= len(names) != len(set(names))
+            allowed = (
+                {"data-rating-unit", "data-rating-lesson", "data-rating-feedback-url"}
+                if is_section else {"data-rating-count-unit"} if is_count else set()
+            )
+            self.unexpected_identity |= any(
+                name.startswith("data-rating-") and name not in allowed for name in names
+            )
+        if is_section:
+            self.sections.append((tag, attributes, "hidden" in names))
+        if is_count:
+            self.counts.append((tag, attributes, "hidden" in names))
+        if is_section or is_count:
+            self.invalid_placement |= "main" not in self.stack
+        if tag == "script" and "rating.js" in attributes.get("src", ""):
+            self.rating_scripts.append(attributes["src"])
+            self.duplicate_attributes |= len(names) != len(set(names))
+            self.invalid_asset_semantics |= (
+                "defer" not in names
+                or ("type" in names and attributes["type"] != "text/javascript")
+                or not set(names).issubset({"src", "defer", "type"})
+            )
+        if tag == "link" and "rating.css" in attributes.get("href", ""):
+            self.rating_styles.append(attributes["href"])
+            self.duplicate_attributes |= len(names) != len(set(names))
+            self.invalid_asset_semantics |= (
+                attributes.get("rel") != "stylesheet"
+                or ("type" in names and attributes["type"] != "text/css")
+                or not set(names).issubset({"href", "rel", "type"})
+            )
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}:
+            self.stack.append(tag)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in self.stack:
+            index = len(self.stack) - 1 - self.stack[::-1].index(tag)
+            del self.stack[index:]
+
+
+def rating_html_contract_errors(
+    relative_path: str,
+    raw: str,
+    endpoint: str,
+    lesson: Optional[Tuple[str, str]],
+    count_unit: Optional[str],
+) -> List[str]:
+    """Require exactly one rating only on a source lesson and its unit overview."""
+    errors: List[str] = []
+    markup = RatingMarkupCollector(raw)
+    # Resolve actual parsed links; a comment containing an asset tag is not a script.
+    def approved_asset(link: str, asset: str) -> bool:
+        parsed = urlsplit(link)
+        resolved = posixpath.normpath(posixpath.join(posixpath.dirname(relative_path), parsed.path))
+        return not parsed.scheme and not parsed.netloc and not parsed.query and not parsed.fragment and resolved == asset
+
+    js_count = len(markup.rating_scripts)
+    css_count = len(markup.rating_styles)
+    expected_active = bool(endpoint) and count_unit is not None
+    if not expected_active:
+        if markup.sections or markup.counts or js_count or css_count or "data-rating-" in raw:
+            errors.append(f"rating markup or assets on an unapproved page: {relative_path}")
+        return errors
+    if (
+        js_count != 1 or css_count != 1
+        or not all(approved_asset(link, "_assets/rating.js") for link in markup.rating_scripts)
+        or not all(approved_asset(link, "_assets/rating.css") for link in markup.rating_styles)
+    ):
+        errors.append(f"rating assets missing or duplicated: {relative_path}")
+    if markup.duplicate_attributes:
+        errors.append(f"duplicate rating attributes: {relative_path}")
+    if markup.invalid_asset_semantics:
+        errors.append(f"rating assets are not executable deferred script and stylesheet: {relative_path}")
+    if markup.invalid_placement or markup.unexpected_identity:
+        errors.append(f"rating hooks outside their approved main content: {relative_path}")
+    if len(markup.counts) != 1:
+        errors.append(f"rating count missing or duplicated: {relative_path}")
+    else:
+        tag, attrs, hidden = markup.counts[0]
+        if (
+            tag != "p" or "rating-count" not in attrs.get("class", "").split()
+            or attrs.get("data-rating-count-unit") != count_unit or not hidden
+        ):
+            errors.append(f"rating count identity differs: {relative_path}")
+    if lesson is None:
+        if markup.sections:
+            errors.append(f"lesson rating appears outside a source lesson: {relative_path}")
+    elif len(markup.sections) != 1:
+        errors.append(f"lesson rating missing or duplicated: {relative_path}")
+    else:
+        tag, attrs, hidden = markup.sections[0]
+        unit, lesson_id = lesson
+        if (
+            tag != "section" or not hidden
+            or "lesson-rating" not in attrs.get("class", "").split()
+            or attrs.get("data-rating-unit") != unit
+            or attrs.get("data-rating-lesson") != lesson_id
+            or attrs.get("data-rating-feedback-url") != RATING_FEEDBACK_URL
+            or attrs.get("aria-label") != "このレッスンはどうでしたか"
+        ):
+            errors.append(f"lesson rating identity differs: {relative_path}")
+    return errors
+
+
 def validate_external_link_appendix(
     site_root: Path,
     errors: List[str],
@@ -2333,6 +2696,7 @@ def validate_link(
     value: str,
     site_root: Path,
     id_map: Dict[Path, Set[str]],
+    rating_endpoint: str = "",
 ) -> Tuple[str, str, Optional[Path]]:
     parsed = urlsplit(value)
     # HTML href fragments are URL-encoded while parsed element ids are decoded
@@ -2360,7 +2724,11 @@ def validate_link(
             return "internal", "", target
         if parsed.netloc and tag == "a" and attr == "href":
             host = parsed.netloc.lower().split(":")[0]
-            if host in ALLOWED_EXTERNAL_HOSTS:
+            # The redirect host is for the count GET, never a general link or asset.
+            if host in ALLOWED_EXTERNAL_HOSTS or (
+                rating_endpoint and value == rating_endpoint
+                and re.fullmatch(RATING_ENDPOINT_PATTERN, value)
+            ):
                 return "external", "", None
         return "error", f"external {attr} not allowed: {value}", None
 
@@ -2378,7 +2746,13 @@ def validate_link(
         return "error", f"target not found: {value}", None
 
     if attr == "src" and tag == "script":
-        if target.name not in {"site.js", "search-index.js", "theme.js"} or "_assets" not in target.as_posix():
+        approved_names = {"site.js", "search-index.js", "theme.js"}
+        if rating_endpoint:
+            approved_names.add("rating.js")
+        if (
+            target.name not in approved_names or "_assets" not in target.as_posix()
+            or (target.name == "rating.js" and target != (site_root / "_assets/rating.js").resolve())
+        ):
             return "error", "script source must be an approved _assets script", None
 
     if fragment and fragment not in id_map.get(target, set()):
@@ -2781,6 +3155,11 @@ def main() -> int:
     external_links_checked = 0
     source_files_checked = 0
     numeric_documents_checked = 0
+    try:
+        rating_endpoint = load_site_config().get("rating_endpoint", "")
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        rating_endpoint = ""
+        errors.append(f"site config invalid: {exc}")
 
     try:
         build_report = read_build_report(report_path)
@@ -2859,18 +3238,10 @@ def main() -> int:
             errors.append(f"title missing: {path.name}")
         if not parsed.has_viewport:
             errors.append(f"viewport missing: {path.name}")
-        required_csp = {
-            "default-src 'self'",
-            "script-src 'self'",
-            "connect-src 'none'",
-            "object-src 'none'",
-            "frame-src 'none'",
-            "base-uri 'none'",
-            "form-action 'none'",
-        }
-        if not required_csp.issubset(
-            {directive.strip() for directive in parsed.csp_content.split(";") if directive.strip()}
-        ):
+        rating_page = bool(rating_endpoint) and (
+            "data-rating-unit=" in parsed.raw_text or "data-rating-count-unit=" in parsed.raw_text
+        )
+        if csp_contract_errors(parsed.csp_content, rating_page):
             errors.append(f"restrictive CSP missing or incomplete: {path.name}")
         if not parsed.has_main:
             errors.append(f"main missing: {path.name}")
@@ -3535,7 +3906,7 @@ def main() -> int:
     # link checks
     for source_path, parsed in parsed_pages.items():
         for tag, attr, value in parsed.links:
-            status, msg, target = validate_link(source_path, tag, attr, value, site_root, id_map)
+            status, msg, target = validate_link(source_path, tag, attr, value, site_root, id_map, rating_endpoint)
             if status == "external":
                 external_links_checked += 1
             elif status == "internal":
@@ -3559,12 +3930,42 @@ def main() -> int:
                 errors.append(f"forbidden string in html: {keyword} ({parsed.path.name})")
                 break
 
+    rating_errors: List[str] = []
     for js_path in (path for path in public_files if path.suffix.lower() == ".js"):
-        lowered = js_path.read_text(encoding="utf-8").lower()
-        for keyword in FORBIDDEN_STRINGS:
-            if keyword in lowered:
-                errors.append(f"forbidden string in js {js_path.name}: {keyword}")
-                break
+        relative = js_path.relative_to(site_root).as_posix()
+        script_errors = javascript_privacy_contract_errors(
+            relative,
+            js_path.read_text(encoding="utf-8"),
+            rating_endpoint,
+        )
+        if relative == "_assets/rating.js" and rating_endpoint:
+            rating_errors.extend(script_errors)
+        else:
+            errors.extend(script_errors)
+
+    present_rating_assets = {
+        path.relative_to(site_root).as_posix() for path in public_files
+        if path.relative_to(site_root).as_posix() in RATING_ASSETS
+    }
+    if present_rating_assets != (RATING_ASSETS if rating_endpoint else set()):
+        rating_errors.append("rating assets differ from the enabled site configuration")
+    if source_root is not None:
+        rating_lessons, rating_counts = canonical_rating_pages(source_root)
+        for path, parsed in parsed_pages.items():
+            relative = path.relative_to(site_root).as_posix()
+            rating_errors.extend(rating_html_contract_errors(
+                relative, parsed.raw_text, rating_endpoint,
+                rating_lessons.get(relative), rating_counts.get(relative),
+            ))
+    elif rating_endpoint:
+        rating_errors.append("rating source lessons cannot be independently verified")
+    errors.extend(rating_errors)
+    checks.append({
+        "name": "privacy:lesson_rating",
+        "pass": not rating_errors,
+        "enabled": bool(rating_endpoint),
+        "contract_errors": rating_errors,
+    })
 
     theme_js_path = site_root / "_assets/theme.js"
     theme_js_text = (
@@ -3575,6 +3976,7 @@ def main() -> int:
         for path in public_files
         if path.suffix.lower() == ".js"
         and path.resolve() != theme_js_path.resolve()
+        and not (rating_endpoint and path.relative_to(site_root).as_posix() == "_assets/rating.js")
         and "localstorage" in path.read_text(encoding="utf-8", errors="replace").lower()
     ]
     theme_storage_errors = (

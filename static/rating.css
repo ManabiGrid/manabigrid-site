@@ -1,0 +1,124 @@
+/* Optional lesson feedback. Loaded only when a rating endpoint is configured. */
+
+.lesson-rating[hidden],
+.rating-options[hidden],
+.rating-reasons[hidden],
+.rating-count[hidden] { display: none !important; }
+
+.lesson-rating {
+  margin-top: 2.5rem;
+  border-block: 1px solid var(--line);
+  padding-block: 1.25rem;
+}
+
+.lesson-rating .rating-title {
+  margin: 0 0 .75rem;
+  border: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.rating-actions,
+.rating-options,
+.rating-reason-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  min-width: 0;
+}
+
+.rating-actions { gap: .5rem 1rem; }
+
+.rating-option,
+.rating-reason {
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 100%;
+  border: 1px solid var(--control-border);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: .5rem .75rem;
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.rating-option:not(:disabled):hover,
+.rating-reason:not(:disabled):hover {
+  border-color: var(--blue);
+  background: var(--canvas);
+  color: var(--blue);
+}
+
+.rating-option[aria-pressed="true"],
+.rating-reason[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--on-accent);
+}
+
+.rating-option:disabled,
+.rating-reason:disabled { cursor: default; }
+
+.rating-option:disabled:not([aria-pressed="true"]),
+.rating-reason:disabled:not([aria-pressed="true"]) { color: var(--muted); }
+
+.rating-feedback {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  font-size: .875rem;
+  font-weight: 700;
+}
+
+.rating-status {
+  margin: 0;
+  color: var(--ink);
+  font-size: .875rem;
+  font-weight: 700;
+}
+
+.rating-status:empty { display: none; }
+
+.rating-status:not(:empty) {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.rating-status:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.rating-reasons {
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: .75rem;
+}
+
+.rating-reason-prompt {
+  margin: 0 0 .5rem;
+  color: var(--muted);
+  font-size: .875rem;
+}
+
+.rating-count {
+  margin-block: .75rem;
+  color: var(--muted);
+  font-size: .875rem;
+  overflow-wrap: anywhere;
+}
+
+@media print {
+  .lesson-rating,
+  .rating-count { display: none !important; }
+}

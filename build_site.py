@@ -219,6 +219,14 @@ def load_site_config() -> dict[str, str]:
     config = {key: str(raw[key]).strip() for key in required}
     if not re.fullmatch(r"[A-Za-z0-9_-]{20,256}", config["google_site_verification"]):
         raise RuntimeError("site.config.jsonのgoogle_site_verificationが不正です")
+    endpoint = raw.get("rating_endpoint", "")
+    if not isinstance(endpoint, str) or (
+        endpoint and not re.fullmatch(
+            r"https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec", endpoint
+        )
+    ):
+        raise RuntimeError("site.config.jsonのrating_endpointが不正です")
+    config["rating_endpoint"] = endpoint
     return config
 
 
@@ -2222,12 +2230,27 @@ def page(
         else ""
     )
     dialog = figure_dialog() if "data-figure-open" in body else ""
+    has_rating = bool(SITE_CONFIG.get("rating_endpoint")) and (
+        "data-rating-unit=" in body or "data-rating-count-unit=" in body
+    )
+    connect_source = (
+        "https://script.google.com https://script.googleusercontent.com"
+        if has_rating else "'none'"
+    )
+    rating_style = (
+        f'  <link rel="stylesheet" href="{local_href(Path("_assets/rating.css"))}">\n'
+        if has_rating else ""
+    )
+    rating_script = (
+        f'  <script src="{local_href(Path("_assets/rating.js"))}" defer></script>\n'
+        if has_rating else ""
+    )
     return f"""<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src {connect_source}; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" data-theme-color>
   <meta name="description" content="{html.escape(description, quote=True)}">
@@ -2247,7 +2270,7 @@ def page(
 {canonical_tag}  <link rel="icon" type="image/svg+xml" href="{local_href(Path("_assets/favicon.svg"))}">
   <script src="{local_href(Path("_assets/theme.js"))}"></script>
   <link rel="stylesheet" href="{local_href(Path("_assets/site.css"))}">
-</head>
+{rating_style}</head>
 <body id="page-top" class="{page_class}"{source_attrs}>
   <a class="skip-link" href="#main-content">本文へ移動</a>
   <header class="site-header">
@@ -2263,7 +2286,7 @@ def page(
 {footer()}
 {dialog}
 {search_script}  <script src="{local_href(Path("_assets/site.js"))}" defer></script>
-</body>
+{rating_script}</body>
 </html>
 """
 
@@ -2388,6 +2411,34 @@ def lesson_provenance(doc: Doc) -> str:
   <p>{external(source_url, "正本Markdownを固定コミットで見る")}</p>
   <p>誤りや分かりにくい所は、{external(ISSUE_URL, "GitHub Issue")}または{external(FORM_URL, "おたよりフォーム")}で知らせられます。個人情報は書かないでください。</p>
 </aside>"""
+
+
+def rating_count(unit_id: str) -> str:
+    if not SITE_CONFIG.get("rating_endpoint"):
+        return ""
+    if not re.fullmatch(r"[a-z0-9-]{3,80}", unit_id):
+        raise BuildError("評価対象の単元IDが不正です")
+    return (
+        '<p class="rating-count" data-rating-count-unit="'
+        + html.escape(unit_id, quote=True)
+        + '" hidden></p>'
+    )
+
+
+def lesson_rating(doc: Doc, unit: Unit) -> str:
+    if not SITE_CONFIG.get("rating_endpoint"):
+        return ""
+    number = unit.lessons.index(doc) + 1
+    if number > 99:
+        raise BuildError("評価対象のレッスン番号が2桁を超えています")
+    return (
+        '<section class="lesson-rating" data-rating-unit="'
+        + html.escape(unit.slug, quote=True)
+        + f'" data-rating-lesson="L{number:02}" data-rating-feedback-url="'
+        + html.escape(FORM_URL, quote=True)
+        + '" hidden aria-label="このレッスンはどうでしたか"></section>'
+        + rating_count(unit.slug)
+    )
 
 
 def link_diagnostic_unit_mentions(
@@ -2541,7 +2592,7 @@ def doc_body(doc: Doc, rendered: str, units: dict[str, Unit]) -> str:
             + review_state_notice
             + '<div class="container lesson-layout">'
             + f'<aside class="lesson-sidebar" aria-label="レッスンの現在位置と目次">{lesson_position}{toc(doc.output, doc.headings)}</aside>'
-            + f'<article class="lesson-main {article_class}">{mobile_section_nav(doc.output, doc.headings)}{rendered}{answer_link}{lesson_provenance(doc)}{lessons_nav(doc.output, unit, doc)}</article>'
+            + f'<article class="lesson-main {article_class}">{mobile_section_nav(doc.output, doc.headings)}{rendered}{answer_link}{lesson_rating(doc, unit)}{lesson_provenance(doc)}{lessons_nav(doc.output, unit, doc)}</article>'
             + "</div>"
         )
     return header + diagnostic_start + review_state_notice + notice + f'<article class="container {article_class}">{rendered}</article>'
@@ -3062,7 +3113,7 @@ def unit_body(unit: Unit) -> str:
     return f"""
 <section class="container unit-hero">
   <p class="eyebrow">{html.escape(SUBJECTS[unit.subject][0])} / UNIT</p>
-  <h1>{html.escape(unit.title)}</h1><p>{len(unit.lessons)}レッスン{'・目安 ' + html.escape(unit.estimated_time) if unit.estimated_time else ''}。順番に進めても、必要な場所から始めてもかまいません。</p>{start_link}{special}
+  <h1>{html.escape(unit.title)}</h1><p>{len(unit.lessons)}レッスン{'・目安 ' + html.escape(unit.estimated_time) if unit.estimated_time else ''}。順番に進めても、必要な場所から始めてもかまいません。</p>{start_link}{special}{rating_count(unit.slug)}
   <details class="unit-meta"><summary>教材の状態とID</summary><p><span class="status-chip">{html.escape(unit.status)}</span> <code>{html.escape(unit.slug)}</code></p></details>
 </section>
 <section class="container resource-list primary-resources">
@@ -3130,6 +3181,23 @@ def about_body() -> str:
     notice_url = f"{REPO_URL}/blob/{source_ref}/NOTICE.md"
     disclaimer_url = f"{REPO_URL}/blob/{source_ref}/DISCLAIMER.md"
     methodology_url = f"{REPO_URL}/blob/{source_ref}/docs/METHODOLOGY.md"
+    rating_notice = (
+        '\n  <section><p class="eyebrow">09 / FEEDBACK</p><h2>評価ボタンで送るもの</h2>'
+        '<p>レッスン末の評価ボタンは、1回押すとGoogle Apps Scriptへ単元ID、'
+        'レッスン番号、3段階の評価を送ります。難しさの理由を選んだ場合は、'
+        '同じ項目と選んだ理由のコードをもう1回送ります。'
+        '名前、メールアドレス、自由記述、閲覧履歴は送りません。</p>'
+        '<p>連打を減らすため、端末にはレッスンごとの押した日付だけを保存します。'
+        'Cookieは使いません。単元の集計を読むときは単元IDだけをGoogleへ送ります。'
+        'ページを開くたびに集計を読み込み、Googleの転送先（script.googleusercontent.com）を経て数を受け取ります。'
+        'わかったの集計は10回を超えた場合だけ回数で表示します。'
+        '同じ人を見分けないため、人数ではありません。</p>'
+        '<p>受け口のスプレッドシートには受信時刻と送った項目が記録されます。'
+        'Googleへの通信にはIPアドレスなどの通信情報が伴い、'
+        'Google側のデータ取扱いにはGoogleの規約とプライバシーポリシーが適用されます。'
+        '自由記述は評価の受け口に送らず、ひとこと書くリンクから既存のおたよりフォームを開けます。</p></section>'
+        if SITE_CONFIG.get("rating_endpoint") else ""
+    )
     return f"""
 <section class="container unit-hero about-hero">
   <p class="eyebrow">ABOUT THIS EXHIBITION</p>
@@ -3145,7 +3213,7 @@ def about_body() -> str:
   <section><p class="eyebrow">06 / SOURCE</p><h2>固定版で来歴を確かめる</h2><p>各レッスン末の「この教材の来歴」から、そのページを生成したMarkdownの固定版を確認できます。現在の展示は{external(commit_url, '正本コミット ' + commit_short)}から、{html.escape(BUILD_CONTEXT['generated_date'])}に生成しました。</p></section>
   <section><p class="eyebrow">07 / UPDATE</p><h2>正本が更新されたら、検査して展示を更新する</h2><p>この展示は正本の更新を定期的に確認し、変化があったときだけ再生成する設計です。リンク、本文、図版、来歴、公開検疫のすべてに通った生成物だけを次の展示候補にします。失敗時は直前の公開版を残します。</p><p><a class="text-link" href="../updates/index.html">この展示の更新履歴を見る</a></p></section>
   <section><p class="eyebrow">08 / RIGHTS</p><h2>制作方法と、再利用できる範囲</h2><p>教材本文の主要部分はAIが多段階で執筆し、別系統AIの批判レビューと人間の確認を組み合わせています。人間レビュー済への昇格状況は進捗一覧で区別しています。OpenAI、Anthropic、出典元の機関による公式・公認教材ではありません。</p><p>教材は原則CC BY 4.0ですが、出典を明記した引用、第三者資料、JP-COS LOD由来データ、名称・ロゴなどには別の条件があります。再利用前に{external(notice_url, '権利除外表')}、{external(disclaimer_url, '免責とAI生成の開示')}、{external(methodology_url, '制作方法')}を確認してください。</p></section>
-</article>"""
+{rating_notice}</article>"""
 
 
 def search_index_entries(docs: list[Doc], units: dict[str, Unit]) -> list[dict[str, object]]:
@@ -3274,6 +3342,16 @@ def copy_assets(source: Path, site_root: Path) -> tuple[dict[Path, Path], int]:
     (site_root / "_assets").mkdir(parents=True)
     for name in ("site.css", "site.js", "theme.js", "favicon.svg"):
         shutil.copy2(SITE_ROOT / "static" / name, site_root / "_assets" / name)
+    if SITE_CONFIG.get("rating_endpoint"):
+        template = (SITE_ROOT / "static/rating.js").read_text(encoding="utf-8")
+        marker = '"__RATING_ENDPOINT__"'
+        if template.count(marker) != 1:
+            raise BuildError("評価スクリプトの宛先テンプレートが不正です")
+        (site_root / "_assets/rating.js").write_text(
+            template.replace(marker, json.dumps(SITE_CONFIG["rating_endpoint"])),
+            encoding="utf-8",
+        )
+        shutil.copy2(SITE_ROOT / "static/rating.css", site_root / "_assets/rating.css")
     og_source = source / OG_IMAGE_SOURCE
     if not og_source.is_file():
         raise BuildError(f"OG画像がありません: {OG_IMAGE_SOURCE}")

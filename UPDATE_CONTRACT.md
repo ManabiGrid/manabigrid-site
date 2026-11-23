@@ -135,6 +135,7 @@ mainへのpush、日次schedule、手動Pagesのいずれも、site checkout直�
 
 - テーマは`system / light / dark`の3状態だけとする。既定は端末設定へ従う`system`で、明示選択だけを`manabigrid-theme`として同一originの`localStorage`へ保存する。検索語、読了、スクロール位置、教材選択を保存しない。
 - `static/theme.js`だけが`localStorage`へ触れてよい。キー、許可値、読み書き箇所は`check_site.py`で完全一致検査し、別キーやネットワーク送信を追加しない。
+- 2026-10-23の本人決定による例外: `rating_endpoint`を設定した場合だけ`static/rating.js`の評価ボタンを1回押しで送信する。`manabigrid-rating:<単元ID>:<レッスン番号>`のキーで押した日付だけを`localStorage`へ読み書きする。テーマの既存照合は保持し、評価のキー生成式と読み書き箇所も完全一致で検査する。Cookieは使わず、名前・メール・自由記述・閲覧履歴を送らない。Google Apps Scriptへ送る項目は単元ID・レッスン番号・段階・任意の理由コードだけとし、集計のGETには単元IDだけを送る。`fetch(`の例外は評価スクリプト内の設定宛先そのものに限り、POSTは応答の転送を追わない。ページを開くたびに数を読むGETだけがGoogleの転送先（script.googleusercontent.com）を経る。CSPの`connect-src`は有効な評価ページに限って`https://script.google.com https://script.googleusercontent.com`と完全一致させ、他のスクリプトの通信や第3のhostは許さない。空設定なら公開出力を変えない。
 - 図の拡大はページ内のネイティブ`dialog`を既定とし、URLと本文スクロール位置を変えない。閉じるボタン、背景、Esc、元リンクへのフォーカス復帰を維持し、JavaScript不成立時は元SVGを新規タブで開けるfallbackを残す。
 - 図を拡大するために全ページのスクロール位置を永続保存しない。戻るべき対象が曖昧な一般ページ遷移へ状態を持ち越さない。
 - ページ末の回復導線は「ページの先頭」と「ホームまたは教材一覧」の2つとし、本文を覆う固定ボタンにしない。44px以上の操作領域を実描画検査する。
